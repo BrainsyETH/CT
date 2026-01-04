@@ -75,7 +75,7 @@ export function ShareButton({ event }: ShareButtonProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" data-share-button>
       <button
         onClick={(e) => {
           e.stopPropagation();
