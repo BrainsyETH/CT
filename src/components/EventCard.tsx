@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
+import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
@@ -49,14 +50,17 @@ export function EventCard({ event, index }: EventCardProps) {
                 : "bg-white border border-gray-200 shadow-gray-200/50 group-hover:border-teal-300 group-hover:shadow-teal-200/50"
             }`}
           >
-            {/* Date */}
-            <time
-              className={`text-sm font-medium transition-colors duration-300 ${
-                isCrimeline ? "text-red-400" : "text-teal-600"
-              }`}
-            >
-              {formatDate(event.date)}
-            </time>
+            {/* Header with Date and Share */}
+            <div className="flex items-start justify-between">
+              <time
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  isCrimeline ? "text-red-400" : "text-teal-600"
+                }`}
+              >
+                {formatDate(event.date)}
+              </time>
+              <ShareButton event={event} />
+            </div>
 
             {/* Title */}
             <h3
