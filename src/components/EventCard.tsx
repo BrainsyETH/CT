@@ -17,6 +17,22 @@ export function EventCard({ event, index }: EventCardProps) {
   const isCrimeline = mode === "crimeline";
   const isLeft = index % 2 === 0;
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't open modal if clicking on share button
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-share-button]')) {
+      return;
+    }
+    setSelectedEventId(event.id);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setSelectedEventId(event.id);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
@@ -37,9 +53,12 @@ export function EventCard({ event, index }: EventCardProps) {
           isLeft ? "md:mr-8" : "md:ml-8"
         }`}
       >
-        <button
-          onClick={() => setSelectedEventId(event.id)}
-          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 group ${
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={handleCardClick}
+          onKeyDown={handleKeyDown}
+          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group ${
             isCrimeline ? "focus:ring-red-500" : "focus:ring-teal-500"
           }`}
         >
@@ -172,7 +191,7 @@ export function EventCard({ event, index }: EventCardProps) {
               Click for details →
             </div>
           </div>
-        </button>
+        </div>
       </div>
     </motion.div>
   );
