@@ -3,6 +3,7 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
+import { EventDetailModal } from "@/components/EventDetailModal";
 import eventsData from "@/data/events.json";
 import type { Event } from "@/lib/types";
 
@@ -17,6 +18,7 @@ export default function Home() {
           <Timeline events={events} />
         </div>
       </main>
+      <EventDetailModal events={events} />
     </ThemeProvider>
   );
 }
