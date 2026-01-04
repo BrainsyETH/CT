@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
+import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
@@ -64,19 +65,22 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   : "bg-white border border-gray-200"
               }`}
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedEventId(null)}
-                className={`absolute top-4 right-4 p-2 rounded-lg transition-colors ${
-                  isCrimeline
-                    ? "text-gray-400 hover:text-white hover:bg-gray-800"
-                    : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              {/* Header Actions */}
+              <div className="absolute top-4 right-4 flex items-center gap-2">
+                <ShareButton event={event} />
+                <button
+                  onClick={() => setSelectedEventId(null)}
+                  className={`p-2 rounded-lg transition-colors ${
+                    isCrimeline
+                      ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                      : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
 
               {/* Date */}
               <time
