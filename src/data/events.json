@@ -1,0 +1,745 @@
+[
+  {
+    "id": "btc-genesis-2009-01-03",
+    "date": "2009-01-03",
+    "title": "Bitcoin Genesis Block",
+    "summary": "Satoshi Nakamoto mines the first Bitcoin block, embedding 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks' in the coinbase.",
+    "category": "Genesis Era",
+    "tags": ["TECH", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Genesis Block", "url": "https://en.bitcoin.it/wiki/Genesis_block" }
+    ],
+    "metrics": {
+      "btc_price_usd": 0
+    }
+  },
+  {
+    "id": "btc-pizza-day-2010-05-22",
+    "date": "2010-05-22",
+    "title": "Bitcoin Pizza Day",
+    "summary": "Laszlo Hanyecz pays 10,000 BTC for two Papa John's pizzas, marking the first real-world Bitcoin transaction.",
+    "category": "Genesis Era",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Bitcoin Pizza Day", "url": "https://en.bitcoin.it/wiki/Laszlo_Hanyecz" }
+    ],
+    "metrics": {
+      "btc_price_usd": 0.0025
+    }
+  },
+  {
+    "id": "silk-road-launch-2011-02",
+    "date": "2011-02-01",
+    "title": "Silk Road Launches",
+    "summary": "Ross Ulbricht launches Silk Road, the first major darknet marketplace using Bitcoin for anonymous payments.",
+    "category": "Genesis Era",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Silk Road Wikipedia", "url": "https://en.wikipedia.org/wiki/Silk_Road_(marketplace)" }
+    ],
+    "metrics": {
+      "btc_price_usd": 1
+    }
+  },
+  {
+    "id": "mtgox-hack-2011-06-19",
+    "date": "2011-06-19",
+    "title": "Mt. Gox First Hack",
+    "summary": "Mt. Gox, the largest Bitcoin exchange at the time, suffers a security breach that leads to a flash crash from $17.50 to $0.01.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Mt. Gox Wiki", "url": "https://en.bitcoin.it/wiki/Mt._Gox" }
+    ],
+    "metrics": {
+      "btc_price_usd": 17.5
+    },
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 8750000,
+      "victims_estimated": "60k+",
+      "root_cause": ["Compromised auditor account", "Poor security practices"],
+      "aftermath": "Exchange briefly suspended trading and eventually restored prices.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "btc-first-halving-2012-11-28",
+    "date": "2012-11-28",
+    "title": "First Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 50 BTC to 25 BTC at block 210,000, the first of its kind.",
+    "category": "Halvings",
+    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Halving History", "url": "https://www.bitcoinblockhalf.com/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 12.35
+    }
+  },
+  {
+    "id": "mtgox-collapse-2014-02-24",
+    "date": "2014-02-24",
+    "title": "Mt. Gox Collapse",
+    "summary": "Mt. Gox halts all withdrawals and files for bankruptcy after revealing 850,000 BTC (~$450M at the time) were stolen over several years.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Mt. Gox Bankruptcy", "url": "https://en.wikipedia.org/wiki/Mt._Gox" }
+    ],
+    "metrics": {
+      "btc_price_usd": 500
+    },
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 450000000,
+      "victims_estimated": "850k+",
+      "root_cause": ["Transaction malleability exploit", "Poor internal controls", "Long-running undetected theft"],
+      "aftermath": "Exchange filed for bankruptcy; creditors still awaiting payouts a decade later.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "ethereum-launch-2015-07-30",
+    "date": "2015-07-30",
+    "title": "Ethereum Mainnet Launch",
+    "summary": "Ethereum goes live with the Frontier release, introducing smart contracts and a Turing-complete blockchain.",
+    "category": "Ethereum Era",
+    "tags": ["TECH", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Ethereum History", "url": "https://ethereum.org/en/history/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 288
+    }
+  },
+  {
+    "id": "dao-hack-2016-06-17",
+    "date": "2016-06-17",
+    "title": "The DAO Hack",
+    "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE", "MILESTONE"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "The DAO Attack", "url": "https://www.gemini.com/cryptopedia/the-dao-hack-makerdao" }
+    ],
+    "metrics": {
+      "btc_price_usd": 750,
+      "market_cap_usd": 150000000
+    },
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 60000000,
+      "victims_estimated": "11k+",
+      "root_cause": ["Reentrancy vulnerability", "Smart contract bug"],
+      "aftermath": "Ethereum community split; hard fork created ETH and ETC chains.",
+      "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "bitfinex-hack-2016-08-02",
+    "date": "2016-08-02",
+    "title": "Bitfinex Hack",
+    "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Bitfinex Hack Report", "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP" }
+    ],
+    "metrics": {
+      "btc_price_usd": 600
+    },
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 72000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Multisig vulnerability", "Third-party security compromise"],
+      "aftermath": "Bitfinex issued BFX tokens to affected users; DOJ later recovered some funds in 2022.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "btc-second-halving-2016-07-09",
+    "date": "2016-07-09",
+    "title": "Second Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 25 BTC to 12.5 BTC at block 420,000.",
+    "category": "Halvings",
+    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Second Halving", "url": "https://www.bitcoinblockhalf.com/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 650
+    }
+  },
+  {
+    "id": "ico-boom-2017",
+    "date": "2017-06-01",
+    "title": "ICO Boom Begins",
+    "summary": "Initial Coin Offerings explode in popularity, raising billions for blockchain projects with minimal regulation.",
+    "category": "ICO Era",
+    "tags": ["ECONOMIC", "CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "ICO Boom", "url": "https://www.investopedia.com/terms/i/initial-coin-offering-ico.asp" }
+    ],
+    "metrics": {
+      "btc_price_usd": 2500,
+      "market_cap_usd": 100000000000
+    }
+  },
+  {
+    "id": "btc-ath-20k-2017-12-17",
+    "date": "2017-12-17",
+    "title": "Bitcoin Reaches $20,000",
+    "summary": "Bitcoin hits its first major all-time high of nearly $20,000, capturing mainstream attention and sparking institutional interest.",
+    "category": "Bull Runs",
+    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "2017 Bull Run", "url": "https://www.coindesk.com/price/bitcoin" }
+    ],
+    "metrics": {
+      "btc_price_usd": 19783,
+      "market_cap_usd": 330000000000
+    }
+  },
+  {
+    "id": "china-ico-ban-2017-09-04",
+    "date": "2017-09-04",
+    "title": "China Bans ICOs",
+    "summary": "China's central bank declares all ICO fundraising illegal, triggering a market crash and setting a precedent for regulatory crackdowns.",
+    "category": "Regulation",
+    "tags": ["REGULATORY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "China ICO Ban", "url": "https://www.bbc.com/news/business-41157249" }
+    ],
+    "metrics": {
+      "btc_price_usd": 4300
+    }
+  },
+  {
+    "id": "cryptopia-hack-2019-01-14",
+    "date": "2019-01-14",
+    "title": "Cryptopia Exchange Hack",
+    "summary": "New Zealand-based Cryptopia exchange is hacked, losing approximately $16M in various cryptocurrencies.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Cryptopia Hack", "url": "https://www.coindesk.com/new-zealand-exchange-cryptopia-hacked" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 16000000,
+      "victims_estimated": "300k+",
+      "root_cause": ["Wallet security compromise"],
+      "aftermath": "Exchange went into liquidation; partial funds recovered for creditors.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "plustoken-scam-2019-06",
+    "date": "2019-06-29",
+    "title": "PlusToken Ponzi Collapse",
+    "summary": "PlusToken Ponzi scheme collapses after defrauding approximately $2B+ from Asian investors through fake cryptocurrency investment platform.",
+    "category": "Other",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "PlusToken Scam", "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/" }
+    ],
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": 2000000000,
+      "victims_estimated": "3M+",
+      "root_cause": ["Ponzi scheme", "High yield promises"],
+      "aftermath": "Chinese authorities arrested key operators; funds partially traced and seized.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "defi-summer-2020-06",
+    "date": "2020-06-15",
+    "title": "DeFi Summer Begins",
+    "summary": "Compound launches COMP token governance mining, igniting 'DeFi Summer' and explosive growth in decentralized finance protocols.",
+    "category": "DeFi Summer",
+    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "DeFi Summer", "url": "https://www.gemini.com/cryptopedia/defi-summer-yield-farming" }
+    ],
+    "metrics": {
+      "btc_price_usd": 9400,
+      "tvl_usd": 2000000000
+    }
+  },
+  {
+    "id": "uniswap-v2-launch-2020-05",
+    "date": "2020-05-18",
+    "title": "Uniswap V2 Launches",
+    "summary": "Uniswap V2 launches with ERC20-ERC20 pools, flash swaps, and price oracles, becoming the leading decentralized exchange.",
+    "category": "DeFi Summer",
+    "tags": ["TECH", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Uniswap V2", "url": "https://uniswap.org/blog/uniswap-v2" }
+    ],
+    "metrics": {
+      "btc_price_usd": 9700,
+      "tvl_usd": 40000000
+    }
+  },
+  {
+    "id": "btc-third-halving-2020-05-11",
+    "date": "2020-05-11",
+    "title": "Third Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 12.5 BTC to 6.25 BTC at block 630,000.",
+    "category": "Halvings",
+    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Third Halving", "url": "https://www.bitcoinblockhalf.com/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 8600
+    }
+  },
+  {
+    "id": "kucoin-hack-2020-09-26",
+    "date": "2020-09-26",
+    "title": "KuCoin Exchange Hack",
+    "summary": "KuCoin suffers a major security breach with hackers stealing over $280M in various cryptocurrencies.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "KuCoin Hack", "url": "https://www.coindesk.com/kucoin-hack-2020" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 280000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Private key compromise", "Hot wallet vulnerability"],
+      "aftermath": "Most funds recovered through project freezes and law enforcement; exchange compensated users.",
+      "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "poly-network-hack-2021-08-10",
+    "date": "2021-08-10",
+    "title": "Poly Network Hack",
+    "summary": "A hacker exploits Poly Network cross-chain protocol, stealing over $600M in the largest DeFi hack at the time. The hacker later returned most funds.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Poly Network Hack", "url": "https://www.coindesk.com/markets/2021/08/10/cross-chain-defi-site-poly-network-hacked-hundreds-of-millions-potentially-lost/" }
+    ],
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 610000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Smart contract vulnerability", "Cross-chain messaging flaw"],
+      "aftermath": "Hacker returned funds after negotiations; was offered security role.",
+      "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "btc-ath-69k-2021-11-10",
+    "date": "2021-11-10",
+    "title": "Bitcoin Hits $69,000 ATH",
+    "summary": "Bitcoin reaches all-time high of $69,044, marking the peak of the 2021 bull run before a prolonged bear market.",
+    "category": "Bull Runs",
+    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Bitcoin ATH", "url": "https://www.coindesk.com/price/bitcoin" }
+    ],
+    "metrics": {
+      "btc_price_usd": 69044,
+      "market_cap_usd": 1300000000000
+    }
+  },
+  {
+    "id": "cream-finance-hack-2021-10-27",
+    "date": "2021-10-27",
+    "title": "Cream Finance Flash Loan Attack",
+    "summary": "Cream Finance suffers its third hack of 2021, losing $130M in a sophisticated flash loan oracle manipulation attack.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Cream Hack Analysis", "url": "https://rekt.news/cream-rekt-2/" }
+    ],
+    "crimeline": {
+      "type": "ORACLE MANIPULATION",
+      "funds_lost_usd": 130000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Flash loan attack", "Oracle price manipulation", "Collateral valuation exploit"],
+      "aftermath": "Third major exploit for Cream; protocol credibility severely damaged.",
+      "status": "Total loss"
+    }
+  },
+  {
+    "id": "wormhole-hack-2022-02-02",
+    "date": "2022-02-02",
+    "title": "Wormhole Bridge Hack",
+    "summary": "Wormhole cross-chain bridge is exploited for 120,000 wETH (~$320M) due to a signature verification vulnerability.",
+    "category": "Bridge",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Wormhole Exploit", "url": "https://rekt.news/wormhole-rekt/" }
+    ],
+    "crimeline": {
+      "type": "BRIDGE HACK",
+      "funds_lost_usd": 320000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Signature verification bypass", "Smart contract vulnerability"],
+      "aftermath": "Jump Crypto replaced the stolen funds to make users whole.",
+      "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "ronin-bridge-hack-2022-03-23",
+    "date": "2022-03-23",
+    "title": "Ronin Bridge Hack",
+    "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M in the largest DeFi hack ever.",
+    "category": "Bridge",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Ronin Hack", "url": "https://www.coindesk.com/tech/2022/03/29/axie-infinitys-ronin-network-suffers-625m-exploit/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 44000
+    },
+    "crimeline": {
+      "type": "BRIDGE HACK",
+      "funds_lost_usd": 625000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Compromised validator keys", "Insufficient validator set", "Social engineering"],
+      "aftermath": "FBI attributed attack to Lazarus Group; Sky Mavis raised funds to reimburse users.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "terra-luna-collapse-2022-05-09",
+    "date": "2022-05-09",
+    "title": "Terra/LUNA Collapse",
+    "summary": "The UST algorithmic stablecoin loses its peg, triggering a death spiral that wipes out $40B+ in value and collapses the Terra ecosystem.",
+    "category": "Stablecoin",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Terra Collapse", "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 30000
+    },
+    "crimeline": {
+      "type": "LEVERAGE COLLAPSE",
+      "funds_lost_usd": 40000000000,
+      "victims_estimated": "1M+",
+      "root_cause": ["Algorithmic stablecoin design flaw", "Bank run dynamics", "Anchor yield unsustainability"],
+      "aftermath": "Do Kwon charged with fraud; triggered cascading failures across crypto lending platforms.",
+      "status": "Total loss"
+    }
+  },
+  {
+    "id": "celsius-pause-2022-06-12",
+    "date": "2022-06-12",
+    "title": "Celsius Network Freezes Withdrawals",
+    "summary": "Crypto lender Celsius halts all withdrawals citing 'extreme market conditions,' later filing for bankruptcy with $4.7B hole.",
+    "category": "Lending",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "Celsius Collapse", "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 23000
+    },
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 4700000000,
+      "victims_estimated": "1.7M",
+      "root_cause": ["Rehypothecation", "Illiquid investments", "Risk mismanagement", "Terra exposure"],
+      "aftermath": "Filed for bankruptcy; CEO Alex Mashinsky later arrested for fraud.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "3ac-default-2022-06-27",
+    "date": "2022-06-27",
+    "title": "Three Arrows Capital Defaults",
+    "summary": "Crypto hedge fund Three Arrows Capital defaults on over $3.5B in loans after LUNA collapse, triggering contagion across the industry.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "3AC Collapse", "url": "https://www.coindesk.com/business/2022/07/01/three-arrows-capital-files-for-chapter-15-bankruptcy/" }
+    ],
+    "crimeline": {
+      "type": "LEVERAGE COLLAPSE",
+      "funds_lost_usd": 3500000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Excessive leverage", "LUNA exposure", "Illiquid positions"],
+      "aftermath": "Founders fled Singapore; creditors pursuing billions in claims.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "voyager-bankruptcy-2022-07-05",
+    "date": "2022-07-05",
+    "title": "Voyager Digital Bankruptcy",
+    "summary": "Crypto broker Voyager files for bankruptcy after Three Arrows Capital default, leaving customers unable to access $1.3B in assets.",
+    "category": "Lending",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Voyager Bankruptcy", "url": "https://www.coindesk.com/business/2022/07/06/voyager-digital-files-for-chapter-11-bankruptcy/" }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 1300000000,
+      "victims_estimated": "3.5M",
+      "root_cause": ["3AC exposure", "Insufficient reserves", "Risk concentration"],
+      "aftermath": "Bankruptcy proceedings; FTX initially bid to acquire before its own collapse.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "nomad-bridge-hack-2022-08-01",
+    "date": "2022-08-01",
+    "title": "Nomad Bridge Hack",
+    "summary": "Nomad cross-chain bridge is drained of $190M in a chaotic 'free-for-all' attack where hundreds of users exploited a vulnerability.",
+    "category": "Bridge",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Nomad Hack", "url": "https://rekt.news/nomad-rekt/" }
+    ],
+    "crimeline": {
+      "type": "BRIDGE HACK",
+      "funds_lost_usd": 190000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Smart contract bug", "Initialization vulnerability"],
+      "aftermath": "First 'crowd-sourced' hack; some whitehats returned funds.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "ethereum-merge-2022-09-15",
+    "date": "2022-09-15",
+    "title": "Ethereum Merge",
+    "summary": "Ethereum successfully transitions from Proof of Work to Proof of Stake, reducing energy consumption by ~99.95%.",
+    "category": "Ethereum Era",
+    "tags": ["TECH", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "The Merge", "url": "https://ethereum.org/en/roadmap/merge/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 20000,
+      "market_cap_usd": 190000000000
+    }
+  },
+  {
+    "id": "ftx-collapse-2022-11-11",
+    "date": "2022-11-11",
+    "title": "FTX Exchange Collapse",
+    "summary": "FTX, the third-largest crypto exchange, files for bankruptcy after revelations of misusing $8B+ in customer funds through Alameda Research.",
+    "category": "Centralized Exchange",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["timeline", "crimeline"],
+    "links": [
+      { "label": "FTX Collapse", "url": "https://www.reuters.com/technology/ftx-crypto-exchange-files-us-bankruptcy-proceedings-2022-11-11/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 16800
+    },
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": 8000000000,
+      "victims_estimated": "1M+",
+      "root_cause": ["Customer fund misappropriation", "Alameda commingling", "Fraudulent accounting", "Lack of oversight"],
+      "aftermath": "SBF arrested and convicted of fraud; sentenced to 25 years in prison.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "genesis-bankruptcy-2023-01-19",
+    "date": "2023-01-19",
+    "title": "Genesis Trading Bankruptcy",
+    "summary": "Genesis Global Capital files for bankruptcy owing $3.5B to creditors after being hit by Three Arrows Capital and FTX collapses.",
+    "category": "Lending",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Genesis Bankruptcy", "url": "https://www.coindesk.com/business/2023/01/20/crypto-lender-genesis-global-holdco-files-for-bankruptcy/" }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 3500000000,
+      "victims_estimated": "340k+",
+      "root_cause": ["3AC exposure", "FTX exposure", "Contagion"],
+      "aftermath": "DCG parent company faced SEC charges; settlement reached with NY AG.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "euler-finance-hack-2023-03-13",
+    "date": "2023-03-13",
+    "title": "Euler Finance Flash Loan Attack",
+    "summary": "Euler Finance lending protocol is exploited for $197M in a flash loan attack targeting the donation and liquidation mechanics.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Euler Hack", "url": "https://rekt.news/euler-rekt/" }
+    ],
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 197000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Flash loan attack", "Donation function exploit", "Liquidation logic flaw"],
+      "aftermath": "Attacker negotiated return of funds after on-chain messages and negotiations.",
+      "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "sec-ripple-ruling-2023-07-13",
+    "date": "2023-07-13",
+    "title": "SEC vs Ripple Partial Victory",
+    "summary": "Judge rules XRP is not a security when sold on exchanges, marking a significant legal precedent for the crypto industry.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Ripple Ruling", "url": "https://www.reuters.com/legal/us-judge-says-ripples-xrp-token-did-not-violate-securities-law-sold-exchanges-2023-07-13/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 31000
+    }
+  },
+  {
+    "id": "mixin-network-hack-2023-09-25",
+    "date": "2023-09-25",
+    "title": "Mixin Network Hack",
+    "summary": "Mixin Network cloud service provider is hacked, resulting in approximately $200M in losses from the decentralized network.",
+    "category": "Other",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Mixin Hack", "url": "https://www.coindesk.com/tech/2023/09/25/crypto-network-mixin-suspends-withdrawals-after-200m-hack/" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 200000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Cloud infrastructure compromise", "Database breach"],
+      "aftermath": "Network suspended deposits/withdrawals; offered 10% bug bounty to attacker.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "btc-etf-approval-2024-01-10",
+    "date": "2024-01-10",
+    "title": "Bitcoin Spot ETF Approved",
+    "summary": "SEC approves 11 spot Bitcoin ETFs including BlackRock and Fidelity, marking a historic milestone for institutional crypto adoption.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Bitcoin ETF Approval", "url": "https://www.sec.gov/news/press-release/2024-10" }
+    ],
+    "metrics": {
+      "btc_price_usd": 46000,
+      "market_cap_usd": 900000000000
+    }
+  },
+  {
+    "id": "btc-fourth-halving-2024-04-19",
+    "date": "2024-04-19",
+    "title": "Fourth Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 6.25 BTC to 3.125 BTC at block 840,000, continuing the predictable monetary policy.",
+    "category": "Halvings",
+    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Fourth Halving", "url": "https://www.bitcoinblockhalf.com/" }
+    ],
+    "metrics": {
+      "btc_price_usd": 64000
+    }
+  },
+  {
+    "id": "btc-ath-100k-2024-12-05",
+    "date": "2024-12-05",
+    "title": "Bitcoin Breaks $100,000",
+    "summary": "Bitcoin surpasses $100,000 for the first time, driven by ETF inflows and post-halving dynamics.",
+    "category": "Bull Runs",
+    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Bitcoin 100k", "url": "https://www.coindesk.com/price/bitcoin" }
+    ],
+    "metrics": {
+      "btc_price_usd": 100000,
+      "market_cap_usd": 2000000000000
+    }
+  },
+  {
+    "id": "radiant-capital-hack-2024-10-16",
+    "date": "2024-10-16",
+    "title": "Radiant Capital Multi-Chain Hack",
+    "summary": "Radiant Capital suffers a $50M exploit across Arbitrum and BNB Chain through compromised multi-sig signers.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Radiant Hack", "url": "https://rekt.news/radiant-capital-rekt2/" }
+    ],
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 50000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Multi-sig compromise", "Malware infection", "Hardware wallet exploitation"],
+      "aftermath": "Protocol paused lending markets; investigation ongoing.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "beanstalk-governance-2022-04-17",
+    "date": "2022-04-17",
+    "title": "Beanstalk Governance Attack",
+    "summary": "Attacker uses flash loan to gain governance power in Beanstalk protocol, draining $182M in a sophisticated governance attack.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Beanstalk Attack", "url": "https://rekt.news/beanstalk-rekt/" }
+    ],
+    "crimeline": {
+      "type": "GOVERNANCE ATTACK",
+      "funds_lost_usd": 182000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Flash loan governance manipulation", "Instant voting execution", "Lack of time delay"],
+      "aftermath": "Protocol attempted to rebuild through community fundraise.",
+      "status": "Total loss"
+    }
+  }
+]

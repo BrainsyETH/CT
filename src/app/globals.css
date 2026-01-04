@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* Timeline Mode (Default) */
+:root,
+[data-theme="timeline"] {
+  --background: #f9fafb;
+  --foreground: #111827;
+  --accent: #14b8a6;
+  --accent-light: #ccfbf1;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --muted: #6b7280;
+}
+
+/* Crimeline Mode (Dark/Sinister) */
+[data-theme="crimeline"] {
+  --background: #030712;
+  --foreground: #f9fafb;
+  --accent: #dc2626;
+  --accent-light: #450a0a;
+  --card-bg: #111827;
+  --card-border: #7f1d1d;
+  --muted: #9ca3af;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for crimeline mode */
+[data-theme="crimeline"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="crimeline"] ::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+[data-theme="crimeline"] ::-webkit-scrollbar-thumb {
+  background: #7f1d1d;
+  border-radius: 4px;
+}
+
+[data-theme="crimeline"] ::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}
+
+/* Selection colors */
+[data-theme="timeline"] ::selection {
+  background: #14b8a6;
+  color: white;
+}
+
+[data-theme="crimeline"] ::selection {
+  background: #dc2626;
+  color: white;
+}
+
+/* Focus ring styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
