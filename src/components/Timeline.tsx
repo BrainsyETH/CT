@@ -7,7 +7,6 @@ import { EventCard } from "./EventCard";
 import { YearJump } from "./YearJump";
 import { MobileYearSelector } from "./MobileYearSelector";
 import { SearchFilter } from "./SearchFilter";
-import { StatsPanel } from "./StatsPanel";
 import { ScrollProgress } from "./ScrollProgress";
 import { getYear } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
@@ -97,9 +96,6 @@ export function Timeline({ events }: TimelineProps) {
   return (
     <>
       <ScrollProgress years={years} />
-
-      {/* Stats Panel (crimeline only) */}
-      <StatsPanel events={events} />
 
       {/* Search and Filter */}
       <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-6">
