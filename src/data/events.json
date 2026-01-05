@@ -741,5 +741,178 @@
       "aftermath": "Protocol attempted to rebuild through community fundraise.",
       "status": "Total loss"
     }
+  },
+  {
+    "id": "sec-twitter-hack-2024-01-09",
+    "date": "2024-01-09",
+    "title": "SEC Twitter Hacked for Fake Bitcoin ETF Approval",
+    "summary": "The SEC's official X account was compromised via SIM swap attack, posting a fake Bitcoin ETF approval that caused BTC to spike $1,000 then crash $2,000. Eric Council Jr. was later arrested for the hack.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE", "REGULATORY"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "SEC Hack Details", "url": "https://www.justice.gov/usao-dc/pr/fbi-arrests-alabama-man-january-2024-sec-x-hack-spiked-value-bitcoin" }
+    ],
+    "crimeline": {
+      "type": "SOCIAL MEDIA HACK",
+      "funds_lost_usd": 0,
+      "market_impact_usd": "Billions in market manipulation",
+      "victims_estimated": "Entire crypto market",
+      "root_cause": ["SIM swap attack", "Lack of 2FA on SEC account"],
+      "aftermath": "FBI arrested Eric Council Jr. in October 2024. Real ETF approval came the next day.",
+      "status": "Resolved - Perpetrator arrested"
+    }
+  },
+  {
+    "id": "slerf-burn-accident-2024-03",
+    "date": "2024-03-19",
+    "title": "$SLERF Developer Accidentally Burns $10M",
+    "summary": "Slerf developer accidentally burned all $10M of presale investor funds while trying to distribute tokens. Instead of killing the project, the community rallied and pushed market cap to $660M, turning a disaster into a bizarre success story.",
+    "category": "Failure",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Slerf Accident", "url": "https://www.aicoin.com/en/article/436482" }
+    ],
+    "crimeline": {
+      "type": "DEVELOPER ERROR",
+      "funds_lost_usd": 10000000,
+      "victims_estimated": "All presale investors",
+      "root_cause": ["Developer error during token distribution"],
+      "aftermath": "Community rallied, token reached $660M market cap. Became legendary meme moment.",
+      "status": "Ongoing - Project survived"
+    }
+  },
+  {
+    "id": "12yo-quant-rugpull-2024",
+    "date": "2024-04-12",
+    "title": "12-Year-Old Rug Pulls $QUANT for $20K",
+    "summary": "A 12-year-old kid rug pulled $QUANT token for $20,000 during a live stream. Crypto Twitter responded by pumping the market cap to $85M to 'teach the kid a lesson' about the power of community.",
+    "category": "Scam",
+    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Kid Rug Pull", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 20000,
+      "victims_estimated": "Initial buyers",
+      "root_cause": ["Exit scam by minor during livestream"],
+      "aftermath": "Crypto Twitter pumped token to $85M market cap in retaliation. Became viral story.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "hawk-tuah-girl-crash-2024-12",
+    "date": "2024-12-04",
+    "title": "$HAWK Token Crashes After Launch",
+    "summary": "Viral 'Hawk Tuah Girl' launched $HAWK token which immediately crashed. She held a Space to explain, @chooserich joined to confront her, she said she was 'tired' and ended the call, then went silent for two weeks while investors lost millions.",
+    "category": "Scam",
+    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Hawk Tuah Crash", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+    ],
+    "crimeline": {
+      "type": "CELEBRITY RUG PULL",
+      "funds_lost_usd": "Millions",
+      "victims_estimated": "Thousands of retail investors",
+      "root_cause": ["Celebrity token pump and dump", "Lack of legitimacy"],
+      "aftermath": "Creator disappeared for 2 weeks. Became cautionary tale about celebrity tokens.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "sahil-celebrity-scam-2024",
+    "date": "2024-06-15",
+    "title": "Sahil Orchestrates Mass Celebrity Token Scam",
+    "summary": "Sahil Arora convinced celebrities including Floyd Mayweather, Caitlyn Jenner, and Sexxy Redd to launch and promote tokens, then orchestrated coordinated rug pulls across all projects.",
+    "category": "Scam",
+    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Celebrity Scam Ring", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+    ],
+    "crimeline": {
+      "type": "COORDINATED RUG PULLS",
+      "funds_lost_usd": "Tens of millions",
+      "victims_estimated": "Thousands across multiple tokens",
+      "root_cause": ["Celebrity endorsement scam", "Serial fraudster"],
+      "aftermath": "Exposed celebrity token scam operations. Multiple tokens crashed.",
+      "status": "Ongoing investigation"
+    }
+  },
+  {
+    "id": "rizzmas-scooter-exposure-2024",
+    "date": "2024-12-20",
+    "title": "Scooter Exposes Rizzmas as Complete Scam",
+    "summary": "Crypto influencer Scooter (@imperooterxbt) revealed Rizzmas was a complete scam, causing its market cap to plummet from $100M to $20M and triggering backlash from TikTok investors who lost money.",
+    "category": "Scam",
+    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Rizzmas Exposure", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 80000000,
+      "victims_estimated": "Thousands of TikTok users",
+      "root_cause": ["Coordinated scam targeting social media users"],
+      "aftermath": "Market cap crashed from $100M to $20M after exposure. Whistleblower faced harassment.",
+      "status": "Exposed"
+    }
+  },
+  {
+    "id": "apefest-eye-burns-2023-11",
+    "date": "2023-11-04",
+    "title": "ApeFest Hong Kong UV Light Incident",
+    "summary": "Guests at BAYC's ApeFest Hong Kong reported severe eye pain and vision problems from UV lights at the event. Less than 1% affected but became a major PR crisis for Yuga Labs.",
+    "category": "Safety",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "ApeFest Incident", "url": "https://en.wikipedia.org/wiki/Bored_Ape" }
+    ],
+    "crimeline": {
+      "type": "EVENT SAFETY INCIDENT",
+      "funds_lost_usd": 0,
+      "victims_estimated": "~50 people with eye injuries",
+      "root_cause": ["Improper UV lighting at event venue"],
+      "aftermath": "BAYC issued statement, recommended medical attention for affected guests. PR damage to brand.",
+      "status": "Resolved"
+    }
+  },
+  {
+    "id": "chicken-church-pastor-scam-2024",
+    "date": "2024-08-10",
+    "title": "Church of the Chicken Pastor Scams Followers",
+    "summary": "Pastor Kelby of the viral 'Church of the Chicken' used his religious influence to promote low-cap memecoins for payment, leading to his expulsion from the church he founded.",
+    "category": "Scam",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Chicken Church Scam", "url": "https://www.aicoin.com/en/article/436482" }
+    ],
+    "crimeline": {
+      "type": "RELIGIOUS INFLUENCER SCAM",
+      "funds_lost_usd": "Unknown",
+      "victims_estimated": "Church followers",
+      "root_cause": ["Influencer using religious authority for financial gain"],
+      "aftermath": "Pastor expelled from church, church plans collapsed.",
+      "status": "Resolved - Pastor removed"
+    }
+  },
+   {
+    "id": "cz-release-gm-2024-09-27",
+    "date": "2024-09-27",
+    "title": "CZ Posts 'gm' Upon Prison Release",
+    "summary": "Binance founder Changpeng 'CZ' Zhao returned to X the same day he was released from his 4-month prison sentence, posting a casual 'gm' that became one of crypto Twitter's most celebrated comebacks.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CZ Release", "url": "https://cointelegraph.com/news/most-memorable-crypto-tweets-2024" }
+    ]
   }
 ]

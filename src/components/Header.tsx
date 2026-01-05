@@ -50,7 +50,7 @@ export function Header() {
               }`}
             >
               {isCrimeline
-                ? "Hacks, exploits, and frauds"
+                ? "The dark history of cryptocurrency"
                 : "The history of cryptocurrency"}
             </p>
           </div>
