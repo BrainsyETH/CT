@@ -1,11 +1,12 @@
 "use client";
 
 import { useModeStore } from "@/store/mode-store";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function ModeToggle() {
   const { mode, toggleMode } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <button
@@ -38,7 +39,11 @@ export function ModeToggle() {
           animate={{
             left: isCrimeline ? "calc(100% - 20px)" : "4px",
           }}
-          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { type: "spring", stiffness: 500, damping: 30 }
+          }
         />
       </div>
 

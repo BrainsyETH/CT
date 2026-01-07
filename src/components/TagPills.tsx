@@ -7,38 +7,39 @@ interface TagPillsProps {
   tags: EventTag[];
 }
 
+// Improved contrast for both modes
 const tagColors: Record<EventTag, { timeline: string; crimeline: string }> = {
   TECH: {
-    timeline: "bg-blue-100 text-blue-700",
-    crimeline: "bg-blue-900/50 text-blue-300",
+    timeline: "bg-blue-100 text-blue-800 border border-blue-200",
+    crimeline: "bg-blue-900/60 text-blue-200 border border-blue-800",
   },
   ECONOMIC: {
-    timeline: "bg-green-100 text-green-700",
-    crimeline: "bg-green-900/50 text-green-300",
+    timeline: "bg-green-100 text-green-800 border border-green-200",
+    crimeline: "bg-green-900/60 text-green-200 border border-green-800",
   },
   REGULATORY: {
-    timeline: "bg-purple-100 text-purple-700",
-    crimeline: "bg-purple-900/50 text-purple-300",
+    timeline: "bg-purple-100 text-purple-800 border border-purple-200",
+    crimeline: "bg-purple-900/60 text-purple-200 border border-purple-800",
   },
   CULTURAL: {
-    timeline: "bg-pink-100 text-pink-700",
-    crimeline: "bg-pink-900/50 text-pink-300",
+    timeline: "bg-pink-100 text-pink-800 border border-pink-200",
+    crimeline: "bg-pink-900/60 text-pink-200 border border-pink-800",
   },
   SECURITY: {
-    timeline: "bg-orange-100 text-orange-700",
-    crimeline: "bg-orange-900/50 text-orange-300",
+    timeline: "bg-orange-100 text-orange-800 border border-orange-200",
+    crimeline: "bg-orange-900/60 text-orange-200 border border-orange-800",
   },
   FAILURE: {
-    timeline: "bg-red-100 text-red-700",
-    crimeline: "bg-red-900/50 text-red-300",
+    timeline: "bg-red-100 text-red-800 border border-red-200",
+    crimeline: "bg-red-900/60 text-red-200 border border-red-800",
   },
   MILESTONE: {
-    timeline: "bg-teal-100 text-teal-700",
-    crimeline: "bg-teal-900/50 text-teal-300",
+    timeline: "bg-teal-100 text-teal-800 border border-teal-200",
+    crimeline: "bg-teal-900/60 text-teal-200 border border-teal-800",
   },
   ATH: {
-    timeline: "bg-yellow-100 text-yellow-700",
-    crimeline: "bg-yellow-900/50 text-yellow-300",
+    timeline: "bg-yellow-100 text-yellow-800 border border-yellow-200",
+    crimeline: "bg-yellow-900/60 text-yellow-200 border border-yellow-800",
   },
 };
 

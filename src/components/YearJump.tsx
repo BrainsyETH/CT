@@ -4,9 +4,10 @@ import { useModeStore } from "@/store/mode-store";
 
 interface YearJumpProps {
   years: number[];
+  currentYear?: number | null;
 }
 
-export function YearJump({ years }: YearJumpProps) {
+export function YearJump({ years, currentYear }: YearJumpProps) {
   const { mode } = useModeStore();
   const isCrimeline = mode === "crimeline";
 
@@ -33,19 +34,27 @@ export function YearJump({ years }: YearJumpProps) {
       >
         Years
       </span>
-      {years.map((year) => (
-        <button
-          key={year}
-          onClick={() => scrollToYear(year)}
-          className={`px-3 py-1.5 text-sm font-medium rounded transition-all duration-200 text-left ${
-            isCrimeline
-              ? "text-gray-400 hover:text-white hover:bg-red-900/50"
-              : "text-gray-600 hover:text-gray-900 hover:bg-teal-100"
-          }`}
-        >
-          {year}
-        </button>
-      ))}
+      {years.map((year) => {
+        const isActive = year === currentYear;
+        return (
+          <button
+            key={year}
+            onClick={() => scrollToYear(year)}
+            aria-current={isActive ? "true" : undefined}
+            className={`px-3 py-1.5 text-sm font-medium rounded transition-all duration-200 text-left ${
+              isActive
+                ? isCrimeline
+                  ? "bg-red-900/70 text-red-300 border-l-2 border-red-500"
+                  : "bg-teal-100 text-teal-700 border-l-2 border-teal-500"
+                : isCrimeline
+                ? "text-gray-400 hover:text-white hover:bg-red-900/50"
+                : "text-gray-600 hover:text-gray-900 hover:bg-teal-100"
+            }`}
+          >
+            {year}
+          </button>
+        );
+      })}
     </nav>
   );
 }

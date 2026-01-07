@@ -9,7 +9,7 @@
   --accent-light: #ccfbf1;
   --card-bg: #ffffff;
   --card-border: #e5e7eb;
-  --muted: #6b7280;
+  --muted: #4b5563;
 }
 
 /* Crimeline Mode (Dark/Sinister) */
@@ -20,7 +20,7 @@
   --accent-light: #450a0a;
   --card-bg: #111827;
   --card-border: #7f1d1d;
-  --muted: #9ca3af;
+  --muted: #d1d5db;
 }
 
 @theme inline {
@@ -36,9 +36,24 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling - respect user preferences */
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar for crimeline mode */
@@ -74,4 +89,30 @@ html {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Improved focus visibility for all interactive elements */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard users */
+.sr-only:focus-visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 1rem;
+  background: var(--background);
+  color: var(--foreground);
+  clip: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
 }
