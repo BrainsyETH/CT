@@ -178,7 +178,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   </button>
                   {/* Header Actions - positioned over image */}
                   <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                    <ShareButton event={event} />
+                    <ShareButton event={event} overImage />
                     <button
                       ref={closeButtonRef}
                       onClick={closeModal}
