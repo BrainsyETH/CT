@@ -145,6 +145,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     src={event.image}
                     alt={event.title}
                     fill
+                    unoptimized
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 672px"
                     priority
