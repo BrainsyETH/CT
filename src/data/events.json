@@ -151,7 +151,7 @@
     "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time.",
     "category": "Centralized Exchange",
     "tags": ["SECURITY", "FAILURE"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Bitfinex Hack Report", "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP" }
     ],
@@ -1308,7 +1308,228 @@
       "aftermath": "Extension rollout halted; incident response, user remediation steps, and reimbursement process initiated for verified losses.",
       "status": "Partial recovery"
     }
+  },
+  {
+    "id": "beeple-everydays-nft-sale-2021-03-11",
+    "date": "2021-03-11",
+    "title": "Beeple’s 'Everydays' NFT Sells for $69.3M at Christie’s",
+    "summary": "Beeple’s 'Everydays: The First 5000 Days' becomes a watershed NFT moment when Christie’s sells it for $69,346,250—catapulting NFTs into mainstream finance, art, and culture.",
+    "category": "NFTs",
+    "tags": ["CULTURAL", "ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Christie’s results", "url": "https://press.christies.com/results-beeples-purely-digital-nft-based-work-of-art-achieves-693-million-at-christies-1" },
+      { "label": "Reuters coverage", "url": "https://www.reuters.com/lifestyle/digital-only-artwork-fetches-nearly-70-million-christies-2021-03-12/" }
+    ],
+    "metrics": {
+      "sale_price_usd": 69346250
+    }
+  },
+  {
+    "id": "coinbase-direct-listing-2021-04-14",
+    "date": "2021-04-14",
+    "title": "Coinbase Goes Public in Landmark Direct Listing",
+    "summary": "Coinbase lists publicly via a direct listing, marking a major 'crypto goes mainstream' milestone and validating exchange-driven market infrastructure in public equities.",
+    "category": "Market Structure",
+    "tags": ["ECONOMIC", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
+    ]
+  },
+  {
+    "id": "dogecoin-snl-peak-2021-05-08",
+    "date": "2021-05-08",
+    "title": "Dogecoin Mania Peaks Around Elon Musk’s SNL Appearance",
+    "summary": "Dogecoin’s 2021 meme-cycle reaches cultural saturation as speculation builds into Elon Musk’s Saturday Night Live appearance—followed by the familiar post-hype drawdown that defined memecoin volatility for a generation of retail traders.",
+    "category": "Meme Coins",
+    "tags": ["CULTURAL", "FAILURE", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
+    ]
+  },
+  {
+    "id": "tesla-bitcoin-payments-suspended-2021-05-12",
+    "date": "2021-05-12",
+    "title": "Tesla Suspends Bitcoin Payments Over Energy Concerns",
+    "summary": "Elon Musk posts that Tesla is suspending vehicle purchases using Bitcoin, citing the energy mix behind mining—triggering a sharp sentiment shift and amplifying the 'ESG vs crypto' narrative across markets.",
+    "category": "Market Structure",
+    "tags": ["ECONOMIC", "CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Musk tweet", "url": "https://x.com/elonmusk/status/1392602041025843203" },
+      { "label": "Reuters", "url": "https://www.reuters.com/technology/tesla-stops-taking-bitcoin-cites-fossil-fuel-use-mining-cybercurrency-2021-05-12/" }
+    ]
+  },
+  {
+    "id": "china-crackdown-mining-trading-2021-05-21",
+    "date": "2021-05-21",
+    "title": "China Escalates Crackdown on Bitcoin Mining and Trading",
+    "summary": "China’s policy posture hardens as authorities move to clamp down on Bitcoin mining and trading, forcing hashpower migration and setting the tone for a more adversarial regulatory environment in key jurisdictions.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "ECONOMIC", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
+    ]
+  },
+  {
+    "id": "ethereum-london-eip1559-2021-08-05",
+    "date": "2021-08-05",
+    "title": "Ethereum Activates London Upgrade (EIP-1559 Fee Burn)",
+    "summary": "Ethereum’s London hard fork ships EIP-1559, introducing base-fee burning and changing ETH’s monetary dynamics—one of the most consequential protocol-level shifts in the asset’s history.",
+    "category": "DeFi Protocol",
+    "tags": ["TECH", "MILESTONE", "ECONOMIC"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
+    ]
+  },
+  {
+    "id": "el-salvador-bitcoin-legal-tender-2021-09-07",
+    "date": "2021-09-07",
+    "title": "El Salvador Adopts Bitcoin as Legal Tender",
+    "summary": "El Salvador becomes the first nation-state to adopt Bitcoin as legal tender, turning crypto into a geopolitical headline and sparking global debate on monetary sovereignty, remittances, and macro risk.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "MILESTONE", "CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
+    ]
+  },
+  {
+    "id": "snoopdogg-cozomo-medici-reveal-2021-09-20",
+    "date": "2021-09-20",
+    "title": "Snoop Dogg Claims NFT Whale Persona '@CozomoMedici'",
+    "summary": "NFT Twitter gets a pure 2021 plot twist when Snoop Dogg tweets 'I am @CozomoMedici,' linking celebrity identity, provenance signaling, and high-end NFT collecting into a single viral moment.",
+    "category": "NFTs",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Snoop tweet", "url": "https://x.com/SnoopDogg/status/1440038460417474567" },
+      { "label": "The Verge", "url": "https://www.theverge.com/2021/9/20/22684780/snoop-dog-nft-booster-cozomo-medici-reveal-prank-crypto" }
+    ]
+  },
+  {
+    "id": "walmart-litecoin-hoax-2021-09-13",
+    "date": "2021-09-13",
+    "title": "Fake Walmart–Litecoin Press Release Whipsaws LTC Price",
+    "summary": "A fraudulent press release claiming Walmart would accept Litecoin briefly spikes LTC before denials—highlighting how thin liquidity + headline reflexes can turn misinformation into instant market structure chaos.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "CULTURAL", "SECURITY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Reuters", "url": "https://www.reuters.com/business/retail-consumer/press-release-walmarts-litecoin-partnership-is-fake-cnbc-2021-09-13/" },
+      { "label": "Walmart statement", "url": "https://corporate.walmart.com/news/2021/09/13/walmart-statement-in-response-to-fake-litecoin-press-release" }
+    ]
+  },
+  {
+    "id": "solana-ath-259-2021-11-06",
+    "date": "2021-11-06",
+    "title": "Solana Hits ~$259 as 2021 Hype Cycle Reaches Peak",
+    "summary": "Solana’s 2021 run culminates in a ~$259 price print as NFTs, DeFi, and high-throughput narratives converge—cementing SOL as a defining L1 of the bull market (and a future benchmark for ETF-era debates).",
+    "category": "Altcoins",
+    "tags": ["ATH", "TECH", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" },
+      { "label": "CMC historical snapshot (Nov 6, 2021)", "url": "https://coinmarketcap.com/historical/20211106/" }
+    ],
+    "metrics": {
+      "sol_price_usd": 258.93,
+      "sol_market_cap_usd": 77993805663
+    }
+  },
+  {
+    "id": "squid-token-rugpull-2021-11-01",
+    "date": "2021-11-01",
+    "title": "Squid Game Token Collapses in Classic Rug Pull",
+    "summary": "The 'SQUID' token—marketed off Netflix’s Squid Game—rockets, traps buyers with sell restrictions, then collapses as insiders drain liquidity, becoming a textbook 'too viral to be true' rug pull.",
+    "category": "Other",
+    "tags": ["SECURITY", "FAILURE", "CULTURAL"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Reuters", "url": "https://www.reuters.com/technology/crypto-coin-riding-squid-game-high-craters-after-dizzying-rally-2021-11-02/" },
+      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 3380000,
+      "victims_estimated": "Unknown",
+      "root_cause": [
+        "Sell restrictions / honeypot mechanics",
+        "Anonymous team",
+        "Liquidity drain (rug pull)"
+      ],
+      "aftermath": "Token price cratered to near-zero; project channels vanished; became a widely-cited cautionary tale during the memecoin/NFT mania phase.",
+      "status": "Total loss"
+    }
+  },
+  {
+    "id": "constitutiondao-loses-sothebys-2021-11-18",
+    "date": "2021-11-18",
+    "title": "ConstitutionDAO Loses Sotheby’s Bid After Raising Millions in ETH",
+    "summary": "ConstitutionDAO rallies crypto Twitter to buy a rare U.S. Constitution copy at Sotheby’s, raises tens of millions in ETH, then loses the auction—turning coordination, gas fees, and refunds into a mass-participation stress test for on-chain fundraising.",
+    "category": "Other",
+    "tags": ["CULTURAL", "MILESTONE", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Forbes", "url": "https://www.forbes.com/sites/abrambrown/2021/11/18/constitution-dao-crypto-ether-constitutional-sothebys-sale-auction/" },
+      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
+    ],
+    "metrics": {
+      "auction_price_usd": 43200000
+    }
+  },
+  {
+    "id": "floki-inu-asa-probe-2021-11-17",
+    "date": "2021-11-17",
+    "title": "UK ASA Investigates Floki Inu 'Missed Doge? Get Floki' Ads",
+    "summary": "Floki Inu’s London transport ad blitz triggers a formal inquiry by the UK’s Advertising Standards Authority, spotlighting the memecoin marketing meta—and the regulatory whiplash of advertising unregulated financial products to commuters.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "The Guardian (probe)", "url": "https://www.theguardian.com/technology/2021/nov/17/advertising-watchdog-investigates-tube-adverts-for-floki-inu-cryptocurrency-elon-musk-dog" },
+      { "label": "ASA case page (seen Nov 2021)", "url": "https://www.asa.org.uk/rulings/floki-inu-a21-1129077-floki-inu.html" }
+    ]
+  },
+  {
+    "id": "bitcoin-city-announced-2021-11-20",
+    "date": "2021-11-20",
+    "title": "Bukele Unveils ‘Bitcoin City’ Plan in El Salvador",
+    "summary": "Fresh off making BTC legal tender, Bukele announces a proposed ‘Bitcoin City’ and bitcoin-backed bond concept—blending sovereign branding, tax incentives, and volcano-energy spectacle into the archetype of the 2021 nation-state crypto narrative.",
+    "category": "Regulation",
+    "tags": ["CULTURAL", "REGULATORY", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Reuters", "url": "https://www.reuters.com/markets/rates-bonds/el-salvador-plans-first-bitcoin-city-backed-by-bitcoin-bonds-2021-11-21/" },
+      { "label": "X clip of announcement", "url": "https://x.com/stephanlivera/status/1462275584977952769" }
+    ]
+  },
+  {
+    "id": "modi-twitter-hack-bitcoin-giveaway-2021-12-11",
+    "date": "2021-12-11",
+    "title": "India PM Modi’s Twitter Briefly Compromised for Bitcoin Scam Post",
+    "summary": "Hackers briefly seize control of India’s prime minister’s Twitter account to post a fake Bitcoin adoption/giveaway message—an absurd, high-profile reminder that social accounts remain systemic attack surfaces for market manipulation and scams.",
+    "category": "Other",
+    "tags": ["SECURITY", "FAILURE", "CULTURAL"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Al Jazeera", "url": "https://www.aljazeera.com/news/2021/12/12/indian-prime-minister-modis-twitter-handle-briefly-compromised" },
+      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
+    ],
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": null,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Social media account compromise", "Scam / fake announcement"],
+      "aftermath": "Tweet was removed and account restored; incident amplified concerns about high-reach account security and headline-driven price reflexes.",
+      "status": "Unknown"
+    }
   }
 ]
+
 
 
