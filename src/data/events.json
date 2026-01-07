@@ -914,5 +914,401 @@
     "links": [
       { "label": "CZ Release", "url": "https://cointelegraph.com/news/most-memorable-crypto-tweets-2024" }
     ]
+  },
+  {
+    "id": "bybit-exchange-hack-2025-02",
+    "date": "2025-02-21",
+    "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
+    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets, with attackers exploiting vulnerabilities in a third-party multi-sig wallet provider to drain around 401,000 ETH (~$1.4–$1.5B), the largest crypto theft on record.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE", "TECH"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 1500000000,
+      "victims_estimated": "Bybit users & liquidity providers",
+      "root_cause": [
+        "Compromised developer infrastructure at Safe{Wallet} (multi-sig provider)",
+        "Routine cold-to-warm wallet transfer manipulation",
+        "Sophisticated phishing/supply-chain attack"
+      ],
+      "aftermath": "Bybit pledged full client asset backing, launched a recovery bounty program, and worked with blockchain forensics to track stolen funds; industry debate over exchange custody security intensified.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "coinbase-data-breach-2025-05",
+    "date": "2025-05-15",
+    "title": "Coinbase Customer Data Breach via Rogue Support Agents",
+    "summary": "Coinbase disclosed a major security breach in which cybercriminals bribed overseas customer support agents to steal personal and account information (names, IDs, contact details) of a subset of users; no account passwords, 2FA, private keys, or funds were accessed.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE", "REGULATORY"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 0,
+      "victims_estimated": "Limited subset of Coinbase customers (<1%)",
+      "root_cause": [
+        "Bribery and recruitment of Coinbase support personnel",
+        "Insufficient internal access controls over sensitive user data"
+      ],
+      "aftermath": "Coinbase refused the $20M ransom demand, is cooperating with law enforcement, plans criminal charges, expects up to $400M in remediation/compensation costs and offered $20M reward for arrest info.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "cetus-protocol-exploit-2025-05",
+    "date": "2025-05-22",
+    "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
+    "summary": "On Sui’s largest decentralized exchange, Cetus Protocol suffered a major exploit where attackers introduced spoof tokens to manipulate price oracles within the AMM, draining liquidity pools for about $223M but ~$162M was later frozen and partially recovered.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE", "TECH"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+    ],
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 223000000,
+      "victims_estimated": "Users providing liquidity on Cetus",
+      "root_cause": [
+        "Price manipulation via spoof token insertion",
+        "Smart contract vulnerability in AMM pricing feeds"
+      ],
+      "aftermath": "Cetus paused operations, froze $162M of compromised funds, and resumed protocol operations ~17 days after the attack; highlighted risks of oracle/math logic in automated market makers.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "nobitex-exchange-hack-2025-06",
+    "date": "2025-06-17",
+    "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
+    "summary": "Iran’s largest exchange Nobitex was hit by an exploit that drained around $90M worth of primarily USDT on the Tron network; pro-Israeli hacker group Gonjeshke Darande (Predatory Sparrow) claimed responsibility alleging IRGC ties, though many retail users were likely collateral victims.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 90000000,
+      "victims_estimated": "Nobitex users",
+      "root_cause": [
+        "Centralized exchange infrastructure compromise",
+        "Alleged politically-motivated hacking group involvement"
+      ],
+      "aftermath": "Nobitex temporarily suspended services, community debate over political risks and exchange security emerged; uncertain victim recovery path.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "upbit-hack-2025-11",
+    "date": "2025-11-26",
+    "title": "Upbit Solana Hot Wallet Hack (~$36M)",
+    "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets including meme coins; authorities and analysts quickly attributed the attack to North Korean Lazarus actors due to the attack’s speed and pattern.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 36000000,
+      "victims_estimated": "Upbit customers exposed to Solana assets",
+      "root_cause": [
+        "Hot wallet security lapse",
+        "Rapid exploit execution characteristic of state-linked hacking groups"
+      ],
+      "aftermath": "Upbit moved remaining funds to cold storage and worked with authorities; highlighted hot wallet risks during high-speed exploits.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "trump-memecoin-launch-drawdown-2025-01-18",
+    "date": "2025-01-18",
+    "title": "$TRUMP Launch Sparks Frenzy, Then Massive Drawdown",
+    "summary": "Donald Trump promoted the ‘Official Trump Meme’ token ($TRUMP), triggering a rapid speculative surge in January. After peaking shortly after launch, $TRUMP spent the rest of 2025 in a sustained unwind, becoming a flagship example of ‘political memecoin’ volatility and retail drawdowns.",
+    "category": "Meme Coins",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Trump promo post", "url": "https://x.com/realDonaldTrump/status/1880446012168249386" },
+      { "label": "Launch coverage", "url": "https://x.com/CBSNews/status/1880684078665544059" }
+    ],
+    "metrics": {
+      "peak_price_usd_approx": 75,
+      "trough_price_usd_approx": 5,
+      "drawdown_pct_approx": 93
+    }
+  },
+  {
+    "id": "melania-memecoin-launch-drawdown-2025-01-19",
+    "date": "2025-01-19",
+    "title": "$MELANIA Token Launch Triggers Fast Boom-Bust",
+    "summary": "Melania Trump promoted the $MELANIA token, which ripped upward immediately after launch before entering a steep, prolonged drawdown—reinforcing the ‘celebrity/political memecoin’ pattern of reflexive hype followed by rapid value erosion.",
+    "category": "Meme Coins",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Melania promo post", "url": "https://x.com/MELANIATRUMP/status/1881094861279129643" },
+      { "label": "Launch chatter & timeline analysis", "url": "https://x.com/KobeissiLetter/status/1881187164983357893" }
+    ],
+    "metrics": {
+      "drawdown_pct_approx": 90
+    }
+  },
+  {
+    "id": "libra-memecoin-rugpull-2025-02-14",
+    "date": "2025-02-14",
+    "title": "$LIBRA ‘Cryptogate’ Rug-Pull Scandal in Argentina",
+    "summary": "Argentina’s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed amid allegations of insiders extracting liquidity and dumping supply. Blockchain researchers and subsequent reporting focused on large wallet withdrawals and market-maker style liquidity drains consistent with a rug/pump-and-dump pattern.",
+    "category": "Other",
+    "tags": ["FAILURE", "SECURITY", "CULTURAL"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Market reaction thread", "url": "https://x.com/KobeissiLetter/status/1890611963203334190" },
+      { "label": "Reuters: $99M withdrawn by linked wallets", "url": "https://www.reuters.com/world/americas/crypto-worth-99-million-withdrawn-milei-backed-libra-token-researchers-say-2025-02-20/" },
+      { "label": "TRM Labs investigation writeup", "url": "https://www.trmlabs.com/resources/blog/the-libra-affair-tracking-the-memecoin-that-launched-a-scandal-in-argentina" }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 99000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Liquidity withdrawal", "Insider dumping", "Supply concentration"],
+      "aftermath": "Political scandal (‘Cryptogate’) and broad public scrutiny of memecoin launches tied to public figures.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "bybit-hack-2025-02-21",
+    "date": "2025-02-21",
+    "title": "Bybit Suffers ~$1.5B Exchange Hack",
+    "summary": "Bybit disclosed a major ETH wallet compromise that became the largest widely reported crypto heist to date in 2025. U.S. authorities later attributed the theft to North Korean actors (‘TraderTraitor’) and warned the stolen assets were being laundered across many addresses.",
+    "category": "Centralized Exchange",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Bybit CEO disclosure", "url": "https://x.com/benbybit/status/1892963530422505586" },
+      { "label": "FBI IC3 attribution notice", "url": "https://www.ic3.gov/psa/2025/psa250226" },
+      { "label": "Reuters attribution report", "url": "https://www.reuters.com/technology/cybersecurity/fbi-says-north-korea-was-responsible-15-billion-bybit-hack-2025-02-27/" }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 1500000000,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Wallet compromise", "Unauthorized transaction signing", "Operational security failure"],
+      "aftermath": "Bybit reassured users of solvency and initiated investigation; authorities issued attribution and laundering warnings.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "mantra-om-flash-crash-2025-04-13",
+    "date": "2025-04-13",
+    "title": "Mantra (OM) Token Dumps ~90% in Hours",
+    "summary": "OM experienced a rapid, severe collapse—widely described as a ‘token dump’—with reporting and analysis pointing to structural fragility: concentrated holdings, thin liquidity, and liquidation cascades that turned selling pressure into a fast wipeout.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "ECONOMIC"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "ChainArgos case study (PDF)", "url": "https://www.chainargos.com/wp-content/uploads/2025/05/ChainArgos-Case-Study-The-Mantra-OM-Token-Dump-1-May-2025.pdf" },
+      { "label": "Coverage of the crash dynamics", "url": "https://cincodias.elpais.com/criptoactivos/2025-04-24/la-cripto-mantra-se-hunde-un-90-en-una-hora-y-expone-los-riesgos-de-concentracion-en-el-mercado.html" }
+    ],
+    "metrics": {
+      "intraday_drawdown_pct_approx": 90
+    }
+  },
+  {
+    "id": "circle-crcl-ipo-2025-06-05",
+    "date": "2025-06-05",
+    "title": "Circle (CRCL) Begins Trading After Upsized IPO",
+    "summary": "Circle, issuer of USDC, priced an upsized IPO and began trading on the NYSE under ticker CRCL, marking a major TradFi milestone for stablecoin infrastructure and regulated public-market access.",
+    "category": "TradFi/IPO",
+    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Circle IPO pricing & ticker (Circle IR)", "url": "https://investor.circle.com/news/news-details/2025/Circle-Announces-Pricing-of-Upsized-Initial-Public-Offering/default.aspx" },
+      { "label": "Nasdaq IPO overview", "url": "https://www.nasdaq.com/market-activity/ipos/overview?dealId=1172229-113504" }
+    ],
+    "metrics": {
+      "ipo_price_usd": 31
+    }
+  },
+  {
+    "id": "solana-etf-ssk-launch-2025-07-02",
+    "date": "2025-07-02",
+    "title": "First U.S.-Listed Solana + Staking ETF Launches (SSK)",
+    "summary": "REX Shares and Osprey Funds launched SSK, described as the first U.S.-listed ETF offering Solana price exposure alongside staking rewards, signaling accelerating ETF experimentation beyond BTC/ETH and into yield-bearing structures.",
+    "category": "ETFs",
+    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "REX-Osprey launch announcement", "url": "https://www.rexshares.com/rex-osprey-launches-first-u-s-etf-with-solana-exposure-plus-staking-rewards/" },
+      { "label": "ETF launch note (Balchunas)", "url": "https://x.com/EricBalchunas/status/1939794086535602428" }
+    ],
+    "metrics": {
+      "ticker": "SSK"
+    }
+  },
+  {
+    "id": "genius-act-signed-2025-07-18",
+    "date": "2025-07-18",
+    "title": "GENIUS Act Signed Into Law",
+    "summary": "President Trump signed the GENIUS Act into law, positioning it as a landmark U.S. digital-assets policy move and a catalyst for broader institutional adoption narratives during 2025.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "White House fact sheet", "url": "https://www.whitehouse.gov/fact-sheets/2025/07/fact-sheet-president-donald-j-trump-signs-genius-act-into-law/" },
+      { "label": "Congress.gov bill page", "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1582" }
+    ]
+  },
+  {
+    "id": "npm-js-supply-chain-attack-2025-09-08",
+    "date": "2025-09-08",
+    "title": "Mass npm JavaScript Supply-Chain Attack Hits Widely Used Packages",
+    "summary": "A large-scale supply-chain compromise targeted multiple high-download npm packages, highlighting how maintainer credential theft and malicious version publishing can weaponize developer tooling. Security reporting warned some malicious behaviors included covert crypto-asset diversion techniques via hijacked web APIs and traffic manipulation.",
+    "category": "Other",
+    "tags": ["SECURITY", "TECH", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Palo Alto Networks breakdown", "url": "https://www.paloaltonetworks.com/blog/cloud-security/npm-supply-chain-attack/" },
+      { "label": "Trend Micro analysis", "url": "https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html" }
+    ],
+    "crimeline": {
+      "type": "OTHER",
+      "funds_lost_usd": 0,
+      "victims_estimated": "Unknown",
+      "root_cause": ["Maintainer account compromise", "Malicious package updates", "Software supply-chain infection"],
+      "aftermath": "Security teams audited dependencies, rotated credentials, and pinned/rolled back compromised versions across ecosystems.",
+      "status": "Unknown"
+    }
+  },
+  {
+    "id": "aster-defillama-delisting-2025-10-05",
+    "date": "2025-10-05",
+    "title": "CZ-Linked $ASTER / Aster DEX ‘Debacle’ After DefiLlama Delisting",
+    "summary": "Aster’s reported perpetuals volume came under heavy scrutiny when DefiLlama moved to delist Aster’s perp volume data over integrity concerns, sparking a broader debate about wash trading, unverifiable volume metrics, and incentive-driven ‘fake liquidity’ across perps venues. The controversy coincided with sharp volatility in the associated token narrative.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "TECH", "CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "DefiLlama delisting headline (Cointelegraph)", "url": "https://x.com/Cointelegraph/status/1974995688241930539" },
+      { "label": "Aster returns to DefiLlama (Yahoo)", "url": "https://finance.yahoo.com/news/aster-back-defillama-wash-trading-101715173.html" }
+    ]
+  },
+  {
+    "id": "crypto-market-nuke-liquidations-2025-10-10",
+    "date": "2025-10-10",
+    "title": "October 10 ‘Nuke’: Record Liquidation Cascade Slams Crypto",
+    "summary": "A historic leverage unwind on October 10 triggered a massive cross-venue liquidation cascade, widely cited as the largest single liquidation event in crypto history. The event became a case study in how liquidity gaps and venue design amplify forced selling under stress.",
+    "category": "Market Structure",
+    "tags": ["ECONOMIC", "FAILURE", "SECURITY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "FTI Consulting analysis", "url": "https://www.fticonsulting.com/insights/articles/crypto-crash-october-2025-leverage-met-liquidity" },
+      { "label": "Liquidation figures (CoinGlass)", "url": "https://x.com/coinglass_com/status/1976796969961193641" },
+      { "label": "Post-event market commentary", "url": "https://www.coindesk.com/opinion/2025/12/02/why-the-market-crashed-on-october-10-and-why-it-s-struggling-to-bounce" }
+    ],
+    "metrics": {
+      "liquidations_usd_approx": 19000000000
+    }
+  },
+  {
+    "id": "uponly-returns-coinbase-buys-nft-2025-10-20",
+    "date": "2025-10-20",
+    "title": "Cobie’s UpOnly Returns After Coinbase Buys the Control NFT",
+    "summary": "Cobie had previously tied the return of his UpOnly podcast to an NFT mechanism; in October, Coinbase purchased the UpOnly control NFT for $25M, effectively triggering the podcast’s return and cementing ‘podcast rights as an onchain asset’ as a defining cultural moment.",
+    "category": "Media",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "UpOnly NFT purchase story", "url": "https://www.blocmates.com/news-posts/coinbase-buys-cobie-up-only-nft-for-25m-now-he-has-to-podcast-again" }
+    ],
+    "metrics": {
+      "deal_value_usd": 25000000
+    }
+  },
+  {
+    "id": "coinbase-acquires-echo-cobie-2025-10-21",
+    "date": "2025-10-21",
+    "title": "Cobie Sells Echo to Coinbase for ~$375M",
+    "summary": "Coinbase agreed to acquire Echo, Cobie’s crypto fundraising/investment platform, in a deal reported at roughly $375M (cash and stock). The move signaled Coinbase’s push deeper into capital formation tooling (token sales and fundraising rails) amid a more permissive U.S. crypto environment.",
+    "category": "M&A",
+    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Reuters deal report", "url": "https://www.reuters.com/legal/transactional/coinbase-signs-375-million-deal-crypto-investment-platform-echo-2025-10-21/" },
+      { "label": "Blockworks coverage", "url": "https://blockworks.co/news/coinbase-acquires-echo" }
+    ],
+    "metrics": {
+      "deal_value_usd_approx": 375000000
+    }
+  },
+  {
+    "id": "james-wynn-liquidation-hyperliquid-2025-11-10",
+    "date": "2025-11-10",
+    "title": "James Wynn Liquidation Becomes Leverage Cautionary Tale",
+    "summary": "Trader James Wynn’s highly leveraged Hyperliquid positions were publicly tracked as they were liquidated, turning his account into a viral case study in how extreme leverage and reflexive crowd attention can accelerate forced closes and wipeouts.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "CULTURAL", "ECONOMIC"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Lookonchain liquidation post", "url": "https://x.com/lookonchain/status/1943473763263353334" },
+      { "label": "Coverage of the wipeout", "url": "https://finance.yahoo.com/news/james-wynn-23-million-wipeout-064752886.html" }
+    ],
+    "metrics": {
+      "reported_losses_usd_approx": 23000000,
+      "leverage_approx": 40
+    }
+  },
+  {
+    "id": "chainlink-first-spot-etf-glnk-2025-12-02",
+    "date": "2025-12-02",
+    "title": "First Chainlink Spot ETF Launches (Grayscale GLNK)",
+    "summary": "Grayscale’s Chainlink product converted/listed as GLNK on NYSE Arca, widely described as the first U.S. spot Chainlink ETF/ETP, expanding the ‘altcoin ETF’ wave and formalizing LINK exposure in a regulated wrapper.",
+    "category": "ETFs",
+    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Grayscale GLNK product page (ETP listing date)", "url": "https://etfs.grayscale.com/glnk" },
+      { "label": "Launch reporting", "url": "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading" },
+      { "label": "Day-one flows/volume commentary", "url": "https://x.com/JSeyff/status/1996290352542609748" }
+    ],
+    "metrics": {
+      "ticker": "GLNK",
+      "listing_market": "NYSE ARCA"
+    }
+  },
+  {
+    "id": "trustwallet-extension-v268-compromise-2025-12-24",
+    "date": "2025-12-24",
+    "title": "Trust Wallet Chrome Extension Supply-Chain Compromise (v2.68)",
+    "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process, enabling attackers to access sensitive wallet data and execute unauthorized transactions for users who ran the compromised version during the exposure window.",
+    "category": "Wallet/Key Compromise",
+    "tags": ["SECURITY", "FAILURE", "TECH"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Trust Wallet post-mortem update", "url": "https://trustwallet.com/blog/announcements/trust-wallet-browser-extension-v268-incident-community-update" },
+      { "label": "Trust Wallet security notice (X)", "url": "https://x.com/TrustWallet/status/2007475482313244989" },
+      { "label": "Exec update thread", "url": "https://x.com/EowynChen/status/2004649284537647161" }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 8500000,
+      "victims_estimated": "Thousands",
+      "root_cause": ["Browser extension supply-chain compromise", "Malicious code injection", "Unauthorized publishing process"],
+      "aftermath": "Extension rollout halted; incident response, user remediation steps, and reimbursement process initiated for verified losses.",
+      "status": "Partial recovery"
+    }
   }
 ]
+
+
