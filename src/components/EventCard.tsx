@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
@@ -16,6 +16,7 @@ export function EventCard({ event, index }: EventCardProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
   const isLeft = index % 2 === 0;
+  const prefersReducedMotion = useReducedMotion();
 
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't open modal if clicking on share button
@@ -33,11 +34,17 @@ export function EventCard({ event, index }: EventCardProps) {
     }
   };
 
+  const animationProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, x: isLeft ? -20 : 20 },
+        animate: { opacity: 1, x: 0 },
+        transition: { duration: 0.4, delay: Math.min(index * 0.05, 0.5) },
+      };
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: isLeft ? -20 : 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
+      {...animationProps}
       className={`relative flex ${isLeft ? "md:justify-start" : "md:justify-end"} justify-start`}
     >
       {/* Timeline dot */}
@@ -90,10 +97,10 @@ export function EventCard({ event, index }: EventCardProps) {
               {event.title}
             </h3>
 
-            {/* Summary */}
+            {/* Summary - Improved contrast */}
             <p
               className={`mt-2 text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
-                isCrimeline ? "text-gray-300" : "text-gray-600"
+                isCrimeline ? "text-gray-200" : "text-gray-700"
               }`}
             >
               {event.summary}
@@ -104,7 +111,7 @@ export function EventCard({ event, index }: EventCardProps) {
               <TagPills tags={event.tags} />
             </div>
 
-            {/* Metrics */}
+            {/* Metrics - Improved contrast */}
             {event.metrics && (
               <div
                 className={`mt-3 pt-3 border-t transition-colors duration-300 ${
@@ -114,30 +121,30 @@ export function EventCard({ event, index }: EventCardProps) {
                 <div className="flex flex-wrap gap-3 text-xs">
                   {event.metrics.btc_price_usd !== undefined && (
                     <div>
-                      <span className={isCrimeline ? "text-gray-500" : "text-gray-400"}>
+                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
                         BTC:{" "}
                       </span>
-                      <span className={isCrimeline ? "text-gray-300" : "text-gray-700"}>
+                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
                         {formatCurrency(event.metrics.btc_price_usd)}
                       </span>
                     </div>
                   )}
                   {event.metrics.market_cap_usd !== undefined && (
                     <div>
-                      <span className={isCrimeline ? "text-gray-500" : "text-gray-400"}>
+                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
                         MCap:{" "}
                       </span>
-                      <span className={isCrimeline ? "text-gray-300" : "text-gray-700"}>
+                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
                         {formatCurrency(event.metrics.market_cap_usd)}
                       </span>
                     </div>
                   )}
                   {event.metrics.tvl_usd !== undefined && (
                     <div>
-                      <span className={isCrimeline ? "text-gray-500" : "text-gray-400"}>
+                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
                         TVL:{" "}
                       </span>
-                      <span className={isCrimeline ? "text-gray-300" : "text-gray-700"}>
+                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
                         {formatCurrency(event.metrics.tvl_usd)}
                       </span>
                     </div>
@@ -151,19 +158,19 @@ export function EventCard({ event, index }: EventCardProps) {
               <div className="mt-3 pt-3 border-t border-red-900/30">
                 {/* Type and Status */}
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-xs font-bold bg-red-900/50 text-red-300 rounded">
+                  <span className="px-2 py-1 text-xs font-bold bg-red-900/50 text-red-200 rounded">
                     {event.crimeline.type}
                   </span>
                   {event.crimeline.status && (
                     <span
                       className={`px-2 py-1 text-xs font-medium rounded ${
                         event.crimeline.status === "Funds recovered"
-                          ? "bg-green-900/50 text-green-300"
+                          ? "bg-green-900/50 text-green-200"
                           : event.crimeline.status === "Partial recovery"
-                          ? "bg-yellow-900/50 text-yellow-300"
+                          ? "bg-yellow-900/50 text-yellow-200"
                           : event.crimeline.status === "Total loss"
-                          ? "bg-red-900/50 text-red-300"
-                          : "bg-gray-700 text-gray-300"
+                          ? "bg-red-900/50 text-red-200"
+                          : "bg-gray-700 text-gray-200"
                       }`}
                     >
                       {event.crimeline.status}
@@ -182,13 +189,18 @@ export function EventCard({ event, index }: EventCardProps) {
               </div>
             )}
 
-            {/* Click hint */}
+            {/* Click hint - visible on mobile/focus and hover on desktop */}
             <div
-              className={`mt-3 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
+              className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
                 isCrimeline ? "text-red-400" : "text-teal-600"
-              }`}
+              } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
             >
-              Click for details →
+              <span className="inline-flex items-center gap-1">
+                View details
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
             </div>
           </div>
         </div>

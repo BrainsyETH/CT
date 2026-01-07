@@ -1,12 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 
 export function Header() {
   const { mode } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <header
@@ -23,14 +24,22 @@ export function Header() {
             className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-300 ${
               isCrimeline ? "bg-red-900" : "bg-teal-500"
             }`}
-            animate={{
-              rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
-            }}
-            transition={{
-              duration: 0.5,
-              repeat: isCrimeline ? Infinity : 0,
-              repeatDelay: 3,
-            }}
+            animate={
+              prefersReducedMotion
+                ? {}
+                : {
+                    rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
+                  }
+            }
+            transition={
+              prefersReducedMotion
+                ? {}
+                : {
+                    duration: 0.5,
+                    repeat: isCrimeline ? Infinity : 0,
+                    repeatDelay: 3,
+                  }
+            }
           >
             <span className="text-white font-bold text-sm">
               {isCrimeline ? "💀" : "₿"}
@@ -61,7 +70,7 @@ export function Header() {
       </div>
 
       {/* Glitch line effect for crimeline mode */}
-      {isCrimeline && (
+      {isCrimeline && !prefersReducedMotion && (
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"
           animate={{
@@ -74,6 +83,11 @@ export function Header() {
             ease: "easeInOut",
           }}
         />
+      )}
+
+      {/* Static glitch line for reduced motion */}
+      {isCrimeline && prefersReducedMotion && (
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
       )}
     </header>
   );

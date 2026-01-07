@@ -15,6 +15,7 @@ interface ModeState {
   setSearchQuery: (query: string) => void;
   toggleTag: (tag: EventTag) => void;
   clearTags: () => void;
+  clearAllFilters: () => void;
   setSortOrder: (order: SortOrder) => void;
   toggleSortOrder: () => void;
   setSelectedEventId: (id: string | null) => void;
@@ -41,6 +42,7 @@ export const useModeStore = create<ModeState>()(
             : [...state.selectedTags, tag],
         })),
       clearTags: () => set({ selectedTags: [] }),
+      clearAllFilters: () => set({ searchQuery: "", selectedTags: [], sortOrder: "asc" }),
       setSortOrder: (order) => set({ sortOrder: order }),
       toggleSortOrder: () =>
         set((state) => ({

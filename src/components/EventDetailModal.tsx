@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
@@ -15,27 +15,98 @@ interface EventDetailModalProps {
 export function EventDetailModal({ events }: EventDetailModalProps) {
   const { mode, selectedEventId, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  const prefersReducedMotion = useReducedMotion();
 
   const event = events.find((e) => e.id === selectedEventId);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  // Close modal handler
+  const closeModal = useCallback(() => {
+    setSelectedEventId(null);
+  }, [setSelectedEventId]);
 
   // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setSelectedEventId(null);
+        closeModal();
       }
     };
 
     if (selectedEventId) {
+      // Store the previously focused element
+      previousActiveElement.current = document.activeElement as HTMLElement;
+
       document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+
+      // Focus the close button when modal opens
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 100);
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
+
+      // Return focus to the triggering element when modal closes
+      if (previousActiveElement.current && !selectedEventId) {
+        previousActiveElement.current.focus();
+      }
     };
-  }, [selectedEventId, setSelectedEventId]);
+  }, [selectedEventId, closeModal]);
+
+  // Focus trap within modal
+  useEffect(() => {
+    if (!selectedEventId || !modalRef.current) return;
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || !modalRef.current) return;
+
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleTabKey);
+    return () => document.removeEventListener("keydown", handleTabKey);
+  }, [selectedEventId]);
+
+  const animationProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, scale: 0.95, y: 20 },
+        animate: { opacity: 1, scale: 1, y: 0 },
+        exit: { opacity: 0, scale: 0.95, y: 20 },
+        transition: { type: "spring" as const, damping: 25, stiffness: 300 },
+      };
+
+  const backdropAnimationProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      };
 
   return (
     <AnimatePresence>
@@ -43,19 +114,20 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
         <>
           {/* Backdrop */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedEventId(null)}
+            {...backdropAnimationProps}
+            onClick={closeModal}
             className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+            aria-hidden="true"
           />
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            ref={modalRef}
+            {...animationProps}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
             className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[80vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
           >
             <div
@@ -69,14 +141,16 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               <div className="absolute top-4 right-4 flex items-center gap-2">
                 <ShareButton event={event} />
                 <button
-                  onClick={() => setSelectedEventId(null)}
+                  ref={closeButtonRef}
+                  onClick={closeModal}
+                  aria-label="Close modal"
                   className={`p-2 rounded-lg transition-colors ${
                     isCrimeline
                       ? "text-gray-400 hover:text-white hover:bg-gray-800"
                       : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                   }`}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -93,6 +167,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
               {/* Title */}
               <h2
+                id="modal-title"
                 className={`mt-2 text-2xl font-bold ${
                   isCrimeline ? "text-white" : "text-gray-900"
                 }`}
@@ -116,6 +191,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
               {/* Summary */}
               <p
+                id="modal-description"
                 className={`mt-4 text-base leading-relaxed ${
                   isCrimeline ? "text-gray-300" : "text-gray-600"
                 }`}
@@ -140,7 +216,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   <div className="grid grid-cols-2 gap-4">
                     {event.metrics.btc_price_usd !== undefined && (
                       <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-500" : "text-gray-400"}`}>
+                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
                           BTC Price
                         </p>
                         <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
@@ -150,7 +226,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     )}
                     {event.metrics.market_cap_usd !== undefined && (
                       <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-500" : "text-gray-400"}`}>
+                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
                           Market Cap
                         </p>
                         <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
@@ -160,7 +236,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     )}
                     {event.metrics.tvl_usd !== undefined && (
                       <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-500" : "text-gray-400"}`}>
+                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
                           TVL
                         </p>
                         <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
@@ -205,7 +281,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     {/* Funds Lost */}
                     {event.crimeline.funds_lost_usd !== undefined && (
                       <div>
-                        <p className="text-xs text-gray-500">Funds Lost</p>
+                        <p className="text-xs text-gray-400">Funds Lost</p>
                         <p className="text-2xl font-bold text-red-400">
                           {formatCurrency(event.crimeline.funds_lost_usd)}
                         </p>
@@ -220,7 +296,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     {/* Root Causes */}
                     {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
                       <div>
-                        <p className="text-xs text-gray-500 mb-2">Root Causes</p>
+                        <p className="text-xs text-gray-400 mb-2">Root Causes</p>
                         <div className="flex flex-wrap gap-2">
                           {event.crimeline.root_cause.map((cause, i) => (
                             <span
@@ -237,7 +313,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     {/* Aftermath */}
                     {event.crimeline.aftermath && (
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">Aftermath</p>
+                        <p className="text-xs text-gray-400 mb-1">Aftermath</p>
                         <p className="text-sm text-gray-300">{event.crimeline.aftermath}</p>
                       </div>
                     )}
@@ -269,7 +345,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                         }`}
                       >
                         {link.label}
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>

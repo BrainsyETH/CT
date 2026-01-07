@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 
 interface ScrollProgressProps {
   years: number[];
+  currentVisibleYear?: number | null;
 }
 
-export function ScrollProgress({ years }: ScrollProgressProps) {
+export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProps) {
   const { mode } = useModeStore();
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const isCrimeline = mode === "crimeline";
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
@@ -29,18 +30,6 @@ export function ScrollProgress({ years }: ScrollProgressProps) {
       setIsVisible(true);
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => setIsVisible(false), 2000);
-
-      // Find current year based on scroll position
-      for (let i = years.length - 1; i >= 0; i--) {
-        const yearElement = document.getElementById(`year-${years[i]}`);
-        if (yearElement) {
-          const rect = yearElement.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setCurrentYear(years[i]);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -52,11 +41,20 @@ export function ScrollProgress({ years }: ScrollProgressProps) {
     };
   }, [years]);
 
+  const animationProps = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, x: 20 },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: 20 },
+        transition: { duration: 0.2 },
+      };
+
   return (
     <>
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 z-[60]">
-        <motion.div
+        <div
           className={`h-full transition-colors duration-300 ${
             isCrimeline
               ? "bg-gradient-to-r from-red-600 to-red-400"
@@ -68,19 +66,16 @@ export function ScrollProgress({ years }: ScrollProgressProps) {
 
       {/* Current Year Indicator */}
       <AnimatePresence>
-        {isVisible && currentYear && (
+        {isVisible && currentVisibleYear && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.2 }}
+            {...animationProps}
             className={`fixed right-4 top-20 z-50 px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm ${
               isCrimeline
                 ? "bg-gray-900/90 border border-red-900/50 text-red-400"
                 : "bg-white/90 border border-gray-200 text-teal-600"
             }`}
           >
-            <span className="text-2xl font-bold">{currentYear}</span>
+            <span className="text-2xl font-bold">{currentVisibleYear}</span>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,6 +1,9 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 import eventsData from "@/data/events.json";
+import type { Event } from "@/lib/types";
+
+const events = eventsData as Event[];
 
 export const runtime = "edge";
 
@@ -26,7 +29,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const eventId = searchParams.get("id");
 
-  const event = eventsData.find((e) => e.id === eventId);
+  const event = events.find((e) => e.id === eventId);
 
   if (!event) {
     // Return default OG image if event not found
