@@ -21,7 +21,8 @@ export function Timeline({ events }: TimelineProps) {
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
   const [currentVisibleYear, setCurrentVisibleYear] = useState<number | null>(null);
-  const [isFilterSticky, setIsFilterSticky] = useState(false);
+  const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
@@ -94,12 +95,23 @@ export function Timeline({ events }: TimelineProps) {
 
   const currentYear = years.length > 0 ? years[0] : null;
 
-  // Track scroll for sticky filter behavior and current year
+  // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // Make filter sticky after scrolling past initial position
-      setIsFilterSticky(scrollY > 150);
+
+      // Show filter if at the top, or if scrolling up
+      if (scrollY < 100) {
+        setIsFilterVisible(true);
+      } else if (scrollY < lastScrollY) {
+        // Scrolling up - show filter
+        setIsFilterVisible(true);
+      } else if (scrollY > lastScrollY + 10) {
+        // Scrolling down (with threshold to avoid micro-movements) - hide filter
+        setIsFilterVisible(false);
+      }
+
+      setLastScrollY(scrollY);
 
       // Track current visible year
       for (let i = years.length - 1; i >= 0; i--) {
@@ -118,21 +130,27 @@ export function Timeline({ events }: TimelineProps) {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [years]);
+  }, [years, lastScrollY]);
 
-  // Calculate stats for crimeline mode
-  const totalLost = useMemo(() => {
-    if (!isCrimeline) return 0;
+  // Calculate stats for crimeline mode - exclude unknown/NaN amounts
+  const crimelineStats = useMemo(() => {
+    if (!isCrimeline) return { totalLost: 0, incidentCount: 0 };
     const crimelineEvents = events.filter(
       (e) => e.mode.includes("crimeline") && e.crimeline
     );
-    return crimelineEvents.reduce(
-      (sum, e) => sum + (e.crimeline?.funds_lost_usd || 0),
-      0
-    );
+    // Only sum valid numeric amounts (exclude undefined, null, NaN)
+    const totalLost = crimelineEvents.reduce((sum, e) => {
+      const amount = e.crimeline?.funds_lost_usd;
+      if (typeof amount === "number" && !isNaN(amount) && isFinite(amount)) {
+        return sum + amount;
+      }
+      return sum;
+    }, 0);
+    return { totalLost, incidentCount: crimelineEvents.length };
   }, [events, isCrimeline]);
 
-  const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0 || sortOrder !== "asc";
+  // Sort order is not considered an "active filter" for the CTA button
+  const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
 
   // Track card index for alternating sides
   let cardIndex = 0;
@@ -150,30 +168,25 @@ export function Timeline({ events }: TimelineProps) {
     <>
       <ScrollProgress years={years} currentVisibleYear={currentVisibleYear} />
 
-      {/* Sticky Filter Bar */}
+      {/* Filter Bar - slides up/down based on scroll direction */}
       <div
-        className={`transition-all duration-300 ${
-          isFilterSticky
-            ? "fixed top-[72px] left-0 right-0 z-40 px-4"
-            : ""
+        className={`transition-all duration-300 ease-in-out ${
+          isFilterVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className={isFilterSticky ? "max-w-6xl mx-auto" : ""}>
-          {/* Search and Filter */}
-          <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-6">
-            <div className="flex-1">
-              <SearchFilter isSticky={isFilterSticky} />
-            </div>
-            <MobileYearSelector years={years} currentYear={currentYear} />
+        {/* Search and Filter */}
+        <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-6">
+          <div className="flex-1">
+            <SearchFilter />
           </div>
+          <MobileYearSelector years={years} currentYear={currentYear} />
         </div>
       </div>
 
-      {/* Spacer when filter is sticky */}
-      {isFilterSticky && <div className="h-32 sm:h-28" />}
-
       {/* Amount Lost Stats (Crimeline only) */}
-      {isCrimeline && (
+      {isCrimeline && crimelineStats.totalLost > 0 && (
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -185,14 +198,14 @@ export function Timeline({ events }: TimelineProps) {
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wide">Total Amount Lost</p>
                 <p className="text-2xl font-bold text-red-400">
-                  {formatCurrency(totalLost)}
+                  {formatCurrency(crimelineStats.totalLost)}
                 </p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-xs text-gray-500">across</p>
               <p className="text-lg font-bold text-white">
-                {events.filter((e) => e.mode.includes("crimeline") && e.crimeline).length} incidents
+                {crimelineStats.incidentCount} incidents
               </p>
             </div>
           </div>
@@ -240,7 +253,7 @@ export function Timeline({ events }: TimelineProps) {
                       animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}
                       className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 ${
                         isCrimeline
-                          ? "bg-red-900/50 text-red-300 border border-red-800"
+                          ? "bg-gray-950 text-red-300 border-2 border-red-800"
                           : "bg-teal-100 text-teal-700 border border-teal-200"
                       }`}
                     >

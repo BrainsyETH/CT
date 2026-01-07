@@ -27,7 +27,7 @@ export const useModeStore = create<ModeState>()(
       mode: "timeline",
       searchQuery: "",
       selectedTags: [],
-      sortOrder: "asc",
+      sortOrder: "desc",
       selectedEventId: null,
       setMode: (mode) => set({ mode }),
       toggleMode: () =>
@@ -42,7 +42,7 @@ export const useModeStore = create<ModeState>()(
             : [...state.selectedTags, tag],
         })),
       clearTags: () => set({ selectedTags: [] }),
-      clearAllFilters: () => set({ searchQuery: "", selectedTags: [], sortOrder: "asc" }),
+      clearAllFilters: () => set({ searchQuery: "", selectedTags: [] }),
       setSortOrder: (order) => set({ sortOrder: order }),
       toggleSortOrder: () =>
         set((state) => ({
