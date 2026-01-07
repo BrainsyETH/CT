@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
@@ -19,6 +19,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const event = events.find((e) => e.id === selectedEventId);
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -33,7 +34,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        closeModal();
+        if (isImageExpanded) {
+          setIsImageExpanded(false);
+        } else {
+          closeModal();
+        }
       }
     };
 
@@ -59,7 +64,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
         previousActiveElement.current.focus();
       }
     };
-  }, [selectedEventId, closeModal]);
+  }, [selectedEventId, closeModal, isImageExpanded]);
 
   // Focus trap within modal
   useEffect(() => {
@@ -141,24 +146,38 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               {/* Event Image */}
               {event.image && (
                 <div className="relative w-full h-48 md:h-64">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 672px"
-                    priority
-                  />
-                  <div
-                    className={`absolute inset-0 ${
-                      isCrimeline
-                        ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                        : "bg-gradient-to-t from-white via-white/50 to-transparent"
-                    }`}
-                  />
+                  <button
+                    onClick={() => setIsImageExpanded(true)}
+                    className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
+                    aria-label="View full image"
+                  >
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 672px"
+                      priority
+                    />
+                    <div
+                      className={`absolute inset-0 ${
+                        isCrimeline
+                          ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
+                          : "bg-gradient-to-t from-white via-white/50 to-transparent"
+                      }`}
+                    />
+                    {/* Zoom hint */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity">
+                      <div className="p-3 rounded-full bg-black/60 backdrop-blur-sm">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </button>
                   {/* Header Actions - positioned over image */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2">
+                  <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
                     <ShareButton event={event} />
                     <button
                       ref={closeButtonRef}
@@ -396,6 +415,45 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               </div>
             </div>
           </motion.div>
+
+          {/* Image Lightbox */}
+          <AnimatePresence>
+            {isImageExpanded && event.image && (
+              <motion.div
+                initial={prefersReducedMotion ? {} : { opacity: 0 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0 }}
+                className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 cursor-zoom-out"
+                onClick={() => setIsImageExpanded(false)}
+              >
+                <button
+                  onClick={() => setIsImageExpanded(false)}
+                  aria-label="Close full image"
+                  className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <motion.div
+                  initial={prefersReducedMotion ? {} : { scale: 0.9 }}
+                  animate={prefersReducedMotion ? {} : { scale: 1 }}
+                  exit={prefersReducedMotion ? {} : { scale: 0.9 }}
+                  className="relative max-w-[90vw] max-h-[90vh]"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    width={1200}
+                    height={800}
+                    unoptimized
+                    className="object-contain max-w-full max-h-[90vh] rounded-lg"
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </AnimatePresence>
