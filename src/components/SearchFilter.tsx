@@ -14,11 +14,7 @@ const ALL_TAGS: EventTag[] = [
   "ATH",
 ];
 
-interface SearchFilterProps {
-  isSticky?: boolean;
-}
-
-export function SearchFilter({ isSticky = false }: SearchFilterProps) {
+export function SearchFilter() {
   const {
     mode,
     searchQuery,
@@ -31,7 +27,8 @@ export function SearchFilter({ isSticky = false }: SearchFilterProps) {
   } = useModeStore();
 
   const isCrimeline = mode === "crimeline";
-  const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0 || sortOrder !== "asc";
+  // Sort order is not considered an "active filter" - only search and tags
+  const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
 
   return (
     <div
@@ -39,7 +36,7 @@ export function SearchFilter({ isSticky = false }: SearchFilterProps) {
         isCrimeline
           ? "bg-gray-900/80 border border-red-900/30"
           : "bg-white border border-gray-200"
-      } ${isSticky ? "shadow-lg backdrop-blur-sm" : ""}`}
+      }`}
     >
       {/* Search and Sort Row */}
       <div className="flex flex-col sm:flex-row gap-3 mb-4">
@@ -231,30 +228,6 @@ export function SearchFilter({ isSticky = false }: SearchFilterProps) {
               </button>
             </span>
           ))}
-
-          {/* Sort Order Chip (only if not default) */}
-          {sortOrder !== "asc" && (
-            <span
-              className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
-                isCrimeline
-                  ? "bg-gray-800 text-gray-300 border border-gray-700"
-                  : "bg-gray-100 text-gray-700 border border-gray-300"
-              }`}
-            >
-              Newest First
-              <button
-                onClick={toggleSortOrder}
-                aria-label="Reset to oldest first"
-                className={`ml-1 p-0.5 rounded-full hover:bg-opacity-20 ${
-                  isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
-                }`}
-              >
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </span>
-          )}
         </div>
       )}
     </div>
