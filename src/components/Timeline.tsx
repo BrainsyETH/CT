@@ -177,11 +177,16 @@ export function Timeline({ events }: TimelineProps) {
         }`}
       >
         {/* Search and Filter */}
-        <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-6">
-          <div className="flex-1">
-            <SearchFilter />
+        <div className="flex flex-col gap-3 mb-6">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 min-w-0">
+              <SearchFilter />
+            </div>
+            {/* Year Selector - visible on mobile/tablet, hidden on desktop */}
+            <div className="lg:hidden shrink-0">
+              <MobileYearSelector years={years} currentYear={currentYear} />
+            </div>
           </div>
-          <MobileYearSelector years={years} currentYear={currentYear} />
         </div>
       </div>
 
