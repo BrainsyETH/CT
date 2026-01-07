@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
@@ -70,137 +71,159 @@ export function EventCard({ event, index }: EventCardProps) {
           }`}
         >
           <div
-            className={`p-4 rounded-lg shadow-lg transition-all duration-300 ${
+            className={`rounded-lg shadow-lg transition-all duration-300 overflow-hidden ${
               isCrimeline
                 ? "bg-gray-900 border border-red-900/30 shadow-red-900/20 group-hover:border-red-700/50 group-hover:shadow-red-900/40"
                 : "bg-white border border-gray-200 shadow-gray-200/50 group-hover:border-teal-300 group-hover:shadow-teal-200/50"
             }`}
           >
-            {/* Header with Date and Share */}
-            <div className="flex items-start justify-between">
-              <time
-                className={`text-sm font-medium transition-colors duration-300 ${
-                  isCrimeline ? "text-red-400" : "text-teal-600"
-                }`}
-              >
-                {formatDate(event.date)}
-              </time>
-              <ShareButton event={event} />
-            </div>
-
-            {/* Title */}
-            <h3
-              className={`mt-1 text-lg font-bold transition-colors duration-300 ${
-                isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-teal-700"
-              }`}
-            >
-              {event.title}
-            </h3>
-
-            {/* Summary - Improved contrast */}
-            <p
-              className={`mt-2 text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
-                isCrimeline ? "text-gray-200" : "text-gray-700"
-              }`}
-            >
-              {event.summary}
-            </p>
-
-            {/* Tags */}
-            <div className="mt-3">
-              <TagPills tags={event.tags} />
-            </div>
-
-            {/* Metrics - Improved contrast */}
-            {event.metrics && (
-              <div
-                className={`mt-3 pt-3 border-t transition-colors duration-300 ${
-                  isCrimeline ? "border-gray-700" : "border-gray-200"
-                }`}
-              >
-                <div className="flex flex-wrap gap-3 text-xs">
-                  {event.metrics.btc_price_usd !== undefined && (
-                    <div>
-                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
-                        BTC:{" "}
-                      </span>
-                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
-                        {formatCurrency(event.metrics.btc_price_usd)}
-                      </span>
-                    </div>
-                  )}
-                  {event.metrics.market_cap_usd !== undefined && (
-                    <div>
-                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
-                        MCap:{" "}
-                      </span>
-                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
-                        {formatCurrency(event.metrics.market_cap_usd)}
-                      </span>
-                    </div>
-                  )}
-                  {event.metrics.tvl_usd !== undefined && (
-                    <div>
-                      <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
-                        TVL:{" "}
-                      </span>
-                      <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
-                        {formatCurrency(event.metrics.tvl_usd)}
-                      </span>
-                    </div>
-                  )}
-                </div>
+            {/* Event Image */}
+            {event.image && (
+              <div className="relative w-full h-40 overflow-hidden">
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div
+                  className={`absolute inset-0 ${
+                    isCrimeline
+                      ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
+                      : "bg-gradient-to-t from-white via-white/20 to-transparent"
+                  }`}
+                />
               </div>
             )}
 
-            {/* Crimeline-specific details */}
-            {isCrimeline && event.crimeline && (
-              <div className="mt-3 pt-3 border-t border-red-900/30">
-                {/* Type and Status */}
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-xs font-bold bg-red-900/50 text-red-200 rounded">
-                    {event.crimeline.type}
-                  </span>
-                  {event.crimeline.status && (
-                    <span
-                      className={`px-2 py-1 text-xs font-medium rounded ${
-                        event.crimeline.status === "Funds recovered"
-                          ? "bg-green-900/50 text-green-200"
-                          : event.crimeline.status === "Partial recovery"
-                          ? "bg-yellow-900/50 text-yellow-200"
-                          : event.crimeline.status === "Total loss"
-                          ? "bg-red-900/50 text-red-200"
-                          : "bg-gray-700 text-gray-200"
-                      }`}
-                    >
-                      {event.crimeline.status}
-                    </span>
-                  )}
-                </div>
+            <div className="p-4">
+              {/* Header with Date and Share */}
+              <div className="flex items-start justify-between">
+                <time
+                  className={`text-sm font-medium transition-colors duration-300 ${
+                    isCrimeline ? "text-red-400" : "text-teal-600"
+                  }`}
+                >
+                  {formatDate(event.date)}
+                </time>
+                <ShareButton event={event} />
+              </div>
 
-                {/* Funds Lost */}
-                {event.crimeline.funds_lost_usd !== undefined && (
-                  <div className="mb-2">
-                    <span className="text-red-400 text-sm font-bold">
-                      {formatCurrency(event.crimeline.funds_lost_usd)} Lost
-                    </span>
+              {/* Title */}
+              <h3
+                className={`mt-1 text-lg font-bold transition-colors duration-300 ${
+                  isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-teal-700"
+                }`}
+              >
+                {event.title}
+              </h3>
+
+              {/* Summary - Improved contrast */}
+              <p
+                className={`mt-2 text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
+                  isCrimeline ? "text-gray-200" : "text-gray-700"
+                }`}
+              >
+                {event.summary}
+              </p>
+
+              {/* Tags */}
+              <div className="mt-3">
+                <TagPills tags={event.tags} />
+              </div>
+
+              {/* Metrics - Improved contrast */}
+              {event.metrics && (
+                <div
+                  className={`mt-3 pt-3 border-t transition-colors duration-300 ${
+                    isCrimeline ? "border-gray-700" : "border-gray-200"
+                  }`}
+                >
+                  <div className="flex flex-wrap gap-3 text-xs">
+                    {event.metrics.btc_price_usd !== undefined && (
+                      <div>
+                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                          BTC:{" "}
+                        </span>
+                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                          {formatCurrency(event.metrics.btc_price_usd)}
+                        </span>
+                      </div>
+                    )}
+                    {event.metrics.market_cap_usd !== undefined && (
+                      <div>
+                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                          MCap:{" "}
+                        </span>
+                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                          {formatCurrency(event.metrics.market_cap_usd)}
+                        </span>
+                      </div>
+                    )}
+                    {event.metrics.tvl_usd !== undefined && (
+                      <div>
+                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                          TVL:{" "}
+                        </span>
+                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                          {formatCurrency(event.metrics.tvl_usd)}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            )}
+                </div>
+              )}
 
-            {/* Click hint - visible on mobile/focus and hover on desktop */}
-            <div
-              className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
-                isCrimeline ? "text-red-400" : "text-teal-600"
-              } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
-            >
-              <span className="inline-flex items-center gap-1">
-                View details
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
+              {/* Crimeline-specific details */}
+              {isCrimeline && event.crimeline && (
+                <div className="mt-3 pt-3 border-t border-red-900/30">
+                  {/* Type and Status */}
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="px-2 py-1 text-xs font-bold bg-red-900/50 text-red-200 rounded">
+                      {event.crimeline.type}
+                    </span>
+                    {event.crimeline.status && (
+                      <span
+                        className={`px-2 py-1 text-xs font-medium rounded ${
+                          event.crimeline.status === "Funds recovered"
+                            ? "bg-green-900/50 text-green-200"
+                            : event.crimeline.status === "Partial recovery"
+                            ? "bg-yellow-900/50 text-yellow-200"
+                            : event.crimeline.status === "Total loss"
+                            ? "bg-red-900/50 text-red-200"
+                            : "bg-gray-700 text-gray-200"
+                        }`}
+                      >
+                        {event.crimeline.status}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Funds Lost */}
+                  {event.crimeline.funds_lost_usd !== undefined && (
+                    <div className="mb-2">
+                      <span className="text-red-400 text-sm font-bold">
+                        {formatCurrency(event.crimeline.funds_lost_usd)} Lost
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Click hint - visible on mobile/focus and hover on desktop */}
+              <div
+                className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
+                  isCrimeline ? "text-red-400" : "text-teal-600"
+                } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
+              >
+                <span className="inline-flex items-center gap-1">
+                  View details
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>

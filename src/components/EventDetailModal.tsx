@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
@@ -128,231 +129,270 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[80vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
           >
             <div
-              className={`p-6 ${
+              className={`${
                 isCrimeline
                   ? "bg-gray-900 border border-red-900/50"
                   : "bg-white border border-gray-200"
               }`}
             >
-              {/* Header Actions */}
-              <div className="absolute top-4 right-4 flex items-center gap-2">
-                <ShareButton event={event} />
-                <button
-                  ref={closeButtonRef}
-                  onClick={closeModal}
-                  aria-label="Close modal"
-                  className={`p-2 rounded-lg transition-colors ${
-                    isCrimeline
-                      ? "text-gray-400 hover:text-white hover:bg-gray-800"
-                      : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Date */}
-              <time
-                className={`text-sm font-medium ${
-                  isCrimeline ? "text-red-400" : "text-teal-600"
-                }`}
-              >
-                {formatDate(event.date)}
-              </time>
-
-              {/* Title */}
-              <h2
-                id="modal-title"
-                className={`mt-2 text-2xl font-bold ${
-                  isCrimeline ? "text-white" : "text-gray-900"
-                }`}
-              >
-                {event.title}
-              </h2>
-
-              {/* Category */}
-              <p
-                className={`mt-1 text-sm ${
-                  isCrimeline ? "text-gray-400" : "text-gray-500"
-                }`}
-              >
-                {event.category}
-              </p>
-
-              {/* Tags */}
-              <div className="mt-4">
-                <TagPills tags={event.tags} />
-              </div>
-
-              {/* Summary */}
-              <p
-                id="modal-description"
-                className={`mt-4 text-base leading-relaxed ${
-                  isCrimeline ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                {event.summary}
-              </p>
-
-              {/* Metrics */}
-              {event.metrics && (
-                <div
-                  className={`mt-6 p-4 rounded-lg ${
-                    isCrimeline ? "bg-gray-800" : "bg-gray-50"
-                  }`}
-                >
-                  <h3
-                    className={`text-sm font-semibold mb-3 ${
-                      isCrimeline ? "text-gray-300" : "text-gray-700"
+              {/* Event Image */}
+              {event.image && (
+                <div className="relative w-full h-48 md:h-64">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    priority
+                  />
+                  <div
+                    className={`absolute inset-0 ${
+                      isCrimeline
+                        ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
+                        : "bg-gradient-to-t from-white via-white/50 to-transparent"
                     }`}
-                  >
-                    Market Context
-                  </h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    {event.metrics.btc_price_usd !== undefined && (
-                      <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                          BTC Price
-                        </p>
-                        <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                          {formatCurrency(event.metrics.btc_price_usd)}
-                        </p>
-                      </div>
-                    )}
-                    {event.metrics.market_cap_usd !== undefined && (
-                      <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                          Market Cap
-                        </p>
-                        <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                          {formatCurrency(event.metrics.market_cap_usd)}
-                        </p>
-                      </div>
-                    )}
-                    {event.metrics.tvl_usd !== undefined && (
-                      <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                          TVL
-                        </p>
-                        <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                          {formatCurrency(event.metrics.tvl_usd)}
-                        </p>
-                      </div>
-                    )}
+                  />
+                  {/* Header Actions - positioned over image */}
+                  <div className="absolute top-4 right-4 flex items-center gap-2">
+                    <ShareButton event={event} />
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                      className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               )}
 
-              {/* Crimeline Details */}
-              {event.crimeline && (
-                <div className="mt-6 p-4 rounded-lg bg-red-950/30 border border-red-900/30">
-                  <h3 className="text-sm font-semibold text-red-400 mb-3">
-                    Incident Details
-                  </h3>
+              <div className="p-6">
+                {/* Header Actions - only if no image */}
+                {!event.image && (
+                  <div className="absolute top-4 right-4 flex items-center gap-2">
+                    <ShareButton event={event} />
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                      className={`p-2 rounded-lg transition-colors ${
+                        isCrimeline
+                          ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                          : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
 
-                  <div className="space-y-3">
-                    {/* Type and Status */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-3 py-1 text-sm font-bold bg-red-900/50 text-red-300 rounded">
-                        {event.crimeline.type}
-                      </span>
-                      {event.crimeline.status && (
-                        <span
-                          className={`px-3 py-1 text-sm font-medium rounded ${
-                            event.crimeline.status === "Funds recovered"
-                              ? "bg-green-900/50 text-green-300"
-                              : event.crimeline.status === "Partial recovery"
-                              ? "bg-yellow-900/50 text-yellow-300"
-                              : event.crimeline.status === "Total loss"
-                              ? "bg-red-900/50 text-red-300"
-                              : "bg-gray-700 text-gray-300"
-                          }`}
-                        >
-                          {event.crimeline.status}
-                        </span>
+                {/* Date */}
+                <time
+                  className={`text-sm font-medium ${
+                    isCrimeline ? "text-red-400" : "text-teal-600"
+                  }`}
+                >
+                  {formatDate(event.date)}
+                </time>
+
+                {/* Title */}
+                <h2
+                  id="modal-title"
+                  className={`mt-2 text-2xl font-bold ${
+                    isCrimeline ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {event.title}
+                </h2>
+
+                {/* Category */}
+                <p
+                  className={`mt-1 text-sm ${
+                    isCrimeline ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  {event.category}
+                </p>
+
+                {/* Tags */}
+                <div className="mt-4">
+                  <TagPills tags={event.tags} />
+                </div>
+
+                {/* Summary */}
+                <p
+                  id="modal-description"
+                  className={`mt-4 text-base leading-relaxed ${
+                    isCrimeline ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {event.summary}
+                </p>
+
+                {/* Metrics */}
+                {event.metrics && (
+                  <div
+                    className={`mt-6 p-4 rounded-lg ${
+                      isCrimeline ? "bg-gray-800" : "bg-gray-50"
+                    }`}
+                  >
+                    <h3
+                      className={`text-sm font-semibold mb-3 ${
+                        isCrimeline ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
+                      Market Context
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {event.metrics.btc_price_usd !== undefined && (
+                        <div>
+                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
+                            BTC Price
+                          </p>
+                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
+                            {formatCurrency(event.metrics.btc_price_usd)}
+                          </p>
+                        </div>
+                      )}
+                      {event.metrics.market_cap_usd !== undefined && (
+                        <div>
+                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
+                            Market Cap
+                          </p>
+                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
+                            {formatCurrency(event.metrics.market_cap_usd)}
+                          </p>
+                        </div>
+                      )}
+                      {event.metrics.tvl_usd !== undefined && (
+                        <div>
+                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
+                            TVL
+                          </p>
+                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
+                            {formatCurrency(event.metrics.tvl_usd)}
+                          </p>
+                        </div>
                       )}
                     </div>
+                  </div>
+                )}
 
-                    {/* Funds Lost */}
-                    {event.crimeline.funds_lost_usd !== undefined && (
-                      <div>
-                        <p className="text-xs text-gray-400">Funds Lost</p>
-                        <p className="text-2xl font-bold text-red-400">
-                          {formatCurrency(event.crimeline.funds_lost_usd)}
-                        </p>
-                        {event.crimeline.victims_estimated && (
-                          <p className="text-sm text-gray-400">
-                            Estimated {event.crimeline.victims_estimated} victims
-                          </p>
+                {/* Crimeline Details */}
+                {event.crimeline && (
+                  <div className="mt-6 p-4 rounded-lg bg-red-950/30 border border-red-900/30">
+                    <h3 className="text-sm font-semibold text-red-400 mb-3">
+                      Incident Details
+                    </h3>
+
+                    <div className="space-y-3">
+                      {/* Type and Status */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="px-3 py-1 text-sm font-bold bg-red-900/50 text-red-300 rounded">
+                          {event.crimeline.type}
+                        </span>
+                        {event.crimeline.status && (
+                          <span
+                            className={`px-3 py-1 text-sm font-medium rounded ${
+                              event.crimeline.status === "Funds recovered"
+                                ? "bg-green-900/50 text-green-300"
+                                : event.crimeline.status === "Partial recovery"
+                                ? "bg-yellow-900/50 text-yellow-300"
+                                : event.crimeline.status === "Total loss"
+                                ? "bg-red-900/50 text-red-300"
+                                : "bg-gray-700 text-gray-300"
+                            }`}
+                          >
+                            {event.crimeline.status}
+                          </span>
                         )}
                       </div>
-                    )}
 
-                    {/* Root Causes */}
-                    {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
-                      <div>
-                        <p className="text-xs text-gray-400 mb-2">Root Causes</p>
-                        <div className="flex flex-wrap gap-2">
-                          {event.crimeline.root_cause.map((cause, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full"
-                            >
-                              {cause}
-                            </span>
-                          ))}
+                      {/* Funds Lost */}
+                      {event.crimeline.funds_lost_usd !== undefined && (
+                        <div>
+                          <p className="text-xs text-gray-400">Funds Lost</p>
+                          <p className="text-2xl font-bold text-red-400">
+                            {formatCurrency(event.crimeline.funds_lost_usd)}
+                          </p>
+                          {event.crimeline.victims_estimated && (
+                            <p className="text-sm text-gray-400">
+                              Estimated {event.crimeline.victims_estimated} victims
+                            </p>
+                          )}
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Aftermath */}
-                    {event.crimeline.aftermath && (
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Aftermath</p>
-                        <p className="text-sm text-gray-300">{event.crimeline.aftermath}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
+                      {/* Root Causes */}
+                      {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
+                        <div>
+                          <p className="text-xs text-gray-400 mb-2">Root Causes</p>
+                          <div className="flex flex-wrap gap-2">
+                            {event.crimeline.root_cause.map((cause, i) => (
+                              <span
+                                key={i}
+                                className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full"
+                              >
+                                {cause}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
-              {/* Links */}
-              {event.links && event.links.length > 0 && (
-                <div className="mt-6">
-                  <h3
-                    className={`text-sm font-semibold mb-3 ${
-                      isCrimeline ? "text-gray-300" : "text-gray-700"
-                    }`}
-                  >
-                    Sources
-                  </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {event.links.map((link, i) => (
-                      <a
-                        key={i}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                          isCrimeline
-                            ? "bg-gray-800 text-red-400 hover:bg-gray-700"
-                            : "bg-gray-100 text-teal-600 hover:bg-gray-200"
-                        }`}
-                      >
-                        {link.label}
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    ))}
+                      {/* Aftermath */}
+                      {event.crimeline.aftermath && (
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">Aftermath</p>
+                          <p className="text-sm text-gray-300">{event.crimeline.aftermath}</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+
+                {/* Links */}
+                {event.links && event.links.length > 0 && (
+                  <div className="mt-6">
+                    <h3
+                      className={`text-sm font-semibold mb-3 ${
+                        isCrimeline ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
+                      Sources
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {event.links.map((link, i) => (
+                        <a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                            isCrimeline
+                              ? "bg-gray-800 text-red-400 hover:bg-gray-700"
+                              : "bg-gray-100 text-teal-600 hover:bg-gray-200"
+                          }`}
+                        >
+                          {link.label}
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         </>

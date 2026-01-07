@@ -48,6 +48,7 @@ export interface Event {
   category: string;
   tags: EventTag[];
   mode: Mode[];
+  image?: string;
   links?: { label: string; url: string }[];
   metrics?: {
     btc_price_usd?: number;
