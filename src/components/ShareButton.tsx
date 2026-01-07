@@ -7,9 +7,10 @@ import type { Event } from "@/lib/types";
 
 interface ShareButtonProps {
   event: Event;
+  overImage?: boolean;
 }
 
-export function ShareButton({ event }: ShareButtonProps) {
+export function ShareButton({ event, overImage = false }: ShareButtonProps) {
   const { mode } = useModeStore();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -131,7 +132,9 @@ export function ShareButton({ event }: ShareButtonProps) {
           setIsOpen(!isOpen);
         }}
         className={`p-2 rounded-lg transition-colors duration-200 ${
-          isCrimeline
+          overImage
+            ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
+            : isCrimeline
             ? "text-gray-500 hover:text-red-400 hover:bg-red-900/30"
             : "text-gray-400 hover:text-teal-600 hover:bg-teal-100"
         }`}
