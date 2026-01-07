@@ -206,6 +206,7 @@
     "category": "Bull Runs",
     "tags": ["ATH", "ECONOMIC", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://images.cointelegraph.com/cdn-cgi/image/f=auto,onerror=redirect,w=1728,q=90/https://s3.cointelegraph.com/storage/uploads/view/faaadca36ab5c99ead0bc250383d1144.jpeg",
     "links": [
       { "label": "2017 Bull Run", "url": "https://www.coindesk.com/price/bitcoin" }
     ],
