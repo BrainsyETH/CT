@@ -1261,6 +1261,8 @@
     "category": "Market Structure",
     "tags": ["FAILURE", "CULTURAL", "ECONOMIC"],
     "mode": ["timeline"],
+    "image": "https://pbs.twimg.com/media/GvqThClbsAEGHig?format=jpg&name=4096x4096",
+  
     "links": [
       { "label": "Lookonchain liquidation post", "url": "https://x.com/lookonchain/status/1943473763263353334" },
       { "label": "Coverage of the wipeout", "url": "https://finance.yahoo.com/news/james-wynn-23-million-wipeout-064752886.html" }
