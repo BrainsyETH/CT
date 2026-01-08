@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
               {isCrimeline ? "💀" : "₿"}
             </div>
             <span style={{ color: "#94a3b8", fontSize: "24px", fontWeight: 600 }}>
-              {isCrimeline ? "Chain of Crimes" : "Chain of Events"}
+              Chain of Events
             </span>
           </div>
           <div

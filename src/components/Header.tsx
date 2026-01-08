@@ -51,7 +51,7 @@ export function Header() {
                 isCrimeline ? "text-white" : "text-gray-900"
               }`}
             >
-              {isCrimeline ? "Chain of Crimes" : "Chain of Events"}
+              Chain of Events
             </h1>
             <p
               className={`text-xs transition-colors duration-300 ${
