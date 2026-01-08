@@ -8,6 +8,8 @@ import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
+const FALLBACK_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Chain_of_Events.png";
+
 interface EventCardProps {
   event: Event;
   index: number;
@@ -78,25 +80,23 @@ export function EventCard({ event, index }: EventCardProps) {
             }`}
           >
             {/* Event Image */}
-            {event.image && (
-              <div className="relative w-full h-40 overflow-hidden">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  unoptimized
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isCrimeline
-                      ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
-                      : "bg-gradient-to-t from-white via-white/20 to-transparent"
-                  }`}
-                />
-              </div>
-            )}
+            <div className="relative w-full h-40 overflow-hidden">
+              <Image
+                src={event.image || FALLBACK_IMAGE}
+                alt={event.title}
+                fill
+                unoptimized
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div
+                className={`absolute inset-0 ${
+                  isCrimeline
+                    ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
+                    : "bg-gradient-to-t from-white via-white/20 to-transparent"
+                }`}
+              />
+            </div>
 
             <div className="p-4">
               {/* Header with Date and Share */}
