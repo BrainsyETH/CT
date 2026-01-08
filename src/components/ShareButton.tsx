@@ -170,7 +170,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
           <>
             {/* Backdrop */}
             <div
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-[60]"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsOpen(false);
@@ -191,7 +191,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                 top: menuPosition.top,
                 right: menuPosition.right,
               }}
-              className={`w-48 rounded-lg shadow-xl z-50 overflow-hidden ${
+              className={`w-48 rounded-lg shadow-xl z-[70] overflow-hidden ${
                 isCrimeline
                   ? "bg-gray-900 border border-red-900/50"
                   : "bg-white border border-gray-200"
