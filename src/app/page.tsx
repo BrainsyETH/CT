@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     const event = events.find((e) => e.id === eventId);
     if (event) {
       const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
-      const title = `${event.title} | ${isCrimeline ? "Chain of Crimes" : "Chain of Events"}`;
+      const title = `${event.title} | Chain of Events`;
       const description = event.summary;
       const ogImageUrl = `${siteUrl}/api/og?id=${encodeURIComponent(eventId)}`;
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
           title,
           description,
           url: `${siteUrl}?event=${eventId}`,
-          siteName: isCrimeline ? "Chain of Crimes" : "Chain of Events",
+          siteName: "Chain of Events",
           images: [
             {
               url: ogImageUrl,
