@@ -51,7 +51,7 @@
     "summary": "Mt. Gox, the largest Bitcoin exchange at the time, suffers a security breach that leads to a flash crash from $17.50 to $0.01.",
     "category": "Centralized Exchange",
     "tags": ["SECURITY", "FAILURE"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Mt. Gox Wiki", "url": "https://en.bitcoin.it/wiki/Mt._Gox" }
     ],
@@ -89,7 +89,7 @@
     "summary": "Mt. Gox halts all withdrawals and files for bankruptcy after revealing 850,000 BTC (~$450M at the time) were stolen over several years.",
     "category": "Centralized Exchange",
     "tags": ["SECURITY", "FAILURE"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Mt. Gox Bankruptcy", "url": "https://en.wikipedia.org/wiki/Mt._Gox" }
     ],
@@ -127,7 +127,7 @@
     "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork.",
     "category": "DeFi Protocol",
     "tags": ["SECURITY", "FAILURE", "MILESTONE"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "The DAO Attack", "url": "https://www.gemini.com/cryptopedia/the-dao-hack-makerdao" }
     ],
@@ -420,7 +420,7 @@
     "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M in the largest DeFi hack ever.",
     "category": "Bridge",
     "tags": ["SECURITY", "FAILURE"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Ronin Hack", "url": "https://www.coindesk.com/tech/2022/03/29/axie-infinitys-ronin-network-suffers-625m-exploit/" }
     ],
@@ -443,7 +443,7 @@
     "summary": "The UST algorithmic stablecoin loses its peg, triggering a death spiral that wipes out $40B+ in value and collapses the Terra ecosystem.",
     "category": "Stablecoin",
     "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Terra Collapse", "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/" }
     ],
@@ -466,7 +466,7 @@
     "summary": "Crypto lender Celsius halts all withdrawals citing 'extreme market conditions,' later filing for bankruptcy with $4.7B hole.",
     "category": "Lending",
     "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["timeline", "crimeline"],
+    "mode": ["crimeline"],
     "links": [
       { "label": "Celsius Collapse", "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/" }
     ],
