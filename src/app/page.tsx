@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     const event = events.find((e) => e.id === eventId);
     if (event) {
       const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
-      const title = `${event.title} | ${isCrimeline ? "Crypto Crimeline" : "Crypto Timeline"}`;
+      const title = `${event.title} | ${isCrimeline ? "Chain of Crimes" : "Chain of Events"}`;
       const description = event.summary;
       const ogImageUrl = `${siteUrl}/api/og?id=${encodeURIComponent(eventId)}`;
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
           title,
           description,
           url: `${siteUrl}?event=${eventId}`,
-          siteName: isCrimeline ? "Crypto Crimeline" : "Crypto Timeline",
+          siteName: isCrimeline ? "Chain of Crimes" : "Chain of Events",
           images: [
             {
               url: ogImageUrl,
@@ -54,7 +54,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
   // Default metadata
   return {
-    title: "Crypto Timeline | History of Cryptocurrency",
+    title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
   };
