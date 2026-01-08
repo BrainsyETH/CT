@@ -59,7 +59,7 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-[99]"
               onClick={() => setIsOpen(false)}
             />
 
@@ -69,7 +69,7 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-lg shadow-lg z-50 ${
+              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-lg shadow-lg z-[100] ${
                 isCrimeline
                   ? "bg-gray-900 border border-red-900/30"
                   : "bg-white border border-gray-200"
