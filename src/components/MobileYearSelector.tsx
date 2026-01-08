@@ -23,7 +23,7 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-30">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
