@@ -1,8 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
+
+const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo.png";
 
 export function Header() {
   const { mode } = useModeStore();
@@ -21,9 +24,7 @@ export function Header() {
         {/* Logo / Title */}
         <div className="flex items-center gap-3">
           <motion.div
-            className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-300 ${
-              isCrimeline ? "bg-red-900" : "bg-teal-500"
-            }`}
+            className="w-8 h-8 rounded-lg overflow-hidden"
             animate={
               prefersReducedMotion
                 ? {}
@@ -41,9 +42,14 @@ export function Header() {
                   }
             }
           >
-            <span className="text-white font-bold text-sm">
-              {isCrimeline ? "💀" : "₿"}
-            </span>
+            <Image
+              src={LOGO_IMAGE}
+              alt="Chain of Events Logo"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+              unoptimized
+            />
           </motion.div>
           <div>
             <h1
