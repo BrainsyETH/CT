@@ -31,6 +31,22 @@ export async function GET(request: NextRequest) {
 
   const event = events.find((e) => e.id === eventId);
 
+  // Fetch event image if available
+  let imageData: string | null = null;
+  if (event?.image) {
+    try {
+      const imageResponse = await fetch(event.image);
+      if (imageResponse.ok) {
+        const buffer = await imageResponse.arrayBuffer();
+        const base64 = Buffer.from(buffer).toString("base64");
+        const contentType = imageResponse.headers.get("content-type") || "image/jpeg";
+        imageData = `data:${contentType};base64,${base64}`;
+      }
+    } catch (error) {
+      console.error("Failed to fetch event image:", error);
+    }
+  }
+
   if (!event) {
     // Return default OG image if event not found
     return new ImageResponse(
@@ -132,7 +148,7 @@ export async function GET(request: NextRequest) {
           }}
         >
           {/* Event Image */}
-          {event.image && (
+          {imageData && (
             <div
               style={{
                 width: "380px",
@@ -143,7 +159,7 @@ export async function GET(request: NextRequest) {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={event.image}
+                src={imageData}
                 alt=""
                 style={{
                   width: "100%",
@@ -176,7 +192,7 @@ export async function GET(request: NextRequest) {
             {/* Title */}
             <h1
               style={{
-                fontSize: event.image ? "42px" : "56px",
+                fontSize: imageData ? "42px" : "56px",
                 fontWeight: "bold",
                 color: "white",
                 margin: 0,
@@ -190,13 +206,13 @@ export async function GET(request: NextRequest) {
             {/* Summary */}
             <p
               style={{
-                fontSize: event.image ? "22px" : "28px",
+                fontSize: imageData ? "22px" : "28px",
                 color: "#94a3b8",
                 margin: 0,
                 marginBottom: "24px",
                 lineHeight: 1.4,
                 display: "-webkit-box",
-                WebkitLineClamp: event.image ? 2 : 3,
+                WebkitLineClamp: imageData ? 2 : 3,
                 WebkitBoxOrient: "vertical",
                 overflow: "hidden",
               }}
@@ -206,7 +222,7 @@ export async function GET(request: NextRequest) {
 
             {/* Tags */}
             <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
-              {event.tags.slice(0, event.image ? 3 : 4).map((tag: string) => (
+              {event.tags.slice(0, imageData ? 3 : 4).map((tag: string) => (
                 <div
                   key={tag}
                   style={{
@@ -214,7 +230,7 @@ export async function GET(request: NextRequest) {
                     borderRadius: "9999px",
                     background: accentBg,
                     color: accentColor,
-                    fontSize: event.image ? "14px" : "18px",
+                    fontSize: imageData ? "14px" : "18px",
                     fontWeight: 500,
                   }}
                 >
@@ -238,7 +254,7 @@ export async function GET(request: NextRequest) {
                     <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
                       Funds Lost
                     </span>
-                    <span style={{ color: "#dc2626", fontSize: event.image ? "28px" : "36px", fontWeight: "bold" }}>
+                    <span style={{ color: "#dc2626", fontSize: imageData ? "28px" : "36px", fontWeight: "bold" }}>
                       {formatCurrency(event.crimeline.funds_lost_usd)}
                     </span>
                   </div>
@@ -248,7 +264,7 @@ export async function GET(request: NextRequest) {
                     <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
                       Type
                     </span>
-                    <span style={{ color: "#fca5a5", fontSize: event.image ? "18px" : "24px", fontWeight: 600 }}>
+                    <span style={{ color: "#fca5a5", fontSize: imageData ? "18px" : "24px", fontWeight: 600 }}>
                       {event.crimeline.type}
                     </span>
                   </div>
@@ -266,7 +282,7 @@ export async function GET(request: NextRequest) {
                             : event.crimeline.status === "Total loss"
                             ? "#f87171"
                             : "#fbbf24",
-                        fontSize: event.image ? "18px" : "24px",
+                        fontSize: imageData ? "18px" : "24px",
                         fontWeight: 600,
                       }}
                     >
@@ -291,7 +307,7 @@ export async function GET(request: NextRequest) {
                     <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
                       BTC Price
                     </span>
-                    <span style={{ color: "#5eead4", fontSize: event.image ? "24px" : "32px", fontWeight: "bold" }}>
+                    <span style={{ color: "#5eead4", fontSize: imageData ? "24px" : "32px", fontWeight: "bold" }}>
                       {formatCurrency(event.metrics.btc_price_usd)}
                     </span>
                   </div>
@@ -301,7 +317,7 @@ export async function GET(request: NextRequest) {
                     <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
                       Market Cap
                     </span>
-                    <span style={{ color: "#5eead4", fontSize: event.image ? "24px" : "32px", fontWeight: "bold" }}>
+                    <span style={{ color: "#5eead4", fontSize: imageData ? "24px" : "32px", fontWeight: "bold" }}>
                       {formatCurrency(event.metrics.market_cap_usd)}
                     </span>
                   </div>
