@@ -14,6 +14,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
   const { mode } = useModeStore();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
 
@@ -63,6 +64,17 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
       url: `https://reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(event.title)}`,
     },
   ];
+
+  // Calculate menu position when opening
+  useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setMenuPosition({
+        top: rect.bottom + 8,
+        right: window.innerWidth - rect.right,
+      });
+    }
+  }, [isOpen]);
 
   // Close on escape key
   useEffect(() => {
@@ -167,14 +179,19 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
               aria-hidden="true"
             />
 
-            {/* Dropdown */}
+            {/* Dropdown - Fixed positioning to escape overflow:hidden */}
             <motion.div
               ref={menuRef}
               id={menuId}
               {...animationProps}
               role="menu"
               aria-label="Share options"
-              className={`absolute right-0 top-full mt-2 w-48 rounded-lg shadow-xl z-50 overflow-hidden ${
+              style={{
+                position: 'fixed',
+                top: menuPosition.top,
+                right: menuPosition.right,
+              }}
+              className={`w-48 rounded-lg shadow-xl z-50 overflow-hidden ${
                 isCrimeline
                   ? "bg-gray-900 border border-red-900/50"
                   : "bg-white border border-gray-200"
