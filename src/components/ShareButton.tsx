@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useId } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import type { Event } from "@/lib/types";
@@ -15,6 +16,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
+  const [mounted, setMounted] = useState(false);
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
 
@@ -25,6 +27,11 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const shareUrl = `${baseUrl}?event=${event.id}`;
   const shareText = `${event.title}`;
+
+  // Mount check for portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const shareLinks = [
     {
@@ -165,97 +172,101 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         </svg>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-[60]"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsOpen(false);
-                buttonRef.current?.focus();
-              }}
-              aria-hidden="true"
-            />
+      {/* Portal dropdown to document.body to escape all overflow constraints */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              {/* Backdrop */}
+              <div
+                className="fixed inset-0 z-[60]"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                  buttonRef.current?.focus();
+                }}
+                aria-hidden="true"
+              />
 
-            {/* Dropdown - Fixed positioning to escape overflow:hidden */}
-            <motion.div
-              ref={menuRef}
-              id={menuId}
-              {...animationProps}
-              role="menu"
-              aria-label="Share options"
-              style={{
-                position: 'fixed',
-                top: menuPosition.top,
-                right: menuPosition.right,
-              }}
-              className={`w-48 rounded-lg shadow-xl z-[70] overflow-hidden ${
-                isCrimeline
-                  ? "bg-gray-900 border border-red-900/50"
-                  : "bg-white border border-gray-200"
-              }`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className={`px-3 py-2 text-xs font-semibold uppercase tracking-wide ${
-                isCrimeline ? "text-gray-500 border-b border-gray-800" : "text-gray-400 border-b border-gray-100"
-              }`}>
-                Share to
-              </div>
+              {/* Dropdown */}
+              <motion.div
+                ref={menuRef}
+                id={menuId}
+                {...animationProps}
+                role="menu"
+                aria-label="Share options"
+                style={{
+                  position: 'fixed',
+                  top: menuPosition.top,
+                  right: menuPosition.right,
+                }}
+                className={`w-48 rounded-lg shadow-xl z-[70] overflow-hidden ${
+                  isCrimeline
+                    ? "bg-gray-900 border border-red-900/50"
+                    : "bg-white border border-gray-200"
+                }`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className={`px-3 py-2 text-xs font-semibold uppercase tracking-wide ${
+                  isCrimeline ? "text-gray-500 border-b border-gray-800" : "text-gray-400 border-b border-gray-100"
+                }`}>
+                  Share to
+                </div>
 
-              {shareLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => handleShare(link.url)}
-                  role="menuitem"
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
-                    isCrimeline
-                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  }`}
-                >
-                  {link.icon}
-                  {link.name}
-                </button>
-              ))}
+                {shareLinks.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => handleShare(link.url)}
+                    role="menuitem"
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
+                      isCrimeline
+                        ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
+                  >
+                    {link.icon}
+                    {link.name}
+                  </button>
+                ))}
 
-              <div className={`border-t ${isCrimeline ? "border-gray-800" : "border-gray-100"}`}>
-                <button
-                  onClick={copyToClipboard}
-                  role="menuitem"
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
-                    isCrimeline
-                      ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-                  }`}
-                >
-                  {copied ? (
-                    <>
-                      <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-green-500">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
-                      </svg>
-                      Copy Link
-                    </>
-                  )}
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                <div className={`border-t ${isCrimeline ? "border-gray-800" : "border-gray-100"}`}>
+                  <button
+                    onClick={copyToClipboard}
+                    role="menuitem"
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
+                      isCrimeline
+                        ? "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-green-500">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
+                        </svg>
+                        Copy Link
+                      </>
+                    )}
+                  </button>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }
