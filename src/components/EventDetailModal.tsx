@@ -9,6 +9,8 @@ import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
+const FALLBACK_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Chain_of_Events.png";
+
 interface EventDetailModalProps {
   events: Event[];
 }
@@ -144,76 +146,54 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               }`}
             >
               {/* Event Image */}
-              {event.image && (
-                <div className="relative w-full h-48 md:h-64">
-                  <button
-                    onClick={() => setIsImageExpanded(true)}
-                    className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
-                    aria-label="View full image"
-                  >
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      unoptimized
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 672px"
-                      priority
-                    />
-                    <div
-                      className={`absolute inset-0 ${
-                        isCrimeline
-                          ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                          : "bg-gradient-to-t from-white via-white/50 to-transparent"
-                      }`}
-                    />
-                    {/* Zoom hint */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity">
-                      <div className="p-3 rounded-full bg-black/60 backdrop-blur-sm">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </button>
-                  {/* Header Actions - positioned over image */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                    <ShareButton event={event} overImage />
-                    <button
-                      ref={closeButtonRef}
-                      onClick={closeModal}
-                      aria-label="Close modal"
-                      className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <div className="relative w-full h-48 md:h-64">
+                <button
+                  onClick={() => setIsImageExpanded(true)}
+                  className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
+                  aria-label="View full image"
+                >
+                  <Image
+                    src={event.image || FALLBACK_IMAGE}
+                    alt={event.title}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    priority
+                  />
+                  <div
+                    className={`absolute inset-0 ${
+                      isCrimeline
+                        ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
+                        : "bg-gradient-to-t from-white via-white/50 to-transparent"
+                    }`}
+                  />
+                  {/* Zoom hint */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity">
+                    <div className="p-3 rounded-full bg-black/60 backdrop-blur-sm">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                       </svg>
-                    </button>
+                    </div>
                   </div>
+                </button>
+                {/* Header Actions - positioned over image */}
+                <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
+                  <ShareButton event={event} overImage />
+                  <button
+                    ref={closeButtonRef}
+                    onClick={closeModal}
+                    aria-label="Close modal"
+                    className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
-              )}
+              </div>
 
               <div className="p-6">
-                {/* Header Actions - only if no image */}
-                {!event.image && (
-                  <div className="absolute top-4 right-4 flex items-center gap-2">
-                    <ShareButton event={event} />
-                    <button
-                      ref={closeButtonRef}
-                      onClick={closeModal}
-                      aria-label="Close modal"
-                      className={`p-2 rounded-lg transition-colors ${
-                        isCrimeline
-                          ? "text-gray-400 hover:text-white hover:bg-gray-800"
-                          : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
-                      }`}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                )}
 
                 {/* Date */}
                 <time
@@ -418,7 +398,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
           {/* Image Lightbox */}
           <AnimatePresence>
-            {isImageExpanded && event.image && (
+            {isImageExpanded && (
               <motion.div
                 initial={prefersReducedMotion ? {} : { opacity: 0 }}
                 animate={prefersReducedMotion ? {} : { opacity: 1 }}
@@ -443,7 +423,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Image
-                    src={event.image}
+                    src={event.image || FALLBACK_IMAGE}
                     alt={event.title}
                     width={1200}
                     height={800}
