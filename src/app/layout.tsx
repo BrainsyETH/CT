@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Crypto Timeline | History of Cryptocurrency",
+  title: "Chain of Events | History of Cryptocurrency",
   description:
     "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments. Switch to Crimeline mode to explore hacks, exploits, and frauds.",
   keywords: [
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     "crypto history",
     "crypto hacks",
     "defi",
-    "crypto timeline",
+    "chain of events",
     "Mt. Gox",
     "FTX",
     "crypto crimes",
   ],
-  authors: [{ name: "Crypto Timeline" }],
-  creator: "Crypto Timeline",
-  publisher: "Crypto Timeline",
+  authors: [{ name: "Chain of Events" }],
+  creator: "Chain of Events",
+  publisher: "Chain of Events",
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Crypto Timeline",
-    title: "Crypto Timeline | History of Cryptocurrency",
+    siteName: "Chain of Events",
+    title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
     images: [
@@ -47,17 +47,17 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Crypto Timeline - The History of Cryptocurrency",
+        alt: "Chain of Events - The History of Cryptocurrency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Crypto Timeline | History of Cryptocurrency",
+    title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
     images: ["/og-image.png"],
-    creator: "@cryptotimeline",
+    creator: "@chainofevents",
   },
   robots: {
     index: true,

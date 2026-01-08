@@ -1,6 +1,6 @@
 {
-  "name": "Crypto Timeline",
-  "short_name": "CryptoTimeline",
+  "name": "Chain of Events",
+  "short_name": "ChainOfEvents",
   "description": "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
   "start_url": "/",
   "display": "standalone",

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Crypto Timeline - The History of Cryptocurrency";
+export const alt = "Chain of Events - The History of Cryptocurrency";
 export const size = {
   width: 1200,
   height: 630,
@@ -123,7 +123,7 @@ export default async function Image() {
               textAlign: "center",
             }}
           >
-            Crypto Timeline
+            Chain of Events
           </h1>
 
           {/* Subtitle */}

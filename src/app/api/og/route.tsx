@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          <h1 style={{ color: "white", fontSize: 48 }}>Crypto Timeline</h1>
+          <h1 style={{ color: "white", fontSize: 48 }}>Chain of Events</h1>
           <p style={{ color: "#94a3b8", fontSize: 24 }}>Event not found</p>
         </div>
       ),
@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
               {isCrimeline ? "💀" : "₿"}
             </div>
             <span style={{ color: "#94a3b8", fontSize: "24px", fontWeight: 600 }}>
-              {isCrimeline ? "Crypto Crimeline" : "Crypto Timeline"}
+              {isCrimeline ? "Chain of Crimes" : "Chain of Events"}
             </span>
           </div>
           <div

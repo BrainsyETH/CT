@@ -51,7 +51,7 @@ export const useModeStore = create<ModeState>()(
       setSelectedEventId: (id) => set({ selectedEventId: id }),
     }),
     {
-      name: "crypto-timeline-mode",
+      name: "chain-of-events-mode",
       partialize: (state) => ({ mode: state.mode, sortOrder: state.sortOrder }),
     }
   )
