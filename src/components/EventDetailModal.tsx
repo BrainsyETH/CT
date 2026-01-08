@@ -9,7 +9,8 @@ import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
-const FALLBACK_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Chain_of_Events.png";
+const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
+const FALLBACK_IMAGE_CRIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png";
 
 interface EventDetailModalProps {
   events: Event[];
@@ -153,7 +154,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   aria-label="View full image"
                 >
                   <Image
-                    src={event.image || FALLBACK_IMAGE}
+                    src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
                     alt={event.title}
                     fill
                     unoptimized
@@ -423,7 +424,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Image
-                    src={event.image || FALLBACK_IMAGE}
+                    src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
                     alt={event.title}
                     width={1200}
                     height={800}
