@@ -7,6 +7,9 @@ const events = eventsData as Event[];
 
 export const runtime = "edge";
 
+const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
+const FALLBACK_IMAGE_CRIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png";
+
 const formatCurrency = (value: number): string => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -30,22 +33,6 @@ export async function GET(request: NextRequest) {
   const eventId = searchParams.get("id");
 
   const event = events.find((e) => e.id === eventId);
-
-  // Fetch event image if available
-  let imageData: string | null = null;
-  if (event?.image) {
-    try {
-      const imageResponse = await fetch(event.image);
-      if (imageResponse.ok) {
-        const buffer = await imageResponse.arrayBuffer();
-        const base64 = Buffer.from(buffer).toString("base64");
-        const contentType = imageResponse.headers.get("content-type") || "image/jpeg";
-        imageData = `data:${contentType};base64,${base64}`;
-      }
-    } catch (error) {
-      console.error("Failed to fetch event image:", error);
-    }
-  }
 
   if (!event) {
     // Return default OG image if event not found
@@ -72,6 +59,22 @@ export async function GET(request: NextRequest) {
   }
 
   const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
+
+  // Fetch event image or use fallback
+  const imageUrl = event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE);
+  let imageData: string | null = null;
+  try {
+    const imageResponse = await fetch(imageUrl);
+    if (imageResponse.ok) {
+      const buffer = await imageResponse.arrayBuffer();
+      const base64 = Buffer.from(buffer).toString("base64");
+      const contentType = imageResponse.headers.get("content-type") || "image/png";
+      imageData = `data:${contentType};base64,${base64}`;
+    }
+  } catch (error) {
+    console.error("Failed to fetch image:", error);
+  }
+
   const bgGradient = isCrimeline
     ? "linear-gradient(135deg, #1c1917 0%, #292524 50%, #1c1917 100%)"
     : "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)";
