@@ -8,8 +8,7 @@ export type EventTag =
   | "SECURITY"
   | "FAILURE"
   | "MILESTONE"
-  | "ATH"
-  | "CT LORE";
+  | "ATH";
 
 export type CrimelineType =
   | "EXCHANGE HACK"
