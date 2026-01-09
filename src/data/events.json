@@ -1334,8 +1334,8 @@
   {
     "id": "chill-guy-creator-backlash-2024",
     "date": "2024-11-10",
-    "title": "Chill Guy Meme Creator Opposes Crypto Appropriation",
-    "summary": "The creator of the 'Chill Guy' meme publicly opposed its use in crypto token branding, igniting debate over IP, consent, and meme monetization.",
+    "title": "Chill Guy Creator Opposes Memecoin",
+    "summary": "The creator of the 'Chill Guy' art publicly opposed its use in crypto and threatened legal action. The Chill Guy memecoin reached $488 million market cap at its peak.",
     "category": "Culture",
     "tags": [
       "CULTURAL"
@@ -1343,10 +1343,11 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/chillguy_response.png",
     "links": [
       {
-        "label": "Creator response",
-        "url": "https://x.com/search?q=Chill%20Guy%20crypto"
+        "label": "Chill Guy Memes",
+        "url": "https://x.com/search?q=chill%20guy%20memes&src=typed_query"
       }
     ]
   },
@@ -1386,8 +1387,8 @@
     "id": "btc-ath-100k-2024-12-05",
     "date": "2024-12-05",
     "title": "Bitcoin Breaks $100,000",
-    "summary": "Bitcoin surpasses $100,000 for the first time, driven by ETF inflows and post-halving dynamics.",
-    "category": "Bull Runs",
+    "summary": "Bitcoin surpasses $100,000 for the first time, likely driven by ETF inflows and post-halving dynamics.",
+    "category": "Bitcoin",
     "tags": [
       "ATH",
       "ECONOMIC",
@@ -1396,6 +1397,7 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/peter_schiff_100k.jpeg",
     "links": [
       {
         "label": "Bitcoin 100k",
