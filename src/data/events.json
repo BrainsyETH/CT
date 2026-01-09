@@ -1444,8 +1444,8 @@
     "id": "trump-memecoin-launch-drawdown-2025-01-18",
     "date": "2025-01-18",
     "title": "$TRUMP Launch Sparks Frenzy, Then Massive Drawdown",
-    "summary": "Donald Trump promoted the â€˜Official Trump Memeâ€™ token ($TRUMP), triggering a rapid speculative surge in January.",
-    "category": "Meme Coins",
+    "summary": "Donald Trump officially promotes the ($TRUMP) token, triggering a rapid speculative surge in January. Followed by a 90%+ drawdown by the end of the year.",
+    "category": "Memecoins",
     "tags": [
       "FAILURE",
       "CULTURAL"
@@ -1453,9 +1453,10 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/trump_token.jpeg",
     "links": [
       {
-        "label": "Trump promo post",
+        "label": "Trump Tweets $TRUMP",
         "url": "https://x.com/realDonaldTrump/status/1880446012168249386"
       },
       {
@@ -1472,9 +1473,9 @@
   {
     "id": "melania-memecoin-launch-drawdown-2025-01-19",
     "date": "2025-01-19",
-    "title": "$MELANIA Token Launch Triggers Fast Boom-Bust",
-    "summary": "Melania Trump promoted the $MELANIA token.",
-    "category": "Meme Coins",
+    "title": "$MELANIA Token Launches Immediately After $TRUMP",
+    "summary": "The $MELANIA token had a peak market cap of aroun $150m, followed by a 98% drawdown over the year.",
+    "category": "Memecoins",
     "tags": [
       "FAILURE",
       "CULTURAL"
@@ -1482,9 +1483,10 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/melania_token.jpeg",
     "links": [
       {
-        "label": "Melania promo post",
+        "label": "Melania Tweets $Melania",
         "url": "https://x.com/MELANIATRUMP/status/1881094861279129643"
       },
       {
@@ -1621,7 +1623,7 @@
       "ECONOMIC"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "links": [
       {
@@ -1633,8 +1635,16 @@
         "url": "https://cincodias.elpais.com/criptoactivos/2025-04-24/la-cripto-mantra-se-hunde-un-90-en-una-hora-y-expone-los-riesgos-de-concentracion-en-el-mercado.html"
       }
     ],
-    "metrics": {
-      "intraday_drawdown_pct_approx": 90
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 0,
+      "victims_estimated": "Unknown",
+      "root_cause": [
+        "Token dumps",
+        "Operational failure"
+      ],
+      "aftermath": "Unkown",
+      "status": "Ongoing"
     }
   },
   {
@@ -1704,9 +1714,9 @@
   {
     "id": "circle-crcl-ipo-2025-06-05",
     "date": "2025-06-05",
-    "title": "Circle (CRCL) Begins Trading After Upsized IPO",
-    "summary": "Circle, issuer of USDC, priced an upsized IPO and began trading on the NYSE under ticker CRCL.",
-    "category": "TradFi/IPO",
+    "title": "Circle (CRCL) IPOs",
+    "summary": "Circle, issuer of USDC, begins trading $31/share and at a valuation of $8 billion.",
+    "category": "Stablecoins",
     "tags": [
       "MILESTONE",
       "ECONOMIC",
@@ -1715,9 +1725,10 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/circle_ipo.jpg",
     "links": [
       {
-        "label": "Circle IPO pricing & ticker (Circle IR)",
+        "label": "Circle IPO Announcement",
         "url": "https://investor.circle.com/news/news-details/2025/Circle-Announces-Pricing-of-Upsized-Initial-Public-Offering/default.aspx"
       },
       {
@@ -1760,34 +1771,7 @@
       "status": "Ongoing"
     }
   },
-  {
-    "id": "solana-etf-ssk-launch-2025-07-02",
-    "date": "2025-07-02",
-    "title": "First U.S.-Listed Solana + Staking ETF Launches (SSK)",
-    "summary": "REX Shares and Osprey Funds launched SSK.",
-    "category": "ETFs",
-    "tags": [
-      "MILESTONE",
-      "ECONOMIC",
-      "REGULATORY"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "links": [
-      {
-        "label": "REX-Osprey launch announcement",
-        "url": "https://www.rexshares.com/rex-osprey-launches-first-u-s-etf-with-solana-exposure-plus-staking-rewards/"
-      },
-      {
-        "label": "ETF launch note (Balchunas)",
-        "url": "https://x.com/EricBalchunas/status/1939794086535602428"
-      }
-    ],
-    "metrics": {
-      "ticker": "SSK"
-    }
-  },
+  
   {
     "id": "genius-act-signed-2025-07-18",
     "date": "2025-07-18",
