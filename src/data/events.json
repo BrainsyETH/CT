@@ -434,7 +434,7 @@
     "date": "2020-05-11",
     "title": "Third Bitcoin Halving",
     "summary": "Bitcoin's block reward halves from 12.5 BTC to 6.25 BTC at block 630,000.",
-    "category": "Halvings",
+    "category": "Bitcoin",
     "tags": [
       "TECH",
       "ECONOMIC",
@@ -443,6 +443,7 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/third_halving.webp",
     "links": [
       {
         "label": "Third Halving",
@@ -458,7 +459,7 @@
     "date": "2020-05-18",
     "title": "Uniswap V2 Launches",
     "summary": "Uniswap V2 launches with ERC20-ERC20 pools, flash swaps, and price oracles, becoming the leading decentralized exchange.",
-    "category": "DeFi Summer",
+    "category": "DeFi Protocol",
     "tags": [
       "TECH",
       "MILESTONE"
@@ -466,10 +467,15 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/uniswap_v2.jpeg",
     "links": [
       {
         "label": "Uniswap V2",
         "url": "https://uniswap.org/blog/uniswap-v2"
+      },
+       {
+        "label": "Hayden Tweet",
+        "url": "https://x.com/haydenzadams/status/1361356927226310668"
       }
     ],
     "metrics": {
@@ -480,18 +486,23 @@
   {
     "id": "defi-summer-2020-06",
     "date": "2020-06-15",
-    "title": "DeFi Summer Begins",
-    "summary": "Compound launches COMP token governance mining, igniting 'DeFi Summer' and explosive growth in decentralized finance protocols.",
-    "category": "DeFi Summer",
+    "title": "Defi Summer 2020",
+    "summary": "Almost $90 billion worth of trading volume happened across decentralized exchanges on Ethereum over 2020. The majority of the volume and growth happened over the last 4-5 months during DeFi summer.",
+    "category": "DeFi Protocol",
     "tags": [
       "TECH",
-      "ECONOMIC",
+      "CULTURAL",
       "MILESTONE"
     ],
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/defi_summer_2020.jpeg",
     "links": [
+      {
+        "label": "DeFi Summer Tweet",
+        "url": "https://x.com/sassal0x/status/1332685626974433280?s=20"
+      },
       {
         "label": "DeFi Summer",
         "url": "https://www.gemini.com/cryptopedia/defi-summer-yield-farming"
@@ -600,8 +611,8 @@
     "id": "btc-ath-69k-2021-11-10",
     "date": "2021-11-10",
     "title": "Bitcoin Hits $69,000 ATH",
-    "summary": "Bitcoin reaches all-time high of $69,044, marking the peak of the 2021 bull run before a prolonged bear market.",
-    "category": "Bull Runs",
+    "summary": "Bitcoin reaches all-time high of $69k, marking the peak of the 2021 bull run before a prolonged bear market.",
+    "category": "Bitcoin",
     "tags": [
       "ATH",
       "ECONOMIC",
@@ -610,10 +621,11 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_ath_69.png",
     "links": [
       {
         "label": "Bitcoin ATH",
-        "url": "https://www.coindesk.com/price/bitcoin"
+        "url": "https://x.com/EleanorTerrett/status/1765031005369348488?s=20"
       }
     ],
     "metrics": {
@@ -858,7 +870,7 @@
     "date": "2022-09-15",
     "title": "Ethereum Merge",
     "summary": "Ethereum successfully transitions from Proof of Work to Proof of Stake, reducing energy consumption by ~99.95%.",
-    "category": "Ethereum Era",
+    "category": "Ethereum",
     "tags": [
       "TECH",
       "MILESTONE"
@@ -866,10 +878,15 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/eth_merge.jpeg",
     "links": [
       {
+        "label": "Understanding the Merge",
+        "url": "https://x.com/JackNiewold/status/1506779959242764288"
+      },
+      {
         "label": "The Merge",
-        "url": "https://ethereum.org/en/roadmap/merge/"
+        "url": "https://www.coindesk.com/tech/2022/09/15/the-ethereum-merge-is-done-did-it-work"
       }
     ],
     "metrics": {
@@ -888,7 +905,7 @@
       "ECONOMIC"
     ],
     "mode": [
-      "timeline",
+
       "crimeline"
     ],
     "links": [
@@ -991,10 +1008,11 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/sec_ripple_2023.jpeg",
     "links": [
       {
-        "label": "Ripple Ruling",
-        "url": "https://www.reuters.com/legal/us-judge-says-ripples-xrp-token-did-not-violate-securities-law-sold-exchanges-2023-07-13/"
+        "label": "Stuart Alderoty Tweet",
+        "url": "https://x.com/s_alderoty/status/1679553612236881921?s=20"
       }
     ],
     "metrics": {
@@ -1070,7 +1088,7 @@
     "date": "2024-01-10",
     "title": "Bitcoin Spot ETF Approved",
     "summary": "SEC approves 11 spot Bitcoin ETFs including BlackRock and Fidelity, marking a historic milestone for institutional crypto adoption.",
-    "category": "Regulation",
+    "category": "Bitcoin",
     "tags": [
       "REGULATORY",
       "ECONOMIC",
@@ -1079,6 +1097,7 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_etf_approval.jpeg",
     "links": [
       {
         "label": "Bitcoin ETF Approval",
