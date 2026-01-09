@@ -1547,8 +1547,8 @@
   {
     "id": "ledger-ftx-shirt-dance-2022-11",
     "date": "2022-11-15",
-    "title": "Ledger CEO Dances Wearing FTX Shirt Post-Collapse",
-    "summary": "Ledger CEO Pascal Gauthier was filmed dancing while wearing an FTX t-shirt shortly after FTX collapsed, triggering backlash and accusations of tone-deaf marketing amid widespread losses.",
+    "title": "Ledger Dances Wearing FTX Shirt Post-Collapse",
+    "summary": "Ledger was filmed dancing while wearing an FTX t-shirt, some say this is more criminal than SBF stealing $8b in customer funds",
     "category": "Culture",
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["crimeline"],
@@ -1560,7 +1560,7 @@
       "funds_lost_usd": 0,
       "victims_estimated": "N/A",
       "root_cause": ["Poor executive judgment", "Crisis-insensitive branding"],
-      "aftermath": "Ledger issued clarifications; reputational damage lingered.",
+      "aftermath": "Ledger bought more heavy equipment; reputational damage still lingers.",
       "status": "Resolved"
     }
   },
@@ -1746,7 +1746,7 @@
     "title": "Zcash Core Developers Resign En Masse",
     "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements, raising existential questions about the project’s future.",
     "category": "Market Structure",
-    "tags": ["FAILURE"],
+    "tags": ["CULTURAL"],
     "mode": ["timeline"],
     "links": [
       { "label": "Developer statements", "url": "https://x.com/search?q=Zcash%20devs%20resign" }
