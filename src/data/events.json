@@ -4,12 +4,20 @@
     "date": "2009-01-03",
     "title": "Bitcoin Genesis Block",
     "summary": "The Bitcoin Genesis Block, also known as Block 0, is the first block in the Bitcoin blockchain, mined by Satoshi Nakamoto on January 3, 2009. It contained an embedded message, The Times 03-Jan-2009 Chancellor on brink of second bailout for bank. ",
-    "category": "Genesis Era",
-    "tags": ["TECH", "MILESTONE"],
-    "mode": ["timeline"],
+    "category": "Bitcoin",
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/Bitcoin-Genesis-block.jpg",
     "links": [
-      { "label": "Genesis Block", "url": "https://en.bitcoin.it/wiki/Genesis_block" }
+      {
+        "label": "Genesis Block",
+        "url": "https://en.bitcoin.it/wiki/Genesis_block"
+      }
     ],
     "metrics": {
       "btc_price_usd": 0
@@ -21,11 +29,19 @@
     "title": "Bitcoin Pizza Day",
     "summary": "Laszlo Hanyecz pays 10,000 BTC for two Papa John's pizzas, marking the first and most famous real-world Bitcoin transaction.",
     "category": "Bitcoin",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin_pizza_day.png",
     "links": [
-      { "label": "Bitcoin Pizza Day", "url": "https://en.bitcoin.it/wiki/Laszlo_Hanyecz" }
+      {
+        "label": "Bitcoin Pizza Day",
+        "url": "https://en.bitcoin.it/wiki/Laszlo_Hanyecz"
+      }
     ],
     "metrics": {
       "btc_price_usd": 0.0025
@@ -36,12 +52,20 @@
     "date": "2011-02-01",
     "title": "Silk Road Launches",
     "summary": "Ross Ulbricht launches Silk Road, the first major darknet marketplace using Bitcoin for anonymous payments. From February 6, 2011 to July 23, 2013 there were approximately 1,229,465 transactions completed on the site. The total revenue generated from these sales was 9,519,664 Bitcoins, and the total commissions collected by Silk Road from the sales amounted to 614,305 Bitcoins.",
-    "category": "Genesis Era",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/silk_road.png",
     "links": [
-      { "label": "Silk Road Wikipedia", "url": "https://en.wikipedia.org/wiki/Silk_Road_(marketplace)" }
+      {
+        "label": "Silk Road Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Silk_Road_(marketplace)"
+      }
     ],
     "metrics": {
       "btc_price_usd": 1
@@ -53,11 +77,19 @@
     "title": "Mt. Gox First Hack",
     "summary": "On June 19th, 2011, a security breach of the Mt. Gox bitcoin exchange caused the nominal price of a bitcoin to fraudulently drop to one cent on the Mt. Gox exchange, after a hacker allegedly used credentials from a Mt. Gox auditor's compromised computer illegally to fabricate a large number of bitcoins for himself. ",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox_logo.avif",
     "links": [
-      { "label": "Mt. Gox Wiki", "url": "https://en.bitcoin.it/wiki/Mt._Gox" }
+      {
+        "label": "Mt. Gox Wiki",
+        "url": "https://en.bitcoin.it/wiki/Mt._Gox"
+      }
     ],
     "metrics": {
       "btc_price_usd": 17.5
@@ -66,7 +98,10 @@
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 8750000,
       "victims_estimated": "60k+",
-      "root_cause": ["Compromised auditor account", "Poor security practices"],
+      "root_cause": [
+        "Compromised auditor account",
+        "Poor security practices"
+      ],
       "aftermath": "Exchange briefly suspended trading and eventually restored prices.",
       "status": "Partial recovery"
     }
@@ -76,12 +111,21 @@
     "date": "2012-11-28",
     "title": "First Bitcoin Halving",
     "summary": "Bitcoin's block reward halves from 50 BTC to 25 BTC at block 210,000, the first of its kind.",
-    "category": "Halvings",
-    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
+    "category": "Bitcoin",
+    "tags": [
+      "TECH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin-inflation-chart.png",
     "links": [
-      { "label": "Halving History", "url": "https://www.bitcoinblockhalf.com/" }
+      {
+        "label": "Halving History",
+        "url": "https://www.bitcoinblockhalf.com/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 12.35
@@ -89,15 +133,23 @@
   },
   {
     "id": "mtgox-collapse-2014-02-24",
-    "date": "2014-02-7",
+    "date": "2014-02-07",
     "title": "Mt. Gox Collapse",
-    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals.[49] The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found Karpelès guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals.[49] The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox.avif",
     "links": [
-      { "label": "Mt. Gox Bankruptcy", "url": "https://en.wikipedia.org/wiki/Mt._Gox" }
+      {
+        "label": "Mt. Gox Bankruptcy",
+        "url": "https://en.wikipedia.org/wiki/Mt._Gox"
+      }
     ],
     "metrics": {
       "btc_price_usd": 500
@@ -106,7 +158,11 @@
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 450000000,
       "victims_estimated": "850k+",
-      "root_cause": ["Transaction malleability exploit", "Poor internal controls", "Long-running undetected theft"],
+      "root_cause": [
+        "Transaction malleability exploit",
+        "Poor internal controls",
+        "Long-running undetected theft"
+      ],
       "aftermath": "Exchange filed for bankruptcy; creditors still awaiting payouts a decade later.",
       "status": "Partial recovery"
     }
@@ -116,12 +172,20 @@
     "date": "2015-07-30",
     "title": "Ethereum Mainnet Launch",
     "summary": "Ethereum goes live with the Frontier release, introducing smart contracts and a Turing-complete blockchain.",
-    "category": "Ethereum Era",
-    "tags": ["TECH", "MILESTONE"],
-    "mode": ["timeline"],
+    "category": "Ethereum",
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/eth_launch.jpeg",
     "links": [
-      { "label": "Ethereum History", "url": "https://ethereum.org/en/history/" }
+      {
+        "label": "Ethereum History",
+        "url": "https://ethereum.org/en/history/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 288
@@ -133,10 +197,19 @@
     "title": "The DAO Hack",
     "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork.",
     "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE", "MILESTONE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "MILESTONE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "The DAO Attack", "url": "https://www.gemini.com/cryptopedia/the-dao-hack-makerdao" }
+      {
+        "label": "The DAO Attack",
+        "url": "https://www.gemini.com/cryptopedia/the-dao-hack-makerdao"
+      }
     ],
     "metrics": {
       "btc_price_usd": 750,
@@ -146,9 +219,37 @@
       "type": "PROTOCOL EXPLOIT",
       "funds_lost_usd": 60000000,
       "victims_estimated": "11k+",
-      "root_cause": ["Reentrancy vulnerability", "Smart contract bug"],
+      "root_cause": [
+        "Reentrancy vulnerability",
+        "Smart contract bug"
+      ],
       "aftermath": "Ethereum community split; hard fork created ETH and ETC chains.",
       "status": "Funds recovered"
+    }
+  },
+  {
+    "id": "btc-second-halving-2016-07-09",
+    "date": "2016-07-09",
+    "title": "Second Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 25 BTC to 12.5 BTC at block 420,000.",
+    "category": "Bitcoin",
+    "tags": [
+      "TECH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/balance-of-mining-pools-before-and-after-the-second-halving-july-9-2016-1-01.png",
+    "links": [
+      {
+        "label": "Second Halving",
+        "url": "https://www.bitcoinblockhalf.com/"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 650
     }
   },
   {
@@ -157,10 +258,18 @@
     "title": "Bitfinex Hack",
     "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time.",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Bitfinex Hack Report", "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP" }
+      {
+        "label": "Bitfinex Hack Report",
+        "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP"
+      }
     ],
     "metrics": {
       "btc_price_usd": 600
@@ -169,40 +278,66 @@
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 72000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Multisig vulnerability", "Third-party security compromise"],
+      "root_cause": [
+        "Multisig vulnerability",
+        "Third-party security compromise"
+      ],
       "aftermath": "Bitfinex issued BFX tokens to affected users; DOJ later recovered some funds in 2022.",
       "status": "Partial recovery"
     }
   },
-  {
-    "id": "btc-second-halving-2016-07-09",
-    "date": "2016-07-09",
-    "title": "Second Bitcoin Halving",
-    "summary": "Bitcoin's block reward halves from 25 BTC to 12.5 BTC at block 420,000.",
-    "category": "Halvings",
-    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Second Halving", "url": "https://www.bitcoinblockhalf.com/" }
-    ],
-    "metrics": {
-      "btc_price_usd": 650
-    }
-  },
+
   {
     "id": "ico-boom-2017",
     "date": "2017-06-01",
     "title": "ICO Boom Begins",
     "summary": "Initial Coin Offerings explode in popularity, raising billions for blockchain projects with minimal regulation.",
-    "category": "ICO Era",
-    "tags": ["ECONOMIC", "CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
+    "category": "Bull Runs",
+    "tags": [
+      "ECONOMIC",
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/ico_boom.jpeg",
     "links": [
-      { "label": "ICO Boom", "url": "https://www.investopedia.com/terms/i/initial-coin-offering-ico.asp" }
+      {
+        "label": "ICO Boom",
+        "url": "https://www.investopedia.com/terms/i/initial-coin-offering-ico.asp"
+      },
+      {
+        "label": "Consensus 2017",
+        "url": "https://x.com/CoinDesk/status/866801243431350272?s=20"
+      }
     ],
     "metrics": {
       "btc_price_usd": 2500,
       "market_cap_usd": 100000000000
+    }
+  },
+  {
+    "id": "china-ico-ban-2017-09-04",
+    "date": "2017-09-04",
+    "title": "China Bans ICOs",
+    "summary": "China's central bank declares all ICO fundraising illegal, triggering a market crash and setting a precedent for regulatory crackdowns.",
+    "category": "Bull Runs",
+    "tags": [
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image:": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
+    "links": [
+      {
+        "label": "China ICO Ban",
+        "url": "https://www.bbc.com/news/business-41157249"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 4300
     }
   },
   {
@@ -211,48 +346,53 @@
     "title": "Bitcoin Reaches $20,000",
     "summary": "Bitcoin hits its first major all-time high of nearly $20,000, capturing mainstream attention and sparking institutional interest.",
     "category": "Bull Runs",
-    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "ATH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/BTC%2020K.png",
     "links": [
-      { "label": "2017 Bull Run", "url": "https://www.coindesk.com/price/bitcoin" }
+      {
+        "label": "2017 Bull Run",
+        "url": "https://www.coindesk.com/price/bitcoin"
+      }
     ],
     "metrics": {
       "btc_price_usd": 19783,
       "market_cap_usd": 330000000000
     }
   },
-  {
-    "id": "china-ico-ban-2017-09-04",
-    "date": "2017-09-04",
-    "title": "China Bans ICOs",
-    "summary": "China's central bank declares all ICO fundraising illegal, triggering a market crash and setting a precedent for regulatory crackdowns.",
-    "category": "Regulation",
-    "tags": ["REGULATORY"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "China ICO Ban", "url": "https://www.bbc.com/news/business-41157249" }
-    ],
-    "metrics": {
-      "btc_price_usd": 4300
-    }
-  },
+
   {
     "id": "cryptopia-hack-2019-01-14",
     "date": "2019-01-14",
     "title": "Cryptopia Exchange Hack",
     "summary": "New Zealand-based Cryptopia exchange is hacked, losing approximately $16M in various cryptocurrencies.",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Cryptopia Hack", "url": "https://www.coindesk.com/new-zealand-exchange-cryptopia-hacked" }
+      {
+        "label": "Cryptopia Hack",
+        "url": "https://www.coindesk.com/new-zealand-exchange-cryptopia-hacked"
+      }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 16000000,
       "victims_estimated": "300k+",
-      "root_cause": ["Wallet security compromise"],
+      "root_cause": [
+        "Wallet security compromise"
+      ],
       "aftermath": "Exchange went into liquidation; partial funds recovered for creditors.",
       "status": "Partial recovery"
     }
@@ -263,50 +403,29 @@
     "title": "PlusToken Ponzi Collapse",
     "summary": "PlusToken Ponzi scheme collapses after defrauding approximately $2B+ from Asian investors through fake cryptocurrency investment platform.",
     "category": "Other",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "PlusToken Scam", "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/" }
+      {
+        "label": "PlusToken Scam",
+        "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/"
+      }
     ],
     "crimeline": {
       "type": "FRAUD",
       "funds_lost_usd": 2000000000,
       "victims_estimated": "3M+",
-      "root_cause": ["Ponzi scheme", "High yield promises"],
+      "root_cause": [
+        "Ponzi scheme",
+        "High yield promises"
+      ],
       "aftermath": "Chinese authorities arrested key operators; funds partially traced and seized.",
       "status": "Partial recovery"
-    }
-  },
-  {
-    "id": "defi-summer-2020-06",
-    "date": "2020-06-15",
-    "title": "DeFi Summer Begins",
-    "summary": "Compound launches COMP token governance mining, igniting 'DeFi Summer' and explosive growth in decentralized finance protocols.",
-    "category": "DeFi Summer",
-    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "DeFi Summer", "url": "https://www.gemini.com/cryptopedia/defi-summer-yield-farming" }
-    ],
-    "metrics": {
-      "btc_price_usd": 9400,
-      "tvl_usd": 2000000000
-    }
-  },
-  {
-    "id": "uniswap-v2-launch-2020-05",
-    "date": "2020-05-18",
-    "title": "Uniswap V2 Launches",
-    "summary": "Uniswap V2 launches with ERC20-ERC20 pools, flash swaps, and price oracles, becoming the leading decentralized exchange.",
-    "category": "DeFi Summer",
-    "tags": ["TECH", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Uniswap V2", "url": "https://uniswap.org/blog/uniswap-v2" }
-    ],
-    "metrics": {
-      "btc_price_usd": 9700,
-      "tvl_usd": 40000000
     }
   },
   {
@@ -315,13 +434,71 @@
     "title": "Third Bitcoin Halving",
     "summary": "Bitcoin's block reward halves from 12.5 BTC to 6.25 BTC at block 630,000.",
     "category": "Halvings",
-    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "TECH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Third Halving", "url": "https://www.bitcoinblockhalf.com/" }
+      {
+        "label": "Third Halving",
+        "url": "https://www.bitcoinblockhalf.com/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 8600
+    }
+  },
+  {
+    "id": "uniswap-v2-launch-2020-05",
+    "date": "2020-05-18",
+    "title": "Uniswap V2 Launches",
+    "summary": "Uniswap V2 launches with ERC20-ERC20 pools, flash swaps, and price oracles, becoming the leading decentralized exchange.",
+    "category": "DeFi Summer",
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "Uniswap V2",
+        "url": "https://uniswap.org/blog/uniswap-v2"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 9700,
+      "tvl_usd": 40000000
+    }
+  },
+  {
+    "id": "defi-summer-2020-06",
+    "date": "2020-06-15",
+    "title": "DeFi Summer Begins",
+    "summary": "Compound launches COMP token governance mining, igniting 'DeFi Summer' and explosive growth in decentralized finance protocols.",
+    "category": "DeFi Summer",
+    "tags": [
+      "TECH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "DeFi Summer",
+        "url": "https://www.gemini.com/cryptopedia/defi-summer-yield-farming"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 9400,
+      "tvl_usd": 2000000000
     }
   },
   {
@@ -330,16 +507,27 @@
     "title": "KuCoin Exchange Hack",
     "summary": "KuCoin suffers a major security breach with hackers stealing over $280M in various cryptocurrencies.",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "KuCoin Hack", "url": "https://www.coindesk.com/kucoin-hack-2020" }
+      {
+        "label": "KuCoin Hack",
+        "url": "https://www.coindesk.com/kucoin-hack-2020"
+      }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 280000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Private key compromise", "Hot wallet vulnerability"],
+      "root_cause": [
+        "Private key compromise",
+        "Hot wallet vulnerability"
+      ],
       "aftermath": "Most funds recovered through project freezes and law enforcement; exchange compensated users.",
       "status": "Funds recovered"
     }
@@ -350,34 +538,29 @@
     "title": "Poly Network Hack",
     "summary": "A hacker exploits Poly Network cross-chain protocol, stealing over $600M in the largest DeFi hack at the time. The hacker later returned most funds.",
     "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Poly Network Hack", "url": "https://www.coindesk.com/markets/2021/08/10/cross-chain-defi-site-poly-network-hacked-hundreds-of-millions-potentially-lost/" }
+      {
+        "label": "Poly Network Hack",
+        "url": "https://www.coindesk.com/markets/2021/08/10/cross-chain-defi-site-poly-network-hacked-hundreds-of-millions-potentially-lost/"
+      }
     ],
     "crimeline": {
       "type": "PROTOCOL EXPLOIT",
       "funds_lost_usd": 610000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Smart contract vulnerability", "Cross-chain messaging flaw"],
+      "root_cause": [
+        "Smart contract vulnerability",
+        "Cross-chain messaging flaw"
+      ],
       "aftermath": "Hacker returned funds after negotiations; was offered security role.",
       "status": "Funds recovered"
-    }
-  },
-  {
-    "id": "btc-ath-69k-2021-11-10",
-    "date": "2021-11-10",
-    "title": "Bitcoin Hits $69,000 ATH",
-    "summary": "Bitcoin reaches all-time high of $69,044, marking the peak of the 2021 bull run before a prolonged bear market.",
-    "category": "Bull Runs",
-    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Bitcoin ATH", "url": "https://www.coindesk.com/price/bitcoin" }
-    ],
-    "metrics": {
-      "btc_price_usd": 69044,
-      "market_cap_usd": 1300000000000
     }
   },
   {
@@ -386,18 +569,55 @@
     "title": "Cream Finance Flash Loan Attack",
     "summary": "Cream Finance suffers its third hack of 2021, losing $130M in a sophisticated flash loan oracle manipulation attack.",
     "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Cream Hack Analysis", "url": "https://rekt.news/cream-rekt-2/" }
+      {
+        "label": "Cream Hack Analysis",
+        "url": "https://rekt.news/cream-rekt-2/"
+      }
     ],
     "crimeline": {
       "type": "ORACLE MANIPULATION",
       "funds_lost_usd": 130000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Flash loan attack", "Oracle price manipulation", "Collateral valuation exploit"],
+      "root_cause": [
+        "Flash loan attack",
+        "Oracle price manipulation",
+        "Collateral valuation exploit"
+      ],
       "aftermath": "Third major exploit for Cream; protocol credibility severely damaged.",
       "status": "Total loss"
+    }
+  },
+  {
+    "id": "btc-ath-69k-2021-11-10",
+    "date": "2021-11-10",
+    "title": "Bitcoin Hits $69,000 ATH",
+    "summary": "Bitcoin reaches all-time high of $69,044, marking the peak of the 2021 bull run before a prolonged bear market.",
+    "category": "Bull Runs",
+    "tags": [
+      "ATH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "Bitcoin ATH",
+        "url": "https://www.coindesk.com/price/bitcoin"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 69044,
+      "market_cap_usd": 1300000000000
     }
   },
   {
@@ -406,16 +626,27 @@
     "title": "Wormhole Bridge Hack",
     "summary": "Wormhole cross-chain bridge is exploited for 120,000 wETH (~$320M) due to a signature verification vulnerability.",
     "category": "Bridge",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Wormhole Exploit", "url": "https://rekt.news/wormhole-rekt/" }
+      {
+        "label": "Wormhole Exploit",
+        "url": "https://rekt.news/wormhole-rekt/"
+      }
     ],
     "crimeline": {
       "type": "BRIDGE HACK",
       "funds_lost_usd": 320000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Signature verification bypass", "Smart contract vulnerability"],
+      "root_cause": [
+        "Signature verification bypass",
+        "Smart contract vulnerability"
+      ],
       "aftermath": "Jump Crypto replaced the stolen funds to make users whole.",
       "status": "Funds recovered"
     }
@@ -426,10 +657,18 @@
     "title": "Ronin Bridge Hack",
     "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M in the largest DeFi hack ever.",
     "category": "Bridge",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Ronin Hack", "url": "https://www.coindesk.com/tech/2022/03/29/axie-infinitys-ronin-network-suffers-625m-exploit/" }
+      {
+        "label": "Ronin Hack",
+        "url": "https://www.coindesk.com/tech/2022/03/29/axie-infinitys-ronin-network-suffers-625m-exploit/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 44000
@@ -438,7 +677,11 @@
       "type": "BRIDGE HACK",
       "funds_lost_usd": 625000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Compromised validator keys", "Insufficient validator set", "Social engineering"],
+      "root_cause": [
+        "Compromised validator keys",
+        "Insufficient validator set",
+        "Social engineering"
+      ],
       "aftermath": "FBI attributed attack to Lazarus Group; Sky Mavis raised funds to reimburse users.",
       "status": "Partial recovery"
     }
@@ -449,10 +692,18 @@
     "title": "Terra/LUNA Collapse",
     "summary": "The UST algorithmic stablecoin loses its peg, triggering a death spiral that wipes out $40B+ in value and collapses the Terra ecosystem.",
     "category": "Stablecoin",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Terra Collapse", "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/" }
+      {
+        "label": "Terra Collapse",
+        "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 30000
@@ -461,7 +712,11 @@
       "type": "LEVERAGE COLLAPSE",
       "funds_lost_usd": 40000000000,
       "victims_estimated": "1M+",
-      "root_cause": ["Algorithmic stablecoin design flaw", "Bank run dynamics", "Anchor yield unsustainability"],
+      "root_cause": [
+        "Algorithmic stablecoin design flaw",
+        "Bank run dynamics",
+        "Anchor yield unsustainability"
+      ],
       "aftermath": "Do Kwon charged with fraud; triggered cascading failures across crypto lending platforms.",
       "status": "Total loss"
     }
@@ -472,10 +727,18 @@
     "title": "Celsius Network Freezes Withdrawals",
     "summary": "Crypto lender Celsius halts all withdrawals citing 'extreme market conditions,' later filing for bankruptcy with $4.7B hole.",
     "category": "Lending",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Celsius Collapse", "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/" }
+      {
+        "label": "Celsius Collapse",
+        "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 23000
@@ -484,7 +747,12 @@
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 4700000000,
       "victims_estimated": "1.7M",
-      "root_cause": ["Rehypothecation", "Illiquid investments", "Risk mismanagement", "Terra exposure"],
+      "root_cause": [
+        "Rehypothecation",
+        "Illiquid investments",
+        "Risk mismanagement",
+        "Terra exposure"
+      ],
       "aftermath": "Filed for bankruptcy; CEO Alex Mashinsky later arrested for fraud.",
       "status": "Partial recovery"
     }
@@ -495,16 +763,28 @@
     "title": "Three Arrows Capital Defaults",
     "summary": "Crypto hedge fund Three Arrows Capital defaults on over $3.5B in loans after LUNA collapse, triggering contagion across the industry.",
     "category": "Market Structure",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "3AC Collapse", "url": "https://www.coindesk.com/business/2022/07/01/three-arrows-capital-files-for-chapter-15-bankruptcy/" }
+      {
+        "label": "3AC Collapse",
+        "url": "https://www.coindesk.com/business/2022/07/01/three-arrows-capital-files-for-chapter-15-bankruptcy/"
+      }
     ],
     "crimeline": {
       "type": "LEVERAGE COLLAPSE",
       "funds_lost_usd": 3500000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Excessive leverage", "LUNA exposure", "Illiquid positions"],
+      "root_cause": [
+        "Excessive leverage",
+        "LUNA exposure",
+        "Illiquid positions"
+      ],
       "aftermath": "Founders fled Singapore; creditors pursuing billions in claims.",
       "status": "Ongoing"
     }
@@ -515,16 +795,28 @@
     "title": "Voyager Digital Bankruptcy",
     "summary": "Crypto broker Voyager files for bankruptcy after Three Arrows Capital default, leaving customers unable to access $1.3B in assets.",
     "category": "Lending",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Voyager Bankruptcy", "url": "https://www.coindesk.com/business/2022/07/06/voyager-digital-files-for-chapter-11-bankruptcy/" }
+      {
+        "label": "Voyager Bankruptcy",
+        "url": "https://www.coindesk.com/business/2022/07/06/voyager-digital-files-for-chapter-11-bankruptcy/"
+      }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 1300000000,
       "victims_estimated": "3.5M",
-      "root_cause": ["3AC exposure", "Insufficient reserves", "Risk concentration"],
+      "root_cause": [
+        "3AC exposure",
+        "Insufficient reserves",
+        "Risk concentration"
+      ],
       "aftermath": "Bankruptcy proceedings; FTX initially bid to acquire before its own collapse.",
       "status": "Partial recovery"
     }
@@ -535,16 +827,27 @@
     "title": "Nomad Bridge Hack",
     "summary": "Nomad cross-chain bridge is drained of $190M in a chaotic 'free-for-all' attack where hundreds of users exploited a vulnerability.",
     "category": "Bridge",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Nomad Hack", "url": "https://rekt.news/nomad-rekt/" }
+      {
+        "label": "Nomad Hack",
+        "url": "https://rekt.news/nomad-rekt/"
+      }
     ],
     "crimeline": {
       "type": "BRIDGE HACK",
       "funds_lost_usd": 190000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Smart contract bug", "Initialization vulnerability"],
+      "root_cause": [
+        "Smart contract bug",
+        "Initialization vulnerability"
+      ],
       "aftermath": "First 'crowd-sourced' hack; some whitehats returned funds.",
       "status": "Partial recovery"
     }
@@ -555,10 +858,18 @@
     "title": "Ethereum Merge",
     "summary": "Ethereum successfully transitions from Proof of Work to Proof of Stake, reducing energy consumption by ~99.95%.",
     "category": "Ethereum Era",
-    "tags": ["TECH", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "The Merge", "url": "https://ethereum.org/en/roadmap/merge/" }
+      {
+        "label": "The Merge",
+        "url": "https://ethereum.org/en/roadmap/merge/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 20000,
@@ -571,10 +882,19 @@
     "title": "FTX Exchange Collapse",
     "summary": "FTX, the third-largest crypto exchange, files for bankruptcy after revelations of misusing $8B+ in customer funds through Alameda Research.",
     "category": "Centralized Exchange",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["timeline", "crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline",
+      "crimeline"
+    ],
     "links": [
-      { "label": "FTX Collapse", "url": "https://www.reuters.com/technology/ftx-crypto-exchange-files-us-bankruptcy-proceedings-2022-11-11/" }
+      {
+        "label": "FTX Collapse",
+        "url": "https://www.reuters.com/technology/ftx-crypto-exchange-files-us-bankruptcy-proceedings-2022-11-11/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 16800
@@ -583,7 +903,12 @@
       "type": "FRAUD",
       "funds_lost_usd": 8000000000,
       "victims_estimated": "1M+",
-      "root_cause": ["Customer fund misappropriation", "Alameda commingling", "Fraudulent accounting", "Lack of oversight"],
+      "root_cause": [
+        "Customer fund misappropriation",
+        "Alameda commingling",
+        "Fraudulent accounting",
+        "Lack of oversight"
+      ],
       "aftermath": "SBF arrested and convicted of fraud; sentenced to 25 years in prison.",
       "status": "Partial recovery"
     }
@@ -594,16 +919,28 @@
     "title": "Genesis Trading Bankruptcy",
     "summary": "Genesis Global Capital files for bankruptcy owing $3.5B to creditors after being hit by Three Arrows Capital and FTX collapses.",
     "category": "Lending",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Genesis Bankruptcy", "url": "https://www.coindesk.com/business/2023/01/20/crypto-lender-genesis-global-holdco-files-for-bankruptcy/" }
+      {
+        "label": "Genesis Bankruptcy",
+        "url": "https://www.coindesk.com/business/2023/01/20/crypto-lender-genesis-global-holdco-files-for-bankruptcy/"
+      }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 3500000000,
       "victims_estimated": "340k+",
-      "root_cause": ["3AC exposure", "FTX exposure", "Contagion"],
+      "root_cause": [
+        "3AC exposure",
+        "FTX exposure",
+        "Contagion"
+      ],
       "aftermath": "DCG parent company faced SEC charges; settlement reached with NY AG.",
       "status": "Partial recovery"
     }
@@ -614,16 +951,28 @@
     "title": "Euler Finance Flash Loan Attack",
     "summary": "Euler Finance lending protocol is exploited for $197M in a flash loan attack targeting the donation and liquidation mechanics.",
     "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Euler Hack", "url": "https://rekt.news/euler-rekt/" }
+      {
+        "label": "Euler Hack",
+        "url": "https://rekt.news/euler-rekt/"
+      }
     ],
     "crimeline": {
       "type": "PROTOCOL EXPLOIT",
       "funds_lost_usd": 197000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Flash loan attack", "Donation function exploit", "Liquidation logic flaw"],
+      "root_cause": [
+        "Flash loan attack",
+        "Donation function exploit",
+        "Liquidation logic flaw"
+      ],
       "aftermath": "Attacker negotiated return of funds after on-chain messages and negotiations.",
       "status": "Funds recovered"
     }
@@ -634,10 +983,18 @@
     "title": "SEC vs Ripple Partial Victory",
     "summary": "Judge rules XRP is not a security when sold on exchanges, marking a significant legal precedent for the crypto industry.",
     "category": "Regulation",
-    "tags": ["REGULATORY", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "REGULATORY",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Ripple Ruling", "url": "https://www.reuters.com/legal/us-judge-says-ripples-xrp-token-did-not-violate-securities-law-sold-exchanges-2023-07-13/" }
+      {
+        "label": "Ripple Ruling",
+        "url": "https://www.reuters.com/legal/us-judge-says-ripples-xrp-token-did-not-violate-securities-law-sold-exchanges-2023-07-13/"
+      }
     ],
     "metrics": {
       "btc_price_usd": 31000
@@ -649,105 +1006,29 @@
     "title": "Mixin Network Hack",
     "summary": "Mixin Network cloud service provider is hacked, resulting in approximately $200M in losses from the decentralized network.",
     "category": "Other",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Mixin Hack", "url": "https://www.coindesk.com/tech/2023/09/25/crypto-network-mixin-suspends-withdrawals-after-200m-hack/" }
+      {
+        "label": "Mixin Hack",
+        "url": "https://www.coindesk.com/tech/2023/09/25/crypto-network-mixin-suspends-withdrawals-after-200m-hack/"
+      }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 200000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Cloud infrastructure compromise", "Database breach"],
+      "root_cause": [
+        "Cloud infrastructure compromise",
+        "Database breach"
+      ],
       "aftermath": "Network suspended deposits/withdrawals; offered 10% bug bounty to attacker.",
       "status": "Ongoing"
-    }
-  },
-  {
-    "id": "btc-etf-approval-2024-01-10",
-    "date": "2024-01-10",
-    "title": "Bitcoin Spot ETF Approved",
-    "summary": "SEC approves 11 spot Bitcoin ETFs including BlackRock and Fidelity, marking a historic milestone for institutional crypto adoption.",
-    "category": "Regulation",
-    "tags": ["REGULATORY", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Bitcoin ETF Approval", "url": "https://www.sec.gov/news/press-release/2024-10" }
-    ],
-    "metrics": {
-      "btc_price_usd": 46000,
-      "market_cap_usd": 900000000000
-    }
-  },
-  {
-    "id": "btc-fourth-halving-2024-04-19",
-    "date": "2024-04-19",
-    "title": "Fourth Bitcoin Halving",
-    "summary": "Bitcoin's block reward halves from 6.25 BTC to 3.125 BTC at block 840,000, continuing the predictable monetary policy.",
-    "category": "Halvings",
-    "tags": ["TECH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Fourth Halving", "url": "https://www.bitcoinblockhalf.com/" }
-    ],
-    "metrics": {
-      "btc_price_usd": 64000
-    }
-  },
-  {
-    "id": "btc-ath-100k-2024-12-05",
-    "date": "2024-12-05",
-    "title": "Bitcoin Breaks $100,000",
-    "summary": "Bitcoin surpasses $100,000 for the first time, driven by ETF inflows and post-halving dynamics.",
-    "category": "Bull Runs",
-    "tags": ["ATH", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Bitcoin 100k", "url": "https://www.coindesk.com/price/bitcoin" }
-    ],
-    "metrics": {
-      "btc_price_usd": 100000,
-      "market_cap_usd": 2000000000000
-    }
-  },
-  {
-    "id": "radiant-capital-hack-2024-10-16",
-    "date": "2024-10-16",
-    "title": "Radiant Capital Multi-Chain Hack",
-    "summary": "Radiant Capital suffers a $50M exploit across Arbitrum and BNB Chain through compromised multi-sig signers.",
-    "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Radiant Hack", "url": "https://rekt.news/radiant-capital-rekt2/" }
-    ],
-    "crimeline": {
-      "type": "PROTOCOL EXPLOIT",
-      "funds_lost_usd": 50000000,
-      "victims_estimated": "Unknown",
-      "root_cause": ["Multi-sig compromise", "Malware infection", "Hardware wallet exploitation"],
-      "aftermath": "Protocol paused lending markets; investigation ongoing.",
-      "status": "Ongoing"
-    }
-  },
-  {
-    "id": "beanstalk-governance-2022-04-17",
-    "date": "2022-04-17",
-    "title": "Beanstalk Governance Attack",
-    "summary": "Attacker uses flash loan to gain governance power in Beanstalk protocol, draining $182M in a sophisticated governance attack.",
-    "category": "DeFi Protocol",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Beanstalk Attack", "url": "https://rekt.news/beanstalk-rekt/" }
-    ],
-    "crimeline": {
-      "type": "GOVERNANCE ATTACK",
-      "funds_lost_usd": 182000000,
-      "victims_estimated": "Unknown",
-      "root_cause": ["Flash loan governance manipulation", "Instant voting execution", "Lack of time delay"],
-      "aftermath": "Protocol attempted to rebuild through community fundraise.",
-      "status": "Total loss"
     }
   },
   {
@@ -756,20 +1037,76 @@
     "title": "SEC Twitter Hacked for Fake Bitcoin ETF Approval",
     "summary": "The SEC's official X account was compromised via SIM swap attack, posting a fake Bitcoin ETF approval that caused BTC to spike $1,000 then crash $2,000. Eric Council Jr. was later arrested for the hack.",
     "category": "Security",
-    "tags": ["SECURITY", "FAILURE", "REGULATORY"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "REGULATORY"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "SEC Hack Details", "url": "https://www.justice.gov/usao-dc/pr/fbi-arrests-alabama-man-january-2024-sec-x-hack-spiked-value-bitcoin" }
+      {
+        "label": "SEC Hack Details",
+        "url": "https://www.justice.gov/usao-dc/pr/fbi-arrests-alabama-man-january-2024-sec-x-hack-spiked-value-bitcoin"
+      }
     ],
     "crimeline": {
       "type": "SOCIAL MEDIA HACK",
       "funds_lost_usd": 0,
       "market_impact_usd": "Billions in market manipulation",
       "victims_estimated": "Entire crypto market",
-      "root_cause": ["SIM swap attack", "Lack of 2FA on SEC account"],
+      "root_cause": [
+        "SIM swap attack",
+        "Lack of 2FA on SEC account"
+      ],
       "aftermath": "FBI arrested Eric Council Jr. in October 2024. Real ETF approval came the next day.",
       "status": "Resolved - Perpetrator arrested"
     }
+  },
+  {
+    "id": "btc-etf-approval-2024-01-10",
+    "date": "2024-01-10",
+    "title": "Bitcoin Spot ETF Approved",
+    "summary": "SEC approves 11 spot Bitcoin ETFs including BlackRock and Fidelity, marking a historic milestone for institutional crypto adoption.",
+    "category": "Regulation",
+    "tags": [
+      "REGULATORY",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "Bitcoin ETF Approval",
+        "url": "https://www.sec.gov/news/press-release/2024-10"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 46000,
+      "market_cap_usd": 900000000000
+    }
+  },
+  {
+    "id": "ansem-wif-sphere-2024",
+    "date": "2024-02-20",
+    "title": "Ansemâ€™s $WIF Sphere Becomes Market Symbol",
+    "summary": "Trader Ansemâ€™s $WIF sphere imagery became a defining visual meme of the Solana memecoin cycle, symbolizing reflexive hype and narrative-driven trading.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "$WIF sphere posts",
+        "url": "https://x.com/search?q=Ansem%20WIF%20sphere"
+      }
+    ]
   },
   {
     "id": "slerf-burn-accident-2024-03",
@@ -777,16 +1114,26 @@
     "title": "$SLERF Developer Accidentally Burns $10M",
     "summary": "Slerf developer accidentally burned all $10M of presale investor funds while trying to distribute tokens. Instead of killing the project, the community rallied and pushed market cap to $660M, turning a disaster into a bizarre success story.",
     "category": "Failure",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Slerf Accident", "url": "https://www.aicoin.com/en/article/436482" }
+      {
+        "label": "Slerf Accident",
+        "url": "https://www.aicoin.com/en/article/436482"
+      }
     ],
     "crimeline": {
       "type": "DEVELOPER ERROR",
       "funds_lost_usd": 10000000,
       "victims_estimated": "All presale investors",
-      "root_cause": ["Developer error during token distribution"],
+      "root_cause": [
+        "Developer error during token distribution"
+      ],
       "aftermath": "Community rallied, token reached $660M market cap. Became legendary meme moment.",
       "status": "Ongoing - Project survived"
     }
@@ -797,38 +1144,53 @@
     "title": "12-Year-Old Rug Pulls $QUANT for $20K",
     "summary": "A 12-year-old kid rug pulled $QUANT token for $20,000 during a live stream. Crypto Twitter responded by pumping the market cap to $85M to 'teach the kid a lesson' about the power of community.",
     "category": "Scam",
-    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "CULTURAL",
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Kid Rug Pull", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+      {
+        "label": "Kid Rug Pull",
+        "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+      }
     ],
     "crimeline": {
       "type": "RUG PULL",
       "funds_lost_usd": 20000,
       "victims_estimated": "Initial buyers",
-      "root_cause": ["Exit scam by minor during livestream"],
+      "root_cause": [
+        "Exit scam by minor during livestream"
+      ],
       "aftermath": "Crypto Twitter pumped token to $85M market cap in retaliation. Became viral story.",
       "status": "Ongoing"
     }
   },
   {
-    "id": "hawk-tuah-girl-crash-2024-12",
-    "date": "2024-12-04",
-    "title": "$HAWK Token Crashes After Launch",
-    "summary": "Viral 'Hawk Tuah Girl' launched $HAWK token which immediately crashed. She held a Space to explain, @chooserich joined to confront her, she said she was 'tired' and ended the call, then went silent for two weeks while investors lost millions.",
-    "category": "Scam",
-    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Hawk Tuah Crash", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+    "id": "btc-fourth-halving-2024-04-19",
+    "date": "2024-04-19",
+    "title": "Fourth Bitcoin Halving",
+    "summary": "Bitcoin's block reward halves from 6.25 BTC to 3.125 BTC at block 840,000, continuing the predictable monetary policy.",
+    "category": "Halvings",
+    "tags": [
+      "TECH",
+      "ECONOMIC",
+      "MILESTONE"
     ],
-    "crimeline": {
-      "type": "CELEBRITY RUG PULL",
-      "funds_lost_usd": "Millions",
-      "victims_estimated": "Thousands of retail investors",
-      "root_cause": ["Celebrity token pump and dump", "Lack of legitimacy"],
-      "aftermath": "Creator disappeared for 2 weeks. Became cautionary tale about celebrity tokens.",
-      "status": "Ongoing"
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "Fourth Halving",
+        "url": "https://www.bitcoinblockhalf.com/"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 64000
     }
   },
   {
@@ -837,219 +1199,255 @@
     "title": "Sahil Orchestrates Mass Celebrity Token Scam",
     "summary": "Sahil Arora convinced celebrities including Floyd Mayweather, Caitlyn Jenner, and Sexxy Redd to launch and promote tokens, then orchestrated coordinated rug pulls across all projects.",
     "category": "Scam",
-    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "CULTURAL",
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Celebrity Scam Ring", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
+      {
+        "label": "Celebrity Scam Ring",
+        "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+      }
     ],
     "crimeline": {
       "type": "COORDINATED RUG PULLS",
       "funds_lost_usd": "Tens of millions",
       "victims_estimated": "Thousands across multiple tokens",
-      "root_cause": ["Celebrity endorsement scam", "Serial fraudster"],
+      "root_cause": [
+        "Celebrity endorsement scam",
+        "Serial fraudster"
+      ],
       "aftermath": "Exposed celebrity token scam operations. Multiple tokens crashed.",
       "status": "Ongoing investigation"
     }
   },
-  {
-    "id": "rizzmas-scooter-exposure-2024",
-    "date": "2024-12-20",
-    "title": "Scooter Exposes Rizzmas as Complete Scam",
-    "summary": "Crypto influencer Scooter (@imperooterxbt) revealed Rizzmas was a complete scam, causing its market cap to plummet from $100M to $20M and triggering backlash from TikTok investors who lost money.",
-    "category": "Scam",
-    "tags": ["CULTURAL", "SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Rizzmas Exposure", "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164" }
-    ],
-    "crimeline": {
-      "type": "RUG PULL",
-      "funds_lost_usd": 80000000,
-      "victims_estimated": "Thousands of TikTok users",
-      "root_cause": ["Coordinated scam targeting social media users"],
-      "aftermath": "Market cap crashed from $100M to $20M after exposure. Whistleblower faced harassment.",
-      "status": "Exposed"
-    }
-  },
-  {
-    "id": "apefest-eye-burns-2023-11",
-    "date": "2023-11-04",
-    "title": "ApeFest Hong Kong UV Light Incident",
-    "summary": "Guests at BAYC's ApeFest Hong Kong reported severe eye pain and vision problems from UV lights at the event. Less than 1% affected but became a major PR crisis for Yuga Labs.",
-    "category": "Safety",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "ApeFest Incident", "url": "https://en.wikipedia.org/wiki/Bored_Ape" }
-    ],
-    "crimeline": {
-      "type": "EVENT SAFETY INCIDENT",
-      "funds_lost_usd": 0,
-      "victims_estimated": "~50 people with eye injuries",
-      "root_cause": ["Improper UV lighting at event venue"],
-      "aftermath": "BAYC issued statement, recommended medical attention for affected guests. PR damage to brand.",
-      "status": "Resolved"
-    }
-  },
+
   {
     "id": "chicken-church-pastor-scam-2024",
     "date": "2024-08-10",
     "title": "Church of the Chicken Pastor Scams Followers",
     "summary": "Pastor Kelby of the viral 'Church of the Chicken' used his religious influence to promote low-cap memecoins for payment, leading to his expulsion from the church he founded.",
     "category": "Scam",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Chicken Church Scam", "url": "https://www.aicoin.com/en/article/436482" }
+      {
+        "label": "Chicken Church Scam",
+        "url": "https://www.aicoin.com/en/article/436482"
+      }
     ],
     "crimeline": {
       "type": "RELIGIOUS INFLUENCER SCAM",
       "funds_lost_usd": "Unknown",
       "victims_estimated": "Church followers",
-      "root_cause": ["Influencer using religious authority for financial gain"],
+      "root_cause": [
+        "Influencer using religious authority for financial gain"
+      ],
       "aftermath": "Pastor expelled from church, church plans collapsed.",
       "status": "Resolved - Pastor removed"
     }
   },
-   {
-    "id": "cz-release-gm-2024-09-27",
-    "date": "2024-09-27",
-    "title": "CZ Posts 'gm' Upon Prison Release",
-    "summary": "Binance founder Changpeng 'CZ' Zhao returned to X the same day he was released from his 4-month prison sentence, posting a casual 'gm' that became one of crypto Twitter's most celebrated comebacks.",
+  {
+    "id": "gainzy-uhc-killer-0xracist-post-2024",
+    "date": "2024-10-08",
+    "title": "Gainzy Falsely Named as UHC CEO Killer in Viral 0xRacist Post",
+    "summary": "A viral post from the account 0xRacist falsely named crypto trader Gainzy as the UnitedHealthcare CEO killer, sparking outrage, harassment, and renewed debate about misinformation and defamation on Crypto Twitter.",
     "category": "Culture",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "CZ Release", "url": "https://cointelegraph.com/news/most-memorable-crypto-tweets-2024" }
-    ]
-  },
-  {
-    "id": "bybit-exchange-hack-2025-02",
-    "date": "2025-02-21",
-    "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
-    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets, with attackers exploiting vulnerabilities in a third-party multi-sig wallet provider to drain around 401,000 ETH (~$1.4–$1.5B), the largest crypto theft on record.",
-    "category": "Security",
-    "tags": ["SECURITY", "FAILURE", "TECH"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+      {
+        "label": "Viral post reactions",
+        "url": "https://x.com/search?q=Gainzy%200xRacist"
+      }
     ],
     "crimeline": {
-      "type": "EXCHANGE HACK",
-      "funds_lost_usd": 1500000000,
-      "victims_estimated": "Bybit users & liquidity providers",
-      "root_cause": [
-        "Compromised developer infrastructure at Safe{Wallet} (multi-sig provider)",
-        "Routine cold-to-warm wallet transfer manipulation",
-        "Sophisticated phishing/supply-chain attack"
-      ],
-      "aftermath": "Bybit pledged full client asset backing, launched a recovery bounty program, and worked with blockchain forensics to track stolen funds; industry debate over exchange custody security intensified.",
-      "status": "Ongoing"
-    }
-  },
-  {
-    "id": "coinbase-data-breach-2025-05",
-    "date": "2025-05-15",
-    "title": "Coinbase Customer Data Breach via Rogue Support Agents",
-    "summary": "Coinbase disclosed a major security breach in which cybercriminals bribed overseas customer support agents to steal personal and account information (names, IDs, contact details) of a subset of users; no account passwords, 2FA, private keys, or funds were accessed.",
-    "category": "Security",
-    "tags": ["SECURITY", "FAILURE", "REGULATORY"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
-    ],
-    "crimeline": {
-      "type": "CUSTODY FAILURE",
+      "type": "FRAUD",
       "funds_lost_usd": 0,
-      "victims_estimated": "Limited subset of Coinbase customers (<1%)",
+      "victims_estimated": "1 individual",
       "root_cause": [
-        "Bribery and recruitment of Coinbase support personnel",
-        "Insufficient internal access controls over sensitive user data"
+        "Misinformation",
+        "Anonymous account abuse"
       ],
-      "aftermath": "Coinbase refused the $20M ransom demand, is cooperating with law enforcement, plans criminal charges, expects up to $400M in remediation/compensation costs and offered $20M reward for arrest info.",
-      "status": "Partial recovery"
+      "aftermath": "Post debunked; reputational harm occurred.",
+      "status": "Resolved"
     }
   },
   {
-    "id": "cetus-protocol-exploit-2025-05",
-    "date": "2025-05-22",
-    "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
-    "summary": "On Sui’s largest decentralized exchange, Cetus Protocol suffered a major exploit where attackers introduced spoof tokens to manipulate price oracles within the AMM, draining liquidity pools for about $223M but ~$162M was later frozen and partially recovered.",
-    "category": "Security",
-    "tags": ["SECURITY", "FAILURE", "TECH"],
-    "mode": ["crimeline"],
+    "id": "radiant-capital-hack-2024-10-16",
+    "date": "2024-10-16",
+    "title": "Radiant Capital Multi-Chain Hack",
+    "summary": "Radiant Capital suffers a $50M exploit across Arbitrum and BNB Chain through compromised multi-sig signers.",
+    "category": "DeFi Protocol",
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+      {
+        "label": "Radiant Hack",
+        "url": "https://rekt.news/radiant-capital-rekt2/"
+      }
     ],
     "crimeline": {
       "type": "PROTOCOL EXPLOIT",
-      "funds_lost_usd": 223000000,
-      "victims_estimated": "Users providing liquidity on Cetus",
+      "funds_lost_usd": 50000000,
+      "victims_estimated": "Unknown",
       "root_cause": [
-        "Price manipulation via spoof token insertion",
-        "Smart contract vulnerability in AMM pricing feeds"
+        "Multi-sig compromise",
+        "Malware infection",
+        "Hardware wallet exploitation"
       ],
-      "aftermath": "Cetus paused operations, froze $162M of compromised funds, and resumed protocol operations ~17 days after the attack; highlighted risks of oracle/math logic in automated market makers.",
-      "status": "Partial recovery"
-    }
-  },
-  {
-    "id": "nobitex-exchange-hack-2025-06",
-    "date": "2025-06-17",
-    "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
-    "summary": "Iran’s largest exchange Nobitex was hit by an exploit that drained around $90M worth of primarily USDT on the Tron network; pro-Israeli hacker group Gonjeshke Darande (Predatory Sparrow) claimed responsibility alleging IRGC ties, though many retail users were likely collateral victims.",
-    "category": "Security",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
-    ],
-    "crimeline": {
-      "type": "EXCHANGE HACK",
-      "funds_lost_usd": 90000000,
-      "victims_estimated": "Nobitex users",
-      "root_cause": [
-        "Centralized exchange infrastructure compromise",
-        "Alleged politically-motivated hacking group involvement"
-      ],
-      "aftermath": "Nobitex temporarily suspended services, community debate over political risks and exchange security emerged; uncertain victim recovery path.",
+      "aftermath": "Protocol paused lending markets; investigation ongoing.",
       "status": "Ongoing"
     }
   },
   {
-    "id": "upbit-hack-2025-11",
-    "date": "2025-11-26",
-    "title": "Upbit Solana Hot Wallet Hack (~$36M)",
-    "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets including meme coins; authorities and analysts quickly attributed the attack to North Korean Lazarus actors due to the attack’s speed and pattern.",
-    "category": "Security",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "id": "chill-guy-creator-backlash-2024",
+    "date": "2024-11-10",
+    "title": "Chill Guy Meme Creator Opposes Crypto Appropriation",
+    "summary": "The creator of the 'Chill Guy' meme publicly opposed its use in crypto token branding, igniting debate over IP, consent, and meme monetization.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025", "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches" }
+      {
+        "label": "Creator response",
+        "url": "https://x.com/search?q=Chill%20Guy%20crypto"
+      }
+    ]
+  },
+  {
+    "id": "hawk-tuah-girl-crash-2024-12",
+    "date": "2024-12-04",
+    "title": "$HAWK Token Crashes After Launch",
+    "summary": "Viral 'Hawk Tuah Girl' launched $HAWK token which immediately crashed.",
+    "category": "Scam",
+    "tags": [
+      "CULTURAL",
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Hawk Tuah Crash",
+        "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+      }
     ],
     "crimeline": {
-      "type": "EXCHANGE HACK",
-      "funds_lost_usd": 36000000,
-      "victims_estimated": "Upbit customers exposed to Solana assets",
+      "type": "CELEBRITY RUG PULL",
+      "funds_lost_usd": "Millions",
+      "victims_estimated": "Thousands of retail investors",
       "root_cause": [
-        "Hot wallet security lapse",
-        "Rapid exploit execution characteristic of state-linked hacking groups"
+        "Celebrity token pump and dump",
+        "Lack of legitimacy"
       ],
-      "aftermath": "Upbit moved remaining funds to cold storage and worked with authorities; highlighted hot wallet risks during high-speed exploits.",
+      "aftermath": "Creator disappeared for 2 weeks. Became cautionary tale about celebrity tokens.",
       "status": "Ongoing"
+    }
+  },
+  {
+    "id": "btc-ath-100k-2024-12-05",
+    "date": "2024-12-05",
+    "title": "Bitcoin Breaks $100,000",
+    "summary": "Bitcoin surpasses $100,000 for the first time, driven by ETF inflows and post-halving dynamics.",
+    "category": "Bull Runs",
+    "tags": [
+      "ATH",
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "links": [
+      {
+        "label": "Bitcoin 100k",
+        "url": "https://www.coindesk.com/price/bitcoin"
+      }
+    ],
+    "metrics": {
+      "btc_price_usd": 100000,
+      "market_cap_usd": 2000000000000
+    }
+  },
+  {
+    "id": "rizzmas-scooter-exposure-2024",
+    "date": "2024-12-20",
+    "title": "Scooter Exposes Rizzmas as Complete Scam",
+    "summary": "Crypto influencer Scooter revealed Rizzmas was a complete scam.",
+    "category": "Scam",
+    "tags": [
+      "CULTURAL",
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Rizzmas Exposure",
+        "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+      }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 80000000,
+      "victims_estimated": "Thousands of TikTok users",
+      "root_cause": [
+        "Coordinated scam targeting social media users"
+      ],
+      "aftermath": "Market cap crashed from $100M to $20M after exposure. Whistleblower faced harassment.",
+      "status": "Exposed"
     }
   },
   {
     "id": "trump-memecoin-launch-drawdown-2025-01-18",
     "date": "2025-01-18",
     "title": "$TRUMP Launch Sparks Frenzy, Then Massive Drawdown",
-    "summary": "Donald Trump promoted the ‘Official Trump Meme’ token ($TRUMP), triggering a rapid speculative surge in January. After peaking shortly after launch, $TRUMP spent the rest of 2025 in a sustained unwind, becoming a flagship example of ‘political memecoin’ volatility and retail drawdowns.",
+    "summary": "Donald Trump promoted the â€˜Official Trump Memeâ€™ token ($TRUMP), triggering a rapid speculative surge in January.",
     "category": "Meme Coins",
-    "tags": ["FAILURE", "CULTURAL"],
-    "mode": ["timeline"],
+    "tags": [
+      "FAILURE",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Trump promo post", "url": "https://x.com/realDonaldTrump/status/1880446012168249386" },
-      { "label": "Launch coverage", "url": "https://x.com/CBSNews/status/1880684078665544059" }
+      {
+        "label": "Trump promo post",
+        "url": "https://x.com/realDonaldTrump/status/1880446012168249386"
+      },
+      {
+        "label": "Launch coverage",
+        "url": "https://x.com/CBSNews/status/1880684078665544059"
+      }
     ],
     "metrics": {
       "peak_price_usd_approx": 75,
@@ -1061,13 +1459,24 @@
     "id": "melania-memecoin-launch-drawdown-2025-01-19",
     "date": "2025-01-19",
     "title": "$MELANIA Token Launch Triggers Fast Boom-Bust",
-    "summary": "Melania Trump promoted the $MELANIA token, which ripped upward immediately after launch before entering a steep, prolonged drawdown—reinforcing the ‘celebrity/political memecoin’ pattern of reflexive hype followed by rapid value erosion.",
+    "summary": "Melania Trump promoted the $MELANIA token.",
     "category": "Meme Coins",
-    "tags": ["FAILURE", "CULTURAL"],
-    "mode": ["timeline"],
+    "tags": [
+      "FAILURE",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Melania promo post", "url": "https://x.com/MELANIATRUMP/status/1881094861279129643" },
-      { "label": "Launch chatter & timeline analysis", "url": "https://x.com/KobeissiLetter/status/1881187164983357893" }
+      {
+        "label": "Melania promo post",
+        "url": "https://x.com/MELANIATRUMP/status/1881094861279129643"
+      },
+      {
+        "label": "Launch chatter & timeline analysis",
+        "url": "https://x.com/KobeissiLetter/status/1881187164983357893"
+      }
     ],
     "metrics": {
       "drawdown_pct_approx": 90
@@ -1076,22 +1485,74 @@
   {
     "id": "libra-memecoin-rugpull-2025-02-14",
     "date": "2025-02-14",
-    "title": "$LIBRA ‘Cryptogate’ Rug-Pull Scandal in Argentina",
-    "summary": "Argentina’s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed amid allegations of insiders extracting liquidity and dumping supply. Blockchain researchers and subsequent reporting focused on large wallet withdrawals and market-maker style liquidity drains consistent with a rug/pump-and-dump pattern.",
+    "title": "$LIBRA â€˜Cryptogateâ€™ Rug-Pull Scandal in Argentina",
+    "summary": "Argentinaâ€™s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed.",
     "category": "Other",
-    "tags": ["FAILURE", "SECURITY", "CULTURAL"],
-    "mode": ["crimeline"],
+    "tags": [
+      "FAILURE",
+      "SECURITY",
+      "CULTURAL"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Market reaction thread", "url": "https://x.com/KobeissiLetter/status/1890611963203334190" },
-      { "label": "Reuters: $99M withdrawn by linked wallets", "url": "https://www.reuters.com/world/americas/crypto-worth-99-million-withdrawn-milei-backed-libra-token-researchers-say-2025-02-20/" },
-      { "label": "TRM Labs investigation writeup", "url": "https://www.trmlabs.com/resources/blog/the-libra-affair-tracking-the-memecoin-that-launched-a-scandal-in-argentina" }
+      {
+        "label": "Market reaction thread",
+        "url": "https://x.com/KobeissiLetter/status/1890611963203334190"
+      },
+      {
+        "label": "Reuters: $99M withdrawn by linked wallets",
+        "url": "https://www.reuters.com/world/americas/crypto-worth-99-million-withdrawn-milei-backed-libra-token-researchers-say-2025-02-20/"
+      },
+      {
+        "label": "TRM Labs investigation writeup",
+        "url": "https://www.trmlabs.com/resources/blog/the-libra-affair-tracking-the-memecoin-that-launched-a-scandal-in-argentina"
+      }
     ],
     "crimeline": {
       "type": "RUG PULL",
       "funds_lost_usd": 99000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Liquidity withdrawal", "Insider dumping", "Supply concentration"],
-      "aftermath": "Political scandal (‘Cryptogate’) and broad public scrutiny of memecoin launches tied to public figures.",
+      "root_cause": [
+        "Liquidity withdrawal",
+        "Insider dumping",
+        "Supply concentration"
+      ],
+      "aftermath": "Political scandal (â€˜Cryptogateâ€™) and broad public scrutiny of memecoin launches tied to public figures.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "bybit-exchange-hack-2025-02",
+    "date": "2025-02-21",
+    "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
+    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "TECH"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
+        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+      }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 1500000000,
+      "victims_estimated": "Bybit users & liquidity providers",
+      "root_cause": [
+        "Compromised developer infrastructure at Safe{Wallet} (multi-sig provider)",
+        "Routine cold-to-warm wallet transfer manipulation",
+        "Sophisticated phishing/supply-chain attack"
+      ],
+      "aftermath": "Bybit pledged full client asset backing.",
       "status": "Ongoing"
     }
   },
@@ -1099,21 +1560,39 @@
     "id": "bybit-hack-2025-02-21",
     "date": "2025-02-21",
     "title": "Bybit Suffers ~$1.5B Exchange Hack",
-    "summary": "Bybit disclosed a major ETH wallet compromise that became the largest widely reported crypto heist to date in 2025. U.S. authorities later attributed the theft to North Korean actors (‘TraderTraitor’) and warned the stolen assets were being laundered across many addresses.",
+    "summary": "Bybit disclosed a major ETH wallet compromise that became the largest widely reported crypto heist to date in 2025.",
     "category": "Centralized Exchange",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Bybit CEO disclosure", "url": "https://x.com/benbybit/status/1892963530422505586" },
-      { "label": "FBI IC3 attribution notice", "url": "https://www.ic3.gov/psa/2025/psa250226" },
-      { "label": "Reuters attribution report", "url": "https://www.reuters.com/technology/cybersecurity/fbi-says-north-korea-was-responsible-15-billion-bybit-hack-2025-02-27/" }
+      {
+        "label": "Bybit CEO disclosure",
+        "url": "https://x.com/benbybit/status/1892963530422505586"
+      },
+      {
+        "label": "FBI IC3 attribution notice",
+        "url": "https://www.ic3.gov/psa/2025/psa250226"
+      },
+      {
+        "label": "Reuters attribution report",
+        "url": "https://www.reuters.com/technology/cybersecurity/fbi-says-north-korea-was-responsible-15-billion-bybit-hack-2025-02-27/"
+      }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 1500000000,
       "victims_estimated": "Unknown",
-      "root_cause": ["Wallet compromise", "Unauthorized transaction signing", "Operational security failure"],
-      "aftermath": "Bybit reassured users of solvency and initiated investigation; authorities issued attribution and laundering warnings.",
+      "root_cause": [
+        "Wallet compromise",
+        "Unauthorized transaction signing",
+        "Operational security failure"
+      ],
+      "aftermath": "Authorities issued attribution and laundering warnings.",
       "status": "Ongoing"
     }
   },
@@ -1121,45 +1600,175 @@
     "id": "mantra-om-flash-crash-2025-04-13",
     "date": "2025-04-13",
     "title": "Mantra (OM) Token Dumps ~90% in Hours",
-    "summary": "OM experienced a rapid, severe collapse—widely described as a ‘token dump’—with reporting and analysis pointing to structural fragility: concentrated holdings, thin liquidity, and liquidation cascades that turned selling pressure into a fast wipeout.",
+    "summary": "OM experienced a rapid, severe collapseâ€”widely described as a â€˜token dumpâ€™.",
     "category": "Market Structure",
-    "tags": ["FAILURE", "ECONOMIC"],
-    "mode": ["timeline"],
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "ChainArgos case study (PDF)", "url": "https://www.chainargos.com/wp-content/uploads/2025/05/ChainArgos-Case-Study-The-Mantra-OM-Token-Dump-1-May-2025.pdf" },
-      { "label": "Coverage of the crash dynamics", "url": "https://cincodias.elpais.com/criptoactivos/2025-04-24/la-cripto-mantra-se-hunde-un-90-en-una-hora-y-expone-los-riesgos-de-concentracion-en-el-mercado.html" }
+      {
+        "label": "ChainArgos case study (PDF)",
+        "url": "https://www.chainargos.com/wp-content/uploads/2025/05/ChainArgos-Case-Study-The-Mantra-OM-Token-Dump-1-May-2025.pdf"
+      },
+      {
+        "label": "Coverage of the crash dynamics",
+        "url": "https://cincodias.elpais.com/criptoactivos/2025-04-24/la-cripto-mantra-se-hunde-un-90-en-una-hora-y-expone-los-riesgos-de-concentracion-en-el-mercado.html"
+      }
     ],
     "metrics": {
       "intraday_drawdown_pct_approx": 90
     }
   },
   {
+    "id": "coinbase-data-breach-2025-05",
+    "date": "2025-05-15",
+    "title": "Coinbase Customer Data Breach via Rogue Support Agents",
+    "summary": "Coinbase disclosed a major security breach in which cybercriminals bribed overseas customer support agents.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "REGULATORY"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
+        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+      }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 0,
+      "victims_estimated": "Limited subset of Coinbase customers (<1%)",
+      "root_cause": [
+        "Bribery and recruitment of Coinbase support personnel",
+        "Insufficient internal access controls over sensitive user data"
+      ],
+      "aftermath": "Coinbase refused the $20M ransom demand.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "cetus-protocol-exploit-2025-05",
+    "date": "2025-05-22",
+    "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
+    "summary": "On Suiâ€™s largest decentralized exchange, Cetus Protocol suffered a major exploit.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "TECH"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
+        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+      }
+    ],
+    "crimeline": {
+      "type": "PROTOCOL EXPLOIT",
+      "funds_lost_usd": 223000000,
+      "victims_estimated": "Users providing liquidity on Cetus",
+      "root_cause": [
+        "Price manipulation via spoof token insertion",
+        "Smart contract vulnerability in AMM pricing feeds"
+      ],
+      "aftermath": "Cetus paused operations.",
+      "status": "Partial recovery"
+    }
+  },
+  {
     "id": "circle-crcl-ipo-2025-06-05",
     "date": "2025-06-05",
     "title": "Circle (CRCL) Begins Trading After Upsized IPO",
-    "summary": "Circle, issuer of USDC, priced an upsized IPO and began trading on the NYSE under ticker CRCL, marking a major TradFi milestone for stablecoin infrastructure and regulated public-market access.",
+    "summary": "Circle, issuer of USDC, priced an upsized IPO and began trading on the NYSE under ticker CRCL.",
     "category": "TradFi/IPO",
-    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
-    "mode": ["timeline"],
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Circle IPO pricing & ticker (Circle IR)", "url": "https://investor.circle.com/news/news-details/2025/Circle-Announces-Pricing-of-Upsized-Initial-Public-Offering/default.aspx" },
-      { "label": "Nasdaq IPO overview", "url": "https://www.nasdaq.com/market-activity/ipos/overview?dealId=1172229-113504" }
+      {
+        "label": "Circle IPO pricing & ticker (Circle IR)",
+        "url": "https://investor.circle.com/news/news-details/2025/Circle-Announces-Pricing-of-Upsized-Initial-Public-Offering/default.aspx"
+      },
+      {
+        "label": "Nasdaq IPO overview",
+        "url": "https://www.nasdaq.com/market-activity/ipos/overview?dealId=1172229-113504"
+      }
     ],
     "metrics": {
       "ipo_price_usd": 31
     }
   },
   {
+    "id": "nobitex-exchange-hack-2025-06",
+    "date": "2025-06-17",
+    "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
+    "summary": "Iranâ€™s largest exchange Nobitex was hit by an exploit that drained around $90M.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
+        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+      }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 90000000,
+      "victims_estimated": "Nobitex users",
+      "root_cause": [
+        "Centralized exchange infrastructure compromise",
+        "Alleged politically-motivated hacking group involvement"
+      ],
+      "aftermath": "Nobitex temporarily suspended services.",
+      "status": "Ongoing"
+    }
+  },
+  {
     "id": "solana-etf-ssk-launch-2025-07-02",
     "date": "2025-07-02",
     "title": "First U.S.-Listed Solana + Staking ETF Launches (SSK)",
-    "summary": "REX Shares and Osprey Funds launched SSK, described as the first U.S.-listed ETF offering Solana price exposure alongside staking rewards, signaling accelerating ETF experimentation beyond BTC/ETH and into yield-bearing structures.",
+    "summary": "REX Shares and Osprey Funds launched SSK.",
     "category": "ETFs",
-    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
-    "mode": ["timeline"],
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "REX-Osprey launch announcement", "url": "https://www.rexshares.com/rex-osprey-launches-first-u-s-etf-with-solana-exposure-plus-staking-rewards/" },
-      { "label": "ETF launch note (Balchunas)", "url": "https://x.com/EricBalchunas/status/1939794086535602428" }
+      {
+        "label": "REX-Osprey launch announcement",
+        "url": "https://www.rexshares.com/rex-osprey-launches-first-u-s-etf-with-solana-exposure-plus-staking-rewards/"
+      },
+      {
+        "label": "ETF launch note (Balchunas)",
+        "url": "https://x.com/EricBalchunas/status/1939794086535602428"
+      }
     ],
     "metrics": {
       "ticker": "SSK"
@@ -1169,61 +1778,115 @@
     "id": "genius-act-signed-2025-07-18",
     "date": "2025-07-18",
     "title": "GENIUS Act Signed Into Law",
-    "summary": "President Trump signed the GENIUS Act into law, positioning it as a landmark U.S. digital-assets policy move and a catalyst for broader institutional adoption narratives during 2025.",
+    "summary": "President Trump signed the GENIUS Act into law.",
     "category": "Regulation",
-    "tags": ["REGULATORY", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "REGULATORY",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "White House fact sheet", "url": "https://www.whitehouse.gov/fact-sheets/2025/07/fact-sheet-president-donald-j-trump-signs-genius-act-into-law/" },
-      { "label": "Congress.gov bill page", "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1582" }
+      {
+        "label": "White House fact sheet",
+        "url": "https://www.whitehouse.gov/fact-sheets/2025/07/fact-sheet-president-donald-j-trump-signs-genius-act-into-law/"
+      },
+      {
+        "label": "Congress.gov bill page",
+        "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1582"
+      }
     ]
   },
   {
     "id": "npm-js-supply-chain-attack-2025-09-08",
     "date": "2025-09-08",
     "title": "Mass npm JavaScript Supply-Chain Attack Hits Widely Used Packages",
-    "summary": "A large-scale supply-chain compromise targeted multiple high-download npm packages, highlighting how maintainer credential theft and malicious version publishing can weaponize developer tooling. Security reporting warned some malicious behaviors included covert crypto-asset diversion techniques via hijacked web APIs and traffic manipulation.",
+    "summary": "A large-scale supply-chain compromise targeted multiple high-download npm packages.",
     "category": "Other",
-    "tags": ["SECURITY", "TECH", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "TECH",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Palo Alto Networks breakdown", "url": "https://www.paloaltonetworks.com/blog/cloud-security/npm-supply-chain-attack/" },
-      { "label": "Trend Micro analysis", "url": "https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html" }
+      {
+        "label": "Palo Alto Networks breakdown",
+        "url": "https://www.paloaltonetworks.com/blog/cloud-security/npm-supply-chain-attack/"
+      },
+      {
+        "label": "Trend Micro analysis",
+        "url": "https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html"
+      }
     ],
     "crimeline": {
       "type": "OTHER",
       "funds_lost_usd": 0,
       "victims_estimated": "Unknown",
-      "root_cause": ["Maintainer account compromise", "Malicious package updates", "Software supply-chain infection"],
-      "aftermath": "Security teams audited dependencies, rotated credentials, and pinned/rolled back compromised versions across ecosystems.",
+      "root_cause": [
+        "Maintainer account compromise",
+        "Malicious package updates",
+        "Software supply-chain infection"
+      ],
+      "aftermath": "Security teams audited dependencies.",
       "status": "Unknown"
     }
   },
   {
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
-    "title": "CZ-Linked $ASTER / Aster DEX ‘Debacle’ After DefiLlama Delisting",
-    "summary": "Aster’s reported perpetuals volume came under heavy scrutiny when DefiLlama moved to delist Aster’s perp volume data over integrity concerns, sparking a broader debate about wash trading, unverifiable volume metrics, and incentive-driven ‘fake liquidity’ across perps venues. The controversy coincided with sharp volatility in the associated token narrative.",
+    "title": "CZ-Linked $ASTER / Aster DEX â€˜Debacleâ€™ After DefiLlama Delisting",
+    "summary": "Asterâ€™s reported perpetuals volume came under heavy scrutiny when DefiLlama moved to delist Asterâ€™s perp volume data.",
     "category": "Market Structure",
-    "tags": ["FAILURE", "TECH", "CULTURAL"],
-    "mode": ["timeline"],
+    "tags": [
+      "FAILURE",
+      "TECH",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "DefiLlama delisting headline (Cointelegraph)", "url": "https://x.com/Cointelegraph/status/1974995688241930539" },
-      { "label": "Aster returns to DefiLlama (Yahoo)", "url": "https://finance.yahoo.com/news/aster-back-defillama-wash-trading-101715173.html" }
+      {
+        "label": "DefiLlama delisting headline (Cointelegraph)",
+        "url": "https://x.com/Cointelegraph/status/1974995688241930539"
+      },
+      {
+        "label": "Aster returns to DefiLlama (Yahoo)",
+        "url": "https://finance.yahoo.com/news/aster-back-defillama-wash-trading-101715173.html"
+      }
     ]
   },
   {
     "id": "crypto-market-nuke-liquidations-2025-10-10",
     "date": "2025-10-10",
-    "title": "October 10 ‘Nuke’: Record Liquidation Cascade Slams Crypto",
-    "summary": "A historic leverage unwind on October 10 triggered a massive cross-venue liquidation cascade, widely cited as the largest single liquidation event in crypto history. The event became a case study in how liquidity gaps and venue design amplify forced selling under stress.",
+    "title": "October 10 â€˜Nukeâ€™: Record Liquidation Cascade Slams Crypto",
+    "summary": "A historic leverage unwind on October 10 triggered a massive cross-venue liquidation cascade.",
     "category": "Market Structure",
-    "tags": ["ECONOMIC", "FAILURE", "SECURITY"],
-    "mode": ["timeline"],
+    "tags": [
+      "ECONOMIC",
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "FTI Consulting analysis", "url": "https://www.fticonsulting.com/insights/articles/crypto-crash-october-2025-leverage-met-liquidity" },
-      { "label": "Liquidation figures (CoinGlass)", "url": "https://x.com/coinglass_com/status/1976796969961193641" },
-      { "label": "Post-event market commentary", "url": "https://www.coindesk.com/opinion/2025/12/02/why-the-market-crashed-on-october-10-and-why-it-s-struggling-to-bounce" }
+      {
+        "label": "FTI Consulting analysis",
+        "url": "https://www.fticonsulting.com/insights/articles/crypto-crash-october-2025-leverage-met-liquidity"
+      },
+      {
+        "label": "Liquidation figures (CoinGlass)",
+        "url": "https://x.com/coinglass_com/status/1976796969961193641"
+      },
+      {
+        "label": "Post-event market commentary",
+        "url": "https://www.coindesk.com/opinion/2025/12/02/why-the-market-crashed-on-october-10-and-why-it-s-struggling-to-bounce"
+      }
     ],
     "metrics": {
       "liquidations_usd_approx": 19000000000
@@ -1232,13 +1895,21 @@
   {
     "id": "uponly-returns-coinbase-buys-nft-2025-10-20",
     "date": "2025-10-20",
-    "title": "Cobie’s UpOnly Returns After Coinbase Buys the Control NFT",
-    "summary": "Cobie had previously tied the return of his UpOnly podcast to an NFT mechanism; in October, Coinbase purchased the UpOnly control NFT for $25M, effectively triggering the podcast’s return and cementing ‘podcast rights as an onchain asset’ as a defining cultural moment.",
+    "title": "Cobieâ€™s UpOnly Returns After Coinbase Buys the Control NFT",
+    "summary": "Coinbase purchased the UpOnly control NFT for $25M, triggering the podcastâ€™s return.",
     "category": "Media",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "UpOnly NFT purchase story", "url": "https://www.blocmates.com/news-posts/coinbase-buys-cobie-up-only-nft-for-25m-now-he-has-to-podcast-again" }
+      {
+        "label": "UpOnly NFT purchase story",
+        "url": "https://www.blocmates.com/news-posts/coinbase-buys-cobie-up-only-nft-for-25m-now-he-has-to-podcast-again"
+      }
     ],
     "metrics": {
       "deal_value_usd": 25000000
@@ -1248,49 +1919,88 @@
     "id": "coinbase-acquires-echo-cobie-2025-10-21",
     "date": "2025-10-21",
     "title": "Cobie Sells Echo to Coinbase for ~$375M",
-    "summary": "Coinbase agreed to acquire Echo, Cobie’s crypto fundraising/investment platform, in a deal reported at roughly $375M (cash and stock). The move signaled Coinbase’s push deeper into capital formation tooling (token sales and fundraising rails) amid a more permissive U.S. crypto environment.",
+    "summary": "Coinbase agreed to acquire Echo in a deal reported at roughly $375M.",
     "category": "M&A",
-    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
-    "mode": ["timeline"],
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Reuters deal report", "url": "https://www.reuters.com/legal/transactional/coinbase-signs-375-million-deal-crypto-investment-platform-echo-2025-10-21/" },
-      { "label": "Blockworks coverage", "url": "https://blockworks.co/news/coinbase-acquires-echo" }
+      {
+        "label": "Reuters deal report",
+        "url": "https://www.reuters.com/legal/transactional/coinbase-signs-375-million-deal-crypto-investment-platform-echo-2025-10-21/"
+      },
+      {
+        "label": "Blockworks coverage",
+        "url": "https://blockworks.co/news/coinbase-acquires-echo"
+      }
     ],
     "metrics": {
       "deal_value_usd_approx": 375000000
     }
   },
   {
-    "id": "james-wynn-liquidation-hyperliquid-2025-11-10",
-    "date": "2025-11-10",
-    "title": "James Wynn Liquidation Becomes Leverage Cautionary Tale",
-    "summary": "Trader James Wynn’s highly leveraged Hyperliquid positions were publicly tracked as they were liquidated, turning his account into a viral case study in how extreme leverage and reflexive crowd attention can accelerate forced closes and wipeouts.",
-    "category": "Market Structure",
-    "tags": ["FAILURE", "CULTURAL", "ECONOMIC"],
-    "mode": ["timeline"],
-    "image": "https://pbs.twimg.com/media/GvqThClbsAEGHig?format=jpg&name=4096x4096",
-  
-    "links": [
-      { "label": "Lookonchain liquidation post", "url": "https://x.com/lookonchain/status/1943473763263353334" },
-      { "label": "Coverage of the wipeout", "url": "https://finance.yahoo.com/news/james-wynn-23-million-wipeout-064752886.html" }
+    "id": "upbit-hack-2025-11",
+    "date": "2025-11-26",
+    "title": "Upbit Solana Hot Wallet Hack (~$36M)",
+    "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE"
     ],
-    "metrics": {
-      "reported_losses_usd_approx": 23000000,
-      "leverage_approx": 40
+    "mode": [
+      "crimeline"
+    ],
+    "links": [
+      {
+        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
+        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+      }
+    ],
+    "crimeline": {
+      "type": "EXCHANGE HACK",
+      "funds_lost_usd": 36000000,
+      "victims_estimated": "Upbit customers exposed to Solana assets",
+      "root_cause": [
+        "Hot wallet security lapse",
+        "Rapid exploit execution characteristic of state-linked hacking groups"
+      ],
+      "aftermath": "Upbit moved remaining funds to cold storage.",
+      "status": "Ongoing"
     }
   },
   {
     "id": "chainlink-first-spot-etf-glnk-2025-12-02",
     "date": "2025-12-02",
     "title": "First Chainlink Spot ETF Launches (Grayscale GLNK)",
-    "summary": "Grayscale’s Chainlink product converted/listed as GLNK on NYSE Arca, widely described as the first U.S. spot Chainlink ETF/ETP, expanding the ‘altcoin ETF’ wave and formalizing LINK exposure in a regulated wrapper.",
+    "summary": "Grayscaleâ€™s Chainlink product converted/listed as GLNK on NYSE Arca.",
     "category": "ETFs",
-    "tags": ["MILESTONE", "ECONOMIC", "REGULATORY"],
-    "mode": ["timeline"],
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "links": [
-      { "label": "Grayscale GLNK product page (ETP listing date)", "url": "https://etfs.grayscale.com/glnk" },
-      { "label": "Launch reporting", "url": "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading" },
-      { "label": "Day-one flows/volume commentary", "url": "https://x.com/JSeyff/status/1996290352542609748" }
+      {
+        "label": "Grayscale GLNK product page (ETP listing date)",
+        "url": "https://etfs.grayscale.com/glnk"
+      },
+      {
+        "label": "Launch reporting",
+        "url": "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading"
+      },
+      {
+        "label": "Day-one flows/volume commentary",
+        "url": "https://x.com/JSeyff/status/1996290352542609748"
+      }
     ],
     "metrics": {
       "ticker": "GLNK",
@@ -1301,468 +2011,92 @@
     "id": "trustwallet-extension-v268-compromise-2025-12-24",
     "date": "2025-12-24",
     "title": "Trust Wallet Chrome Extension Supply-Chain Compromise (v2.68)",
-    "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process, enabling attackers to access sensitive wallet data and execute unauthorized transactions for users who ran the compromised version during the exposure window.",
+    "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process.",
     "category": "Wallet/Key Compromise",
-    "tags": ["SECURITY", "FAILURE", "TECH"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE",
+      "TECH"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Trust Wallet post-mortem update", "url": "https://trustwallet.com/blog/announcements/trust-wallet-browser-extension-v268-incident-community-update" },
-      { "label": "Trust Wallet security notice (X)", "url": "https://x.com/TrustWallet/status/2007475482313244989" },
-      { "label": "Exec update thread", "url": "https://x.com/EowynChen/status/2004649284537647161" }
+      {
+        "label": "Trust Wallet post-mortem update",
+        "url": "https://trustwallet.com/blog/announcements/trust-wallet-browser-extension-v268-incident-community-update"
+      },
+      {
+        "label": "Trust Wallet security notice (X)",
+        "url": "https://x.com/TrustWallet/status/2007475482313244989"
+      },
+      {
+        "label": "Exec update thread",
+        "url": "https://x.com/EowynChen/status/2004649284537647161"
+      }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 8500000,
       "victims_estimated": "Thousands",
-      "root_cause": ["Browser extension supply-chain compromise", "Malicious code injection", "Unauthorized publishing process"],
-      "aftermath": "Extension rollout halted; incident response, user remediation steps, and reimbursement process initiated for verified losses.",
+      "root_cause": [
+        "Browser extension supply-chain compromise",
+        "Malicious code injection",
+        "Unauthorized publishing process"
+      ],
+      "aftermath": "Extension rollout halted.",
       "status": "Partial recovery"
     }
-  },
-  {
-    "id": "beeple-everydays-nft-sale-2021-03-11",
-    "date": "2021-03-11",
-    "title": "Beeple’s 'Everydays' NFT Sells for $69.3M at Christie’s",
-    "summary": "Beeple’s 'Everydays: The First 5000 Days' becomes a watershed NFT moment when Christie’s sells it for $69,346,250—catapulting NFTs into mainstream finance, art, and culture.",
-    "category": "NFTs",
-    "tags": ["CULTURAL", "ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Christie’s results", "url": "https://press.christies.com/results-beeples-purely-digital-nft-based-work-of-art-achieves-693-million-at-christies-1" },
-      { "label": "Reuters coverage", "url": "https://www.reuters.com/lifestyle/digital-only-artwork-fetches-nearly-70-million-christies-2021-03-12/" }
-    ],
-    "metrics": {
-      "sale_price_usd": 69346250
-    }
-  },
-  {
-    "id": "coinbase-direct-listing-2021-04-14",
-    "date": "2021-04-14",
-    "title": "Coinbase Goes Public in Landmark Direct Listing",
-    "summary": "Coinbase lists publicly via a direct listing, marking a major 'crypto goes mainstream' milestone and validating exchange-driven market infrastructure in public equities.",
-    "category": "Market Structure",
-    "tags": ["ECONOMIC", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
-    ]
-  },
-  {
-    "id": "dogecoin-snl-peak-2021-05-08",
-    "date": "2021-05-08",
-    "title": "Dogecoin Mania Peaks Around Elon Musk’s SNL Appearance",
-    "summary": "Dogecoin’s 2021 meme-cycle reaches cultural saturation as speculation builds into Elon Musk’s Saturday Night Live appearance—followed by the familiar post-hype drawdown that defined memecoin volatility for a generation of retail traders.",
-    "category": "Meme Coins",
-    "tags": ["CULTURAL", "FAILURE", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
-    ]
-  },
-  {
-    "id": "tesla-bitcoin-payments-suspended-2021-05-12",
-    "date": "2021-05-12",
-    "title": "Tesla Suspends Bitcoin Payments Over Energy Concerns",
-    "summary": "Elon Musk posts that Tesla is suspending vehicle purchases using Bitcoin, citing the energy mix behind mining—triggering a sharp sentiment shift and amplifying the 'ESG vs crypto' narrative across markets.",
-    "category": "Market Structure",
-    "tags": ["ECONOMIC", "CULTURAL", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Musk tweet", "url": "https://x.com/elonmusk/status/1392602041025843203" },
-      { "label": "Reuters", "url": "https://www.reuters.com/technology/tesla-stops-taking-bitcoin-cites-fossil-fuel-use-mining-cybercurrency-2021-05-12/" }
-    ]
-  },
-  {
-    "id": "china-crackdown-mining-trading-2021-05-21",
-    "date": "2021-05-21",
-    "title": "China Escalates Crackdown on Bitcoin Mining and Trading",
-    "summary": "China’s policy posture hardens as authorities move to clamp down on Bitcoin mining and trading, forcing hashpower migration and setting the tone for a more adversarial regulatory environment in key jurisdictions.",
-    "category": "Regulation",
-    "tags": ["REGULATORY", "ECONOMIC", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
-    ]
-  },
-  {
-    "id": "ethereum-london-eip1559-2021-08-05",
-    "date": "2021-08-05",
-    "title": "Ethereum Activates London Upgrade (EIP-1559 Fee Burn)",
-    "summary": "Ethereum’s London hard fork ships EIP-1559, introducing base-fee burning and changing ETH’s monetary dynamics—one of the most consequential protocol-level shifts in the asset’s history.",
-    "category": "DeFi Protocol",
-    "tags": ["TECH", "MILESTONE", "ECONOMIC"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
-    ]
-  },
-  {
-    "id": "el-salvador-bitcoin-legal-tender-2021-09-07",
-    "date": "2021-09-07",
-    "title": "El Salvador Adopts Bitcoin as Legal Tender",
-    "summary": "El Salvador becomes the first nation-state to adopt Bitcoin as legal tender, turning crypto into a geopolitical headline and sparking global debate on monetary sovereignty, remittances, and macro risk.",
-    "category": "Regulation",
-    "tags": ["REGULATORY", "MILESTONE", "CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" }
-    ]
-  },
-  {
-    "id": "snoopdogg-cozomo-medici-reveal-2021-09-20",
-    "date": "2021-09-20",
-    "title": "Snoop Dogg Claims NFT Whale Persona '@CozomoMedici'",
-    "summary": "NFT Twitter gets a pure 2021 plot twist when Snoop Dogg tweets 'I am @CozomoMedici,' linking celebrity identity, provenance signaling, and high-end NFT collecting into a single viral moment.",
-    "category": "NFTs",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Snoop tweet", "url": "https://x.com/SnoopDogg/status/1440038460417474567" },
-      { "label": "The Verge", "url": "https://www.theverge.com/2021/9/20/22684780/snoop-dog-nft-booster-cozomo-medici-reveal-prank-crypto" }
-    ]
-  },
-  {
-    "id": "walmart-litecoin-hoax-2021-09-13",
-    "date": "2021-09-13",
-    "title": "Fake Walmart–Litecoin Press Release Whipsaws LTC Price",
-    "summary": "A fraudulent press release claiming Walmart would accept Litecoin briefly spikes LTC before denials—highlighting how thin liquidity + headline reflexes can turn misinformation into instant market structure chaos.",
-    "category": "Market Structure",
-    "tags": ["FAILURE", "CULTURAL", "SECURITY"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Reuters", "url": "https://www.reuters.com/business/retail-consumer/press-release-walmarts-litecoin-partnership-is-fake-cnbc-2021-09-13/" },
-      { "label": "Walmart statement", "url": "https://corporate.walmart.com/news/2021/09/13/walmart-statement-in-response-to-fake-litecoin-press-release" }
-    ]
-  },
-  {
-    "id": "solana-ath-259-2021-11-06",
-    "date": "2021-11-06",
-    "title": "Solana Hits ~$259 as 2021 Hype Cycle Reaches Peak",
-    "summary": "Solana’s 2021 run culminates in a ~$259 price print as NFTs, DeFi, and high-throughput narratives converge—cementing SOL as a defining L1 of the bull market (and a future benchmark for ETF-era debates).",
-    "category": "Altcoins",
-    "tags": ["ATH", "TECH", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "CryptoBriefing recap", "url": "https://cryptobriefing.com/2021-in-review-top-10-crypto-moments-year/" },
-      { "label": "CMC historical snapshot (Nov 6, 2021)", "url": "https://coinmarketcap.com/historical/20211106/" }
-    ],
-    "metrics": {
-      "sol_price_usd": 258.93,
-      "sol_market_cap_usd": 77993805663
-    }
-  },
-  {
-    "id": "squid-token-rugpull-2021-11-01",
-    "date": "2021-11-01",
-    "title": "Squid Game Token Collapses in Classic Rug Pull",
-    "summary": "The 'SQUID' token—marketed off Netflix’s Squid Game—rockets, traps buyers with sell restrictions, then collapses as insiders drain liquidity, becoming a textbook 'too viral to be true' rug pull.",
-    "category": "Other",
-    "tags": ["SECURITY", "FAILURE", "CULTURAL"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Reuters", "url": "https://www.reuters.com/technology/crypto-coin-riding-squid-game-high-craters-after-dizzying-rally-2021-11-02/" },
-      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
-    ],
-    "crimeline": {
-      "type": "RUG PULL",
-      "funds_lost_usd": 3380000,
-      "victims_estimated": "Unknown",
-      "root_cause": [
-        "Sell restrictions / honeypot mechanics",
-        "Anonymous team",
-        "Liquidity drain (rug pull)"
-      ],
-      "aftermath": "Token price cratered to near-zero; project channels vanished; became a widely-cited cautionary tale during the memecoin/NFT mania phase.",
-      "status": "Total loss"
-    }
-  },
-  {
-    "id": "constitutiondao-loses-sothebys-2021-11-18",
-    "date": "2021-11-18",
-    "title": "ConstitutionDAO Loses Sotheby’s Bid After Raising Millions in ETH",
-    "summary": "ConstitutionDAO rallies crypto Twitter to buy a rare U.S. Constitution copy at Sotheby’s, raises tens of millions in ETH, then loses the auction—turning coordination, gas fees, and refunds into a mass-participation stress test for on-chain fundraising.",
-    "category": "Other",
-    "tags": ["CULTURAL", "MILESTONE", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Forbes", "url": "https://www.forbes.com/sites/abrambrown/2021/11/18/constitution-dao-crypto-ether-constitutional-sothebys-sale-auction/" },
-      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
-    ],
-    "metrics": {
-      "auction_price_usd": 43200000
-    }
-  },
-  {
-    "id": "floki-inu-asa-probe-2021-11-17",
-    "date": "2021-11-17",
-    "title": "UK ASA Investigates Floki Inu 'Missed Doge? Get Floki' Ads",
-    "summary": "Floki Inu’s London transport ad blitz triggers a formal inquiry by the UK’s Advertising Standards Authority, spotlighting the memecoin marketing meta—and the regulatory whiplash of advertising unregulated financial products to commuters.",
-    "category": "Regulation",
-    "tags": ["REGULATORY", "CULTURAL", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "The Guardian (probe)", "url": "https://www.theguardian.com/technology/2021/nov/17/advertising-watchdog-investigates-tube-adverts-for-floki-inu-cryptocurrency-elon-musk-dog" },
-      { "label": "ASA case page (seen Nov 2021)", "url": "https://www.asa.org.uk/rulings/floki-inu-a21-1129077-floki-inu.html" }
-    ]
-  },
-  {
-    "id": "bitcoin-city-announced-2021-11-20",
-    "date": "2021-11-20",
-    "title": "Bukele Unveils ‘Bitcoin City’ Plan in El Salvador",
-    "summary": "Fresh off making BTC legal tender, Bukele announces a proposed ‘Bitcoin City’ and bitcoin-backed bond concept—blending sovereign branding, tax incentives, and volcano-energy spectacle into the archetype of the 2021 nation-state crypto narrative.",
-    "category": "Regulation",
-    "tags": ["CULTURAL", "REGULATORY", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Reuters", "url": "https://www.reuters.com/markets/rates-bonds/el-salvador-plans-first-bitcoin-city-backed-by-bitcoin-bonds-2021-11-21/" },
-      { "label": "X clip of announcement", "url": "https://x.com/stephanlivera/status/1462275584977952769" }
-    ]
-  },
-  {
-    "id": "modi-twitter-hack-bitcoin-giveaway-2021-12-11",
-    "date": "2021-12-11",
-    "title": "India PM Modi’s Twitter Briefly Compromised for Bitcoin Scam Post",
-    "summary": "Hackers briefly seize control of India’s prime minister’s Twitter account to post a fake Bitcoin adoption/giveaway message—an absurd, high-profile reminder that social accounts remain systemic attack surfaces for market manipulation and scams.",
-    "category": "Other",
-    "tags": ["SECURITY", "FAILURE", "CULTURAL"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Al Jazeera", "url": "https://www.aljazeera.com/news/2021/12/12/indian-prime-minister-modis-twitter-handle-briefly-compromised" },
-      { "label": "Cointelegraph weird-stories recap", "url": "https://es.cointelegraph.com/news/5-weirdest-crypto-stories-of-2021" }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": null,
-      "victims_estimated": "Unknown",
-      "root_cause": ["Social media account compromise", "Scam / fake announcement"],
-      "aftermath": "Tweet was removed and account restored; incident amplified concerns about high-reach account security and headline-driven price reflexes.",
-      "status": "Unknown"
-    }
-  },
-  {
-    "id": "randi-zuckerberg-crypto-video-2021-04",
-    "date": "2021-04-05",
-    "title": "Randi Zuckerberg Posts Tone-Deaf Crypto Education Video",
-    "summary": "Randi Zuckerberg released a widely mocked crypto explainer video during the 2021 bull run, which Crypto Twitter criticized as shallow, out-of-touch, and emblematic of legacy tech figures misunderstanding crypto culture.",
-    "category": "Culture",
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Original clip reaction", "url": "https://x.com/search?q=Randi%20Zuckerberg%20crypto%20video" }
-    ]
-  },
-  {
-    "id": "ledger-ftx-shirt-dance-2022-11",
-    "date": "2022-11-15",
-    "title": "Ledger Dances Wearing FTX Shirt Post-Collapse",
-    "summary": "Ledger was filmed dancing while wearing an FTX t-shirt, some say this is more criminal than SBF stealing $8b in customer funds",
-    "category": "Culture",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["crimeline"],
-    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/ledgerstatus%20dance.jpeg",
-    "links": [
-      { "label": "FTX shirt dance", "url": "https://x.com/PhrexleySnipes/status/1502393635580657670?s=20" }
-    ],
-    "crimeline": {
-      "type": "OTHER",
-      "funds_lost_usd": 0,
-      "victims_estimated": "N/A",
-      "root_cause": ["Poor executive judgment", "Crisis-insensitive branding"],
-      "aftermath": "Ledger bought more heavy equipment; reputational damage still lingers.",
-      "status": "Resolved"
-    }
-  },
-  {
-    "id": "richard-heart-stage-dance-2022",
-    "date": "2022-09-10",
-    "title": "Richard Heart Performs Stage Dance at HEX Event",
-    "summary": "HEX founder Richard Heart danced on stage during a promotional event, reinforcing his polarizing image as both crypto cult figure and regulatory lightning rod.",
-    "category": "Culture",
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Stage clip", "url": "https://x.com/search?q=Richard%20Heart%20dance%20stage" }
-    ]
-  },
-  {
-    "id": "gainzy-uhc-killer-0xracist-post-2024",
-    "date": "2024-10-08",
-    "title": "Gainzy Falsely Named as UHC CEO Killer in Viral 0xRacist Post",
-    "summary": "A viral post from the account 0xRacist falsely named crypto trader Gainzy as the UnitedHealthcare CEO killer, sparking outrage, harassment, and renewed debate about misinformation and defamation on Crypto Twitter.",
-    "category": "Culture",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "Viral post reactions", "url": "https://x.com/search?q=Gainzy%200xRacist" }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": 0,
-      "victims_estimated": "1 individual",
-      "root_cause": ["Misinformation", "Anonymous account abuse"],
-      "aftermath": "Post debunked; reputational harm occurred.",
-      "status": "Resolved"
-    }
-  },
-  {
-    "id": "e-beggar-sega-starknet-backlash-2023",
-    "date": "2023-08-01",
-    "title": "E-Beggar Discourse Erupts as Starknet Faces Community Backlash",
-    "summary": "Crypto Twitter erupted over accusations of 'e-begging' tied to Starknet grants and incentives, igniting backlash over entitlement, funding expectations, and ecosystem culture.",
-    "category": "Culture",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Starknet backlash threads", "url": "https://x.com/search?q=Starknet%20ebeggar" }
-    ]
-  },
-  {
-    "id": "jack-dorsey-nft-tweet-2021-03",
-    "date": "2021-03-21",
-    "title": "Jack Dorsey Tweets First-Ever NFT",
-    "summary": "Jack Dorsey tokenized his first tweet as an NFT, selling it for $2.9M and igniting mainstream awareness of NFTs—later becoming infamous after its resale value collapsed.",
-    "category": "Culture",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Original tweet", "url": "https://x.com/jack/status/1372167423442839553" }
-    ]
-  },
-  {
-    "id": "fortune-crypto-vs-wall-street-cover-2021",
-    "date": "2021-06-01",
-    "title": "Fortune Publishes Crypto vs Wall Street Cover",
-    "summary": "Fortune Magazine published a high-profile cover framing crypto as a challenger to Wall Street, symbolizing peak institutional curiosity during the 2021 bull market.",
-    "category": "Media",
-    "tags": ["CULTURAL", "MILESTONE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Cover image discussion", "url": "https://x.com/search?q=Fortune%20crypto%20wall%20street%20cover" }
-    ]
-  },
-  {
-    "id": "bitconnect-guy-meme-resurgence",
-    "date": "2017-10-28",
-    "title": "BitConnect Guy Meme Becomes Crypto’s Eternal Warning",
-    "summary": "Carlos Matos’ infamous 'BitConnectttt!' speech became one of crypto’s most enduring memes and a permanent shorthand for Ponzi schemes.",
-    "category": "Culture",
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "BitConnect speech", "url": "https://www.youtube.com/watch?v=lCcwn6bGUtU" }
-    ]
-  },
-  {
-    "id": "roger-ver-bch-debacle-2018",
-    "date": "2018-11-15",
-    "title": "Roger Ver and the Bitcoin Cash Civil War",
-    "summary": "Roger Ver became the central figure in the Bitcoin Cash hash war and branding battles, fracturing the BCH community and permanently damaging its credibility.",
-    "category": "Market Structure",
-    "tags": ["FAILURE", "CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "BCH hash war context", "url": "https://x.com/search?q=Roger%20Ver%20BCH%20hash%20war" }
-    ]
   },
   {
     "id": "coinbase-customer-data-leak-2026-01",
     "date": "2026-01-03",
     "title": "100,000 Coinbase Customer Records Found Online",
-    "summary": "Reports surfaced claiming 100,000 Coinbase customer records were being sold or shared online, reigniting concerns over data security even without direct fund losses.",
+    "summary": "Reports surfaced claiming 100,000 Coinbase customer records were being sold or shared online.",
     "category": "Security",
-    "tags": ["SECURITY", "FAILURE"],
-    "mode": ["crimeline"],
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "links": [
-      { "label": "Leak reports", "url": "https://x.com/search?q=Coinbase%20100k%20data%20leak" }
+      {
+        "label": "Leak reports",
+        "url": "https://x.com/search?q=Coinbase%20100k%20data%20leak"
+      }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 0,
       "victims_estimated": "100,000 users",
-      "root_cause": ["Data security lapse"],
+      "root_cause": [
+        "Data security lapse"
+      ],
       "aftermath": "Coinbase investigated source of leak.",
       "status": "Ongoing"
     }
   },
-  {
-    "id": "logan-paul-nft-debacle-2023",
-    "date": "2023-01-15",
-    "title": "Logan Paul NFT Project Collapses",
-    "summary": "Logan Paul faced widespread backlash after his NFT project collapsed, with accusations of misleading buyers and abandoning promised deliverables.",
-    "category": "Scam",
-    "tags": ["FAILURE", "CULTURAL"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "NFT backlash threads", "url": "https://x.com/search?q=Logan%20Paul%20NFT%20scam" }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": "Millions",
-      "victims_estimated": "NFT holders",
-      "root_cause": ["Misrepresentation", "Unfulfilled roadmap"],
-      "aftermath": "Legal threats and refunds discussed publicly.",
-      "status": "Partial recovery"
-    }
-  },
-  {
-    "id": "ansem-wif-sphere-2024",
-    "date": "2024-02-20",
-    "title": "Ansem’s $WIF Sphere Becomes Market Symbol",
-    "summary": "Trader Ansem’s $WIF sphere imagery became a defining visual meme of the Solana memecoin cycle, symbolizing reflexive hype and narrative-driven trading.",
-    "category": "Culture",
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "$WIF sphere posts", "url": "https://x.com/search?q=Ansem%20WIF%20sphere" }
-    ]
-  },
-  {
-    "id": "chill-guy-creator-backlash-2024",
-    "date": "2024-11-10",
-    "title": "Chill Guy Meme Creator Opposes Crypto Appropriation",
-    "summary": "The creator of the 'Chill Guy' meme publicly opposed its use in crypto token branding, igniting debate over IP, consent, and meme monetization.",
-    "category": "Culture",
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "links": [
-      { "label": "Creator response", "url": "https://x.com/search?q=Chill%20Guy%20crypto" }
-    ]
-  },
-  {
-    "id": "sec-sues-richard-heart-2023-07",
-    "date": "2023-07-31",
-    "title": "SEC Sues Richard Heart Over HEX, PulseChain",
-    "summary": "The SEC sued Richard Heart alleging unregistered securities offerings and misuse of investor funds tied to HEX, PulseChain, and PulseX.",
-    "category": "Regulation",
-    "tags": ["REGULATORY", "FAILURE"],
-    "mode": ["crimeline"],
-    "links": [
-      { "label": "SEC complaint", "url": "https://www.sec.gov/news/press-release/2023-143" }
-    ],
-    "crimeline": {
-      "type": "REGULATORY SEIZURE",
-      "funds_lost_usd": "Hundreds of millions",
-      "victims_estimated": "HEX/Pulse investors",
-      "root_cause": ["Unregistered securities", "Misuse of funds"],
-      "aftermath": "Ongoing litigation; projects under scrutiny.",
-      "status": "Ongoing"
-    }
-  },
+
   {
     "id": "zcash-core-dev-resignation-2026",
     "date": "2026-01-12",
     "title": "Zcash Core Developers Resign En Masse",
-    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements, raising existential questions about the project’s future.",
+    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements, raising existential questions about the projectâ€™s future.",
     "category": "Market Structure",
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://pbs.twimg.com/media/G-ITrPPXwAA1sIs?format=jpg&name=4096x4096",
     "links": [
-      { "label": "Developer statements", "url": "https://x.com/search?q=Zcash%20devs%20resign" }
+      {
+        "label": "Developer statements",
+        "url": "https://x.com/search?q=Zcash%20devs%20resign"
+      }
     ]
   }
 ]
-
-
-
-
