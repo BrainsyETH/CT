@@ -329,7 +329,8 @@
     "mode": [
       "timeline"
     ],
-    "image:": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
+   "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
+
     "links": [
       {
         "label": "China ICO Ban",
