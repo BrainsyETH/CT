@@ -1531,8 +1531,229 @@
       "aftermath": "Tweet was removed and account restored; incident amplified concerns about high-reach account security and headline-driven price reflexes.",
       "status": "Unknown"
     }
+  },
+  {
+    "id": "randi-zuckerberg-crypto-video-2021-04",
+    "date": "2021-04-05",
+    "title": "Randi Zuckerberg Posts Tone-Deaf Crypto Education Video",
+    "summary": "Randi Zuckerberg released a widely mocked crypto explainer video during the 2021 bull run, which Crypto Twitter criticized as shallow, out-of-touch, and emblematic of legacy tech figures misunderstanding crypto culture.",
+    "category": "Culture",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Original clip reaction", "url": "https://x.com/search?q=Randi%20Zuckerberg%20crypto%20video" }
+    ]
+  },
+  {
+    "id": "ledger-ftx-shirt-dance-2022-11",
+    "date": "2022-11-15",
+    "title": "Ledger CEO Dances Wearing FTX Shirt Post-Collapse",
+    "summary": "Ledger CEO Pascal Gauthier was filmed dancing while wearing an FTX t-shirt shortly after FTX collapsed, triggering backlash and accusations of tone-deaf marketing amid widespread losses.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "FTX shirt clip", "url": "https://x.com/search?q=Ledger%20FTX%20shirt%20dance" }
+    ],
+    "crimeline": {
+      "type": "OTHER",
+      "funds_lost_usd": 0,
+      "victims_estimated": "N/A",
+      "root_cause": ["Poor executive judgment", "Crisis-insensitive branding"],
+      "aftermath": "Ledger issued clarifications; reputational damage lingered.",
+      "status": "Resolved"
+    }
+  },
+  {
+    "id": "richard-heart-stage-dance-2022",
+    "date": "2022-09-10",
+    "title": "Richard Heart Performs Stage Dance at HEX Event",
+    "summary": "HEX founder Richard Heart danced on stage during a promotional event, reinforcing his polarizing image as both crypto cult figure and regulatory lightning rod.",
+    "category": "Culture",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Stage clip", "url": "https://x.com/search?q=Richard%20Heart%20dance%20stage" }
+    ]
+  },
+  {
+    "id": "gainzy-uhc-killer-0xracist-post-2024",
+    "date": "2024-10-08",
+    "title": "Gainzy Falsely Named as UHC CEO Killer in Viral 0xRacist Post",
+    "summary": "A viral post from the account 0xRacist falsely named crypto trader Gainzy as the UnitedHealthcare CEO killer, sparking outrage, harassment, and renewed debate about misinformation and defamation on Crypto Twitter.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Viral post reactions", "url": "https://x.com/search?q=Gainzy%200xRacist" }
+    ],
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": 0,
+      "victims_estimated": "1 individual",
+      "root_cause": ["Misinformation", "Anonymous account abuse"],
+      "aftermath": "Post debunked; reputational harm occurred.",
+      "status": "Resolved"
+    }
+  },
+  {
+    "id": "e-beggar-sega-starknet-backlash-2023",
+    "date": "2023-08-01",
+    "title": "E-Beggar Discourse Erupts as Starknet Faces Community Backlash",
+    "summary": "Crypto Twitter erupted over accusations of 'e-begging' tied to Starknet grants and incentives, igniting backlash over entitlement, funding expectations, and ecosystem culture.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Starknet backlash threads", "url": "https://x.com/search?q=Starknet%20ebeggar" }
+    ]
+  },
+  {
+    "id": "jack-dorsey-nft-tweet-2021-03",
+    "date": "2021-03-21",
+    "title": "Jack Dorsey Tweets First-Ever NFT",
+    "summary": "Jack Dorsey tokenized his first tweet as an NFT, selling it for $2.9M and igniting mainstream awareness of NFTs—later becoming infamous after its resale value collapsed.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Original tweet", "url": "https://x.com/jack/status/1372167423442839553" }
+    ]
+  },
+  {
+    "id": "fortune-crypto-vs-wall-street-cover-2021",
+    "date": "2021-06-01",
+    "title": "Fortune Publishes Crypto vs Wall Street Cover",
+    "summary": "Fortune Magazine published a high-profile cover framing crypto as a challenger to Wall Street, symbolizing peak institutional curiosity during the 2021 bull market.",
+    "category": "Media",
+    "tags": ["CULTURAL", "MILESTONE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Cover image discussion", "url": "https://x.com/search?q=Fortune%20crypto%20wall%20street%20cover" }
+    ]
+  },
+  {
+    "id": "bitconnect-guy-meme-resurgence",
+    "date": "2017-10-28",
+    "title": "BitConnect Guy Meme Becomes Crypto’s Eternal Warning",
+    "summary": "Carlos Matos’ infamous 'BitConnectttt!' speech became one of crypto’s most enduring memes and a permanent shorthand for Ponzi schemes.",
+    "category": "Culture",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "BitConnect speech", "url": "https://www.youtube.com/watch?v=lCcwn6bGUtU" }
+    ]
+  },
+  {
+    "id": "roger-ver-bch-debacle-2018",
+    "date": "2018-11-15",
+    "title": "Roger Ver and the Bitcoin Cash Civil War",
+    "summary": "Roger Ver became the central figure in the Bitcoin Cash hash war and branding battles, fracturing the BCH community and permanently damaging its credibility.",
+    "category": "Market Structure",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "BCH hash war context", "url": "https://x.com/search?q=Roger%20Ver%20BCH%20hash%20war" }
+    ]
+  },
+  {
+    "id": "coinbase-customer-data-leak-2026-01",
+    "date": "2026-01-03",
+    "title": "100,000 Coinbase Customer Records Found Online",
+    "summary": "Reports surfaced claiming 100,000 Coinbase customer records were being sold or shared online, reigniting concerns over data security even without direct fund losses.",
+    "category": "Security",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "Leak reports", "url": "https://x.com/search?q=Coinbase%20100k%20data%20leak" }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 0,
+      "victims_estimated": "100,000 users",
+      "root_cause": ["Data security lapse"],
+      "aftermath": "Coinbase investigated source of leak.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "logan-paul-nft-debacle-2023",
+    "date": "2023-01-15",
+    "title": "Logan Paul NFT Project Collapses",
+    "summary": "Logan Paul faced widespread backlash after his NFT project collapsed, with accusations of misleading buyers and abandoning promised deliverables.",
+    "category": "Scam",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "NFT backlash threads", "url": "https://x.com/search?q=Logan%20Paul%20NFT%20scam" }
+    ],
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": "Millions",
+      "victims_estimated": "NFT holders",
+      "root_cause": ["Misrepresentation", "Unfulfilled roadmap"],
+      "aftermath": "Legal threats and refunds discussed publicly.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "ansem-wif-sphere-2024",
+    "date": "2024-02-20",
+    "title": "Ansem’s $WIF Sphere Becomes Market Symbol",
+    "summary": "Trader Ansem’s $WIF sphere imagery became a defining visual meme of the Solana memecoin cycle, symbolizing reflexive hype and narrative-driven trading.",
+    "category": "Culture",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "$WIF sphere posts", "url": "https://x.com/search?q=Ansem%20WIF%20sphere" }
+    ]
+  },
+  {
+    "id": "chill-guy-creator-backlash-2024",
+    "date": "2024-11-10",
+    "title": "Chill Guy Meme Creator Opposes Crypto Appropriation",
+    "summary": "The creator of the 'Chill Guy' meme publicly opposed its use in crypto token branding, igniting debate over IP, consent, and meme monetization.",
+    "category": "Culture",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Creator response", "url": "https://x.com/search?q=Chill%20Guy%20crypto" }
+    ]
+  },
+  {
+    "id": "sec-sues-richard-heart-2023-07",
+    "date": "2023-07-31",
+    "title": "SEC Sues Richard Heart Over HEX, PulseChain",
+    "summary": "The SEC sued Richard Heart alleging unregistered securities offerings and misuse of investor funds tied to HEX, PulseChain, and PulseX.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "FAILURE"],
+    "mode": ["crimeline"],
+    "links": [
+      { "label": "SEC complaint", "url": "https://www.sec.gov/news/press-release/2023-143" }
+    ],
+    "crimeline": {
+      "type": "REGULATORY SEIZURE",
+      "funds_lost_usd": "Hundreds of millions",
+      "victims_estimated": "HEX/Pulse investors",
+      "root_cause": ["Unregistered securities", "Misuse of funds"],
+      "aftermath": "Ongoing litigation; projects under scrutiny.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "zcash-core-dev-resignation-2026",
+    "date": "2026-01-12",
+    "title": "Zcash Core Developers Resign En Masse",
+    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements, raising existential questions about the project’s future.",
+    "category": "Market Structure",
+    "tags": ["FAILURE"],
+    "mode": ["timeline"],
+    "links": [
+      { "label": "Developer statements", "url": "https://x.com/search?q=Zcash%20devs%20resign" }
+    ]
   }
 ]
+
 
 
 
