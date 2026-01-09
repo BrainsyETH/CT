@@ -1552,8 +1552,9 @@
     "category": "Culture",
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/ledgerstatus%20dance.jpeg",
     "links": [
-      { "label": "FTX shirt clip", "url": "https://x.com/search?q=Ledger%20FTX%20shirt%20dance" }
+      { "label": "FTX shirt dance", "url": "https://x.com/PhrexleySnipes/status/1502393635580657670?s=20" }
     ],
     "crimeline": {
       "type": "OTHER",
