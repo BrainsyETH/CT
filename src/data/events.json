@@ -1111,20 +1111,22 @@
   },
   {
     "id": "ansem-wif-sphere-2024",
-    "date": "2024-02-20",
-    "title": "Ansemâ€™s $WIF Sphere Becomes Market Symbol",
-    "summary": "Trader Ansemâ€™s $WIF sphere imagery became a defining visual meme of the Solana memecoin cycle, symbolizing reflexive hype and narrative-driven trading.",
-    "category": "Culture",
+    "date": "2024-03-13",
+    "title": "Ansem Tweets About $WIF On Sphere",
+    "summary": "A joke tweet about putting Dogwifhat (WIF) on the Las Vegas Sphere rapidly escalated into a community-funded campaign. Within hours, a fundraiser site was launched, and by March 13, 2024, Ansem announced the campaign was fully funded. Despite the successful fundraising, there has been no $WIF on Sphere.",
+    "category": "CT Lore",
     "tags": [
-      "CULTURAL"
+      "CULTURAL",
+      "FAILURE"
     ],
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/wif_on_sphere.png",
     "links": [
       {
-        "label": "$WIF sphere posts",
-        "url": "https://x.com/search?q=Ansem%20WIF%20sphere"
+        "label": "Ansem Tweets Fully Funded",
+        "url": "https://x.com/blknoiz06/status/1767938938109415801?s=20"
       }
     ]
   },
@@ -1194,7 +1196,7 @@
     "date": "2024-04-19",
     "title": "Fourth Bitcoin Halving",
     "summary": "Bitcoin's block reward halves from 6.25 BTC to 3.125 BTC at block 840,000, continuing the predictable monetary policy.",
-    "category": "Halvings",
+    "category": "Bitcoin",
     "tags": [
       "TECH",
       "ECONOMIC",
@@ -1203,6 +1205,7 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_4th_halving.png",
     "links": [
       {
         "label": "Fourth Halving",
@@ -1279,33 +1282,22 @@
   {
     "id": "gainzy-uhc-killer-0xracist-post-2024",
     "date": "2024-10-08",
-    "title": "Gainzy Falsely Named as UHC CEO Killer in Viral 0xRacist Post",
-    "summary": "A viral post from the account 0xRacist falsely named crypto trader Gainzy as the UnitedHealthcare CEO killer, sparking outrage, harassment, and renewed debate about misinformation and defamation on Crypto Twitter.",
-    "category": "Culture",
+    "title": "Gainzy Falsely Named as UHC CEO Killer",
+    "summary": "A viral post falsely accused crypto 'trader' Gainzy as the UnitedHealthcare CEO killer, sparking outrage and investigation from Crypto Twitter.",
+    "category": "CT Lore",
     "tags": [
-      "CULTURAL",
-      "FAILURE"
+      "CULTURAL"
     ],
     "mode": [
-      "crimeline"
+      "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/gainzy_killer.jpeg",
     "links": [
       {
-        "label": "Viral post reactions",
-        "url": "https://x.com/search?q=Gainzy%200xRacist"
-      }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": 0,
-      "victims_estimated": "1 individual",
-      "root_cause": [
-        "Misinformation",
-        "Anonymous account abuse"
-      ],
-      "aftermath": "Post debunked; reputational harm occurred.",
-      "status": "Resolved"
-    }
+        "label": "Tweet of Evidence",
+        "url": "https://x.com/0xRacist/status/1864805751723569223?s=20"
+       }
+    ]
   },
   {
     "id": "radiant-capital-hack-2024-10-16",
