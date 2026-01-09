@@ -3,10 +3,11 @@
     "id": "btc-genesis-2009-01-03",
     "date": "2009-01-03",
     "title": "Bitcoin Genesis Block",
-    "summary": "Satoshi Nakamoto mines the first Bitcoin block, embedding 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks' in the coinbase.",
+    "summary": "The Bitcoin Genesis Block, also known as Block 0, is the first block in the Bitcoin blockchain, mined by Satoshi Nakamoto on January 3, 2009. It contained an embedded message, The Times 03-Jan-2009 Chancellor on brink of second bailout for bank. ",
     "category": "Genesis Era",
     "tags": ["TECH", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/Bitcoin-Genesis-block.jpg",
     "links": [
       { "label": "Genesis Block", "url": "https://en.bitcoin.it/wiki/Genesis_block" }
     ],
@@ -18,10 +19,11 @@
     "id": "btc-pizza-day-2010-05-22",
     "date": "2010-05-22",
     "title": "Bitcoin Pizza Day",
-    "summary": "Laszlo Hanyecz pays 10,000 BTC for two Papa John's pizzas, marking the first real-world Bitcoin transaction.",
-    "category": "Genesis Era",
+    "summary": "Laszlo Hanyecz pays 10,000 BTC for two Papa John's pizzas, marking the first and most famous real-world Bitcoin transaction.",
+    "category": "Bitcoin",
     "tags": ["CULTURAL", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin_pizza_day.png",
     "links": [
       { "label": "Bitcoin Pizza Day", "url": "https://en.bitcoin.it/wiki/Laszlo_Hanyecz" }
     ],
@@ -33,10 +35,11 @@
     "id": "silk-road-launch-2011-02",
     "date": "2011-02-01",
     "title": "Silk Road Launches",
-    "summary": "Ross Ulbricht launches Silk Road, the first major darknet marketplace using Bitcoin for anonymous payments.",
+    "summary": "Ross Ulbricht launches Silk Road, the first major darknet marketplace using Bitcoin for anonymous payments. From February 6, 2011 to July 23, 2013 there were approximately 1,229,465 transactions completed on the site. The total revenue generated from these sales was 9,519,664 Bitcoins, and the total commissions collected by Silk Road from the sales amounted to 614,305 Bitcoins.",
     "category": "Genesis Era",
     "tags": ["CULTURAL", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/silk_road.png",
     "links": [
       { "label": "Silk Road Wikipedia", "url": "https://en.wikipedia.org/wiki/Silk_Road_(marketplace)" }
     ],
@@ -48,10 +51,11 @@
     "id": "mtgox-hack-2011-06-19",
     "date": "2011-06-19",
     "title": "Mt. Gox First Hack",
-    "summary": "Mt. Gox, the largest Bitcoin exchange at the time, suffers a security breach that leads to a flash crash from $17.50 to $0.01.",
+    "summary": "On June 19th, 2011, a security breach of the Mt. Gox bitcoin exchange caused the nominal price of a bitcoin to fraudulently drop to one cent on the Mt. Gox exchange, after a hacker allegedly used credentials from a Mt. Gox auditor's compromised computer illegally to fabricate a large number of bitcoins for himself. ",
     "category": "Centralized Exchange",
     "tags": ["SECURITY", "FAILURE"],
     "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox_logo.avif",
     "links": [
       { "label": "Mt. Gox Wiki", "url": "https://en.bitcoin.it/wiki/Mt._Gox" }
     ],
@@ -75,6 +79,7 @@
     "category": "Halvings",
     "tags": ["TECH", "ECONOMIC", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin-inflation-chart.png",
     "links": [
       { "label": "Halving History", "url": "https://www.bitcoinblockhalf.com/" }
     ],
@@ -84,12 +89,13 @@
   },
   {
     "id": "mtgox-collapse-2014-02-24",
-    "date": "2014-02-24",
+    "date": "2014-02-7",
     "title": "Mt. Gox Collapse",
-    "summary": "Mt. Gox halts all withdrawals and files for bankruptcy after revealing 850,000 BTC (~$450M at the time) were stolen over several years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals.[49] The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found Karpelès guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": "Centralized Exchange",
     "tags": ["SECURITY", "FAILURE"],
     "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox.avif",
     "links": [
       { "label": "Mt. Gox Bankruptcy", "url": "https://en.wikipedia.org/wiki/Mt._Gox" }
     ],
@@ -113,6 +119,7 @@
     "category": "Ethereum Era",
     "tags": ["TECH", "MILESTONE"],
     "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/eth_launch.jpeg",
     "links": [
       { "label": "Ethereum History", "url": "https://ethereum.org/en/history/" }
     ],
