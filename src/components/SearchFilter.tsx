@@ -35,10 +35,10 @@ export function SearchFilter() {
 
   return (
     <div
-      className={`rounded-lg p-3 sm:p-4 transition-colors duration-300 ${
+      className={`rounded-2xl p-3 sm:p-4 transition-colors duration-300 border-2 ${
         isCrimeline
-          ? "bg-gray-900/80 border border-red-900/30"
-          : "bg-white border border-gray-200"
+          ? "bg-gray-900/80 border-red-900/50"
+          : "bg-[#fffaf2] border-[#1f1f1f]/20"
       }`}
     >
       {/* Main Controls Row */}
@@ -67,12 +67,12 @@ export function SearchFilter() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search events"
-            className={`w-full pl-9 pr-8 py-2 rounded-lg text-sm transition-colors duration-300 ${
+            className={`w-full pl-9 pr-8 py-2 rounded-xl text-sm transition-colors duration-300 border-2 ${
               isCrimeline
-                ? "bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:border-red-500"
-                : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-teal-500"
+                ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-red-500"
+                : "bg-white border-[#1f1f1f]/30 text-gray-900 placeholder-gray-400 focus:border-[#2fb7a0]"
             } focus:outline-none focus:ring-1 ${
-              isCrimeline ? "focus:ring-red-500" : "focus:ring-teal-500"
+              isCrimeline ? "focus:ring-red-500" : "focus:ring-[#2fb7a0]"
             }`}
           />
           {searchQuery && (
@@ -96,10 +96,10 @@ export function SearchFilter() {
         <button
           onClick={toggleSortOrder}
           aria-label={`Sort by ${sortOrder === "asc" ? "oldest" : "newest"} first`}
-          className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
+          className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-300 whitespace-nowrap border-2 ${
             isCrimeline
-              ? "bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700"
-              : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+              ? "bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700"
+              : "bg-white border-[#1f1f1f]/20 text-gray-800 hover:bg-[#eafaf6]"
           }`}
         >
           <svg
@@ -126,14 +126,14 @@ export function SearchFilter() {
           onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
           aria-expanded={isFiltersExpanded}
           aria-label={`${isFiltersExpanded ? "Hide" : "Show"} filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ""}`}
-          className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+          className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-300 border-2 ${
             isFiltersExpanded || hasActiveFilters
               ? isCrimeline
-                ? "bg-red-900/50 border border-red-800 text-red-300"
-                : "bg-teal-100 border border-teal-300 text-teal-700"
+                ? "bg-red-900/50 border-red-800 text-red-300"
+                : "bg-[#d6f4ee] border-[#2fb7a0] text-[#1f1f1f]"
               : isCrimeline
-              ? "bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700"
-              : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+              ? "bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700"
+              : "bg-white border-[#1f1f1f]/20 text-gray-800 hover:bg-[#eafaf6]"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -145,7 +145,7 @@ export function SearchFilter() {
               className={`absolute -top-1.5 -right-1.5 w-5 h-5 flex items-center justify-center text-xs font-bold rounded-full ${
                 isCrimeline
                   ? "bg-red-500 text-white"
-                  : "bg-teal-500 text-white"
+                  : "bg-[#2fb7a0] text-white"
               }`}
             >
               {activeFilterCount}
@@ -158,10 +158,10 @@ export function SearchFilter() {
           <button
             onClick={clearAllFilters}
             aria-label="Clear all filters"
-            className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+            className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-300 border-2 ${
               isCrimeline
-                ? "bg-red-900/50 border border-red-800 text-red-300 hover:bg-red-900/70"
-                : "bg-teal-50 border border-teal-200 text-teal-700 hover:bg-teal-100"
+                ? "bg-red-900/50 border-red-800 text-red-300 hover:bg-red-900/70"
+                : "bg-[#d6f4ee] border-[#2fb7a0] text-[#1f1f1f] hover:bg-[#bdece1]"
             }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -199,14 +199,14 @@ export function SearchFilter() {
                       key={tag}
                       onClick={() => toggleTag(tag)}
                       aria-pressed={isSelected}
-                      className={`px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                      className={`px-2 py-1 text-xs font-medium rounded-md transition-all duration-200 border-2 ${
                         isSelected
                           ? isCrimeline
-                            ? "bg-red-900 text-red-200 border border-red-700"
-                            : "bg-teal-500 text-white border border-teal-600"
+                            ? "bg-red-900 text-red-200 border-red-700"
+                            : "bg-[#2fb7a0] text-white border-[#2fb7a0]"
                           : isCrimeline
-                          ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                          : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                          ? "bg-gray-800 text-gray-400 border-gray-700 hover:border-gray-600"
+                          : "bg-white text-gray-700 border-[#1f1f1f]/20 hover:border-[#1f1f1f]/40"
                       }`}
                     >
                       {tag}
@@ -230,10 +230,10 @@ export function SearchFilter() {
                     {/* Search Query Chip */}
                     {searchQuery.trim() && (
                       <span
-                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
+                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md border-2 ${
                           isCrimeline
-                            ? "bg-gray-800 text-gray-300 border border-gray-700"
-                            : "bg-gray-100 text-gray-700 border border-gray-300"
+                            ? "bg-gray-800 text-gray-300 border-gray-700"
+                            : "bg-white text-gray-700 border-[#1f1f1f]/30"
                         }`}
                       >
                         &quot;{searchQuery}&quot;
@@ -241,7 +241,7 @@ export function SearchFilter() {
                           onClick={() => setSearchQuery("")}
                           aria-label={`Remove search filter: ${searchQuery}`}
                           className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-[#2fb7a0]"
                           }`}
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -255,10 +255,10 @@ export function SearchFilter() {
                     {selectedTags.map((tag) => (
                       <span
                         key={tag}
-                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
+                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md border-2 ${
                           isCrimeline
-                            ? "bg-red-900/50 text-red-300 border border-red-800"
-                            : "bg-teal-100 text-teal-700 border border-teal-300"
+                            ? "bg-red-900/50 text-red-300 border-red-800"
+                            : "bg-[#d6f4ee] text-[#1f1f1f] border-[#2fb7a0]"
                         }`}
                       >
                         {tag}
@@ -266,7 +266,7 @@ export function SearchFilter() {
                           onClick={() => toggleTag(tag)}
                           aria-label={`Remove ${tag} filter`}
                           className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-[#2fb7a0]"
                           }`}
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -282,7 +282,7 @@ export function SearchFilter() {
                       className={`sm:hidden ml-auto px-2 py-1 text-xs font-medium rounded-full transition-colors ${
                         isCrimeline
                           ? "text-red-400 hover:bg-red-900/30"
-                          : "text-teal-600 hover:bg-teal-50"
+                          : "text-[#2fb7a0] hover:bg-[#eafaf6]"
                       }`}
                     >
                       Clear all

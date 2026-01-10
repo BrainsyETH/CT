@@ -3,24 +3,34 @@
 /* Timeline Mode (Default) */
 :root,
 [data-theme="timeline"] {
-  --background: #f9fafb;
-  --foreground: #111827;
-  --accent: #14b8a6;
-  --accent-light: #ccfbf1;
-  --card-bg: #ffffff;
-  --card-border: #e5e7eb;
-  --muted: #4b5563;
+  --background: #fdf7ee;
+  --foreground: #1a1a1a;
+  --accent: #2fb7a0;
+  --accent-light: #d6f4ee;
+  --card-bg: #fffaf2;
+  --card-border: #1f1f1f;
+  --muted: #4a4a4a;
+  --border-width: 2px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-strong: 8px 8px 0 rgba(26, 26, 26, 0.2);
+  --shadow-soft: 4px 4px 0 rgba(26, 26, 26, 0.18);
 }
 
 /* Crimeline Mode (Dark/Sinister) */
 [data-theme="crimeline"] {
-  --background: #030712;
-  --foreground: #f9fafb;
-  --accent: #dc2626;
-  --accent-light: #450a0a;
-  --card-bg: #111827;
-  --card-border: #7f1d1d;
-  --muted: #d1d5db;
+  --background: #0d0d0d;
+  --foreground: #f7f1e6;
+  --accent: #ff5a5a;
+  --accent-light: #2a1212;
+  --card-bg: #191919;
+  --card-border: #ff5a5a;
+  --muted: #cfc9c2;
+  --border-width: 2px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-strong: 8px 8px 0 rgba(0, 0, 0, 0.55);
+  --shadow-soft: 4px 4px 0 rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
@@ -31,9 +41,53 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: "Space Grotesk", "Inter", "Helvetica Neue", Arial, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.012em;
+  line-height: 1.7;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-weight: 500;
+}
+
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+button,
+[role="button"],
+input,
+select,
+textarea {
+  border-width: var(--border-width);
+  border-style: solid;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+button:active,
+[role="button"]:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--foreground);
+}
+
+section,
+article,
+.neo-surface {
+  border-radius: var(--radius-lg);
 }
 
 /* Smooth scrolling - respect user preferences */
@@ -76,13 +130,13 @@ html {
 
 /* Selection colors */
 [data-theme="timeline"] ::selection {
-  background: #14b8a6;
-  color: white;
+  background: var(--accent);
+  color: #fff;
 }
 
 [data-theme="crimeline"] ::selection {
-  background: #dc2626;
-  color: white;
+  background: var(--accent);
+  color: #fff;
 }
 
 /* Focus ring styles */
