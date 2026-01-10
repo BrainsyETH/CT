@@ -2058,8 +2058,8 @@
     "image": "https://pbs.twimg.com/media/GDglvfqXYAACIQO?format=jpg&name=900x900",
     "links": [
       {
-        "label": "Annals of Bitcoin Twitter",
-        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+        "label": "Running Bitcoin",
+        "url": "https://x.com/halfin/status/1110302988?s=20"
       }
     ]
   },
@@ -2068,14 +2068,14 @@
     "date": "2011-05-16",
     "title": "The Greg Schoen Regret",
     "summary": "A viral tweet laments selling 1,700 BTC at $0.30, becoming an early symbol of Bitcoin regret as prices climb.",
-    "category": "Bitcoin",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://preview.redd.it/exactly-12-years-ago-we-had-the-most-legendary-bitcoin-v0-c54jytiqbf0b1.jpg?width=895&format=pjpg&auto=webp&s=f1c8269836b4359f13bd1b0641cc6e10c0d07240",
     "links": [
       {
         "label": "Reddit thread",
@@ -2087,7 +2087,7 @@
     "id": "wikileaks-adoption-2011-06-14",
     "date": "2011-06-14",
     "title": "Wikileaks Adoption",
-    "summary": "Wikileaks begins accepting Bitcoin donations, a milestone that cements BTC as a censorship-resistant funding rail.",
+    "summary": "Wikileaks begins accepting Bitcoin donations, a milestone that cemented BTC as a censorship-resistant funding rail.",
     "category": "Bitcoin",
     "tags": [
       "ECONOMIC",
@@ -2096,7 +2096,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/blob-2026-01-10%20at%208.40.29%20PM.jpg",
     "links": [
       {
         "label": "Annals of Bitcoin Twitter",
@@ -2117,28 +2117,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
-    "links": [
-      {
-        "label": "Annals of Bitcoin Twitter",
-        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
-      }
-    ]
-  },
-  {
-    "id": "eff-suspension-2011-06",
-    "date": "2011-06-01",
-    "title": "The EFF Suspension",
-    "summary": "The Electronic Frontier Foundation pauses Bitcoin donations, citing legal concerns during the early adoption period.",
-    "category": "Regulation",
-    "tags": [
-      "REGULATORY",
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/satoshi%20final%20message.png",
     "links": [
       {
         "label": "Annals of Bitcoin Twitter",
@@ -2159,11 +2138,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://pbs.twimg.com/media/G9LnBUGWAAAoF2n?format=jpg&name=medium",
     "links": [
       {
-        "label": "Casascius coins",
-        "url": "https://en.bitcoin.it/wiki/Casascius_physical_bitcoins"
+        "label": "Casascius Coins Vending Machine",
+        "url": "https://x.com/corybates1895/status/1902044481748447575?s=20"
       }
     ]
   },
@@ -2171,8 +2150,8 @@
     "id": "dogecoin-launch-2013-12-06",
     "date": "2013-12-06",
     "title": "The Birth of Dogecoin",
-    "summary": "Billy Markus and Jackson Palmer launch Dogecoin, turning a meme into one of crypto's most enduring communities.",
-    "category": "Meme Coins",
+    "summary": "Billy Markus and Jackson Palmer launch Dogecoin, turning a meme into one of crypto's largest communities.",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "MILESTONE"
@@ -2180,7 +2159,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/dogecoin",
     "links": [
       {
         "label": "Dogecoin community study",
@@ -2193,7 +2172,7 @@
     "date": "2014-01-01",
     "title": "The Creation of Maxcoin",
     "summary": "Maxcoin launches during the 2014 altcoin wave, marking an early high-profile celebrity-branded token experiment.",
-    "category": "Altcoins",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "MILESTONE"
@@ -2201,11 +2180,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://pbs.twimg.com/media/G32wE8MWMAEeBD4?format=png&name=small",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
+        "label": "Cobie Maxcoin Tweet",
+        "url": "https://x.com/cobie/status/1893690837554671791?s=20"
       }
     ]
   },
@@ -2213,7 +2192,7 @@
     "id": "bitpay-obsolete-tweet-2017-08",
     "date": "2017-08-01",
     "title": "I Will Make You Obsolete",
-    "summary": "Nicolas Dorier responds to BitPay with the iconic \"I will make you obsolete\" declaration, a rallying cry for user-controlled Bitcoin tools.",
+    "summary": "Nicolas Dorier responds to BitPay with the iconic \"I will make you obsolete\" declaration, a rallying cry for user-controlled Bitcoin tools. It ultimately led to BTCPay Server becoming a major open-source, self-hosted Bitcoin payment processor.",
     "category": "Bitcoin",
     "tags": [
       "CULTURAL"
@@ -2221,61 +2200,41 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/obsolete",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
+        "label": "I will make you obsolete",
+        "url": "https://x.com/NicolasDorier/status/898378514256207872?s=20"
       }
     ]
   },
   {
     "id": "bitconnect-keynote-2017-10-28",
     "date": "2017-10-28",
-    "title": "The BitConnect Keynote",
-    "summary": "Carlos Matos delivers the \"BitConnect\" stage performance that becomes a viral symbol of the 2017 scam boom.",
-    "category": "Market Structure",
+    "title": "Wasawasawasa Bitconnectttt!",
+    "summary": "Carlos Matos delivers the \"BitConnectttttt\" stage performance that becomes a viral symbol of the 2017 ico boom.",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL",
       "FAILURE"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
-    "image": "",
+    "image": "https://pbs.twimg.com/media/G5ZIz-8XEAAr63I?format=jpg&name=large",
     "links": [
       {
-        "label": "Legendary moments thread",
-        "url": "https://www.reddit.com/r/CryptoCurrency/comments/1334cpz/unforgettable_moments_in_bitcoin-history-8/"
+        "label": "Hey Hey Hey",
+        "url": "https://x.com/DCLBlogger/status/1731077311712370761?s=20"
       }
     ]
   },
-  {
-    "id": "hodl-origin-2013-12-18",
-    "date": "2013-12-18",
-    "title": "The Origin of HODL",
-    "summary": "The \"I AM HODLING\" forum post typo becomes a rallying meme for long-term crypto holders.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL",
-      "MILESTONE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto memes",
-        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
-      }
-    ]
-  },
+
   {
     "id": "bitcoin-cash-fork-2017-08-01",
     "date": "2017-08-01",
-    "title": "The Bitcoin Cash Fork",
-    "summary": "The Bitcoin Cash fork resolves the Block Size War by splitting Bitcoin into BTC and BCH chains.",
+    "title": "Bitcoin Cash is Bitcoin",
+    "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the “real Bitcoin,” posting viral tweets like “Bitcoin Cash is Bitcoin” and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
     "category": "Bitcoin",
     "tags": [
       "TECH",
@@ -2284,11 +2243,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/BCH_Bitcoin",
     "links": [
+       {
+        "label": "BCH is Bitcoin. Bitcoin Core is not",
+        "url": "https://x.com/rogerkver/status/943578647822299137?s=20"
+      },
       {
-        "label": "Annals of Bitcoin Twitter",
-        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+        "label": "BCH is Bitcoin",
+        "url": "https://x.com/rogerkver/status/981908565307764736?s=20"
       }
     ]
   },
@@ -2296,7 +2259,7 @@
     "id": "inversebrah-birth-2018",
     "date": "2018-01-01",
     "title": "The Birth of Inversebrah",
-    "summary": "Inversebrah emerges as a satirical anon account following @cryptostardust's suspension.",
+    "summary": "Inversebrah emerges as a foundational CT anon account following @cryptostardust's suspension.",
     "category": "Culture",
     "tags": [
       "CULTURAL"
@@ -2304,81 +2267,20 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/wassie",
     "links": [
       {
-        "label": "Inversebrah explainer",
-        "url": "https://protos.com/what-is-inversebrah/"
+        "label": "Smolting",
+        "url": "https://x.com/inversebrah"
       }
     ]
   },
-  {
-    "id": "btc-20000-peak-2017-12-17",
-    "date": "2017-12-17",
-    "title": "The $20,000 Peak",
-    "summary": "Bitcoin hits its first mainstream mania top near $20,000 during the 2017 bull market.",
-    "category": "Bitcoin",
-    "tags": [
-      "ATH",
-      "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
-      }
-    ]
-  },
-  {
-    "id": "wassie-genesis-2018",
-    "date": "2018-01-01",
-    "title": "The Wassie Genesis",
-    "summary": "The Wassie frog character rises as a symbol of the 2018 bear market and anon trading culture.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Wassie lore",
-        "url": "https://www.allstarcharts.com/2022-03-31/notorious-underworld-anons-and-wassie"
-      }
-    ]
-  },
-  {
-    "id": "bitcoin-is-dead-2018-meta",
-    "date": "2018-12-15",
-    "title": "The \"Bitcoin is Dead\" 2018 Meta",
-    "summary": "Media outlets repeatedly declare Bitcoin dead during the 2018 crash, cementing the recurring \"Bitcoin is dead\" meme.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto memes",
-        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
-      }
-    ]
-  },
+
   {
     "id": "binance-safu-origin-2018",
     "date": "2018-05-01",
     "title": "The Binance SAFU Origin",
-    "summary": "A typo of \"Funds are safe\" becomes \"SAFU\" and lives on as a crypto catchphrase.",
+    "summary": "In April 2018, Changpeng Zhao (CZ) misspelled “safe” as “SAFU” during a response on Twitter while reassuring users during routine maintenance concerns. The typo went viral on Crypto Twitter, and Binance leaned into it, later formalizing the joke into the Secure Asset Fund for Users (SAFU) in July 2018, an emergency insurance fund seeded with trading fees. The term became legendary after Binance used SAFU funds to fully cover losses from the May 2019 Binance hack, cementing “Funds are SAFU” as crypto lore.",
     "category": "Centralized Exchange",
     "tags": [
       "CULTURAL",
@@ -2387,11 +2289,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/safu",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
+        "label": "Funds are SAFU",
+        "url": "https://x.com/Binance_NZL/status/1829368532293042660?s=20"
       }
     ]
   },
@@ -2429,19 +2331,19 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/libra",
     "links": [
       {
-        "label": "Libra overview",
-        "url": "https://en.wikipedia.org/wiki/Libra_(digital_currency)"
+        "label": "Zuck speaks about Libra launch",
+        "url": "https://x.com/CNBCFastMoney/status/1144003801281716224?s=20"
       }
     ]
   },
   {
     "id": "craig-wright-satoshi-claim-2016-05-02",
     "date": "2016-05-02",
-    "title": "The Craig Wright \"Satoshi\" Claim",
-    "summary": "Craig Wright repeatedly claims to be Satoshi Nakamoto, igniting ongoing legal and community disputes.",
+    "title": "The Craig Wright Lies About Being \"Satoshi\"",
+    "summary": "Craig Wright repeatedly claims to be Satoshi Nakamoto, igniting ongoing legal and community disputes. in 2024, A UK judge ruled that Craig Wright lied extensively and forged documents on a grand scale while falsely claiming to be Satoshi Nakamoto, the creator of Bitcoin.",
     "category": "Bitcoin",
     "tags": [
       "CULTURAL"
@@ -2449,11 +2351,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://pbs.twimg.com/media/GpKliGVW4AAf9bP?format=png&name=small",
     "links": [
       {
-        "label": "Annals of Bitcoin Twitter",
-        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+        "label": "Liar and Faker",
+        "url": "https://www.wired.com/story/craig-wright-lied-faked-evidence-bitcoin-judge-says/"
       }
     ]
   },
@@ -2468,7 +2370,7 @@
       "SECURITY"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "",
     "links": [
@@ -2478,27 +2380,7 @@
       }
     ]
   },
-  {
-    "id": "flash-crash-2020-03-12",
-    "date": "2020-03-12",
-    "title": "The March 12, 2020 Flash Crash",
-    "summary": "Bitcoin drops roughly 50% in a day during the global liquidity crunch, shaking markets across crypto.",
-    "category": "Market Structure",
-    "tags": [
-      "ECONOMIC",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto market analysis",
-        "url": "https://www.mdpi.com/2076-3417/15/23/12802"
-      }
-    ]
-  },
+  
   {
     "id": "comp-launch-2020-06",
     "date": "2020-06-15",
@@ -2607,7 +2489,7 @@
     "id": "makerdao-black-thursday-2020-03-12",
     "date": "2020-03-12",
     "title": "MakerDAO \"Black Thursday\"",
-    "summary": "Extreme volatility triggers zero-bid liquidations on MakerDAO, exposing risks in early DeFi collateral systems.",
+    "summary": "Extreme volatility triggers zero-bid liquidations on MakerDAO, exposing risks in early DeFi collateral systems. As a result, many vaults were liquidated and hundreds of liquidations were won with bids of zero DAI, leading to ~$8 M of ETH collateral effectively removed at no cost — causing significant losses for users and leaving some DAI unbacked.",
     "category": "DeFi",
     "tags": [
       "FAILURE"
@@ -2618,8 +2500,8 @@
     "image": "",
     "links": [
       {
-        "label": "DeFi summer recap",
-        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+        "label": "Black Thursday",
+        "url": "https://medium.com/@whiterabbit_hq/black-thursday-for-makerdao-8-32-million-was-liquidated-for-0-dai-36b83cac56b6"
       }
     ]
   },
