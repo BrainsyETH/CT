@@ -199,7 +199,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 {/* Date */}
                 <time
                   className={`text-sm font-medium ${
-                    isCrimeline ? "text-red-400" : "text-teal-600"
+                    isCrimeline ? "text-red-400" : "text-[#ff6b57]"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -378,10 +378,10 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border-2 ${
                             isCrimeline
-                              ? "bg-gray-800 text-red-400 hover:bg-gray-700"
-                              : "bg-gray-100 text-teal-600 hover:bg-gray-200"
+                              ? "bg-gray-800 text-red-400 hover:bg-gray-700 border-red-900/40"
+                              : "bg-[#ffe2d9] text-[#1f1f1f] hover:bg-[#ffcfbf] border-[#ff6b57]"
                           }`}
                         >
                           {link.label}

@@ -26,10 +26,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
     <div className="relative z-30">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+        className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-300 border-2 ${
           isCrimeline
-            ? "bg-gray-900 border border-red-900/30 text-gray-300"
-            : "bg-white border border-gray-200 text-gray-700"
+            ? "bg-gray-900 border-red-900/50 text-gray-300"
+            : "bg-[#fffaf2] border-[#1f1f1f]/20 text-gray-800"
         }`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,10 +69,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-lg shadow-lg z-[100] ${
+              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-xl shadow-lg z-[100] border-2 ${
                 isCrimeline
-                  ? "bg-gray-900 border border-red-900/30"
-                  : "bg-white border border-gray-200"
+                  ? "bg-gray-900 border-red-900/50"
+                  : "bg-[#fffaf2] border-[#1f1f1f]/20"
               }`}
             >
               {years.map((year) => (
@@ -83,10 +83,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
                     year === currentYear
                       ? isCrimeline
                         ? "bg-red-900/50 text-red-300"
-                        : "bg-teal-100 text-teal-700"
+                        : "bg-[#ffe2d9] text-[#1f1f1f]"
                       : isCrimeline
                       ? "text-gray-400 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      : "text-gray-700 hover:bg-[#fff1ea] hover:text-gray-900"
                   }`}
                 >
                   {year}

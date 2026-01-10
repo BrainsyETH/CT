@@ -155,7 +155,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
             ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
             : isCrimeline
             ? "text-gray-500 hover:text-red-400 hover:bg-red-900/30"
-            : "text-gray-400 hover:text-teal-600 hover:bg-teal-100"
+            : "text-gray-500 hover:text-[#ff6b57] hover:bg-[#ffe2d9]"
         }`}
         aria-label="Share event"
         aria-expanded={isOpen}
@@ -203,12 +203,12 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                 className={`w-48 rounded-lg shadow-xl z-[70] overflow-hidden ${
                   isCrimeline
                     ? "bg-gray-900 border border-red-900/50"
-                    : "bg-white border border-gray-200"
+                    : "bg-[#fffaf2] border border-[#1f1f1f]/20"
                 }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className={`px-3 py-2 text-xs font-semibold uppercase tracking-wide ${
-                  isCrimeline ? "text-gray-500 border-b border-gray-800" : "text-gray-400 border-b border-gray-100"
+                  isCrimeline ? "text-gray-500 border-b border-gray-800" : "text-gray-500 border-b border-[#1f1f1f]/10"
                 }`}>
                   Share to
                 </div>
@@ -221,7 +221,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                       isCrimeline
                         ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                        : "text-gray-800 hover:bg-[#fff1ea] hover:text-gray-900"
                     }`}
                   >
                     {link.icon}
@@ -229,14 +229,14 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                   </button>
                 ))}
 
-                <div className={`border-t ${isCrimeline ? "border-gray-800" : "border-gray-100"}`}>
+                <div className={`border-t ${isCrimeline ? "border-gray-800" : "border-[#1f1f1f]/10"}`}>
                   <button
                     onClick={copyToClipboard}
                     role="menuitem"
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                       isCrimeline
                         ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                        : "text-gray-800 hover:bg-[#fff1ea] hover:text-gray-900"
                     }`}
                   >
                     {copied ? (

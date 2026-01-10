@@ -145,7 +145,7 @@ export function SearchFilter() {
               className={`absolute -top-1.5 -right-1.5 w-5 h-5 flex items-center justify-center text-xs font-bold rounded-full ${
                 isCrimeline
                   ? "bg-red-500 text-white"
-                  : "bg-teal-500 text-white"
+                  : "bg-[#ff6b57] text-white"
               }`}
             >
               {activeFilterCount}
@@ -241,7 +241,7 @@ export function SearchFilter() {
                           onClick={() => setSearchQuery("")}
                           aria-label={`Remove search filter: ${searchQuery}`}
                           className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-[#ff6b57]"
                           }`}
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -266,7 +266,7 @@ export function SearchFilter() {
                           onClick={() => toggleTag(tag)}
                           aria-label={`Remove ${tag} filter`}
                           className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-[#ff6b57]"
                           }`}
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -282,7 +282,7 @@ export function SearchFilter() {
                       className={`sm:hidden ml-auto px-2 py-1 text-xs font-medium rounded-full transition-colors ${
                         isCrimeline
                           ? "text-red-400 hover:bg-red-900/30"
-                          : "text-teal-600 hover:bg-teal-50"
+                          : "text-[#ff6b57] hover:bg-[#fff1ea]"
                       }`}
                     >
                       Clear all

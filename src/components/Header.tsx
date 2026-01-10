@@ -61,7 +61,7 @@ export function Header() {
             </h1>
             <p
               className={`text-xs transition-colors duration-300 ${
-                isCrimeline ? "text-red-400" : "text-teal-600"
+                isCrimeline ? "text-red-400" : "text-[#ff6b57]"
               }`}
             >
               {isCrimeline

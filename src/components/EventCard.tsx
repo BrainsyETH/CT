@@ -72,7 +72,7 @@ export function EventCard({ event, index }: EventCardProps) {
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-2xl transition-all duration-300 cursor-pointer group ${
-            isCrimeline ? "focus:ring-red-500" : "focus:ring-teal-500"
+            isCrimeline ? "focus:ring-red-500" : "focus:ring-[#ff6b57]"
           }`}
         >
           <div
@@ -104,7 +104,7 @@ export function EventCard({ event, index }: EventCardProps) {
               <div className="flex items-start justify-between">
                 <time
                   className={`text-sm font-medium transition-colors duration-300 ${
-                    isCrimeline ? "text-red-400" : "text-teal-600"
+                    isCrimeline ? "text-red-400" : "text-[#ff6b57]"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -115,7 +115,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Title */}
               <h3
                 className={`mt-1 text-lg font-bold transition-colors duration-300 ${
-                  isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-teal-700"
+                  isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-[#ff6b57]"
                 }`}
               >
                 {event.title}
@@ -216,7 +216,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Click hint - visible on mobile/focus and hover on desktop */}
               <div
                 className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
-                  isCrimeline ? "text-red-400" : "text-teal-600"
+                  isCrimeline ? "text-red-400" : "text-[#ff6b57]"
                 } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
               >
                 <span className="inline-flex items-center gap-1">

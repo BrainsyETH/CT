@@ -34,8 +34,8 @@ const tagColors: Record<EventTag, { timeline: string; crimeline: string }> = {
     crimeline: "bg-red-900/60 text-red-200 border-2 border-red-800",
   },
   MILESTONE: {
-    timeline: "bg-teal-100 text-teal-800 border-2 border-teal-200",
-    crimeline: "bg-teal-900/60 text-teal-200 border-2 border-teal-800",
+    timeline: "bg-[#ffe2d9] text-[#8a2f22] border-2 border-[#ff6b57]",
+    crimeline: "bg-red-900/60 text-red-200 border-2 border-red-800",
   },
   ATH: {
     timeline: "bg-yellow-100 text-yellow-800 border-2 border-yellow-200",

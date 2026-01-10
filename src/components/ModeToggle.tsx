@@ -15,7 +15,7 @@ export function ModeToggle() {
       style={{
         backgroundColor: isCrimeline
           ? "rgba(127, 29, 29, 0.5)"
-          : "rgba(20, 184, 166, 0.2)",
+          : "rgba(255, 107, 87, 0.18)",
       }}
       role="switch"
       aria-checked={isCrimeline}
@@ -23,7 +23,7 @@ export function ModeToggle() {
     >
       <span
         className={`text-sm font-medium transition-colors duration-300 ${
-          isCrimeline ? "text-gray-400" : "text-teal-600"
+          isCrimeline ? "text-gray-400" : "text-[#1f1f1f]"
         }`}
       >
         Timeline
@@ -31,7 +31,7 @@ export function ModeToggle() {
 
       <div
         className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
-          isCrimeline ? "bg-red-900" : "bg-teal-500"
+          isCrimeline ? "bg-red-900" : "bg-[#ff6b57]"
         }`}
       >
         <motion.div

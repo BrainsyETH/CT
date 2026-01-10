@@ -311,10 +311,10 @@ export function Timeline({ events }: TimelineProps) {
               {hasActiveFilters && (
                 <button
                   onClick={clearAllFilters}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+                  className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 border-2 ${
                     isCrimeline
-                      ? "bg-red-900/50 text-red-300 hover:bg-red-900/70 border border-red-800"
-                      : "bg-teal-500 text-white hover:bg-teal-600"
+                      ? "bg-red-900/50 text-red-300 hover:bg-red-900/70 border-red-800"
+                      : "bg-[#ff6b57] text-white hover:bg-[#ff523b] border-[#ff6b57]"
                   }`}
                 >
                   Show all events

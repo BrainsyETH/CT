@@ -48,7 +48,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   return (
     <div
       className={`min-h-screen transition-colors duration-500 ${
-        isCrimeline ? "bg-gray-950" : "bg-gray-50"
+        isCrimeline ? "bg-[#0d0d0d]" : "bg-[#fdf7ee]"
       }`}
     >
       {/* Mode transition overlay */}
@@ -60,7 +60,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className={`fixed inset-0 z-[100] pointer-events-none ${
-              isCrimeline ? "bg-red-900" : "bg-teal-500"
+              isCrimeline ? "bg-red-900" : "bg-[#ff6b57]"
             }`}
           />
         )}

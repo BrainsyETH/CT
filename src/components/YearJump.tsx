@@ -20,16 +20,16 @@ export function YearJump({ years, currentYear }: YearJumpProps) {
 
   return (
     <nav
-      className={`hidden lg:flex flex-col gap-1 p-3 rounded-lg transition-colors duration-300 ${
+      className={`hidden lg:flex flex-col gap-1 p-3 rounded-xl transition-colors duration-300 border-2 ${
         isCrimeline
-          ? "bg-gray-900/80 border border-red-900/30"
-          : "bg-white/80 border border-gray-200"
+          ? "bg-gray-900/80 border-red-900/50"
+          : "bg-[#fffaf2]/90 border-[#1f1f1f]/20"
       } backdrop-blur-sm`}
       aria-label="Jump to year"
     >
       <span
         className={`text-xs font-bold uppercase tracking-wider mb-2 transition-colors duration-300 ${
-          isCrimeline ? "text-red-400" : "text-teal-600"
+          isCrimeline ? "text-red-400" : "text-[#ff6b57]"
         }`}
       >
         Years
@@ -45,10 +45,10 @@ export function YearJump({ years, currentYear }: YearJumpProps) {
               isActive
                 ? isCrimeline
                   ? "bg-red-900/70 text-red-300 border-l-2 border-red-500"
-                  : "bg-teal-100 text-teal-700 border-l-2 border-teal-500"
+                  : "bg-[#ffe2d9] text-[#1f1f1f] border-l-2 border-[#ff6b57]"
                 : isCrimeline
                 ? "text-gray-400 hover:text-white hover:bg-red-900/50"
-                : "text-gray-600 hover:text-gray-900 hover:bg-teal-100"
+                : "text-gray-700 hover:text-gray-900 hover:bg-[#fff1ea]"
             }`}
           >
             {year}
