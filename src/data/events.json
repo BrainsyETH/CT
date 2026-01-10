@@ -2019,7 +2019,7 @@
     "date": "2026-01-03",
     "title": "100,000 Coinbase Customer Records Found Online",
     "summary": "Reports surfaced claiming 100,000 Coinbase customer records were being sold or shared online.",
-    "category": "Security",
+    "category": "Data Leak",
     "tags": [
       "SECURITY",
       "FAILURE"
@@ -2049,7 +2049,7 @@
     "id": "zcash-core-dev-resignation-2026",
     "date": "2026-01-12",
     "title": "Zcash Core Developers Resign",
-    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements.",
+    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance and strategic disagreements.",
     "category": "Market Structure",
     "tags": [
       "CULTURAL"
@@ -2060,8 +2060,8 @@
     "image": "https://pbs.twimg.com/media/G-ITrPPXwAA1sIs?format=jpg&name=4096x4096",
     "links": [
       {
-        "label": "Developer statements",
-        "url": "https://x.com/search?q=Zcash%20devs%20resign"
+        "label": "Zooko Tweets",
+        "url": "https://x.com/zooko/status/2008998305389531418?s=20"
       }
     ]
   }
