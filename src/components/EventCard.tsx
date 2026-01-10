@@ -56,7 +56,7 @@ export function EventCard({ event, index }: EventCardProps) {
         className={`absolute left-0 md:left-1/2 w-4 h-4 rounded-full -translate-x-1/2 z-10 transition-colors duration-300 border-2 ${
           isCrimeline
             ? "bg-red-500 border-gray-950 shadow-red-500/50"
-            : "bg-[#ff6b57] border-[#fffaf2] shadow-[#ff6b57]/50"
+            : "bg-[#2fb7a0] border-[#fffaf2] shadow-[#2fb7a0]/50"
         } shadow-lg`}
       />
 
@@ -72,14 +72,14 @@ export function EventCard({ event, index }: EventCardProps) {
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-2xl transition-all duration-300 cursor-pointer group ${
-            isCrimeline ? "focus:ring-red-500" : "focus:ring-[#ff6b57]"
+            isCrimeline ? "focus:ring-red-500" : "focus:ring-[#2fb7a0]"
           }`}
         >
           <div
             className={`rounded-2xl transition-all duration-300 overflow-hidden border-2 ${
               isCrimeline
                 ? "bg-gray-900 border-red-900/50 shadow-[6px_6px_0_rgba(0,0,0,0.6)] group-hover:border-red-600/70"
-                : "bg-[#fffaf2] border-[#1f1f1f] shadow-[6px_6px_0_rgba(20,20,20,0.18)] group-hover:border-[#ff6b57]"
+                : "bg-[#fffaf2] border-[#1f1f1f] shadow-[6px_6px_0_rgba(20,20,20,0.18)] group-hover:border-[#2fb7a0]"
             }`}
           >
             {/* Event Image */}
@@ -104,7 +104,7 @@ export function EventCard({ event, index }: EventCardProps) {
               <div className="flex items-start justify-between">
                 <time
                   className={`text-sm font-medium transition-colors duration-300 ${
-                    isCrimeline ? "text-red-400" : "text-[#ff6b57]"
+                    isCrimeline ? "text-red-400" : "text-[#2fb7a0]"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -115,7 +115,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Title */}
               <h3
                 className={`mt-1 text-lg font-bold transition-colors duration-300 ${
-                  isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-[#ff6b57]"
+                  isCrimeline ? "text-white group-hover:text-red-300" : "text-gray-900 group-hover:text-[#2fb7a0]"
                 }`}
               >
                 {event.title}
@@ -216,7 +216,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Click hint - visible on mobile/focus and hover on desktop */}
               <div
                 className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
-                  isCrimeline ? "text-red-400" : "text-[#ff6b57]"
+                  isCrimeline ? "text-red-400" : "text-[#2fb7a0]"
                 } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
               >
                 <span className="inline-flex items-center gap-1">

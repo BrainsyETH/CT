@@ -29,7 +29,7 @@ export function YearJump({ years, currentYear }: YearJumpProps) {
     >
       <span
         className={`text-xs font-bold uppercase tracking-wider mb-2 transition-colors duration-300 ${
-          isCrimeline ? "text-red-400" : "text-[#ff6b57]"
+          isCrimeline ? "text-red-400" : "text-[#2fb7a0]"
         }`}
       >
         Years
@@ -45,10 +45,10 @@ export function YearJump({ years, currentYear }: YearJumpProps) {
               isActive
                 ? isCrimeline
                   ? "bg-red-900/70 text-red-300 border-l-2 border-red-500"
-                  : "bg-[#ffe2d9] text-[#1f1f1f] border-l-2 border-[#ff6b57]"
+                  : "bg-[#d6f4ee] text-[#1f1f1f] border-l-2 border-[#2fb7a0]"
                 : isCrimeline
                 ? "text-gray-400 hover:text-white hover:bg-red-900/50"
-                : "text-gray-700 hover:text-gray-900 hover:bg-[#fff1ea]"
+                : "text-gray-700 hover:text-gray-900 hover:bg-[#eafaf6]"
             }`}
           >
             {year}

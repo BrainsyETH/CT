@@ -259,7 +259,7 @@ export function Timeline({ events }: TimelineProps) {
                       className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 border-2 ${
                         isCrimeline
                           ? "bg-gray-950 text-red-300 border-red-800"
-                          : "bg-[#fff1ea] text-[#1f1f1f] border-[#1f1f1f] shadow-[3px_3px_0_rgba(26,26,26,0.2)]"
+                          : "bg-[#eafaf6] text-[#1f1f1f] border-[#1f1f1f] shadow-[3px_3px_0_rgba(26,26,26,0.2)]"
                       }`}
                     >
                       {year}
@@ -314,7 +314,7 @@ export function Timeline({ events }: TimelineProps) {
                   className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 border-2 ${
                     isCrimeline
                       ? "bg-red-900/50 text-red-300 hover:bg-red-900/70 border-red-800"
-                      : "bg-[#ff6b57] text-white hover:bg-[#ff523b] border-[#ff6b57]"
+                      : "bg-[#2fb7a0] text-white hover:bg-[#269b89] border-[#2fb7a0]"
                   }`}
                 >
                   Show all events

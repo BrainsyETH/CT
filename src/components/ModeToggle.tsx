@@ -15,7 +15,7 @@ export function ModeToggle() {
       style={{
         backgroundColor: isCrimeline
           ? "rgba(127, 29, 29, 0.5)"
-          : "rgba(255, 107, 87, 0.18)",
+          : "rgba(47, 183, 160, 0.18)",
       }}
       role="switch"
       aria-checked={isCrimeline}
@@ -31,7 +31,7 @@ export function ModeToggle() {
 
       <div
         className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
-          isCrimeline ? "bg-red-900" : "bg-[#ff6b57]"
+          isCrimeline ? "bg-red-900" : "bg-[#2fb7a0]"
         }`}
       >
         <motion.div

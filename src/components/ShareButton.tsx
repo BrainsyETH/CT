@@ -155,7 +155,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
             ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
             : isCrimeline
             ? "text-gray-500 hover:text-red-400 hover:bg-red-900/30"
-            : "text-gray-500 hover:text-[#ff6b57] hover:bg-[#ffe2d9]"
+            : "text-gray-500 hover:text-[#2fb7a0] hover:bg-[#d6f4ee]"
         }`}
         aria-label="Share event"
         aria-expanded={isOpen}
@@ -221,7 +221,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                       isCrimeline
                         ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                        : "text-gray-800 hover:bg-[#fff1ea] hover:text-gray-900"
+                        : "text-gray-800 hover:bg-[#eafaf6] hover:text-gray-900"
                     }`}
                   >
                     {link.icon}
@@ -236,7 +236,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                     className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                       isCrimeline
                         ? "text-gray-300 hover:bg-gray-800 hover:text-white"
-                        : "text-gray-800 hover:bg-[#fff1ea] hover:text-gray-900"
+                        : "text-gray-800 hover:bg-[#eafaf6] hover:text-gray-900"
                     }`}
                   >
                     {copied ? (

@@ -58,7 +58,7 @@ export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProp
           className={`h-full transition-colors duration-300 ${
             isCrimeline
               ? "bg-red-500"
-              : "bg-[#ff6b57]"
+              : "bg-[#2fb7a0]"
           }`}
           style={{ width: `${scrollProgress}%` }}
         />

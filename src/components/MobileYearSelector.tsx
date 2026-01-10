@@ -83,10 +83,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
                     year === currentYear
                       ? isCrimeline
                         ? "bg-red-900/50 text-red-300"
-                        : "bg-[#ffe2d9] text-[#1f1f1f]"
+                        : "bg-[#d6f4ee] text-[#1f1f1f]"
                       : isCrimeline
                       ? "text-gray-400 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-700 hover:bg-[#fff1ea] hover:text-gray-900"
+                      : "text-gray-700 hover:bg-[#eafaf6] hover:text-gray-900"
                   }`}
                 >
                   {year}
