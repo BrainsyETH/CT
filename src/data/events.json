@@ -3051,26 +3051,7 @@
       }
     ]
   },
-  {
-    "id": "unc-only-renaming-2025-10-20",
-    "date": "2025-10-20",
-    "title": "The Unc Only Renaming",
-    "summary": "Cobie embraces the aging degen persona, renaming UpOnly to \"Unc Only.\"",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Cobie profile",
-        "url": "https://iq.wiki/wiki/cobie"
-      }
-    ]
-  },
+  
   {
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
@@ -3157,8 +3138,8 @@
   {
     "id": "cobie-uponly-burn-2024-11-08",
     "date": "2024-11-08",
-    "title": "The Cobie Pump.fun UPONLY Token Burn",
-    "summary": "Cobie burns $17M worth of gifted Pump.fun tokens, calling out memecoin chaos.",
+    "title": "See you in Hell",
+    "summary": "Cobie burns $17M `worth` of gifted Pump.fun token, calling out memecoin chaos.",
     "category": "Memecoins",
     "tags": [
       "CULTURAL",
@@ -3167,8 +3148,12 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/see%20you%20in%20hell",
     "links": [
+      {
+        "label": "See you in Hell",
+        "url": "https://www.theblock.co/post/325198/cobie-burns-pump-fun-solana-memecoin-uponly"
+      },
       {
         "label": "The Block",
         "url": "https://www.theblock.co/post/325198/cobie-burns-pump-fun-solana-memecoin-uponly"
