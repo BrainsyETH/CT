@@ -2773,7 +2773,7 @@
   {
     "id": "ftx-bank-run-2022-11-06",
     "date": "2022-11-06",
-    "title": "The FTX \"Bank Run\"",
+    "title": "CZ Heads For The Exit First",
     "summary": "CZ announces Binance will liquidate rought $2.1 billion in FTT holdings, triggering a rapid loss of confidence and the inevitable FTX implosion.",
     "category": "Centralized Exchange",
     "tags": [
@@ -3071,6 +3071,270 @@
       {
         "label": "Zooko Tweets",
         "url": "https://x.com/zooko/status/2008998305389531418?s=20"
+      }
+    ]
+  },
+
+  {
+    "id": "vitalik-photo-internet-meltdown",
+    "date": "2022-02-26",
+    "title": "Vitalik Takes a Photo",
+    "summary": "A candid photo of Ethereum co-founder Vitalik Buterin is circulated on Twitter.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/vitalike",
+    "links": [
+      {
+        "label": "Reactions",
+        "url": "https://x.com/search?q=vitalik%20photo%20meme"
+      }
+    ]
+  },
+  {
+    "id": "charles-hoskinson-meme-reply",
+    "date": "2018-07-25",
+    "title": "Charles Hoskinson Tweets From The Ranch",
+    "summary": "\"You're telling the CEO of IOHK, founder of Cardano and Ethereum to use the support email? Just wanted to ask about the chrome delisting.\" This came after he reached out to MetaMask support via Twitter.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ceo_iohk",
+    "links": [
+      {
+        "label": "Charles Post",
+        "url": "https://x.com/IOHK_Charles/status/1374769078519300097?s=20"
+      }
+    ]
+  },
+  {
+    "id": "voorhees-debates-sbf",
+    "date": "2022-10-28",
+    "title": "Erik Voorhees Debates SBF and It Goes Bad",
+    "summary": "Just days before FTX’s collapse, Erik Voorhees debated Sam Bankman-Fried on Bankless, with the discussion ironically highlighting criticisms over custody, trust, and centralized finance.",
+    "category": "Centralized Exchange",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-10%20at%2012.35.46%20PM.jpg",
+    "links": [
+      {
+        "label": "Clip of Debate",
+        "url": "https://x.com/Bankless/status/1586156300832215041?s=20"
+      },
+      {
+        "label": "Voorhees Reflects",
+        "url": "https://x.com/Bankless/status/1610384321344425987/video/1"
+      }
+    ]
+  },
+  {
+    "id": "randi-zuckerberg-dancing",
+    "date": "2022-02-27",
+    "title": "Randi Zuckerberg Gifts Us a Crypto Song",
+    "summary": "Randi sings and dances in a parody music video about crypto, which was shared widely online and truly highlights the madness of 2021/2022.",
+    "category": "Dances",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%2012.40.34%E2%80%AFPM.png",
+    "links": [
+      {
+        "label": "Original Tweet",
+        "url": "https://x.com/randizuckerberg/status/1498425277734690816"
+      }
+    ]
+  },
+ 
+  {
+    "id": "sbf-buy-wall-threat",
+    "date": "2021-01-10",
+    "title": "SBF: 'I Will Buy All You Have at $3'",
+    "summary": "Sam Bankman-Fried tweeted an aggressive threat during a market dispute, promising to buy all supply at $3 before telling the critic to 'fuck off.' The post later resurfaced after FTX’s collapse.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=SBF+Tweet",
+    "links": [
+      {
+        "label": "Original Tweet",
+        "url": "https://x.com/SBF_FTX/status/1347964322459262977"
+      }
+    ]
+  },
+  {
+    "id": "ledger-dancing-uponly",
+    "date": "2022-03-10",
+    "title": "Ledger Dances on UpOnly",
+    "summary": "Ledgerstatus shows us his dance moves on the UpOnly podcast. The FTX shirt was truly the cherry-on-top. Pure cinema.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ledger_dances",
+    "links": [
+      {
+        "label": "UpOnly Clip",
+        "url": "https://x.com/UpOnlyTV/status/1502053122780409871"
+      }
+    ]
+  },
+  {
+    "id": "miya-liquidation",
+    "date": "2023-06-12",
+    "title": "The MIYA Liquidation",
+    "summary": "The MIYA position liquidation became a widely discussed leverage wipeout on Crypto Twitter, frequently cited as a cautionary tale about overexposure and forced selling.",
+    "category": "Market Structure",
+    "tags": ["FAILURE"],
+    "mode": ["crimeline"],
+    "image": "https://placeholder.co/600x400?text=Liquidation",
+    "crimeline": {
+      "type": "LEVERAGE COLLAPSE",
+      "funds_lost_usd": "Unknown",
+      "victims_estimated": "Single large trader",
+      "root_cause": ["Overleveraged position"],
+      "aftermath": "Widely mocked and referenced on CT.",
+      "status": "Total loss"
+    }
+  },
+  {
+    "id": "ledger-founder-kidnapping",
+    "date": "2023-01-24",
+    "title": "Ledger Founder Kidnapping Attempt",
+    "summary": "Reports surfaced of an attempted kidnapping involving Ledger leadership, underscoring real-world security risks faced by prominent crypto figures.",
+    "category": "Other",
+    "tags": ["SECURITY"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Ledger+Security",
+    "links": [
+      {
+        "label": "Coverage",
+        "url": "https://x.com/search?q=ledger%20kidnapping"
+      }
+    ]
+  },
+  {
+    "id": "algod-ftx-bahamas-accounts",
+    "date": "2022-11-15",
+    "title": "Algod Accounts Buy Bahamas IDs to Withdraw FTX Funds",
+    "summary": "Cobie revealed that traders were purchasing Bahamian accounts to bypass FTX withdrawal restrictions after the exchange collapsed.",
+    "category": "Centralized Exchange",
+    "tags": ["FAILURE", "SECURITY"],
+    "mode": ["crimeline"],
+    "image": "https://placeholder.co/600x400?text=FTX+Bahamas",
+    "links": [
+      {
+        "label": "Cobie Thread",
+        "url": "https://x.com/cobie/status/1592202658483687424"
+      },
+      {
+        "label": "Crypto.News Report",
+        "url": "https://crypto.news/investor-pays-100k-bribe-to-ftx-officials-to-bypass-kyc-and-withdraw-funds/"
+      }
+    ],
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": "Unknown",
+      "victims_estimated": "FTX customers",
+      "root_cause": ["Bribery", "KYC circumvention"],
+      "aftermath": "Further legal scrutiny into FTX operations.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "ens-airdrop",
+    "date": "2021-11-08",
+    "title": "ENS Airdrop",
+    "summary": "Ethereum Name Service launched a surprise governance token airdrop, instantly becoming one of the most celebrated airdrops in crypto history.",
+    "category": "Ethereum",
+    "tags": ["MILESTONE", "ECONOMIC"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=ENS",
+    "links": [
+      {
+        "label": "ENS Announcement",
+        "url": "https://x.com/ensdomains/status/1457766422998204416"
+      }
+    ]
+  },
+  {
+    "id": "arbitrum-airdrop",
+    "date": "2023-03-23",
+    "title": "Arbitrum Airdrop",
+    "summary": "Arbitrum distributed ARB tokens to users, causing extreme network congestion and marking one of the largest Layer 2 airdrops ever.",
+    "category": "Ethereum",
+    "tags": ["MILESTONE", "ECONOMIC"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Arbitrum",
+    "links": [
+      {
+        "label": "ARB Launch",
+        "url": "https://x.com/arbitrum/status/1638901694473089025"
+      }
+    ]
+  },
+  {
+    "id": "avi-eisenberg-mango",
+    "date": "2022-10-11",
+    "title": "A Highly Profitable Trading Strategy",
+    "summary": "Avi Eisenberg exploited Mango Markets, later stating 'What are you gonna do, arrest me?'— a quote that became infamous after he was actually arrested.",
+    "category": "DeFi Protocol",
+    "tags": ["SECURITY", "FAILURE"],
+    "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/arrest%20m_avi",
+    "links": [
+       {
+        "label": "Avi Arrest Me Tweet",
+        "url": "https://x.com/avi_eisen/status/1582563191699431424"
+      },
+      {
+        "label": "Highly Profitable Trading Strategy",
+        "url": "https://x.com/avi_eisen/status/1581326197241180160?s=20"
+      }
+    ],
+    "crimeline": {
+      "type": "ORACLE MANIPULATION",
+      "funds_lost_usd": 114000000,
+      "victims_estimated": "Mango users",
+      "root_cause": ["Price manipulation"],
+      "aftermath": "Avi arrested and prosecuted.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "alex-mashinsky-funds-safe",
+    "date": "2022-06-10",
+    "title": "Alex Mashinsky Says 'All Funds Are Safe'",
+    "summary": "Days before Celsius froze withdrawals, CEO Alex Mashinsky publicly claimed all funds were safe—one of the most infamous statements of the 2022 collapse.",
+    "category": "Lending",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["crimeline"],
+    "image": "https://placeholder.co/600x400?text=Celsius",
+    "links": [
+      {
+        "label": "Quote Tweet",
+        "url": "https://x.com/MakeItAQuote/status/1556032141426937859"
+      }
+    ],
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 4700000000,
+      "victims_estimated": "1.7M",
+      "root_cause": ["Misrepresentation"],
+      "aftermath": "Mashinsky arrested.",
+      "status": "Partial recovery"
+    }
+  },
+  {
+    "id": "john-mcafee-eat-dick",
+    "date": "2017-07-17",
+    "title": "John McAfee Says He Will Eat His Own D*ck",
+    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k—one of crypto’s most legendary and absurd bets.",
+    "category": "Bitcoin",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=McAfee",
+    "links": [
+      {
+        "label": "Quote Recap",
+        "url": "https://x.com/relai_app/status/1841856786623824211"
       }
     ]
   }
