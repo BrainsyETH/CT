@@ -3,7 +3,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://crypto-timeline.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://chainofevents.xyz/";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // e.g. "G-WY98R2W0KK"
 

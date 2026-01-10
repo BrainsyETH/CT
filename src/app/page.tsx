@@ -6,7 +6,7 @@ import type { Event } from "@/lib/types";
 
 const events = eventsData as Event[];
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://crypto-timeline.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://chainofevents.xyz/";
 
 type Props = {
   searchParams: Promise<{ event?: string }>;

@@ -2741,7 +2741,7 @@
     "id": "sbf-what-2022-11",
     "date": "2022-11-13",
     "title": "1) What",
-    "summary": "as FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
+    "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
     "category": "Centralized Exchange",
     "tags": [
       "CULTURAL"
@@ -2765,7 +2765,7 @@
     "id": "ftx-bank-run-2022-11-06",
     "date": "2022-11-06",
     "title": "The FTX \"Bank Run\"",
-    "summary": "CZ announces Binance will liquidate FTT holdings, sparking a liquidity crisis at FTX.",
+    "summary": "CZ announces Binance will liquidate rought $2.1 billion in FTT holdings, triggering a rapid loss of confidence and the inevitable FTX implosion.",
     "category": "Centralized Exchange",
     "tags": [
       "FAILURE",
@@ -2774,11 +2774,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ftt_binance",
     "links": [
       {
-        "label": "FTX coverage",
-        "url": "https://www.youtube.com/watch?v=YimBTM7kwjc"
+        "label": "CZ Announces Liquidation",
+        "url": "https://x.com/cz_binance/status/1589283421704290306?s=20"
       }
     ]
   },
