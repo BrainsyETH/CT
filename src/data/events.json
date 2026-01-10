@@ -2729,7 +2729,7 @@
   {
     "id": "three-arrows-capital-ghosting-2022-06",
     "date": "2022-06-27",
-    "title": "The 3Arrows Capital Ghosting",
+    "title": "The 3Arrows Capital Files Bankruptcy",
     "summary": "As markets collapsed, Three Arrows Capital abruptly stopped responding to lenders, counterparties, and the public, triggering liquidation cascades across the industry. The silence became infamous when founders Su Zhu and Kyle Davies went quiet while exposure rumors spread. Days later, 3AC was ordered into liquidation. ",
     "category": "Market Structure",
     "tags": [
@@ -2879,8 +2879,8 @@
     "id": "squid-game-token-crash-2021-11-01",
     "date": "2021-11-01",
     "title": "The Squid Game Token Crash",
-    "summary": "The Squid Game token spikes to $2,800 before crashing to near zero in a notorious rug pull.",
-    "category": "Meme Coins",
+    "summary": "The Squid Game token spikes to $2,800 before plummetting violently as the developers vanished in a rug pull, taking with them an estimated $3 million in investor funds. The rug pull incident was recorded during a livestream from stream SimonZ.",
+    "category": "Memecoins",
     "tags": [
       "FAILURE",
       "SECURITY"
@@ -2888,11 +2888,11 @@
     "mode": [
       "crimeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/squid_game",
     "links": [
       {
-        "label": "Major rug pulls",
-        "url": "https://koinly.io/blog/biggest-crypto-rug-pulls/"
+        "label": "Realtime Rugged Live",
+        "url": "https://x.com/CroissantEth/status/1611203861875769346?s=20"
       }
     ]
   },
