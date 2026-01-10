@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google"; // Added this
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://crypto-timeline.vercel.app";
@@ -15,17 +16,8 @@ export const metadata: Metadata = {
   description:
     "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments. Switch to Crimeline mode to explore hacks, exploits, and frauds.",
   keywords: [
-    "cryptocurrency",
-    "bitcoin",
-    "ethereum",
-    "blockchain",
-    "crypto history",
-    "crypto hacks",
-    "defi",
-    "chain of events",
-    "Mt. Gox",
-    "FTX",
-    "crypto crimes",
+    "cryptocurrency", "bitcoin", "ethereum", "blockchain", "crypto history",
+    "crypto hacks", "defi", "chain of events", "Mt. Gox", "FTX", "crypto crimes",
   ],
   authors: [{ name: "Chain of Events" }],
   creator: "Chain of Events",
@@ -92,6 +84,8 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
       </body>
+      {/* This adds the GA script automatically using your Vercel variable */}
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
     </html>
   );
 }
