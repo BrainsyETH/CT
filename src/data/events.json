@@ -3094,32 +3094,10 @@
   {
     "id": "pnut-viral-pump-2024",
     "date": "2024-10-15",
-    "title": "The Peanut the Squirrel (PNUT) Viral Pump",
-    "summary": "A political-themed squirrel token rockets to a multibillion-dollar valuation during a meme coin surge.",
-    "category": "Meme Coins",
+    "title": "Peanut the Squirrel (PNUT)",
+    "summary": "$PNUT was created in 2024 as a meme coin inspired by the viral story of Peanut the Squirrel, which sparked widespread online outrage after the animal was seized and euthanized by authorities.",
+    "category": "Memecoins",
     "tags": [
-      "CULTURAL",
-      "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
-      }
-    ]
-  },
-  {
-    "id": "truth-terminal-goat-gospel-2024-10",
-    "date": "2024-10-01",
-    "title": "The Truth Terminal AI Experiment",
-    "summary": "Truth Terminal's \"Goat Gospel\" meme experiment spawns the $GOAT token and renewed AI narrative hype.",
-    "category": "Culture",
-    "tags": [
-      "TECH",
       "CULTURAL"
     ],
     "mode": [
@@ -3128,23 +3106,24 @@
     "image": "",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
+        "label": "RIP PNUT",
+        "url": "https://x.com/primalkey/status/1852747173781217682?s=20"
       }
     ]
   },
+
   {
     "id": "cobie-insider-trading-ident-2022",
     "date": "2022-05-25",
     "title": "The Cobie Insider Trading Ident",
-    "summary": "Cobie highlighted onchain wallet activity that appeared to front-run token listings on Coinbase, suggesting possible insider trading. The posts went viral.",
+    "summary": "Cobie highlighted onchain wallet activity that appeared to front-run token listings on Coinbase, suggesting possible insider trading. The investigation led to criminal and civil charges against a COinbase product manager and his brother and friend.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
       "CULTURAL"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cobie_coinbase_trading",
     "links": [
