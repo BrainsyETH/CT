@@ -135,7 +135,7 @@
     "id": "mtgox-collapse-2014-02-24",
     "date": "2014-02-07",
     "title": "Mt. Gox Collapse",
-    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found Karpel\u00c3\u00a8s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -292,7 +292,6 @@
       "status": "Partial recovery"
     }
   },
-
   {
     "id": "ico-boom-2017",
     "date": "2017-06-01",
@@ -335,8 +334,7 @@
     "mode": [
       "timeline"
     ],
-   "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
-
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
     "links": [
       {
         "label": "China ICO Ban",
@@ -373,7 +371,6 @@
       "market_cap_usd": 330000000000
     }
   },
-
   {
     "id": "cryptopia-hack-2019-01-14",
     "date": "2019-01-14",
@@ -479,7 +476,7 @@
         "label": "Uniswap V2",
         "url": "https://uniswap.org/blog/uniswap-v2"
       },
-       {
+      {
         "label": "Hayden Tweet",
         "url": "https://x.com/haydenzadams/status/1361356927226310668"
       }
@@ -911,7 +908,6 @@
       "ECONOMIC"
     ],
     "mode": [
-
       "crimeline"
     ],
     "links": [
@@ -1254,7 +1250,6 @@
       "status": "Ongoing investigation"
     }
   },
-
   {
     "id": "chicken-church-pastor-scam-2024",
     "date": "2024-08-10",
@@ -1302,7 +1297,7 @@
       {
         "label": "Tweet of Evidence",
         "url": "https://x.com/0xRacist/status/1864805751723569223?s=20"
-       }
+      }
     ]
   },
   {
@@ -1507,8 +1502,8 @@
   {
     "id": "libra-memecoin-rugpull-2025-02-14",
     "date": "2025-02-14",
-    "title": "$LIBRA â€˜Cryptogateâ€™ Rug-Pull Scandal in Argentina",
-    "summary": "Argentinaâ€™s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed.",
+    "title": "$LIBRA \u00e2\u20ac\u02dcCryptogate\u00e2\u20ac\u2122 Rug-Pull Scandal in Argentina",
+    "summary": "Argentina\u00e2\u20ac\u2122s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed.",
     "category": "Other",
     "tags": [
       "FAILURE",
@@ -1541,7 +1536,7 @@
         "Insider dumping",
         "Supply concentration"
       ],
-      "aftermath": "Political scandal (â€˜Cryptogateâ€™) and broad public scrutiny of memecoin launches tied to public figures.",
+      "aftermath": "Political scandal (\u00e2\u20ac\u02dcCryptogate\u00e2\u20ac\u2122) and broad public scrutiny of memecoin launches tied to public figures.",
       "status": "Ongoing"
     }
   },
@@ -1622,7 +1617,7 @@
     "id": "mantra-om-flash-crash-2025-04-13",
     "date": "2025-04-13",
     "title": "Mantra (OM) Token Dumps ~90% in Hours",
-    "summary": "OM experienced a rapid, severe collapseâ€”widely described as a â€˜token dumpâ€™.",
+    "summary": "OM experienced a rapid, severe collapse\u00e2\u20ac\u201dwidely described as a \u00e2\u20ac\u02dctoken dump\u00e2\u20ac\u2122.",
     "category": "Market Structure",
     "tags": [
       "FAILURE",
@@ -1689,7 +1684,7 @@
     "id": "cetus-protocol-exploit-2025-05",
     "date": "2025-05-22",
     "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
-    "summary": "On Suiâ€™s largest decentralized exchange, Cetus Protocol suffered a major exploit.",
+    "summary": "On Sui\u00e2\u20ac\u2122s largest decentralized exchange, Cetus Protocol suffered a major exploit.",
     "category": "Security",
     "tags": [
       "SECURITY",
@@ -1750,7 +1745,7 @@
     "id": "nobitex-exchange-hack-2025-06",
     "date": "2025-06-17",
     "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
-    "summary": "Iranâ€™s largest exchange Nobitex was hit by an exploit that drained around $90M.",
+    "summary": "Iran\u00e2\u20ac\u2122s largest exchange Nobitex was hit by an exploit that drained around $90M.",
     "category": "Security",
     "tags": [
       "SECURITY",
@@ -1777,7 +1772,6 @@
       "status": "Ongoing"
     }
   },
-
   {
     "id": "genius-act-signed-2025-07-18",
     "date": "2025-07-18",
@@ -1844,10 +1838,9 @@
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
     "title": "CZ-Linked $ASTER Debacle",
-    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues—including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks—triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
+    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues\u2014including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks\u2014triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
     "category": "Defi Protocol",
     "tags": [
-      
       "CULTURAL"
     ],
     "mode": [
@@ -1865,7 +1858,6 @@
       }
     ]
   },
-  
   {
     "id": "uponly-returns-coinbase-buys-nft-2025-10-20",
     "date": "2025-10-20",
@@ -2050,7 +2042,1355 @@
       "status": "Ongoing"
     }
   },
-
+  {
+    "id": "hal-finney-running-bitcoin-2009-01-11",
+    "date": "2009-01-11",
+    "title": "Running Bitcoin",
+    "summary": "Hal Finney posts the first widely cited Bitcoin tweet, writing \"Running bitcoin\" as he tests the early software alongside Satoshi Nakamoto.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "greg-schoen-regret-2011-05-16",
+    "date": "2011-05-16",
+    "title": "The Greg Schoen Regret",
+    "summary": "A viral tweet laments selling 1,700 BTC at $0.30, becoming an early symbol of Bitcoin regret as prices climb.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Reddit thread",
+        "url": "https://www.reddit.com/r/CryptoCurrency/comments/13k7swb/exactly_12_years_ago_we_had_the_most_legendary/"
+      }
+    ]
+  },
+  {
+    "id": "wikileaks-adoption-2011-06-14",
+    "date": "2011-06-14",
+    "title": "Wikileaks Adoption",
+    "summary": "Wikileaks begins accepting Bitcoin donations, a milestone that cements BTC as a censorship-resistant funding rail.",
+    "category": "Bitcoin",
+    "tags": [
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "satoshi-final-message-2011-04",
+    "date": "2011-04-01",
+    "title": "Satoshi\u2019s Final Message",
+    "summary": "Satoshi Nakamoto signs off with \"I've moved on to other things,\" marking the creator's last known public communication.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "eff-suspension-2011-06",
+    "date": "2011-06-01",
+    "title": "The EFF Suspension",
+    "summary": "The Electronic Frontier Foundation pauses Bitcoin donations, citing legal concerns during the early adoption period.",
+    "category": "Regulation",
+    "tags": [
+      "REGULATORY",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "casascius-physical-bitcoins-2011-10-24",
+    "date": "2011-10-24",
+    "title": "Casascius Physical Bitcoins",
+    "summary": "Mike Caldwell mints the first Casascius physical Bitcoin coins, blending collectible tokens with real BTC value.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Casascius coins",
+        "url": "https://en.bitcoin.it/wiki/Casascius_physical_bitcoins"
+      }
+    ]
+  },
+  {
+    "id": "dogecoin-launch-2013-12-06",
+    "date": "2013-12-06",
+    "title": "The Birth of Dogecoin",
+    "summary": "Billy Markus and Jackson Palmer launch Dogecoin, turning a meme into one of crypto's most enduring communities.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Dogecoin community study",
+        "url": "https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2022.829865/full"
+      }
+    ]
+  },
+  {
+    "id": "maxcoin-creation-2014",
+    "date": "2014-01-01",
+    "title": "The Creation of Maxcoin",
+    "summary": "Maxcoin launches during the 2014 altcoin wave, marking an early high-profile celebrity-branded token experiment.",
+    "category": "Altcoins",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "bitpay-obsolete-tweet-2017-08",
+    "date": "2017-08-01",
+    "title": "I Will Make You Obsolete",
+    "summary": "Nicolas Dorier responds to BitPay with the iconic \"I will make you obsolete\" declaration, a rallying cry for user-controlled Bitcoin tools.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "bitconnect-keynote-2017-10-28",
+    "date": "2017-10-28",
+    "title": "The BitConnect Keynote",
+    "summary": "Carlos Matos delivers the \"BitConnect\" stage performance that becomes a viral symbol of the 2017 scam boom.",
+    "category": "Market Structure",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Legendary moments thread",
+        "url": "https://www.reddit.com/r/CryptoCurrency/comments/1334cpz/unforgettable_moments_in_bitcoin-history-8/"
+      }
+    ]
+  },
+  {
+    "id": "hodl-origin-2013-12-18",
+    "date": "2013-12-18",
+    "title": "The Origin of HODL",
+    "summary": "The \"I AM HODLING\" forum post typo becomes a rallying meme for long-term crypto holders.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "bitcoin-cash-fork-2017-08-01",
+    "date": "2017-08-01",
+    "title": "The Bitcoin Cash Fork",
+    "summary": "The Bitcoin Cash fork resolves the Block Size War by splitting Bitcoin into BTC and BCH chains.",
+    "category": "Bitcoin",
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "inversebrah-birth-2018",
+    "date": "2018-01-01",
+    "title": "The Birth of Inversebrah",
+    "summary": "Inversebrah emerges as a satirical anon account following @cryptostardust's suspension.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Inversebrah explainer",
+        "url": "https://protos.com/what-is-inversebrah/"
+      }
+    ]
+  },
+  {
+    "id": "btc-20000-peak-2017-12-17",
+    "date": "2017-12-17",
+    "title": "The $20,000 Peak",
+    "summary": "Bitcoin hits its first mainstream mania top near $20,000 during the 2017 bull market.",
+    "category": "Bitcoin",
+    "tags": [
+      "ATH",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "wassie-genesis-2018",
+    "date": "2018-01-01",
+    "title": "The Wassie Genesis",
+    "summary": "The Wassie frog character rises as a symbol of the 2018 bear market and anon trading culture.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Wassie lore",
+        "url": "https://www.allstarcharts.com/2022-03-31/notorious-underworld-anons-and-wassie"
+      }
+    ]
+  },
+  {
+    "id": "bitcoin-is-dead-2018-meta",
+    "date": "2018-12-15",
+    "title": "The \"Bitcoin is Dead\" 2018 Meta",
+    "summary": "Media outlets repeatedly declare Bitcoin dead during the 2018 crash, cementing the recurring \"Bitcoin is dead\" meme.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "binance-safu-origin-2018",
+    "date": "2018-05-01",
+    "title": "The Binance SAFU Origin",
+    "summary": "A typo of \"Funds are safe\" becomes \"SAFU\" and lives on as a crypto catchphrase.",
+    "category": "Centralized Exchange",
+    "tags": [
+      "CULTURAL",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "btc-3100-bottom-2018-12",
+    "date": "2018-12-15",
+    "title": "The $3,100 Bottom",
+    "summary": "Bitcoin finds a major bear market low near $3,100, closing out the 2018 downturn.",
+    "category": "Bitcoin",
+    "tags": [
+      "ECONOMIC",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "libra-announcement-2019-06-18",
+    "date": "2019-06-18",
+    "title": "The Libra Announcement",
+    "summary": "Facebook unveils Libra, an ambitious plan for a global digital currency that sparks immediate regulatory attention.",
+    "category": "Market Structure",
+    "tags": [
+      "REGULATORY",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Libra overview",
+        "url": "https://en.wikipedia.org/wiki/Libra_(digital_currency)"
+      }
+    ]
+  },
+  {
+    "id": "craig-wright-satoshi-claim-2016-05-02",
+    "date": "2016-05-02",
+    "title": "The Craig Wright \"Satoshi\" Claim",
+    "summary": "Craig Wright repeatedly claims to be Satoshi Nakamoto, igniting ongoing legal and community disputes.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "plustoken-ponzi-2019",
+    "date": "2019-06-27",
+    "title": "The PlusToken Ponzi",
+    "summary": "PlusToken collapses as one of the largest crypto Ponzi schemes, later linked to major BTC selling pressure.",
+    "category": "Market Structure",
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Major crypto scams",
+        "url": "https://koinly.io/blog/biggest-crypto-rug-pulls/"
+      }
+    ]
+  },
+  {
+    "id": "flash-crash-2020-03-12",
+    "date": "2020-03-12",
+    "title": "The March 12, 2020 Flash Crash",
+    "summary": "Bitcoin drops roughly 50% in a day during the global liquidity crunch, shaking markets across crypto.",
+    "category": "Market Structure",
+    "tags": [
+      "ECONOMIC",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto market analysis",
+        "url": "https://www.mdpi.com/2076-3417/15/23/12802"
+      }
+    ]
+  },
+  {
+    "id": "comp-launch-2020-06",
+    "date": "2020-06-15",
+    "title": "The COMP Launch",
+    "summary": "Compound introduces COMP token incentives, kicking off the DeFi yield farming summer.",
+    "category": "DeFi",
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+      }
+    ]
+  },
+  {
+    "id": "yfi-fair-launch-2020-07",
+    "date": "2020-07-17",
+    "title": "The YFI Fair Launch",
+    "summary": "Andre Cronje launches YFI with a fair distribution, sending the \"worthless\" token to a $43k peak.",
+    "category": "DeFi",
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+      }
+    ]
+  },
+  {
+    "id": "sushiswap-vampire-attack-2020-08",
+    "date": "2020-08-28",
+    "title": "The SushiSwap Vampire Attack",
+    "summary": "SushiSwap lures liquidity from Uniswap in a high-profile \"vampire attack\" during DeFi summer.",
+    "category": "DeFi",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://mikepumpeo.medium.com/a-look-back-to-defi-summer-2020-5e2672bf2088"
+      }
+    ]
+  },
+  {
+    "id": "nomi-rug-return-2020-09",
+    "date": "2020-09-11",
+    "title": "The Nomi Rug Return",
+    "summary": "After community backlash, Chef Nomi returns $14M to SushiSwap, reversing a partial rug pull.",
+    "category": "DeFi",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://mikepumpeo.medium.com/a-look-back-to-defi-summer-2020-5e2672bf2088"
+      }
+    ]
+  },
+  {
+    "id": "uni-airdrop-2020-09-16",
+    "date": "2020-09-16",
+    "title": "The UNI Airdrop",
+    "summary": "Uniswap rewards past users with 400 UNI each, dubbed the DeFi \"stimulus check.\"",
+    "category": "DeFi",
+    "tags": [
+      "MILESTONE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+      }
+    ]
+  },
+  {
+    "id": "makerdao-black-thursday-2020-03-12",
+    "date": "2020-03-12",
+    "title": "MakerDAO \"Black Thursday\"",
+    "summary": "Extreme volatility triggers zero-bid liquidations on MakerDAO, exposing risks in early DeFi collateral systems.",
+    "category": "DeFi",
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "DeFi summer recap",
+        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+      }
+    ]
+  },
+  {
+    "id": "olympus-3-3-lore-2021-03",
+    "date": "2021-03-01",
+    "title": "The Birth of (3,3) Lore",
+    "summary": "OlympusDAO popularizes \"(3,3)\" game theory, defining a new wave of rebasing token culture.",
+    "category": "DeFi",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.cointree.com/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "twitter-help-desk-hack-2020-07-14",
+    "date": "2020-07-14",
+    "title": "The Twitter Help Desk Hack",
+    "summary": "Hackers compromise high-profile Twitter accounts, including Obama and Musk, to run a Bitcoin giveaway scam.",
+    "category": "Security",
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "NY DFS report",
+        "url": "https://www.dfs.ny.gov/Twitter_Report"
+      }
+    ]
+  },
+  {
+    "id": "uponly-podcast-launch-2020",
+    "date": "2020-09-01",
+    "title": "The UpOnly Podcast Launch",
+    "summary": "Cobie and Ledger launch the UpOnly podcast, giving the crypto degen community a weekly voice.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "UpOnly",
+        "url": "https://uponly.tv/"
+      }
+    ]
+  },
+  {
+    "id": "microstrategy-btc-buy-2020-08-11",
+    "date": "2020-08-11",
+    "title": "The MicroStrategy Buy",
+    "summary": "MicroStrategy announces Bitcoin as a primary reserve asset, a pivotal corporate treasury move.",
+    "category": "Bitcoin",
+    "tags": [
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Bitcoin tweets",
+        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+      }
+    ]
+  },
+  {
+    "id": "elon-musk-doge-bio-2021-02-04",
+    "date": "2021-02-04",
+    "title": "Elon Musk\u2019s DOGE Bio",
+    "summary": "Elon Musk changes his Twitter bio to reference Dogecoin, triggering a sudden DOGE pump.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "tesla-btc-purchase-2021-02-08",
+    "date": "2021-02-08",
+    "title": "The Tesla BTC Purchase",
+    "summary": "Tesla reveals a $1.5B Bitcoin purchase, marking a landmark corporate adoption moment.",
+    "category": "Bitcoin",
+    "tags": [
+      "ECONOMIC",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Bitcoin tweets",
+        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+      }
+    ]
+  },
+  {
+    "id": "snl-hustle-moment-2021-05-08",
+    "date": "2021-05-08",
+    "title": "The SNL \"Hustle\" Moment",
+    "summary": "Dogecoin dumps after Elon Musk calls it a \"hustle\" on Saturday Night Live.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "china-mining-ban-2021-05-21",
+    "date": "2021-05-21",
+    "title": "The China Mining Ban",
+    "summary": "China's crackdown on mining triggers a massive hash rate migration known as the Great Mining Exodus.",
+    "category": "Bitcoin",
+    "tags": [
+      "REGULATORY",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto market analysis",
+        "url": "https://www.mdpi.com/2076-3417/15/23/12802"
+      }
+    ]
+  },
+  {
+    "id": "el-salvador-legal-tender-2021-09-07",
+    "date": "2021-09-07",
+    "title": "The El Salvador Legal Tender Act",
+    "summary": "El Salvador adopts Bitcoin as legal tender, with President Bukele repeatedly \"buying the dip.\"",
+    "category": "Regulation",
+    "tags": [
+      "REGULATORY",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Bitcoin tweets",
+        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+      }
+    ]
+  },
+  {
+    "id": "constitutiondao-failure-2021-11-18",
+    "date": "2021-11-18",
+    "title": "The ConstitutionDAO Failure",
+    "summary": "ConstitutionDAO raises $40M but fails to win the Constitution auction, refunding contributors.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.cointree.com/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "gcr-10m-luna-bet-2022-03",
+    "date": "2022-03-09",
+    "title": "The GCR $10M LUNA Bet",
+    "summary": "GCR and Do Kwon publicly wager $10M on LUNA's future, a defining moment ahead of the collapse.",
+    "category": "DeFi",
+    "tags": [
+      "ECONOMIC",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "The Block coverage",
+        "url": "https://www.theblock.co/post/145739/trader-doubles-down-on-10-million-bet-against-do-kwon-by-shorting-luna"
+      }
+    ]
+  },
+  {
+    "id": "your-size-is-not-size-2022-03",
+    "date": "2022-03-09",
+    "title": "Your Size Is Not Size",
+    "summary": "Do Kwon's \"your size is not size\" remark goes viral amid debate over LUNA's sustainability.",
+    "category": "DeFi",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Terra meltdown explainer",
+        "url": "https://plexusrs.com/terra-luna-ust-meltdown/"
+      }
+    ]
+  },
+  {
+    "id": "steady-lads-2022-05-10",
+    "date": "2022-05-10",
+    "title": "Steady Lads",
+    "summary": "Do Kwon urges calm with \"steady lads\" as UST begins to unravel.",
+    "category": "DeFi",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Terra meltdown explainer",
+        "url": "https://plexusrs.com/terra-luna-ust-meltdown/"
+      }
+    ]
+  },
+  {
+    "id": "gcr-72-cent-hedge-2022",
+    "date": "2022-05-15",
+    "title": "The GCR 72-Cent Hedge",
+    "summary": "GCR buys cheap insurance to hedge a large LUNA short, later cited as a legendary trade.",
+    "category": "Market Structure",
+    "tags": [
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "GCR profile",
+        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
+      }
+    ]
+  },
+  {
+    "id": "three-arrows-capital-ghosting-2022-06",
+    "date": "2022-06-27",
+    "title": "The 3Arrows Capital Ghosting",
+    "summary": "Founders Su Zhu and Kyle Davies disappear from public view as 3AC unravels.",
+    "category": "Market Structure",
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "GCR profile",
+        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
+      }
+    ]
+  },
+  {
+    "id": "sbf-fortune-cover-2022-08",
+    "date": "2022-08-01",
+    "title": "The SBF Fortune Cover",
+    "summary": "Fortune labels Sam Bankman-Fried the \"next Warren Buffett,\" capturing peak FTX-era optimism.",
+    "category": "Centralized Exchange",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "ftx-bank-run-2022-11-06",
+    "date": "2022-11-06",
+    "title": "The FTX \"Bank Run\"",
+    "summary": "CZ announces Binance will liquidate FTT holdings, sparking a liquidity crisis at FTX.",
+    "category": "Centralized Exchange",
+    "tags": [
+      "FAILURE",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "FTX coverage",
+        "url": "https://www.youtube.com/watch?v=YimBTM7kwjc"
+      }
+    ]
+  },
+  {
+    "id": "sbf-i-fked-up-2022-11-09",
+    "date": "2022-11-09",
+    "title": "I Fked Up",
+    "summary": "Sam Bankman-Fried posts \"I fked up\" as the FTX collapse unfolds.",
+    "category": "Centralized Exchange",
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "FTX coverage",
+        "url": "https://www.youtube.com/watch?v=YimBTM7kwjc"
+      }
+    ]
+  },
+  {
+    "id": "martin-shkreli-uponly-2022-11",
+    "date": "2022-11-15",
+    "title": "Martin Shkreli on UpOnly",
+    "summary": "Martin Shkreli appears on UpOnly, an unlikely crossover during the post-FTX chaos.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "UpOnly",
+        "url": "https://uponly.tv/"
+      }
+    ]
+  },
+  {
+    "id": "btc-15000-bottom-2022-11",
+    "date": "2022-11-21",
+    "title": "The $15,000 BTC Bottom",
+    "summary": "Bitcoin bottoms near $15,000 after the FTX collapse, marking the cycle low.",
+    "category": "Bitcoin",
+    "tags": [
+      "ECONOMIC",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/392930807994"
+      }
+    ]
+  },
+  {
+    "id": "bitcoin-is-money-lopp-2021",
+    "date": "2021-06-14",
+    "title": "The \"Bitcoin is Money\" Lopp Tweet",
+    "summary": "Jameson Lopp crystallizes Bitcoin's role with the concise \"Bitcoin is money\" statement.",
+    "category": "Bitcoin",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Annals of Bitcoin Twitter",
+        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
+      }
+    ]
+  },
+  {
+    "id": "gcr-final-tweet-2023",
+    "date": "2023-01-01",
+    "title": "The GCR \"Final\" Tweet",
+    "summary": "GCR posts a final public note after calling the bottom, then goes dark.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "GCR profile",
+        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
+      }
+    ]
+  },
+  {
+    "id": "ordinals-inscription-2023-01-21",
+    "date": "2023-01-21",
+    "title": "The Ordinals Inscription",
+    "summary": "Ordinals bring NFT-style inscriptions to Bitcoin mainnet, launching a new wave of on-chain art.",
+    "category": "Bitcoin",
+    "tags": [
+      "TECH",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto memes",
+        "url": "https://www.cointree.com/learn/crypto-memes/"
+      }
+    ]
+  },
+  {
+    "id": "frosties-arrest-2022-03-24",
+    "date": "2022-03-24",
+    "title": "The $1.3 Million Frosties Arrest",
+    "summary": "Authorities arrest the creators of the Frosties NFT project after an alleged rug pull.",
+    "category": "NFTs",
+    "tags": [
+      "REGULATORY",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Major rug pulls",
+        "url": "https://koinly.io/blog/biggest-crypto-rug-pulls/"
+      }
+    ]
+  },
+  {
+    "id": "squid-game-token-crash-2021-11-01",
+    "date": "2021-11-01",
+    "title": "The Squid Game Token Crash",
+    "summary": "The Squid Game token spikes to $2,800 before crashing to near zero in a notorious rug pull.",
+    "category": "Meme Coins",
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Major rug pulls",
+        "url": "https://koinly.io/blog/biggest-crypto-rug-pulls/"
+      }
+    ]
+  },
+  {
+    "id": "axie-infinity-hack-2022-03-29",
+    "date": "2022-03-29",
+    "title": "The Axie Infinity $620M Hack",
+    "summary": "The Ronin bridge breach drains about $620M, becoming the largest DeFi bridge hack at the time.",
+    "category": "Bridge",
+    "tags": [
+      "SECURITY",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Largest crypto hacks",
+        "url": "https://crystalintelligence.com/investigations/the-10-biggest-crypto-hacks-in-history/"
+      }
+    ]
+  },
+  {
+    "id": "gary-gensler-resign-tweet-2024",
+    "date": "2024-01-10",
+    "title": "The Gary Gensler \"I Will Resign\" Tweet",
+    "summary": "A viral fake resignation tweet highlights peak institutional tension around crypto regulation.",
+    "category": "Regulation",
+    "tags": [
+      "REGULATORY",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "pepe-87m-millionaire-2024",
+    "date": "2024-05-01",
+    "title": "The PEPE 87 Millionaire",
+    "summary": "Trader James Wynn turns $3k into $87M during the PEPE meme coin frenzy.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "trump-whitepaper-2024-10-31",
+    "date": "2024-10-31",
+    "title": "Trump Celebrating the Whitepaper",
+    "summary": "Donald Trump signals pro-crypto positioning by celebrating the Bitcoin whitepaper anniversary.",
+    "category": "Regulation",
+    "tags": [
+      "REGULATORY",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "unc-only-renaming-2025-10-20",
+    "date": "2025-10-20",
+    "title": "The Unc Only Renaming",
+    "summary": "Cobie embraces the aging degen persona, renaming UpOnly to \"Unc Only.\"",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Cobie profile",
+        "url": "https://iq.wiki/wiki/cobie"
+      }
+    ]
+  },
+  {
+    "id": "gainzy-fat-finger-rug-2025-09-03",
+    "date": "2025-09-03",
+    "title": "The Gainzy Fat-Finger Rug",
+    "summary": "Streamer Gainzy accidentally sells $gnzystrm live on stream, crashing the token price.",
+    "category": "Meme Coins",
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Protos coverage",
+        "url": "https://protos.com/crypto-streamer-gainzy-nukes-his-own-token-99-with-one-accidental-click/"
+      }
+    ]
+  },
+  {
+    "id": "pnut-viral-pump-2024",
+    "date": "2024-10-15",
+    "title": "The Peanut the Squirrel (PNUT) Viral Pump",
+    "summary": "A political-themed squirrel token rockets to a multibillion-dollar valuation during a meme coin surge.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "truth-terminal-goat-gospel-2024-10",
+    "date": "2024-10-01",
+    "title": "The Truth Terminal AI Experiment",
+    "summary": "Truth Terminal's \"Goat Gospel\" meme experiment spawns the $GOAT token and renewed AI narrative hype.",
+    "category": "Culture",
+    "tags": [
+      "TECH",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "cobie-insider-trading-ident-2022",
+    "date": "2022-05-25",
+    "title": "The Cobie Insider Trading Ident",
+    "summary": "Cobie points to on-chain evidence suggesting insider trading at Coinbase, sparking debate.",
+    "category": "Centralized Exchange",
+    "tags": [
+      "SECURITY",
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Cobie profile",
+        "url": "https://iq.wiki/wiki/cobie"
+      }
+    ]
+  },
+  {
+    "id": "snoop-dogg-telegram-drop-2025",
+    "date": "2025-01-15",
+    "title": "The Snoop Dogg $12M Telegram Drop",
+    "summary": "A Snoop Dogg-backed NFT release on Telegram highlights the rise of collectibles inside messaging apps.",
+    "category": "NFTs",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "Crypto tweets roundup",
+        "url": "https://www.binance.com/en/square/post/18654169283137"
+      }
+    ]
+  },
+  {
+    "id": "cobie-uponly-burn-2024-11-08",
+    "date": "2024-11-08",
+    "title": "The Cobie Pump.fun UPONLY Token Burn",
+    "summary": "Cobie burns $17M worth of gifted Pump.fun tokens, calling out memecoin chaos.",
+    "category": "Meme Coins",
+    "tags": [
+      "CULTURAL",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "The Block",
+        "url": "https://www.theblock.co/post/325198/cobie-burns-pump-fun-solana-memecoin-uponly"
+      }
+    ]
+  },
+  {
+    "id": "money-printing-wont-stop-2023-12",
+    "date": "2023-12-01",
+    "title": "Money Printing Won't Stop",
+    "summary": "GCR's \"money printing won't stop\" post becomes a late-cycle mantra for long-term holders.",
+    "category": "Culture",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "links": [
+      {
+        "label": "GCR profile",
+        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
+      }
+    ]
+  },
   {
     "id": "zcash-core-dev-resignation-2026",
     "date": "2026-01-12",
