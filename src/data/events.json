@@ -1788,7 +1788,7 @@
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/trump_genius%20act.jpeg",
     "links": [
       {
-        "label": "Genius Act Signing",
+        "label": "Genius Act Signing Tweet",
         "url": "https://x.com/WatcherGuru/status/1946291084939677864?s=20"
       },
       {
@@ -1837,66 +1837,35 @@
   {
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
-    "title": "CZ-Linked $ASTER / Aster DEX â€˜Debacleâ€™ After DefiLlama Delisting",
-    "summary": "Asterâ€™s reported perpetuals volume came under heavy scrutiny when DefiLlama moved to delist Asterâ€™s perp volume data.",
-    "category": "Market Structure",
+    "title": "CZ-Linked $ASTER Debacle",
+    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues—including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks—triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
+    "category": "Defi Protocol",
     "tags": [
-      "FAILURE",
-      "TECH",
+      
       "CULTURAL"
     ],
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/aster_post.jpeg",
     "links": [
       {
-        "label": "DefiLlama delisting headline (Cointelegraph)",
+        "label": "DefiLlama DeListing",
         "url": "https://x.com/Cointelegraph/status/1974995688241930539"
       },
       {
-        "label": "Aster returns to DefiLlama (Yahoo)",
+        "label": "Aster returns to DefiLlama (lol)",
         "url": "https://finance.yahoo.com/news/aster-back-defillama-wash-trading-101715173.html"
       }
     ]
   },
-  {
-    "id": "crypto-market-nuke-liquidations-2025-10-10",
-    "date": "2025-10-10",
-    "title": "October 10 â€˜Nukeâ€™: Record Liquidation Cascade Slams Crypto",
-    "summary": "A historic leverage unwind on October 10 triggered a massive cross-venue liquidation cascade.",
-    "category": "Market Structure",
-    "tags": [
-      "ECONOMIC",
-      "FAILURE",
-      "SECURITY"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "links": [
-      {
-        "label": "FTI Consulting analysis",
-        "url": "https://www.fticonsulting.com/insights/articles/crypto-crash-october-2025-leverage-met-liquidity"
-      },
-      {
-        "label": "Liquidation figures (CoinGlass)",
-        "url": "https://x.com/coinglass_com/status/1976796969961193641"
-      },
-      {
-        "label": "Post-event market commentary",
-        "url": "https://www.coindesk.com/opinion/2025/12/02/why-the-market-crashed-on-october-10-and-why-it-s-struggling-to-bounce"
-      }
-    ],
-    "metrics": {
-      "liquidations_usd_approx": 19000000000
-    }
-  },
+  
   {
     "id": "uponly-returns-coinbase-buys-nft-2025-10-20",
     "date": "2025-10-20",
-    "title": "Cobieâ€™s UpOnly Returns After Coinbase Buys the Control NFT",
-    "summary": "Coinbase purchased the UpOnly control NFT for $25M, triggering the podcastâ€™s return.",
-    "category": "Media",
+    "title": "Cobie's UpOnly Returns After Coinbase Buys the $25m NFT",
+    "summary": "Coinbase purchased the UpOnly NFT for $25M, triggering the podcasts return.",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL",
       "MILESTONE"
@@ -1904,10 +1873,11 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_25m.jpeg",
     "links": [
       {
-        "label": "UpOnly NFT purchase story",
-        "url": "https://www.blocmates.com/news-posts/coinbase-buys-cobie-up-only-nft-for-25m-now-he-has-to-podcast-again"
+        "label": "Brian Tweets Purchase",
+        "url": "https://x.com/brian_armstrong/status/1980397986149744769"
       }
     ],
     "metrics": {
@@ -1919,22 +1889,18 @@
     "date": "2025-10-21",
     "title": "Cobie Sells Echo to Coinbase for ~$375M",
     "summary": "Coinbase agreed to acquire Echo in a deal reported at roughly $375M.",
-    "category": "M&A",
+    "category": "CT Lore",
     "tags": [
-      "MILESTONE",
-      "ECONOMIC",
+      "CULTURAL",
       "REGULATORY"
     ],
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_25m.jpeg",
     "links": [
       {
-        "label": "Reuters deal report",
-        "url": "https://www.reuters.com/legal/transactional/coinbase-signs-375-million-deal-crypto-investment-platform-echo-2025-10-21/"
-      },
-      {
-        "label": "Blockworks coverage",
+        "label": "Blockworks",
         "url": "https://blockworks.co/news/coinbase-acquires-echo"
       }
     ],
