@@ -670,9 +670,9 @@
   {
     "id": "ronin-bridge-hack-2022-03-23",
     "date": "2022-03-23",
-    "title": "Ronin Bridge Hack",
-    "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M in the largest DeFi hack ever.",
-    "category": "Bridge",
+    "title": "There has been a security breach on the Ronin Network",
+    "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M and losing roughly 173,600 ETH and 25.5 million USDC.",
+    "category": "Defi Protocol",
     "tags": [
       "SECURITY",
       "FAILURE"
@@ -680,10 +680,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/Screenshot%202026-01-09%20at%2010.48.29%E2%80%AFPM.png",
     "links": [
       {
-        "label": "Ronin Hack",
-        "url": "https://www.coindesk.com/tech/2022/03/29/axie-infinitys-ronin-network-suffers-625m-exploit/"
+        "label": "Ronin Hack Tweet",
+        "url": "https://x.com/Ronin_Network/status/1508828719711879168"
       }
     ],
     "metrics": {
@@ -695,7 +696,7 @@
       "victims_estimated": "Unknown",
       "root_cause": [
         "Compromised validator keys",
-        "Insufficient validator set",
+        "Lazarus Group",
         "Social engineering"
       ],
       "aftermath": "FBI attributed attack to Lazarus Group; Sky Mavis raised funds to reimburse users.",
@@ -900,7 +901,7 @@
   {
     "id": "ftx-collapse-2022-11-11",
     "date": "2022-11-11",
-    "title": "FTX Exchange Collapse",
+    "title": "The Collapse of FTX",
     "summary": "FTX, the third-largest crypto exchange, files for bankruptcy after revelations of misusing $8B+ in customer funds through Alameda Research.",
     "category": "Centralized Exchange",
     "tags": [
@@ -2613,8 +2614,8 @@
   {
     "id": "tesla-btc-purchase-2021-02-08",
     "date": "2021-02-08",
-    "title": "The Tesla BTC Purchase",
-    "summary": "Tesla reveals a $1.5B Bitcoin purchase, marking a landmark corporate adoption moment.",
+    "title": "You can now buy Tesla with Bitcoin",
+    "summary": "Tesla disclosed it had bought Bitcoin worth $1.5 billion in early Feb 2021 as part of a corporate investment policy and said it planned to accept BTC as payment, which pushed Bitcoin prices sharply higher on the news.",
     "category": "Bitcoin",
     "tags": [
       "ECONOMIC",
@@ -2623,56 +2624,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/tesla_btc",
     "links": [
       {
-        "label": "Bitcoin tweets",
-        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+        "label": "You can now buy Tesla with Bitcoin",
+        "url": "https://x.com/elonmusk/status/1374617643446063105?s=20"
       }
     ]
   },
-  {
-    "id": "snl-hustle-moment-2021-05-08",
-    "date": "2021-05-08",
-    "title": "The SNL \"Hustle\" Moment",
-    "summary": "Dogecoin dumps after Elon Musk calls it a \"hustle\" on Saturday Night Live.",
-    "category": "Meme Coins",
-    "tags": [
-      "CULTURAL",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto memes",
-        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
-      }
-    ]
-  },
-  {
-    "id": "china-mining-ban-2021-05-21",
-    "date": "2021-05-21",
-    "title": "The China Mining Ban",
-    "summary": "China's crackdown on mining triggers a massive hash rate migration known as the Great Mining Exodus.",
-    "category": "Bitcoin",
-    "tags": [
-      "REGULATORY",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto market analysis",
-        "url": "https://www.mdpi.com/2076-3417/15/23/12802"
-      }
-    ]
-  },
+
   {
     "id": "el-salvador-legal-tender-2021-09-07",
     "date": "2021-09-07",
@@ -2686,41 +2646,41 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/salvador_btc",
     "links": [
       {
-        "label": "Bitcoin tweets",
-        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+        "label": "Bukele's Piggy Bank",
+        "url": "https://x.com/nayibbukele/status/1768425845163503738?s=20"
       }
     ]
   },
   {
     "id": "constitutiondao-failure-2021-11-18",
     "date": "2021-11-18",
-    "title": "The ConstitutionDAO Failure",
-    "summary": "ConstitutionDAO raises $40M but fails to win the Constitution auction, refunding contributors.",
-    "category": "Culture",
+    "title": "The ConstitutionDAO Loses to Ken Griffin",
+    "summary": "ConstitutionDAO was a decentralized crowdfunding effort that raised over $40 million+ in ETH within just days in November 2021, to bid on a Sotheby’s auction for the historic document. It ultimately lost the auction to Citadel's Ken Griffin, dissolved, and refunded contributors.",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL",
-      "FAILURE"
+      "MILESTONE"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/constitutiondao",
     "links": [
       {
-        "label": "Crypto memes",
-        "url": "https://www.cointree.com/learn/crypto-memes/"
+        "label": "Lets purchase that parchment",
+        "url": "https://x.com/ConstitutionDAO/status/1460241694515994629?s=20"
       }
     ]
   },
   {
     "id": "gcr-10m-luna-bet-2022-03",
     "date": "2022-03-09",
-    "title": "The GCR $10M LUNA Bet",
-    "summary": "GCR and Do Kwon publicly wager $10M on LUNA's future, a defining moment ahead of the collapse.",
-    "category": "DeFi",
+    "title": "By My Hand $Luna Will Die",
+    "summary": "GCR publicly proposed a $10 million bet to Do Kwon (Terraform Labs’ co-founder) that the price of $LUNA would be lower a year later than it was then, effectively shorting the Terra ecosystem before its catastrophic collapse.",
+    "category": "CT Lore",
     "tags": [
       "ECONOMIC",
       "CULTURAL"
@@ -2728,10 +2688,10 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/by_my_hand",
     "links": [
       {
-        "label": "The Block coverage",
+        "label": "GCR Bet",
         "url": "https://www.theblock.co/post/145739/trader-doubles-down-on-10-million-bet-against-do-kwon-by-shorting-luna"
       }
     ]
@@ -2748,11 +2708,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://public.bnbstatic.com/image/pgc/202311/3ba6df3cb9f771c48a9f418c2dc35a3c.png",
     "links": [
       {
-        "label": "Terra meltdown explainer",
-        "url": "https://plexusrs.com/terra-luna-ust-meltdown/"
+        "label": "Your size is not size",
+        "url": "https://x.com/stablekwon/status/1501551050490146816?s=20"
       }
     ]
   },
@@ -2769,11 +2729,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://public.bnbstatic.com/image/pgc/202311/79644e42a8987268ab465cc247d860fd.png",
     "links": [
       {
-        "label": "Terra meltdown explainer",
-        "url": "https://plexusrs.com/terra-luna-ust-meltdown/"
+        "label": "Steady lads",
+        "url": "https://x.com/stablekwon/status/1523733542492016640?s=20"
       }
     ]
   },
@@ -2789,10 +2749,10 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/gcr_hedge",
     "links": [
       {
-        "label": "GCR profile",
+        "label": "GCR Arkham Profile",
         "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
       }
     ]
@@ -2801,15 +2761,15 @@
     "id": "three-arrows-capital-ghosting-2022-06",
     "date": "2022-06-27",
     "title": "The 3Arrows Capital Ghosting",
-    "summary": "Founders Su Zhu and Kyle Davies disappear from public view as 3AC unravels.",
+    "summary": "as markets collapsed, Three Arrows Capital abruptly stopped responding to lenders, counterparties, and the public, triggering liquidation cascades across the industry. The silence became infamous when founders Su Zhu and Kyle Davies went quiet while exposure rumors spread. Days later, 3AC was ordered into liquidation. ",
     "category": "Market Structure",
     "tags": [
       "FAILURE"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/3AC",
     "links": [
       {
         "label": "GCR profile",
@@ -2818,10 +2778,10 @@
     ]
   },
   {
-    "id": "sbf-fortune-cover-2022-08",
-    "date": "2022-08-01",
-    "title": "The SBF Fortune Cover",
-    "summary": "Fortune labels Sam Bankman-Fried the \"next Warren Buffett,\" capturing peak FTX-era optimism.",
+    "id": "sbf-what-2022-11",
+    "date": "2022-11-13",
+    "title": "1) What",
+    "summary": "as FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
     "category": "Centralized Exchange",
     "tags": [
       "CULTURAL"
@@ -2829,11 +2789,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
+        "label": "1)What",
+        "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf"
+      },
+       {
+        "label": "SBF Runs Away",
+        "url": "https://x.com/BecauseBitcoin/status/1716146822421344303?s=20"
       }
     ]
   },
@@ -2871,55 +2835,35 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://public.bnbstatic.com/image/pgc/202311/ae6832849f0e81fe4f3bf220223dbe10.png",
     "links": [
       {
-        "label": "FTX coverage",
-        "url": "https://www.youtube.com/watch?v=YimBTM7kwjc"
+        "label": "I fucked up",
+        "url": "https://x.com/SBF_FTX/status/1590709166515310593?s=20"
       }
     ]
   },
   {
     "id": "martin-shkreli-uponly-2022-11",
     "date": "2022-11-15",
-    "title": "Martin Shkreli on UpOnly",
-    "summary": "Martin Shkreli appears on UpOnly, an unlikely crossover during the post-FTX chaos.",
-    "category": "Culture",
+    "title": "Martin Shkreli tells Do Kwon Jail Is Not That Bad",
+    "summary": "Martin Shkreli appears on UpOnly and tells Do Kwon jail isn't that bad.",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/jail_dokwon_uponly",
     "links": [
       {
-        "label": "UpOnly",
-        "url": "https://uponly.tv/"
+        "label": "UpOnly Video",
+        "url": "https://x.com/Hunter_Weiss/status/1590049886225182721?s=20"
       }
     ]
   },
-  {
-    "id": "btc-15000-bottom-2022-11",
-    "date": "2022-11-21",
-    "title": "The $15,000 BTC Bottom",
-    "summary": "Bitcoin bottoms near $15,000 after the FTX collapse, marking the cycle low.",
-    "category": "Bitcoin",
-    "tags": [
-      "ECONOMIC",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
-      }
-    ]
-  },
+  
   {
     "id": "bitcoin-is-money-lopp-2021",
     "date": "2021-06-14",
@@ -3013,7 +2957,7 @@
       "SECURITY"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "",
     "links": [
@@ -3034,7 +2978,7 @@
       "FAILURE"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "",
     "links": [
@@ -3131,11 +3075,10 @@
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
     "title": "The Gainzy Fat-Finger Rug",
-    "summary": "Streamer Gainzy accidentally sells $gnzystrm live on stream, crashing the token price.",
-    "category": "Meme Coins",
+    "summary": "Gainzy misclicks and sells 73% of the supply of his token in one transaction.",
+    "category": "Memecoins",
     "tags": [
-      "FAILURE",
-      "SECURITY"
+      "FAILURE"
     ],
     "mode": [
       "timeline"
@@ -3143,8 +3086,8 @@
     "image": "",
     "links": [
       {
-        "label": "Protos coverage",
-        "url": "https://protos.com/crypto-streamer-gainzy-nukes-his-own-token-99-with-one-accidental-click/"
+        "label": "Gainzy Explains",
+        "url": "https://x.com/gainzy222/status/1963447954737697120?s=20"
       }
     ]
   },
@@ -3194,7 +3137,7 @@
     "id": "cobie-insider-trading-ident-2022",
     "date": "2022-05-25",
     "title": "The Cobie Insider Trading Ident",
-    "summary": "Cobie points to on-chain evidence suggesting insider trading at Coinbase, sparking debate.",
+    "summary": "Cobie highlighted onchain wallet activity that appeared to front-run token listings on Coinbase, suggesting possible insider trading. The posts went viral.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -3203,11 +3146,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cobie_coinbase_trading",
     "links": [
       {
-        "label": "Cobie profile",
-        "url": "https://iq.wiki/wiki/cobie"
+        "label": "rofl",
+        "url": "https://x.com/cobie/status/1513874972552355846"
       }
     ]
   },
@@ -3215,7 +3158,7 @@
     "id": "snoop-dogg-telegram-drop-2025",
     "date": "2025-01-15",
     "title": "The Snoop Dogg $12M Telegram Drop",
-    "summary": "A Snoop Dogg-backed NFT release on Telegram highlights the rise of collectibles inside messaging apps.",
+    "summary": "Snoop Dogg launched a limited NFT-style digital collectible drop directly through Telegram, which reportedly sold out in minutes and generated roughly $12 million. The event went viral because it bypassed traditional NFT marketplaces",
     "category": "NFTs",
     "tags": [
       "CULTURAL",
@@ -3224,11 +3167,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pavel_snoop",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
+        "label": "Pavel tweets",
+        "url": "https://x.com/durov/status/1943077902817411292?s=20"
       }
     ]
   },
@@ -3237,7 +3180,7 @@
     "date": "2024-11-08",
     "title": "The Cobie Pump.fun UPONLY Token Burn",
     "summary": "Cobie burns $17M worth of gifted Pump.fun tokens, calling out memecoin chaos.",
-    "category": "Meme Coins",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "MILESTONE"
@@ -3253,26 +3196,7 @@
       }
     ]
   },
-  {
-    "id": "money-printing-wont-stop-2023-12",
-    "date": "2023-12-01",
-    "title": "Money Printing Won't Stop",
-    "summary": "GCR's \"money printing won't stop\" post becomes a late-cycle mantra for long-term holders.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "GCR profile",
-        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
-      }
-    ]
-  },
+ 
   {
     "id": "zcash-core-dev-resignation-2026",
     "date": "2026-01-12",
