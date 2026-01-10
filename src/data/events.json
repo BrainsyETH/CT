@@ -135,7 +135,7 @@
     "id": "mtgox-collapse-2014-02-24",
     "date": "2014-02-07",
     "title": "Mt. Gox Collapse",
-    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals.[49] The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -194,9 +194,9 @@
   {
     "id": "dao-hack-2016-06-17",
     "date": "2016-06-17",
-    "title": "The DAO Hack",
-    "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork.",
-    "category": "DeFi Protocol",
+    "title": "The DAO Hack - ok can you guys stop trading",
+    "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork. When the DAO was being drained by an attacker (millions of ETH were being siphoned off due to a vulnerability), Vitalik and other Ethereum community members urged exchanges to pause trading, deposits, and withdrawals to prevent the stolen ETH from being quickly liquidated and causing further damage to the market.",
+    "category": "Ethereum",
     "tags": [
       "SECURITY",
       "FAILURE",
@@ -205,6 +205,7 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/vitalike_dao.jpeg",
     "links": [
       {
         "label": "The DAO Attack",
@@ -255,8 +256,8 @@
   {
     "id": "bitfinex-hack-2016-08-02",
     "date": "2016-08-02",
-    "title": "Bitfinex Hack",
-    "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time.",
+    "title": "Bitfinex `Razzlekhan` Hack",
+    "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time. In 2022, U.S. authorities arrested Ilya Lichtenstein and Heather `Razzlekhan` Morgan for laundering the stolen funds, marking one of the largest financial seizure cases ever. In 2026, Ilya Lichtenstein, was released early from prison under the First Step Act and is now on home confinement.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -265,7 +266,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/heather%20morgan.jpeg",
     "links": [
+      {
+        "label": "Razzlekhan, amateur rapper",
+        "url": "https://x.com/unusual_whales/status/1687145804920758277?s=20"
+      },
       {
         "label": "Bitfinex Hack Report",
         "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP"
