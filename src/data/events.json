@@ -2427,8 +2427,8 @@
   {
     "id": "sushiswap-vampire-attack-2020-08",
     "date": "2020-08-28",
-    "title": "The SushiSwap Vampire Attack",
-    "summary": "SushiSwap lures liquidity from Uniswap in a high-profile \"vampire attack\" during DeFi summer.",
+    "title": "The Chef and His $SUSHI",
+    "summary": "The SushiSwap vampire attack was one of the most dramatic moments of DeFi Summer 2020, when SushiSwap launched a fork of Uniswap and incentivized users to migrate liquidity away from Uniswap by offering newly minted $SUSHI tokens as rewards. In just days, billions in liquidity had moved. Uniswap answered with the UNI airdrop and LP rewards, while Sushi would run into chef troubles.",
     "category": "DeFi",
     "tags": [
       "CULTURAL",
@@ -2437,11 +2437,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sushi_uniswap",
     "links": [
       {
-        "label": "DeFi summer recap",
-        "url": "https://mikepumpeo.medium.com/a-look-back-to-defi-summer-2020-5e2672bf2088"
+        "label": "Chef Nomi Apology",
+        "url": "https://x.com/NomiChef/status/1304442495342796800?s=20"
+      },
+      {
+        "label": "Collection of Coincidences",
+        "url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20"
       }
     ]
   },
@@ -2449,19 +2453,23 @@
     "id": "nomi-rug-return-2020-09",
     "date": "2020-09-11",
     "title": "The Nomi Rug Return",
-    "summary": "After community backlash, Chef Nomi returns $14M to SushiSwap, reversing a partial rug pull.",
+    "summary": "SushiSwap’s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
     "category": "DeFi",
     "tags": [
       "CULTURAL"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chef_nomi_apology",
     "links": [
+       {
+        "label": "Chef Nomi Apology",
+        "url": "https://x.com/NomiChef/status/1304442495342796800?s=20"
+      },
       {
-        "label": "DeFi summer recap",
-        "url": "https://mikepumpeo.medium.com/a-look-back-to-defi-summer-2020-5e2672bf2088"
+        "label": "Collection of Coincidences",
+        "url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20"
       }
     ]
   },
@@ -2469,20 +2477,21 @@
     "id": "uni-airdrop-2020-09-16",
     "date": "2020-09-16",
     "title": "The UNI Airdrop",
-    "summary": "Uniswap rewards past users with 400 UNI each, dubbed the DeFi \"stimulus check.\"",
+    "summary": "Uniswap distributed 400 UNI tokens to wallets that had ever interacted with the protocol before the snapshot date, instantly rewarding users with thousands of dollars each. The airdrop was one of DeFi summer's biggest events. Since then, airdrops have become a key part of crypto.",
     "category": "DeFi",
     "tags": [
       "MILESTONE",
-      "ECONOMIC"
+      "ECONOMIC",
+      "CULTURAL"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Hayden_reflects",
     "links": [
       {
-        "label": "DeFi summer recap",
-        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
+        "label": "Hayden Reflects",
+        "url": "https://x.com/haydenzadams/status/1892621345642488058?s=20"
       }
     ]
   },
@@ -2510,7 +2519,7 @@
     "id": "olympus-3-3-lore-2021-03",
     "date": "2021-03-01",
     "title": "The Birth of (3,3) Lore",
-    "summary": "OlympusDAO popularized the “(3,3)” meme to describe a game-theoretic incentive structure where all participants are rewarded for staking and cooperating rather than selling. The framing helped bootstrap a new wave of rebasing token culture, aligning community behavior through simple, memeable economics. “(3,3)” quickly became shorthand across DeFi for reflexive coordination, high APYs, and experimental monetary design.",
+    "summary": "OlympusDAO popularized the “(3,3)” meme to describe a gamified incentive structure where all participants are rewarded for staking and cooperating rather than selling. The (3,3) meme became one of the most famous Crypto Twitter in-jokes of the DeFi era, showing up in thousands of replies and bios as a shorthand for protocol loyalty & staking behavior. It summed DeFi yields into a simple “game” outcome that traders could laugh about long after Olympus peaked.",
     "category": "DeFi",
     "tags": [
       "CULTURAL",
@@ -2519,11 +2528,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/3%2C3",
     "links": [
       {
-        "label": "Crypto memes",
-        "url": "https://www.cointree.com/learn/crypto-memes/"
+        "label": "OlympusDAO Explains (3,3)",
+        "url": "https://x.com/OlympusDAO/status/1395424841784860673"
       }
     ]
   },
@@ -2531,7 +2540,7 @@
     "id": "twitter-help-desk-hack-2020-07-14",
     "date": "2020-07-14",
     "title": "The Twitter Help Desk Hack",
-    "summary": "Hackers compromise high-profile Twitter accounts, including Obama and Musk, to run a Bitcoin giveaway scam.",
+    "summary": "Twitter suffered a historic breach when attackers social-engineered Twitter employees and gained access to internal help-desk/admin tools, allowing them to take over high-profile accounts including Elon Musk, Barack Obama, Apple, Uber, and others. The compromised accounts posted a Bitcoin scam promising to double any BTC sent, briefly netting the attackers over $100k and sending Crypto Twitter into chaos. Twitter responded by locking many verified accounts from tweeting, underscoring how centralized “trusted access” can become a single point of failure.",
     "category": "Security",
     "tags": [
       "SECURITY",
@@ -2721,7 +2730,7 @@
     "id": "three-arrows-capital-ghosting-2022-06",
     "date": "2022-06-27",
     "title": "The 3Arrows Capital Ghosting",
-    "summary": "as markets collapsed, Three Arrows Capital abruptly stopped responding to lenders, counterparties, and the public, triggering liquidation cascades across the industry. The silence became infamous when founders Su Zhu and Kyle Davies went quiet while exposure rumors spread. Days later, 3AC was ordered into liquidation. ",
+    "summary": "As markets collapsed, Three Arrows Capital abruptly stopped responding to lenders, counterparties, and the public, triggering liquidation cascades across the industry. The silence became infamous when founders Su Zhu and Kyle Davies went quiet while exposure rumors spread. Days later, 3AC was ordered into liquidation. ",
     "category": "Market Structure",
     "tags": [
       "FAILURE"
@@ -2887,27 +2896,7 @@
       }
     ]
   },
-  {
-    "id": "axie-infinity-hack-2022-03-29",
-    "date": "2022-03-29",
-    "title": "The Axie Infinity $620M Hack",
-    "summary": "The Ronin bridge breach drains about $620M, becoming the largest DeFi bridge hack at the time.",
-    "category": "Bridge",
-    "tags": [
-      "SECURITY",
-      "FAILURE"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Largest crypto hacks",
-        "url": "https://crystalintelligence.com/investigations/the-10-biggest-crypto-hacks-in-history/"
-      }
-    ]
-  },
+
   {
     "id": "gary-gensler-resign-tweet-2024",
     "date": "2024-11-21",
@@ -2933,21 +2922,25 @@
   {
     "id": "pepe-87m-millionaire-2024",
     "date": "2024-05-01",
-    "title": "The PEPE 87 Millionaire",
-    "summary": "Trader James Wynn turns $3k into $87M during the PEPE meme coin frenzy.",
-    "category": "Meme Coins",
+    "title": "The James Wynn Implosion",
+    "summary": "At his peak in 2025, onchain data showed Wynn’s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. “I flipped $3M into $100M and somehow ended up negative $13M. I lost control.” — James Wynn ",
+    "category": "",
     "tags": [
       "CULTURAL",
-      "ECONOMIC"
+      "FAILURE"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/wynn_liquidation",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
+        "label": "James Buys $PEPE at $4.2m",
+        "url": "https://x.com/JamesWynnReal/status/1647631508533055489?s=20"
+      },
+      {
+        "label": "Arkham Visuals",
+        "url": "https://x.com/arkham/status/1928255890659913895?s=20"
       }
     ]
   },
@@ -2956,15 +2949,16 @@
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
     "title": "The Gainzy Fat-Finger Rug",
-    "summary": "Gainzy misclicks and sells 73% of the supply of his token in one transaction.",
+    "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a “fat-finger misclick” while fiddling with his phone. The massive sell caused the token’s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
     "category": "Memecoins",
     "tags": [
-      "FAILURE"
+      "FAILURE",
+      "CULTURAL"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gainzy_chart",
     "links": [
       {
         "label": "Gainzy Explains",
