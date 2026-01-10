@@ -2510,7 +2510,7 @@
     "id": "olympus-3-3-lore-2021-03",
     "date": "2021-03-01",
     "title": "The Birth of (3,3) Lore",
-    "summary": "OlympusDAO popularizes \"(3,3)\" game theory, defining a new wave of rebasing token culture.",
+    "summary": "OlympusDAO popularized the “(3,3)” meme to describe a game-theoretic incentive structure where all participants are rewarded for staking and cooperating rather than selling. The framing helped bootstrap a new wave of rebasing token culture, aligning community behavior through simple, memeable economics. “(3,3)” quickly became shorthand across DeFi for reflexive coordination, high APYs, and experimental monetary design.",
     "category": "DeFi",
     "tags": [
       "CULTURAL",
@@ -2538,7 +2538,7 @@
       "FAILURE"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "",
     "links": [
@@ -2548,32 +2548,12 @@
       }
     ]
   },
-  {
-    "id": "uponly-podcast-launch-2020",
-    "date": "2020-09-01",
-    "title": "The UpOnly Podcast Launch",
-    "summary": "Cobie and Ledger launch the UpOnly podcast, giving the crypto degen community a weekly voice.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL",
-      "MILESTONE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "UpOnly",
-        "url": "https://uponly.tv/"
-      }
-    ]
-  },
+ 
   {
     "id": "microstrategy-btc-buy-2020-08-11",
     "date": "2020-08-11",
-    "title": "The MicroStrategy Buy",
-    "summary": "MicroStrategy announces Bitcoin as a primary reserve asset, a pivotal corporate treasury move.",
+    "title": "Saylor Goes All In on Bitcoin",
+    "summary": "MicroStrategy announced it had purchased $250 million worth of Bitcoin, marking the first major public company to convert treasury reserves into BTC. Led by Michael Saylor, the move legitimized Bitcoin as a corporate reserve asset and triggered a wave of institutional adoption narratives that reshaped crypto markets.",
     "category": "Bitcoin",
     "tags": [
       "ECONOMIC",
@@ -2582,35 +2562,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/SAylor_purchase",
     "links": [
       {
-        "label": "Bitcoin tweets",
-        "url": "https://blog.trezor.io/seven-famous-tweets-every-bitcoiner-should-know-about-b4f611cf13c3"
+        "label": "Saylor Announces 1st Purchase",
+        "url": "https://x.com/saylor/status/1352614708797464582?s=20"
       }
     ]
   },
-  {
-    "id": "elon-musk-doge-bio-2021-02-04",
-    "date": "2021-02-04",
-    "title": "Elon Musk\u2019s DOGE Bio",
-    "summary": "Elon Musk changes his Twitter bio to reference Dogecoin, triggering a sudden DOGE pump.",
-    "category": "Meme Coins",
-    "tags": [
-      "CULTURAL",
-      "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto memes",
-        "url": "https://www.webopedia.com/crypto/learn/crypto-memes/"
-      }
-    ]
-  },
+
   {
     "id": "tesla-btc-purchase-2021-02-08",
     "date": "2021-02-08",
@@ -2863,52 +2823,12 @@
       }
     ]
   },
-  
-  {
-    "id": "bitcoin-is-money-lopp-2021",
-    "date": "2021-06-14",
-    "title": "The \"Bitcoin is Money\" Lopp Tweet",
-    "summary": "Jameson Lopp crystallizes Bitcoin's role with the concise \"Bitcoin is money\" statement.",
-    "category": "Bitcoin",
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Annals of Bitcoin Twitter",
-        "url": "https://blog.lopp.net/annals-bitcoin-twitter-history/"
-      }
-    ]
-  },
-  {
-    "id": "gcr-final-tweet-2023",
-    "date": "2023-01-01",
-    "title": "The GCR \"Final\" Tweet",
-    "summary": "GCR posts a final public note after calling the bottom, then goes dark.",
-    "category": "Culture",
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "GCR profile",
-        "url": "https://info.arkm.com/research/gigantic-rebirth-crypto-trader"
-      }
-    ]
-  },
+
   {
     "id": "ordinals-inscription-2023-01-21",
     "date": "2023-01-21",
-    "title": "The Ordinals Inscription",
-    "summary": "Ordinals bring NFT-style inscriptions to Bitcoin mainnet, launching a new wave of on-chain art.",
+    "title": "Inscriptions are finally ready for Bitcoin mainnet",
+    "summary": "This tweet marked the point when the Ordinals protocol was enabled on Bitcoin mainnet, allowing users to inscribe arbitrary data (like art or text) onto individual satoshis — effectively bringing Bitcoin-native NFTs onchain.",
     "category": "Bitcoin",
     "tags": [
       "TECH",
@@ -2917,11 +2837,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ordinals",
     "links": [
       {
-        "label": "Crypto memes",
-        "url": "https://www.cointree.com/learn/crypto-memes/"
+        "label": "Inscriptions are Ready",
+        "url": "https://x.com/rodarmor/status/1616567899719860230"
       }
     ]
   },
@@ -2929,14 +2849,14 @@
     "id": "frosties-arrest-2022-03-24",
     "date": "2022-03-24",
     "title": "The $1.3 Million Frosties Arrest",
-    "summary": "Authorities arrest the creators of the Frosties NFT project after an alleged rug pull.",
+    "summary": "U.S. federal authorities arrested and charged two men — Ethan Vinh Nguyen and Andre Marcus Llacuna — for their roles in an alleged NFT fraud and money-laundering scheme involving the Frosties collection.",
     "category": "NFTs",
     "tags": [
       "REGULATORY",
       "SECURITY"
     ],
     "mode": [
-      "timeline"
+      "crimeline"
     ],
     "image": "",
     "links": [
@@ -2990,22 +2910,23 @@
   },
   {
     "id": "gary-gensler-resign-tweet-2024",
-    "date": "2024-01-10",
+    "date": "2024-11-21",
     "title": "The Gary Gensler \"I Will Resign\" Tweet",
-    "summary": "A viral fake resignation tweet highlights peak institutional tension around crypto regulation.",
+    "summary": "Gary Gensler announced that he would step down as Chair of the U.S. Securities and Exchange Commission effective January 20, 2025, coinciding with the inauguration of the new presidential administration.",
     "category": "Regulation",
     "tags": [
       "REGULATORY",
-      "CULTURAL"
+      "CULTURAL",
+      "MILESTONE"
     ],
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gary_resigns",
     "links": [
       {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
+        "label": "Gary Resigns",
+        "url": "https://x.com/GenslerArchive/status/1859658192298574096?s=20"
       }
     ]
   },
@@ -3018,27 +2939,6 @@
     "tags": [
       "CULTURAL",
       "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/18654169283137"
-      }
-    ]
-  },
-  {
-    "id": "trump-whitepaper-2024-10-31",
-    "date": "2024-10-31",
-    "title": "Trump Celebrating the Whitepaper",
-    "summary": "Donald Trump signals pro-crypto positioning by celebrating the Bitcoin whitepaper anniversary.",
-    "category": "Regulation",
-    "tags": [
-      "REGULATORY",
-      "CULTURAL"
     ],
     "mode": [
       "timeline"
@@ -3084,7 +2984,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/PNUT",
     "links": [
       {
         "label": "RIP PNUT",
@@ -3142,8 +3042,7 @@
     "summary": "Cobie burns $17M `worth` of gifted Pump.fun token, calling out memecoin chaos.",
     "category": "Memecoins",
     "tags": [
-      "CULTURAL",
-      "MILESTONE"
+      "CULTURAL"
     ],
     "mode": [
       "timeline"
