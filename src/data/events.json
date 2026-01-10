@@ -1897,11 +1897,11 @@
     "mode": [
       "timeline"
     ],
-    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_25m.jpeg",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_echo.png",
     "links": [
       {
-        "label": "Blockworks",
-        "url": "https://blockworks.co/news/coinbase-acquires-echo"
+        "label": "Cobie Tweet",
+        "url": "https://x.com/cobie/status/1980579379244855384"
       }
     ],
     "metrics": {
@@ -1942,8 +1942,8 @@
   {
     "id": "chainlink-first-spot-etf-glnk-2025-12-02",
     "date": "2025-12-02",
-    "title": "First Chainlink Spot ETF Launches (Grayscale GLNK)",
-    "summary": "Grayscaleâ€™s Chainlink product converted/listed as GLNK on NYSE Arca.",
+    "title": "First Chainlink Spot ETF Launches",
+    "summary": "Grayscales Chainlink product converted/listed as GLNK on NYSE",
     "category": "ETFs",
     "tags": [
       "MILESTONE",
@@ -1953,17 +1953,18 @@
     "mode": [
       "timeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/link_post.png",
     "links": [
       {
-        "label": "Grayscale GLNK product page (ETP listing date)",
+        "label": "Grayscale GLNK",
         "url": "https://etfs.grayscale.com/glnk"
       },
       {
-        "label": "Launch reporting",
+        "label": "Launch Reporting",
         "url": "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading"
       },
       {
-        "label": "Day-one flows/volume commentary",
+        "label": "Day-one Commentary",
         "url": "https://x.com/JSeyff/status/1996290352542609748"
       }
     ],
@@ -2047,8 +2048,8 @@
   {
     "id": "zcash-core-dev-resignation-2026",
     "date": "2026-01-12",
-    "title": "Zcash Core Developers Resign En Masse",
-    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements, raising existential questions about the projectâ€™s future.",
+    "title": "Zcash Core Developers Resign",
+    "summary": "Multiple Zcash core developers resigned in early 2026, citing governance, funding instability, and strategic disagreements.",
     "category": "Market Structure",
     "tags": [
       "CULTURAL"
