@@ -2298,27 +2298,7 @@
       }
     ]
   },
-  {
-    "id": "btc-3100-bottom-2018-12",
-    "date": "2018-12-15",
-    "title": "The $3,100 Bottom",
-    "summary": "Bitcoin finds a major bear market low near $3,100, closing out the 2018 downturn.",
-    "category": "Bitcoin",
-    "tags": [
-      "ECONOMIC",
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Crypto tweets roundup",
-        "url": "https://www.binance.com/en/square/post/392930807994"
-      }
-    ]
-  },
+
   {
     "id": "libra-announcement-2019-06-18",
     "date": "2019-06-18",
@@ -2403,27 +2383,7 @@
       }
     ]
   },
-  {
-    "id": "yfi-fair-launch-2020-07",
-    "date": "2020-07-17",
-    "title": "The YFI Fair Launch",
-    "summary": "Andre Cronje launches YFI with a fair distribution, sending the \"worthless\" token to a $43k peak.",
-    "category": "DeFi",
-    "tags": [
-      "MILESTONE",
-      "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "DeFi summer recap",
-        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
-      }
-    ]
-  },
+
   {
     "id": "sushiswap-vampire-attack-2020-08",
     "date": "2020-08-28",
@@ -2495,26 +2455,7 @@
       }
     ]
   },
-  {
-    "id": "makerdao-black-thursday-2020-03-12",
-    "date": "2020-03-12",
-    "title": "MakerDAO \"Black Thursday\"",
-    "summary": "Extreme volatility triggers zero-bid liquidations on MakerDAO, exposing risks in early DeFi collateral systems. As a result, many vaults were liquidated and hundreds of liquidations were won with bids of zero DAI, leading to ~$8 M of ETH collateral effectively removed at no cost — causing significant losses for users and leaving some DAI unbacked.",
-    "category": "DeFi",
-    "tags": [
-      "FAILURE"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "Black Thursday",
-        "url": "https://medium.com/@whiterabbit_hq/black-thursday-for-makerdao-8-32-million-was-liquidated-for-0-dai-36b83cac56b6"
-      }
-    ]
-  },
+  
   {
     "id": "olympus-3-3-lore-2021-03",
     "date": "2021-03-01",
@@ -3180,7 +3121,7 @@
     "id": "miya-liquidation",
     "date": "2023-06-12",
     "title": "The MIYA Liquidation",
-    "summary": "The MIYA position liquidation became a widely discussed leverage wipeout on Crypto Twitter, frequently cited as a cautionary tale about overexposure and forced selling.",
+    "summary": "A crypto trader known as “Miya” publicly announced that they had gone all-in on Ethereum, putting a huge leveraged position (reportedly around $10 million) into ETH based on their own market outlook — expecting a short-term rally. Within a short time after the market moved against them, that leveraged position was liquidated, wiping out the entire investment.",
     "category": "Market Structure",
     "tags": ["FAILURE"],
     "mode": ["crimeline"],
@@ -3194,22 +3135,7 @@
       "status": "Total loss"
     }
   },
-  {
-    "id": "ledger-founder-kidnapping",
-    "date": "2023-01-24",
-    "title": "Ledger Founder Kidnapping Attempt",
-    "summary": "Reports surfaced of an attempted kidnapping involving Ledger leadership, underscoring real-world security risks faced by prominent crypto figures.",
-    "category": "Other",
-    "tags": ["SECURITY"],
-    "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=Ledger+Security",
-    "links": [
-      {
-        "label": "Coverage",
-        "url": "https://x.com/search?q=ledger%20kidnapping"
-      }
-    ]
-  },
+ 
   {
     "id": "algod-ftx-bahamas-accounts",
     "date": "2022-11-15",
@@ -3238,38 +3164,7 @@
       "status": "Ongoing"
     }
   },
-  {
-    "id": "ens-airdrop",
-    "date": "2021-11-08",
-    "title": "ENS Airdrop",
-    "summary": "Ethereum Name Service launched a surprise governance token airdrop, instantly becoming one of the most celebrated airdrops in crypto history.",
-    "category": "Ethereum",
-    "tags": ["MILESTONE", "ECONOMIC"],
-    "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=ENS",
-    "links": [
-      {
-        "label": "ENS Announcement",
-        "url": "https://x.com/ensdomains/status/1457766422998204416"
-      }
-    ]
-  },
-  {
-    "id": "arbitrum-airdrop",
-    "date": "2023-03-23",
-    "title": "Arbitrum Airdrop",
-    "summary": "Arbitrum distributed ARB tokens to users, causing extreme network congestion and marking one of the largest Layer 2 airdrops ever.",
-    "category": "Ethereum",
-    "tags": ["MILESTONE", "ECONOMIC"],
-    "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=Arbitrum",
-    "links": [
-      {
-        "label": "ARB Launch",
-        "url": "https://x.com/arbitrum/status/1638901694473089025"
-      }
-    ]
-  },
+
   {
     "id": "avi-eisenberg-mango",
     "date": "2022-10-11",
@@ -3301,39 +3196,31 @@
   {
     "id": "alex-mashinsky-funds-safe",
     "date": "2022-06-10",
-    "title": "Alex Mashinsky Says 'All Funds Are Safe'",
-    "summary": "Days before Celsius froze withdrawals, CEO Alex Mashinsky publicly claimed all funds were safe—one of the most infamous statements of the 2022 collapse.",
+    "title": "'All Funds Are Safe'",
+    "summary": "Days before Celsius froze withdrawals, CEO Alex Mashinsky publicly claimed all funds were safe, in one of the most infamous statements of the 2022 collapse.",
     "category": "Lending",
     "tags": ["FAILURE", "CULTURAL"],
-    "mode": ["crimeline"],
-    "image": "https://placeholder.co/600x400?text=Celsius",
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/funds_are_safe",
     "links": [
       {
-        "label": "Quote Tweet",
+        "label": "Mashinsky Quote",
         "url": "https://x.com/MakeItAQuote/status/1556032141426937859"
       }
-    ],
-    "crimeline": {
-      "type": "CUSTODY FAILURE",
-      "funds_lost_usd": 4700000000,
-      "victims_estimated": "1.7M",
-      "root_cause": ["Misrepresentation"],
-      "aftermath": "Mashinsky arrested.",
-      "status": "Partial recovery"
-    }
+    ]
   },
   {
     "id": "john-mcafee-eat-dick",
     "date": "2017-07-17",
     "title": "John McAfee Says He Will Eat His Own D*ck",
-    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k—one of crypto’s most legendary and absurd bets.",
+    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k. An absurd and legendary bet. RIP.",
     "category": "Bitcoin",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=McAfee",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mcafee_dick",
     "links": [
       {
-        "label": "Quote Recap",
+        "label": "McAfee Reflects",
         "url": "https://x.com/relai_app/status/1841856786623824211"
       }
     ]
