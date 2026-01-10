@@ -201,14 +201,14 @@ export function Timeline({ events }: TimelineProps) {
             <div className="flex items-center gap-3">
               <span className="text-2xl">💀</span>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wide">Total Amount Lost</p>
+                <p className="text-xs text-gray-500 uppercase tracking-wide">Total Estimated Loss</p>
                 <p className="text-2xl font-bold text-red-400">
                   {formatCurrency(crimelineStats.totalLost)}
                 </p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-xs text-gray-500">across</p>
+              <p className="text-xs text-gray-500">Ongoing</p>
               <p className="text-lg font-bold text-white">
                 {crimelineStats.incidentCount} incidents
               </p>
