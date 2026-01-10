@@ -137,14 +137,14 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-2xl shadow-[8px_8px_0_rgba(0,0,0,0.3)]"
           >
             <div
               className={`${
                 isCrimeline
-                  ? "bg-gray-900 border border-red-900/50"
-                  : "bg-white border border-gray-200"
-              }`}
+                  ? "bg-gray-900 border-2 border-red-900/60"
+                  : "bg-[#fffaf2] border-2 border-[#1f1f1f]"
+              } rounded-2xl overflow-hidden`}
             >
               {/* Event Image */}
               <div className="relative w-full h-48 md:h-64">
@@ -165,8 +165,8 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   <div
                     className={`absolute inset-0 ${
                       isCrimeline
-                        ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                        : "bg-gradient-to-t from-white via-white/50 to-transparent"
+                        ? "bg-black/35"
+                        : "bg-white/45"
                     }`}
                   />
                   {/* Zoom hint */}
@@ -185,7 +185,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     ref={closeButtonRef}
                     onClick={closeModal}
                     aria-label="Close modal"
-                    className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
+                    className="p-2 rounded-xl border-2 border-white/40 transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -242,8 +242,8 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 {/* Metrics */}
                 {event.metrics && (
                   <div
-                    className={`mt-6 p-4 rounded-lg ${
-                      isCrimeline ? "bg-gray-800" : "bg-gray-50"
+                    className={`mt-6 p-4 rounded-xl border-2 ${
+                      isCrimeline ? "bg-gray-800 border-gray-700" : "bg-white border-[#1f1f1f]/20"
                     }`}
                   >
                     <h3
@@ -290,7 +290,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
-                  <div className="mt-6 p-4 rounded-lg bg-red-950/30 border border-red-900/30">
+                  <div className="mt-6 p-4 rounded-xl bg-red-950/40 border-2 border-red-900/50">
                     <h3 className="text-sm font-semibold text-red-400 mb-3">
                       Incident Details
                     </h3>

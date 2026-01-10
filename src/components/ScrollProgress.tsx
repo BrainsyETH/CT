@@ -57,8 +57,8 @@ export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProp
         <div
           className={`h-full transition-colors duration-300 ${
             isCrimeline
-              ? "bg-gradient-to-r from-red-600 to-red-400"
-              : "bg-gradient-to-r from-teal-500 to-teal-300"
+              ? "bg-red-500"
+              : "bg-[#ff6b57]"
           }`}
           style={{ width: `${scrollProgress}%` }}
         />
@@ -69,10 +69,10 @@ export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProp
         {isVisible && currentVisibleYear && (
           <motion.div
             {...animationProps}
-            className={`fixed right-4 top-20 z-50 px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm ${
+            className={`fixed right-4 top-20 z-50 px-4 py-2 rounded-2xl shadow-[4px_4px_0_rgba(0,0,0,0.2)] backdrop-blur-sm border-2 ${
               isCrimeline
-                ? "bg-gray-900/90 border border-red-900/50 text-red-400"
-                : "bg-white/90 border border-gray-200 text-teal-600"
+                ? "bg-gray-900/90 border-red-900/60 text-red-400"
+                : "bg-[#fffaf2]/90 border-[#1f1f1f] text-[#1f1f1f]"
             }`}
           >
             <span className="text-2xl font-bold">{currentVisibleYear}</span>

@@ -16,8 +16,8 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isCrimeline
-          ? "bg-gray-950/95 border-b border-red-900/30"
-          : "bg-white/95 border-b border-gray-200"
+          ? "bg-gray-950/95 border-b-2 border-red-900/60"
+          : "bg-[#fffaf2]/95 border-b-2 border-[#1f1f1f]"
       } backdrop-blur-sm`}
     >
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -78,7 +78,7 @@ export function Header() {
       {/* Glitch line effect for crimeline mode */}
       {isCrimeline && !prefersReducedMotion && (
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent"
+          className="absolute bottom-0 left-0 right-0 h-px bg-red-500/70"
           animate={{
             opacity: [0.3, 1, 0.3],
             scaleX: [1, 1.02, 1],
@@ -93,7 +93,7 @@ export function Header() {
 
       {/* Static glitch line for reduced motion */}
       {isCrimeline && prefersReducedMotion && (
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-red-500/70" />
       )}
     </header>
   );

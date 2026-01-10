@@ -195,7 +195,7 @@ export function Timeline({ events }: TimelineProps) {
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-red-950/30 to-gray-900 border border-red-900/50"
+          className="mb-6 p-4 rounded-2xl bg-gray-950 border-2 border-red-900/60 shadow-[6px_6px_0_rgba(0,0,0,0.6)]"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -238,8 +238,8 @@ export function Timeline({ events }: TimelineProps) {
         <div className="flex-1 relative">
           {/* Central Timeline Line */}
           <div
-            className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 transition-colors duration-300 ${
-              isCrimeline ? "bg-red-900" : "bg-teal-200"
+            className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 transition-colors duration-300 ${
+              isCrimeline ? "bg-red-900/70" : "bg-[#1f1f1f]/20"
             }`}
           />
 
@@ -256,10 +256,10 @@ export function Timeline({ events }: TimelineProps) {
                     <motion.div
                       initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0 }}
                       animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}
-                      className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 ${
+                      className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 border-2 ${
                         isCrimeline
-                          ? "bg-gray-950 text-red-300 border-2 border-red-800"
-                          : "bg-teal-100 text-teal-700 border border-teal-200"
+                          ? "bg-gray-950 text-red-300 border-red-800"
+                          : "bg-[#fff1ea] text-[#1f1f1f] border-[#1f1f1f] shadow-[3px_3px_0_rgba(26,26,26,0.2)]"
                       }`}
                     >
                       {year}
