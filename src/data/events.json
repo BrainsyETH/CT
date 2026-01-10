@@ -1653,52 +1653,52 @@
     "id": "coinbase-data-breach-2025-05",
     "date": "2025-05-15",
     "title": "Coinbase Customer Data Breach via Rogue Support Agents",
-    "summary": "Coinbase disclosed a major security breach in which cybercriminals bribed overseas customer support agents.",
-    "category": "Security",
+    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history — but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers’ arrest and vowed to reimburse affected customers.",
+    "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
-      "FAILURE",
-      "REGULATORY"
+      "FAILURE"
     ],
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/coinbase_bribe",
     "links": [
       {
-        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
-        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+        "label": "Brian Explains in Video",
+        "url": "https://x.com/brian_armstrong/status/1922967787309256807?s=20"
       }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
-      "funds_lost_usd": 0,
+      "funds_lost_usd": "Unknown",
       "victims_estimated": "Limited subset of Coinbase customers (<1%)",
       "root_cause": [
         "Bribery and recruitment of Coinbase support personnel",
         "Insufficient internal access controls over sensitive user data"
       ],
-      "aftermath": "Coinbase refused the $20M ransom demand.",
-      "status": "Partial recovery"
+      "aftermath": "Coinbase refused the $20M ransom demand. Instead offers $20m for information leading to arrests.",
+      "status": "Ongoing"
     }
   },
   {
     "id": "cetus-protocol-exploit-2025-05",
     "date": "2025-05-22",
     "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
-    "summary": "On Sui\u00e2\u20ac\u2122s largest decentralized exchange, Cetus Protocol suffered a major exploit.",
-    "category": "Security",
+    "summary": "Cetus Protocol, a major decentralized exchange and liquidity provider on the Sui blockchain, was exploited for roughly $220 – $260 million. The attacker took advantage of a vulnerability in the protocol’s smart contract/overflow handling logic, allowing them to manipulate liquidity and drain multiple pools in under 15 minutes.",
+    "category": "DeFi Protocol",
     "tags": [
       "SECURITY",
-      "FAILURE",
-      "TECH"
+      "FAILURE"
     ],
     "mode": [
       "crimeline"
     ],
-    "links": [
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cetus"
+,    "links": [
       {
-        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
-        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+        "label": "Cetus Announcement",
+        "url": "https://x.com/CetusProtocol/status/1925567348586815622?s=20"
       }
     ],
     "crimeline": {
@@ -1709,7 +1709,7 @@
         "Price manipulation via spoof token insertion",
         "Smart contract vulnerability in AMM pricing feeds"
       ],
-      "aftermath": "Cetus paused operations.",
+      "aftermath": "Cetus plans to make users whole.",
       "status": "Partial recovery"
     }
   },
@@ -1746,8 +1746,8 @@
     "id": "nobitex-exchange-hack-2025-06",
     "date": "2025-06-17",
     "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
-    "summary": "Iran\u00e2\u20ac\u2122s largest exchange Nobitex was hit by an exploit that drained around $90M.",
-    "category": "Security",
+    "summary": "Nobitex, Iran’s largest cryptocurrency exchange, was hit by a major cyberattack in which attackers drained tens of millions of dollars (roughly $80–$90 M+) from its hot wallets. The group calling itself Gonjeshke Darande (also known as “Predatory Sparrow”), believed to be linked to Israeli intelligence, claimed responsibility and framed the attack as targeting Iran’s sanctions-evasion infrastructure amid rising Iran–Israel tensions rather than for financial gain.",
+    "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
       "FAILURE"
@@ -1755,10 +1755,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%201.44.25%E2%80%AFPM.png",
     "links": [
       {
-        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
-        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+        "label": "Alert",
+        "url": "https://x.com/H4ckmanac/status/1935236416105074881?s=20"
       }
     ],
     "crimeline": {
@@ -1798,43 +1799,7 @@
       }
     ]
   },
-  {
-    "id": "npm-js-supply-chain-attack-2025-09-08",
-    "date": "2025-09-08",
-    "title": "Mass npm JavaScript Supply-Chain Attack Hits Widely Used Packages",
-    "summary": "A large-scale supply-chain compromise targeted multiple high-download npm packages.",
-    "category": "Other",
-    "tags": [
-      "SECURITY",
-      "TECH",
-      "FAILURE"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "links": [
-      {
-        "label": "Palo Alto Networks breakdown",
-        "url": "https://www.paloaltonetworks.com/blog/cloud-security/npm-supply-chain-attack/"
-      },
-      {
-        "label": "Trend Micro analysis",
-        "url": "https://www.trendmicro.com/en_us/research/25/i/npm-supply-chain-attack.html"
-      }
-    ],
-    "crimeline": {
-      "type": "OTHER",
-      "funds_lost_usd": 0,
-      "victims_estimated": "Unknown",
-      "root_cause": [
-        "Maintainer account compromise",
-        "Malicious package updates",
-        "Software supply-chain infection"
-      ],
-      "aftermath": "Security teams audited dependencies.",
-      "status": "Unknown"
-    }
-  },
+
   {
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
@@ -1911,8 +1876,8 @@
     "id": "upbit-hack-2025-11",
     "date": "2025-11-26",
     "title": "Upbit Solana Hot Wallet Hack (~$36M)",
-    "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets.",
-    "category": "Security",
+    "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets. ",
+    "category": "Wallet/Key Compromise",
     "tags": [
       "SECURITY",
       "FAILURE"
@@ -1920,21 +1885,23 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%201.41.04%E2%80%AFPM.png",
     "links": [
       {
-        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
-        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
+        "label": "Tweet",
+        "url": "https://x.com/veritas_web3/status/1993999228931068038?s=20"
       }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 36000000,
-      "victims_estimated": "Upbit customers exposed to Solana assets",
+      "victims_estimated": "Unknown",
       "root_cause": [
-        "Hot wallet security lapse",
-        "Rapid exploit execution characteristic of state-linked hacking groups"
+        "Hot wallet compromise",
+        "Lazarus Group - Unconfirmed"
+    
       ],
-      "aftermath": "Upbit moved remaining funds to cold storage.",
+      "aftermath": "Upbit has pledged to fully cover all losses",
       "status": "Ongoing"
     }
   },
@@ -1975,8 +1942,8 @@
   {
     "id": "trustwallet-extension-v268-compromise-2025-12-24",
     "date": "2025-12-24",
-    "title": "Trust Wallet Chrome Extension Supply-Chain Compromise (v2.68)",
-    "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process.",
+    "title": "Trust Wallet Extension Compromise",
+    "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process. Approximately 2,500 wallets were drained.",
     "category": "Wallet/Key Compromise",
     "tags": [
       "SECURITY",
@@ -1986,63 +1953,35 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/trust_wallet",
     "links": [
       {
-        "label": "Trust Wallet post-mortem update",
+        "label": "Post-Mortem Update",
         "url": "https://trustwallet.com/blog/announcements/trust-wallet-browser-extension-v268-incident-community-update"
       },
       {
-        "label": "Trust Wallet security notice (X)",
+        "label": "Trust Wallet Security Notice",
         "url": "https://x.com/TrustWallet/status/2007475482313244989"
       },
       {
-        "label": "Exec update thread",
+        "label": "Eowyn Chen Update",
         "url": "https://x.com/EowynChen/status/2004649284537647161"
       }
     ],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 8500000,
-      "victims_estimated": "Thousands",
+      "victims_estimated": "Estimated 2,500 wallets",
       "root_cause": [
         "Browser extension supply-chain compromise",
         "Malicious code injection",
         "Unauthorized publishing process"
       ],
-      "aftermath": "Extension rollout halted.",
-      "status": "Partial recovery"
-    }
-  },
-  {
-    "id": "coinbase-customer-data-leak-2026-01",
-    "date": "2026-01-03",
-    "title": "100,000 Coinbase Customer Records Found Online",
-    "summary": "Reports surfaced claiming 100,000 Coinbase customer records were being sold or shared online.",
-    "category": "Data Leak",
-    "tags": [
-      "SECURITY",
-      "FAILURE"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "links": [
-      {
-        "label": "Leak reports",
-        "url": "https://x.com/search?q=Coinbase%20100k%20data%20leak"
-      }
-    ],
-    "crimeline": {
-      "type": "CUSTODY FAILURE",
-      "funds_lost_usd": 0,
-      "victims_estimated": "100,000 users",
-      "root_cause": [
-        "Data security lapse"
-      ],
-      "aftermath": "Coinbase investigated source of leak.",
+      "aftermath": "Extension rollout halted. Funds are SAFU per CZ",
       "status": "Ongoing"
     }
   },
+  
   {
     "id": "hal-finney-running-bitcoin-2009-01-11",
     "date": "2009-01-11",
@@ -3224,5 +3163,199 @@
         "url": "https://x.com/relai_app/status/1841856786623824211"
       }
     ]
+  },
+
+  {
+    "id": "jihan-wu-bitmain-lore",
+    "date": "2018-11-15",
+    "title": "Jihan Wu and the Bitmain Power Era",
+    "summary": "Jihan Wu, co-founder of Bitmain, became one of the most influential and controversial figures in Bitcoin history through mining dominance, ASIC control, and his role in the Bitcoin Cash civil war.",
+    "category": "Bitcoin",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Jihan+Wu",
+    "links": [
+      {
+        "label": "Bitcoin Cash War Context",
+        "url": "https://x.com/search?q=jihan%20wu%20bitmain"
+      }
+    ]
+  },
+  {
+    "id": "cobie-buy-wall",
+    "date": "2021-05-19",
+    "title": "Cobie Posts His Buy Wall",
+    "summary": "During a violent market selloff, Cobie publicly posted his massive buy wall, turning the phrase into a legendary Crypto Twitter moment symbolizing conviction and capital.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/buy_wall",
+    "links": [
+      {
+        "label": "Cobie Buy Wall",
+        "url": "https://x.com/search?q=cobie%20buy%20wall"
+      }
+    ]
+  },
+  {
+    "id": "crypto-the-game-seasons",
+    "date": "2023-01-15",
+    "title": "Crypto: The Game Seasons",
+    "summary": "Crypto: The Game launched as a Survivor-style on-chain competition, with multiple seasons becoming major social and cultural events within Crypto Twitter.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Crypto+The+Game",
+    "links": [
+      {
+        "label": "Game Discussions",
+        "url": "https://x.com/search?q=crypto%20the%20game"
+      }
+    ]
+  },
+  {
+    "id": "tornado-cash-arrests",
+    "date": "2022-08-08",
+    "title": "Tornado Cash Sanctions and Arrests",
+    "summary": "The U.S. government sanctioned Tornado Cash, later arresting developers, igniting a global debate on privacy, open-source software, and financial freedom.",
+    "category": "Regulation",
+    "tags": ["REGULATORY", "SECURITY"],
+    "mode": ["crimeline"],
+    "image": "https://placeholder.co/600x400?text=Tornado+Cash",
+    "links": [
+      {
+        "label": "Sanctions Coverage",
+        "url": "https://x.com/search?q=tornado%20cash%20arrest"
+      }
+    ],
+    "crimeline": {
+      "type": "REGULATORY SEIZURE",
+      "funds_lost_usd": 0,
+      "victims_estimated": "Global Tornado users",
+      "root_cause": ["Regulatory action"],
+      "aftermath": "Triggered legal challenges and open-source backlash.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "bitboy-arrested-ex-house",
+    "date": "2023-09-12",
+    "title": "BitBoy Arrested Outside Ex-Wife’s House",
+    "summary": "Crypto influencer BitBoy was arrested outside his ex-wife’s home during a highly publicized personal and legal meltdown.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=BitBoy+Arrest",
+    "links": [
+      {
+        "label": "Arrest Footage",
+        "url": "https://x.com/search?q=bitboy%20arrested"
+      }
+    ]
+  },
+  {
+    "id": "bitboy-vs-ansem",
+    "date": "2023-10-02",
+    "title": "BitBoy vs Ansem",
+    "summary": "BitBoy and trader Ansem clashed publicly on Crypto Twitter, with insults, accusations, and community pile-ons defining the feud.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=BitBoy+vs+Ansem",
+    "links": [
+      {
+        "label": "Fight Threads",
+        "url": "https://x.com/search?q=bitboy%20ansem"
+      }
+    ]
+  },
+  {
+    "id": "gainzy-rollbit-drama",
+    "date": "2024-02-05",
+    "title": "Gainzy and the Rollbit Drama",
+    "summary": "Gainzy became entangled in Rollbit-related controversy, reigniting debates over gambling sponsorships, incentives, and influencer ethics.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Gainzy+Rollbit",
+    "links": [
+      {
+        "label": "CT Reactions",
+        "url": "https://x.com/search?q=gainzy%20rollbit"
+      }
+    ]
+  },
+  {
+    "id": "bitboy-rant-rsa",
+    "date": "2022-10-20",
+    "title": "BitBoy Rants About RSA",
+    "summary": "BitBoy launched a chaotic rant involving RSA, quickly becoming another viral meltdown moment widely mocked across Crypto Twitter.",
+    "category": "CT Lore",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=BitBoy+RSA",
+    "links": [
+      {
+        "label": "Viral Clip",
+        "url": "https://x.com/DiscoverCrypto_/status/1583151475466768386"
+      }
+    ]
+  },
+  {
+    "id": "vitalik-ethereum-on-steroids",
+    "date": "2022-10-21",
+    "title": "Vitalik: Ethereum on Steroids",
+    "summary": "A meme referencing Vitalik describing Ethereum as being 'on steroids' circulated widely, becoming shorthand for aggressive scaling narratives.",
+    "category": "Ethereum",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Ethereum+Steroids",
+    "links": [
+      {
+        "label": "Meme Source",
+        "url": "https://x.com/DiscoverCrypto_/status/1583151475466768386"
+      }
+    ]
+  },
+  {
+    "id": "satoshi-dont-convince-quote",
+    "date": "2010-07-29",
+    "title": "Satoshi: 'If You Don’t Believe Me'",
+    "summary": "Satoshi Nakamoto’s quote—'If you don’t believe me or don’t get it, I don’t have time to try to convince you'—became one of the most cited philosophical statements in Bitcoin culture.",
+    "category": "Bitcoin",
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placeholder.co/600x400?text=Satoshi+Quote",
+    "links": [
+      {
+        "label": "Quote Image",
+        "url": "https://pbs.twimg.com/media/GxDc2CzWIAA8wch"
+      }
+    ]
+  },
+  {
+    "id": "kevin-nft-rug",
+    "date": "2022-04-02",
+    "title": "Kevin NFT Rug Pull Becomes Hilarious",
+    "summary": "The Kevin NFT rug pull was so poorly executed that it crossed from scam into comedy, becoming a long-running joke on Crypto Twitter.",
+    "category": "NFTs",
+    "tags": ["FAILURE", "CULTURAL"],
+    "mode": ["crimeline"],
+    "image": "https://placeholder.co/600x400?text=Kevin+NFT",
+    "links": [
+      {
+        "label": "Kevin NFT Lore",
+        "url": "https://x.com/search?q=kevin%20nft%20rug"
+      }
+    ],
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": "Unknown",
+      "victims_estimated": "NFT buyers",
+      "root_cause": ["Exit scam"],
+      "aftermath": "Became a meme rather than a legal case.",
+      "status": "Total loss"
+    }
   }
-]
+  ]
+
