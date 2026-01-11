@@ -707,7 +707,7 @@
     "id": "terra-luna-collapse-2022-05-09",
     "date": "2022-05-09",
     "title": "Terra/LUNA Collapse",
-    "summary": "The UST algorithmic stablecoin loses its peg, triggering a death spiral that wipes out $40B+ in value and collapses the Terra ecosystem.",
+    "summary": "the Terra blockchain’s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This “death spiral” wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
     "category": "Stablecoin",
     "tags": [
       "FAILURE",
@@ -716,7 +716,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/do_kwon_apology",
     "links": [
+      {
+        "label": "Do Kwon Apology",
+        "url": "https://x.com/stablekwon/status/1525238416991891457?s=20"
+      },
       {
         "label": "Terra Collapse",
         "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/"
@@ -819,10 +824,15 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/voyager.png",
     "links": [
       {
         "label": "Voyager Bankruptcy",
         "url": "https://www.coindesk.com/business/2022/07/06/voyager-digital-files-for-chapter-11-bankruptcy/"
+      },
+      {
+        "label": "Voyager Video",
+        "url": "https://www.cnbc.com/video/2022/07/06/crypto-broker-voyager-digital-files-for-bankruptcy.html"
       }
     ],
     "crimeline": {
