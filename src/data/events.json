@@ -401,37 +401,7 @@
       "status": "Partial recovery"
     }
   },
-  {
-    "id": "plustoken-scam-2019-06",
-    "date": "2019-06-29",
-    "title": "PlusToken Ponzi Collapse",
-    "summary": "PlusToken Ponzi scheme collapses after defrauding approximately $2B+ from Asian investors through fake cryptocurrency investment platform.",
-    "category": "Other",
-    "tags": [
-      "SECURITY",
-      "FAILURE"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "links": [
-      {
-        "label": "PlusToken Scam",
-        "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/"
-      }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": 2000000000,
-      "victims_estimated": "3M+",
-      "root_cause": [
-        "Ponzi scheme",
-        "High yield promises"
-      ],
-      "aftermath": "Chinese authorities arrested key operators; funds partially traced and seized.",
-      "status": "Partial recovery"
-    }
-  },
+  
   {
     "id": "btc-third-halving-2020-05-11",
     "date": "2020-05-11",
@@ -2331,21 +2301,26 @@
     "mode": [
       "crimeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/plustoken",
     "links": [
       {
         "label": "Chainalysis",
         "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/"
       }
     ],
-    "crimeline": {
-    "type": "FRAUD",
-    "funds_lost_usd": 14000000,
-    "victims_estimated": "SUSHI holders and LPs",
-    "root_cause": ["Insider/dev fund withdrawal", "Admin key/control risk"],
-    "aftermath": "Chef Nomi returned funds and ceded control to SBF; the incident became defining DeFi governance lore.",
-    "status": "Partial recovery"
-  }
+   "crimeline": {
+  "type": "FRAUD",
+  "funds_lost_usd": 2000000000,
+  "victims_estimated": "3M+",
+  "root_cause": [
+    "Ponzi scheme disguised as crypto wallet and investment platform",
+    "Guaranteed high-yield promises",
+    "Centralized control of user funds",
+    "Lack of transparency and regulatory oversight"
+  ],
+  "aftermath": "Operators prosecuted; assets partially seized by authorities",
+  "status": "Partial recovery"
+}
   },
   
   {
