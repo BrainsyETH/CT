@@ -33,7 +33,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
 
-  // Close on escape key and handle scroll locking
+  // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -49,32 +49,18 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
       // Store the previously focused element
       previousActiveElement.current = document.activeElement as HTMLElement;
 
-      // Save current scroll position
-      const scrollY = window.scrollY;
-
-      // Prevent scroll by fixing body position
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-
       document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
 
       // Focus the close button when modal opens
       setTimeout(() => {
         closeButtonRef.current?.focus();
       }, 100);
-
-      return () => {
-        // Restore scroll position
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
-      };
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
 
       // Return focus to the triggering element when modal closes
       if (previousActiveElement.current && !selectedEventId) {
