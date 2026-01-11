@@ -2220,6 +2220,10 @@
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/wassie",
     "links": [
       {
+        "label": "The History",
+        "url": "https://x.com/notsofast/status/1173665387608719361?s=20"
+      },
+      {
         "label": "Smolting",
         "url": "https://x.com/inversebrah"
       }
@@ -3371,6 +3375,23 @@
       "aftermath": "Became a meme rather than a legal case.",
       "status": "Total loss"
     }
-  }
+  },
+  {
+  "id": "nikita-ct-self-destruction-comments-2026-01",
+  "date": "2026-01-10",
+  "title": "Nikita Says Crypto Twitter Is \"Dying From Suicide\"",
+  "summary": "Nikita Bier sparked backlash on Crypto Twitter after claiming that CT is \"dying from suicide,\" arguing that the community is harming itself through low-quality engagement farming, rather than being suppressed solely by platform algorithms. The comments quickly became a flashpoint in ongoing debates about CT's decline on Twitter, engagement farming, and the impact of their recent algorithm changes.",
+  "category": "CT Lore",
+  "tags": ["CULTURAL"],
+  "mode": ["timeline"],
+  "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ct_suicide",
+  "links": [
+    {
+      "label": "Nikita Tweets",
+      "url": "https://x.com/nikitabier/status/2010178890627686492?s=20"
+    }
+  ]
+}
+
   ]
 
