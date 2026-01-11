@@ -20,7 +20,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
     <div
       role="radiogroup"
       aria-label="Select view mode"
-      className={`inline-flex rounded-lg ${compact ? 'p-0.5' : 'p-1'} bg-gray-200 dark:bg-gray-800`}
+      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} bg-gray-200 dark:bg-gray-800 rounded-lg`}
     >
       {segments.map((segment) => {
         const isActive = mode === segment.value;
@@ -35,16 +35,18 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
             role="radio"
             aria-checked={isActive}
             className={`
-              ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'} font-medium rounded-md transition-all duration-200
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
+              ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
+              font-medium rounded-md
+              transition-all duration-300 ease-out
+              focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
               ${
                 isActive
                   ? isTimeline
-                    ? "bg-teal-500 text-white shadow-md focus:ring-teal-400"
+                    ? "bg-teal-500 text-white shadow-md scale-[1.02] focus:ring-teal-400"
                     : isCrimeline
-                    ? "bg-red-600 text-white shadow-md focus:ring-red-400"
-                    : "bg-gradient-to-r from-teal-500 to-red-600 text-white shadow-md focus:ring-purple-400"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    ? "bg-red-600 text-white shadow-md scale-[1.02] focus:ring-red-400"
+                    : "bg-gradient-to-r from-teal-500 to-red-600 text-white shadow-md scale-[1.02] focus:ring-purple-400"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-gray-700/50 hover:scale-[1.01]"
               }
             `}
           >
