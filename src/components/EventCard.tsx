@@ -136,7 +136,7 @@ export function EventCard({ event, index }: EventCardProps) {
               </div>
 
               {/* Metrics - Only show for Bitcoin category events */}
-              {event.metrics && event.category === "Bitcoin" && (
+              {event.metrics && event.category.includes("Bitcoin") && (
                 <div
                   className={`mt-3 pt-3 border-t transition-colors duration-300 ${
                     isCrimeline ? "border-gray-700" : "border-gray-200"

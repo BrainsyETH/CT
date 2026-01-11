@@ -49,7 +49,9 @@ export function Timeline({ events }: TimelineProps) {
         const query = searchQuery.toLowerCase();
         const matchesTitle = event.title.toLowerCase().includes(query);
         const matchesSummary = event.summary.toLowerCase().includes(query);
-        const matchesCategory = event.category.toLowerCase().includes(query);
+        const matchesCategory = event.category.some((cat) =>
+          cat.toLowerCase().includes(query)
+        );
         const matchesTags = event.tags.some((tag) =>
           tag.toLowerCase().includes(query)
         );
@@ -68,7 +70,10 @@ export function Timeline({ events }: TimelineProps) {
 
       // Category filter
       if (selectedCategories.length > 0) {
-        if (!selectedCategories.includes(event.category)) return false;
+        const hasMatchingCategory = event.category.some((cat) =>
+          selectedCategories.includes(cat)
+        );
+        if (!hasMatchingCategory) return false;
       }
 
       // Crimeline Type filter
