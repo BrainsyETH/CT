@@ -1,4 +1,4 @@
-export type Mode = "timeline" | "crimeline";
+export type Mode = "timeline" | "crimeline" | "both";
 
 export type EventTag =
   | "TECH"

@@ -12,7 +12,7 @@ interface ShareButtonProps {
 }
 
 export function ShareButton({ event, overImage = false }: ShareButtonProps) {
-  const { mode } = useModeStore();
+  const { mode, searchQuery, selectedTags, sortOrder } = useModeStore();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
@@ -25,7 +25,36 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
   const menuId = useId();
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-  const shareUrl = `${baseUrl}?event=${event.id}`;
+
+  // Build share URL with current filters
+  const buildShareUrl = () => {
+    const params = new URLSearchParams();
+    params.set("event", event.id);
+
+    // Add mode if not default
+    if (mode !== "timeline") {
+      params.set("mode", mode);
+    }
+
+    // Add search query if present
+    if (searchQuery.trim()) {
+      params.set("q", searchQuery);
+    }
+
+    // Add tags if present
+    if (selectedTags.length > 0) {
+      params.set("tags", selectedTags.join(","));
+    }
+
+    // Add sort order if not default
+    if (sortOrder === "asc") {
+      params.set("sort", sortOrder);
+    }
+
+    return `${baseUrl}?${params.toString()}`;
+  };
+
+  const shareUrl = buildShareUrl();
   const shareText = `${event.title}`;
 
   // Mount check for portal

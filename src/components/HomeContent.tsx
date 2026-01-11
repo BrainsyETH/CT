@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
 import { EventDetailModal } from "@/components/EventDetailModal";
-import { useModeStore } from "@/store/mode-store";
+import { useUrlSync } from "@/hooks/useUrlSync";
 import type { Event } from "@/lib/types";
 
 interface HomeContentProps {
@@ -14,19 +12,8 @@ interface HomeContentProps {
 }
 
 export function HomeContent({ events }: HomeContentProps) {
-  const searchParams = useSearchParams();
-  const { setSelectedEventId } = useModeStore();
-
-  // Open modal if event ID is in URL
-  useEffect(() => {
-    const eventId = searchParams.get("event");
-    if (eventId) {
-      const event = events.find((e) => e.id === eventId);
-      if (event) {
-        setSelectedEventId(eventId);
-      }
-    }
-  }, [searchParams, events, setSelectedEventId]);
+  // Synchronize URL params with store state
+  useUrlSync();
 
   return (
     <ThemeProvider>

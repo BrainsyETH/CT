@@ -32,7 +32,12 @@ export const useModeStore = create<ModeState>()(
       setMode: (mode) => set({ mode }),
       toggleMode: () =>
         set((state) => ({
-          mode: state.mode === "timeline" ? "crimeline" : "timeline",
+          mode:
+            state.mode === "timeline"
+              ? "crimeline"
+              : state.mode === "crimeline"
+              ? "both"
+              : "timeline",
         })),
       setSearchQuery: (query) => set({ searchQuery: query }),
       toggleTag: (tag) =>
