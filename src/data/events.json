@@ -2326,7 +2326,7 @@
   {
     "id": "sushiswap-vampire-attack-2020-08",
     "date": "2020-08-28",
-    "title": "The Chef and His $SUSHI",
+    "title": "$SUSHI Goes After Uni",
     "summary": "The SushiSwap vampire attack was one of the most dramatic moments of DeFi Summer 2020, when SushiSwap launched a fork of Uniswap and incentivized users to migrate liquidity away from Uniswap by offering newly minted $SUSHI tokens as rewards. In just days, billions in liquidity had moved. Uniswap answered with the UNI airdrop and LP rewards, while Sushi would run into chef troubles.",
     "category": "DeFi",
     "tags": [
@@ -2351,7 +2351,7 @@
   {
     "id": "nomi-rug-return-2020-09",
     "date": "2020-09-11",
-    "title": "The Nomi Rug Return",
+    "title": "The Chef and His $SUSHI",
     "summary": "SushiSwap’s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
     "category": "DeFi",
     "tags": [
@@ -2372,6 +2372,7 @@
       }
     ]
   },
+
   {
     "id": "uni-airdrop-2020-09-16",
     "date": "2020-09-16",
@@ -2828,7 +2829,7 @@
   {
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
-    "title": "The Gainzy Fat-Finger Rug",
+    "title": "The Gainzy Fat-Finger",
     "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a “fat-finger misclick” while fiddling with his phone. The massive sell caused the token’s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
     "category": "Memecoins",
     "tags": [
@@ -3028,14 +3029,14 @@
     "id": "sbf-buy-wall-threat",
     "date": "2021-01-10",
     "title": "SBF: 'I Will Buy All You Have at $3'",
-    "summary": "Sam Bankman-Fried tweeted an aggressive threat during a market dispute, promising to buy all supply at $3 before telling the critic to 'fuck off.' The post later resurfaced after FTX’s collapse.",
+    "summary": "Sam Bankman-Fried tweeted an aggressive threat during a market dispute, promising to buy all supply at $3 before telling the critic to 'fuck off.'",
     "category": "CT Lore",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=SBF+Tweet",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sbf_3_dollars",
     "links": [
       {
-        "label": "Original Tweet",
+        "label": "SBF Tweet",
         "url": "https://x.com/SBF_FTX/status/1347964322459262977"
       }
     ]
@@ -3045,7 +3046,7 @@
     "date": "2022-03-10",
     "title": "Ledger Dances on UpOnly",
     "summary": "Ledgerstatus shows us his dance moves on the UpOnly podcast. The FTX shirt was truly the cherry-on-top. Pure cinema.",
-    "category": "CT Lore",
+    "category": "Dances",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ledger_dances",
@@ -3056,52 +3057,26 @@
       }
     ]
   },
-  {
-    "id": "miya-liquidation",
-    "date": "2023-06-12",
-    "title": "The MIYA Liquidation",
-    "summary": "A crypto trader known as “Miya” publicly announced that they had gone all-in on Ethereum, putting a huge leveraged position (reportedly around $10 million) into ETH based on their own market outlook — expecting a short-term rally. Within a short time after the market moved against them, that leveraged position was liquidated, wiping out the entire investment.",
-    "category": "Market Structure",
-    "tags": ["FAILURE"],
-    "mode": ["crimeline"],
-    "image": "https://placeholder.co/600x400?text=Liquidation",
-    "crimeline": {
-      "type": "LEVERAGE COLLAPSE",
-      "funds_lost_usd": "Unknown",
-      "victims_estimated": "Single large trader",
-      "root_cause": ["Overleveraged position"],
-      "aftermath": "Widely mocked and referenced on CT.",
-      "status": "Total loss"
-    }
-  },
- 
+
   {
     "id": "algod-ftx-bahamas-accounts",
     "date": "2022-11-15",
-    "title": "Algod Accounts Buy Bahamas IDs to Withdraw FTX Funds",
-    "summary": "Cobie revealed that traders were purchasing Bahamian accounts to bypass FTX withdrawal restrictions after the exchange collapsed.",
+    "title": "Algod Becomes Bahaman to Withdraw FTX Funds",
+    "summary": "Algod (or AlgodTrading) reportedly exploited a loophole where Bahamian-registered FTX accounts could still withdraw funds due to pressure from Bahamian regulators to protect local users, while most international accounts were frozen.",
     "category": "Centralized Exchange",
     "tags": ["FAILURE", "SECURITY"],
-    "mode": ["crimeline"],
-    "image": "https://placeholder.co/600x400?text=FTX+Bahamas",
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/algod_ftx",
     "links": [
       {
-        "label": "Cobie Thread",
+        "label": "Cobie Tweet",
         "url": "https://x.com/cobie/status/1592202658483687424"
       },
       {
-        "label": "Crypto.News Report",
+        "label": "News Report",
         "url": "https://crypto.news/investor-pays-100k-bribe-to-ftx-officials-to-bypass-kyc-and-withdraw-funds/"
       }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": "Unknown",
-      "victims_estimated": "FTX customers",
-      "root_cause": ["Bribery", "KYC circumvention"],
-      "aftermath": "Further legal scrutiny into FTX operations.",
-      "status": "Ongoing"
-    }
+    ]
   },
 
   {
@@ -3152,7 +3127,7 @@
     "id": "john-mcafee-eat-dick",
     "date": "2017-07-17",
     "title": "John McAfee Says He Will Eat His Own D*ck",
-    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k. An absurd and legendary bet. RIP.",
+    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k in 3 years. An absurd and legendary bet. RIP.",
     "category": "Bitcoin",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
@@ -3169,15 +3144,15 @@
     "id": "jihan-wu-bitmain-lore",
     "date": "2018-11-15",
     "title": "Jihan Wu and the Bitmain Power Era",
-    "summary": "Jihan Wu, co-founder of Bitmain, became one of the most influential and controversial figures in Bitcoin history through mining dominance, ASIC control, and his role in the Bitcoin Cash civil war.",
+    "summary": "Jihan Wu, co-founder of Bitmain, became one of the most influential and controversial figures for his role in the Bitcoin Cash vs BTC era. Wu backed BCH to address BTC's transaction limits, contrasting with BTC's SegWit soft fork; this stance fueled market volatility, with BCH briefly surpassing $2,000 in December 2017. Wu and Bitmain were defendants in a U.S. antitrust case alleging they conspired with others (Roger Ver, Kraken, etc.) to manipulate the Bitcoin Cash market during the BCH fork drama. A federal judge dismissed all claims; Bitmain and Wu walked.",
     "category": "Bitcoin",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=Jihan+Wu",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitcoin_jihan",
     "links": [
       {
-        "label": "Bitcoin Cash War Context",
-        "url": "https://x.com/search?q=jihan%20wu%20bitmain"
+        "label": "Bitcoin is Bitcoin",
+        "url": "https://x.com/JihanWu/status/926076475656126466?s=20"
       }
     ]
   },
@@ -3216,56 +3191,60 @@
   {
     "id": "tornado-cash-arrests",
     "date": "2022-08-08",
-    "title": "Tornado Cash Sanctions and Arrests",
-    "summary": "The U.S. government sanctioned Tornado Cash, later arresting developers, igniting a global debate on privacy, open-source software, and financial freedom.",
-    "category": "Regulation",
+    "title": "Tornado Cash Sanctions Begin",
+    "summary": "n August 2022, authorities escalated enforcement against Tornado Cash after U.S. sanctions, leading to the arrest of developer Alexey Pertsev in the Netherlands. The crackdown intensified in 2023 when U.S. prosecutors charged Roman Storm. The original OFAC sanctions on Tornado Cash were challenged and partially overturned by a U.S. appeals court in late 2024 (ruling that autonomous protocols can't be sanctioned as 'property'). Sanctions were lifted in March 2025, but the criminal case against Storm continues.",
+    "category": "Privacy",
     "tags": ["REGULATORY", "SECURITY"],
-    "mode": ["crimeline"],
-    "image": "https://placeholder.co/600x400?text=Tornado+Cash",
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/free_roman",
     "links": [
       {
-        "label": "Sanctions Coverage",
+        "label": "Write Letter to Free Roman",
         "url": "https://x.com/search?q=tornado%20cash%20arrest"
+      },
+      {
+        "label": "Vitalik Support",
+        "url": "https://x.com/rstormsf/status/2009432826765341113?s=20"
       }
-    ],
-    "crimeline": {
-      "type": "REGULATORY SEIZURE",
-      "funds_lost_usd": 0,
-      "victims_estimated": "Global Tornado users",
-      "root_cause": ["Regulatory action"],
-      "aftermath": "Triggered legal challenges and open-source backlash.",
-      "status": "Ongoing"
-    }
+    ]
   },
   {
     "id": "bitboy-arrested-ex-house",
-    "date": "2023-09-12",
-    "title": "BitBoy Arrested Outside Ex-Wife’s House",
-    "summary": "Crypto influencer BitBoy was arrested outside his ex-wife’s home during a highly publicized personal and legal meltdown.",
+    "date": "2023-09-25",
+    "title": "BitBoy Livestreams His Arrest",
+    "summary": "Crypto influencer BitBoy was arrested outside a former employee's home. It was a highly publicized meltdown that included a weapon, his mistress, and a Youtube livestream.",
     "category": "CT Lore",
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=BitBoy+Arrest",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream",
     "links": [
       {
         "label": "Arrest Footage",
-        "url": "https://x.com/search?q=bitboy%20arrested"
+        "url": "https://x.com/Loopify/status/1706533730221740328?s=20"
+      },
+      {
+        "label": "News Report",
+        "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
       }
     ]
   },
   {
     "id": "bitboy-vs-ansem",
-    "date": "2023-10-02",
-    "title": "BitBoy vs Ansem",
-    "summary": "BitBoy and trader Ansem clashed publicly on Crypto Twitter, with insults, accusations, and community pile-ons defining the feud.",
-    "category": "CT Lore",
+    "date": "2024-12-06",
+    "title": "BitBoy vs Ansem Match",
+    "summary": "BitBoy and Ansem clash publicly in the ring on December 6th, 2024.",
+    "category": "Dances",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=BitBoy+vs+Ansem",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_inhaler",
     "links": [
+       {
+        "label": "The Fight",
+        "url": "https://www.youtube.com/watch?v=0hTrCJw1C5E"
+      },
       {
-        "label": "Fight Threads",
-        "url": "https://x.com/search?q=bitboy%20ansem"
+        "label": "The Highlights",
+        "url": "https://x.com/cryptoMIB/status/1865116258942734644?s=20"
       }
     ]
   },
@@ -3288,17 +3267,22 @@
   {
     "id": "bitboy-rant-rsa",
     "date": "2022-10-20",
-    "title": "BitBoy Rants About RSA",
-    "summary": "BitBoy launched a chaotic rant involving RSA, quickly becoming another viral meltdown moment widely mocked across Crypto Twitter.",
+    "title": "BitBoy Finds His Inner Alex Jones",
+    "summary": "BitBoy launched a chaotic rant involving RSA, after Ryan Sean Adams tweets Bitboy ",
     "category": "CT Lore",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=BitBoy+RSA",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%2010.01.03%E2%80%AFPM.png",
     "links": [
       {
-        "label": "Viral Clip",
-        "url": "https://x.com/DiscoverCrypto_/status/1583151475466768386"
+        "label": "Bitboy Rant",
+        "url": "https://x.com/MasonVersluis/status/1583149433881255940"
+      },
+      {
+        "label": "RSA Tweet",
+        "url": "https://x.com/RyanSAdams/status/1582876963751923712?s=20"
       }
+  
     ]
   },
   {
@@ -3319,39 +3303,39 @@
   },
   {
     "id": "satoshi-dont-convince-quote",
-    "date": "2010-07-29",
-    "title": "Satoshi: 'If You Don’t Believe Me'",
-    "summary": "Satoshi Nakamoto’s quote—'If you don’t believe me or don’t get it, I don’t have time to try to convince you'—became one of the most cited philosophical statements in Bitcoin culture.",
+    "date": "2010-07-28",
+    "title": "I don't have time to try to convince you, sorry",
+    "summary": "Satoshi Nakamoto’s quote: 'If you don’t believe me or don’t get it, I don’t have time to try to convince you'. One of the most cited philosophical statements in Bitcoin culture.",
     "category": "Bitcoin",
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placeholder.co/600x400?text=Satoshi+Quote",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/satoshi_quote",
     "links": [
       {
-        "label": "Quote Image",
-        "url": "https://pbs.twimg.com/media/GxDc2CzWIAA8wch"
+        "label": "Brian Tweet",
+        "url": "https://x.com/brian_armstrong/status/1950301764689023185?s=20"
       }
     ]
   },
   {
     "id": "kevin-nft-rug",
-    "date": "2022-04-02",
-    "title": "Kevin NFT Rug Pull Becomes Hilarious",
-    "summary": "The Kevin NFT rug pull was so poorly executed that it crossed from scam into comedy, becoming a long-running joke on Crypto Twitter.",
+    "date": "2022-02-26",
+    "title": "Kevin NFT Rug Pull Turns To Comedy",
+    "summary": "The Pixelmon project hyped a AAA game, minted out at ~3 ETH each, pulled in massive funds totaling around $70m... then revealed absolute dogwater art, with Kevin becoming the face of disappointment. The founder went shopping for blue-chips with the treasury, floor tanked, ZachXBT called it out, and the internet never let it die. The Kevin NFT art was so poorly executed that it crossed from scam into comedy, becoming a long-running joke on CT.",
     "category": "NFTs",
     "tags": ["FAILURE", "CULTURAL"],
     "mode": ["crimeline"],
-    "image": "https://placeholder.co/600x400?text=Kevin+NFT",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/kevin",
     "links": [
       {
-        "label": "Kevin NFT Lore",
-        "url": "https://x.com/search?q=kevin%20nft%20rug"
+        "label": "ZachXBT Calls Out Team",
+        "url": "https://x.com/zachxbt/status/1499912505967132681?s=20"
       }
     ],
     "crimeline": {
       "type": "RUG PULL",
-      "funds_lost_usd": "Unknown",
-      "victims_estimated": "NFT buyers",
+      "funds_lost_usd": 70000000,
+      "victims_estimated": "Unknown",
       "root_cause": ["Exit scam"],
       "aftermath": "Became a meme rather than a legal case.",
       "status": "Total loss"
