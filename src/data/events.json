@@ -1035,9 +1035,14 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mixin_hack",
     "links": [
       {
-        "label": "Mixin Hack",
+        "label": "Mixin Hack Disclosure",
+        "url": "https://x.com/MixinKernel/status/1706139175018529139?s=20"
+      },
+      {
+        "label": "Mixin Suspends Withdrawals",
         "url": "https://www.coindesk.com/tech/2023/09/25/crypto-network-mixin-suspends-withdrawals-after-200m-hack/"
       }
     ],
@@ -1057,7 +1062,7 @@
     "id": "sec-twitter-hack-2024-01-09",
     "date": "2024-01-09",
     "title": "SEC Twitter Hacked for Fake Bitcoin ETF Approval",
-    "summary": "The SEC's official X account was compromised via SIM swap attack, posting a fake Bitcoin ETF approval that caused BTC to spike $1,000 then crash $2,000. Eric Council Jr. was later arrested for the hack.",
+    "summary": "The SEC's official X account was compromised via SIM swap attack. A hacker posted a fake announcement claiming the SEC had approved spot Bitcoin ETFs for listing on national securities exchanges. The post even included a fabricated quote attributed to SEC Chair Gary Gensler, causing Bitcoin's price to spike briefly from around $45,000 to nearly $48,000 in minutes Eric Council Jr. was later arrested for the hack.",
     "category": "Security",
     "tags": [
       "SECURITY",
@@ -1067,9 +1072,14 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/fake_sec_post",
     "links": [
       {
-        "label": "SEC Hack Details",
+        "label": "Twitter Post Explanation",
+        "url": "https://www.reuters.com/technology/us-sec-has-not-approved-bitcoin-etfs-social-media-account-compromised-2024-01-09/"
+      },
+      {
+        "label": "DOJ Arrest",
         "url": "https://www.justice.gov/usao-dc/pr/fbi-arrests-alabama-man-january-2024-sec-x-hack-spiked-value-bitcoin"
       }
     ],
@@ -1083,7 +1093,7 @@
         "Lack of 2FA on SEC account"
       ],
       "aftermath": "FBI arrested Eric Council Jr. in October 2024. Real ETF approval came the next day.",
-      "status": "Resolved - Perpetrator arrested"
+      "status": "Resolved"
     }
   },
   {
@@ -1138,7 +1148,7 @@
     "date": "2024-03-19",
     "title": "$SLERF Developer Accidentally Burns $10M",
     "summary": "Slerf developer accidentally burned all $10M of presale investor funds while trying to distribute tokens. Instead of killing the project, the community rallied and pushed market cap to $660M, turning a disaster into a bizarre success story.",
-    "category": "Failure",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "FAILURE"
@@ -1146,29 +1156,30 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/oh_fuck",
     "links": [
       {
-        "label": "Slerf Accident",
-        "url": "https://www.aicoin.com/en/article/436482"
+        "label": "Slerf Account",
+        "url": "https://x.com/Slerfsol"
       }
     ],
     "crimeline": {
-      "type": "DEVELOPER ERROR",
+      "type": "CUSTODY FAILURE",
       "funds_lost_usd": 10000000,
       "victims_estimated": "All presale investors",
       "root_cause": [
         "Developer error during token distribution"
       ],
       "aftermath": "Community rallied, token reached $660M market cap. Became legendary meme moment.",
-      "status": "Ongoing - Project survived"
+      "status": "Resolved"
     }
   },
   {
     "id": "12yo-quant-rugpull-2024",
     "date": "2024-04-12",
     "title": "12-Year-Old Rug Pulls $QUANT for $20K",
-    "summary": "A 12-year-old kid rug pulled $QUANT token for $20,000 during a live stream. Crypto Twitter responded by pumping the market cap to $85M to 'teach the kid a lesson' about the power of community.",
-    "category": "Scam",
+    "summary": "A 12-year-old kid rug pulled $QUANT token for $20,000 during a live stream. Crypto Twitter responded by pumping the market cap to $85M to 'teach the kid a lesson' about the power of community. The crypto community doxxed him, revealing his identity, but he continued by launching another coin, `Sorry`, only to rug it, too.",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "SECURITY",
@@ -1177,10 +1188,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/quant_12_year_old",
     "links": [
       {
-        "label": "Kid Rug Pull",
-        "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+        "label": "Realtime Video",
+        "url": "https://x.com/AkhbarSite/status/1859275544270921756?s=20"
       }
     ],
     "crimeline": {
@@ -1191,7 +1203,7 @@
         "Exit scam by minor during livestream"
       ],
       "aftermath": "Crypto Twitter pumped token to $85M market cap in retaliation. Became viral story.",
-      "status": "Ongoing"
+      "status": "Resolved"
     }
   },
   {
@@ -1222,8 +1234,8 @@
   {
     "id": "sahil-celebrity-scam-2024",
     "date": "2024-06-15",
-    "title": "Sahil Orchestrates Mass Celebrity Token Scam",
-    "summary": "Sahil Arora convinced celebrities including Floyd Mayweather, Caitlyn Jenner, and Sexxy Redd to launch and promote tokens, then orchestrated coordinated rug pulls across all projects.",
+    "title": "Sahil Orchestrates Mass Celebrity Token Scams",
+    "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits—estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
     "category": "Scam",
     "tags": [
       "CULTURAL",
@@ -1233,30 +1245,35 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sahil_sucks",
     "links": [
       {
         "label": "Celebrity Scam Ring",
         "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
+      },
+      {
+        "label": "BI News Article",
+        "url": "https://www.businessinsider.com/celebrity-meme-coins-crypto-scam-trump-jason-derulo-caitlyn-jenner-2025-2"
       }
     ],
     "crimeline": {
-      "type": "COORDINATED RUG PULLS",
-      "funds_lost_usd": "Tens of millions",
+      "type": "RUG PULL",
+      "funds_lost_usd": "Millions",
       "victims_estimated": "Thousands across multiple tokens",
       "root_cause": [
         "Celebrity endorsement scam",
         "Serial fraudster"
       ],
       "aftermath": "Exposed celebrity token scam operations. Multiple tokens crashed.",
-      "status": "Ongoing investigation"
+      "status": "Ongoing"
     }
   },
   {
     "id": "chicken-church-pastor-scam-2024",
     "date": "2024-08-10",
-    "title": "Church of the Chicken Pastor Scams Followers",
-    "summary": "Pastor Kelby of the viral 'Church of the Chicken' used his religious influence to promote low-cap memecoins for payment, leading to his expulsion from the church he founded.",
-    "category": "Scam",
+    "title": "Church of the Chicken",
+    "summary": "Pastor Kelby of the viral 'Church of the Chicken' used his influence to promote low-cap memecoins for payment, leading to his expulsion from the church he founded.It started as an absurd meme coin called Smoking Chicken Fish (SCF) on the Solana blockchain. The community turned it into a mock religion, complete with `chickenmandments` (humorous rules), daily `sermons` (often reading self-help books), and even plans to build a real physical church in Marfa, Texas. They registered as a nonprofit and raised donations (including over $130k from `whales` for property).",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "FAILURE"
@@ -1264,21 +1281,22 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/church_chicken",
     "links": [
       {
-        "label": "Chicken Church Scam",
-        "url": "https://www.aicoin.com/en/article/436482"
+        "label": "Chicken Church Turns On Pastor",
+        "url": "https://www.binance.com/en-NG/square/post/13715623028409"
       }
     ],
     "crimeline": {
-      "type": "RELIGIOUS INFLUENCER SCAM",
+      "type": "RUG PULL",
       "funds_lost_usd": "Unknown",
       "victims_estimated": "Church followers",
       "root_cause": [
         "Influencer using religious authority for financial gain"
       ],
       "aftermath": "Pastor expelled from church, church plans collapsed.",
-      "status": "Resolved - Pastor removed"
+      "status": "Resolved"
     }
   },
   {
@@ -1305,7 +1323,7 @@
     "id": "radiant-capital-hack-2024-10-16",
     "date": "2024-10-16",
     "title": "Radiant Capital Multi-Chain Hack",
-    "summary": "Radiant Capital suffers a $50M exploit across Arbitrum and BNB Chain through compromised multi-sig signers.",
+    "summary": "Radiant Capital suffers a $50M exploit across Arbitrum and BNB Chain through compromised multi-sig signers. Attacker's trojaned the computers of multiple team members. Team members saw and verified good multisig data on screens, but their hardware wallets signed bad data.",
     "category": "DeFi Protocol",
     "tags": [
       "SECURITY",
@@ -1314,10 +1332,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/RDNT_Hack",
     "links": [
       {
-        "label": "Radiant Hack",
-        "url": "https://rekt.news/radiant-capital-rekt2/"
+        "label": "Radiant Breakdown",
+        "url": "https://x.com/danielvf/status/1847023591117795708?s=20"
       }
     ],
     "crimeline": {
