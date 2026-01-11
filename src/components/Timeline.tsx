@@ -17,7 +17,15 @@ interface TimelineProps {
 }
 
 export function Timeline({ events }: TimelineProps) {
-  const { mode, searchQuery, selectedTags, sortOrder, clearAllFilters } = useModeStore();
+  const {
+    mode,
+    searchQuery,
+    selectedTags,
+    selectedCategories,
+    selectedCrimelineTypes,
+    sortOrder,
+    clearAllFilters
+  } = useModeStore();
   const isCrimeline = mode === "crimeline";
   const isBoth = mode === "both";
   const prefersReducedMotion = useReducedMotion();
@@ -58,6 +66,18 @@ export function Timeline({ events }: TimelineProps) {
         if (!hasMatchingTag) return false;
       }
 
+      // Category filter
+      if (selectedCategories.length > 0) {
+        if (!selectedCategories.includes(event.category)) return false;
+      }
+
+      // Crimeline Type filter
+      if (selectedCrimelineTypes.length > 0) {
+        if (!event.crimeline || !selectedCrimelineTypes.includes(event.crimeline.type)) {
+          return false;
+        }
+      }
+
       return true;
     });
 
@@ -69,7 +89,7 @@ export function Timeline({ events }: TimelineProps) {
     });
 
     return filtered;
-  }, [events, mode, searchQuery, selectedTags, sortOrder]);
+  }, [events, mode, searchQuery, selectedTags, selectedCategories, selectedCrimelineTypes, sortOrder]);
 
   // Group events by year
   const groupedEvents = useMemo(() => {
@@ -152,7 +172,11 @@ export function Timeline({ events }: TimelineProps) {
   }, [events, mode]);
 
   // Sort order is not considered an "active filter" for the CTA button
-  const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
+  const hasActiveFilters =
+    searchQuery.trim() ||
+    selectedTags.length > 0 ||
+    selectedCategories.length > 0 ||
+    selectedCrimelineTypes.length > 0;
 
   // Track card index for alternating sides
   let cardIndex = 0;

@@ -21,6 +21,7 @@ export type CrimelineType =
   | "LEVERAGE COLLAPSE"
   | "GOVERNANCE ATTACK"
   | "REGULATORY SEIZURE"
+  | "SOCIAL MEDIA HACK"
   | "OTHER";
 
 export type CrimelineCategory =

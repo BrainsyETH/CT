@@ -659,7 +659,7 @@
     "date": "2022-03-23",
     "title": "There has been a security breach on the Ronin Network",
     "summary": "North Korean hackers (Lazarus Group) exploit the Ronin bridge used by Axie Infinity, stealing $625M and losing roughly 173,600 ETH and 25.5 million USDC.",
-    "category": "Defi Protocol",
+    "category": "DeFi Protocol",
     "tags": [
       "SECURITY",
       "FAILURE"
@@ -1728,7 +1728,7 @@
     "date": "2025-06-05",
     "title": "Circle (CRCL) IPOs",
     "summary": "Circle, issuer of USDC, begins trading $31/share and at a valuation of $8 billion.",
-    "category": "Stablecoins",
+    "category": "Stablecoin",
     "tags": [
       "MILESTONE",
       "ECONOMIC",
@@ -1815,7 +1815,7 @@
     "date": "2025-10-05",
     "title": "CZ-Linked $ASTER Debacle",
     "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues\u2014including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks\u2014triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
-    "category": "Defi Protocol",
+    "category": "DeFi Protocol",
     "tags": [
       "CULTURAL"
     ],
@@ -2836,7 +2836,7 @@
     "date": "2024-05-01",
     "title": "The James Wynn Implosion",
     "summary": "At his peak in 2025, onchain data showed Wynn’s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. “I flipped $3M into $100M and somehow ended up negative $13M. I lost control.” — James Wynn ",
-    "category": "",
+    "category": "CT Lore",
     "tags": [
       "CULTURAL",
       "FAILURE"
