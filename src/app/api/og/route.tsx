@@ -94,10 +94,9 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
+  const isCrimeline = Array.isArray(event.mode) ? event.mode.includes("crimeline") : event.mode === "crimeline";
   const firstSentence = getFirstSentence(event.summary);
   const bgColor = isCrimeline ? "#ef4444" : "#fde047"; // red-500 or yellow-300
-  const eventImageUrl = event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE);
 
   return new ImageResponse(
     (
@@ -192,21 +191,26 @@ export async function GET(request: NextRequest) {
               style={{
                 background: "white",
                 border: "8px solid black",
-                padding: "32px 48px",
-                marginBottom: "32px",
+                padding: "28px 40px",
+                marginBottom: "28px",
                 boxShadow: "12px 12px 0px 0px rgba(0,0,0,1)",
                 transform: "rotate(-1deg)",
-                maxWidth: "90%",
+                maxWidth: "850px",
+                width: "90%",
               }}
             >
               <h1
                 style={{
-                  fontSize: "56px",
+                  fontSize: event.title.length > 50 ? "42px" : "52px",
                   fontWeight: 900,
                   color: "black",
                   margin: 0,
                   textAlign: "center",
-                  lineHeight: 1.1,
+                  lineHeight: 1.15,
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
                 }}
               >
                 {event.title}
@@ -218,20 +222,25 @@ export async function GET(request: NextRequest) {
               style={{
                 background: "black",
                 border: "6px solid black",
-                padding: "24px 36px",
+                padding: "20px 32px",
                 transform: "rotate(1deg)",
-                maxWidth: "85%",
+                maxWidth: "750px",
+                width: "85%",
                 boxShadow: "8px 8px 0px 0px rgba(0,0,0,0.3)",
               }}
             >
               <p
                 style={{
-                  fontSize: "28px",
+                  fontSize: "24px",
                   fontWeight: 700,
                   color: "white",
-                  lineHeight: 1.3,
+                  lineHeight: 1.35,
                   margin: 0,
                   textAlign: "center",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
                 }}
               >
                 {firstSentence}

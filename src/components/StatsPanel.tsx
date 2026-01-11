@@ -16,7 +16,7 @@ export function StatsPanel({ events }: StatsPanelProps) {
 
   const stats = useMemo(() => {
     const crimelineEvents = events.filter(
-      (e) => e.mode.includes("crimeline") && e.crimeline
+      (e) => (Array.isArray(e.mode) ? e.mode.includes("crimeline") : e.mode === "crimeline") && e.crimeline
     );
 
     const totalLost = crimelineEvents.reduce(

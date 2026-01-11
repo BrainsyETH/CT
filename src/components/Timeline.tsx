@@ -36,11 +36,12 @@ export function Timeline({ events }: TimelineProps) {
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
     let filtered = events.filter((event) => {
-      // Mode filter
+      // Mode filter - handle both string and array formats
+      const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
       if (mode === "timeline") {
-        if (!event.mode.includes("timeline")) return false;
+        if (!eventModes.includes("timeline")) return false;
       } else if (mode === "crimeline") {
-        if (!event.mode.includes("crimeline") || !event.crimeline) return false;
+        if (!eventModes.includes("crimeline") || !event.crimeline) return false;
       }
       // mode === "both" shows all events (no filtering by mode)
 
@@ -49,7 +50,8 @@ export function Timeline({ events }: TimelineProps) {
         const query = searchQuery.toLowerCase();
         const matchesTitle = event.title.toLowerCase().includes(query);
         const matchesSummary = event.summary.toLowerCase().includes(query);
-        const matchesCategory = event.category.some((cat) =>
+        const categories = Array.isArray(event.category) ? event.category : [event.category];
+        const matchesCategory = categories.some((cat) =>
           cat.toLowerCase().includes(query)
         );
         const matchesTags = event.tags.some((tag) =>
@@ -70,7 +72,8 @@ export function Timeline({ events }: TimelineProps) {
 
       // Category filter
       if (selectedCategories.length > 0) {
-        const hasMatchingCategory = event.category.some((cat) =>
+        const categories = Array.isArray(event.category) ? event.category : [event.category];
+        const hasMatchingCategory = categories.some((cat) =>
           selectedCategories.includes(cat)
         );
         if (!hasMatchingCategory) return false;
@@ -163,7 +166,7 @@ export function Timeline({ events }: TimelineProps) {
   const crimelineStats = useMemo(() => {
     if (mode === "timeline") return { totalLost: 0, incidentCount: 0 };
     const crimelineEvents = events.filter(
-      (e) => e.mode.includes("crimeline") && e.crimeline
+      (e) => (Array.isArray(e.mode) ? e.mode.includes("crimeline") : e.mode === "crimeline") && e.crimeline
     );
     // Only sum valid numeric amounts (exclude undefined, null, NaN)
     const totalLost = crimelineEvents.reduce((sum, e) => {
