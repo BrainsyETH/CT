@@ -81,7 +81,7 @@ export function EventCard({ event, index }: EventCardProps) {
             }`}
           >
             {/* Event Image */}
-            <div className="relative w-full h-40 overflow-hidden">
+            <div className="relative w-full aspect-[16/9] overflow-hidden">
               <Image
                 src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
                 alt={event.title}
