@@ -19,6 +19,7 @@ interface TimelineProps {
 export function Timeline({ events }: TimelineProps) {
   const { mode, searchQuery, selectedTags, sortOrder, clearAllFilters } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  const isBoth = mode === "both";
   const prefersReducedMotion = useReducedMotion();
   const [currentVisibleYear, setCurrentVisibleYear] = useState<number | null>(null);
   const [isFilterVisible, setIsFilterVisible] = useState(true);
@@ -30,9 +31,10 @@ export function Timeline({ events }: TimelineProps) {
       // Mode filter
       if (mode === "timeline") {
         if (!event.mode.includes("timeline")) return false;
-      } else {
+      } else if (mode === "crimeline") {
         if (!event.mode.includes("crimeline") || !event.crimeline) return false;
       }
+      // mode === "both" shows all events (no filtering by mode)
 
       // Search filter
       if (searchQuery.trim()) {
@@ -134,7 +136,7 @@ export function Timeline({ events }: TimelineProps) {
 
   // Calculate stats for crimeline mode - exclude unknown/NaN amounts
   const crimelineStats = useMemo(() => {
-    if (!isCrimeline) return { totalLost: 0, incidentCount: 0 };
+    if (mode === "timeline") return { totalLost: 0, incidentCount: 0 };
     const crimelineEvents = events.filter(
       (e) => e.mode.includes("crimeline") && e.crimeline
     );
@@ -147,7 +149,7 @@ export function Timeline({ events }: TimelineProps) {
       return sum;
     }, 0);
     return { totalLost, incidentCount: crimelineEvents.length };
-  }, [events, isCrimeline]);
+  }, [events, mode]);
 
   // Sort order is not considered an "active filter" for the CTA button
   const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
@@ -190,8 +192,8 @@ export function Timeline({ events }: TimelineProps) {
         </div>
       </div>
 
-      {/* Amount Lost Stats (Crimeline only) */}
-      {isCrimeline && crimelineStats.totalLost > 0 && (
+      {/* Amount Lost Stats (Crimeline and Both modes) */}
+      {mode !== "timeline" && crimelineStats.totalLost > 0 && (
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
@@ -220,7 +222,7 @@ export function Timeline({ events }: TimelineProps) {
       {/* Results count */}
       <div
         className={`mb-4 text-sm ${
-          isCrimeline ? "text-gray-400" : "text-gray-500"
+          isCrimeline ? "text-gray-400" : isBoth ? "text-gray-400" : "text-gray-500"
         }`}
       >
         {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""} found
@@ -239,7 +241,7 @@ export function Timeline({ events }: TimelineProps) {
           {/* Central Timeline Line */}
           <div
             className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 transition-colors duration-300 ${
-              isCrimeline ? "bg-red-900" : "bg-teal-200"
+              isCrimeline ? "bg-red-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-600 to-red-600" : "bg-teal-200"
             }`}
           />
 

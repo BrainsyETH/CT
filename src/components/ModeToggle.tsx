@@ -1,63 +1,60 @@
 "use client";
 
 import { useModeStore } from "@/store/mode-store";
-import { motion, useReducedMotion } from "framer-motion";
+import type { Mode } from "@/lib/types";
 
 export function ModeToggle() {
-  const { mode, toggleMode } = useModeStore();
-  const isCrimeline = mode === "crimeline";
-  const prefersReducedMotion = useReducedMotion();
+  const { mode, setMode } = useModeStore();
+
+  const segments: { value: Mode; label: string }[] = [
+    { value: "timeline", label: "Timeline" },
+    { value: "crimeline", label: "Crimeline" },
+    { value: "both", label: "Both" },
+  ];
 
   return (
-    <button
-      onClick={toggleMode}
-      className="relative flex items-center gap-3 px-4 py-2 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent"
-      style={{
-        backgroundColor: isCrimeline
-          ? "rgba(127, 29, 29, 0.5)"
-          : "rgba(20, 184, 166, 0.2)",
-      }}
-      role="switch"
-      aria-checked={isCrimeline}
-      aria-label={`Switch to ${isCrimeline ? "Timeline" : "Crimeline"} mode`}
+    <div
+      role="radiogroup"
+      aria-label="Select view mode"
+      className="inline-flex rounded-lg p-1 bg-gray-200 dark:bg-gray-800"
     >
-      <span
-        className={`text-sm font-medium transition-colors duration-300 ${
-          isCrimeline ? "text-gray-400" : "text-teal-600"
-        }`}
-      >
-        Timeline
-      </span>
+      {segments.map((segment) => {
+        const isActive = mode === segment.value;
+        const isTimeline = segment.value === "timeline";
+        const isCrimeline = segment.value === "crimeline";
+        const isBoth = segment.value === "both";
 
-      <div
-        className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${
-          isCrimeline ? "bg-red-900" : "bg-teal-500"
-        }`}
-      >
-        <motion.div
-          className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-md"
-          animate={{
-            left: isCrimeline ? "calc(100% - 20px)" : "4px",
-          }}
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 500, damping: 30 }
-          }
-        />
-      </div>
-
-      <span
-        className={`text-sm font-medium transition-colors duration-300 ${
-          isCrimeline ? "text-red-400" : "text-gray-400"
-        }`}
-      >
-        Crimeline
-      </span>
-
+        return (
+          <button
+            key={segment.value}
+            onClick={() => setMode(segment.value)}
+            role="radio"
+            aria-checked={isActive}
+            className={`
+              px-4 py-2 text-sm font-medium rounded-md transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
+              ${
+                isActive
+                  ? isTimeline
+                    ? "bg-teal-500 text-white shadow-md focus:ring-teal-400"
+                    : isCrimeline
+                    ? "bg-red-600 text-white shadow-md focus:ring-red-400"
+                    : "bg-gradient-to-r from-teal-500 to-red-600 text-white shadow-md focus:ring-purple-400"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+              }
+            `}
+          >
+            {segment.label}
+          </button>
+        );
+      })}
       <span className="sr-only" aria-live="polite">
-        {isCrimeline ? "Crimeline mode active" : "Timeline mode active"}
+        {mode === "timeline"
+          ? "Timeline mode active"
+          : mode === "crimeline"
+          ? "Crimeline mode active"
+          : "Both modes active"}
       </span>
-    </button>
+    </div>
   );
 }
