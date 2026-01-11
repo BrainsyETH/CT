@@ -3,7 +3,11 @@
 import { useModeStore } from "@/store/mode-store";
 import type { Mode } from "@/lib/types";
 
-export function ModeToggle() {
+interface ModeToggleProps {
+  compact?: boolean;
+}
+
+export function ModeToggle({ compact = false }: ModeToggleProps) {
   const { mode, setMode } = useModeStore();
 
   const segments: { value: Mode; label: string }[] = [
@@ -16,7 +20,7 @@ export function ModeToggle() {
     <div
       role="radiogroup"
       aria-label="Select view mode"
-      className="inline-flex rounded-lg p-1 bg-gray-200 dark:bg-gray-800"
+      className={`inline-flex rounded-lg ${compact ? 'p-0.5' : 'p-1'} bg-gray-200 dark:bg-gray-800`}
     >
       {segments.map((segment) => {
         const isActive = mode === segment.value;
@@ -31,7 +35,7 @@ export function ModeToggle() {
             role="radio"
             aria-checked={isActive}
             className={`
-              px-4 py-2 text-sm font-medium rounded-md transition-all duration-200
+              ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'} font-medium rounded-md transition-all duration-200
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
               ${
                 isActive
