@@ -178,7 +178,7 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-3.5 h-3.5" />
-              <span>CT Lore</span>
+              <span>CT</span>
             </button>
 
             {/* Mode Toggle - Compact */}
