@@ -221,7 +221,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     isCrimeline ? "text-gray-400" : "text-gray-500"
                   }`}
                 >
-                  {event.category.join(" • ")}
+                  {(Array.isArray(event.category) ? event.category : [event.category]).join(" • ")}
                 </p>
 
                 {/* Tags */}

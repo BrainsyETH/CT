@@ -49,7 +49,8 @@ export function Timeline({ events }: TimelineProps) {
         const query = searchQuery.toLowerCase();
         const matchesTitle = event.title.toLowerCase().includes(query);
         const matchesSummary = event.summary.toLowerCase().includes(query);
-        const matchesCategory = event.category.some((cat) =>
+        const categories = Array.isArray(event.category) ? event.category : [event.category];
+        const matchesCategory = categories.some((cat) =>
           cat.toLowerCase().includes(query)
         );
         const matchesTags = event.tags.some((tag) =>
@@ -70,7 +71,8 @@ export function Timeline({ events }: TimelineProps) {
 
       // Category filter
       if (selectedCategories.length > 0) {
-        const hasMatchingCategory = event.category.some((cat) =>
+        const categories = Array.isArray(event.category) ? event.category : [event.category];
+        const hasMatchingCategory = categories.some((cat) =>
           selectedCategories.includes(cat)
         );
         if (!hasMatchingCategory) return false;
