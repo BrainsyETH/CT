@@ -36,11 +36,12 @@ export function Timeline({ events }: TimelineProps) {
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
     let filtered = events.filter((event) => {
-      // Mode filter
+      // Mode filter - handle both string and array formats
+      const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
       if (mode === "timeline") {
-        if (!event.mode.includes("timeline")) return false;
+        if (!eventModes.includes("timeline")) return false;
       } else if (mode === "crimeline") {
-        if (!event.mode.includes("crimeline") || !event.crimeline) return false;
+        if (!eventModes.includes("crimeline") || !event.crimeline) return false;
       }
       // mode === "both" shows all events (no filtering by mode)
 
@@ -165,7 +166,7 @@ export function Timeline({ events }: TimelineProps) {
   const crimelineStats = useMemo(() => {
     if (mode === "timeline") return { totalLost: 0, incidentCount: 0 };
     const crimelineEvents = events.filter(
-      (e) => e.mode.includes("crimeline") && e.crimeline
+      (e) => (Array.isArray(e.mode) ? e.mode.includes("crimeline") : e.mode === "crimeline") && e.crimeline
     );
     // Only sum valid numeric amounts (exclude undefined, null, NaN)
     const totalLost = crimelineEvents.reduce((sum, e) => {
