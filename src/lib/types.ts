@@ -46,7 +46,7 @@ export interface Event {
   date: string;
   title: string;
   summary: string;
-  category: string;
+  category: string[];
   tags: EventTag[];
   mode: Mode[];
   image?: string;
