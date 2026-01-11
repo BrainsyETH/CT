@@ -23,6 +23,18 @@ export function formatCurrency(value: number): string {
 }
 
 /**
+ * Format funds lost value - checks for valid number first, then falls back to "Unknown"
+ */
+export function formatFundsLost(value: number | undefined): string {
+  // Check if value is a valid number
+  if (typeof value === "number" && !isNaN(value) && isFinite(value)) {
+    return formatCurrency(value);
+  }
+  // Fallback to Unknown if no valid value
+  return "Unknown";
+}
+
+/**
  * Format a number using compact notation without currency symbol
  */
 export function formatNumber(value: number): string {

@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
-import { formatDate, formatCurrency } from "@/lib/formatters";
+import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
 const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
@@ -135,8 +135,8 @@ export function EventCard({ event, index }: EventCardProps) {
                 <TagPills tags={event.tags} />
               </div>
 
-              {/* Metrics - Improved contrast */}
-              {event.metrics && (
+              {/* Metrics - Only show for Bitcoin category events */}
+              {event.metrics && event.category === "Bitcoin" && (
                 <div
                   className={`mt-3 pt-3 border-t transition-colors duration-300 ${
                     isCrimeline ? "border-gray-700" : "border-gray-200"
@@ -203,13 +203,11 @@ export function EventCard({ event, index }: EventCardProps) {
                   </div>
 
                   {/* Funds Lost */}
-                  {event.crimeline.funds_lost_usd !== undefined && (
-                    <div className="mb-2">
-                      <span className="text-red-400 text-sm font-bold">
-                        {formatCurrency(event.crimeline.funds_lost_usd)} Lost
-                      </span>
-                    </div>
-                  )}
+                  <div className="mb-2">
+                    <span className="text-red-400 text-sm font-bold">
+                      {formatFundsLost(event.crimeline.funds_lost_usd)} Lost
+                    </span>
+                  </div>
                 </div>
               )}
 

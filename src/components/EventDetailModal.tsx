@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
-import { formatDate, formatCurrency } from "@/lib/formatters";
+import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
 const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
@@ -33,7 +33,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
 
-  // Close on escape key
+  // Close on escape key and handle scroll locking
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -49,18 +49,32 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
       // Store the previously focused element
       previousActiveElement.current = document.activeElement as HTMLElement;
 
+      // Save current scroll position
+      const scrollY = window.scrollY;
+
+      // Prevent scroll by fixing body position
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
       document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
 
       // Focus the close button when modal opens
       setTimeout(() => {
         closeButtonRef.current?.focus();
       }, 100);
+
+      return () => {
+        // Restore scroll position
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
 
       // Return focus to the triggering element when modal closes
       if (previousActiveElement.current && !selectedEventId) {
@@ -239,56 +253,6 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   {event.summary}
 </p>
 
-
-                {/* Metrics */}
-                {event.metrics && (
-                  <div
-                    className={`mt-6 p-4 rounded-lg ${
-                      isCrimeline ? "bg-gray-800" : "bg-gray-50"
-                    }`}
-                  >
-                    <h3
-                      className={`text-sm font-semibold mb-3 ${
-                        isCrimeline ? "text-gray-300" : "text-gray-700"
-                      }`}
-                    >
-                      Market Context
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      {event.metrics.btc_price_usd !== undefined && (
-                        <div>
-                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                            BTC Price
-                          </p>
-                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                            {formatCurrency(event.metrics.btc_price_usd)}
-                          </p>
-                        </div>
-                      )}
-                      {event.metrics.market_cap_usd !== undefined && (
-                        <div>
-                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                            Market Cap
-                          </p>
-                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                            {formatCurrency(event.metrics.market_cap_usd)}
-                          </p>
-                        </div>
-                      )}
-                      {event.metrics.tvl_usd !== undefined && (
-                        <div>
-                          <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-500"}`}>
-                            TVL
-                          </p>
-                          <p className={`text-lg font-bold ${isCrimeline ? "text-white" : "text-gray-900"}`}>
-                            {formatCurrency(event.metrics.tvl_usd)}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
                 {/* Crimeline Details */}
                 {event.crimeline && (
                   <div className="mt-6 p-4 rounded-lg bg-red-950/30 border border-red-900/30">
@@ -320,19 +284,17 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       </div>
 
                       {/* Funds Lost */}
-                      {event.crimeline.funds_lost_usd !== undefined && (
-                        <div>
-                          <p className="text-xs text-gray-400">Funds Lost</p>
-                          <p className="text-2xl font-bold text-red-400">
-                            {formatCurrency(event.crimeline.funds_lost_usd)}
+                      <div>
+                        <p className="text-xs text-gray-400">Funds Lost</p>
+                        <p className="text-2xl font-bold text-red-400">
+                          {formatFundsLost(event.crimeline.funds_lost_usd)}
+                        </p>
+                        {event.crimeline.victims_estimated && (
+                          <p className="text-sm text-gray-400">
+                            Estimated {event.crimeline.victims_estimated} victims
                           </p>
-                          {event.crimeline.victims_estimated && (
-                            <p className="text-sm text-gray-400">
-                              Estimated {event.crimeline.victims_estimated} victims
-                            </p>
-                          )}
-                        </div>
-                      )}
+                        )}
+                      </div>
 
                       {/* Root Causes */}
                       {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
