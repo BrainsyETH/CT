@@ -520,7 +520,7 @@
     "id": "kucoin-hack-2020-09-26",
     "date": "2020-09-26",
     "title": "KuCoin Exchange Hack",
-    "summary": "KuCoin suffers a major security breach with hackers stealing over $280M in various cryptocurrencies.",
+    "summary": "KuCoin suffered a massive security breach in which hackers accessed private keys for the exchange’s hot wallets and stole an estimated ~$280 million+ in crypto assets including BTC, ETH, XRP, LTC, and many ERC-20 tokens — one of the largest exchange hacks in history.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -529,10 +529,15 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/kucoin",
     "links": [
       {
-        "label": "KuCoin Hack",
-        "url": "https://www.coindesk.com/kucoin-hack-2020"
+        "label": "KuCoin Livestream Recap",
+        "url": "https://www.kucoin.com/announcement/en-kucoin-ceo-livestream-recap-latest-updates-about-security-incident?utm_source=chatgpt.com"
+      },
+      {
+        "label": "Suspect Identified",
+        "url": "https://x.com/lyu_johnny/status/1312359615091277824?s=20"
       }
     ],
     "crimeline": {
@@ -560,9 +565,14 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/poly_network",
     "links": [
       {
-        "label": "Poly Network Hack",
+        "label": "Poly Network Notice",
+        "url": "https://x.com/PolyNetwork2/status/1425073987164381196?s=20"
+      },
+      {
+        "label": "Hack Summary",
         "url": "https://www.coindesk.com/markets/2021/08/10/cross-chain-defi-site-poly-network-hacked-hundreds-of-millions-potentially-lost/"
       }
     ],
@@ -591,10 +601,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cream_hack",
     "links": [
       {
-        "label": "Cream Hack Analysis",
-        "url": "https://rekt.news/cream-rekt-2/"
+        "label": "Cream Hack Tweet",
+        "url": "https://x.com/CreamdotFinance/status/1453455806075006976?s=20"
       }
     ],
     "crimeline": {
@@ -649,7 +660,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/wormhole_hack",
     "links": [
+      {
+        "label": "Wormhole Announces Exploit",
+        "url": "https://x.com/wormhole/status/1488976115750383626?s=20"
+      },
       {
         "label": "Wormhole Exploit",
         "url": "https://rekt.news/wormhole-rekt/"
@@ -663,7 +679,7 @@
         "Signature verification bypass",
         "Smart contract vulnerability"
       ],
-      "aftermath": "Jump Crypto replaced the stolen funds to make users whole.",
+      "aftermath": "Jump Crypto rescued them and replaced the stolen funds to make users whole.",
       "status": "Funds recovered"
     }
   },
@@ -707,7 +723,7 @@
     "id": "terra-luna-collapse-2022-05-09",
     "date": "2022-05-09",
     "title": "Terra/LUNA Collapse",
-    "summary": "the Terra blockchain’s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This “death spiral” wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
+    "summary": "The Terra blockchain’s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This “death spiral” wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
     "category": "Stablecoin",
     "tags": [
       "FAILURE",
@@ -756,7 +772,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/celsius_pause",
     "links": [
+      {
+        "label": "Celsius Announces Pause",
+        "url": "https://x.com/CelsiusNetwork/status/1536169010877739009?s=20"
+      },
       {
         "label": "Celsius Collapse",
         "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/"
@@ -2301,7 +2322,7 @@
     "id": "plustoken-ponzi-2019",
     "date": "2019-06-27",
     "title": "The PlusToken Ponzi",
-    "summary": "PlusToken collapses as one of the largest crypto Ponzi schemes, later linked to major BTC selling pressure.",
+    "summary": "PlusToken was a massive cryptocurrency Ponzi scheme and wallet platform that started in 2018, mainly attracting investors in China and South Korea by promising high monthly rewards for depositing crypto like BTC and ETH into its app. At its peak, the scam collected **billions of dollars worth of crypto — estimates range from about $2 billion to nearly $3 billion (and possibly more when considering additional movements), making it one of the largest crypto frauds ever. The scheme began to collapse in mid-2019 when investors struggled to withdraw funds, and the operators abruptly emptied billions of dollars of assets and posted messages suggesting they were gone. Subsequent arrests of suspects occurred in June 2019 and later in 2020.",
     "category": "Market Structure",
     "tags": [
       "FAILURE",
@@ -2313,10 +2334,18 @@
     "image": "",
     "links": [
       {
-        "label": "Major crypto scams",
-        "url": "https://koinly.io/blog/biggest-crypto-rug-pulls/"
+        "label": "Chainalysis",
+        "url": "https://www.chainalysis.com/blog/plustoken-scam-bitcoin-price/"
       }
-    ]
+    ],
+    "crimeline": {
+    "type": "FRAUD",
+    "funds_lost_usd": 14000000,
+    "victims_estimated": "SUSHI holders and LPs",
+    "root_cause": ["Insider/dev fund withdrawal", "Admin key/control risk"],
+    "aftermath": "Chef Nomi returned funds and ceded control to SBF; the incident became defining DeFi governance lore.",
+    "status": "Partial recovery"
+  }
   },
   
   {
