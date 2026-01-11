@@ -375,7 +375,7 @@
     "id": "cryptopia-hack-2019-01-14",
     "date": "2019-01-14",
     "title": "Cryptopia Exchange Hack",
-    "summary": "New Zealand-based Cryptopia exchange is hacked, losing approximately $16M in various cryptocurrencies.",
+    "summary": "Cryptopia announced a major security breach, reporting “significant losses” and suspending trading as hackers siphoned crypto from its wallets. The breach occurred after days of unexplained “unscheduled maintenance,” and large movements of ETH and other tokens were publicly spotted onchain before the official acknowledgment.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -384,10 +384,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cryptopia",
     "links": [
       {
-        "label": "Cryptopia Hack",
-        "url": "https://www.coindesk.com/new-zealand-exchange-cryptopia-hacked"
+        "label": "Delay in Disclosure",
+        "url": "https://x.com/Cryptopia_NZ/status/1085084168852291586?s=20"
       }
     ],
     "crimeline": {
