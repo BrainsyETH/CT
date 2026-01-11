@@ -9,6 +9,7 @@ export const runtime = "edge";
 
 const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
 const FALLBACK_IMAGE_CRIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png";
+const LOGO_URL = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
 
 const formatCurrency = (value: number): string => {
   return new Intl.NumberFormat("en-US", {
@@ -28,6 +29,12 @@ const formatDate = (dateString: string): string => {
   });
 };
 
+// Extract first sentence from summary
+const getFirstSentence = (text: string): string => {
+  const match = text.match(/^[^.!?]+[.!?]/);
+  return match ? match[0].trim() : text.split(' ').slice(0, 15).join(' ') + '...';
+};
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const eventId = searchParams.get("id");
@@ -35,7 +42,7 @@ export async function GET(request: NextRequest) {
   const event = events.find((e) => e.id === eventId);
 
   if (!event) {
-    // Return default OG image if event not found
+    // Return default neo-brutalist OG image if event not found
     return new ImageResponse(
       (
         <div
@@ -43,15 +50,44 @@ export async function GET(request: NextRequest) {
             height: "100%",
             width: "100%",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+            background: "#fde047", // yellow-300
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          <h1 style={{ color: "white", fontSize: 48 }}>Chain of Events</h1>
-          <p style={{ color: "#94a3b8", fontSize: 24 }}>Event not found</p>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "white",
+              border: "8px solid black",
+              padding: "60px 80px",
+              boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
+              transform: "rotate(-2deg)",
+            }}
+          >
+            <h1 style={{
+              color: "black",
+              fontSize: 64,
+              fontWeight: 900,
+              margin: 0,
+              marginBottom: "16px",
+              textTransform: "uppercase",
+            }}>
+              Chain of Events
+            </h1>
+            <p style={{
+              color: "black",
+              fontSize: 32,
+              fontWeight: 700,
+              margin: 0,
+            }}>
+              Event not found
+            </p>
+          </div>
         </div>
       ),
       { width: 1200, height: 630 }
@@ -59,6 +95,7 @@ export async function GET(request: NextRequest) {
   }
 
   const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
+  const firstSentence = getFirstSentence(event.summary);
 
   // Fetch event image or use fallback
   const imageUrl = event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE);
@@ -75,11 +112,21 @@ export async function GET(request: NextRequest) {
     console.error("Failed to fetch image:", error);
   }
 
-  const bgGradient = isCrimeline
-    ? "linear-gradient(135deg, #1c1917 0%, #292524 50%, #1c1917 100%)"
-    : "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)";
-  const accentColor = isCrimeline ? "#dc2626" : "#14b8a6";
-  const accentBg = isCrimeline ? "rgba(220, 38, 38, 0.2)" : "rgba(20, 184, 166, 0.2)";
+  // Fetch logo
+  let logoData: string | null = null;
+  try {
+    const logoResponse = await fetch(LOGO_URL);
+    if (logoResponse.ok) {
+      const buffer = await logoResponse.arrayBuffer();
+      const base64 = Buffer.from(buffer).toString("base64");
+      const contentType = logoResponse.headers.get("content-type") || "image/png";
+      logoData = `data:${contentType};base64,${base64}`;
+    }
+  } catch (error) {
+    console.error("Failed to fetch logo:", error);
+  }
+
+  const bgColor = isCrimeline ? "#ef4444" : "#fde047"; // red-500 or yellow-300
 
   return new ImageResponse(
     (
@@ -88,245 +135,160 @@ export async function GET(request: NextRequest) {
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: "column",
-          background: bgGradient,
+          position: "relative",
+          overflow: "hidden",
           fontFamily: "system-ui, sans-serif",
-          padding: "48px",
         }}
       >
-        {/* Header */}
+        {/* Neo-Brutalist Card with thick border and bold shadow */}
         <div
           style={{
+            width: "100%",
+            height: "100%",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "32px",
+            position: "relative",
+            border: "8px solid black",
+            background: bgColor,
+            boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "12px",
-                background: accentColor,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                color: "white",
-              }}
-            >
-              {isCrimeline ? "💀" : "₿"}
-            </div>
-            <span style={{ color: "#94a3b8", fontSize: "24px", fontWeight: 600 }}>
-              Chain of Events
-            </span>
-          </div>
+          {/* Image Container - Full Display */}
           <div
             style={{
-              padding: "8px 20px",
-              borderRadius: "9999px",
-              background: accentBg,
-              border: `2px solid ${accentColor}`,
-              color: accentColor,
-              fontSize: "18px",
-              fontWeight: 600,
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              background: "black",
+              display: "flex",
             }}
           >
-            {formatDate(event.date)}
-          </div>
-        </div>
-
-        {/* Main Card */}
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "row",
-            background: isCrimeline ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.05)",
-            borderRadius: "24px",
-            overflow: "hidden",
-            border: `2px solid ${isCrimeline ? "rgba(220,38,38,0.3)" : "rgba(20,184,166,0.3)"}`,
-          }}
-        >
-          {/* Event Image */}
-          {imageData && (
-            <div
-              style={{
-                width: "380px",
-                display: "flex",
-                position: "relative",
-                flexShrink: 0,
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            {/* Event Image */}
+            {imageData && (
               <img
                 src={imageData}
                 alt=""
                 style={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
+                  objectFit: "contain",
                 }}
               />
-              {/* Gradient overlay */}
+            )}
+
+            {/* Chain of Events Logo - Top Left */}
+            {logoData && (
               <div
                 style={{
                   position: "absolute",
-                  inset: 0,
-                  background: isCrimeline
-                    ? "linear-gradient(to right, transparent 60%, rgba(0,0,0,0.8) 100%)"
-                    : "linear-gradient(to right, transparent 60%, rgba(15,23,42,0.8) 100%)",
+                  top: "32px",
+                  left: "32px",
+                  width: "128px",
+                  height: "128px",
+                  background: "white",
+                  border: "8px solid black",
+                  padding: "12px",
+                  transform: "rotate(-5deg)",
+                  display: "flex",
+                  zIndex: 20,
                 }}
-              />
-            </div>
-          )}
-
-          {/* Content */}
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              padding: "40px",
-            }}
-          >
-            {/* Title */}
-            <h1
-              style={{
-                fontSize: imageData ? "42px" : "56px",
-                fontWeight: "bold",
-                color: "white",
-                margin: 0,
-                marginBottom: "12px",
-                lineHeight: 1.2,
-              }}
-            >
-              {event.title}
-            </h1>
-
-            {/* Summary */}
-            <p
-              style={{
-                fontSize: imageData ? "22px" : "28px",
-                color: "#94a3b8",
-                margin: 0,
-                marginBottom: "24px",
-                lineHeight: 1.4,
-                display: "-webkit-box",
-                WebkitLineClamp: imageData ? 2 : 3,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
-            >
-              {event.summary}
-            </p>
-
-            {/* Tags */}
-            <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
-              {event.tags.slice(0, imageData ? 3 : 4).map((tag: string) => (
-                <div
-                  key={tag}
+              >
+                <img
+                  src={logoData}
+                  alt="Chain of Events"
                   style={{
-                    padding: "6px 14px",
-                    borderRadius: "9999px",
-                    background: accentBg,
-                    color: accentColor,
-                    fontSize: imageData ? "14px" : "18px",
-                    fontWeight: 500,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
                   }}
-                >
-                  {tag}
-                </div>
-              ))}
+                />
+              </div>
+            )}
+
+            {/* First Sentence Overlay - Creative Positioning */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "64px",
+                right: "48px",
+                maxWidth: "75%",
+                background: "white",
+                border: "8px solid black",
+                padding: "32px",
+                transform: "rotate(2deg)",
+                boxShadow: "12px 12px 0px 0px rgba(0,0,0,1)",
+                display: "flex",
+                zIndex: 20,
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "36px",
+                  fontWeight: 700,
+                  color: "black",
+                  lineHeight: 1.3,
+                  margin: 0,
+                }}
+              >
+                {firstSentence}
+              </p>
             </div>
 
-            {/* Crimeline-specific info */}
-            {isCrimeline && event.crimeline && (
-              <div
+            {/* Date - Large and Prominent - Top Right */}
+            <div
+              style={{
+                position: "absolute",
+                top: "32px",
+                right: "32px",
+                border: "8px solid black",
+                padding: "16px 32px",
+                transform: "rotate(3deg)",
+                background: bgColor,
+                boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
+                display: "flex",
+                zIndex: 20,
+              }}
+            >
+              <time
                 style={{
-                  display: "flex",
-                  gap: "24px",
-                  marginTop: "auto",
-                  flexWrap: "wrap",
+                  fontSize: "48px",
+                  fontWeight: 900,
+                  color: "black",
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.05em",
+                  margin: 0,
                 }}
               >
-                {event.crimeline.funds_lost_usd && (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
-                      Funds Lost
-                    </span>
-                    <span style={{ color: "#dc2626", fontSize: imageData ? "28px" : "36px", fontWeight: "bold" }}>
-                      {formatCurrency(event.crimeline.funds_lost_usd)}
-                    </span>
-                  </div>
-                )}
-                {event.crimeline.type && (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
-                      Type
-                    </span>
-                    <span style={{ color: "#fca5a5", fontSize: imageData ? "18px" : "24px", fontWeight: 600 }}>
-                      {event.crimeline.type}
-                    </span>
-                  </div>
-                )}
-                {event.crimeline.status && (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
-                      Status
-                    </span>
-                    <span
-                      style={{
-                        color:
-                          event.crimeline.status === "Funds recovered"
-                            ? "#4ade80"
-                            : event.crimeline.status === "Total loss"
-                            ? "#f87171"
-                            : "#fbbf24",
-                        fontSize: imageData ? "18px" : "24px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {event.crimeline.status}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                {formatDate(event.date)}
+              </time>
+            </div>
 
-            {/* Timeline-specific metrics */}
-            {!isCrimeline && event.metrics && (
-              <div
+            {/* Site branding - Bottom Left */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "32px",
+                left: "32px",
+                background: "white",
+                border: "4px solid black",
+                padding: "12px 24px",
+                transform: "rotate(-2deg)",
+                boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+                display: "flex",
+                zIndex: 20,
+              }}
+            >
+              <p
                 style={{
-                  display: "flex",
-                  gap: "24px",
-                  marginTop: "auto",
+                  fontSize: "28px",
+                  fontWeight: 900,
+                  color: "black",
+                  textTransform: "uppercase",
+                  margin: 0,
                 }}
               >
-                {event.metrics.btc_price_usd !== undefined && (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
-                      BTC Price
-                    </span>
-                    <span style={{ color: "#5eead4", fontSize: imageData ? "24px" : "32px", fontWeight: "bold" }}>
-                      {formatCurrency(event.metrics.btc_price_usd)}
-                    </span>
-                  </div>
-                )}
-                {event.metrics.market_cap_usd !== undefined && (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <span style={{ color: "#6b7280", fontSize: "14px", marginBottom: "4px" }}>
-                      Market Cap
-                    </span>
-                    <span style={{ color: "#5eead4", fontSize: imageData ? "24px" : "32px", fontWeight: "bold" }}>
-                      {formatCurrency(event.metrics.market_cap_usd)}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                chainofevents.xyz
+              </p>
+            </div>
           </div>
         </div>
       </div>
