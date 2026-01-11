@@ -842,7 +842,7 @@
     "id": "nomad-bridge-hack-2022-08-01",
     "date": "2022-08-01",
     "title": "Nomad Bridge Hack",
-    "summary": "Nomad cross-chain bridge is drained of $190M in a chaotic 'free-for-all' attack where hundreds of users exploited a vulnerability.",
+    "summary": "Nomad was a cross-chain bridge protocol that allowed users to transfer assets between blockchains like Ethereum, Moonbeam, Avalanche, and others. A routine smart contract upgrade in June 2022 introduced a critical bug in the Replica contract: it incorrectly marked a zero hash (0x00) as a trusted root. This flaw let anyone process arbitrary messages without proper verification, essentially turning the bridge into an open vault. $190m was drained in a chaotic 'free-for-all' attack where hundreds of users exploited the vulnerability.",
     "category": "Bridge",
     "tags": [
       "SECURITY",
@@ -851,6 +851,7 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nomad_hack",
     "links": [
       {
         "label": "Nomad Hack",
@@ -911,7 +912,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/fuck_sbf",
     "links": [
+      {
+        "label": "SBF Sucks",
+        "url": "https://x.com/SBF_FTX/status/1613522399269650434?s=20"
+      },
       {
         "label": "FTX Collapse",
         "url": "https://www.reuters.com/technology/ftx-crypto-exchange-files-us-bankruptcy-proceedings-2022-11-11/"
@@ -931,7 +937,7 @@
         "Lack of oversight"
       ],
       "aftermath": "SBF arrested and convicted of fraud; sentenced to 25 years in prison.",
-      "status": "Partial recovery"
+      "status": "Ongoing"
     }
   },
   {
@@ -947,6 +953,7 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2010.38.56%20AM.png",
     "links": [
       {
         "label": "Genesis Bankruptcy",
@@ -979,7 +986,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2010.29.45%20AM.png",
     "links": [
+      {
+        "label": "Euler Recovery",
+        "url": "https://www.euler.finance/blog/war-peace-behind-the-scenes-of-eulers-240m-exploit-recovery"
+      },
       {
         "label": "Euler Hack",
         "url": "https://rekt.news/euler-rekt/"
@@ -1026,8 +1038,8 @@
     "id": "mixin-network-hack-2023-09-25",
     "date": "2023-09-25",
     "title": "Mixin Network Hack",
-    "summary": "Mixin Network cloud service provider is hacked, resulting in approximately $200M in losses from the decentralized network.",
-    "category": "Other",
+    "summary": "Mixin Network cloud service provider is hacked, resulting in approximately $200M in losses from the decentralized network. Founder Feng Xiaodong stated that only about half of user assets could be guaranteed safe initially, with a plan to compensate the rest over time. The company also publicly offered the hacker a $20 million `bug bounty` reward for returning the funds.",
+    "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
       "FAILURE"
