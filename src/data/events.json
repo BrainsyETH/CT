@@ -1357,8 +1357,8 @@
     "id": "hawk-tuah-girl-crash-2024-12",
     "date": "2024-12-04",
     "title": "$HAWK Token Crashes After Launch",
-    "summary": "Viral 'Hawk Tuah Girl' launched $HAWK token which immediately crashed.",
-    "category": "Scam",
+    "summary": "• The $HAWK token launched on December 4, 2024, heavily hyped by Welch and her team.\n• Within minutes to hours, it surged to a peak market cap of roughly $490–500 million due to intense retail FOMO.\n• Almost immediately after peaking, the token collapsed by approximately 90–95%, with some reports placing the crash within 20–30 minutes.\n• The crash wiped out billions of dollars in paper value, leaving most holders with massive losses.\n• On-chain analysis (including Bubblemaps) revealed extreme supply concentration red flags.\n• Roughly 96–97% of the token supply was controlled by a small cluster of insider wallets (team, pre-sale investors, KOLs).\n• Only an estimated 3–4% of the total supply was genuinely available to the public at launch.",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "SECURITY",
@@ -1374,14 +1374,14 @@
       }
     ],
     "crimeline": {
-      "type": "CELEBRITY RUG PULL",
-      "funds_lost_usd": "Millions",
+      "type": "RUG PULL",
+      "funds_lost_usd": "Unknown",
       "victims_estimated": "Thousands of retail investors",
       "root_cause": [
         "Celebrity token pump and dump",
         "Lack of legitimacy"
       ],
-      "aftermath": "Creator disappeared for 2 weeks. Became cautionary tale about celebrity tokens.",
+      "aftermath": "Class action lawsuite was filed. Became yet another cautionary tale about celebrity tokens.",
       "status": "Ongoing"
     }
   },
@@ -1416,7 +1416,7 @@
     "date": "2024-12-20",
     "title": "Scooter Exposes Rizzmas as Complete Scam",
     "summary": "Crypto influencer Scooter revealed Rizzmas was a complete scam.",
-    "category": "Scam",
+    "category": "Memecoins",
     "tags": [
       "CULTURAL",
       "SECURITY",
@@ -1425,7 +1425,12 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/scooter_rizzmass",
     "links": [
+      {
+        "label": "Scooter Tweets",
+        "url": "https://x.com/imperooterxbt/status/1862093566169723103?s=20"
+      },
       {
         "label": "Rizzmas Exposure",
         "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
@@ -1439,7 +1444,7 @@
         "Coordinated scam targeting social media users"
       ],
       "aftermath": "Market cap crashed from $100M to $20M after exposure. Whistleblower faced harassment.",
-      "status": "Exposed"
+      "status": "Unknown"
     }
   },
   {
@@ -1503,8 +1508,8 @@
   {
     "id": "libra-memecoin-rugpull-2025-02-14",
     "date": "2025-02-14",
-    "title": "$LIBRA \u00e2\u20ac\u02dcCryptogate\u00e2\u20ac\u2122 Rug-Pull Scandal in Argentina",
-    "summary": "Argentina\u00e2\u20ac\u2122s President Javier Milei promoted the $LIBRA token, which rapidly pumped and then collapsed.",
+    "title": "Milei and Hayden Team Up To Rug Pull",
+    "summary": "On February 14, 2025, Milei posted on Twitter endorsing $LIBRA as a project to fund small Argentine businesses and boost the economy, using his slogan `long live freedom`. The token's market cap surged dramatically to around $4-4.6 billion within hours as retail investors FOMO'd in. However, the price crashed almost immediately (dropping over 90-95% to near zero), resulting in massive investor losses estimated at $250-251 million. Multiple wallets linked to the project's insiders withdrew roughly $99-107 million (sometimes reported as high as $110 million) from the liquidity pool shortly after the hype peaked.",
     "category": "Other",
     "tags": [
       "FAILURE",
@@ -1514,10 +1519,11 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.14.43%20PM.jpg",
     "links": [
       {
-        "label": "Market reaction thread",
-        "url": "https://x.com/KobeissiLetter/status/1890611963203334190"
+        "label": "Coffeezilla Traced Hayden's Wallets",
+        "url": "https://x.com/coffeebreak_YT/status/1892654096101855495?s=20"
       },
       {
         "label": "Reuters: $99M withdrawn by linked wallets",
@@ -1537,7 +1543,7 @@
         "Insider dumping",
         "Supply concentration"
       ],
-      "aftermath": "Political scandal (\u00e2\u20ac\u02dcCryptogate\u00e2\u20ac\u2122) and broad public scrutiny of memecoin launches tied to public figures.",
+      "aftermath": "As of late 2025/early 2026, investigations continue, with reports of suspicious transfers and frozen funds. Hayden walks free.",
       "status": "Ongoing"
     }
   },
@@ -1545,40 +1551,7 @@
     "id": "bybit-exchange-hack-2025-02",
     "date": "2025-02-21",
     "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
-    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets.",
-    "category": "Security",
-    "tags": [
-      "SECURITY",
-      "FAILURE",
-      "TECH"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "links": [
-      {
-        "label": "Decrypt: Bybit and Coinbase Biggest Hacks of 2025",
-        "url": "https://decrypt.co/351001/bybit-coinbase-2025-biggest-crypto-hacks-breaches"
-      }
-    ],
-    "crimeline": {
-      "type": "EXCHANGE HACK",
-      "funds_lost_usd": 1500000000,
-      "victims_estimated": "Bybit users & liquidity providers",
-      "root_cause": [
-        "Compromised developer infrastructure at Safe{Wallet} (multi-sig provider)",
-        "Routine cold-to-warm wallet transfer manipulation",
-        "Sophisticated phishing/supply-chain attack"
-      ],
-      "aftermath": "Bybit pledged full client asset backing.",
-      "status": "Ongoing"
-    }
-  },
-  {
-    "id": "bybit-hack-2025-02-21",
-    "date": "2025-02-21",
-    "title": "Bybit Suffers ~$1.5B Exchange Hack",
-    "summary": "Bybit disclosed a major ETH wallet compromise that became the largest widely reported crypto heist to date in 2025.",
+    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets. Hackers, widely attributed to North Korea's state-sponsored Lazarus Group, stole approximately $1.4–1.5 billion worth of Ethereum (ETH), specifically around 401,000 ETH.",
     "category": "Centralized Exchange",
     "tags": [
       "SECURITY",
@@ -1587,38 +1560,32 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ben_zhou",
     "links": [
       {
-        "label": "Bybit CEO disclosure",
-        "url": "https://x.com/benbybit/status/1892963530422505586"
-      },
-      {
-        "label": "FBI IC3 attribution notice",
-        "url": "https://www.ic3.gov/psa/2025/psa250226"
-      },
-      {
-        "label": "Reuters attribution report",
-        "url": "https://www.reuters.com/technology/cybersecurity/fbi-says-north-korea-was-responsible-15-billion-bybit-hack-2025-02-27/"
+        "label": "Ben Zhou Discloses Breach",
+        "url": "https://x.com/benbybit/status/1892963530422505586?s=20"
       }
     ],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 1500000000,
-      "victims_estimated": "Unknown",
+      "victims_estimated": "Bybit users & liquidity providers",
       "root_cause": [
-        "Wallet compromise",
-        "Unauthorized transaction signing",
-        "Operational security failure"
+        "Compromised developer infrastructure at Safe{Wallet} (multi-sig provider)",
+        "Lazarus Group",
+        "Sophisticated phishing/supply-chain attack"
       ],
-      "aftermath": "Authorities issued attribution and laundering warnings.",
+      "aftermath": "Bybit quickly reassured users that client funds were safe.",
       "status": "Ongoing"
     }
   },
+ 
   {
     "id": "mantra-om-flash-crash-2025-04-13",
     "date": "2025-04-13",
     "title": "Mantra (OM) Token Dumps ~90% in Hours",
-    "summary": "OM experienced a rapid, severe collapse\u00e2\u20ac\u201dwidely described as a \u00e2\u20ac\u02dctoken dump\u00e2\u20ac\u2122.",
+    "summary": "Mantra (OM) experienced a dramatic 90% price crash within an hour, dropping from over $6 to below $1, with liquidations exceeding $70 million. CEO JP Mullin attributed the crash to 'reckless forced closures' initiated by centralized exchanges on OM account holders without sufficient warning.",
     "category": "Market Structure",
     "tags": [
       "FAILURE",
@@ -1627,6 +1594,7 @@
     "mode": [
       "crimeline"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mantra",
     "links": [
       {
         "label": "ChainArgos case study (PDF)",
@@ -1639,13 +1607,13 @@
     ],
     "crimeline": {
       "type": "RUG PULL",
-      "funds_lost_usd": 0,
+      "funds_lost_usd": 5400000000,
       "victims_estimated": "Unknown",
       "root_cause": [
         "Token dumps",
         "Operational failure"
       ],
-      "aftermath": "Unkown",
+      "aftermath": "Unknown",
       "status": "Ongoing"
     }
   },
@@ -2370,7 +2338,15 @@
         "label": "Collection of Coincidences",
         "url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20"
       }
-    ]
+    ],
+    "crimeline": {
+    "type": "GOVERNANCE ATTACK",
+    "funds_lost_usd": 14000000,
+    "victims_estimated": "SUSHI holders and LPs",
+    "root_cause": ["Insider/dev fund withdrawal", "Admin key/control risk"],
+    "aftermath": "Chef Nomi returned funds and ceded control to SBF; the incident became defining DeFi governance lore.",
+    "status": "Partial recovery"
+  }
   },
 
   {
