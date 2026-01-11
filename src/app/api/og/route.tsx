@@ -124,28 +124,6 @@ export async function GET(request: NextRequest) {
             padding: "48px",
           }}
         >
-          {/* Logo placeholder - Top Left */}
-          <div
-            style={{
-              position: "absolute",
-              top: "32px",
-              left: "32px",
-              width: "80px",
-              height: "80px",
-              background: "white",
-              border: "6px solid black",
-              padding: "12px",
-              transform: "rotate(-5deg)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "40px",
-              zIndex: 20,
-            }}
-          >
-            {isCrimeline ? "💀" : "₿"}
-          </div>
-
           {/* Date - Large and Prominent - Top Right */}
           <div
             style={{
@@ -183,7 +161,7 @@ export async function GET(request: NextRequest) {
               justifyContent: "center",
               alignItems: "center",
               flex: 1,
-              padding: "80px 60px",
+              padding: "110px 80px 60px",
             }}
           >
             {/* Title */}
@@ -192,11 +170,11 @@ export async function GET(request: NextRequest) {
                 background: "white",
                 border: "8px solid black",
                 padding: "28px 40px",
-                marginBottom: "28px",
+                marginBottom: "24px",
                 boxShadow: "12px 12px 0px 0px rgba(0,0,0,1)",
                 transform: "rotate(-1deg)",
-                maxWidth: "850px",
-                width: "90%",
+                maxWidth: "820px",
+                width: "88%",
               }}
             >
               <h1
@@ -222,10 +200,10 @@ export async function GET(request: NextRequest) {
               style={{
                 background: "black",
                 border: "6px solid black",
-                padding: "20px 32px",
+                padding: "18px 32px",
                 transform: "rotate(1deg)",
-                maxWidth: "750px",
-                width: "85%",
+                maxWidth: "720px",
+                width: "82%",
                 boxShadow: "8px 8px 0px 0px rgba(0,0,0,0.3)",
               }}
             >
