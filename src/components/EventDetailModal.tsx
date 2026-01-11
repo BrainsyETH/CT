@@ -62,9 +62,9 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
 
-      // Return focus to the triggering element when modal closes
+      // Return focus to the triggering element when modal closes without scrolling
       if (previousActiveElement.current && !selectedEventId) {
-        previousActiveElement.current.focus();
+        previousActiveElement.current.focus({ preventScroll: true });
       }
     };
   }, [selectedEventId, closeModal, isImageExpanded]);
