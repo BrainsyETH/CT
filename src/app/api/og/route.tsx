@@ -96,37 +96,8 @@ export async function GET(request: NextRequest) {
 
   const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
   const firstSentence = getFirstSentence(event.summary);
-
-  // Fetch event image or use fallback
-  const imageUrl = event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE);
-  let imageData: string | null = null;
-  try {
-    const imageResponse = await fetch(imageUrl);
-    if (imageResponse.ok) {
-      const buffer = await imageResponse.arrayBuffer();
-      const base64 = Buffer.from(buffer).toString("base64");
-      const contentType = imageResponse.headers.get("content-type") || "image/png";
-      imageData = `data:${contentType};base64,${base64}`;
-    }
-  } catch (error) {
-    console.error("Failed to fetch image:", error);
-  }
-
-  // Fetch logo
-  let logoData: string | null = null;
-  try {
-    const logoResponse = await fetch(LOGO_URL);
-    if (logoResponse.ok) {
-      const buffer = await logoResponse.arrayBuffer();
-      const base64 = Buffer.from(buffer).toString("base64");
-      const contentType = logoResponse.headers.get("content-type") || "image/png";
-      logoData = `data:${contentType};base64,${base64}`;
-    }
-  } catch (error) {
-    console.error("Failed to fetch logo:", error);
-  }
-
   const bgColor = isCrimeline ? "#ef4444" : "#fde047"; // red-500 or yellow-300
+  const eventImageUrl = event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE);
 
   return new ImageResponse(
     (
@@ -146,149 +117,153 @@ export async function GET(request: NextRequest) {
             width: "100%",
             height: "100%",
             display: "flex",
+            flexDirection: "column",
             position: "relative",
             border: "8px solid black",
             background: bgColor,
             boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
+            padding: "48px",
           }}
         >
-          {/* Image Container - Full Display */}
+          {/* Logo placeholder - Top Left */}
           <div
             style={{
-              position: "relative",
-              width: "100%",
-              height: "100%",
-              background: "black",
+              position: "absolute",
+              top: "32px",
+              left: "32px",
+              width: "80px",
+              height: "80px",
+              background: "white",
+              border: "6px solid black",
+              padding: "12px",
+              transform: "rotate(-5deg)",
               display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "40px",
+              zIndex: 20,
             }}
           >
-            {/* Event Image */}
-            {imageData && (
-              <img
-                src={imageData}
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-              />
-            )}
+            {isCrimeline ? "💀" : "₿"}
+          </div>
 
-            {/* Chain of Events Logo - Top Left */}
-            {logoData && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "32px",
-                  left: "32px",
-                  width: "128px",
-                  height: "128px",
-                  background: "white",
-                  border: "8px solid black",
-                  padding: "12px",
-                  transform: "rotate(-5deg)",
-                  display: "flex",
-                  zIndex: 20,
-                }}
-              >
-                <img
-                  src={logoData}
-                  alt="Chain of Events"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              </div>
-            )}
+          {/* Date - Large and Prominent - Top Right */}
+          <div
+            style={{
+              position: "absolute",
+              top: "32px",
+              right: "32px",
+              border: "8px solid black",
+              padding: "16px 32px",
+              transform: "rotate(3deg)",
+              background: "white",
+              boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
+              display: "flex",
+              zIndex: 20,
+            }}
+          >
+            <time
+              style={{
+                fontSize: "42px",
+                fontWeight: 900,
+                color: "black",
+                textTransform: "uppercase",
+                letterSpacing: "-0.05em",
+                margin: 0,
+              }}
+            >
+              {formatDate(event.date)}
+            </time>
+          </div>
 
-            {/* First Sentence Overlay - Creative Positioning */}
+          {/* Main Content - Center */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              flex: 1,
+              padding: "80px 60px",
+            }}
+          >
+            {/* Title */}
             <div
               style={{
-                position: "absolute",
-                bottom: "64px",
-                right: "48px",
-                maxWidth: "75%",
                 background: "white",
                 border: "8px solid black",
-                padding: "32px",
-                transform: "rotate(2deg)",
+                padding: "32px 48px",
+                marginBottom: "32px",
                 boxShadow: "12px 12px 0px 0px rgba(0,0,0,1)",
-                display: "flex",
-                zIndex: 20,
+                transform: "rotate(-1deg)",
+                maxWidth: "90%",
               }}
             >
-              <p
+              <h1
                 style={{
-                  fontSize: "36px",
-                  fontWeight: 700,
-                  color: "black",
-                  lineHeight: 1.3,
-                  margin: 0,
-                }}
-              >
-                {firstSentence}
-              </p>
-            </div>
-
-            {/* Date - Large and Prominent - Top Right */}
-            <div
-              style={{
-                position: "absolute",
-                top: "32px",
-                right: "32px",
-                border: "8px solid black",
-                padding: "16px 32px",
-                transform: "rotate(3deg)",
-                background: bgColor,
-                boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
-                display: "flex",
-                zIndex: 20,
-              }}
-            >
-              <time
-                style={{
-                  fontSize: "48px",
+                  fontSize: "56px",
                   fontWeight: 900,
                   color: "black",
-                  textTransform: "uppercase",
-                  letterSpacing: "-0.05em",
                   margin: 0,
+                  textAlign: "center",
+                  lineHeight: 1.1,
                 }}
               >
-                {formatDate(event.date)}
-              </time>
+                {event.title}
+              </h1>
             </div>
 
-            {/* Site branding - Bottom Left */}
+            {/* First Sentence */}
             <div
               style={{
-                position: "absolute",
-                bottom: "32px",
-                left: "32px",
-                background: "white",
-                border: "4px solid black",
-                padding: "12px 24px",
-                transform: "rotate(-2deg)",
-                boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
-                display: "flex",
-                zIndex: 20,
+                background: "black",
+                border: "6px solid black",
+                padding: "24px 36px",
+                transform: "rotate(1deg)",
+                maxWidth: "85%",
+                boxShadow: "8px 8px 0px 0px rgba(0,0,0,0.3)",
               }}
             >
               <p
                 style={{
                   fontSize: "28px",
-                  fontWeight: 900,
-                  color: "black",
-                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  color: "white",
+                  lineHeight: 1.3,
                   margin: 0,
+                  textAlign: "center",
                 }}
               >
-                chainofevents.xyz
+                {firstSentence}
               </p>
             </div>
+          </div>
+
+          {/* Site branding - Bottom */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "32px",
+              left: "50%",
+              transform: "translateX(-50%) rotate(-2deg)",
+              background: "white",
+              border: "4px solid black",
+              padding: "12px 32px",
+              boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+              display: "flex",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "24px",
+                fontWeight: 900,
+                color: "black",
+                textTransform: "uppercase",
+                margin: 0,
+              }}
+            >
+              chainofevents.xyz
+            </p>
           </div>
         </div>
       </div>
