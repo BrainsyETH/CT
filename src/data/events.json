@@ -783,7 +783,7 @@
     "id": "3ac-default-2022-06-27",
     "date": "2022-06-27",
     "title": "Three Arrows Capital Defaults",
-    "summary": "Crypto hedge fund Three Arrows Capital defaults on over $3.5B in loans after LUNA collapse, triggering contagion across the industry.",
+    "summary": "Three Arrows Capital (3AC) was a Singapore-based cryptocurrency hedge fund founded by Kyle Davies and Su Zhu that collapsed in June 2022 after failing to meet large margin calls amid the broader crypto market downturn — particularly losses tied to Terra/LUNA and other leveraged positions. A court in the British Virgin Islands ordered the firm into liquidation on June 27, 2022, and it subsequently filed for Chapter 15 bankruptcy in the U.S., owing around $3.5 billion to creditors including major lenders like Genesis and Voyager.",
     "category": "Market Structure",
     "tags": [
       "FAILURE",
@@ -792,6 +792,7 @@
     "mode": [
       "crimeline"
     ],
+    "images": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png",
     "links": [
       {
         "label": "3AC Collapse",
