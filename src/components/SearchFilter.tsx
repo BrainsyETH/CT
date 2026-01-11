@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
-import type { EventTag } from "@/lib/types";
+import type { EventTag, CrimelineType } from "@/lib/types";
 
 const ALL_TAGS: EventTag[] = [
   "TECH",
@@ -16,6 +16,46 @@ const ALL_TAGS: EventTag[] = [
   "ATH",
 ];
 
+const ALL_CATEGORIES = [
+  "Bitcoin",
+  "CT Lore",
+  "Centralized Exchange",
+  "Memecoins",
+  "DeFi Protocol",
+  "DeFi",
+  "Market Structure",
+  "Ethereum",
+  "Lending",
+  "Regulation",
+  "Bull Runs",
+  "Dances",
+  "NFTs",
+  "Bridge",
+  "Culture",
+  "Wallet/Key Compromise",
+  "Security",
+  "Stablecoin",
+  "Privacy",
+  "Scam",
+  "Other",
+  "ETFs",
+];
+
+const ALL_CRIMELINE_TYPES: CrimelineType[] = [
+  "EXCHANGE HACK",
+  "PROTOCOL EXPLOIT",
+  "BRIDGE HACK",
+  "ORACLE MANIPULATION",
+  "RUG PULL",
+  "FRAUD",
+  "CUSTODY FAILURE",
+  "LEVERAGE COLLAPSE",
+  "GOVERNANCE ATTACK",
+  "REGULATORY SEIZURE",
+  "SOCIAL MEDIA HACK",
+  "OTHER",
+];
+
 export function SearchFilter() {
   const {
     mode,
@@ -23,15 +63,41 @@ export function SearchFilter() {
     setSearchQuery,
     selectedTags,
     toggleTag,
+    selectedCategories,
+    toggleCategory,
+    selectedCrimelineTypes,
+    toggleCrimelineType,
     clearAllFilters,
     sortOrder,
     toggleSortOrder,
   } = useModeStore();
 
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
+  const [categorySearch, setCategorySearch] = useState("");
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
   const isCrimeline = mode === "crimeline";
-  const activeFilterCount = selectedTags.length + (searchQuery.trim() ? 1 : 0);
+  const showCrimelineTypes = mode === "crimeline" || mode === "both";
+
+  const activeFilterCount =
+    selectedTags.length +
+    selectedCategories.length +
+    selectedCrimelineTypes.length +
+    (searchQuery.trim() ? 1 : 0);
   const hasActiveFilters = activeFilterCount > 0;
+
+  // Filter categories based on search
+  const filteredCategories = useMemo(() => {
+    if (!categorySearch.trim()) return ALL_CATEGORIES;
+    const query = categorySearch.toLowerCase();
+    return ALL_CATEGORIES.filter((cat) =>
+      cat.toLowerCase().includes(query)
+    );
+  }, [categorySearch]);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
 
   return (
     <div
@@ -182,38 +248,234 @@ export function SearchFilter() {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="pt-3 mt-3 border-t border-gray-200 dark:border-gray-700">
-              {/* Tag Filters */}
-              <div className="flex flex-wrap gap-2 items-center">
-                <span
-                  className={`text-xs font-medium ${
-                    isCrimeline ? "text-gray-500" : "text-gray-400"
+            <div className="pt-3 mt-3 border-t border-gray-200 dark:border-gray-700 space-y-3">
+              {/* Tags Section */}
+              <div>
+                <button
+                  onClick={() => toggleSection("tags")}
+                  className={`flex items-center justify-between w-full text-left text-sm font-medium mb-2 ${
+                    isCrimeline ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
-                  Tags:
-                </span>
-                {ALL_TAGS.map((tag) => {
-                  const isSelected = selectedTags.includes(tag);
-                  return (
-                    <button
-                      key={tag}
-                      onClick={() => toggleTag(tag)}
-                      aria-pressed={isSelected}
-                      className={`px-2 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                        isSelected
-                          ? isCrimeline
-                            ? "bg-red-900 text-red-200 border border-red-700"
-                            : "bg-teal-500 text-white border border-teal-600"
-                          : isCrimeline
-                          ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                          : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
-                      }`}
+                  <span className="flex items-center gap-2">
+                    Tags
+                    {selectedTags.length > 0 && (
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded-full ${
+                          isCrimeline
+                            ? "bg-red-900/50 text-red-300"
+                            : "bg-teal-100 text-teal-700"
+                        }`}
+                      >
+                        {selectedTags.length}
+                      </span>
+                    )}
+                  </span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${
+                      expandedSection === "tags" ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {expandedSection === "tags" && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
                     >
-                      {tag}
-                    </button>
-                  );
-                })}
+                      <div className="flex flex-wrap gap-2">
+                        {ALL_TAGS.map((tag) => {
+                          const isSelected = selectedTags.includes(tag);
+                          return (
+                            <button
+                              key={tag}
+                              onClick={() => toggleTag(tag)}
+                              aria-pressed={isSelected}
+                              className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                                isSelected
+                                  ? isCrimeline
+                                    ? "bg-red-900 text-red-200 border border-red-700"
+                                    : "bg-teal-500 text-white border border-teal-600"
+                                  : isCrimeline
+                                  ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
+                                  : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                              }`}
+                            >
+                              {tag}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
+
+              {/* Categories Section */}
+              <div>
+                <button
+                  onClick={() => toggleSection("categories")}
+                  className={`flex items-center justify-between w-full text-left text-sm font-medium mb-2 ${
+                    isCrimeline ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    Categories
+                    {selectedCategories.length > 0 && (
+                      <span
+                        className={`text-xs px-2 py-0.5 rounded-full ${
+                          isCrimeline
+                            ? "bg-red-900/50 text-red-300"
+                            : "bg-teal-100 text-teal-700"
+                        }`}
+                      >
+                        {selectedCategories.length}
+                      </span>
+                    )}
+                  </span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${
+                      expandedSection === "categories" ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {expandedSection === "categories" && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="space-y-2">
+                        {/* Category Search */}
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Search categories..."
+                            value={categorySearch}
+                            onChange={(e) => setCategorySearch(e.target.value)}
+                            className={`w-full px-3 py-1.5 text-xs rounded-md transition-colors ${
+                              isCrimeline
+                                ? "bg-gray-800 border border-gray-700 text-white placeholder-gray-500"
+                                : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400"
+                            } focus:outline-none focus:ring-1 ${
+                              isCrimeline ? "focus:ring-red-500" : "focus:ring-teal-500"
+                            }`}
+                          />
+                        </div>
+                        {/* Category List - Max height with scroll */}
+                        <div className="max-h-48 overflow-y-auto flex flex-wrap gap-2">
+                          {filteredCategories.map((category) => {
+                            const isSelected = selectedCategories.includes(category);
+                            return (
+                              <button
+                                key={category}
+                                onClick={() => toggleCategory(category)}
+                                aria-pressed={isSelected}
+                                className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                                  isSelected
+                                    ? isCrimeline
+                                      ? "bg-red-900 text-red-200 border border-red-700"
+                                      : "bg-teal-500 text-white border border-teal-600"
+                                    : isCrimeline
+                                    ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
+                                    : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                                }`}
+                              >
+                                {category}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Crimeline Types Section - Only show in crimeline or both mode */}
+              {showCrimelineTypes && (
+                <div>
+                  <button
+                    onClick={() => toggleSection("crimelineTypes")}
+                    className={`flex items-center justify-between w-full text-left text-sm font-medium mb-2 ${
+                      isCrimeline ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      Incident Types
+                      {selectedCrimelineTypes.length > 0 && (
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full ${
+                            isCrimeline
+                              ? "bg-red-900/50 text-red-300"
+                              : "bg-teal-100 text-teal-700"
+                          }`}
+                        >
+                          {selectedCrimelineTypes.length}
+                        </span>
+                      )}
+                    </span>
+                    <svg
+                      className={`w-4 h-4 transition-transform ${
+                        expandedSection === "crimelineTypes" ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <AnimatePresence>
+                    {expandedSection === "crimelineTypes" && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-wrap gap-2">
+                          {ALL_CRIMELINE_TYPES.map((type) => {
+                            const isSelected = selectedCrimelineTypes.includes(type);
+                            return (
+                              <button
+                                key={type}
+                                onClick={() => toggleCrimelineType(type)}
+                                aria-pressed={isSelected}
+                                className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                                  isSelected
+                                    ? isCrimeline
+                                      ? "bg-red-900 text-red-200 border border-red-700"
+                                      : "bg-teal-500 text-white border border-teal-600"
+                                    : isCrimeline
+                                    ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
+                                    : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                                }`}
+                              >
+                                {type}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
 
               {/* Active Filters Summary & Clear on Mobile */}
               {hasActiveFilters && (
@@ -265,6 +527,56 @@ export function SearchFilter() {
                         <button
                           onClick={() => toggleTag(tag)}
                           aria-label={`Remove ${tag} filter`}
+                          className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                          }`}
+                        >
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </span>
+                    ))}
+
+                    {/* Category Chips */}
+                    {selectedCategories.map((category) => (
+                      <span
+                        key={category}
+                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
+                          isCrimeline
+                            ? "bg-red-900/50 text-red-300 border border-red-800"
+                            : "bg-teal-100 text-teal-700 border border-teal-300"
+                        }`}
+                      >
+                        {category}
+                        <button
+                          onClick={() => toggleCategory(category)}
+                          aria-label={`Remove ${category} filter`}
+                          className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
+                            isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
+                          }`}
+                        >
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </span>
+                    ))}
+
+                    {/* Crimeline Type Chips */}
+                    {selectedCrimelineTypes.map((type) => (
+                      <span
+                        key={type}
+                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
+                          isCrimeline
+                            ? "bg-red-900/50 text-red-300 border border-red-800"
+                            : "bg-teal-100 text-teal-700 border border-teal-300"
+                        }`}
+                      >
+                        {type}
+                        <button
+                          onClick={() => toggleCrimelineType(type)}
+                          aria-label={`Remove ${type} filter`}
                           className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
                             isCrimeline ? "hover:bg-red-500" : "hover:bg-teal-500"
                           }`}

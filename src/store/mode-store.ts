@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Mode, EventTag } from "@/lib/types";
+import type { Mode, EventTag, CrimelineType } from "@/lib/types";
 
 type SortOrder = "asc" | "desc";
 
@@ -8,13 +8,19 @@ interface ModeState {
   mode: Mode;
   searchQuery: string;
   selectedTags: EventTag[];
+  selectedCategories: string[];
+  selectedCrimelineTypes: CrimelineType[];
   sortOrder: SortOrder;
   selectedEventId: string | null;
   setMode: (mode: Mode) => void;
   toggleMode: () => void;
   setSearchQuery: (query: string) => void;
   toggleTag: (tag: EventTag) => void;
+  toggleCategory: (category: string) => void;
+  toggleCrimelineType: (type: CrimelineType) => void;
   clearTags: () => void;
+  clearCategories: () => void;
+  clearCrimelineTypes: () => void;
   clearAllFilters: () => void;
   setSortOrder: (order: SortOrder) => void;
   toggleSortOrder: () => void;
@@ -27,6 +33,8 @@ export const useModeStore = create<ModeState>()(
       mode: "timeline",
       searchQuery: "",
       selectedTags: [],
+      selectedCategories: [],
+      selectedCrimelineTypes: [],
       sortOrder: "desc",
       selectedEventId: null,
       setMode: (mode) => set({ mode }),
@@ -46,8 +54,28 @@ export const useModeStore = create<ModeState>()(
             ? state.selectedTags.filter((t) => t !== tag)
             : [...state.selectedTags, tag],
         })),
+      toggleCategory: (category) =>
+        set((state) => ({
+          selectedCategories: state.selectedCategories.includes(category)
+            ? state.selectedCategories.filter((c) => c !== category)
+            : [...state.selectedCategories, category],
+        })),
+      toggleCrimelineType: (type) =>
+        set((state) => ({
+          selectedCrimelineTypes: state.selectedCrimelineTypes.includes(type)
+            ? state.selectedCrimelineTypes.filter((t) => t !== type)
+            : [...state.selectedCrimelineTypes, type],
+        })),
       clearTags: () => set({ selectedTags: [] }),
-      clearAllFilters: () => set({ searchQuery: "", selectedTags: [] }),
+      clearCategories: () => set({ selectedCategories: [] }),
+      clearCrimelineTypes: () => set({ selectedCrimelineTypes: [] }),
+      clearAllFilters: () =>
+        set({
+          searchQuery: "",
+          selectedTags: [],
+          selectedCategories: [],
+          selectedCrimelineTypes: []
+        }),
       setSortOrder: (order) => set({ sortOrder: order }),
       toggleSortOrder: () =>
         set((state) => ({
