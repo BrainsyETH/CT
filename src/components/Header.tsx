@@ -102,7 +102,7 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-4 h-4" />
-              <span>CT Lore</span>
+              <span>CT</span>
             </button>
 
             {/* Mode Toggle */}
