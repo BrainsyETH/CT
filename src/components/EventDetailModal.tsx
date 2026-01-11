@@ -231,13 +231,14 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Summary */}
                 <p
-                  id="modal-description"
-                  className={`mt-4 text-base leading-relaxed ${
-                    isCrimeline ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  {event.summary}
-                </p>
+  id="modal-description"
+  className={`mt-4 text-base leading-relaxed whitespace-pre-line ${
+    isCrimeline ? "text-gray-300" : "text-gray-600"
+  }`}
+>
+  {event.summary}
+</p>
+
 
                 {/* Metrics */}
                 {event.metrics && (
