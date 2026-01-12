@@ -107,21 +107,21 @@ export async function GET(request: NextRequest) {
               style={{
                 position: "absolute",
                 top: "28px",
-                left: "28px",
+                left: "36px",
                 display: "flex",
                 background: colors.accent,
-                border: `4px solid ${colors.border}`,
-                padding: "14px 28px",
+                border: `5px solid ${colors.border}`,
+                padding: "16px 32px",
                 boxShadow: "6px 6px 0px 0px #000000",
               }}
             >
               <span
                 style={{
-                  fontSize: "28px",
+                  fontSize: "30px",
                   fontWeight: 900,
                   color: "#ffffff",
                   textTransform: "uppercase",
-                  letterSpacing: "2px",
+                  letterSpacing: "3px",
                 }}
               >
                 {date}
@@ -133,7 +133,7 @@ export async function GET(request: NextRequest) {
           <div
             style={{
               position: "absolute",
-              bottom: "80px",
+              bottom: "75px",
               left: "36px",
               right: "36px",
               display: "flex",
@@ -147,14 +147,13 @@ export async function GET(request: NextRequest) {
                 display: "flex",
                 background: colors.cardBg,
                 border: `5px solid ${colors.border}`,
-                padding: "20px 32px",
+                padding: "24px 36px",
                 boxShadow: "8px 8px 0px 0px #000000",
-                marginBottom: "16px",
               }}
             >
               <span
                 style={{
-                  fontSize: title.length > 50 ? "34px" : "42px",
+                  fontSize: title.length > 50 ? "36px" : "46px",
                   fontWeight: 900,
                   color: colors.text,
                   lineHeight: 1.15,
@@ -163,65 +162,32 @@ export async function GET(request: NextRequest) {
                 {title}
               </span>
             </div>
+          </div>
 
-            {/* Summary and Branding Row */}
-            <div
+          {/* Site Branding - Bottom Right */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "75px",
+              right: "44px",
+              display: "flex",
+              background: "#000000",
+              border: "4px solid #000000",
+              padding: "12px 22px",
+              boxShadow: `5px 5px 0px 0px ${colors.accent}`,
+            }}
+          >
+            <span
               style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
+                fontSize: "16px",
+                fontWeight: 900,
+                color: "#ffffff",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
               }}
             >
-              {/* Summary Box */}
-              {firstSentence && (
-                <div
-                  style={{
-                    display: "flex",
-                    flex: 1,
-                    background: colors.cardBg,
-                    border: `4px solid ${colors.border}`,
-                    padding: "14px 22px",
-                    boxShadow: "5px 5px 0px 0px #000000",
-                    marginRight: "24px",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "17px",
-                      fontWeight: 600,
-                      color: colors.text,
-                      lineHeight: 1.35,
-                    }}
-                  >
-                    {firstSentence}
-                  </span>
-                </div>
-              )}
-
-              {/* Site Branding */}
-              <div
-                style={{
-                  display: "flex",
-                  background: "#000000",
-                  border: "4px solid #000000",
-                  padding: "12px 22px",
-                  boxShadow: `5px 5px 0px 0px ${colors.accent}`,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: 900,
-                    color: "#ffffff",
-                    textTransform: "uppercase",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  CHAINOFEVENTS.XYZ
-                </span>
-              </div>
-            </div>
+              CHAINOFEVENTS.XYZ
+            </span>
           </div>
         </div>
       ),

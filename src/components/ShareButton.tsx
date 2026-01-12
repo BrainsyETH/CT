@@ -63,9 +63,18 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     return `${baseUrl}?${params.toString()}`;
   }, [baseUrl, event.id, mode, searchQuery, selectedTags, sortOrder]);
 
+  // Get first sentence of summary for tweet
+  const getFirstSentence = (text: string): string => {
+    if (!text) return "";
+    const match = text.match(/^[^.!?]+[.!?]/);
+    if (match) return match[0].trim();
+    return text.length > 150 ? `${text.slice(0, 147)}...` : text;
+  };
+
   const handleTwitterShare = () => {
     if (!shareUrl) return;
-    const shareText = event.title;
+    const firstSentence = getFirstSentence(event.summary);
+    const shareText = firstSentence ? `${event.title}\n\n${firstSentence}` : event.title;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank", "width=600,height=400");
   };
