@@ -275,11 +275,6 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                         <p className="text-2xl font-bold text-purple-400">
                           {formatFundsLost(event.crimeline.funds_lost_usd)}
                         </p>
-                        {event.crimeline.victims_estimated && (
-                          <p className="text-sm text-gray-400">
-                            Estimated {event.crimeline.victims_estimated} victims
-                          </p>
-                        )}
                       </div>
 
                       {/* Root Causes */}

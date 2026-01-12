@@ -180,30 +180,30 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Crimeline-specific details */}
               {isCrimeline && event.crimeline && (
                 <div className="mt-3 pt-3 border-t border-purple-900/40">
-                  {/* Type and Status */}
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="px-2 py-1 text-xs font-bold bg-purple-900/50 text-purple-200 rounded">
-                      {event.crimeline.type}
-                    </span>
-                    {event.crimeline.status && (
-                      <span
-                        className={`px-2 py-1 text-xs font-medium rounded ${
-                          event.crimeline.status === "Funds recovered"
-                            ? "bg-green-900/50 text-green-200"
-                            : event.crimeline.status === "Partial recovery"
-                            ? "bg-yellow-900/50 text-yellow-200"
-                            : event.crimeline.status === "Total loss"
-                            ? "bg-purple-900/50 text-purple-200"
-                            : "bg-gray-700 text-gray-200"
-                        }`}
-                      >
-                        {event.crimeline.status}
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    {/* Type and Status */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2 py-1 text-xs font-bold bg-purple-900/50 text-purple-200 rounded">
+                        {event.crimeline.type}
                       </span>
-                    )}
-                  </div>
+                      {event.crimeline.status && (
+                        <span
+                          className={`px-2 py-1 text-xs font-medium rounded ${
+                            event.crimeline.status === "Funds recovered"
+                              ? "bg-green-900/50 text-green-200"
+                              : event.crimeline.status === "Partial recovery"
+                              ? "bg-yellow-900/50 text-yellow-200"
+                              : event.crimeline.status === "Total loss"
+                              ? "bg-purple-900/50 text-purple-200"
+                              : "bg-gray-700 text-gray-200"
+                          }`}
+                        >
+                          {event.crimeline.status}
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Funds Lost */}
-                  <div className="mb-2">
+                    {/* Funds Lost */}
                     <span className="text-purple-400 text-sm font-bold">
                       {formatFundsLost(event.crimeline.funds_lost_usd)} Lost
                     </span>
