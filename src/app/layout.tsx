@@ -58,14 +58,7 @@ export const metadata: Metadata = {
     title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
-    images: [
-      {
-        url: new URL("/twitter-image", siteUrl).toString(),
-        width: 1200,
-        height: 600,
-        alt: "Chain of Events - The History of Cryptocurrency",
-      },
-    ],
+    images: [new URL("/twitter-image", siteUrl).toString()],
     creator: "@chainofevents",
   },
   robots: {
