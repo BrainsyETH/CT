@@ -1,8 +1,17 @@
 /**
+ * Parse an ISO date string (YYYY-MM-DD) as local time instead of UTC.
+ * This prevents timezone offset issues where dates shift by one day.
+ */
+export function parseDateAsLocal(dateString: string): Date {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
+
+/**
  * Format a date string to "MMM d, yyyy" format (e.g., "Nov 11, 2022")
  */
 export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
+  const date = parseDateAsLocal(dateString);
   return date.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -48,5 +57,5 @@ export function formatNumber(value: number): string {
  * Extract year from ISO date string
  */
 export function getYear(dateString: string): number {
-  return new Date(dateString).getFullYear();
+  return parseDateAsLocal(dateString).getFullYear();
 }
