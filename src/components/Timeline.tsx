@@ -192,10 +192,10 @@ export function Timeline({ events }: TimelineProps) {
   const animationProps = prefersReducedMotion
     ? { initial: {}, animate: {}, exit: {}, transition: { duration: 0 } }
     : {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 },
-        transition: { duration: 0.3 },
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -8 },
+        transition: { duration: 0.4, ease: "easeOut" as const },
       };
 
   return (

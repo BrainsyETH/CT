@@ -40,7 +40,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
             className={`
               ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
               font-medium rounded-md
-              transition-all duration-200 ease-out
+              transition-all duration-300 ease-out
               focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
               ${
                 isActive
