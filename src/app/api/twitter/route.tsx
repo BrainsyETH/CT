@@ -31,19 +31,19 @@ export async function GET(request: NextRequest) {
       mode === "crimeline"
         ? {
             accent: "#7c3aed", // Purple
-            accentLight: "#2e1065",
+            accentLight: "#a855f7",
             background: "#030712",
-            cardBg: "#111827",
+            cardBg: "rgba(17, 24, 39, 0.95)",
             text: "#f9fafb",
-            border: "#5b21b6",
+            border: "#7c3aed",
           }
         : {
             accent: "#14b8a6", // Teal
-            accentLight: "#ccfbf1",
+            accentLight: "#2dd4bf",
             background: "#f9fafb",
-            cardBg: "#ffffff",
+            cardBg: "rgba(255, 255, 255, 0.95)",
             text: "#111827",
-            border: "#111827",
+            border: "#14b8a6",
           };
 
     return new ImageResponse(
@@ -59,174 +59,136 @@ export async function GET(request: NextRequest) {
             overflow: "hidden",
           }}
         >
-          {/* Neo-brutalist decorative elements */}
+          {/* Full-bleed background image */}
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt=""
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentLight} 100%)`,
+              }}
+            />
+          )}
+
+          {/* Dark overlay gradient for text readability */}
           <div
             style={{
               position: "absolute",
-              top: "-40px",
-              right: "-40px",
-              width: "200px",
-              height: "200px",
-              background: colors.accent,
-              transform: "rotate(15deg)",
-              border: `6px solid ${colors.border}`,
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-60px",
-              left: "-60px",
-              width: "180px",
-              height: "180px",
-              background: colors.accentLight,
-              transform: "rotate(-10deg)",
-              border: `6px solid ${colors.border}`,
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              background:
+                "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%)",
             }}
           />
 
-          {/* Main content container */}
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              height: "100%",
-              padding: "40px",
-            }}
-          >
-            {/* Left side - Event Image */}
+          {/* Date Badge - Top Left Corner */}
+          {date && (
             <div
               style={{
+                position: "absolute",
+                top: "24px",
+                left: "24px",
                 display: "flex",
-                width: "420px",
-                height: "100%",
-                flexShrink: 0,
-                position: "relative",
+                background: colors.accent,
+                border: `4px solid #000000`,
+                padding: "10px 20px",
+                boxShadow: "6px 6px 0px 0px #000000",
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  width: "100%",
-                  height: "100%",
-                  border: `8px solid ${colors.border}`,
-                  boxShadow: `12px 12px 0px 0px ${colors.border}`,
-                  background: colors.cardBg,
-                  overflow: "hidden",
-                  position: "relative",
+                  fontSize: "22px",
+                  fontWeight: 900,
+                  color: "#ffffff",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
                 }}
               >
-                {imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt=""
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "100%",
-                      height: "100%",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentLight} 100%)`,
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "120px",
-                        fontWeight: 900,
-                        color: colors.text,
-                      }}
-                    >
-                      ⛓
-                    </div>
-                  </div>
-                )}
+                {date}
+              </div>
+            </div>
+          )}
+
+          {/* Content overlay - Bottom */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              display: "flex",
+              flexDirection: "column",
+              padding: "0 32px 28px 32px",
+            }}
+          >
+            {/* Title Box */}
+            <div
+              style={{
+                display: "flex",
+                background: colors.cardBg,
+                border: `5px solid #000000`,
+                padding: "20px 28px",
+                boxShadow: "8px 8px 0px 0px #000000",
+                marginBottom: "16px",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: title.length > 50 ? "32px" : "38px",
+                  fontWeight: 900,
+                  color: colors.text,
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.5px",
+                }}
+              >
+                {title}
               </div>
             </div>
 
-            {/* Right side - Content */}
+            {/* Summary and Branding Row */}
             <div
               style={{
                 display: "flex",
-                flex: 1,
-                flexDirection: "column",
-                paddingLeft: "40px",
-                justifyContent: "center",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                gap: "20px",
               }}
             >
-              {/* Date Badge */}
-              {date && (
-                <div
-                  style={{
-                    display: "flex",
-                    alignSelf: "flex-start",
-                    background: colors.accent,
-                    border: `5px solid ${colors.border}`,
-                    padding: "8px 20px",
-                    marginBottom: "20px",
-                    boxShadow: `6px 6px 0px 0px ${colors.border}`,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "24px",
-                      fontWeight: 900,
-                      color: mode === "crimeline" ? "#ffffff" : "#000000",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {date}
-                  </div>
-                </div>
-              )}
-
-              {/* Title Box */}
-              <div
-                style={{
-                  display: "flex",
-                  background: colors.cardBg,
-                  border: `6px solid ${colors.border}`,
-                  padding: "24px 28px",
-                  boxShadow: `10px 10px 0px 0px ${colors.border}`,
-                  marginBottom: "20px",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: title.length > 50 ? "32px" : "40px",
-                    fontWeight: 900,
-                    color: colors.text,
-                    lineHeight: 1.15,
-                    letterSpacing: "-0.5px",
-                  }}
-                >
-                  {title}
-                </div>
-              </div>
-
               {/* Summary Box */}
               {firstSentence && (
                 <div
                   style={{
                     display: "flex",
-                    background:
-                      mode === "crimeline" ? colors.accentLight : "#f3f4f6",
-                    border: `4px solid ${colors.border}`,
-                    padding: "16px 20px",
-                    boxShadow: `6px 6px 0px 0px ${colors.border}`,
+                    flex: 1,
+                    background: colors.cardBg,
+                    border: `4px solid #000000`,
+                    padding: "14px 20px",
+                    boxShadow: "5px 5px 0px 0px #000000",
                   }}
                 >
                   <div
                     style={{
-                      fontSize: "18px",
+                      fontSize: "16px",
                       fontWeight: 600,
                       color: colors.text,
                       lineHeight: 1.4,
@@ -236,65 +198,30 @@ export async function GET(request: NextRequest) {
                   </div>
                 </div>
               )}
-            </div>
-          </div>
 
-          {/* Site Branding - Bottom */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "24px",
-              right: "40px",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                background: colors.border,
-                border: `4px solid ${colors.border}`,
-                padding: "10px 24px",
-                boxShadow: `4px 4px 0px 0px ${colors.accent}`,
-              }}
-            >
+              {/* Site Branding */}
               <div
                 style={{
-                  fontSize: "18px",
-                  fontWeight: 900,
-                  color: mode === "crimeline" ? "#f9fafb" : "#ffffff",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
+                  display: "flex",
+                  background: "#000000",
+                  border: `4px solid #000000`,
+                  padding: "12px 20px",
+                  boxShadow: `5px 5px 0px 0px ${colors.accent}`,
+                  flexShrink: 0,
                 }}
               >
-                chainofevents.xyz
+                <div
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 900,
+                    color: "#ffffff",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  CHAINOFEVENTS.XYZ
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Mode indicator badge */}
-          <div
-            style={{
-              position: "absolute",
-              top: "24px",
-              right: "40px",
-              display: "flex",
-              background: colors.accent,
-              border: `4px solid ${colors.border}`,
-              padding: "6px 16px",
-              transform: "rotate(3deg)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "14px",
-                fontWeight: 900,
-                color: mode === "crimeline" ? "#ffffff" : "#000000",
-                textTransform: "uppercase",
-              }}
-            >
-              {mode === "crimeline" ? "CRIMELINE" : "TIMELINE"}
             </div>
           </div>
         </div>
