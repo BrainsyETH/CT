@@ -46,12 +46,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         year: "numeric",
       });
 
-      const ogImageUrl = toAbsoluteUrl(
-        `api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
-      );
-      const twitterImageUrl = toAbsoluteUrl(
-        `api/twitter?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
-      );
+      // Determine mode for styling
+      const eventMode = event.mode.includes("crimeline") ? "crimeline" : "timeline";
+
+      // Build image URL with all parameters
+      const imageParams = new URLSearchParams({
+        title: event.title,
+        date: formattedDate,
+        summary: event.summary,
+        mode: eventMode,
+      });
+      if (event.image) {
+        imageParams.set("image", event.image);
+      }
+
+      const ogImageUrl = toAbsoluteUrl(`api/og?${imageParams.toString()}`);
+      const twitterImageUrl = toAbsoluteUrl(`api/twitter?${imageParams.toString()}`);
 
       return {
         title,
