@@ -163,32 +163,6 @@ export async function GET(request: NextRequest) {
               </span>
             </div>
           </div>
-
-          {/* Site Branding - Bottom Right */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "70px",
-              right: "40px",
-              display: "flex",
-              background: "#000000",
-              border: "4px solid #000000",
-              padding: "10px 18px",
-              boxShadow: `5px 5px 0px 0px ${colors.accent}`,
-            }}
-          >
-            <span
-              style={{
-                fontSize: "14px",
-                fontWeight: 900,
-                color: "#ffffff",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-              }}
-            >
-              CHAINOFEVENTS.XYZ
-            </span>
-          </div>
         </div>
       ),
       {
