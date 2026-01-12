@@ -80,7 +80,7 @@
   {
     "id": "mtgox-hack-2011-06-19",
     "date": "2011-06-19",
-    "title": "Mt. Gox First Hack",
+    "title": "The First Mt. GOX Hack",
     "summary": "On June 19th, 2011, a security breach of the Mt. Gox bitcoin exchange caused the nominal price of a bitcoin to fraudulently drop to one cent on the Mt. Gox exchange, after a hacker allegedly used credentials from a Mt. Gox auditor's compromised computer illegally to fabricate a large number of bitcoins for himself. ",
     "category": [
       "Centralized Exchange"
@@ -144,7 +144,7 @@
   {
     "id": "mtgox-collapse-2014-02-24",
     "date": "2014-02-07",
-    "title": "Mt. Gox Collapse",
+    "title": "Mt. Gox Collapses",
     "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": [
       "Centralized Exchange"
@@ -208,7 +208,7 @@
   {
     "id": "dao-hack-2016-06-17",
     "date": "2016-06-17",
-    "title": "The DAO Hack - ok can you guys stop trading",
+    "title": "ok can you guys stop trading",
     "summary": "An attacker exploits a reentrancy bug in The DAO smart contract, draining 3.6M ETH (~$60M), leading to the controversial Ethereum hard fork. When the DAO was being drained by an attacker (millions of ETH were being siphoned off due to a vulnerability), Vitalik and other Ethereum community members urged exchanges to pause trading, deposits, and withdrawals to prevent the stolen ETH from being quickly liquidated and causing further damage to the market.",
     "category": [
       "Ethereum"
@@ -274,7 +274,7 @@
   {
     "id": "bitfinex-hack-2016-08-02",
     "date": "2016-08-02",
-    "title": "Bitfinex `Razzlekhan` Hack",
+    "title": "Bitfinex Is Hacked by `Razzlekhan`",
     "summary": "Hackers steal 119,756 BTC (~$72M) from Bitfinex exchange in the second largest Bitcoin theft at the time. In 2022, U.S. authorities arrested Ilya Lichtenstein and Heather `Razzlekhan` Morgan for laundering the stolen funds, marking one of the largest financial seizure cases ever. In 2026, Ilya Lichtenstein, was released early from prison under the First Step Act and is now on home confinement.",
     "category": [
       "Centralized Exchange"
@@ -491,7 +491,7 @@
   {
     "id": "defi-summer-2020-06",
     "date": "2020-06-15",
-    "title": "Defi Summer 2020",
+    "title": "Defi Summer 2020 Begins",
     "summary": "Almost $90 billion worth of trading volume happened across decentralized exchanges on Ethereum over 2020. The majority of the volume and growth happened over the last 4-5 months during DeFi summer.",
     "category": [
       "DeFi Protocol"
@@ -2117,10 +2117,11 @@
   {
     "id": "hal-finney-running-bitcoin-2009-01-11",
     "date": "2009-01-11",
-    "title": "Running Bitcoin",
+    "title": "Hal Finney Tests Bitcoin",
     "summary": "Hal Finney posts the first widely cited Bitcoin tweet, writing \"Running bitcoin\" as he tests the early software alongside Satoshi Nakamoto.",
     "category": [
-      "Bitcoin"
+      "Bitcoin",
+      "CT Lore"
     ],
     "tags": [
       "CULTURAL",
@@ -2140,7 +2141,7 @@
   {
     "id": "greg-schoen-regret-2011-05-16",
     "date": "2011-05-16",
-    "title": "The Greg Schoen Regret",
+    "title": "The infamous BTC Sale at $0.30",
     "summary": "A viral tweet laments selling 1,700 BTC at $0.30, becoming an early symbol of Bitcoin regret as prices climb.",
     "category": [
       "CT Lore"
@@ -2162,7 +2163,7 @@
   {
     "id": "wikileaks-adoption-2011-06-14",
     "date": "2011-06-14",
-    "title": "Wikileaks Adoption",
+    "title": "Wikileaks Accepts Bitcoin Donations",
     "summary": "Wikileaks begins accepting Bitcoin donations, a milestone that cemented BTC as a censorship-resistant funding rail.",
     "category": [
       "Bitcoin"
@@ -2208,7 +2209,7 @@
   {
     "id": "casascius-physical-bitcoins-2011-10-24",
     "date": "2011-10-24",
-    "title": "Casascius Physical Bitcoins",
+    "title": "The Casascius Physical Bitcoins Era",
     "summary": "Mike Caldwell mints the first Casascius physical Bitcoin coins, blending collectible tokens with real BTC value.",
     "category": [
       "Bitcoin"
@@ -2254,8 +2255,8 @@
   {
     "id": "maxcoin-creation-2014",
     "date": "2014-01-01",
-    "title": "The Creation of Maxcoin",
-    "summary": "Maxcoin launches during the 2014 altcoin wave, marking an early high-profile celebrity-branded token experiment.",
+    "title": "Cobie Helps Create Maxcoin",
+    "summary": "Maxcoin launches during the 2014 altcoin wave, marking a very early, and maybe regretable token experiment.",
     "category": [
       "Memecoins"
     ],
@@ -2322,7 +2323,7 @@
   {
     "id": "bitcoin-cash-fork-2017-08-01",
     "date": "2017-08-01",
-    "title": "Bitcoin Cash is Bitcoin",
+    "title": "Roger Ver Claims Bitcoin Cash is Bitcoin",
     "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the “real Bitcoin,” posting viral tweets like “Bitcoin Cash is Bitcoin” and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
     "category": [
       "Bitcoin"
@@ -2398,8 +2399,8 @@
   {
     "id": "libra-announcement-2019-06-18",
     "date": "2019-06-18",
-    "title": "The Libra Announcement",
-    "summary": "Facebook unveils Libra, an ambitious plan for a global digital currency that sparks immediate regulatory attention.",
+    "title": "Facebook Unveils Short-Lived Libra",
+    "summary": "Facebook unveils Libra, an ambitious plan for a global digital currency that sparks immediate regulatory attention. Timing is everything.",
     "category": [
       "Market Structure"
     ],
@@ -2421,7 +2422,7 @@
   {
     "id": "craig-wright-satoshi-claim-2016-05-02",
     "date": "2016-05-02",
-    "title": "The Craig Wright Lies About Being \"Satoshi\"",
+    "title": "Craig Wright Lies About Being \"Satoshi\"",
     "summary": "Craig Wright repeatedly claims to be Satoshi Nakamoto, igniting ongoing legal and community disputes. in 2024, A UK judge ruled that Craig Wright lied extensively and forged documents on a grand scale while falsely claiming to be Satoshi Nakamoto, the creator of Bitcoin.",
     "category": [
       "Bitcoin"
@@ -2476,29 +2477,7 @@
       "status": "Partial recovery"
     }
   },
-  {
-    "id": "comp-launch-2020-06",
-    "date": "2020-06-15",
-    "title": "The COMP Launch",
-    "summary": "Compound introduces COMP token incentives, kicking off the DeFi yield farming summer.",
-    "category": [
-      "DeFi"
-    ],
-    "tags": [
-      "MILESTONE",
-      "ECONOMIC"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "links": [
-      {
-        "label": "DeFi summer recap",
-        "url": "https://coinmarketcap.com/academy/article/defis-10-biggest-moments-in-2020"
-      }
-    ]
-  },
+  
   {
     "id": "sushiswap-vampire-attack-2020-08",
     "date": "2020-08-28",
@@ -2776,7 +2755,8 @@
     "title": "Steady Lads",
     "summary": "Do Kwon urges calm with \"steady lads\" as UST begins to unravel.",
     "category": [
-      "DeFi"
+      "DeFi",
+      "CT Lore"
     ],
     "tags": [
       "CULTURAL",
@@ -2843,7 +2823,8 @@
     "title": "1) What",
     "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
     "category": [
-      "Centralized Exchange"
+      "Centralized Exchange",
+      "CT Lore"
     ],
     "tags": [
       "CULTURAL"
@@ -3170,7 +3151,7 @@
   },
   {
     "id": "zcash-core-dev-resignation-2026",
-    "date": "2026-01-12",
+    "date": "2026-01-09",
     "title": "Zcash Core Developers Resign",
     "summary": "Multiple Zcash core developers resigned in early 2026, citing governance and strategic disagreements.",
     "category": [
@@ -3333,7 +3314,8 @@
     "title": "Algod Becomes Bahaman to Withdraw FTX Funds",
     "summary": "Algod (or AlgodTrading) reportedly exploited a loophole where Bahamian-registered FTX accounts could still withdraw funds due to pressure from Bahamian regulators to protect local users, while most international accounts were frozen.",
     "category": [
-      "Centralized Exchange"
+      "Centralized Exchange",
+      "CT Lore"
     ],
     "tags": [
       "FAILURE",
