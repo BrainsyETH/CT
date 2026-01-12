@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
     images: [
       {
-        url: "/opengraph-image",
+        url: new URL("/opengraph-image", siteUrl).toString(),
         width: 1200,
         height: 630,
         alt: "Chain of Events - The History of Cryptocurrency",
@@ -58,7 +58,14 @@ export const metadata: Metadata = {
     title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
-    images: ["/twitter-image"],
+    images: [
+      {
+        url: new URL("/twitter-image", siteUrl).toString(),
+        width: 1200,
+        height: 600,
+        alt: "Chain of Events - The History of Cryptocurrency",
+      },
+    ],
     creator: "@chainofevents",
   },
   robots: {
