@@ -5,6 +5,9 @@ import type { FeedbackSubmission } from "@/lib/types";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+const RATE_LIMIT = 5; // Max submissions per hour
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+
 export async function POST(request: Request) {
   try {
     // Validate environment variables
@@ -46,13 +49,35 @@ export async function POST(request: Request) {
       );
     }
 
+    // Rate limiting: Check submissions from this email in the last hour
+    const oneHourAgo = new Date(Date.now() - RATE_LIMIT_WINDOW).toISOString();
+
+    const { count, error: countError } = await supabase
+      .from("feedback_submissions")
+      .select("*", { count: "exact", head: true })
+      .eq("email", body.email.toLowerCase())
+      .gte("created_at", oneHourAgo);
+
+    if (countError) {
+      console.error("Rate limit check error:", countError);
+      // Continue anyway - don't block submission if rate limit check fails
+    } else if (count !== null && count >= RATE_LIMIT) {
+      return NextResponse.json(
+        {
+          error: "Rate limit exceeded. Please try again later.",
+          retryAfter: "1 hour"
+        },
+        { status: 429 }
+      );
+    }
+
     // Insert into Supabase
     const { data, error } = await supabase
       .from("feedback_submissions")
       .insert([
         {
           type: body.type,
-          email: body.email,
+          email: body.email.toLowerCase(),
           twitter_handle: body.twitter_handle || null,
           event_id: body.event_id || null,
           event_title: body.event_title || null,
