@@ -36,8 +36,8 @@ const tagColors: Record<EventTag, { timeline: string; crimeline: string; both: s
   },
   FAILURE: {
     timeline: "bg-red-100 text-red-800 border border-red-200",
-    crimeline: "bg-red-900/60 text-red-200 border border-red-800",
-    both: "bg-red-900/60 text-red-200 border border-red-800",
+    crimeline: "bg-purple-900/60 text-purple-200 border border-purple-800",
+    both: "bg-purple-900/60 text-purple-200 border border-purple-800",
   },
   MILESTONE: {
     timeline: "bg-teal-100 text-teal-800 border border-teal-200",

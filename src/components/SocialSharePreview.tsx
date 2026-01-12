@@ -28,7 +28,7 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
       {/* Neo-Brutalist Card with thick border and bold shadow */}
       <div
         className={`w-full h-full relative border-8 border-black ${
-          isCrimeline ? "bg-red-500" : "bg-yellow-300"
+          isCrimeline ? "bg-purple-500" : "bg-yellow-300"
         }`}
         style={{
           boxShadow: '16px 16px 0px 0px rgba(0,0,0,1)',
@@ -72,7 +72,7 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
           {/* Date - Large and Prominent - Top Right */}
           <div
             className={`absolute top-8 right-8 border-8 border-black px-8 py-4 rotate-[3deg] z-20 ${
-              isCrimeline ? "bg-red-500" : "bg-yellow-300"
+              isCrimeline ? "bg-purple-500" : "bg-yellow-300"
             }`}
             style={{
               boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',

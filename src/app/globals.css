@@ -17,10 +17,10 @@
 [data-theme="crimeline"] {
   --background: #030712;
   --foreground: #f9fafb;
-  --accent: #dc2626;
-  --accent-light: #450a0a;
+  --accent: #7c3aed;
+  --accent-light: #2e1065;
   --card-bg: #111827;
-  --card-border: #7f1d1d;
+  --card-border: #5b21b6;
   --muted: #d1d5db;
 }
 
@@ -73,12 +73,12 @@ html {
 }
 
 [data-theme="crimeline"] ::-webkit-scrollbar-thumb {
-  background: #7f1d1d;
+  background: #5b21b6;
   border-radius: 4px;
 }
 
 [data-theme="crimeline"] ::-webkit-scrollbar-thumb:hover {
-  background: #991b1b;
+  background: #6d28d9;
 }
 
 /* Selection colors */
@@ -88,7 +88,7 @@ html {
 }
 
 [data-theme="crimeline"] ::selection {
-  background: #dc2626;
+  background: #7c3aed;
   color: white;
 }
 

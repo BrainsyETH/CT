@@ -229,14 +229,14 @@ export function Timeline({ events }: TimelineProps) {
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-red-950/30 to-gray-900 border border-red-900/50"
+          className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-purple-950/30 to-gray-900 border-2 border-purple-900/50 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-2xl">💀</span>
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wide">Total Estimated Loss</p>
-                <p className="text-2xl font-bold text-red-400">
+                <p className="text-2xl font-bold text-purple-400">
                   {formatCurrency(crimelineStats.totalLost)}
                 </p>
               </div>
@@ -273,7 +273,7 @@ export function Timeline({ events }: TimelineProps) {
           {/* Central Timeline Line */}
           <div
             className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 transition-colors duration-300 ${
-              isCrimeline ? "bg-red-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-600 to-red-600" : "bg-teal-200"
+              isCrimeline ? "bg-purple-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-500 to-purple-700" : "bg-teal-200"
             }`}
           />
 
@@ -292,7 +292,7 @@ export function Timeline({ events }: TimelineProps) {
                       animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}
                       className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 ${
                         isCrimeline
-                          ? "bg-gray-950 text-red-300 border-2 border-red-800"
+                          ? "bg-gray-950 text-purple-300 border-2 border-purple-800"
                           : "bg-teal-100 text-teal-700 border border-teal-200"
                       }`}
                     >
@@ -347,7 +347,7 @@ export function Timeline({ events }: TimelineProps) {
                   onClick={clearAllFilters}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                     isCrimeline
-                      ? "bg-red-900/50 text-red-300 hover:bg-red-900/70 border border-red-800"
+                      ? "bg-purple-900/50 text-purple-300 hover:bg-purple-900/70 border-2 border-purple-800"
                       : "bg-teal-500 text-white hover:bg-teal-600"
                   }`}
                 >
