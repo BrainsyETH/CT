@@ -9,7 +9,7 @@ import { MobileYearSelector } from "./MobileYearSelector";
 import { SearchFilter } from "./SearchFilter";
 import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
-import { getYear, formatCurrency, parseDateAsLocal } from "@/lib/formatters";
+import { getYear, formatCurrency } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
 interface TimelineProps {
@@ -89,11 +89,11 @@ export function Timeline({ events }: TimelineProps) {
       return true;
     });
 
-    // Sort by date (use local parsing to avoid timezone issues)
+    // Sort by date (YYYY-MM-DD strings sort correctly)
     filtered.sort((a, b) => {
-      const dateA = parseDateAsLocal(a.date).getTime();
-      const dateB = parseDateAsLocal(b.date).getTime();
-      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      return sortOrder === "asc"
+        ? a.date.localeCompare(b.date)
+        : b.date.localeCompare(a.date);
     });
 
     return filtered;
