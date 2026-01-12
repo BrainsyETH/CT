@@ -66,3 +66,30 @@ export interface Event {
     status?: OutcomeStatus;
   };
 }
+
+// Feedback submission types
+export type FeedbackType = "new_event" | "edit_event" | "general";
+
+export interface FeedbackSubmission {
+  type: FeedbackType;
+  email: string;
+  twitter_handle?: string;
+  // For new_event and edit_event
+  event_id?: string;
+  event_title?: string;
+  event_date?: string;
+  event_summary?: string;
+  event_category?: string;
+  event_tags?: string;
+  event_mode?: string;
+  event_image_url?: string;
+  event_source_url?: string;
+  // For crimeline events
+  crimeline_type?: string;
+  crimeline_funds_lost?: string;
+  crimeline_status?: string;
+  crimeline_root_cause?: string;
+  crimeline_aftermath?: string;
+  // General feedback
+  message?: string;
+}
