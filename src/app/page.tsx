@@ -30,7 +30,10 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         year: "numeric",
       });
 
-      const ogImageUrl = `${siteUrl}api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`;
+      const ogImageUrl = new URL(
+        `api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`,
+        siteUrl
+      ).toString();
 
       return {
         title,
