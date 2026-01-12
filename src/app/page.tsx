@@ -17,14 +17,16 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const eventId = params.event;
   const baseUrl = new URL(siteUrl);
   const toAbsoluteUrl = (path: string) => new URL(path, baseUrl).toString();
+  const truncate = (value: string, maxLength: number) =>
+    value.length > maxLength ? `${value.slice(0, maxLength - 3).trimEnd()}...` : value;
 
   if (eventId) {
     const event = events.find((e) => e.id === eventId);
     if (event) {
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
-      const twitterTitle =
-        title.length > 70 ? `${title.slice(0, 67).trimEnd()}...` : title;
+      const twitterTitle = truncate(title, 60);
+      const twitterDescription = truncate(description, 200);
 
       // Format date for OG image
       const date = new Date(event.date);
@@ -62,15 +64,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         twitter: {
           card: "summary_large_image",
           title: twitterTitle,
-          description,
-          images: [
-            {
-              url: twitterImageUrl,
-              width: 1200,
-              height: 600,
-              alt: event.title,
-            },
-          ],
+          description: twitterDescription,
+          images: [twitterImageUrl],
+        },
+        other: {
+          "twitter:image": twitterImageUrl,
         },
       };
     }

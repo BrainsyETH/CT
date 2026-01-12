@@ -61,6 +61,9 @@ export const metadata: Metadata = {
     images: [new URL("/twitter-image", siteUrl).toString()],
     creator: "@chainofevents",
   },
+  other: {
+    "twitter:image": new URL("/twitter-image", siteUrl).toString(),
+  },
   robots: {
     index: true,
     follow: true,
