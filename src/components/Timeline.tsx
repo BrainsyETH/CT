@@ -89,11 +89,11 @@ export function Timeline({ events }: TimelineProps) {
       return true;
     });
 
-    // Sort by date
+    // Sort by date (YYYY-MM-DD strings sort correctly)
     filtered.sort((a, b) => {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
-      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+      return sortOrder === "asc"
+        ? a.date.localeCompare(b.date)
+        : b.date.localeCompare(a.date);
     });
 
     return filtered;

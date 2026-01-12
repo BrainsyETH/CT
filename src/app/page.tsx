@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
 import eventsData from "@/data/events.json";
 import type { Event } from "@/lib/types";
+import { formatDate } from "@/lib/formatters";
 
 const events = eventsData as Event[];
 
@@ -39,12 +40,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       const twitterDescription = truncate(description, 200);
 
       // Format date for OG image
-      const date = new Date(event.date);
-      const formattedDate = date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      });
+      const formattedDate = formatDate(event.date);
 
       // Determine mode for styling
       const eventMode = event.mode.includes("crimeline") ? "crimeline" : "timeline";
