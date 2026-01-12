@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
 import eventsData from "@/data/events.json";
@@ -19,8 +20,11 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
   const eventId = params.event;
-  const baseUrl = new URL(siteUrl);
-  const toAbsoluteUrl = (path: string) => new URL(path, baseUrl).toString();
+  const headersList = await headers();
+  const host = headersList.get("x-forwarded-host") ?? headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") ?? "https";
+  const resolvedSiteUrl = host ? `${protocol}://${host}/` : siteUrl;
+  const toAbsoluteUrl = (path: string) => new URL(path, resolvedSiteUrl).toString();
   const truncate = (value: string, maxLength: number) =>
     value.length > maxLength ? `${value.slice(0, maxLength - 3).trimEnd()}...` : value;
 
@@ -53,7 +57,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         openGraph: {
           title,
           description,
-          url: `${siteUrl}?event=${eventId}`,
+          url: `${resolvedSiteUrl}?event=${eventId}`,
           siteName: "Chain of Events",
           images: [
             {
