@@ -19,10 +19,18 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   if (eventId) {
     const event = events.find((e) => e.id === eventId);
     if (event) {
-      const isCrimeline = event.mode.includes("crimeline") && event.crimeline;
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
-      const ogImageUrl = `${siteUrl}/api/og?id=${encodeURIComponent(eventId)}`;
+
+      // Format date for OG image
+      const date = new Date(event.date);
+      const formattedDate = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+
+      const ogImageUrl = `${siteUrl}api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`;
 
       return {
         title,
