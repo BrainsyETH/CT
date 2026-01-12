@@ -11,6 +11,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // e.g. "G-WY98R2W0KK"
 
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#14b8a6" },

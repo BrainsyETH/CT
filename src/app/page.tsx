@@ -13,6 +13,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
     ? `https://${process.env.VERCEL_URL}/`
     : "https://chainofevents.xyz/";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   searchParams: Promise<{ event?: string }>;
 };
