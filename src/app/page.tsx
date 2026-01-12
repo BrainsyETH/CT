@@ -15,12 +15,16 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
   const eventId = params.event;
+  const baseUrl = new URL(siteUrl);
+  const toAbsoluteUrl = (path: string) => new URL(path, baseUrl).toString();
 
   if (eventId) {
     const event = events.find((e) => e.id === eventId);
     if (event) {
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
+      const twitterTitle =
+        title.length > 70 ? `${title.slice(0, 67).trimEnd()}...` : title;
 
       // Format date for OG image
       const date = new Date(event.date);
@@ -30,7 +34,12 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         year: "numeric",
       });
 
-      const ogImageUrl = `${siteUrl}api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`;
+      const ogImageUrl = toAbsoluteUrl(
+        `api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
+      );
+      const twitterImageUrl = toAbsoluteUrl(
+        `api/twitter?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
+      );
 
       return {
         title,
@@ -52,9 +61,16 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         },
         twitter: {
           card: "summary_large_image",
-          title,
+          title: twitterTitle,
           description,
-          images: [ogImageUrl],
+          images: [
+            {
+              url: twitterImageUrl,
+              width: 1200,
+              height: 600,
+              alt: event.title,
+            },
+          ],
         },
       };
     }
