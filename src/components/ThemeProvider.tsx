@@ -33,7 +33,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
         setPrevMode(mode);
-      }, 220);
+      }, 350);
       return () => clearTimeout(timer);
     }
   }, [mode, mounted, prevMode]);
@@ -56,9 +56,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         {isTransitioning && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
+            animate={{ opacity: 0.4 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className={`fixed inset-0 z-[100] pointer-events-none ${
               isCrimeline ? "bg-purple-900" : "bg-teal-500"
             }`}
