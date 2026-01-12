@@ -36,67 +36,71 @@ const getFirstSentence = (text: string): string => {
 };
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const eventId = searchParams.get("id");
+  try {
+    const { searchParams } = new URL(request.url);
+    const eventId = searchParams.get("id");
 
-  const event = events.find((e) => e.id === eventId);
+    const event = events.find((e) => e.id === eventId);
 
-  if (!event) {
-    // Return default neo-brutalist OG image if event not found
-    return new ImageResponse(
-      (
-        <div
-          style={{
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "#fde047", // yellow-300
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
+    if (!event) {
+      // Return default neo-brutalist OG image if event not found
+      return new ImageResponse(
+        (
           <div
             style={{
+              height: "100%",
+              width: "100%",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: "white",
-              border: "8px solid black",
-              padding: "60px 80px",
-              boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
-              transform: "rotate(-2deg)",
+              background: "#fde047", // yellow-300
+              fontFamily: "system-ui, sans-serif",
             }}
           >
-            <h1 style={{
-              color: "black",
-              fontSize: 64,
-              fontWeight: 900,
-              margin: 0,
-              marginBottom: "16px",
-              textTransform: "uppercase",
-            }}>
-              Chain of Events
-            </h1>
-            <p style={{
-              color: "black",
-              fontSize: 32,
-              fontWeight: 700,
-              margin: 0,
-            }}>
-              Event not found
-            </p>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "white",
+                border: "8px solid black",
+                padding: "60px 80px",
+                boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
+                transform: "rotate(-2deg)",
+              }}
+            >
+              <h1 style={{
+                color: "black",
+                fontSize: 64,
+                fontWeight: 900,
+                margin: 0,
+                marginBottom: "16px",
+                textTransform: "uppercase",
+              }}>
+                Chain of Events
+              </h1>
+              <p style={{
+                color: "black",
+                fontSize: 32,
+                fontWeight: 700,
+                margin: 0,
+              }}>
+                Event not found
+              </p>
+            </div>
           </div>
-        </div>
-      ),
-      { width: 1200, height: 630 }
-    );
-  }
+        ),
+        {
+          width: 1200,
+          height: 630,
+        }
+      );
+    }
 
-  const isCrimeline = Array.isArray(event.mode) ? event.mode.includes("crimeline") : event.mode === "crimeline";
-  const firstSentence = getFirstSentence(event.summary);
-  const bgColor = isCrimeline ? "#ef4444" : "#fde047"; // red-500 or yellow-300
+    const isCrimeline = Array.isArray(event.mode) ? event.mode.includes("crimeline") : event.mode === "crimeline";
+    const firstSentence = getFirstSentence(event.summary);
+    const bgColor = isCrimeline ? "#ef4444" : "#fde047"; // red-500 or yellow-300
 
   return new ImageResponse(
     (
@@ -260,4 +264,48 @@ export async function GET(request: NextRequest) {
       height: 630,
     }
   );
+  } catch (error) {
+    console.error("Error generating OG image:", error);
+    // Return a simple fallback image on error
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#fde047",
+            fontFamily: "system-ui, sans-serif",
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              border: "8px solid black",
+              padding: "48px 64px",
+              boxShadow: "16px 16px 0px 0px rgba(0,0,0,1)",
+            }}
+          >
+            <h1
+              style={{
+                color: "black",
+                fontSize: 56,
+                fontWeight: 900,
+                margin: 0,
+                textTransform: "uppercase",
+              }}
+            >
+              Chain of Events
+            </h1>
+          </div>
+        </div>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  }
 }
