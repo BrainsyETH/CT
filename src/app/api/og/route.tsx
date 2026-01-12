@@ -33,17 +33,17 @@ export async function GET(request: NextRequest) {
             accent: "#7c3aed", // Purple
             accentLight: "#a855f7",
             background: "#030712",
-            cardBg: "rgba(17, 24, 39, 0.95)",
+            cardBg: "#111827",
             text: "#f9fafb",
-            border: "#7c3aed",
+            border: "#000000",
           }
         : {
             accent: "#14b8a6", // Teal
             accentLight: "#2dd4bf",
             background: "#f9fafb",
-            cardBg: "rgba(255, 255, 255, 0.95)",
+            cardBg: "#ffffff",
             text: "#111827",
-            border: "#14b8a6",
+            border: "#000000",
           };
 
     return new ImageResponse(
@@ -53,51 +53,51 @@ export async function GET(request: NextRequest) {
             height: "100%",
             width: "100%",
             display: "flex",
-            fontFamily: "Inter, system-ui, sans-serif",
+            fontFamily: "system-ui, sans-serif",
             background: colors.background,
             position: "relative",
-            overflow: "hidden",
           }}
         >
           {/* Full-bleed background image */}
-          {imageUrl ? (
+          {imageUrl && (
             <img
               src={imageUrl}
-              alt=""
+              width="1200"
+              height="630"
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: "100%",
-                height: "100%",
+                width: "1200px",
+                height: "630px",
                 objectFit: "cover",
               }}
             />
-          ) : (
+          )}
+
+          {/* Fallback gradient if no image */}
+          {!imageUrl && (
             <div
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentLight} 100%)`,
+                width: "1200px",
+                height: "630px",
+                background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentLight})`,
               }}
             />
           )}
 
-          {/* Dark overlay gradient for text readability */}
+          {/* Dark overlay for text readability */}
           <div
             style={{
               position: "absolute",
               top: 0,
               left: 0,
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%)",
+              width: "1200px",
+              height: "630px",
+              background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))",
             }}
           />
 
@@ -110,12 +110,12 @@ export async function GET(request: NextRequest) {
                 left: "28px",
                 display: "flex",
                 background: colors.accent,
-                border: `4px solid #000000`,
+                border: `4px solid ${colors.border}`,
                 padding: "12px 24px",
                 boxShadow: "6px 6px 0px 0px #000000",
               }}
             >
-              <div
+              <span
                 style={{
                   fontSize: "24px",
                   fontWeight: 900,
@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
                 }}
               >
                 {date}
-              </div>
+              </span>
             </div>
           )}
 
@@ -133,12 +133,11 @@ export async function GET(request: NextRequest) {
           <div
             style={{
               position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
+              bottom: "32px",
+              left: "36px",
+              right: "36px",
               display: "flex",
               flexDirection: "column",
-              padding: "0 36px 32px 36px",
             }}
           >
             {/* Title Box */}
@@ -146,23 +145,22 @@ export async function GET(request: NextRequest) {
               style={{
                 display: "flex",
                 background: colors.cardBg,
-                border: `5px solid #000000`,
+                border: `5px solid ${colors.border}`,
                 padding: "24px 32px",
                 boxShadow: "8px 8px 0px 0px #000000",
                 marginBottom: "18px",
               }}
             >
-              <div
+              <span
                 style={{
                   fontSize: title.length > 50 ? "34px" : "42px",
                   fontWeight: 900,
                   color: colors.text,
                   lineHeight: 1.15,
-                  letterSpacing: "-0.5px",
                 }}
               >
                 {title}
-              </div>
+              </span>
             </div>
 
             {/* Summary and Branding Row */}
@@ -171,7 +169,6 @@ export async function GET(request: NextRequest) {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
-                gap: "24px",
               }}
             >
               {/* Summary Box */}
@@ -181,12 +178,13 @@ export async function GET(request: NextRequest) {
                     display: "flex",
                     flex: 1,
                     background: colors.cardBg,
-                    border: `4px solid #000000`,
+                    border: `4px solid ${colors.border}`,
                     padding: "16px 24px",
                     boxShadow: "5px 5px 0px 0px #000000",
+                    marginRight: "24px",
                   }}
                 >
-                  <div
+                  <span
                     style={{
                       fontSize: "18px",
                       fontWeight: 600,
@@ -195,7 +193,7 @@ export async function GET(request: NextRequest) {
                     }}
                   >
                     {firstSentence}
-                  </div>
+                  </span>
                 </div>
               )}
 
@@ -204,13 +202,12 @@ export async function GET(request: NextRequest) {
                 style={{
                   display: "flex",
                   background: "#000000",
-                  border: `4px solid #000000`,
+                  border: "4px solid #000000",
                   padding: "14px 24px",
                   boxShadow: `5px 5px 0px 0px ${colors.accent}`,
-                  flexShrink: 0,
                 }}
               >
-                <div
+                <span
                   style={{
                     fontSize: "18px",
                     fontWeight: 900,
@@ -220,7 +217,7 @@ export async function GET(request: NextRequest) {
                   }}
                 >
                   CHAINOFEVENTS.XYZ
-                </div>
+                </span>
               </div>
             </div>
           </div>
@@ -256,7 +253,7 @@ export async function GET(request: NextRequest) {
               boxShadow: "12px 12px 0px 0px #111827",
             }}
           >
-            <div
+            <span
               style={{
                 fontSize: "56px",
                 fontWeight: 900,
@@ -264,7 +261,7 @@ export async function GET(request: NextRequest) {
               }}
             >
               Chain of Events
-            </div>
+            </span>
           </div>
         </div>
       ),
