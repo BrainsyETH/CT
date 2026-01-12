@@ -1,8 +1,14 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Mode, EventTag, CrimelineType } from "@/lib/types";
+import type { Mode, EventTag, CrimelineType, FeedbackType } from "@/lib/types";
 
 type SortOrder = "asc" | "desc";
+
+interface FeedbackModalState {
+  isOpen: boolean;
+  type: FeedbackType;
+  eventId: string | null;
+}
 
 interface ModeState {
   mode: Mode;
@@ -12,6 +18,7 @@ interface ModeState {
   selectedCrimelineTypes: CrimelineType[];
   sortOrder: SortOrder;
   selectedEventId: string | null;
+  feedbackModal: FeedbackModalState;
   setMode: (mode: Mode) => void;
   toggleMode: () => void;
   setSearchQuery: (query: string) => void;
@@ -25,6 +32,8 @@ interface ModeState {
   setSortOrder: (order: SortOrder) => void;
   toggleSortOrder: () => void;
   setSelectedEventId: (id: string | null) => void;
+  openFeedbackModal: (type: FeedbackType, eventId?: string | null) => void;
+  closeFeedbackModal: () => void;
 }
 
 export const useModeStore = create<ModeState>()(
@@ -37,6 +46,7 @@ export const useModeStore = create<ModeState>()(
       selectedCrimelineTypes: [],
       sortOrder: "desc",
       selectedEventId: null,
+      feedbackModal: { isOpen: false, type: "general", eventId: null },
       setMode: (mode) => set({ mode }),
       toggleMode: () =>
         set((state) => ({
@@ -82,6 +92,10 @@ export const useModeStore = create<ModeState>()(
           sortOrder: state.sortOrder === "asc" ? "desc" : "asc",
         })),
       setSelectedEventId: (id) => set({ selectedEventId: id }),
+      openFeedbackModal: (type, eventId = null) =>
+        set({ feedbackModal: { isOpen: true, type, eventId } }),
+      closeFeedbackModal: () =>
+        set({ feedbackModal: { isOpen: false, type: "general", eventId: null } }),
     }),
     {
       name: "chain-of-events-mode",
