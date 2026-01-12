@@ -36,9 +36,9 @@ export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProp
       <div
         className={`h-full transition-colors duration-300 ${
           isCrimeline
-            ? "bg-gradient-to-r from-red-600 to-red-400"
+            ? "bg-gradient-to-r from-purple-600 to-purple-400"
             : isBoth
-            ? "bg-gradient-to-r from-teal-500 via-purple-600 to-red-600"
+            ? "bg-gradient-to-r from-teal-500 via-purple-500 to-purple-700"
             : "bg-gradient-to-r from-teal-500 to-teal-300"
         }`}
         style={{ width: `${scrollProgress}%` }}

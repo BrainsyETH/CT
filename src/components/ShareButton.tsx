@@ -183,7 +183,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
           overImage
             ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
             : isCrimeline
-            ? "text-gray-500 hover:text-red-400 hover:bg-red-900/30"
+            ? "text-gray-500 hover:text-purple-400 hover:bg-purple-900/30"
             : "text-gray-400 hover:text-teal-600 hover:bg-teal-100"
         }`}
         aria-label="Share event"
@@ -229,10 +229,10 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
                   top: menuPosition.top,
                   right: menuPosition.right,
                 }}
-                className={`w-48 rounded-lg shadow-xl z-[70] overflow-hidden ${
+                className={`w-48 rounded-lg shadow-[4px_4px_0_rgba(15,23,42,0.18)] z-[70] overflow-hidden ${
                   isCrimeline
-                    ? "bg-gray-900 border border-red-900/50"
-                    : "bg-white border border-gray-200"
+                    ? "bg-gray-900 border-2 border-purple-900/50 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
+                    : "bg-white border-2 border-gray-200"
                 }`}
                 onClick={(e) => e.stopPropagation()}
               >

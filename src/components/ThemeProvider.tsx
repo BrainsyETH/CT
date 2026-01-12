@@ -60,7 +60,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className={`fixed inset-0 z-[100] pointer-events-none ${
-              isCrimeline ? "bg-red-900" : "bg-teal-500"
+              isCrimeline ? "bg-purple-900" : "bg-teal-500"
             }`}
           />
         )}

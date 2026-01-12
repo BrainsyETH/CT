@@ -137,13 +137,13 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)]"
           >
             <div
               className={`${
                 isCrimeline
-                  ? "bg-gray-900 border border-red-900/50"
-                  : "bg-white border border-gray-200"
+                  ? "bg-gray-900 border-2 border-purple-900/50"
+                  : "bg-white border-2 border-gray-200"
               }`}
             >
               {/* Event Image */}
@@ -199,7 +199,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 {/* Date */}
                 <time
                   className={`text-sm font-medium ${
-                    isCrimeline ? "text-red-400" : "text-teal-600"
+                    isCrimeline ? "text-purple-400" : "text-teal-600"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -241,15 +241,15 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
-                  <div className="mt-6 p-4 rounded-lg bg-red-950/30 border border-red-900/30">
-                    <h3 className="text-sm font-semibold text-red-400 mb-3">
+                  <div className="mt-6 p-4 rounded-lg bg-purple-950/30 border-2 border-purple-900/40 shadow-[4px_4px_0_rgba(124,58,237,0.35)]">
+                    <h3 className="text-sm font-semibold text-purple-400 mb-3">
                       Incident Details
                     </h3>
 
                     <div className="space-y-3">
                       {/* Type and Status */}
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-3 py-1 text-sm font-bold bg-red-900/50 text-red-300 rounded">
+                        <span className="px-3 py-1 text-sm font-bold bg-purple-900/50 text-purple-300 rounded">
                           {event.crimeline.type}
                         </span>
                         {event.crimeline.status && (
@@ -260,7 +260,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                                 : event.crimeline.status === "Partial recovery"
                                 ? "bg-yellow-900/50 text-yellow-300"
                                 : event.crimeline.status === "Total loss"
-                                ? "bg-red-900/50 text-red-300"
+                                ? "bg-purple-900/50 text-purple-300"
                                 : "bg-gray-700 text-gray-300"
                             }`}
                           >
@@ -272,7 +272,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       {/* Funds Lost */}
                       <div>
                         <p className="text-xs text-gray-400">Funds Lost</p>
-                        <p className="text-2xl font-bold text-red-400">
+                        <p className="text-2xl font-bold text-purple-400">
                           {formatFundsLost(event.crimeline.funds_lost_usd)}
                         </p>
                         {event.crimeline.victims_estimated && (
@@ -329,7 +329,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                           rel="noopener noreferrer"
                           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                             isCrimeline
-                              ? "bg-gray-800 text-red-400 hover:bg-gray-700"
+                              ? "bg-gray-800 text-purple-400 hover:bg-gray-700"
                               : "bg-gray-100 text-teal-600 hover:bg-gray-200"
                           }`}
                         >

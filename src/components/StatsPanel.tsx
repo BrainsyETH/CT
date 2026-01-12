@@ -71,48 +71,48 @@ export function StatsPanel({ events }: StatsPanelProps) {
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-red-950/30 to-gray-900 border border-red-900/50"
+      className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-purple-950/30 to-gray-900 border-2 border-purple-900/50 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
     >
-      <h2 className="text-lg font-bold text-red-400 mb-4 flex items-center gap-2">
+      <h2 className="text-lg font-bold text-purple-400 mb-4 flex items-center gap-2">
         <span>💀</span> Crimeline Statistics
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
         {/* Total Lost */}
-        <div className="bg-gray-900/50 rounded-lg p-3 border border-red-900/30">
+        <div className="bg-gray-900/50 rounded-lg p-3 border-2 border-purple-900/30">
           <p className="text-xs text-gray-500 uppercase tracking-wide">Total Lost</p>
-          <p className="text-xl font-bold text-red-400">
+          <p className="text-xl font-bold text-purple-400">
             {formatCurrency(stats.totalLost)}
           </p>
         </div>
 
         {/* Total Events */}
-        <div className="bg-gray-900/50 rounded-lg p-3 border border-red-900/30">
+        <div className="bg-gray-900/50 rounded-lg p-3 border-2 border-purple-900/30">
           <p className="text-xs text-gray-500 uppercase tracking-wide">Incidents</p>
           <p className="text-xl font-bold text-white">{stats.totalEvents}</p>
         </div>
 
         {/* Recovered */}
-        <div className="bg-gray-900/50 rounded-lg p-3 border border-red-900/30">
+        <div className="bg-gray-900/50 rounded-lg p-3 border-2 border-purple-900/30">
           <p className="text-xs text-gray-500 uppercase tracking-wide">Recovered</p>
           <p className="text-xl font-bold text-green-400">{stats.recoveredCount}</p>
         </div>
 
         {/* Total Loss */}
-        <div className="bg-gray-900/50 rounded-lg p-3 border border-red-900/30">
+        <div className="bg-gray-900/50 rounded-lg p-3 border-2 border-purple-900/30">
           <p className="text-xs text-gray-500 uppercase tracking-wide">Total Loss</p>
-          <p className="text-xl font-bold text-red-500">{stats.totalLossCount}</p>
+          <p className="text-xl font-bold text-purple-500">{stats.totalLossCount}</p>
         </div>
       </div>
 
       {/* Biggest Hack */}
       {stats.biggestHack && (
-        <div className="mb-4 p-3 bg-red-950/30 rounded-lg border border-red-900/30">
+        <div className="mb-4 p-3 bg-purple-950/30 rounded-lg border-2 border-purple-900/30 shadow-[3px_3px_0_rgba(124,58,237,0.35)]">
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
             Biggest Incident
           </p>
           <p className="text-sm font-bold text-white">{stats.biggestHack.title}</p>
-          <p className="text-lg font-bold text-red-400">
+          <p className="text-lg font-bold text-purple-400">
             {formatCurrency(stats.biggestHack.crimeline?.funds_lost_usd || 0)}
           </p>
         </div>
@@ -130,7 +130,7 @@ export function StatsPanel({ events }: StatsPanelProps) {
               className="px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700"
             >
               <span className="text-xs text-gray-400">{type}</span>
-              <span className="ml-2 text-xs font-bold text-red-400">
+              <span className="ml-2 text-xs font-bold text-purple-400">
                 {formatCurrency(data.total)}
               </span>
               <span className="ml-1 text-xs text-gray-500">({data.count})</span>
