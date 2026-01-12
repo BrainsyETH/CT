@@ -111,17 +111,17 @@ export async function GET(request: NextRequest) {
                 display: "flex",
                 background: colors.accent,
                 border: `4px solid ${colors.border}`,
-                padding: "10px 20px",
+                padding: "12px 24px",
                 boxShadow: "6px 6px 0px 0px #000000",
               }}
             >
               <span
                 style={{
-                  fontSize: "22px",
+                  fontSize: "26px",
                   fontWeight: 900,
                   color: "#ffffff",
                   textTransform: "uppercase",
-                  letterSpacing: "1px",
+                  letterSpacing: "2px",
                 }}
               >
                 {date}
@@ -129,26 +129,27 @@ export async function GET(request: NextRequest) {
             </div>
           )}
 
-          {/* Content overlay - Bottom */}
+          {/* Content overlay - Bottom (moved up to avoid Twitter metadata) */}
           <div
             style={{
               position: "absolute",
-              bottom: "28px",
+              bottom: "75px",
               left: "32px",
               right: "32px",
               display: "flex",
               flexDirection: "column",
+              alignItems: "flex-start",
             }}
           >
-            {/* Title Box */}
+            {/* Title Box - dynamic width */}
             <div
               style={{
                 display: "flex",
                 background: colors.cardBg,
                 border: `5px solid ${colors.border}`,
-                padding: "20px 28px",
+                padding: "18px 28px",
                 boxShadow: "8px 8px 0px 0px #000000",
-                marginBottom: "16px",
+                marginBottom: "14px",
               }}
             >
               <span
@@ -167,6 +168,7 @@ export async function GET(request: NextRequest) {
             <div
               style={{
                 display: "flex",
+                width: "100%",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
               }}
@@ -179,17 +181,17 @@ export async function GET(request: NextRequest) {
                     flex: 1,
                     background: colors.cardBg,
                     border: `4px solid ${colors.border}`,
-                    padding: "14px 20px",
+                    padding: "12px 18px",
                     boxShadow: "5px 5px 0px 0px #000000",
                     marginRight: "20px",
                   }}
                 >
                   <span
                     style={{
-                      fontSize: "16px",
+                      fontSize: "15px",
                       fontWeight: 600,
                       color: colors.text,
-                      lineHeight: 1.4,
+                      lineHeight: 1.35,
                     }}
                   >
                     {firstSentence}
@@ -203,13 +205,13 @@ export async function GET(request: NextRequest) {
                   display: "flex",
                   background: "#000000",
                   border: "4px solid #000000",
-                  padding: "12px 20px",
+                  padding: "10px 18px",
                   boxShadow: `5px 5px 0px 0px ${colors.accent}`,
                 }}
               >
                 <span
                   style={{
-                    fontSize: "16px",
+                    fontSize: "14px",
                     fontWeight: 900,
                     color: "#ffffff",
                     textTransform: "uppercase",
