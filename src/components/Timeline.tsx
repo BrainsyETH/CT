@@ -212,10 +212,35 @@ export function Timeline({ events }: TimelineProps) {
       >
         {/* Search and Filter */}
         <div className="flex flex-col gap-3 mb-6">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
             <div className="flex-1 min-w-0">
               <SearchFilter />
             </div>
+            {mode === "crimeline" && crimelineStats.totalLost > 0 && (
+              <motion.div
+                initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+                className="w-full lg:w-[320px] shrink-0 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-purple-950/30 to-gray-900 border-2 border-purple-900/50 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">💀</span>
+                    <div>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">Total Estimated Loss</p>
+                      <p className="text-2xl font-bold text-purple-400">
+                        {formatCurrency(crimelineStats.totalLost)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs text-gray-500">Ongoing</p>
+                    <p className="text-lg font-bold text-white">
+                      {crimelineStats.incidentCount} incidents
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
             {/* Year Selector - visible on mobile/tablet, hidden on desktop */}
             <div className="lg:hidden shrink-0">
               <MobileYearSelector years={years} currentYear={currentYear} />
@@ -223,33 +248,6 @@ export function Timeline({ events }: TimelineProps) {
           </div>
         </div>
       </div>
-
-      {/* Amount Lost Stats (Crimeline and Both modes) */}
-      {mode !== "timeline" && crimelineStats.totalLost > 0 && (
-        <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
-          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
-          className="mb-6 p-4 rounded-lg bg-gradient-to-r from-gray-900 via-purple-950/30 to-gray-900 border-2 border-purple-900/50 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
-        >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">💀</span>
-              <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wide">Total Estimated Loss</p>
-                <p className="text-2xl font-bold text-purple-400">
-                  {formatCurrency(crimelineStats.totalLost)}
-                </p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-gray-500">Ongoing</p>
-              <p className="text-lg font-bold text-white">
-                {crimelineStats.incidentCount} incidents
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      )}
 
       {/* Results count */}
       <div
