@@ -6,7 +6,11 @@ import type { Event } from "@/lib/types";
 
 const events = eventsData as Event[];
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://chainofevents.xyz/";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/`
+    : "https://chainofevents.xyz/";
 
 type Props = {
   searchParams: Promise<{ event?: string }>;
@@ -15,12 +19,18 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
   const eventId = params.event;
+  const baseUrl = new URL(siteUrl);
+  const toAbsoluteUrl = (path: string) => new URL(path, baseUrl).toString();
+  const truncate = (value: string, maxLength: number) =>
+    value.length > maxLength ? `${value.slice(0, maxLength - 3).trimEnd()}...` : value;
 
   if (eventId) {
     const event = events.find((e) => e.id === eventId);
     if (event) {
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
+      const twitterTitle = truncate(title, 60);
+      const twitterDescription = truncate(description, 200);
 
       // Format date for OG image
       const date = new Date(event.date);
@@ -30,7 +40,12 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         year: "numeric",
       });
 
-      const ogImageUrl = `${siteUrl}api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`;
+      const ogImageUrl = toAbsoluteUrl(
+        `api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
+      );
+      const twitterImageUrl = toAbsoluteUrl(
+        `api/twitter?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(formattedDate)}`
+      );
 
       return {
         title,
@@ -52,9 +67,12 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         },
         twitter: {
           card: "summary_large_image",
-          title,
-          description,
-          images: [ogImageUrl],
+          title: twitterTitle,
+          description: twitterDescription,
+          images: [twitterImageUrl],
+        },
+        other: {
+          "twitter:image": twitterImageUrl,
         },
       };
     }

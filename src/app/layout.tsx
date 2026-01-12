@@ -2,8 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://chainofevents.xyz/";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}/`
+    : "https://chainofevents.xyz/";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // e.g. "G-WY98R2W0KK"
 
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
     images: [
       {
-        url: "/og-image.png",
+        url: new URL("/opengraph-image", siteUrl).toString(),
         width: 1200,
         height: 630,
         alt: "Chain of Events - The History of Cryptocurrency",
@@ -58,8 +61,11 @@ export const metadata: Metadata = {
     title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments.",
-    images: ["/og-image.png"],
+    images: [new URL("/twitter-image", siteUrl).toString()],
     creator: "@chainofevents",
+  },
+  other: {
+    "twitter:image": new URL("/twitter-image", siteUrl).toString(),
   },
   robots: {
     index: true,
