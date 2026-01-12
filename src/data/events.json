@@ -3026,7 +3026,7 @@
   },
   {
     "id": "pepe-87m-millionaire-2024",
-    "date": "2024-05-01",
+    "date": "2025-05-28",
     "title": "The James Wynn Implosion",
     "summary": "At his peak in 2025, onchain data showed Wynn’s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. “I flipped $3M into $100M and somehow ended up negative $13M. I lost control.” — James Wynn ",
     "category": [
@@ -3054,7 +3054,7 @@
   {
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
-    "title": "The Gainzy Fat Finger",
+    "title": "Gainzy `Fat Fingers`His Token",
     "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a “fat-finger misclick” while fiddling with his phone. The massive sell caused the token’s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
     "category": [
       "Memecoins"
@@ -3584,9 +3584,9 @@
   },
   {
     "id": "gainzy-rollbit-drama",
-    "date": "2024-02-05",
-    "title": "Gainzy and the Rollbit Drama",
-    "summary": "Gainzy became entangled in Rollbit-related controversy, reigniting debates over gambling sponsorships, incentives, and influencer ethics.",
+    "date": "2023-03-17",
+    "title": "Gainzy Goes Gambling",
+    "summary": "Gainzy posts massive high-stakes bets, often $100k–$300k+ per bet, and helped drive huge attention to Rollbit. Concerns arose that Rollbit was secretly funding these high stakes bets. ZachXBT and community members called him out. Gainzy eventually announced a sponsorship with Stake.com. ",
     "category": [
       "CT Lore"
     ],
@@ -3597,11 +3597,15 @@
     "mode": [
       "timeline"
     ],
-    "image": "https://placeholder.co/600x400?text=Gainzy+Rollbit",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gainzy_rlb",
     "links": [
       {
-        "label": "CT Reactions",
-        "url": "https://x.com/search?q=gainzy%20rollbit"
+        "label": "Reddit Investigation",
+        "url": "https://www.reddit.com/r/CryptoCurrency/comments/128o9v4/beware_of_potential_pump_and_dump_scheme_illegal/"
+      },
+      {
+        "label": "ZachXBT Tweet",
+        "url": "https://x.com/zachxbt/status/1642195529009360903?s=20"
       }
     ]
   },

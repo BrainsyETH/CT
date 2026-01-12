@@ -136,7 +136,7 @@ export default async function Image() {
               textAlign: "center",
             }}
           >
-            The Complete History of Cryptocurrency
+            The History of Cryptocurrency
           </p>
 
           {/* Tags */}
