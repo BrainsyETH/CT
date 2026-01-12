@@ -49,13 +49,15 @@ export function EventCard({ event, index }: EventCardProps) {
   return (
     <motion.div
       {...animationProps}
-      className={`relative flex ${isLeft ? "md:justify-start" : "md:justify-end"} justify-start`}
+      className={`group relative flex ${isLeft ? "md:justify-start" : "md:justify-end"} justify-start`}
     >
       {/* Timeline dot */}
       <div
-        className={`absolute left-0 md:left-1/2 w-4 h-4 rounded-full -translate-x-1/2 z-10 transition-colors duration-300 ${
-          isCrimeline ? "bg-purple-500 shadow-purple-500/50" : "bg-teal-500 shadow-teal-500/50"
-        } shadow-lg`}
+        className={`absolute left-0 md:left-1/2 w-[9px] h-[9px] rounded-full -translate-x-1/2 z-10 transition-colors duration-300 ${
+          isCrimeline
+            ? "bg-purple-500 shadow-purple-500/50"
+            : "bg-[color:var(--oatmeal)] border border-[color:var(--sage)] group-hover:bg-[color:var(--sage)]"
+        } ${isCrimeline ? "shadow-lg" : ""}`}
       />
 
       {/* Card */}
@@ -70,14 +72,14 @@ export function EventCard({ event, index }: EventCardProps) {
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group ${
-            isCrimeline ? "focus:ring-purple-500" : "focus:ring-teal-500"
+            isCrimeline ? "focus:ring-purple-500" : "focus:ring-[color:var(--sage)]"
           }`}
         >
           <div
-            className={`rounded-lg transition-all duration-300 overflow-hidden ${
+            className={`rounded-xl overflow-hidden ${
               isCrimeline
-                ? "bg-gray-900 border-2 border-purple-900/40 shadow-[6px_6px_0_rgba(124,58,237,0.35)] group-hover:border-purple-600/60 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.55)]"
-                : "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-teal-400 group-hover:shadow-[6px_6px_0_rgba(20,184,166,0.25)]"
+                ? "transition-all duration-300 bg-gray-900 border-2 border-purple-900/40 shadow-[6px_6px_0_rgba(124,58,237,0.35)] group-hover:border-purple-600/60 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.55)]"
+                : "soft-card group-hover:border-[color:var(--sage)] group-hover:shadow-xl"
             }`}
           >
             {/* Event Image */}
@@ -94,17 +96,17 @@ export function EventCard({ event, index }: EventCardProps) {
                 className={`absolute inset-0 ${
                   isCrimeline
                     ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
-                    : "bg-gradient-to-t from-white via-white/20 to-transparent"
+                    : "bg-gradient-to-t from-[color:var(--white)] via-[color:var(--white)]/20 to-transparent"
                 }`}
               />
             </div>
 
-            <div className="p-4">
+            <div className="p-5">
               {/* Header with Date and Share */}
               <div className="flex items-start justify-between">
                 <time
                   className={`text-sm font-medium transition-colors duration-300 ${
-                    isCrimeline ? "text-purple-400" : "text-teal-600"
+                    isCrimeline ? "text-purple-400" : "text-[color:var(--sage)]"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -114,8 +116,8 @@ export function EventCard({ event, index }: EventCardProps) {
 
               {/* Title */}
               <h3
-                className={`mt-1 text-lg font-bold transition-colors duration-300 ${
-                  isCrimeline ? "text-white group-hover:text-purple-300" : "text-gray-900 group-hover:text-teal-700"
+                className={`mt-1 text-lg font-bold transition-colors duration-300 font-display ${
+                  isCrimeline ? "text-white group-hover:text-purple-300" : "text-[color:var(--ink)] group-hover:text-[color:var(--sage)]"
                 }`}
               >
                 {event.title}
@@ -124,7 +126,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Summary - Improved contrast */}
               <p
                 className={`mt-2 text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
-                  isCrimeline ? "text-gray-200" : "text-gray-700"
+                  isCrimeline ? "text-gray-200" : "text-[color:var(--muted)]"
                 }`}
               >
                 {event.summary}
@@ -139,36 +141,36 @@ export function EventCard({ event, index }: EventCardProps) {
               {event.metrics && (Array.isArray(event.category) ? event.category.includes("Bitcoin") : event.category === "Bitcoin") && (
                 <div
                   className={`mt-3 pt-3 border-t transition-colors duration-300 ${
-                    isCrimeline ? "border-gray-700" : "border-gray-200"
+                    isCrimeline ? "border-gray-700" : "border-[color:var(--clay)]"
                   }`}
                 >
                   <div className="flex flex-wrap gap-3 text-xs">
                     {event.metrics.btc_price_usd !== undefined && (
                       <div>
-                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                        <span className={`${isCrimeline ? "text-gray-400" : "text-[color:var(--muted)]"} data-label`}>
                           BTC:{" "}
                         </span>
-                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                        <span className={isCrimeline ? "text-gray-200" : "text-[color:var(--ink)]"}>
                           {formatCurrency(event.metrics.btc_price_usd)}
                         </span>
                       </div>
                     )}
                     {event.metrics.market_cap_usd !== undefined && (
                       <div>
-                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                        <span className={`${isCrimeline ? "text-gray-400" : "text-[color:var(--muted)]"} data-label`}>
                           MCap:{" "}
                         </span>
-                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                        <span className={isCrimeline ? "text-gray-200" : "text-[color:var(--ink)]"}>
                           {formatCurrency(event.metrics.market_cap_usd)}
                         </span>
                       </div>
                     )}
                     {event.metrics.tvl_usd !== undefined && (
                       <div>
-                        <span className={isCrimeline ? "text-gray-400" : "text-gray-500"}>
+                        <span className={`${isCrimeline ? "text-gray-400" : "text-[color:var(--muted)]"} data-label`}>
                           TVL:{" "}
                         </span>
-                        <span className={isCrimeline ? "text-gray-200" : "text-gray-800"}>
+                        <span className={isCrimeline ? "text-gray-200" : "text-[color:var(--ink)]"}>
                           {formatCurrency(event.metrics.tvl_usd)}
                         </span>
                       </div>
@@ -214,7 +216,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Click hint - visible on mobile/focus and hover on desktop */}
               <div
                 className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
-                  isCrimeline ? "text-purple-400" : "text-teal-600"
+                  isCrimeline ? "text-purple-400" : "text-[color:var(--sage)]"
                 } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
               >
                 <span className="inline-flex items-center gap-1">

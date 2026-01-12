@@ -85,7 +85,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
     : mode === "crimeline"
     ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
-    : "text-gray-500 hover:text-teal-700 hover:bg-teal-100";
+    : "text-[color:var(--ink)] hover:text-[color:var(--sage)] hover:bg-[color:var(--oatmeal)] border border-[color:var(--clay)]";
 
   return (
     <div className="flex items-center gap-2" data-share-button>
@@ -93,7 +93,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         type="button"
         onClick={handleTwitterShare}
         disabled={!shareUrl}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-[1.02] ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
         aria-label="Share on X"
       >
         <TwitterIcon className="w-4 h-4" />
@@ -103,7 +103,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         type="button"
         onClick={handleCopy}
         disabled={!shareUrl}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-[1.02] ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
         aria-label="Copy share URL"
       >
         <LinkIcon className="w-4 h-4" />

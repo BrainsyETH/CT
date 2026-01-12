@@ -137,13 +137,13 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)]"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-2xl"
           >
             <div
               className={`${
                 isCrimeline
                   ? "bg-gray-900 border-2 border-purple-900/50"
-                  : "bg-white border-2 border-gray-200"
+                  : "soft-card"
               }`}
             >
               {/* Event Image */}
@@ -166,7 +166,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     className={`absolute inset-0 ${
                       isCrimeline
                         ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                        : "bg-gradient-to-t from-white via-white/50 to-transparent"
+                        : "bg-gradient-to-t from-[color:var(--white)] via-[color:var(--white)]/50 to-transparent"
                     }`}
                   />
                   {/* Zoom hint */}
@@ -195,34 +195,34 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               </div>
 
               <div className="p-6">
-
-                {/* Date */}
-                <time
-                  className={`text-sm font-medium ${
-                    isCrimeline ? "text-purple-400" : "text-teal-600"
-                  }`}
-                >
-                  {formatDate(event.date)}
-                </time>
+                <div className="flex flex-wrap items-center gap-3">
+                  {/* Date */}
+                  <time
+                    className={`text-sm font-medium ${
+                      isCrimeline ? "text-purple-400" : "text-[color:var(--sage)]"
+                    }`}
+                  >
+                    {formatDate(event.date)}
+                  </time>
+                  {!isCrimeline && <span className="pill-separator" aria-hidden="true" />}
+                  <span
+                    className={`text-sm ${
+                      isCrimeline ? "text-gray-400" : "text-[color:var(--muted)]"
+                    }`}
+                  >
+                    {(Array.isArray(event.category) ? event.category : [event.category]).join(" • ")}
+                  </span>
+                </div>
 
                 {/* Title */}
                 <h2
                   id="modal-title"
-                  className={`mt-2 text-2xl font-bold ${
-                    isCrimeline ? "text-white" : "text-gray-900"
+                  className={`mt-3 text-2xl font-bold font-display ${
+                    isCrimeline ? "text-white" : "text-[color:var(--ink)]"
                   }`}
                 >
                   {event.title}
                 </h2>
-
-                {/* Category */}
-                <p
-                  className={`mt-1 text-sm ${
-                    isCrimeline ? "text-gray-400" : "text-gray-500"
-                  }`}
-                >
-                  {(Array.isArray(event.category) ? event.category : [event.category]).join(" • ")}
-                </p>
 
                 {/* Tags */}
                 <div className="mt-4">
@@ -233,7 +233,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 <p
   id="modal-description"
   className={`mt-4 text-base leading-relaxed whitespace-pre-line ${
-    isCrimeline ? "text-gray-300" : "text-gray-600"
+    isCrimeline ? "text-gray-300" : "text-[color:var(--muted)]"
   }`}
 >
   {event.summary}
@@ -310,7 +310,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   <div className="mt-6">
                     <h3
                       className={`text-sm font-semibold mb-3 ${
-                        isCrimeline ? "text-gray-300" : "text-gray-700"
+                        isCrimeline ? "text-gray-300" : "text-[color:var(--ink)]"
                       }`}
                     >
                       Sources
@@ -325,7 +325,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                             isCrimeline
                               ? "bg-gray-800 text-purple-400 hover:bg-gray-700"
-                              : "bg-gray-100 text-teal-600 hover:bg-gray-200"
+                              : "bg-[color:var(--white)] text-[color:var(--sage)] border border-[color:var(--clay)] hover:bg-[color:var(--oatmeal)]"
                           }`}
                         >
                           {link.label}

@@ -252,7 +252,7 @@ export function Timeline({ events }: TimelineProps) {
       {/* Results count */}
       <div
         className={`mb-4 text-sm ${
-          isCrimeline ? "text-gray-400" : isBoth ? "text-gray-400" : "text-gray-500"
+          isCrimeline ? "text-gray-400" : isBoth ? "text-gray-400" : "text-[color:var(--muted)]"
         }`}
       >
         {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""} found
@@ -270,8 +270,8 @@ export function Timeline({ events }: TimelineProps) {
         <div className="flex-1 relative">
           {/* Central Timeline Line */}
           <div
-            className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 transition-colors duration-300 ${
-              isCrimeline ? "bg-purple-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-500 to-purple-700" : "bg-teal-200"
+            className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 transition-colors duration-300 ${
+              isCrimeline ? "bg-purple-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-500 to-purple-700" : "bg-[color:var(--clay)]"
             }`}
           />
 
@@ -279,7 +279,7 @@ export function Timeline({ events }: TimelineProps) {
             <motion.div
               key={`${mode}-${sortOrder}`}
               {...animationProps}
-              className="relative space-y-12 py-8"
+              className="relative space-y-14 py-10"
             >
               {groupedEvents.map(({ year, events: yearEvents }) => (
                 <div key={year} id={`year-${year}`} className="scroll-mt-44">
@@ -288,10 +288,10 @@ export function Timeline({ events }: TimelineProps) {
                     <motion.div
                       initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0 }}
                       animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}
-                      className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 ${
+                      className={`px-6 py-2 rounded-full font-bold text-lg transition-colors duration-300 font-display ${
                         isCrimeline
                           ? "bg-gray-950 text-purple-300 border-2 border-purple-800"
-                          : "bg-teal-100 text-teal-700 border border-teal-200"
+                          : "bg-[color:var(--white)] text-[color:var(--ink)] border border-[color:var(--clay)] shadow-sm"
                       }`}
                     >
                       {year}
@@ -299,7 +299,7 @@ export function Timeline({ events }: TimelineProps) {
                   </div>
 
                   {/* Events for this year */}
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     {yearEvents.map((event) => {
                       const currentIndex = cardIndex++;
                       return (
@@ -343,10 +343,10 @@ export function Timeline({ events }: TimelineProps) {
               {hasActiveFilters && (
                 <button
                   onClick={clearAllFilters}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+                  className={`px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-[1.02] ${
                     isCrimeline
                       ? "bg-purple-900/50 text-purple-300 hover:bg-purple-900/70 border-2 border-purple-800"
-                      : "bg-teal-500 text-white hover:bg-teal-600"
+                      : "bg-[color:var(--ink)] text-[color:var(--white)]"
                   }`}
                 >
                   Show all events

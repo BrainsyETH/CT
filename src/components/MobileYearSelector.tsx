@@ -26,10 +26,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
     <div className="relative z-30">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+        className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] ${
           isCrimeline
             ? "bg-gray-900 border-2 border-purple-900/40 text-gray-300 shadow-[3px_3px_0_rgba(124,58,237,0.35)]"
-            : "bg-white border-2 border-gray-200 text-gray-700 shadow-[3px_3px_0_rgba(15,23,42,0.12)]"
+            : "bg-[color:var(--white)] border border-[color:var(--clay)] text-[color:var(--ink)] shadow-sm"
         }`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,10 +69,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-lg shadow-[4px_4px_0_rgba(15,23,42,0.18)] z-[100] ${
+              className={`absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-xl shadow-lg z-[100] ${
                 isCrimeline
                   ? "bg-gray-900 border-2 border-purple-900/40 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
-                  : "bg-white border-2 border-gray-200 shadow-[4px_4px_0_rgba(15,23,42,0.18)]"
+                  : "bg-[color:var(--white)] border border-[color:var(--clay)]"
               }`}
             >
               {years.map((year) => (
@@ -83,10 +83,10 @@ export function MobileYearSelector({ years, currentYear }: MobileYearSelectorPro
                     year === currentYear
                       ? isCrimeline
                         ? "bg-purple-900/50 text-purple-300"
-                        : "bg-teal-100 text-teal-700"
+                        : "bg-[color:var(--oatmeal)] text-[color:var(--ink)]"
                       : isCrimeline
                       ? "text-gray-400 hover:bg-gray-800 hover:text-white"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      : "text-[color:var(--muted)] hover:bg-[color:var(--oatmeal)] hover:text-[color:var(--ink)]"
                   }`}
                 >
                   {year}

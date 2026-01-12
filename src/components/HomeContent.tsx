@@ -18,8 +18,8 @@ export function HomeContent({ events }: HomeContentProps) {
   return (
     <ThemeProvider>
       <Header />
-      <main className="pt-24 pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
+      <main className="pt-28 pb-20 px-5">
+        <div className="max-w-5xl mx-auto">
           <Timeline events={events} />
         </div>
       </main>

@@ -43,14 +43,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     return null;
   }
 
-  const isCrimeline = mode === "crimeline";
-
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 ${
-        isCrimeline ? "bg-gray-950" : "bg-gray-50"
-      }`}
-    >
+    <div className="min-h-screen transition-colors duration-500 bg-[color:var(--oatmeal)]">
       {/* Mode transition overlay */}
       <AnimatePresence>
         {isTransitioning && (
@@ -59,9 +53,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className={`fixed inset-0 z-[100] pointer-events-none ${
-              isCrimeline ? "bg-purple-900" : "bg-teal-500"
-            }`}
+            className="fixed inset-0 z-[100] pointer-events-none bg-[color:var(--sage)]"
           />
         )}
       </AnimatePresence>

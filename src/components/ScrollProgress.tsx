@@ -39,7 +39,7 @@ export function ScrollProgress({ years, currentVisibleYear }: ScrollProgressProp
             ? "bg-gradient-to-r from-purple-600 to-purple-400"
             : isBoth
             ? "bg-gradient-to-r from-teal-500 via-purple-500 to-purple-700"
-            : "bg-gradient-to-r from-teal-500 to-teal-300"
+            : "bg-[color:var(--sage)]"
         }`}
         style={{ width: `${scrollProgress}%` }}
       />

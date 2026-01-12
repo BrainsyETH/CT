@@ -15,8 +15,8 @@ export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#14b8a6" },
-    { media: "(prefers-color-scheme: dark)", color: "#dc2626" },
+    { media: "(prefers-color-scheme: light)", color: "#f2efe9" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" },
   ],
 };
 

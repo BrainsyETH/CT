@@ -21,8 +21,10 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
     <div
       role="radiogroup"
       aria-label="Select view mode"
-      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-700 transition-colors duration-200 ${
-        isCrimelineMode ? "shadow-[2px_2px_0_rgba(124,58,237,0.35)]" : "shadow-[2px_2px_0_rgba(15,23,42,0.18)]"
+      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} rounded-full border transition-colors duration-300 ${
+        isCrimelineMode
+          ? "bg-gray-900 border-gray-700 shadow-[2px_2px_0_rgba(124,58,237,0.35)]"
+          : "bg-[color:var(--white)] border-[color:var(--clay)] shadow-sm"
       }`}
     >
       {segments.map((segment) => {
@@ -39,17 +41,17 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
             aria-checked={isActive}
             className={`
               ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
-              font-medium rounded-md
-              transition-all duration-200 ease-out
-              focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
+              font-medium rounded-full
+              transition-all duration-300 ease-out
+              focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-[color:var(--white)]
               ${
                 isActive
                   ? isTimeline
-                    ? "bg-teal-500 text-white shadow-md scale-[1.02] focus:ring-teal-400"
+                    ? "bg-[color:var(--ink)] text-[color:var(--white)] shadow-md scale-[1.02] focus:ring-[color:var(--sage)]"
                     : isCrimeline
                     ? "bg-purple-600 text-white shadow-md scale-[1.02] focus:ring-purple-400"
-                    : "bg-gradient-to-r from-teal-500 to-purple-600 text-white shadow-md scale-[1.02] focus:ring-purple-400"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-gray-700/50 hover:scale-[1.01]"
+                    : "bg-[color:var(--sage)] text-[color:var(--white)] shadow-md scale-[1.02] focus:ring-[color:var(--sage)]"
+                  : "text-[color:var(--ink)] hover:bg-[color:var(--oatmeal)] hover:scale-[1.01]"
               }
             `}
           >

@@ -31,12 +31,12 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isCrimeline
-          ? "bg-gray-950/95 border-b-2 border-purple-900/40 shadow-[0_4px_0_rgba(124,58,237,0.25)]"
-          : "bg-white/95 border-b-2 border-gray-200 shadow-[0_4px_0_rgba(15,23,42,0.08)]"
-      } backdrop-blur-sm`}
+          ? "bg-gray-950/95 border-b border-purple-900/40 shadow-[0_4px_0_rgba(124,58,237,0.25)]"
+          : "bg-[rgba(255,255,255,0.5)] border-b border-[color:var(--clay)] shadow-sm"
+      } backdrop-blur-md`}
     >
       {/* Desktop Layout */}
-      <div className="hidden md:block max-w-6xl mx-auto px-4 py-4">
+      <div className="hidden md:block max-w-5xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo / Title */}
           <div className="flex items-center gap-3 min-w-0">
@@ -70,15 +70,15 @@ export function Header() {
             </motion.div>
             <div className="min-w-0">
               <h1
-                className={`text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
-                  isCrimeline ? "text-white" : "text-gray-900"
+                className={`text-xl font-bold whitespace-nowrap transition-colors duration-300 font-display ${
+                  isCrimeline ? "text-white" : "text-[color:var(--ink)]"
                 }`}
               >
                 Chain of Events
               </h1>
               <p
                 className={`text-xs whitespace-nowrap transition-colors duration-300 ${
-                  isCrimeline ? "text-purple-400" : "text-teal-600"
+                  isCrimeline ? "text-purple-400" : "text-[color:var(--sage)]"
                 }`}
               >
                 {isCrimeline
@@ -95,10 +95,10 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore (Crypto Twitter history)"
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap hover:scale-[1.02] ${
                 isCtLoreActive
-                  ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)] hover:shadow-[0_0_0_1px_rgb(5,150,105),0_0_16px_rgba(16,185,129,0.8)]"
-                  : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
+                  ? "bg-[color:var(--ink)] text-[color:var(--white)] border border-[color:var(--ink)] shadow-sm"
+                  : "bg-transparent text-[color:var(--ink)] border border-[color:var(--clay)] hover:bg-[color:var(--white)]"
               }`}
             >
               <TwitterBirdIcon className="w-4 h-4" />
@@ -112,7 +112,7 @@ export function Header() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden max-w-6xl mx-auto px-4 py-3">
+      <div className="md:hidden max-w-5xl mx-auto px-4 py-3">
         <div className="flex flex-col items-center gap-3">
           {/* Row 1: Logo + Title */}
           <div className="flex items-center gap-2">
@@ -145,8 +145,8 @@ export function Header() {
               />
             </motion.div>
             <h1
-              className={`text-lg font-bold whitespace-nowrap transition-colors duration-300 ${
-                isCrimeline ? "text-white" : "text-gray-900"
+              className={`text-lg font-bold whitespace-nowrap transition-colors duration-300 font-display ${
+                isCrimeline ? "text-white" : "text-[color:var(--ink)]"
               }`}
             >
               Chain of Events
@@ -156,7 +156,7 @@ export function Header() {
           {/* Row 2: Tagline */}
           <p
             className={`text-xs whitespace-nowrap transition-colors duration-300 -mt-1 ${
-              isCrimeline ? "text-purple-400" : "text-teal-600"
+              isCrimeline ? "text-purple-400" : "text-[color:var(--sage)]"
             }`}
           >
             {isCrimeline
@@ -171,10 +171,10 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore"
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 hover:scale-[1.02] ${
                 isCtLoreActive
-                  ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                  : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
+                  ? "bg-[color:var(--ink)] text-[color:var(--white)] border border-[color:var(--ink)] shadow-sm"
+                  : "bg-transparent text-[color:var(--ink)] border border-[color:var(--clay)] hover:bg-[color:var(--white)]"
               }`}
             >
               <TwitterBirdIcon className="w-3.5 h-3.5" />
