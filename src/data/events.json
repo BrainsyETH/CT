@@ -3481,7 +3481,7 @@
     ]
   },
   {
-    "id": "crypto-the-game-seasons",
+    "id": "crypto-the-game-seasons2",
     "date": "2024-04-15",
     "title": "Crypto: The Game S2",
     "summary": "S2 ent to new heights for CTG. 800 players minted in 13 minutes for a 72 ETH pot (~$250k), divided into tribes for 10 days of arcade challenges, puzzles, and cutthroat votes. It sold out faster than S1, drawing celebs, VCs, and degens.",
@@ -3504,7 +3504,7 @@
     ]
   },
   {
-    "id": "crypto-the-game-seasons",
+    "id": "crypto-the-game-seasons3",
     "date": "2023-01-15",
     "title": "Crypto: The Game S3",
     "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player.",
@@ -3521,8 +3521,12 @@
     "image": "https://placeholder.co/600x400?text=Crypto+The+Game",
     "links": [
       {
-        "label": "Game Discussions",
-        "url": "https://x.com/search?q=crypto%20the%20game"
+        "label": "CTG: S3 Recap",
+        "url": "https://www.youtube.com/watch?v=Bmbbj7cmLKs"
+      },
+      {
+        "label": "S3 Winner",
+        "url": "https://x.com/tednotlasso"
       }
     ]
   },
