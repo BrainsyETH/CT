@@ -3482,11 +3482,35 @@
   },
   {
     "id": "crypto-the-game-seasons",
-    "date": "2023-01-15",
-    "title": "Crypto: The Game Seasons",
-    "summary": "Crypto: The Game launched as a Survivor-style on-chain competition, with multiple seasons becoming major social and cultural events within Crypto Twitter.",
+    "date": "2024-04-15",
+    "title": "Crypto: The Game S2",
+    "summary": "S2 ent to new heights for CTG. 800 players minted in 13 minutes for a 72 ETH pot (~$250k), divided into tribes for 10 days of arcade challenges, puzzles, and cutthroat votes. It sold out faster than S1, drawing celebs, VCs, and degens.",
+    
     "category": [
-      "CT Lore"
+      "Gaming"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://placeholder.co/600x400?text=Crypto+The+Game",
+    "links": [
+      {
+        "label": "CTG:S2 Recap",
+        "url": "https://luma.com/1is7aezw"
+      }
+    ]
+  },
+  {
+    "id": "crypto-the-game-seasons",
+    "date": "2023-01-15",
+    "title": "Crypto: The Game S3",
+    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player.",
+    
+    "category": [
+      "Gaming"
     ],
     "tags": [
       "CULTURAL"
@@ -3499,6 +3523,30 @@
       {
         "label": "Game Discussions",
         "url": "https://x.com/search?q=crypto%20the%20game"
+      }
+    ]
+  },
+  {
+    "id": "crypto-the-game-seasons",
+    "date": "2023-01-15",
+    "title": "Crypto: The Game Begins",
+    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
+    
+    "category": [
+      "CT Lore",
+      "Gaming"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CTG_S1",
+    "links": [
+      {
+        "label": "Decrypt Highlights",
+        "url": "https://decrypt.co/217567/crypto-the-game-winner-interview-season-2-preview"
       }
     ]
   },
