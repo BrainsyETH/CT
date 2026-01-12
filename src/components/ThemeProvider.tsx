@@ -33,7 +33,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
         setPrevMode(mode);
-      }, 400);
+      }, 220);
       return () => clearTimeout(timer);
     }
   }, [mode, mounted, prevMode]);

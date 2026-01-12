@@ -21,7 +21,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
     <div
       role="radiogroup"
       aria-label="Select view mode"
-      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-700 ${
+      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-700 transition-colors duration-200 ${
         isCrimelineMode ? "shadow-[2px_2px_0_rgba(124,58,237,0.35)]" : "shadow-[2px_2px_0_rgba(15,23,42,0.18)]"
       }`}
     >
@@ -40,7 +40,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
             className={`
               ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
               font-medium rounded-md
-              transition-all duration-300 ease-out
+              transition-all duration-200 ease-out
               focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
               ${
                 isActive
