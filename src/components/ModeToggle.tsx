@@ -14,7 +14,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
   const segments: { value: Mode; label: string }[] = [
     { value: "timeline", label: "Timeline" },
     { value: "crimeline", label: "Crimeline" },
-    { value: "both", label: "Both" },
+    { value: "both", label: "All" },
   ];
 
   return (
