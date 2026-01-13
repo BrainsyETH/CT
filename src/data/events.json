@@ -15,6 +15,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/Bitcoin-Genesis-block.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Genesis Block",
@@ -41,6 +67,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin_pizza_day.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitcoin Pizza Day",
@@ -67,6 +119,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/silk_road.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Silk Road Wikipedia",
@@ -93,6 +171,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox_logo.avif",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Mt. Gox Wiki",
@@ -131,6 +235,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/bitcoin-inflation-chart.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Halving History",
@@ -157,6 +287,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/mt_gox.avif",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Mt. Gox Bankruptcy",
@@ -195,6 +351,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/eth_launch.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Ethereum History",
@@ -222,6 +404,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/vitalike_dao.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "The DAO Attack",
@@ -261,6 +469,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/balance-of-mining-pools-before-and-after-the-second-halving-july-9-2016-1-01.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Second Halving",
@@ -287,6 +521,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/heather%20morgan.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Razzlekhan, amateur rapper",
@@ -329,6 +589,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/ico_boom.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ICO Boom",
@@ -359,6 +645,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/china_ico_ban.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "China ICO Ban",
@@ -386,6 +698,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/BTC%2020K.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "2017 Bull Run",
@@ -413,6 +751,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cryptopia",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Delay in Disclosure",
@@ -447,6 +811,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/third_halving.webp",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Third Halving",
@@ -473,6 +863,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/uniswap_v2.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Uniswap V2",
@@ -505,6 +921,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/defi_summer_2020.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "DeFi Summer Tweet",
@@ -536,6 +978,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/kucoin",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "KuCoin Livestream Recap",
@@ -574,6 +1042,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/poly_network",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Poly Network Notice",
@@ -612,6 +1106,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cream_hack",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cream Hack Tweet",
@@ -648,6 +1168,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_ath_69.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitcoin ATH",
@@ -675,6 +1221,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/wormhole_hack",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Wormhole Announces Exploit",
@@ -714,6 +1286,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/Screenshot%202026-01-09%20at%2010.48.29%E2%80%AFPM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Ronin Hack Tweet",
@@ -752,6 +1350,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/do_kwon_apology",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Do Kwon Apology",
@@ -794,6 +1418,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/celsius_pause",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Celsius Announces Pause",
@@ -836,8 +1486,31 @@
     "mode": [
       "crimeline"
     ],
-    "images": [
-      "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png"
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
     ],
     "links": [
       {
@@ -860,7 +1533,10 @@
       ],
       "aftermath": "Founders fled Singapore; creditors pursuing billions in claims.",
       "status": "Ongoing"
-    }
+    },
+    "images": [
+      "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png"
+    ]
   },
   {
     "id": "voyager-bankruptcy-2022-07-05",
@@ -878,6 +1554,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/voyager.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Voyager Bankruptcy",
@@ -917,6 +1619,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nomad_hack",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Nomad Hack",
@@ -951,6 +1679,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/eth_merge.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Understanding the Merge",
@@ -982,6 +1736,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/fuck_sbf",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "SBF Sucks",
@@ -1025,6 +1805,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2010.38.56%20AM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Genesis Bankruptcy",
@@ -1060,6 +1866,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2010.29.45%20AM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Euler Recovery",
@@ -1099,6 +1931,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/sec_ripple_2023.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Stuart Alderoty Tweet",
@@ -1125,6 +1983,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mixin_hack",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Mixin Hack Disclosure",
@@ -1164,6 +2048,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/fake_sec_post",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Twitter Post Explanation",
@@ -1204,6 +2114,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_etf_approval.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitcoin ETF Approval",
@@ -1231,6 +2167,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/wif_on_sphere.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Ansem Tweets Fully Funded",
@@ -1254,6 +2216,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/oh_fuck",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Slerf Account",
@@ -1288,6 +2276,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/quant_12_year_old",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Realtime Video",
@@ -1322,6 +2336,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/btc_4th_halving.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Fourth Halving",
@@ -1349,6 +2389,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sahil_sucks",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Celebrity Scam Ring",
@@ -1387,6 +2453,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/church_chicken",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Chicken Church Turns On Pastor",
@@ -1419,6 +2511,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/gainzy_killer.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Tweet of Evidence",
@@ -1442,6 +2560,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/RDNT_Hack",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Radiant Breakdown",
@@ -1476,6 +2620,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/chillguy_response.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Chill Guy Memes",
@@ -1500,6 +2670,32 @@
       "crimeline"
     ],
     "image": "https://pbs.twimg.com/media/GfQOK44XEAAc67B?format=jpg&name=large",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Hawk Tuah Crash",
@@ -1535,6 +2731,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/peter_schiff_100k.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitcoin 100k",
@@ -1563,6 +2785,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/scooter_rizzmass",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Scooter Tweets",
@@ -1600,6 +2848,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/trump_token.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Trump Tweets $TRUMP",
@@ -1632,6 +2906,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/melania_token.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Melania Tweets $Melania",
@@ -1663,6 +2963,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.14.43%20PM.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Coffeezilla Traced Hayden's Wallets",
@@ -1706,6 +3032,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ben_zhou",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Ben Zhou Discloses Breach",
@@ -1741,6 +3093,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mantra",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ChainArgos case study (PDF)",
@@ -1780,6 +3158,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/coinbase_bribe",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Brian Explains in Video",
@@ -1818,6 +3222,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cetus",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cetus Announcement",
@@ -1853,6 +3283,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/circle_ipo.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Circle IPO Announcement",
@@ -1883,6 +3339,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%201.44.25%E2%80%AFPM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Alert",
@@ -1917,6 +3399,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/trump_genius%20act.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Genius Act Signing Tweet",
@@ -1943,6 +3451,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/aster_post.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "DefiLlama DeListing",
@@ -1970,6 +3504,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_25m.jpeg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Brian Tweets Purchase",
@@ -1996,6 +3556,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/cobie_echo.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cobie Tweet",
@@ -2022,6 +3608,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%201.41.04%E2%80%AFPM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Tweet",
@@ -2057,6 +3669,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/link_post.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Grayscale GLNK",
@@ -2093,6 +3731,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/trust_wallet",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Post-Mortem Update",
@@ -2137,6 +3801,32 @@
       "timeline"
     ],
     "image": "https://pbs.twimg.com/media/GDglvfqXYAACIQO?format=jpg&name=900x900",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Running Bitcoin",
@@ -2159,6 +3849,32 @@
       "timeline"
     ],
     "image": "https://preview.redd.it/exactly-12-years-ago-we-had-the-most-legendary-bitcoin-v0-c54jytiqbf0b1.jpg?width=895&format=pjpg&auto=webp&s=f1c8269836b4359f13bd1b0641cc6e10c0d07240",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Reddit thread",
@@ -2182,6 +3898,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/blob-2026-01-10%20at%208.40.29%20PM.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Annals of Bitcoin Twitter",
@@ -2205,6 +3947,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/satoshi%20final%20message.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Annals of Bitcoin Twitter",
@@ -2228,6 +3996,32 @@
       "timeline"
     ],
     "image": "https://pbs.twimg.com/media/G9LnBUGWAAAoF2n?format=jpg&name=medium",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Casascius Coins Vending Machine",
@@ -2251,6 +4045,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/dogecoin",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Dogecoin community study",
@@ -2274,6 +4094,32 @@
       "timeline"
     ],
     "image": "https://pbs.twimg.com/media/G32wE8MWMAEeBD4?format=png&name=small",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cobie Maxcoin Tweet",
@@ -2296,6 +4142,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/obsolete",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "I will make you obsolete",
@@ -2319,6 +4191,32 @@
       "crimeline"
     ],
     "image": "https://pbs.twimg.com/media/G5ZIz-8XEAAr63I?format=jpg&name=large",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Hey Hey Hey",
@@ -2342,6 +4240,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/BCH_Bitcoin",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "BCH is Bitcoin. Bitcoin Core is not",
@@ -2368,6 +4292,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/wassie",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "The History",
@@ -2395,6 +4345,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/safu",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Funds are SAFU",
@@ -2418,6 +4394,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/libra",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Zuck speaks about Libra launch",
@@ -2440,6 +4442,32 @@
       "timeline"
     ],
     "image": "https://pbs.twimg.com/media/GpKliGVW4AAf9bP?format=png&name=small",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Liar and Faker",
@@ -2463,6 +4491,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/plustoken",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Chainalysis",
@@ -2483,7 +4537,6 @@
       "status": "Partial recovery"
     }
   },
-  
   {
     "id": "sushiswap-vampire-attack-2020-08",
     "date": "2020-08-28",
@@ -2500,6 +4553,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sushi_uniswap",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Chef Nomi Apology",
@@ -2526,6 +4605,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chef_nomi_apology",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Chef Nomi Apology",
@@ -2565,6 +4670,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Hayden_reflects",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Hayden Reflects",
@@ -2588,6 +4719,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/3%2C3",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "OlympusDAO Explains (3,3)",
@@ -2611,6 +4768,32 @@
       "crimeline"
     ],
     "image": "",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "NY DFS report",
@@ -2634,6 +4817,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/SAylor_purchase",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Saylor Announces 1st Purchase",
@@ -2657,6 +4866,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/tesla_btc",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "You can now buy Tesla with Bitcoin",
@@ -2680,6 +4915,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/salvador_btc",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bukele's Piggy Bank",
@@ -2703,6 +4964,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/constitutiondao",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Lets purchase that parchment",
@@ -2726,6 +5013,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/by_my_hand",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "GCR Bet",
@@ -2748,6 +5061,32 @@
       "timeline"
     ],
     "image": "https://public.bnbstatic.com/image/pgc/202311/3ba6df3cb9f771c48a9f418c2dc35a3c.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Your size is not size",
@@ -2772,6 +5111,32 @@
       "timeline"
     ],
     "image": "https://public.bnbstatic.com/image/pgc/202311/79644e42a8987268ab465cc247d860fd.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Steady lads",
@@ -2794,6 +5159,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/gcr_hedge",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "GCR Arkham Profile",
@@ -2816,6 +5207,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/3AC",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "GCR profile",
@@ -2839,6 +5256,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "1)What",
@@ -2866,6 +5309,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ftt_binance",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "CZ Announces Liquidation",
@@ -2889,6 +5358,32 @@
       "timeline"
     ],
     "image": "https://public.bnbstatic.com/image/pgc/202311/ae6832849f0e81fe4f3bf220223dbe10.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "I fucked up",
@@ -2911,6 +5406,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/jail_dokwon_uponly",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "UpOnly Video",
@@ -2934,6 +5455,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ordinals",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Inscriptions are Ready",
@@ -2957,6 +5504,32 @@
       "crimeline"
     ],
     "image": "",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Major rug pulls",
@@ -2980,6 +5553,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/squid_game",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Realtime Rugged Live",
@@ -3004,6 +5603,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gary_resigns",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Gary Resigns",
@@ -3027,6 +5652,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Timeline%20Images/wynn_liquidation",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "James Buys $PEPE at $4.2m",
@@ -3054,6 +5705,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gainzy_chart",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Gainzy Explains",
@@ -3076,6 +5753,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/PNUT",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "RIP PNUT",
@@ -3099,6 +5802,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cobie_coinbase_trading",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "rofl",
@@ -3122,6 +5851,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pavel_snoop",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Pavel tweets",
@@ -3144,6 +5899,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/see%20you%20in%20hell",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "See you in Hell",
@@ -3170,6 +5951,32 @@
       "timeline"
     ],
     "image": "https://pbs.twimg.com/media/G-ITrPPXwAA1sIs?format=jpg&name=4096x4096",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Zooko Tweets",
@@ -3192,6 +5999,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/vitalike",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Reactions",
@@ -3214,6 +6047,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ceo_iohk",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Charles Post",
@@ -3237,6 +6096,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-10%20at%2012.35.46%20PM.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Clip of Debate",
@@ -3263,6 +6148,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%2012.40.34%E2%80%AFPM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Original Tweet",
@@ -3285,6 +6196,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sbf_3_dollars",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "SBF Tweet",
@@ -3307,6 +6244,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ledger_dances",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "UpOnly Clip",
@@ -3331,6 +6294,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/algod_ftx",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cobie Tweet",
@@ -3358,6 +6347,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/arrest%20m_avi",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Avi Arrest Me Tweet",
@@ -3395,6 +6410,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/funds_are_safe",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Mashinsky Quote",
@@ -3417,6 +6458,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mcafee_dick",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "McAfee Reflects",
@@ -3439,6 +6506,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitcoin_jihan",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitcoin is Bitcoin",
@@ -3461,6 +6554,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/buy_wall",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Cobie Buy Wall",
@@ -3473,7 +6592,6 @@
     "date": "2024-04-08",
     "title": "Crypto: The Game S2",
     "summary": "S2: Anon Island brought new heights for CTG. 800 players minted in 13 minutes for a 72 ETH pot (~$250k), divided into tribes for 10 days of arcade challenges, puzzles, and cutthroat votes. It sold out faster than S1, drawing celebs, VCs, and degens.",
-    
     "category": [
       "Gaming"
     ],
@@ -3484,6 +6602,32 @@
       "timeline"
     ],
     "image": "https://placeholder.co/600x400?text=Crypto+The+Game",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "CTG:S2 Recap",
@@ -3496,7 +6640,6 @@
     "date": "2025-03-07",
     "title": "Crypto: The Game S3",
     "summary": "CTG: Ressurection Island was played on Unichain, after the Uniswap acquisition. Season Three featured 716 contestants all competing for 71.6 ETH.",
-    
     "category": [
       "Gaming"
     ],
@@ -3507,6 +6650,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CTG_S3",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "CTG: S3 Recap",
@@ -3523,7 +6692,6 @@
     "date": "2023-01-15",
     "title": "Crypto: The Game Begins",
     "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
-    
     "category": [
       "CT Lore",
       "Gaming"
@@ -3535,6 +6703,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CTG_S1",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Decrypt Highlights",
@@ -3558,6 +6752,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/free_roman",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Write Letter to Free Roman",
@@ -3585,6 +6805,37 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream",
+    "video": {
+      "provider": "self_hosted",
+      "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream.mp4",
+      "poster_url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream"
+    },
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Arrest Footage",
@@ -3594,13 +6845,8 @@
         "label": "News Report",
         "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
       }
-    ],
-  "video": {
-    "provider": "self_hosted",
-    "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream.mp4",
-    "poster_url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream"
-  }
-},
+    ]
+  },
   {
     "id": "bitboy-vs-ansem",
     "date": "2024-12-06",
@@ -3616,6 +6862,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_inhaler",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "The Fight",
@@ -3643,6 +6915,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gainzy_rlb",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Reddit Investigation",
@@ -3669,6 +6967,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-10%20at%2010.01.03%E2%80%AFPM.png",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Bitboy Rant",
@@ -3695,6 +7019,32 @@
       "timeline"
     ],
     "image": "https://placeholder.co/600x400?text=Ethereum+Steroids",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Meme Source",
@@ -3717,6 +7067,32 @@
       "timeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/satoshi_quote",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "Brian Tweet",
@@ -3741,6 +7117,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/kevin",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT Calls Out Team",
@@ -3759,21 +7161,51 @@
     }
   },
   {
-  "id": "nikita-ct-self-destruction-comments-2026-01",
-  "date": "2026-01-10",
-  "title": "Nikita Says Crypto Twitter Is \"Dying From Suicide\"",
-  "summary": "Nikita Bier sparked backlash on Crypto Twitter after claiming that CT is \"dying from suicide,\" arguing that the community is harming itself through low-quality engagement farming, rather than being suppressed solely by platform algorithms. The comments quickly became a flashpoint in ongoing debates about CT's decline on Twitter, engagement farming, and the impact of their recent algorithm changes.",
-  "category": "CT Lore",
-  "tags": ["CULTURAL"],
-  "mode": ["timeline"],
-  "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ct_suicide",
-  "links": [
-    {
-      "label": "Nikita Tweets",
-      "url": "https://x.com/nikitabier/status/2010178890627686492?s=20"
-    }
-  ]
-},
+    "id": "nikita-ct-self-destruction-comments-2026-01",
+    "date": "2026-01-10",
+    "title": "Nikita Says Crypto Twitter Is \"Dying From Suicide\"",
+    "summary": "Nikita Bier sparked backlash on Crypto Twitter after claiming that CT is \"dying from suicide,\" arguing that the community is harming itself through low-quality engagement farming, rather than being suppressed solely by platform algorithms. The comments quickly became a flashpoint in ongoing debates about CT's decline on Twitter, engagement farming, and the impact of their recent algorithm changes.",
+    "category": "CT Lore",
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ct_suicide",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Nikita Tweets",
+        "url": "https://x.com/nikitabier/status/2010178890627686492?s=20"
+      }
+    ]
+  },
   {
     "id": "genesis-creditor-heist-2024",
     "date": "2024-08-19",
@@ -3791,6 +7223,32 @@
       "crimeline"
     ],
     "image": "https://pbs.twimg.com/media/GX0qHqJWwAApZzP",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT Investigation Thread",
@@ -3831,6 +7289,32 @@
       "crimeline"
     ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ZachXBT_Harmony",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT Harmony Hack",
@@ -3852,7 +7336,6 @@
       "status": "Total loss"
     }
   },
- 
   {
     "id": "machi-big-brother-allegations",
     "date": "2022-06-16",
@@ -3864,12 +7347,37 @@
     ],
     "tags": [
       "CULTURAL"
-      
     ],
     "mode": [
       "timeline"
     ],
     "image": "https://pbs.twimg.com/profile_images/1610342982187900928/84eyMoam_400x400.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT Lawsuit Announcement",
@@ -3880,7 +7388,6 @@
         "url": "https://medium.com/@investigationsbyzachxbt/a-story-of-machi-big-brother-jeff-huang-a1ad073fcfa8"
       }
     ]
-   
   },
   {
     "id": "bayc-phishing-ring-france",
@@ -3898,6 +7405,32 @@
       "crimeline"
     ],
     "image": "https://img.paragraph.com/cdn-cgi/image/format=auto,width=1080,quality=85/https://storage.googleapis.com/papyrus_images/a1fbe173c53131a9343b08e755abdd55e1d151036540931d1212dac0c00db098.jpg",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT 'Scammers in Paris' Full Report",
@@ -3912,7 +7445,6 @@
         "Discord infiltration by verified members",
         "Fake NFT animation service websites",
         "Wallet approval phishing"
-
       ],
       "aftermath": "ZachXBT's 'Scammers in Paris' investigation matched Telegram profile pictures to Twitter/Instagram accounts, identifying Mathys and Camille. French authorities arrested five individuals in October 2022. ZachXBT's research officially credited in court documents as initiating investigation. Assets partially recovered.",
       "status": "Partial recovery"
@@ -3935,6 +7467,32 @@
       "crimeline"
     ],
     "image": "https://pbs.twimg.com/media/FoD-9YtWAAEBv0d?format=jpg&name=small",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
     "links": [
       {
         "label": "ZachXBT Seizure Announcement",
@@ -3954,4 +7512,3 @@
     }
   }
 ]
-
