@@ -87,7 +87,7 @@ export function EventCard({ event, index }: EventCardProps) {
             {/* Event Image */}
             <div className="relative w-full aspect-[16/9] overflow-hidden">
               <Image
-                src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
+                src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
                 alt={event.title}
                 fill
                 unoptimized
@@ -101,6 +101,21 @@ export function EventCard({ event, index }: EventCardProps) {
                     : "bg-gradient-to-t from-white via-white/20 to-transparent"
                 }`}
               />
+              {/* Video Play Icon Overlay */}
+              {event.video && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="bg-black/60 rounded-full p-4 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="p-4">
