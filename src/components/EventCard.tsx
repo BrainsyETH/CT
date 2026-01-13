@@ -5,13 +5,33 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
+import { MediaPreview } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { FALLBACK_IMAGES } from "@/lib/constants";
-import type { Event } from "@/lib/types";
+import type { Event, MediaItem } from "@/lib/types";
 
 interface EventCardProps {
   event: Event;
   index: number;
+}
+
+// Build media array from event data (supports both new media array and legacy image/video fields)
+function getMediaItems(event: Event): MediaItem[] {
+  // If event has new media array, use it
+  if (event.media && event.media.length > 0) {
+    return event.media;
+  }
+
+  // Build from legacy fields for backward compatibility
+  const items: MediaItem[] = [];
+
+  if (event.video) {
+    items.push({ type: "video", video: event.video });
+  } else if (event.image) {
+    items.push({ type: "image", image: { url: event.image, alt: event.title } });
+  }
+
+  return items;
 }
 
 export function EventCard({ event, index }: EventCardProps) {
@@ -82,42 +102,8 @@ export function EventCard({ event, index }: EventCardProps) {
                 : "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-teal-400 group-hover:shadow-[6px_6px_0_rgba(20,184,166,0.25)]"
             }`}
           >
-            {/* Event Image */}
-            <div className="relative w-full aspect-[16/9] overflow-hidden">
-              <Image
-                src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
-                alt={event.title}
-                fill
-                unoptimized
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div
-                className={`absolute inset-0 ${
-                  isCrimeline
-                    ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
-                    : "bg-gradient-to-t from-white via-white/20 to-transparent"
-                }`}
-              />
-              {/* Video Play Icon Overlay */}
-              {event.video && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="bg-black/60 rounded-full p-4 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="p-4">
-              {/* Header with Date and Share */}
+            {/* Header Section - Date, Share, Title */}
+            <div className="p-4 pb-3">
               <div className="flex items-start justify-between">
                 <time
                   className={`text-sm font-medium transition-colors duration-300 ${
@@ -141,10 +127,47 @@ export function EventCard({ event, index }: EventCardProps) {
               >
                 {event.title}
               </h3>
+            </div>
 
+            {/* Media Section - Middle */}
+            {(() => {
+              const mediaItems = getMediaItems(event);
+              if (mediaItems.length > 0) {
+                return (
+                  <MediaPreview
+                    media={mediaItems}
+                    event={event}
+                    isCrimeline={isCrimeline}
+                  />
+                );
+              }
+              // Fallback for events with no media
+              return (
+                <div className="relative w-full aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
+                    alt={event.title}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div
+                    className={`absolute inset-0 ${
+                      isCrimeline
+                        ? "bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"
+                        : "bg-gradient-to-t from-white via-white/20 to-transparent"
+                    }`}
+                  />
+                </div>
+              );
+            })()}
+
+            {/* Content Section - Below Media */}
+            <div className="p-4 pt-3">
               {/* Summary - Improved contrast */}
               <p
-                className={`mt-2 text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
+                className={`text-sm leading-relaxed transition-colors duration-300 line-clamp-2 ${
                   isCrimeline ? "text-gray-200" : "text-gray-700"
                 }`}
               >
