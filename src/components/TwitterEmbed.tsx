@@ -6,13 +6,14 @@ import type { TwitterMedia } from "@/lib/types";
 declare global {
   interface Window {
     twttr?: {
+      ready: (callback: () => void) => void;
       widgets: {
         load: (element?: HTMLElement) => void;
         createTweet: (
           tweetId: string,
           container: HTMLElement,
           options?: Record<string, unknown>
-        ) => Promise<HTMLElement>;
+        ) => Promise<HTMLElement | null>;
       };
     };
   }
@@ -61,18 +62,33 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    // Load Twitter widget script if not already loaded
+    // Load Twitter widget script and wait for it to be ready
     const loadTwitterScript = (): Promise<void> => {
       return new Promise((resolve, reject) => {
-        if (window.twttr) {
+        // If already loaded and ready
+        if (window.twttr?.widgets) {
           resolve();
+          return;
+        }
+
+        // Check if script is already in DOM but not ready yet
+        const existingScript = document.querySelector('script[src*="platform.twitter.com/widgets.js"]');
+        if (existingScript && window.twttr) {
+          window.twttr.ready(() => resolve());
           return;
         }
 
         const script = document.createElement("script");
         script.src = "https://platform.twitter.com/widgets.js";
         script.async = true;
-        script.onload = () => resolve();
+        script.onload = () => {
+          // Wait for twttr.ready callback
+          if (window.twttr) {
+            window.twttr.ready(() => resolve());
+          } else {
+            reject(new Error("Twitter widget failed to initialize"));
+          }
+        };
         script.onerror = () => reject(new Error("Failed to load Twitter widget"));
         document.head.appendChild(script);
       });
