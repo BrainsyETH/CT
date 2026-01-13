@@ -24,6 +24,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
   const event = events.find((e) => e.id === selectedEventId);
   const [isImageExpanded, setIsImageExpanded] = useState(false);
+  const [isIncidentDetailsExpanded, setIsIncidentDetailsExpanded] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -284,81 +285,106 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
-                  <div className={`mt-6 p-4 rounded-lg border-2 shadow-[4px_4px_0_rgba(124,58,237,0.35)] ${
+                  <div className={`mt-6 rounded-lg border-2 shadow-[4px_4px_0_rgba(124,58,237,0.35)] ${
                     isCrimeline
                       ? "bg-purple-950/30 border-purple-900/40"
                       : "bg-purple-100 border-purple-300"
                   }`}>
-                    <h3 className={`text-sm font-semibold mb-3 ${
-                      isCrimeline ? "text-purple-400" : "text-purple-700"
-                    }`}>
-                      Incident Details
-                    </h3>
+                    <button
+                      onClick={() => setIsIncidentDetailsExpanded(!isIncidentDetailsExpanded)}
+                      className={`w-full flex items-center justify-between p-4 text-left ${
+                        isIncidentDetailsExpanded ? "" : "rounded-lg"
+                      }`}
+                      aria-expanded={isIncidentDetailsExpanded}
+                    >
+                      <h3 className={`text-sm font-semibold ${
+                        isCrimeline ? "text-purple-400" : "text-purple-700"
+                      }`}>
+                        Incident Details
+                      </h3>
+                      <span className={`text-lg font-medium ${
+                        isCrimeline ? "text-purple-400" : "text-purple-700"
+                      }`}>
+                        {isIncidentDetailsExpanded ? "−" : "+"}
+                      </span>
+                    </button>
 
-                    <div className="space-y-3">
-                      {/* Type and Status */}
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className={`px-3 py-1 text-sm font-bold rounded ${
-                          isCrimeline
-                            ? "bg-purple-900/50 text-purple-300"
-                            : "bg-purple-200 text-purple-800"
-                        }`}>
-                          {event.crimeline.type}
-                        </span>
-                        {event.crimeline.status && (
-                          <span
-                            className={`px-3 py-1 text-sm font-medium rounded ${
-                              event.crimeline.status === "Funds recovered"
-                                ? isCrimeline ? "bg-green-900/50 text-green-300" : "bg-green-200 text-green-800"
-                                : event.crimeline.status === "Partial recovery"
-                                ? isCrimeline ? "bg-yellow-900/50 text-yellow-300" : "bg-yellow-200 text-yellow-800"
-                                : event.crimeline.status === "Total loss"
-                                ? isCrimeline ? "bg-purple-900/50 text-purple-300" : "bg-purple-200 text-purple-800"
-                                : isCrimeline ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700"
-                            }`}
-                          >
-                            {event.crimeline.status}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Funds Lost */}
-                      <div>
-                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Funds Lost</p>
-                        <p className={`text-2xl font-bold ${isCrimeline ? "text-purple-400" : "text-purple-700"}`}>
-                          {formatFundsLost(event.crimeline.funds_lost_usd)}
-                        </p>
-                      </div>
-
-                      {/* Root Causes */}
-                      {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
-                        <div>
-                          <p className={`text-xs mb-2 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Root Causes</p>
-                          <div className="flex flex-wrap gap-2">
-                            {event.crimeline.root_cause.map((cause, i) => (
-                              <span
-                                key={i}
-                                className={`px-3 py-1 text-sm rounded-full ${
-                                  isCrimeline
-                                    ? "bg-gray-800 text-gray-300"
-                                    : "bg-purple-200 text-purple-800"
-                                }`}
-                              >
-                                {cause}
+                    <AnimatePresence>
+                      {isIncidentDetailsExpanded && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-4 pb-4 space-y-3">
+                            {/* Type and Status */}
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className={`px-3 py-1 text-sm font-bold rounded ${
+                                isCrimeline
+                                  ? "bg-purple-900/50 text-purple-300"
+                                  : "bg-purple-200 text-purple-800"
+                              }`}>
+                                {event.crimeline.type}
                               </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+                              {event.crimeline.status && (
+                                <span
+                                  className={`px-3 py-1 text-sm font-medium rounded ${
+                                    event.crimeline.status === "Funds recovered"
+                                      ? isCrimeline ? "bg-green-900/50 text-green-300" : "bg-green-200 text-green-800"
+                                      : event.crimeline.status === "Partial recovery"
+                                      ? isCrimeline ? "bg-yellow-900/50 text-yellow-300" : "bg-yellow-200 text-yellow-800"
+                                      : event.crimeline.status === "Total loss"
+                                      ? isCrimeline ? "bg-purple-900/50 text-purple-300" : "bg-purple-200 text-purple-800"
+                                      : isCrimeline ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700"
+                                  }`}
+                                >
+                                  {event.crimeline.status}
+                                </span>
+                              )}
+                            </div>
 
-                      {/* Aftermath */}
-                      {event.crimeline.aftermath && (
-                        <div>
-                          <p className={`text-xs mb-1 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Aftermath</p>
-                          <p className={`text-sm ${isCrimeline ? "text-gray-300" : "text-gray-700"}`}>{event.crimeline.aftermath}</p>
-                        </div>
+                            {/* Funds Lost */}
+                            <div>
+                              <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Funds Lost</p>
+                              <p className={`text-2xl font-bold ${isCrimeline ? "text-purple-400" : "text-purple-700"}`}>
+                                {formatFundsLost(event.crimeline.funds_lost_usd)}
+                              </p>
+                            </div>
+
+                            {/* Root Causes */}
+                            {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
+                              <div>
+                                <p className={`text-xs mb-2 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Root Causes</p>
+                                <div className="flex flex-wrap gap-2">
+                                  {event.crimeline.root_cause.map((cause, i) => (
+                                    <span
+                                      key={i}
+                                      className={`px-3 py-1 text-sm rounded-full ${
+                                        isCrimeline
+                                          ? "bg-gray-800 text-gray-300"
+                                          : "bg-purple-200 text-purple-800"
+                                      }`}
+                                    >
+                                      {cause}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Aftermath */}
+                            {event.crimeline.aftermath && (
+                              <div>
+                                <p className={`text-xs mb-1 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Aftermath</p>
+                                <p className={`text-sm ${isCrimeline ? "text-gray-300" : "text-gray-700"}`}>{event.crimeline.aftermath}</p>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
                       )}
-                    </div>
+                    </AnimatePresence>
                   </div>
                 )}
 
