@@ -54,14 +54,16 @@ export function MediaCarousel({
   onClose,
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentItem = media[currentIndex];
 
-  // Pause video when slide changes or component unmounts
+  // Reset video playing state when slide changes
   useEffect(() => {
+    setIsVideoPlaying(false);
     return () => {
       // Cleanup: pause video when unmounting or changing slides
       if (videoRef.current) {
@@ -124,6 +126,9 @@ export function MediaCarousel({
     switch (item.type) {
       case "video":
         if (!item.video) return null;
+        const posterUrl = item.video.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
+        const isIframe = isIframeProvider(item.video.provider);
+
         return (
           <div
             className={`relative w-full ${
@@ -134,7 +139,8 @@ export function MediaCarousel({
                 : "aspect-video"
             } bg-black flex items-center justify-center`}
           >
-            {isIframeProvider(item.video.provider) ? (
+            {isIframe ? (
+              // YouTube/Vimeo - always show iframe
               <iframe
                 src={item.video.embed_url || getEmbedUrl(item.video.provider, item.video.url)}
                 className="absolute inset-0 w-full h-full"
@@ -142,20 +148,52 @@ export function MediaCarousel({
                 allowFullScreen
                 title={event.title}
               />
-            ) : (
+            ) : isVideoPlaying ? (
+              // Self-hosted video - show player when playing
               <video
                 ref={videoRef}
                 controls
+                autoPlay
                 controlsList="nodownload noplaybackrate"
                 disablePictureInPicture
                 playsInline
-                poster={item.video.poster_url || event.image}
+                poster={posterUrl}
                 className="w-full h-full object-contain"
                 preload="metadata"
+                onEnded={() => setIsVideoPlaying(false)}
               >
                 <source src={item.video.url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+            ) : (
+              // Self-hosted video - show poster with play button
+              <button
+                onClick={() => setIsVideoPlaying(true)}
+                className="absolute inset-0 w-full h-full cursor-pointer group/video"
+                aria-label="Play video"
+              >
+                <Image
+                  src={posterUrl}
+                  alt={event.title}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 672px"
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover/video:bg-black/40 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/60 rounded-full p-5 backdrop-blur-sm transition-transform duration-300 group-hover/video:scale-110">
+                    <svg
+                      className="w-12 h-12 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
             )}
           </div>
         );
@@ -163,7 +201,7 @@ export function MediaCarousel({
       case "twitter":
         if (!item.twitter) return null;
         return (
-          <div className="w-full min-h-[300px] p-4 bg-gray-50 dark:bg-gray-800">
+          <div className={`w-full min-h-[300px] p-4 ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
             <TwitterEmbed
               twitter={item.twitter}
               theme={isCrimeline ? "dark" : "light"}

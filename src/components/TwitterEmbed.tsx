@@ -129,8 +129,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg">
-        <div className="text-center text-gray-500 dark:text-gray-400">
+      <div className={`flex items-center justify-center w-full h-64 rounded-lg ${
+        theme === "dark" ? "bg-gray-700" : "bg-gray-200"
+      }`}>
+        <div className={`text-center ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>
           <svg
             className="w-12 h-12 mx-auto mb-2 opacity-50"
             fill="currentColor"
@@ -148,9 +150,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   return (
     <div className="w-full">
       {isLoading && (
-        <div className="flex items-center justify-center w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse">
+        <div className={`flex items-center justify-center w-full h-64 rounded-lg animate-pulse ${
+          theme === "dark" ? "bg-gray-700" : "bg-gray-200"
+        }`}>
           <svg
-            className="w-12 h-12 text-gray-400 dark:text-gray-500"
+            className={`w-12 h-12 ${theme === "dark" ? "text-gray-500" : "text-gray-400"}`}
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
