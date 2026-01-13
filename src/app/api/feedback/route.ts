@@ -92,6 +92,7 @@ export async function POST(request: Request) {
           event_video_provider: body.event_video_provider || null,
           event_video_poster_url: body.event_video_poster_url || null,
           event_video_caption: body.event_video_caption || null,
+          event_video_orientation: body.event_video_orientation || null,
           crimeline_type: body.crimeline_type || null,
           crimeline_funds_lost: body.crimeline_funds_lost || null,
           crimeline_status: body.crimeline_status || null,

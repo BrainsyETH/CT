@@ -183,6 +183,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
   const [eventVideoProvider, setEventVideoProvider] = useState("");
   const [eventVideoPosterUrl, setEventVideoPosterUrl] = useState("");
   const [eventVideoCaption, setEventVideoCaption] = useState("");
+  const [eventVideoOrientation, setEventVideoOrientation] = useState("");
   const [crimelineType, setCrimelineType] = useState("");
   const [crimelineFundsLost, setCrimelineFundsLost] = useState("");
   const [crimelineStatus, setCrimelineStatus] = useState("");
@@ -206,6 +207,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
         setEventVideoProvider(event.video.provider || "");
         setEventVideoPosterUrl(event.video.poster_url || "");
         setEventVideoCaption(event.video.caption || "");
+        setEventVideoOrientation(event.video.orientation || "");
       }
       if (event.crimeline) {
         setCrimelineType(event.crimeline.type || "");
@@ -257,6 +259,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     setEventVideoProvider("");
     setEventVideoPosterUrl("");
     setEventVideoCaption("");
+    setEventVideoOrientation("");
     setCrimelineType("");
     setCrimelineFundsLost("");
     setCrimelineStatus("");
@@ -298,6 +301,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
       submission.event_video_provider = eventVideoProvider || undefined;
       submission.event_video_poster_url = eventVideoPosterUrl || undefined;
       submission.event_video_caption = eventVideoCaption || undefined;
+      submission.event_video_orientation = eventVideoOrientation || undefined;
 
       if (eventMode === "crimeline" || eventMode === "both") {
         submission.crimeline_type = crimelineType;
@@ -696,6 +700,22 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
                             placeholder="Brief description of video"
                             className={inputClassName}
                           />
+                        </div>
+                        <div>
+                          <label htmlFor="eventVideoOrientation" className={labelClassName}>
+                            Orientation
+                          </label>
+                          <select
+                            id="eventVideoOrientation"
+                            value={eventVideoOrientation}
+                            onChange={(e) => setEventVideoOrientation(e.target.value)}
+                            className={inputClassName}
+                          >
+                            <option value="">Landscape (default)</option>
+                            <option value="landscape">Landscape (16:9)</option>
+                            <option value="portrait">Portrait (9:16)</option>
+                            <option value="square">Square (1:1)</option>
+                          </select>
                         </div>
                       </div>
                     </div>

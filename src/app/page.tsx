@@ -58,10 +58,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       if (imageForOg) {
         imageParams.set("image", imageForOg);
       }
-      // Add hasVideo flag so OG image can show play icon
-      if (event.video) {
-        imageParams.set("hasVideo", "true");
-      }
 
       const ogImageUrl = toAbsoluteUrl(`api/og?${imageParams.toString()}`);
       const twitterImageUrl = toAbsoluteUrl(`api/twitter?${imageParams.toString()}`);
