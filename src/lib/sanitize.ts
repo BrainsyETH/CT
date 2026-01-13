@@ -106,7 +106,7 @@ export function truncateString(
 /**
  * Sanitizes an object containing feedback submission data.
  */
-export function sanitizeFeedbackSubmission<T extends Record<string, unknown>>(
+export function sanitizeFeedbackSubmission<T extends object>(
   data: T
 ): T {
   const sanitized: Record<string, unknown> = {};

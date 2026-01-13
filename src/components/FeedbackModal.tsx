@@ -50,7 +50,7 @@ export function FeedbackModal({
   const [eventSummary, setEventSummary] = useState("");
   const [eventCategory, setEventCategory] = useState("");
   const [eventTags, setEventTags] = useState<string[]>([]);
-  const [eventMode, setEventMode] = useState(MODES.TIMELINE);
+  const [eventMode, setEventMode] = useState<string>(MODES.TIMELINE);
   const [eventImageUrl, setEventImageUrl] = useState("");
   const [eventSourceUrl, setEventSourceUrl] = useState("");
   const [eventVideoUrl, setEventVideoUrl] = useState("");

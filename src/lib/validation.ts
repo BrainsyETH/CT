@@ -136,7 +136,7 @@ export function validateEvents(data: unknown): {
 
   // Log validation errors in development
   if (process.env.NODE_ENV === "development") {
-    console.error("Event validation errors:", result.error.errors);
+    console.error("Event validation errors:", result.error.issues);
   }
 
   // Return empty array on error but log the issue
