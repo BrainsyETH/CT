@@ -21,7 +21,7 @@ const LinkIcon = ({ className }: { className?: string }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5m11.828-1.328a4 4 0 010 5.656l-1.5 1.5m-5.656-11.828a4 4 0 015.656 0l3 3a4 4 0 010 5.656l-1.5 1.5"
+      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
     />
   </svg>
 );
@@ -73,9 +73,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
 
   const handleTwitterShare = () => {
     if (!shareUrl) return;
-    const firstSentence = getFirstSentence(event.summary);
-    const shareText = firstSentence ? `${event.title}\n\n${firstSentence}` : event.title;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank", "width=600,height=400");
   };
 
