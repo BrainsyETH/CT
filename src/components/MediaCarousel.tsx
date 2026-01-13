@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motion";
 import { TwitterEmbed } from "./TwitterEmbed";
@@ -28,6 +28,23 @@ function getMediaPoster(item: MediaItem, event: Event, isCrimeline: boolean): st
   return event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
 }
 
+// Helper to pause all videos in a container
+function pauseAllVideos(container: HTMLElement | null) {
+  if (!container) return;
+  const videos = container.querySelectorAll("video");
+  videos.forEach((video) => {
+    video.pause();
+    video.currentTime = 0;
+  });
+  // Also handle iframes (YouTube, Vimeo) by removing and re-adding src
+  const iframes = container.querySelectorAll("iframe");
+  iframes.forEach((iframe) => {
+    const src = iframe.src;
+    iframe.src = "";
+    iframe.src = src;
+  });
+}
+
 export function MediaCarousel({
   media,
   event,
@@ -38,14 +55,43 @@ export function MediaCarousel({
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentItem = media[currentIndex];
 
+  // Pause video when slide changes or component unmounts
+  useEffect(() => {
+    return () => {
+      // Cleanup: pause video when unmounting or changing slides
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    };
+  }, [currentIndex]);
+
+  // Pause all videos when component unmounts (modal closes)
+  useEffect(() => {
+    return () => {
+      pauseAllVideos(containerRef.current);
+    };
+  }, []);
+
   const goToNext = useCallback(() => {
+    // Pause current video before switching
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    pauseAllVideos(containerRef.current);
     setCurrentIndex((prev) => (prev + 1) % media.length);
   }, [media.length]);
 
   const goToPrevious = useCallback(() => {
+    // Pause current video before switching
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    pauseAllVideos(containerRef.current);
     setCurrentIndex((prev) => (prev - 1 + media.length) % media.length);
   }, [media.length]);
 
@@ -98,6 +144,7 @@ export function MediaCarousel({
               />
             ) : (
               <video
+                ref={videoRef}
                 controls
                 controlsList="nodownload noplaybackrate"
                 disablePictureInPicture
@@ -176,6 +223,7 @@ export function MediaCarousel({
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full"
       onKeyDown={handleKeyDown}
       tabIndex={0}
@@ -250,7 +298,14 @@ export function MediaCarousel({
           {media.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => {
+                // Pause current video before switching
+                if (videoRef.current) {
+                  videoRef.current.pause();
+                }
+                pauseAllVideos(containerRef.current);
+                setCurrentIndex(index);
+              }}
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === currentIndex ? "true" : undefined}
               className={`w-2 h-2 rounded-full transition-all ${
