@@ -416,11 +416,18 @@ export function SearchFilter() {
                             const isCtLore = category === "CT Lore";
                             const isZachXBT = category === "ZachXBT";
 
-                            // Premium categories get special light blue styling
-                            const premiumStyles = isPremium
+                            // CT Lore gets light blue styling
+                            const ctLoreStyles = isCtLore
                               ? isSelected
                                 ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
                                 : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
+                              : "";
+
+                            // ZachXBT gets blackish/gray styling
+                            const zachStyles = isZachXBT
+                              ? isSelected
+                                ? "bg-gray-900 text-white border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
+                                : "bg-gray-800 text-gray-100 border border-gray-600 hover:bg-gray-700"
                               : "";
 
                             return (
@@ -429,15 +436,17 @@ export function SearchFilter() {
                                 onClick={() => toggleCategory(category)}
                                 aria-pressed={isSelected}
                                 className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                                  isPremium
-                                    ? premiumStyles
-                                    : isSelected
-                                      ? isCrimeline
-                                        ? "bg-purple-900 text-purple-200 border border-purple-700"
-                                        : "bg-teal-500 text-white border border-teal-600"
-                                      : isCrimeline
-                                        ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                                        : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                                  isCtLore
+                                    ? ctLoreStyles
+                                    : isZachXBT
+                                      ? zachStyles
+                                      : isSelected
+                                        ? isCrimeline
+                                          ? "bg-purple-900 text-purple-200 border border-purple-700"
+                                          : "bg-teal-500 text-white border border-teal-600"
+                                        : isCrimeline
+                                          ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
+                                          : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
                                 }`}
                               >
                                 {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
@@ -587,7 +596,6 @@ export function SearchFilter() {
 
                     {/* Category Chips */}
                     {selectedCategories.map((category) => {
-                      const isPremium = PREMIUM_CATEGORIES.includes(category);
                       const isCtLore = category === "CT Lore";
                       const isZachXBT = category === "ZachXBT";
 
@@ -595,11 +603,13 @@ export function SearchFilter() {
                         <span
                           key={category}
                           className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
-                            isPremium
+                            isCtLore
                               ? "bg-sky-100 text-sky-700 border border-sky-300"
-                              : isCrimeline
-                                ? "bg-purple-900/50 text-purple-300 border border-purple-800"
-                                : "bg-teal-100 text-teal-700 border border-teal-300"
+                              : isZachXBT
+                                ? "bg-gray-800 text-gray-100 border border-gray-600"
+                                : isCrimeline
+                                  ? "bg-purple-900/50 text-purple-300 border border-purple-800"
+                                  : "bg-teal-100 text-teal-700 border border-teal-300"
                           }`}
                         >
                           {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
@@ -609,7 +619,7 @@ export function SearchFilter() {
                             onClick={() => toggleCategory(category)}
                             aria-label={`Remove ${category} filter`}
                             className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                              isPremium ? "hover:bg-sky-500" : isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
+                              isCtLore ? "hover:bg-sky-500" : isZachXBT ? "hover:bg-gray-500" : isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
                             }`}
                           >
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
