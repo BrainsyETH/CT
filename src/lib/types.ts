@@ -41,6 +41,17 @@ export type OutcomeStatus =
   | "Ongoing"
   | "Unknown";
 
+export type VideoProvider = "youtube" | "vimeo" | "mux" | "self_hosted";
+
+export interface EventVideo {
+  provider: VideoProvider;
+  url: string; // canonical playback/watch URL
+  embed_url?: string; // pre-built embed URL (for YouTube/Vimeo)
+  poster_url?: string; // thumbnail for card/modal preview
+  duration_seconds?: number;
+  caption?: string;
+}
+
 export interface Event {
   id: string;
   date: string;
@@ -50,6 +61,7 @@ export interface Event {
   tags: EventTag[];
   mode: Mode[];
   image?: string;
+  video?: EventVideo;
   links?: { label: string; url: string }[];
   metrics?: {
     btc_price_usd?: number;
@@ -84,6 +96,11 @@ export interface FeedbackSubmission {
   event_mode?: string;
   event_image_url?: string;
   event_source_url?: string;
+  // For event video
+  event_video_url?: string;
+  event_video_provider?: string;
+  event_video_poster_url?: string;
+  event_video_caption?: string;
   // For crimeline events
   crimeline_type?: string;
   crimeline_funds_lost?: string;

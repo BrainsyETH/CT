@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
     const summary = searchParams.get("summary") || "";
     const imageUrl = searchParams.get("image") || "";
     const mode = searchParams.get("mode") || "timeline";
+    const hasVideo = searchParams.get("hasVideo") === "true";
 
     const firstSentence = getFirstSentence(summary);
 
@@ -100,6 +101,36 @@ export async function GET(request: NextRequest) {
               background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))",
             }}
           />
+
+          {/* Video Play Icon - Centered */}
+          {hasVideo && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "90px",
+                height: "90px",
+                borderRadius: "50%",
+                background: "rgba(0, 0, 0, 0.7)",
+              }}
+            >
+              <div
+                style={{
+                  width: 0,
+                  height: 0,
+                  borderTop: "22px solid transparent",
+                  borderBottom: "22px solid transparent",
+                  borderLeft: "36px solid white",
+                  marginLeft: "7px",
+                }}
+              />
+            </div>
+          )}
 
           {/* Date Badge - Top Left Corner */}
           {date && (

@@ -179,6 +179,10 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
   const [eventMode, setEventMode] = useState("timeline");
   const [eventImageUrl, setEventImageUrl] = useState("");
   const [eventSourceUrl, setEventSourceUrl] = useState("");
+  const [eventVideoUrl, setEventVideoUrl] = useState("");
+  const [eventVideoProvider, setEventVideoProvider] = useState("");
+  const [eventVideoPosterUrl, setEventVideoPosterUrl] = useState("");
+  const [eventVideoCaption, setEventVideoCaption] = useState("");
   const [crimelineType, setCrimelineType] = useState("");
   const [crimelineFundsLost, setCrimelineFundsLost] = useState("");
   const [crimelineStatus, setCrimelineStatus] = useState("");
@@ -197,6 +201,12 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
       setEventMode(Array.isArray(event.mode) ? event.mode[0] : event.mode || "timeline");
       setEventImageUrl(event.image || "");
       setEventSourceUrl(event.links?.[0]?.url || "");
+      if (event.video) {
+        setEventVideoUrl(event.video.url || "");
+        setEventVideoProvider(event.video.provider || "");
+        setEventVideoPosterUrl(event.video.poster_url || "");
+        setEventVideoCaption(event.video.caption || "");
+      }
       if (event.crimeline) {
         setCrimelineType(event.crimeline.type || "");
         setCrimelineFundsLost(event.crimeline.funds_lost_usd?.toString() || "");
@@ -243,6 +253,10 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     setEventMode("timeline");
     setEventImageUrl("");
     setEventSourceUrl("");
+    setEventVideoUrl("");
+    setEventVideoProvider("");
+    setEventVideoPosterUrl("");
+    setEventVideoCaption("");
     setCrimelineType("");
     setCrimelineFundsLost("");
     setCrimelineStatus("");
@@ -280,6 +294,10 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
       submission.event_mode = eventMode;
       submission.event_image_url = eventImageUrl;
       submission.event_source_url = eventSourceUrl;
+      submission.event_video_url = eventVideoUrl || undefined;
+      submission.event_video_provider = eventVideoProvider || undefined;
+      submission.event_video_poster_url = eventVideoPosterUrl || undefined;
+      submission.event_video_caption = eventVideoCaption || undefined;
 
       if (eventMode === "crimeline" || eventMode === "both") {
         submission.crimeline_type = crimelineType;
@@ -614,6 +632,71 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
                           placeholder="https://..."
                           className={inputClassName}
                         />
+                      </div>
+                    </div>
+
+                    {/* Video Fields */}
+                    <div className={`p-4 rounded-lg ${isCrimeline ? "bg-gray-800/50 border border-gray-700" : "bg-gray-50 border border-gray-200"}`}>
+                      <h3 className={`text-sm font-semibold mb-3 ${isCrimeline ? "text-gray-300" : "text-gray-700"}`}>
+                        Video (Optional)
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="eventVideoUrl" className={labelClassName}>
+                            Video URL
+                          </label>
+                          <input
+                            type="url"
+                            id="eventVideoUrl"
+                            value={eventVideoUrl}
+                            onChange={(e) => setEventVideoUrl(e.target.value)}
+                            placeholder="https://youtube.com/watch?v=..."
+                            className={inputClassName}
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="eventVideoProvider" className={labelClassName}>
+                            Provider
+                          </label>
+                          <select
+                            id="eventVideoProvider"
+                            value={eventVideoProvider}
+                            onChange={(e) => setEventVideoProvider(e.target.value)}
+                            className={inputClassName}
+                          >
+                            <option value="">Select provider...</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="vimeo">Vimeo</option>
+                            <option value="mux">Mux</option>
+                            <option value="self_hosted">Self-hosted</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label htmlFor="eventVideoPosterUrl" className={labelClassName}>
+                            Video Poster/Thumbnail URL
+                          </label>
+                          <input
+                            type="url"
+                            id="eventVideoPosterUrl"
+                            value={eventVideoPosterUrl}
+                            onChange={(e) => setEventVideoPosterUrl(e.target.value)}
+                            placeholder="https://..."
+                            className={inputClassName}
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="eventVideoCaption" className={labelClassName}>
+                            Video Caption
+                          </label>
+                          <input
+                            type="text"
+                            id="eventVideoCaption"
+                            value={eventVideoCaption}
+                            onChange={(e) => setEventVideoCaption(e.target.value)}
+                            placeholder="Brief description of video"
+                            className={inputClassName}
+                          />
+                        </div>
                       </div>
                     </div>
 

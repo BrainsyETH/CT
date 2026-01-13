@@ -46,14 +46,21 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       const eventMode = event.mode.includes("crimeline") ? "crimeline" : "timeline";
 
       // Build image URL with all parameters
+      // Use video poster as image source if available, fallback to event image
+      const imageForOg = event.video?.poster_url || event.image;
+
       const imageParams = new URLSearchParams({
         title: event.title,
         date: formattedDate,
         summary: event.summary,
         mode: eventMode,
       });
-      if (event.image) {
-        imageParams.set("image", event.image);
+      if (imageForOg) {
+        imageParams.set("image", imageForOg);
+      }
+      // Add hasVideo flag so OG image can show play icon
+      if (event.video) {
+        imageParams.set("hasVideo", "true");
       }
 
       const ogImageUrl = toAbsoluteUrl(`api/og?${imageParams.toString()}`);
