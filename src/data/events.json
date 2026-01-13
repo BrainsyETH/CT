@@ -6848,6 +6848,64 @@
     ]
   },
   {
+    "id": "bitboy-atozy-lawsuit",
+    "date": "2023-09-25",
+    "title": "BitBoy Drops the Atozy Lawsuit",
+    "summary": "TBD",
+    "category": [
+      "CT Lore"
+    ],
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "video": {
+      "provider": "",
+      "url": "",
+      "poster_url": ""
+    },
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "Youtube",
+          "url": "https://youtu.be/VCdE_XvSP1w",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Arrest Footage",
+        "url": "https://x.com/Loopify/status/1706533730221740328?s=20"
+      },
+      {
+        "label": "News Report",
+        "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
+      }
+    ]
+  },
+  {
     "id": "bitboy-vs-ansem",
     "date": "2024-12-06",
     "title": "BitBoy vs Ansem Match",
