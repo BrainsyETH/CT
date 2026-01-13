@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { EventCard } from "./EventCard";
@@ -10,6 +10,7 @@ import { SearchFilter } from "./SearchFilter";
 import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
 import { getYear, formatCurrency } from "@/lib/formatters";
+import { throttle } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 interface TimelineProps {
@@ -31,7 +32,7 @@ export function Timeline({ events }: TimelineProps) {
   const prefersReducedMotion = useReducedMotion();
   const [currentVisibleYear, setCurrentVisibleYear] = useState<number | null>(null);
   const [isFilterVisible, setIsFilterVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
@@ -125,10 +126,11 @@ export function Timeline({ events }: TimelineProps) {
 
   const currentYear = years.length > 0 ? years[0] : null;
 
-  // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
-  useEffect(() => {
-    const handleScroll = () => {
+  // Throttled scroll handler for filter visibility and year tracking
+  const handleScroll = useCallback(
+    throttle(() => {
       const scrollY = window.scrollY;
+      const lastScrollY = lastScrollYRef.current;
 
       // Show filter if at the top, or if scrolling up
       if (scrollY < 100) {
@@ -141,7 +143,7 @@ export function Timeline({ events }: TimelineProps) {
         setIsFilterVisible(false);
       }
 
-      setLastScrollY(scrollY);
+      lastScrollYRef.current = scrollY;
 
       // Track current visible year
       for (let i = years.length - 1; i >= 0; i--) {
@@ -154,13 +156,17 @@ export function Timeline({ events }: TimelineProps) {
           }
         }
       }
-    };
+    }, 100),
+    [years]
+  );
 
+  // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [years, lastScrollY]);
+  }, [handleScroll]);
 
   // Calculate stats for crimeline mode - exclude unknown/NaN amounts
   const crimelineStats = useMemo(() => {
