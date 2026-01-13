@@ -169,25 +169,66 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   : "bg-white border-2 border-gray-200"
               }`}
             >
-              {/* Media Carousel */}
+              {/* Header Section - Date, Share, Title, Close */}
+              <div className="p-6 pb-4">
+                <div className="flex items-start justify-between">
+                  <time
+                    className={`text-sm font-medium ${
+                      isCrimeline ? "text-purple-400" : "text-teal-600"
+                    }`}
+                  >
+                    {formatDate(event.date)}
+                  </time>
+                  <div className="flex items-center gap-2">
+                    <ShareButton event={event} />
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                      className={`p-2 rounded-lg transition-colors ${
+                        isCrimeline
+                          ? "hover:bg-gray-800 text-gray-400 hover:text-white"
+                          : "hover:bg-gray-100 text-gray-500 hover:text-gray-700"
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h2
+                  id="modal-title"
+                  className={`mt-2 text-2xl font-bold ${
+                    isCrimeline ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {event.title}
+                </h2>
+
+                {/* Category */}
+                <p
+                  className={`mt-1 text-sm ${
+                    isCrimeline ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  {(Array.isArray(event.category) ? event.category : [event.category]).join(" • ")}
+                </p>
+              </div>
+
+              {/* Media Carousel - Middle */}
               {(() => {
                 const mediaItems = getMediaItems(event);
                 if (mediaItems.length > 0) {
                   return (
-                    <div className="relative">
-                      {/* Share button positioned over media */}
-                      <div className="absolute top-4 right-14 z-20">
-                        <ShareButton event={event} overImage />
-                      </div>
-                      <MediaCarousel
-                        media={mediaItems}
-                        event={event}
-                        isCrimeline={isCrimeline}
-                        onImageExpand={setExpandedImageUrl}
-                        closeButtonRef={closeButtonRef}
-                        onClose={closeModal}
-                      />
-                    </div>
+                    <MediaCarousel
+                      media={mediaItems}
+                      event={event}
+                      isCrimeline={isCrimeline}
+                      onImageExpand={setExpandedImageUrl}
+                    />
                   );
                 }
                 // Fallback for events with no media
@@ -209,68 +250,26 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                           : "bg-gradient-to-t from-white via-white/50 to-transparent"
                       }`}
                     />
-                    {/* Header Actions */}
-                    <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                      <ShareButton event={event} overImage />
-                      <button
-                        ref={closeButtonRef}
-                        onClick={closeModal}
-                        aria-label="Close modal"
-                        className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
                   </div>
                 );
               })()}
 
-              <div className="p-6">
-
-                {/* Date */}
-                <time
-                  className={`text-sm font-medium ${
-                    isCrimeline ? "text-purple-400" : "text-teal-600"
-                  }`}
-                >
-                  {formatDate(event.date)}
-                </time>
-
-                {/* Title */}
-                <h2
-                  id="modal-title"
-                  className={`mt-2 text-2xl font-bold ${
-                    isCrimeline ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  {event.title}
-                </h2>
-
-                {/* Category */}
-                <p
-                  className={`mt-1 text-sm ${
-                    isCrimeline ? "text-gray-400" : "text-gray-500"
-                  }`}
-                >
-                  {(Array.isArray(event.category) ? event.category : [event.category]).join(" • ")}
-                </p>
-
+              {/* Content Section - Below Media */}
+              <div className="p-6 pt-4">
                 {/* Tags */}
-                <div className="mt-4">
+                <div className="mb-4">
                   <TagPills tags={event.tags} />
                 </div>
 
                 {/* Summary */}
                 <p
-  id="modal-description"
-  className={`mt-4 text-base leading-relaxed whitespace-pre-line ${
-    isCrimeline ? "text-gray-300" : "text-gray-600"
-  }`}
->
-  {event.summary}
-</p>
+                  id="modal-description"
+                  className={`text-base leading-relaxed whitespace-pre-line ${
+                    isCrimeline ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  {event.summary}
+                </p>
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
