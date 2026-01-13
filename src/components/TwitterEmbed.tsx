@@ -42,7 +42,19 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Check if we have valid twitter data
+  const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
+  const hasAccountHandle = twitter.account_handle && twitter.account_handle.trim() !== "";
+  const hasValidData = hasTweetUrl || hasAccountHandle;
+
   useEffect(() => {
+    // Skip if no valid data
+    if (!hasValidData) {
+      setError("No Twitter content provided");
+      setIsLoading(false);
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -105,7 +117,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [twitter, theme]);
+  }, [twitter, theme, hasValidData]);
 
   if (error) {
     return (

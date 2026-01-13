@@ -8,33 +8,12 @@ import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
 import { MediaCarousel } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
+import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
-import type { Event, MediaItem } from "@/lib/types";
+import type { Event } from "@/lib/types";
 
 interface EventDetailModalProps {
   events: Event[];
-}
-
-// Build media array from event data (supports both new media array and legacy image/video fields)
-function getMediaItems(event: Event): MediaItem[] {
-  // If event has new media array, use it
-  if (event.media && event.media.length > 0) {
-    return event.media;
-  }
-
-  // Build from legacy fields for backward compatibility
-  const items: MediaItem[] = [];
-
-  if (event.video) {
-    items.push({ type: "video", video: event.video });
-  }
-
-  // Always include image as a fallback slide if present (and not already a video poster)
-  if (event.image && !event.video) {
-    items.push({ type: "image", image: { url: event.image, alt: event.title } });
-  }
-
-  return items;
 }
 
 export function EventDetailModal({ events }: EventDetailModalProps) {

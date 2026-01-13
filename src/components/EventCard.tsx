@@ -7,31 +7,13 @@ import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
 import { MediaPreview } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
+import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
-import type { Event, MediaItem } from "@/lib/types";
+import type { Event } from "@/lib/types";
 
 interface EventCardProps {
   event: Event;
   index: number;
-}
-
-// Build media array from event data (supports both new media array and legacy image/video fields)
-function getMediaItems(event: Event): MediaItem[] {
-  // If event has new media array, use it
-  if (event.media && event.media.length > 0) {
-    return event.media;
-  }
-
-  // Build from legacy fields for backward compatibility
-  const items: MediaItem[] = [];
-
-  if (event.video) {
-    items.push({ type: "video", video: event.video });
-  } else if (event.image) {
-    items.push({ type: "image", image: { url: event.image, alt: event.title } });
-  }
-
-  return items;
 }
 
 export function EventCard({ event, index }: EventCardProps) {
