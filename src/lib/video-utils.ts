@@ -1,6 +1,17 @@
 import { VideoProvider } from "./types";
 
 /**
+ * Normalize video provider string (handles typos like "self-hosted" vs "self_hosted")
+ */
+export function normalizeProvider(provider: string): VideoProvider {
+  const normalized = provider.toLowerCase().replace(/-/g, "_");
+  if (normalized === "self_hosted" || normalized === "selfhosted") {
+    return "self_hosted";
+  }
+  return normalized as VideoProvider;
+}
+
+/**
  * Extracts video ID from a YouTube URL
  */
 export function getYouTubeVideoId(url: string): string | null {
@@ -85,6 +96,7 @@ export function detectVideoProvider(url: string): VideoProvider | null {
 /**
  * Checks if a provider uses iframe embedding
  */
-export function isIframeProvider(provider: VideoProvider): boolean {
-  return provider === "youtube" || provider === "vimeo";
+export function isIframeProvider(provider: VideoProvider | string): boolean {
+  const normalized = normalizeProvider(provider as string);
+  return normalized === "youtube" || normalized === "vimeo";
 }

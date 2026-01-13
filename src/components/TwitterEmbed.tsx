@@ -25,13 +25,16 @@ interface TwitterEmbedProps {
 
 // Extract tweet ID from various Twitter/X URL formats
 function extractTweetId(url: string): string | null {
+  // Remove query parameters and hash first
+  const cleanUrl = url.split("?")[0].split("#")[0];
+
   const patterns = [
     /twitter\.com\/\w+\/status\/(\d+)/,
     /x\.com\/\w+\/status\/(\d+)/,
   ];
 
   for (const pattern of patterns) {
-    const match = url.match(pattern);
+    const match = cleanUrl.match(pattern);
     if (match) return match[1];
   }
   return null;
@@ -92,11 +95,16 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
             throw new Error("Invalid tweet URL");
           }
 
-          await window.twttr.widgets.createTweet(tweetId, container, {
+          const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
             theme: theme,
             dnt: true, // Do not track
             align: "center",
           });
+
+          // createTweet returns null if tweet can't be embedded
+          if (!tweetElement) {
+            throw new Error("Tweet could not be loaded");
+          }
         } else if (twitter.account_handle) {
           // For account timelines, we use an anchor tag that Twitter converts
           const anchor = document.createElement("a");
