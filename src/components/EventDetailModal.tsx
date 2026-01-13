@@ -241,27 +241,37 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
-                  <div className="mt-6 p-4 rounded-lg bg-purple-950/30 border-2 border-purple-900/40 shadow-[4px_4px_0_rgba(124,58,237,0.35)]">
-                    <h3 className="text-sm font-semibold text-purple-400 mb-3">
+                  <div className={`mt-6 p-4 rounded-lg border-2 shadow-[4px_4px_0_rgba(124,58,237,0.35)] ${
+                    isCrimeline
+                      ? "bg-purple-950/30 border-purple-900/40"
+                      : "bg-purple-100 border-purple-300"
+                  }`}>
+                    <h3 className={`text-sm font-semibold mb-3 ${
+                      isCrimeline ? "text-purple-400" : "text-purple-700"
+                    }`}>
                       Incident Details
                     </h3>
 
                     <div className="space-y-3">
                       {/* Type and Status */}
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-3 py-1 text-sm font-bold bg-purple-900/50 text-purple-300 rounded">
+                        <span className={`px-3 py-1 text-sm font-bold rounded ${
+                          isCrimeline
+                            ? "bg-purple-900/50 text-purple-300"
+                            : "bg-purple-200 text-purple-800"
+                        }`}>
                           {event.crimeline.type}
                         </span>
                         {event.crimeline.status && (
                           <span
                             className={`px-3 py-1 text-sm font-medium rounded ${
                               event.crimeline.status === "Funds recovered"
-                                ? "bg-green-900/50 text-green-300"
+                                ? isCrimeline ? "bg-green-900/50 text-green-300" : "bg-green-200 text-green-800"
                                 : event.crimeline.status === "Partial recovery"
-                                ? "bg-yellow-900/50 text-yellow-300"
+                                ? isCrimeline ? "bg-yellow-900/50 text-yellow-300" : "bg-yellow-200 text-yellow-800"
                                 : event.crimeline.status === "Total loss"
-                                ? "bg-purple-900/50 text-purple-300"
-                                : "bg-gray-700 text-gray-300"
+                                ? isCrimeline ? "bg-purple-900/50 text-purple-300" : "bg-purple-200 text-purple-800"
+                                : isCrimeline ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700"
                             }`}
                           >
                             {event.crimeline.status}
@@ -271,8 +281,8 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                       {/* Funds Lost */}
                       <div>
-                        <p className="text-xs text-gray-400">Funds Lost</p>
-                        <p className="text-2xl font-bold text-purple-400">
+                        <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Funds Lost</p>
+                        <p className={`text-2xl font-bold ${isCrimeline ? "text-purple-400" : "text-purple-700"}`}>
                           {formatFundsLost(event.crimeline.funds_lost_usd)}
                         </p>
                       </div>
@@ -280,12 +290,16 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       {/* Root Causes */}
                       {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
                         <div>
-                          <p className="text-xs text-gray-400 mb-2">Root Causes</p>
+                          <p className={`text-xs mb-2 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Root Causes</p>
                           <div className="flex flex-wrap gap-2">
                             {event.crimeline.root_cause.map((cause, i) => (
                               <span
                                 key={i}
-                                className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full"
+                                className={`px-3 py-1 text-sm rounded-full ${
+                                  isCrimeline
+                                    ? "bg-gray-800 text-gray-300"
+                                    : "bg-purple-200 text-purple-800"
+                                }`}
                               >
                                 {cause}
                               </span>
@@ -297,8 +311,8 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       {/* Aftermath */}
                       {event.crimeline.aftermath && (
                         <div>
-                          <p className="text-xs text-gray-400 mb-1">Aftermath</p>
-                          <p className="text-sm text-gray-300">{event.crimeline.aftermath}</p>
+                          <p className={`text-xs mb-1 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Aftermath</p>
+                          <p className={`text-sm ${isCrimeline ? "text-gray-300" : "text-gray-700"}`}>{event.crimeline.aftermath}</p>
                         </div>
                       )}
                     </div>

@@ -19,6 +19,8 @@ interface EventCardProps {
 export function EventCard({ event, index }: EventCardProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  // In "both" mode, use crimeline styling for events that have crimeline data
+  const useCrimelineStyle = isCrimeline || (mode === "both" && event.crimeline);
   const isLeft = index % 2 === 0;
   const prefersReducedMotion = useReducedMotion();
 
@@ -54,7 +56,7 @@ export function EventCard({ event, index }: EventCardProps) {
       {/* Timeline dot */}
       <div
         className={`absolute left-0 md:left-1/2 w-4 h-4 rounded-full -translate-x-1/2 z-10 transition-colors duration-300 ${
-          isCrimeline ? "bg-purple-500 shadow-purple-500/50" : "bg-teal-500 shadow-teal-500/50"
+          useCrimelineStyle ? "bg-purple-500 shadow-purple-500/50" : "bg-teal-500 shadow-teal-500/50"
         } shadow-lg`}
       />
 
@@ -70,13 +72,15 @@ export function EventCard({ event, index }: EventCardProps) {
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
           className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group ${
-            isCrimeline ? "focus:ring-purple-500" : "focus:ring-teal-500"
+            useCrimelineStyle ? "focus:ring-purple-500" : "focus:ring-teal-500"
           }`}
         >
           <div
             className={`rounded-lg transition-all duration-300 overflow-hidden ${
               isCrimeline
                 ? "bg-gray-900 border-2 border-purple-900/40 shadow-[6px_6px_0_rgba(124,58,237,0.35)] group-hover:border-purple-600/60 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.55)]"
+                : useCrimelineStyle
+                ? "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-purple-400 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.25)]"
                 : "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-teal-400 group-hover:shadow-[6px_6px_0_rgba(20,184,166,0.25)]"
             }`}
           >
@@ -115,7 +119,11 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Title */}
               <h3
                 className={`mt-1 text-lg font-bold transition-colors duration-300 ${
-                  isCrimeline ? "text-white group-hover:text-purple-300" : "text-gray-900 group-hover:text-teal-700"
+                  isCrimeline
+                    ? "text-white group-hover:text-purple-300"
+                    : useCrimelineStyle
+                    ? "text-gray-900 group-hover:text-purple-600"
+                    : "text-gray-900 group-hover:text-teal-700"
                 }`}
               >
                 {event.title}
@@ -214,7 +222,7 @@ export function EventCard({ event, index }: EventCardProps) {
               {/* Click hint - visible on mobile/focus and hover on desktop */}
               <div
                 className={`mt-3 text-xs font-medium transition-opacity duration-200 ${
-                  isCrimeline ? "text-purple-400" : "text-teal-600"
+                  useCrimelineStyle ? "text-purple-400" : "text-teal-600"
                 } opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100`}
               >
                 <span className="inline-flex items-center gap-1">

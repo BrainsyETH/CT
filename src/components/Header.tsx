@@ -39,7 +39,11 @@ export function Header() {
       <div className="hidden md:block max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo / Title */}
-          <div className="flex items-center gap-3 min-w-0">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-3 min-w-0 cursor-pointer hover:opacity-80 transition-opacity"
+            aria-label="Scroll to top"
+          >
             <motion.div
               className="w-8 h-8 flex-shrink-0 rounded-lg overflow-hidden"
               animate={
@@ -68,7 +72,7 @@ export function Header() {
                 unoptimized
               />
             </motion.div>
-            <div className="min-w-0">
+            <div className="min-w-0 text-left">
               <h1
                 className={`text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
                   isCrimeline ? "text-white" : "text-gray-900"
@@ -86,7 +90,7 @@ export function Header() {
                   : "The history of cryptocurrency"}
               </p>
             </div>
-          </div>
+          </button>
 
           {/* CT Lore Button + Mode Toggle */}
           <div className="flex items-center gap-3 flex-shrink-0">
@@ -115,7 +119,11 @@ export function Header() {
       <div className="md:hidden max-w-6xl mx-auto px-4 py-3">
         <div className="flex flex-col items-center gap-3">
           {/* Row 1: Logo + Title */}
-          <div className="flex items-center gap-2">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            aria-label="Scroll to top"
+          >
             <motion.div
               className="w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden"
               animate={
@@ -151,7 +159,7 @@ export function Header() {
             >
               Chain of Events
             </h1>
-          </div>
+          </button>
 
           {/* Row 2: Tagline */}
           <p
