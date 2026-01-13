@@ -1766,10 +1766,11 @@
   {
     "id": "coinbase-data-breach-2025-05",
     "date": "2025-05-15",
-    "title": "Coinbase Customer Data Breach via Rogue Support Agents",
-    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history — but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers’ arrest and vowed to reimburse affected customers.",
+    "title": "Coinbase Customer Data Breach via Support",
+    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history — but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers’ arrest and vowed to reimburse affected customers. ZachXBT has tracked related cases with massive individual thefts ($2M–$6M+ per scammer/group).",
     "category": [
-      "Centralized Exchange"
+      "Centralized Exchange",
+      "ZachXBT"
     ],
     "tags": [
       "SECURITY",
@@ -1783,6 +1784,10 @@
       {
         "label": "Brian Explains in Video",
         "url": "https://x.com/brian_armstrong/status/1922967787309256807?s=20"
+      },
+      {
+        "label": "ZachXBT Discloses Scammer",
+        "url": "https://x.com/zachxbt/status/2005649181097205845?s=20"
       }
     ],
     "crimeline": {
@@ -3842,42 +3847,7 @@
       "status": "Total loss"
     }
   },
-  {
-    "id": "coinbase-social-engineering-scams",
-    "date": "2023-10-15",
-    "title": "Coinbase Social Engineering Scam Ring",
-    "summary": "A sophisticated, organized phishing operation impersonated Coinbase customer support to steal over $65M from users. The scammers created professional fake support panels, spoofed official communication channels (email, SMS, social media), and used advanced social engineering to convince victims to share recovery phrases and authentication credentials. The operation involved multiple team members playing different roles. ZachXBT identified and publicly named individual threat actors, traced complex fund flows across multiple blockchains, and documented the complete infrastructure. Law enforcement took partial action against the ring, though the decentralized nature made complete takedown challenging.",
-    "category": [
-      "Centralized Exchange",
-      "ZachXBT"
-    ],
-    "tags": [
-      "SECURITY",
-      "CULTURAL"
-    ],
-    "mode": [
-      "crimeline"
-    ],
-    "image": "https://pbs.twimg.com/media/GFGxQDVbwAATZ0R?format=jpg&name=large",
-    "links": [
-      {
-        "label": "ZachXBT Coinbase Scam Thread",
-        "url": "https://x.com/zachxbt/status/1746200498547425556"
-      }
-    ],
-    "crimeline": {
-      "type": "FRAUD",
-      "funds_lost_usd": 65000000,
-      "victims_estimated": "Hundreds",
-      "root_cause": [
-        "Coinbase support impersonation",
-        "Fake support panels",
-        "Recovery phrase phishing"
-      ],
-      "aftermath": "ZachXBT identified and named multiple threat actors. Law enforcement took partial action against organized groups.",
-      "status": "Partial recovery"
-    }
-  },
+ 
   {
     "id": "machi-big-brother-allegations",
     "date": "2022-06-16",
