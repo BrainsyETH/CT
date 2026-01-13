@@ -1338,7 +1338,7 @@
     "title": "Sahil Orchestrates Mass Celebrity Token Scams",
     "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits—estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
     "category": [
-      "Scam"
+      "Memecoins"
     ],
     "tags": [
       "CULTURAL",
@@ -1652,7 +1652,7 @@
     "title": "Milei and Hayden Team Up To Rug Pull",
     "summary": "On February 14, 2025, Milei posted on Twitter endorsing $LIBRA as a project to fund small Argentine businesses and boost the economy, using his slogan `long live freedom`. The token's market cap surged dramatically to around $4-4.6 billion within hours as retail investors FOMO'd in. However, the price crashed almost immediately (dropping over 90-95% to near zero), resulting in massive investor losses estimated at $250-251 million. Multiple wallets linked to the project's insiders withdrew roughly $99-107 million (sometimes reported as high as $110 million) from the liquidity pool shortly after the hype peaked.",
     "category": [
-      "Other"
+      "Memecoins"
     ],
     "tags": [
       "FAILURE",
@@ -3594,8 +3594,13 @@
         "label": "News Report",
         "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
       }
-    ]
-  },
+    ],
+  "video": {
+    "provider": "self_hosted",
+    "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream.mp4",
+    "poster_url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bitboy_livestream"
+  }
+},
   {
     "id": "bitboy-vs-ansem",
     "date": "2024-12-06",
