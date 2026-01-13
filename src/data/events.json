@@ -3949,7 +3949,8 @@
     "title": "HZ (Chase Senecal) NFT Phishing Scams",
     "summary": "Chase Senecal, operating under aliases 'HZ' and 'Horror,' ran a targeted NFT phishing operation stealing over $260K from high-value NFT collectors using sophisticated wallet approval phishing techniques. Victims were tricked into signing malicious transactions that granted Senecal access to their wallets. ZachXBT's investigation meticulously tracked stolen NFTs and connected multiple wallets to Senecal's identity through social media cross-referencing and on-chain analysis. The investigation directly led to FBI involvement and landmark seizures.",
     "category": [
-      "Wallet/Key Compromise"
+      "Wallet/Key Compromise",
+      "ZachXBT"
     ],
     "tags": [
       "SECURITY",
