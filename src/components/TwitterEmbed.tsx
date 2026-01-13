@@ -43,6 +43,7 @@ function extractTweetId(url: string): string | null {
 
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,6 +51,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
   const hasAccountHandle = twitter.account_handle && twitter.account_handle.trim() !== "";
   const hasValidData = hasTweetUrl || hasAccountHandle;
+
+  // Get stable identifiers for the tweet
+  const tweetUrl = twitter.tweet_url || "";
+  const accountHandle = twitter.account_handle || "";
 
   useEffect(() => {
     // Skip if no valid data
@@ -61,6 +66,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
     const container = containerRef.current;
     if (!container) return;
+
+    // Skip if already loaded (prevents re-clearing on re-renders)
+    if (hasLoadedRef.current && container.children.length > 0) {
+      return;
+    }
 
     // Load Twitter widget script and wait for it to be ready
     const loadTwitterScript = (): Promise<void> => {
@@ -105,8 +115,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
         // Clear container
         container.innerHTML = "";
 
-        if (twitter.tweet_url) {
-          const tweetId = extractTweetId(twitter.tweet_url);
+        if (tweetUrl) {
+          const tweetId = extractTweetId(tweetUrl);
           if (!tweetId) {
             throw new Error("Invalid tweet URL");
           }
@@ -121,19 +131,23 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           if (!tweetElement) {
             throw new Error("Tweet could not be loaded");
           }
-        } else if (twitter.account_handle) {
+
+          // Tweet was created successfully
+          hasLoadedRef.current = true;
+          setIsLoading(false);
+        } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts
           const anchor = document.createElement("a");
           anchor.className = "twitter-timeline";
-          anchor.href = `https://twitter.com/${twitter.account_handle}`;
+          anchor.href = `https://twitter.com/${accountHandle}`;
           anchor.dataset.theme = theme;
           anchor.dataset.height = "400";
           anchor.dataset.dnt = "true";
           container.appendChild(anchor);
           window.twttr.widgets.load(container);
+          hasLoadedRef.current = true;
+          setIsLoading(false);
         }
-
-        setIsLoading(false);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load tweet");
         setIsLoading(false);
@@ -141,7 +155,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [twitter, theme, hasValidData]);
+  }, [tweetUrl, accountHandle, theme, hasValidData]);
 
   if (error) {
     return (
