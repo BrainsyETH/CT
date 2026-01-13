@@ -151,20 +151,31 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               <div className="relative w-full">
                 {event.video ? (
                   /* Video Player */
-                  <div className="relative w-full aspect-video">
+                  <div
+                    className={`relative w-full ${
+                      event.video.orientation === "portrait"
+                        ? "aspect-[9/16] max-h-[70vh]"
+                        : event.video.orientation === "square"
+                        ? "aspect-square"
+                        : "aspect-video"
+                    } bg-black flex items-center justify-center`}
+                  >
                     {isIframeProvider(event.video.provider) ? (
                       <iframe
                         src={event.video.embed_url || getEmbedUrl(event.video.provider, event.video.url)}
                         className="absolute inset-0 w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                         allowFullScreen
                         title={event.title}
                       />
                     ) : (
                       <video
                         controls
+                        controlsList="nodownload noplaybackrate"
+                        disablePictureInPicture
+                        playsInline
                         poster={event.video.poster_url || event.image}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         preload="metadata"
                       >
                         <source src={event.video.url} type="video/mp4" />

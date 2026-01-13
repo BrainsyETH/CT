@@ -42,6 +42,7 @@ export type OutcomeStatus =
   | "Unknown";
 
 export type VideoProvider = "youtube" | "vimeo" | "mux" | "self_hosted";
+export type VideoOrientation = "landscape" | "portrait" | "square";
 
 export interface EventVideo {
   provider: VideoProvider;
@@ -50,6 +51,7 @@ export interface EventVideo {
   poster_url?: string; // thumbnail for card/modal preview
   duration_seconds?: number;
   caption?: string;
+  orientation?: VideoOrientation; // defaults to landscape if not specified
 }
 
 export interface Event {
@@ -101,6 +103,7 @@ export interface FeedbackSubmission {
   event_video_provider?: string;
   event_video_poster_url?: string;
   event_video_caption?: string;
+  event_video_orientation?: string;
   // For crimeline events
   crimeline_type?: string;
   crimeline_funds_lost?: string;
