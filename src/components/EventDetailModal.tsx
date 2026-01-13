@@ -35,6 +35,36 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
 
+  // Reset mobile zoom when modal opens
+  useEffect(() => {
+    if (!selectedEventId) return;
+
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+
+    // Store original viewport content
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    const originalContent = viewportMeta?.getAttribute('content') || '';
+
+    // Reset zoom by temporarily setting maximum-scale=1
+    if (viewportMeta) {
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0');
+
+      // Restore original viewport after a brief moment to allow zoom reset
+      setTimeout(() => {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1');
+      }, 100);
+    }
+
+    return () => {
+      // Restore original viewport on cleanup
+      if (viewportMeta && originalContent) {
+        viewportMeta.setAttribute('content', originalContent);
+      }
+    };
+  }, [selectedEventId]);
+
   // Close on escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

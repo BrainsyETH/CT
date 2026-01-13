@@ -110,11 +110,16 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         type="button"
         onClick={handleCopy}
         disabled={!shareUrl}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
-        aria-label="Copy share URL"
+        className={`flex items-center justify-center p-2 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        aria-label={copied ? "Copied" : "Copy share URL"}
       >
-        <LinkIcon className="w-4 h-4" />
-        <span>{copied ? "Copied" : "Copy URL"}</span>
+        {copied ? (
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        ) : (
+          <LinkIcon className="w-4 h-4" />
+        )}
       </button>
     </div>
   );
