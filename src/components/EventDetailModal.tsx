@@ -8,10 +8,8 @@ import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getEmbedUrl, isIframeProvider } from "@/lib/video-utils";
+import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { Event } from "@/lib/types";
-
-const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
-const FALLBACK_IMAGE_CRIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png";
 
 interface EventDetailModalProps {
   events: Event[];
@@ -35,35 +33,6 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
 
-  // Reset mobile zoom when modal opens
-  useEffect(() => {
-    if (!selectedEventId) return;
-
-    // Check if we're on mobile
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) return;
-
-    // Store original viewport content
-    const viewportMeta = document.querySelector('meta[name="viewport"]');
-    const originalContent = viewportMeta?.getAttribute('content') || '';
-
-    // Reset zoom by temporarily setting maximum-scale=1
-    if (viewportMeta) {
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0');
-
-      // Restore original viewport after a brief moment to allow zoom reset
-      setTimeout(() => {
-        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1');
-      }, 100);
-    }
-
-    return () => {
-      // Restore original viewport on cleanup
-      if (viewportMeta && originalContent) {
-        viewportMeta.setAttribute('content', originalContent);
-      }
-    };
-  }, [selectedEventId]);
 
   // Close on escape key
   useEffect(() => {
@@ -169,7 +138,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)]"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)] touch-manipulation"
           >
             <div
               className={`${
@@ -237,7 +206,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       aria-label="View full image"
                     >
                       <Image
-                        src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
+                        src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
                         alt={event.title}
                         fill
                         unoptimized
@@ -511,7 +480,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Image
-                    src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
+                    src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
                     alt={event.title}
                     width={1200}
                     height={800}

@@ -3,6 +3,16 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
+import { MODES } from "@/lib/constants";
+import { sanitizeFeedbackSubmission } from "@/lib/sanitize";
+import { withRetry } from "@/lib/utils";
+import {
+  SuccessAnimation,
+  ContactFields,
+  EventFields,
+  VideoFields,
+  CrimelineFields,
+} from "./feedback";
 import type { Event, FeedbackType, FeedbackSubmission } from "@/lib/types";
 
 interface FeedbackModalProps {
@@ -12,161 +22,25 @@ interface FeedbackModalProps {
   event?: Event | null;
 }
 
-// Success animation component
-function SuccessAnimation({ isCrimeline }: { isCrimeline: boolean }) {
-  const checkmarkColor = isCrimeline ? "#a855f7" : "#14b8a6";
-  const circleColor = isCrimeline ? "#7c3aed" : "#0d9488";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="flex flex-col items-center justify-center py-8"
-    >
-      <div className="relative w-20 h-20">
-        {/* Circle */}
-        <motion.svg
-          viewBox="0 0 100 100"
-          className="w-full h-full"
-        >
-          <motion.circle
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke={circleColor}
-            strokeWidth="4"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          />
-        </motion.svg>
-
-        {/* Checkmark */}
-        <motion.svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full"
-        >
-          <motion.path
-            d="M30 50 L45 65 L70 35"
-            fill="none"
-            stroke={checkmarkColor}
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-          />
-        </motion.svg>
-
-        {/* Burst particles */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full"
-            style={{
-              backgroundColor: checkmarkColor,
-              left: "50%",
-              top: "50%",
-            }}
-            initial={{ scale: 0, x: "-50%", y: "-50%" }}
-            animate={{
-              scale: [0, 1, 0],
-              x: `calc(-50% + ${Math.cos((i * Math.PI) / 4) * 50}px)`,
-              y: `calc(-50% + ${Math.sin((i * Math.PI) / 4) * 50}px)`,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.2,
-              ease: "easeOut",
-            }}
-          />
-        ))}
-      </div>
-
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className={`mt-4 text-lg font-semibold ${
-          isCrimeline ? "text-purple-400" : "text-teal-600"
-        }`}
-      >
-        Submitted Successfully!
-      </motion.p>
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className={`mt-1 text-sm ${
-          isCrimeline ? "text-gray-400" : "text-gray-600"
-        }`}
-      >
-        Thank you for your contribution
-      </motion.p>
-    </motion.div>
-  );
-}
-
-const CATEGORIES = [
-  "Bitcoin",
-  "Ethereum",
-  "DeFi",
-  "NFT",
-  "Stablecoin",
-  "Centralized Exchange",
-  "Layer 2",
-  "Other",
-];
-
-const TAGS = [
-  "TECH",
-  "ECONOMIC",
-  "REGULATORY",
-  "CULTURAL",
-  "SECURITY",
-  "FAILURE",
-  "MILESTONE",
-  "ATH",
-];
-
-const MODES = ["timeline", "crimeline", "both"];
-
-const CRIMELINE_TYPES = [
-  "EXCHANGE HACK",
-  "PROTOCOL EXPLOIT",
-  "BRIDGE HACK",
-  "ORACLE MANIPULATION",
-  "RUG PULL",
-  "FRAUD",
-  "CUSTODY FAILURE",
-  "LEVERAGE COLLAPSE",
-  "GOVERNANCE ATTACK",
-  "REGULATORY SEIZURE",
-  "SOCIAL MEDIA HACK",
-  "OTHER",
-];
-
-const OUTCOME_STATUSES = [
-  "Funds recovered",
-  "Partial recovery",
-  "Total loss",
-  "Ongoing",
-  "Unknown",
-];
-
-export function FeedbackModal({ isOpen, onClose, initialType = "general", event }: FeedbackModalProps) {
+export function FeedbackModal({
+  isOpen,
+  onClose,
+  initialType = "general",
+  event,
+}: FeedbackModalProps) {
   const { mode } = useModeStore();
-  const isCrimeline = mode === "crimeline";
+  const isCrimeline = mode === MODES.CRIMELINE;
   const prefersReducedMotion = useReducedMotion();
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const [feedbackType, setFeedbackType] = useState<FeedbackType>(initialType);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
   const [errorMessage, setErrorMessage] = useState("");
+  const [retryCount, setRetryCount] = useState(0);
 
   // Form fields
   const [email, setEmail] = useState("");
@@ -176,7 +50,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
   const [eventSummary, setEventSummary] = useState("");
   const [eventCategory, setEventCategory] = useState("");
   const [eventTags, setEventTags] = useState<string[]>([]);
-  const [eventMode, setEventMode] = useState("timeline");
+  const [eventMode, setEventMode] = useState(MODES.TIMELINE);
   const [eventImageUrl, setEventImageUrl] = useState("");
   const [eventSourceUrl, setEventSourceUrl] = useState("");
   const [eventVideoUrl, setEventVideoUrl] = useState("");
@@ -193,13 +67,17 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
 
   // Pre-fill form when editing an event
   useEffect(() => {
-    if (event && (initialType === "edit_event")) {
+    if (event && initialType === "edit_event") {
       setEventTitle(event.title || "");
       setEventDate(event.date || "");
       setEventSummary(event.summary || "");
-      setEventCategory(Array.isArray(event.category) ? event.category[0] : event.category || "");
+      setEventCategory(
+        Array.isArray(event.category) ? event.category[0] : event.category || ""
+      );
       setEventTags(event.tags || []);
-      setEventMode(Array.isArray(event.mode) ? event.mode[0] : event.mode || "timeline");
+      setEventMode(
+        Array.isArray(event.mode) ? event.mode[0] : event.mode || MODES.TIMELINE
+      );
       setEventImageUrl(event.image || "");
       setEventSourceUrl(event.links?.[0]?.url || "");
       if (event.video) {
@@ -252,7 +130,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     setEventSummary("");
     setEventCategory("");
     setEventTags([]);
-    setEventMode("timeline");
+    setEventMode(MODES.TIMELINE);
     setEventImageUrl("");
     setEventSourceUrl("");
     setEventVideoUrl("");
@@ -268,6 +146,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     setMessage("");
     setSubmitStatus("idle");
     setErrorMessage("");
+    setRetryCount(0);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -281,52 +160,70 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     setSubmitStatus("idle");
     setErrorMessage("");
 
-    const submission: FeedbackSubmission = {
+    // Build submission object
+    const rawSubmission: FeedbackSubmission = {
       type: feedbackType,
       email,
       twitter_handle: twitterHandle || undefined,
     };
 
     if (feedbackType === "new_event" || feedbackType === "edit_event") {
-      submission.event_id = event?.id;
-      submission.event_title = eventTitle;
-      submission.event_date = eventDate;
-      submission.event_summary = eventSummary;
-      submission.event_category = eventCategory;
-      submission.event_tags = eventTags.join(", ");
-      submission.event_mode = eventMode;
-      submission.event_image_url = eventImageUrl;
-      submission.event_source_url = eventSourceUrl;
-      submission.event_video_url = eventVideoUrl || undefined;
-      submission.event_video_provider = eventVideoProvider || undefined;
-      submission.event_video_poster_url = eventVideoPosterUrl || undefined;
-      submission.event_video_caption = eventVideoCaption || undefined;
-      submission.event_video_orientation = eventVideoOrientation || undefined;
+      rawSubmission.event_id = event?.id;
+      rawSubmission.event_title = eventTitle;
+      rawSubmission.event_date = eventDate;
+      rawSubmission.event_summary = eventSummary;
+      rawSubmission.event_category = eventCategory;
+      rawSubmission.event_tags = eventTags.join(", ");
+      rawSubmission.event_mode = eventMode;
+      rawSubmission.event_image_url = eventImageUrl;
+      rawSubmission.event_source_url = eventSourceUrl;
+      rawSubmission.event_video_url = eventVideoUrl || undefined;
+      rawSubmission.event_video_provider = eventVideoProvider || undefined;
+      rawSubmission.event_video_poster_url = eventVideoPosterUrl || undefined;
+      rawSubmission.event_video_caption = eventVideoCaption || undefined;
+      rawSubmission.event_video_orientation = eventVideoOrientation || undefined;
 
-      if (eventMode === "crimeline" || eventMode === "both") {
-        submission.crimeline_type = crimelineType;
-        submission.crimeline_funds_lost = crimelineFundsLost;
-        submission.crimeline_status = crimelineStatus;
-        submission.crimeline_root_cause = crimelineRootCause;
-        submission.crimeline_aftermath = crimelineAftermath;
+      if (eventMode === MODES.CRIMELINE || eventMode === MODES.BOTH) {
+        rawSubmission.crimeline_type = crimelineType;
+        rawSubmission.crimeline_funds_lost = crimelineFundsLost;
+        rawSubmission.crimeline_status = crimelineStatus;
+        rawSubmission.crimeline_root_cause = crimelineRootCause;
+        rawSubmission.crimeline_aftermath = crimelineAftermath;
       }
     }
 
     if (feedbackType === "general" || feedbackType === "edit_event") {
-      submission.message = message;
+      rawSubmission.message = message;
     }
 
-    try {
-      const response = await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submission),
-      });
+    // Sanitize all inputs before sending
+    const submission = sanitizeFeedbackSubmission(rawSubmission);
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Failed to submit feedback");
-      }
+    try {
+      // Use retry logic for network resilience
+      await withRetry(
+        async () => {
+          const response = await fetch("/api/feedback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(submission),
+          });
+
+          if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.error || "Failed to submit feedback");
+          }
+
+          return response;
+        },
+        {
+          maxRetries: 3,
+          baseDelayMs: 1000,
+          onRetry: (attempt) => {
+            setRetryCount(attempt);
+          },
+        }
+      );
 
       setSubmitStatus("success");
       setTimeout(() => {
@@ -334,7 +231,9 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
       }, 2000);
     } catch (error) {
       setSubmitStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "An error occurred");
+      setErrorMessage(
+        error instanceof Error ? error.message : "An error occurred"
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -373,7 +272,8 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
     isCrimeline ? "text-gray-300" : "text-gray-700"
   }`;
 
-  const showCrimelineFields = eventMode === "crimeline" || eventMode === "both";
+  const showCrimelineFields =
+    eventMode === MODES.CRIMELINE || eventMode === MODES.BOTH;
 
   return (
     <AnimatePresence>
@@ -394,7 +294,7 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
             role="dialog"
             aria-modal="true"
             aria-labelledby="feedback-modal-title"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)]"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)] touch-manipulation"
           >
             <div
               className={`${
@@ -434,8 +334,18 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
                         : "hover:bg-gray-100 text-gray-500 hover:text-gray-700"
                     }`}
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -470,350 +380,90 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
               {/* Form */}
               <form onSubmit={handleSubmit} className="p-6 space-y-4">
                 {/* Contact Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="email" className={labelClassName}>
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
-                      className={inputClassName}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="twitter" className={labelClassName}>
-                      X/Twitter Handle (optional)
-                    </label>
-                    <input
-                      type="text"
-                      id="twitter"
-                      value={twitterHandle}
-                      onChange={(e) => setTwitterHandle(e.target.value)}
-                      placeholder="@handle"
-                      className={inputClassName}
-                    />
-                  </div>
-                </div>
+                <ContactFields
+                  email={email}
+                  twitterHandle={twitterHandle}
+                  onEmailChange={setEmail}
+                  onTwitterChange={setTwitterHandle}
+                  inputClassName={inputClassName}
+                  labelClassName={labelClassName}
+                />
 
                 {/* Event Fields */}
-                {(feedbackType === "new_event" || feedbackType === "edit_event") && (
+                {(feedbackType === "new_event" ||
+                  feedbackType === "edit_event") && (
                   <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="eventTitle" className={labelClassName}>
-                          Event Title <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="eventTitle"
-                          required
-                          value={eventTitle}
-                          onChange={(e) => setEventTitle(e.target.value)}
-                          placeholder="e.g., Bitcoin Pizza Day"
-                          className={inputClassName}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="eventDate" className={labelClassName}>
-                          Date <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="date"
-                          id="eventDate"
-                          required
-                          value={eventDate}
-                          onChange={(e) => setEventDate(e.target.value)}
-                          className={inputClassName}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="eventSummary" className={labelClassName}>
-                        Summary <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        id="eventSummary"
-                        required
-                        rows={3}
-                        value={eventSummary}
-                        onChange={(e) => setEventSummary(e.target.value)}
-                        placeholder="Describe the event..."
-                        className={inputClassName}
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="eventCategory" className={labelClassName}>
-                          Category
-                        </label>
-                        <select
-                          id="eventCategory"
-                          value={eventCategory}
-                          onChange={(e) => setEventCategory(e.target.value)}
-                          className={inputClassName}
-                        >
-                          <option value="">Select category...</option>
-                          {CATEGORIES.map((cat) => (
-                            <option key={cat} value={cat}>
-                              {cat}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label htmlFor="eventMode" className={labelClassName}>
-                          Mode
-                        </label>
-                        <select
-                          id="eventMode"
-                          value={eventMode}
-                          onChange={(e) => setEventMode(e.target.value)}
-                          className={inputClassName}
-                        >
-                          {MODES.map((m) => (
-                            <option key={m} value={m}>
-                              {m.charAt(0).toUpperCase() + m.slice(1)}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={labelClassName}>Tags</label>
-                      <div className="flex flex-wrap gap-2">
-                        {TAGS.map((tag) => (
-                          <button
-                            key={tag}
-                            type="button"
-                            onClick={() => handleTagToggle(tag)}
-                            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                              eventTags.includes(tag)
-                                ? isCrimeline
-                                  ? "bg-purple-600 text-white"
-                                  : "bg-teal-600 text-white"
-                                : isCrimeline
-                                ? "bg-gray-800 text-gray-400 hover:bg-gray-700"
-                                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                            }`}
-                          >
-                            {tag}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="eventImageUrl" className={labelClassName}>
-                          Image URL
-                        </label>
-                        <input
-                          type="url"
-                          id="eventImageUrl"
-                          value={eventImageUrl}
-                          onChange={(e) => setEventImageUrl(e.target.value)}
-                          placeholder="https://..."
-                          className={inputClassName}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="eventSourceUrl" className={labelClassName}>
-                          Source URL
-                        </label>
-                        <input
-                          type="url"
-                          id="eventSourceUrl"
-                          value={eventSourceUrl}
-                          onChange={(e) => setEventSourceUrl(e.target.value)}
-                          placeholder="https://..."
-                          className={inputClassName}
-                        />
-                      </div>
-                    </div>
+                    <EventFields
+                      eventTitle={eventTitle}
+                      eventDate={eventDate}
+                      eventSummary={eventSummary}
+                      eventCategory={eventCategory}
+                      eventTags={eventTags}
+                      eventMode={eventMode}
+                      eventImageUrl={eventImageUrl}
+                      eventSourceUrl={eventSourceUrl}
+                      onTitleChange={setEventTitle}
+                      onDateChange={setEventDate}
+                      onSummaryChange={setEventSummary}
+                      onCategoryChange={setEventCategory}
+                      onTagToggle={handleTagToggle}
+                      onModeChange={setEventMode}
+                      onImageUrlChange={setEventImageUrl}
+                      onSourceUrlChange={setEventSourceUrl}
+                      inputClassName={inputClassName}
+                      labelClassName={labelClassName}
+                      isCrimeline={isCrimeline}
+                    />
 
                     {/* Video Fields */}
-                    <div className={`p-4 rounded-lg ${isCrimeline ? "bg-gray-800/50 border border-gray-700" : "bg-gray-50 border border-gray-200"}`}>
-                      <h3 className={`text-sm font-semibold mb-3 ${isCrimeline ? "text-gray-300" : "text-gray-700"}`}>
-                        Video (Optional)
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="eventVideoUrl" className={labelClassName}>
-                            Video URL
-                          </label>
-                          <input
-                            type="url"
-                            id="eventVideoUrl"
-                            value={eventVideoUrl}
-                            onChange={(e) => setEventVideoUrl(e.target.value)}
-                            placeholder="https://youtube.com/watch?v=..."
-                            className={inputClassName}
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="eventVideoProvider" className={labelClassName}>
-                            Provider
-                          </label>
-                          <select
-                            id="eventVideoProvider"
-                            value={eventVideoProvider}
-                            onChange={(e) => setEventVideoProvider(e.target.value)}
-                            className={inputClassName}
-                          >
-                            <option value="">Select provider...</option>
-                            <option value="youtube">YouTube</option>
-                            <option value="vimeo">Vimeo</option>
-                            <option value="mux">Mux</option>
-                            <option value="self_hosted">Self-hosted</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label htmlFor="eventVideoPosterUrl" className={labelClassName}>
-                            Video Poster/Thumbnail URL
-                          </label>
-                          <input
-                            type="url"
-                            id="eventVideoPosterUrl"
-                            value={eventVideoPosterUrl}
-                            onChange={(e) => setEventVideoPosterUrl(e.target.value)}
-                            placeholder="https://..."
-                            className={inputClassName}
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="eventVideoCaption" className={labelClassName}>
-                            Video Caption
-                          </label>
-                          <input
-                            type="text"
-                            id="eventVideoCaption"
-                            value={eventVideoCaption}
-                            onChange={(e) => setEventVideoCaption(e.target.value)}
-                            placeholder="Brief description of video"
-                            className={inputClassName}
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="eventVideoOrientation" className={labelClassName}>
-                            Orientation
-                          </label>
-                          <select
-                            id="eventVideoOrientation"
-                            value={eventVideoOrientation}
-                            onChange={(e) => setEventVideoOrientation(e.target.value)}
-                            className={inputClassName}
-                          >
-                            <option value="">Landscape (default)</option>
-                            <option value="landscape">Landscape (16:9)</option>
-                            <option value="portrait">Portrait (9:16)</option>
-                            <option value="square">Square (1:1)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
+                    <VideoFields
+                      videoUrl={eventVideoUrl}
+                      videoProvider={eventVideoProvider}
+                      videoPosterUrl={eventVideoPosterUrl}
+                      videoCaption={eventVideoCaption}
+                      videoOrientation={eventVideoOrientation}
+                      onVideoUrlChange={setEventVideoUrl}
+                      onProviderChange={setEventVideoProvider}
+                      onPosterUrlChange={setEventVideoPosterUrl}
+                      onCaptionChange={setEventVideoCaption}
+                      onOrientationChange={setEventVideoOrientation}
+                      inputClassName={inputClassName}
+                      labelClassName={labelClassName}
+                      isCrimeline={isCrimeline}
+                    />
 
                     {/* Crimeline-specific fields */}
                     {showCrimelineFields && (
-                      <div className={`p-4 rounded-lg ${isCrimeline ? "bg-purple-950/30 border border-purple-900/40" : "bg-red-50 border border-red-200"}`}>
-                        <h3 className={`text-sm font-semibold mb-3 ${isCrimeline ? "text-purple-400" : "text-red-700"}`}>
-                          Crimeline Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <label htmlFor="crimelineType" className={labelClassName}>
-                              Incident Type
-                            </label>
-                            <select
-                              id="crimelineType"
-                              value={crimelineType}
-                              onChange={(e) => setCrimelineType(e.target.value)}
-                              className={inputClassName}
-                            >
-                              <option value="">Select type...</option>
-                              {CRIMELINE_TYPES.map((t) => (
-                                <option key={t} value={t}>
-                                  {t}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          <div>
-                            <label htmlFor="crimelineFundsLost" className={labelClassName}>
-                              Funds Lost (USD)
-                            </label>
-                            <input
-                              type="text"
-                              id="crimelineFundsLost"
-                              value={crimelineFundsLost}
-                              onChange={(e) => setCrimelineFundsLost(e.target.value)}
-                              placeholder="e.g., 100000000"
-                              className={inputClassName}
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="crimelineStatus" className={labelClassName}>
-                              Outcome Status
-                            </label>
-                            <select
-                              id="crimelineStatus"
-                              value={crimelineStatus}
-                              onChange={(e) => setCrimelineStatus(e.target.value)}
-                              className={inputClassName}
-                            >
-                              <option value="">Select status...</option>
-                              {OUTCOME_STATUSES.map((s) => (
-                                <option key={s} value={s}>
-                                  {s}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          <div>
-                            <label htmlFor="crimelineRootCause" className={labelClassName}>
-                              Root Cause(s)
-                            </label>
-                            <input
-                              type="text"
-                              id="crimelineRootCause"
-                              value={crimelineRootCause}
-                              onChange={(e) => setCrimelineRootCause(e.target.value)}
-                              placeholder="e.g., Smart contract bug, Poor security"
-                              className={inputClassName}
-                            />
-                          </div>
-                        </div>
-                        <div className="mt-4">
-                          <label htmlFor="crimelineAftermath" className={labelClassName}>
-                            Aftermath
-                          </label>
-                          <textarea
-                            id="crimelineAftermath"
-                            rows={2}
-                            value={crimelineAftermath}
-                            onChange={(e) => setCrimelineAftermath(e.target.value)}
-                            placeholder="What happened after the incident..."
-                            className={inputClassName}
-                          />
-                        </div>
-                      </div>
+                      <CrimelineFields
+                        crimelineType={crimelineType}
+                        fundsLost={crimelineFundsLost}
+                        status={crimelineStatus}
+                        rootCause={crimelineRootCause}
+                        aftermath={crimelineAftermath}
+                        onTypeChange={setCrimelineType}
+                        onFundsLostChange={setCrimelineFundsLost}
+                        onStatusChange={setCrimelineStatus}
+                        onRootCauseChange={setCrimelineRootCause}
+                        onAftermathChange={setCrimelineAftermath}
+                        inputClassName={inputClassName}
+                        labelClassName={labelClassName}
+                        isCrimeline={isCrimeline}
+                      />
                     )}
                   </>
                 )}
 
                 {/* Message field for general feedback and edit suggestions */}
-                {(feedbackType === "general" || feedbackType === "edit_event") && (
+                {(feedbackType === "general" ||
+                  feedbackType === "edit_event") && (
                   <div>
                     <label htmlFor="message" className={labelClassName}>
-                      {feedbackType === "edit_event" ? "Additional Notes / What needs to be changed" : "Your Feedback"}{" "}
-                      {feedbackType === "general" && <span className="text-red-500">*</span>}
+                      {feedbackType === "edit_event"
+                        ? "Additional Notes / What needs to be changed"
+                        : "Your Feedback"}{" "}
+                      {feedbackType === "general" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <textarea
                       id="message"
@@ -847,6 +497,17 @@ export function FeedbackModal({ isOpen, onClose, initialType = "general", event 
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {/* Retry indicator */}
+                {isSubmitting && retryCount > 0 && (
+                  <p
+                    className={`text-sm ${
+                      isCrimeline ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    Retrying... (Attempt {retryCount + 1})
+                  </p>
+                )}
 
                 {/* Submit Button */}
                 {submitStatus !== "success" && (

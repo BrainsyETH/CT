@@ -6,10 +6,8 @@ import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
+import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { Event } from "@/lib/types";
-
-const FALLBACK_IMAGE_TIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/chain_of_events_small.png";
-const FALLBACK_IMAGE_CRIMELINE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png";
 
 interface EventCardProps {
   event: Event;
@@ -87,7 +85,7 @@ export function EventCard({ event, index }: EventCardProps) {
             {/* Event Image */}
             <div className="relative w-full aspect-[16/9] overflow-hidden">
               <Image
-                src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
+                src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
                 alt={event.title}
                 fill
                 unoptimized

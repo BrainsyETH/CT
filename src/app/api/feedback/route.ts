@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sanitizeFeedbackSubmission, sanitizeEmail } from "@/lib/sanitize";
+import { RATE_LIMIT, VALIDATION, FEEDBACK_TYPES } from "@/lib/constants";
 import type { FeedbackSubmission } from "@/lib/types";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const RATE_LIMIT = 5; // Max submissions per hour
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 export async function POST(request: Request) {
   try {
@@ -22,7 +22,10 @@ export async function POST(request: Request) {
     // Create Supabase client with service role key for server-side operations
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const body: FeedbackSubmission = await request.json();
+    const rawBody: FeedbackSubmission = await request.json();
+
+    // Sanitize all inputs on the server side
+    const body = sanitizeFeedbackSubmission(rawBody);
 
     // Validate required fields
     if (!body.type || !body.email) {
@@ -41,27 +44,57 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate email length
+    if (body.email.length > VALIDATION.MAX_EMAIL_LENGTH) {
+      return NextResponse.json(
+        { error: "Email address is too long" },
+        { status: 400 }
+      );
+    }
+
     // Validate feedback type
-    if (!["new_event", "edit_event", "general"].includes(body.type)) {
+    if (!FEEDBACK_TYPES.includes(body.type as typeof FEEDBACK_TYPES[number])) {
       return NextResponse.json(
         { error: "Invalid feedback type" },
         { status: 400 }
       );
     }
 
+    // Validate field lengths
+    if (body.event_title && body.event_title.length > VALIDATION.MAX_TITLE_LENGTH) {
+      return NextResponse.json(
+        { error: "Event title is too long" },
+        { status: 400 }
+      );
+    }
+
+    if (body.event_summary && body.event_summary.length > VALIDATION.MAX_SUMMARY_LENGTH) {
+      return NextResponse.json(
+        { error: "Event summary is too long" },
+        { status: 400 }
+      );
+    }
+
+    if (body.message && body.message.length > VALIDATION.MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: "Message is too long" },
+        { status: 400 }
+      );
+    }
+
     // Rate limiting: Check submissions from this email in the last hour
-    const oneHourAgo = new Date(Date.now() - RATE_LIMIT_WINDOW).toISOString();
+    const oneHourAgo = new Date(Date.now() - RATE_LIMIT.WINDOW_MS).toISOString();
 
     const { count, error: countError } = await supabase
       .from("feedback_submissions")
       .select("*", { count: "exact", head: true })
-      .eq("email", body.email.toLowerCase())
+      .eq("email", sanitizeEmail(body.email))
       .gte("created_at", oneHourAgo);
 
     if (countError) {
       console.error("Rate limit check error:", countError);
       // Continue anyway - don't block submission if rate limit check fails
-    } else if (count !== null && count >= RATE_LIMIT) {
+    } else if (count !== null && count >= RATE_LIMIT.MAX_SUBMISSIONS) {
       return NextResponse.json(
         {
           error: "Rate limit exceeded. Please try again later.",
@@ -77,7 +110,7 @@ export async function POST(request: Request) {
       .insert([
         {
           type: body.type,
-          email: body.email.toLowerCase(),
+          email: sanitizeEmail(body.email),
           twitter_handle: body.twitter_handle || null,
           event_id: body.event_id || null,
           event_title: body.event_title || null,
