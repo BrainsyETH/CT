@@ -279,7 +279,7 @@ export function SearchFilter() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search events"
-            className={`w-full pl-9 pr-8 py-2 rounded-lg text-sm transition-colors duration-300 ${
+            className={`w-full pl-9 pr-8 py-2 rounded-lg text-base sm:text-sm transition-colors duration-300 ${
               isCrimeline
                 ? "bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:border-purple-500"
                 : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:border-teal-500"
@@ -513,7 +513,7 @@ export function SearchFilter() {
                             placeholder="Search categories..."
                             value={categorySearch}
                             onChange={(e) => setCategorySearch(e.target.value)}
-                            className={`w-full px-3 py-1.5 text-xs rounded-md transition-colors ${
+                            className={`w-full px-3 py-1.5 text-base sm:text-xs rounded-md transition-colors ${
                               isCrimeline
                                 ? "bg-gray-800 border border-gray-700 text-white placeholder-gray-500"
                                 : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400"
