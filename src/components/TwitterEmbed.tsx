@@ -69,6 +69,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
     // Skip if already loaded (prevents re-clearing on re-renders)
     if (hasLoadedRef.current && container.children.length > 0) {
+      setIsLoading(false);
       return;
     }
 
@@ -144,9 +145,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           anchor.dataset.height = "400";
           anchor.dataset.dnt = "true";
           container.appendChild(anchor);
-          window.twttr.widgets.load(container);
-          hasLoadedRef.current = true;
-          setIsLoading(false);
+          window.twttr.ready(() => {
+            window.twttr?.widgets.load(container);
+            hasLoadedRef.current = true;
+            setIsLoading(false);
+          });
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load tweet");
@@ -195,7 +198,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container ${isLoading ? "hidden" : ""}`}
+        className={`twitter-embed-container ${isLoading ? "invisible" : ""}`}
       />
     </div>
   );
