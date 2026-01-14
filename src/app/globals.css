@@ -123,3 +123,34 @@ textarea:focus-visible {
   height: auto;
   overflow: visible;
 }
+
+/* Performance optimizations for smooth scrolling */
+.event-card {
+  will-change: transform;
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Timeline event containers - optimize for scrolling */
+.timeline-event-group {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Media carousel - optimize animations */
+.media-carousel-container {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Video containers - optimize rendering */
+.video-container {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Twitter embed containers - optimize loading */
+.twitter-embed-container {
+  contain: layout style paint;
+  transform: translateZ(0);
+}

@@ -10,7 +10,7 @@ import { SearchFilter } from "./SearchFilter";
 import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
 import { getYear, formatCurrency } from "@/lib/formatters";
-import { throttle } from "@/lib/utils";
+import { throttle, isMobile } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 interface TimelineProps {
@@ -127,36 +127,42 @@ export function Timeline({ events }: TimelineProps) {
   const currentYear = years.length > 0 ? years[0] : null;
 
   // Throttled scroll handler for filter visibility and year tracking
+  // Use more aggressive throttling on mobile for better performance
+  const scrollThrottleMs = isMobile() ? 150 : 100;
+  
   const handleScroll = useCallback(
     throttle(() => {
-      const scrollY = window.scrollY;
-      const lastScrollY = lastScrollYRef.current;
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const lastScrollY = lastScrollYRef.current;
 
-      // Show filter if at the top, or if scrolling up
-      if (scrollY < 100) {
-        setIsFilterVisible(true);
-      } else if (scrollY < lastScrollY) {
-        // Scrolling up - show filter
-        setIsFilterVisible(true);
-      } else if (scrollY > lastScrollY + 10) {
-        // Scrolling down (with threshold to avoid micro-movements) - hide filter
-        setIsFilterVisible(false);
-      }
+        // Show filter if at the top, or if scrolling up
+        if (scrollY < 100) {
+          setIsFilterVisible(true);
+        } else if (scrollY < lastScrollY) {
+          // Scrolling up - show filter
+          setIsFilterVisible(true);
+        } else if (scrollY > lastScrollY + 10) {
+          // Scrolling down (with threshold to avoid micro-movements) - hide filter
+          setIsFilterVisible(false);
+        }
 
-      lastScrollYRef.current = scrollY;
+        lastScrollYRef.current = scrollY;
 
-      // Track current visible year
-      for (let i = years.length - 1; i >= 0; i--) {
-        const yearElement = document.getElementById(`year-${years[i]}`);
-        if (yearElement) {
-          const rect = yearElement.getBoundingClientRect();
-          if (rect.top <= 200) {
-            setCurrentVisibleYear(years[i]);
-            break;
+        // Track current visible year
+        for (let i = years.length - 1; i >= 0; i--) {
+          const yearElement = document.getElementById(`year-${years[i]}`);
+          if (yearElement) {
+            const rect = yearElement.getBoundingClientRect();
+            if (rect.top <= 200) {
+              setCurrentVisibleYear(years[i]);
+              break;
+            }
           }
         }
-      }
-    }, 100),
+      });
+    }, scrollThrottleMs),
     [years]
   );
 
@@ -288,7 +294,7 @@ export function Timeline({ events }: TimelineProps) {
               className="relative space-y-12 py-8"
             >
               {groupedEvents.map(({ year, events: yearEvents }) => (
-                <div key={year} id={`year-${year}`} className="scroll-mt-44">
+                <div key={year} id={`year-${year}`} className="scroll-mt-44 timeline-event-group">
                   {/* Year Header */}
                   <div className="flex items-center justify-center mb-8">
                     <motion.div
@@ -309,11 +315,12 @@ export function Timeline({ events }: TimelineProps) {
                     {yearEvents.map((event) => {
                       const currentIndex = cardIndex++;
                       return (
-                        <EventCard
-                          key={event.id}
-                          event={event}
-                          index={currentIndex}
-                        />
+                        <div key={event.id} className="event-card">
+                          <EventCard
+                            event={event}
+                            index={currentIndex}
+                          />
+                        </div>
                       );
                     })}
                   </div>

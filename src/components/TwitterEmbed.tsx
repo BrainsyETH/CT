@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { TwitterMedia } from "@/lib/types";
+import { isMobile } from "@/lib/utils";
 
 declare global {
   interface Window {
@@ -174,15 +175,19 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
   const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
 
+  // Preload Twitter script earlier when component mounts (not just when in view)
   useEffect(() => {
-    if (hasValidData && isInView) {
+    if (hasValidData) {
       void ensureTwitterScript();
     }
-  }, [hasValidData, isInView]);
+  }, [hasValidData]);
 
   useEffect(() => {
     if (!hasValidData) return;
     if (typeof window === "undefined") return;
+
+    // Use faster timeout on mobile for better responsiveness
+    const scrollIdleTimeout = isMobile() ? 50 : 150;
 
     const handleScroll = () => {
       setIsScrollIdle(false);
@@ -191,7 +196,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       }
       scrollTimeoutRef.current = window.setTimeout(() => {
         setIsScrollIdle(true);
-      }, 150);
+      }, scrollIdleTimeout);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -219,6 +224,9 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       return;
     }
 
+    // Use smaller rootMargin on mobile for better performance
+    const rootMargin = isMobile() ? "300px" : "600px";
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -226,7 +234,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           observer.disconnect();
         }
       },
-      { rootMargin: "600px" }
+      { rootMargin }
     );
 
     observer.observe(wrapper);
@@ -274,9 +282,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
     const embedTweet = async () => {
       try {
+        // Use faster timeout on mobile for better responsiveness
+        const idleTimeout = isMobile() ? 200 : 500;
         if (typeof window !== "undefined" && "requestIdleCallback" in window) {
           await new Promise<void>((resolve) => {
-            window.requestIdleCallback(() => resolve(), { timeout: 500 });
+            window.requestIdleCallback(() => resolve(), { timeout: idleTimeout });
           });
         }
 

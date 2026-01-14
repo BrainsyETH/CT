@@ -132,3 +132,33 @@ export function generateId(): string {
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+/**
+ * Detects if the current device is a mobile device.
+ * Caches the result to avoid repeated checks.
+ */
+let isMobileCache: boolean | null = null;
+
+export function isMobile(): boolean {
+  if (isMobileCache !== null) {
+    return isMobileCache;
+  }
+
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  // Check window width (most reliable for responsive design)
+  const width = window.innerWidth;
+  if (width <= 768) {
+    isMobileCache = true;
+    return true;
+  }
+
+  // Check user agent as fallback
+  const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+  const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+  isMobileCache = mobileRegex.test(userAgent.toLowerCase());
+
+  return isMobileCache;
+}

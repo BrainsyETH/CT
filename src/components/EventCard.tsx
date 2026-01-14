@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, PanInfo } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { MediaPreview } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
+import { isMobile } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 interface EventCardProps {
@@ -39,6 +40,17 @@ export function EventCard({ event, index }: EventCardProps) {
     }
   };
 
+  // Handle swipe gesture on mobile
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (!isMobile()) return;
+    
+    const swipeThreshold = 50;
+    if (Math.abs(info.offset.x) > swipeThreshold) {
+      // Swipe detected - open modal
+      setSelectedEventId(event.id);
+    }
+  };
+
   const animationProps = prefersReducedMotion
     ? {}
     : {
@@ -65,14 +77,19 @@ export function EventCard({ event, index }: EventCardProps) {
           isLeft ? "md:mr-8" : "md:ml-8"
         }`}
       >
-        <div
+        <motion.div
+          drag={isMobile() ? "x" : false}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
           role="button"
           tabIndex={0}
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
-          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group ${
+          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group touch-pan-x ${
             useCrimelineStyle ? "focus:ring-purple-500" : "focus:ring-teal-500"
           }`}
+          style={{ touchAction: isMobile() ? "pan-x pan-y" : "auto" }}
         >
           <div
             className={`rounded-lg transition-all duration-300 overflow-hidden ${
@@ -246,7 +263,7 @@ export function EventCard({ event, index }: EventCardProps) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );

@@ -61,9 +61,11 @@ export function MediaCarousel({
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoInView, setIsVideoInView] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentItem = media[currentIndex];
@@ -71,11 +73,42 @@ export function MediaCarousel({
   // Reset video playing state when slide changes
   useEffect(() => {
     setIsVideoPlaying(false);
+    setIsVideoInView(false);
     return () => {
       // Cleanup: pause video when unmounting or changing slides
       if (videoRef.current) {
         videoRef.current.pause();
       }
+    };
+  }, [currentIndex]);
+
+  // Use IntersectionObserver to lazy load videos
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    
+    // Small delay to ensure DOM is updated after currentIndex change
+    const timeoutId = setTimeout(() => {
+      const container = videoContainerRef.current;
+      if (!container || !container.isConnected) return;
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsVideoInView(true);
+              observer?.disconnect();
+            }
+          });
+        },
+        { rootMargin: "100px" }
+      );
+
+      observer.observe(container);
+    }, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer?.disconnect();
     };
   }, [currentIndex]);
 
@@ -190,6 +223,7 @@ export function MediaCarousel({
 
         return (
           <div
+            ref={videoContainerRef}
             className={`relative w-full ${
               item.video.orientation === "portrait"
                 ? "aspect-[9/16] max-h-[70vh]"
@@ -199,14 +233,21 @@ export function MediaCarousel({
             } bg-black flex items-center justify-center`}
           >
             {isIframe && canRenderIframe ? (
-              // YouTube/Vimeo - always show iframe
-              <iframe
-                src={iframeSrc ?? undefined}
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-                allowFullScreen
-                title={event.title}
-              />
+              // YouTube/Vimeo - lazy load iframe
+              isVideoInView ? (
+                <iframe
+                  src={iframeSrc ?? undefined}
+                  className="absolute inset-0 w-full h-full video-container"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+                  allowFullScreen
+                  loading="lazy"
+                  title={event.title}
+                />
+              ) : (
+                <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-black">
+                  <div className="text-white text-sm">Loading video...</div>
+                </div>
+              )
             ) : isIframe ? (
               <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
                 <div className="text-center space-y-2">
@@ -232,7 +273,7 @@ export function MediaCarousel({
                 playsInline
                 poster={posterUrl}
                 className="w-full h-full object-contain"
-                preload="metadata"
+                preload={isVideoInView ? "metadata" : "none"}
                 onEnded={() => setIsVideoPlaying(false)}
               >
                 <source src={item.video.url} type="video/mp4" />
@@ -335,7 +376,7 @@ export function MediaCarousel({
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
+      className="relative w-full media-carousel-container"
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
@@ -362,11 +403,12 @@ export function MediaCarousel({
       <motion.div
         drag={media.length > 1 ? "x" : false}
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.2}
+        dragElastic={0.3}
         onDragEnd={handleDragEnd}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="cursor-grab active:cursor-grabbing touch-pan-y"
+        className="cursor-grab active:cursor-grabbing"
+        style={{ touchAction: "pan-x pan-y" }}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -479,6 +521,7 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
             className="absolute inset-0 w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
             allowFullScreen
+            loading="lazy"
             title={event.title}
           />
         </div>
