@@ -64,6 +64,7 @@ export function MediaCarousel({
   const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const currentItem = media[currentIndex];
 
@@ -89,7 +90,12 @@ export function MediaCarousel({
     if (media.length < 2) return;
 
     const theme = isCrimeline ? "dark" : "light";
-    const indices = [currentIndex - 1, currentIndex + 1];
+    const indices = [
+      currentIndex - 2,
+      currentIndex - 1,
+      currentIndex + 1,
+      currentIndex + 2,
+    ];
 
     indices.forEach((index) => {
       if (index < 0 || index >= media.length) return;
@@ -123,6 +129,34 @@ export function MediaCarousel({
       if (info.offset.x < -swipeThreshold) {
         goToNext();
       } else if (info.offset.x > swipeThreshold) {
+        goToPrevious();
+      }
+    },
+    [goToNext, goToPrevious]
+  );
+
+  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      if (!touchStartRef.current) return;
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+      const deltaX = touch.clientX - touchStartRef.current.x;
+      const deltaY = touch.clientY - touchStartRef.current.y;
+      touchStartRef.current = null;
+
+      const swipeThreshold = 50;
+      const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY);
+      if (!isHorizontalSwipe) return;
+
+      if (deltaX < -swipeThreshold) {
+        goToNext();
+      } else if (deltaX > swipeThreshold) {
         goToPrevious();
       }
     },
@@ -330,7 +364,9 @@ export function MediaCarousel({
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.2}
         onDragEnd={handleDragEnd}
-        className="cursor-grab active:cursor-grabbing"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="cursor-grab active:cursor-grabbing touch-pan-y"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -344,30 +380,6 @@ export function MediaCarousel({
           </motion.div>
         </AnimatePresence>
       </motion.div>
-
-      {/* Navigation Arrows (only show if multiple items) */}
-      {media.length > 1 && (
-        <>
-          <button
-            onClick={goToPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex"
-            aria-label="Previous media"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex"
-            aria-label="Next media"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </>
-      )}
 
       {/* Dot Indicators */}
       {media.length > 1 && (
@@ -533,15 +545,6 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
             >
               <path d="M8 5v14l11-7z" />
             </svg>
-          </div>
-        </div>
-      )}
-
-      {/* Twitter indicator for first item */}
-      {isTwitter && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="bg-black/60 rounded-full p-4 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-            <TwitterBirdIcon className="w-8 h-8 text-white" />
           </div>
         </div>
       )}
