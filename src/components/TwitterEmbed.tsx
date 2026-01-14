@@ -4,6 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import type { TwitterMedia } from "@/lib/types";
 import { isMobile } from "@/lib/utils";
 
+// Cache mobile detection to avoid repeated checks
+let mobileCache: boolean | null = null;
+const getIsMobile = () => {
+  if (mobileCache === null && typeof window !== "undefined") {
+    mobileCache = isMobile();
+  }
+  return mobileCache ?? false;
+};
+
 declare global {
   interface Window {
     twttr?: {
@@ -187,7 +196,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     if (typeof window === "undefined") return;
 
     // Use faster timeout on mobile for better responsiveness
-    const scrollIdleTimeout = isMobile() ? 50 : 150;
+    const scrollIdleTimeout = getIsMobile() ? 50 : 150;
 
     const handleScroll = () => {
       setIsScrollIdle(false);
@@ -225,7 +234,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     }
 
     // Use smaller rootMargin on mobile for better performance
-    const rootMargin = isMobile() ? "300px" : "600px";
+    const rootMargin = getIsMobile() ? "300px" : "600px";
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -283,7 +292,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     const embedTweet = async () => {
       try {
         // Use faster timeout on mobile for better responsiveness
-        const idleTimeout = isMobile() ? 200 : 500;
+        const idleTimeout = getIsMobile() ? 200 : 500;
         if (typeof window !== "undefined" && "requestIdleCallback" in window) {
           await new Promise<void>((resolve) => {
             window.requestIdleCallback(() => resolve(), { timeout: idleTimeout });

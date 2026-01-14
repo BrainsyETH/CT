@@ -128,7 +128,12 @@ export function Timeline({ events }: TimelineProps) {
 
   // Throttled scroll handler for filter visibility and year tracking
   // Use more aggressive throttling on mobile for better performance
-  const scrollThrottleMs = isMobile() ? 150 : 100;
+  // Use state to avoid calling isMobile() during render
+  const [scrollThrottleMs, setScrollThrottleMs] = useState(100);
+  
+  useEffect(() => {
+    setScrollThrottleMs(isMobile() ? 150 : 100);
+  }, []);
   
   const handleScroll = useCallback(
     throttle(() => {
@@ -163,7 +168,7 @@ export function Timeline({ events }: TimelineProps) {
         }
       });
     }, scrollThrottleMs),
-    [years]
+    [years, scrollThrottleMs]
   );
 
   // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)

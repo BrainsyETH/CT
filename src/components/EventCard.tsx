@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, PanInfo } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { MediaPreview } from "./MediaCarousel";
@@ -23,15 +24,14 @@ export function EventCard({ event, index }: EventCardProps) {
   const useCrimelineStyle = isCrimeline || (mode === "both" && event.crimeline);
   const isLeft = index % 2 === 0;
   const prefersReducedMotion = useReducedMotion();
+  const [mobile, setMobile] = useState(false);
+  const dragOccurredRef = useRef(false);
 
-  const handleCardClick = (e: React.MouseEvent) => {
-    // Don't open modal if clicking on share button
-    const target = e.target as HTMLElement;
-    if (target.closest('[data-share-button]')) {
-      return;
-    }
-    setSelectedEventId(event.id);
-  };
+  // Check if mobile after mount to avoid SSR issues
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
+
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -40,15 +40,40 @@ export function EventCard({ event, index }: EventCardProps) {
     }
   };
 
-  // Handle swipe gesture on mobile
+  // Handle swipe gesture on mobile - only trigger if significant horizontal swipe
+  const handleDragStart = () => {
+    dragOccurredRef.current = false;
+  };
+  
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    if (!isMobile()) return;
+    if (!mobile) return;
     
-    const swipeThreshold = 50;
-    if (Math.abs(info.offset.x) > swipeThreshold) {
+    const swipeThreshold = 80; // Increased threshold to avoid accidental triggers
+    const velocityThreshold = 800; // Increased velocity threshold
+    
+    // Check if it's a horizontal swipe (not vertical scroll)
+    // Require horizontal movement to be at least 2x the vertical movement
+    const isHorizontalSwipe = Math.abs(info.offset.x) > Math.abs(info.offset.y) * 2;
+    
+    if (isHorizontalSwipe && (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold)) {
+      dragOccurredRef.current = true;
       // Swipe detected - open modal
       setSelectedEventId(event.id);
     }
+  };
+  
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't open modal if clicking on share button
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-share-button]')) {
+      return;
+    }
+    // Prevent click if drag just occurred
+    if (dragOccurredRef.current) {
+      dragOccurredRef.current = false;
+      return;
+    }
+    setSelectedEventId(event.id);
   };
 
   const animationProps = prefersReducedMotion
@@ -78,18 +103,22 @@ export function EventCard({ event, index }: EventCardProps) {
         }`}
       >
         <motion.div
-          drag={isMobile() ? "x" : false}
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.2}
+          drag={mobile ? "x" : false}
+          dragConstraints={{ left: -100, right: 100 }}
+          dragElastic={0.1}
+          onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
+          dragDirectionLock
+          dragPropagation={false}
+          whileDrag={{ scale: 0.98 }}
           role="button"
           tabIndex={0}
           onClick={handleCardClick}
           onKeyDown={handleKeyDown}
-          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group touch-pan-x ${
+          className={`w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg transition-all duration-300 cursor-pointer group ${
             useCrimelineStyle ? "focus:ring-purple-500" : "focus:ring-teal-500"
           }`}
-          style={{ touchAction: isMobile() ? "pan-x pan-y" : "auto" }}
+          style={{ touchAction: mobile ? "pan-x pan-y" : "auto" }}
         >
           <div
             className={`rounded-lg transition-all duration-300 overflow-hidden ${

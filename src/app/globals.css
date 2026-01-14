@@ -126,31 +126,27 @@ textarea:focus-visible {
 
 /* Performance optimizations for smooth scrolling */
 .event-card {
-  will-change: transform;
-  contain: layout style paint;
-  transform: translateZ(0);
+  contain: layout style;
+  /* Only use will-change when actively animating */
 }
 
 /* Timeline event containers - optimize for scrolling */
 .timeline-event-group {
-  contain: layout style paint;
-  content-visibility: auto;
+  contain: layout style;
+  /* Use content-visibility carefully - can cause layout issues */
 }
 
 /* Media carousel - optimize animations */
 .media-carousel-container {
-  will-change: transform;
-  transform: translateZ(0);
+  /* Only use will-change when actively dragging */
 }
 
 /* Video containers - optimize rendering */
 .video-container {
-  contain: layout style paint;
-  transform: translateZ(0);
+  contain: layout style;
 }
 
 /* Twitter embed containers - optimize loading */
 .twitter-embed-container {
-  contain: layout style paint;
-  transform: translateZ(0);
+  contain: layout style;
 }
