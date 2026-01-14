@@ -128,6 +128,10 @@ export function MediaCarousel({
         if (!item.video) return null;
         const posterUrl = item.video.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
         const isIframe = isIframeProvider(item.video.provider);
+        const iframeSrc = getEmbedUrl(
+          item.video.provider,
+          item.video.embed_url || item.video.url
+        );
 
         return (
           <div
@@ -142,7 +146,7 @@ export function MediaCarousel({
             {isIframe ? (
               // YouTube/Vimeo - always show iframe
               <iframe
-                src={item.video.embed_url || getEmbedUrl(item.video.provider, item.video.url)}
+                src={iframeSrc}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                 allowFullScreen
