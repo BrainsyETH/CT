@@ -165,6 +165,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   // Get stable identifiers for the tweet
   const tweetUrl = twitter.tweet_url || "";
   const accountHandle = twitter.account_handle || "";
+  const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
 
   useEffect(() => {
     if (hasValidData && isInView) {
@@ -331,8 +332,27 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container ${isLoading ? "invisible" : ""}`}
+        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto ${
+          isLoading ? "invisible" : ""
+        }`}
       />
+      {openUrl && (
+        <a
+          href={openUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={`mt-2 inline-flex items-center gap-1 text-xs font-medium sm:hidden ${
+            theme === "dark"
+              ? "text-gray-300 hover:text-white"
+              : "text-gray-600 hover:text-gray-900"
+          }`}
+        >
+          Open on X
+          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17l10-10M7 7h10v10" />
+          </svg>
+        </a>
+      )}
     </div>
   );
 }
