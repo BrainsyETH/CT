@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motion";
-import { TwitterEmbed } from "./TwitterEmbed";
+import { TwitterEmbed, prefetchTweetEmbed } from "./TwitterEmbed";
 import { getEmbedUrl, isIframeProvider } from "@/lib/video-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { MediaItem, Event } from "@/lib/types";
@@ -84,6 +84,20 @@ export function MediaCarousel({
       pauseAllVideos(containerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (media.length < 2) return;
+
+    const theme = isCrimeline ? "dark" : "light";
+    const indices = [currentIndex - 1, currentIndex + 1];
+
+    indices.forEach((index) => {
+      if (index < 0 || index >= media.length) return;
+      const item = media[index];
+      if (item?.type !== "twitter" || !item.twitter?.tweet_url) return;
+      void prefetchTweetEmbed(item.twitter.tweet_url, theme);
+    });
+  }, [currentIndex, isCrimeline, media]);
 
   const goToNext = useCallback(() => {
     // Pause current video before switching
@@ -316,7 +330,7 @@ export function MediaCarousel({
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.2}
         onDragEnd={handleDragEnd}
-        className="cursor-grab active:cursor-grabbing"
+        className="cursor-grab active:cursor-grabbing touch-pan-y"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -336,7 +350,7 @@ export function MediaCarousel({
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex max-md:hidden"
             aria-label="Previous media"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -345,7 +359,7 @@ export function MediaCarousel({
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex max-md:hidden"
             aria-label="Next media"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
