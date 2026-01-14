@@ -132,6 +132,7 @@ export function MediaCarousel({
           item.video.provider,
           item.video.embed_url || item.video.url
         );
+        const canRenderIframe = Boolean(iframeSrc);
 
         return (
           <div
@@ -143,15 +144,29 @@ export function MediaCarousel({
                 : "aspect-video"
             } bg-black flex items-center justify-center`}
           >
-            {isIframe ? (
+            {isIframe && canRenderIframe ? (
               // YouTube/Vimeo - always show iframe
               <iframe
-                src={iframeSrc}
+                src={iframeSrc ?? undefined}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                 allowFullScreen
                 title={event.title}
               />
+            ) : isIframe ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
+                <div className="text-center space-y-2">
+                  <p className="text-sm">Video unavailable for embedding.</p>
+                  <a
+                    href={item.video.url}
+                    className="inline-flex items-center justify-center rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium hover:bg-white/20"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open on provider
+                  </a>
+                </div>
+              </div>
             ) : isVideoPlaying ? (
               // Self-hosted video - show player when playing
               <video
