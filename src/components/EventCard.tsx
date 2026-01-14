@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
-import { MediaPreview } from "./MediaCarousel";
+import { MediaCarousel } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
@@ -27,7 +27,7 @@ export function EventCard({ event, index }: EventCardProps) {
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't open modal if clicking on share button
     const target = e.target as HTMLElement;
-    if (target.closest('[data-share-button]')) {
+    if (target.closest('[data-share-button]') || target.closest("[data-media-carousel]")) {
       return;
     }
     setSelectedEventId(event.id);
@@ -116,10 +116,11 @@ export function EventCard({ event, index }: EventCardProps) {
               const mediaItems = getMediaItems(event);
               if (mediaItems.length > 0) {
                 return (
-                  <MediaPreview
+                  <MediaCarousel
                     media={mediaItems}
                     event={event}
                     isCrimeline={isCrimeline}
+                    showMediaTypeIndicators={false}
                   />
                 );
               }

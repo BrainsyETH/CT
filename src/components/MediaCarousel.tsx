@@ -15,6 +15,7 @@ interface MediaCarouselProps {
   onImageExpand?: (imageUrl: string) => void;
   closeButtonRef?: React.RefObject<HTMLButtonElement | null>;
   onClose?: () => void;
+  showMediaTypeIndicators?: boolean;
 }
 
 const TwitterBirdIcon = ({ className }: { className?: string }) => (
@@ -58,6 +59,7 @@ export function MediaCarousel({
   onImageExpand,
   closeButtonRef,
   onClose,
+  showMediaTypeIndicators = true,
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -293,6 +295,7 @@ export function MediaCarousel({
       role="region"
       aria-label="Media carousel"
       aria-roledescription="carousel"
+      data-media-carousel
     >
       {/* Header Actions - positioned over media */}
       <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
@@ -384,7 +387,7 @@ export function MediaCarousel({
       )}
 
       {/* Media type indicator icons */}
-      {media.length > 1 && (
+      {showMediaTypeIndicators && media.length > 1 && (
         <div className="absolute top-4 left-4 flex items-center gap-1 z-10">
           {media.map((item, index) => (
             <div
