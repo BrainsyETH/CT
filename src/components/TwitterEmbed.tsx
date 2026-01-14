@@ -83,6 +83,7 @@ function extractTweetId(url: string): string | null {
 }
 
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -109,8 +110,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       return;
     }
 
-    const container = containerRef.current;
-    if (!container) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
     if (typeof IntersectionObserver === "undefined") {
       setIsInView(true);
@@ -127,7 +128,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       { rootMargin: "200px" }
     );
 
-    observer.observe(container);
+    observer.observe(wrapper);
 
     return () => observer.disconnect();
   }, [hasValidData]);
@@ -246,7 +247,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full" ref={wrapperRef}>
       {isLoading && (
         <div className={`flex items-center justify-center w-full h-64 rounded-lg animate-pulse ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
