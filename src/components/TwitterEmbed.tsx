@@ -198,7 +198,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "600px" }
     );
 
     observer.observe(wrapper);

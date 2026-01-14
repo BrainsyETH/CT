@@ -90,7 +90,12 @@ export function MediaCarousel({
     if (media.length < 2) return;
 
     const theme = isCrimeline ? "dark" : "light";
-    const indices = [currentIndex - 1, currentIndex + 1];
+    const indices = [
+      currentIndex - 2,
+      currentIndex - 1,
+      currentIndex + 1,
+      currentIndex + 2,
+    ];
 
     indices.forEach((index) => {
       if (index < 0 || index >= media.length) return;
