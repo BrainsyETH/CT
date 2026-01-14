@@ -275,7 +275,7 @@
     "id": "mtgox-collapse-2014-02-24",
     "date": "2014-02-07",
     "title": "Mt. Gox Collapses",
-    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found Karpel\u00c3\u00a8s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": [
       "Centralized Exchange"
     ],
@@ -534,7 +534,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/unusual_whales/status/1687145804920758277?s=20",
           "account_handle": ""
         }
       },
@@ -548,10 +548,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Razzlekhan, amateur rapper",
-        "url": "https://x.com/unusual_whales/status/1687145804920758277?s=20"
-      },
       {
         "label": "Bitfinex Hack Report",
         "url": "https://www.reuters.com/article/us-bitfinex-hacked-hongkong-idUSKCN10E0KP"
@@ -602,7 +598,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CoinDesk/status/866801243431350272?s=20",
           "account_handle": ""
         }
       },
@@ -619,10 +615,6 @@
       {
         "label": "ICO Boom",
         "url": "https://www.investopedia.com/terms/i/initial-coin-offering-ico.asp"
-      },
-      {
-        "label": "Consensus 2017",
-        "url": "https://x.com/CoinDesk/status/866801243431350272?s=20"
       }
     ],
     "metrics": {
@@ -739,7 +731,7 @@
     "id": "cryptopia-hack-2019-01-14",
     "date": "2019-01-14",
     "title": "Cryptopia Exchange Hack",
-    "summary": "Cryptopia announced a major security breach, reporting “significant losses” and suspending trading as hackers siphoned crypto from its wallets. The breach occurred after days of unexplained “unscheduled maintenance,” and large movements of ETH and other tokens were publicly spotted onchain before the official acknowledgment.",
+    "summary": "Cryptopia announced a major security breach, reporting \u201csignificant losses\u201d and suspending trading as hackers siphoned crypto from its wallets. The breach occurred after days of unexplained \u201cunscheduled maintenance,\u201d and large movements of ETH and other tokens were publicly spotted onchain before the official acknowledgment.",
     "category": [
       "Centralized Exchange"
     ],
@@ -764,7 +756,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Cryptopia_NZ/status/1085084168852291586?s=20",
           "account_handle": ""
         }
       },
@@ -777,12 +769,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Delay in Disclosure",
-        "url": "https://x.com/Cryptopia_NZ/status/1085084168852291586?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 16000000,
@@ -876,7 +863,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/haydenzadams/status/1361356927226310668",
           "account_handle": ""
         }
       },
@@ -893,10 +880,6 @@
       {
         "label": "Uniswap V2",
         "url": "https://uniswap.org/blog/uniswap-v2"
-      },
-      {
-        "label": "Hayden Tweet",
-        "url": "https://x.com/haydenzadams/status/1361356927226310668"
       }
     ],
     "metrics": {
@@ -934,7 +917,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/sassal0x/status/1332685626974433280?s=20",
           "account_handle": ""
         }
       },
@@ -949,10 +932,6 @@
     ],
     "links": [
       {
-        "label": "DeFi Summer Tweet",
-        "url": "https://x.com/sassal0x/status/1332685626974433280?s=20"
-      },
-      {
         "label": "DeFi Summer",
         "url": "https://www.gemini.com/cryptopedia/defi-summer-yield-farming"
       }
@@ -966,7 +945,7 @@
     "id": "kucoin-hack-2020-09-26",
     "date": "2020-09-26",
     "title": "KuCoin Exchange Hack",
-    "summary": "KuCoin suffered a massive security breach in which hackers accessed private keys for the exchange’s hot wallets and stole an estimated ~$280 million+ in crypto assets including BTC, ETH, XRP, LTC, and many ERC-20 tokens — one of the largest exchange hacks in history.",
+    "summary": "KuCoin suffered a massive security breach in which hackers accessed private keys for the exchange\u2019s hot wallets and stole an estimated ~$280 million+ in crypto assets including BTC, ETH, XRP, LTC, and many ERC-20 tokens \u2014 one of the largest exchange hacks in history.",
     "category": [
       "Centralized Exchange"
     ],
@@ -991,7 +970,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/lyu_johnny/status/1312359615091277824?s=20",
           "account_handle": ""
         }
       },
@@ -1008,10 +987,6 @@
       {
         "label": "KuCoin Livestream Recap",
         "url": "https://www.kucoin.com/announcement/en-kucoin-ceo-livestream-recap-latest-updates-about-security-incident?utm_source=chatgpt.com"
-      },
-      {
-        "label": "Suspect Identified",
-        "url": "https://x.com/lyu_johnny/status/1312359615091277824?s=20"
       }
     ],
     "crimeline": {
@@ -1055,7 +1030,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/PolyNetwork2/status/1425073987164381196?s=20",
           "account_handle": ""
         }
       },
@@ -1069,10 +1044,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Poly Network Notice",
-        "url": "https://x.com/PolyNetwork2/status/1425073987164381196?s=20"
-      },
       {
         "label": "Hack Summary",
         "url": "https://www.coindesk.com/markets/2021/08/10/cross-chain-defi-site-poly-network-hacked-hundreds-of-millions-potentially-lost/"
@@ -1119,7 +1090,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CreamdotFinance/status/1453455806075006976?s=20",
           "account_handle": ""
         }
       },
@@ -1132,12 +1103,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Cream Hack Tweet",
-        "url": "https://x.com/CreamdotFinance/status/1453455806075006976?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "ORACLE MANIPULATION",
       "funds_lost_usd": 130000000,
@@ -1181,7 +1147,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/EleanorTerrett/status/1765031005369348488?s=20",
           "account_handle": ""
         }
       },
@@ -1194,12 +1160,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Bitcoin ATH",
-        "url": "https://x.com/EleanorTerrett/status/1765031005369348488?s=20"
-      }
-    ],
+    "links": [],
     "metrics": {
       "btc_price_usd": 69044,
       "market_cap_usd": 1300000000000
@@ -1234,7 +1195,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/wormhole/status/1488976115750383626?s=20",
           "account_handle": ""
         }
       },
@@ -1248,10 +1209,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Wormhole Announces Exploit",
-        "url": "https://x.com/wormhole/status/1488976115750383626?s=20"
-      },
       {
         "label": "Wormhole Exploit",
         "url": "https://rekt.news/wormhole-rekt/"
@@ -1299,7 +1256,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Ronin_Network/status/1508828719711879168",
           "account_handle": ""
         }
       },
@@ -1312,12 +1269,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Ronin Hack Tweet",
-        "url": "https://x.com/Ronin_Network/status/1508828719711879168"
-      }
-    ],
+    "links": [],
     "metrics": {
       "btc_price_usd": 44000
     },
@@ -1338,7 +1290,7 @@
     "id": "terra-luna-collapse-2022-05-09",
     "date": "2022-05-09",
     "title": "Terra/LUNA Collapse",
-    "summary": "The Terra blockchain’s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This “death spiral” wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
+    "summary": "The Terra blockchain\u2019s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This \u201cdeath spiral\u201d wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
     "category": [
       "Stablecoin"
     ],
@@ -1363,7 +1315,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/stablekwon/status/1525238416991891457?s=20",
           "account_handle": ""
         }
       },
@@ -1377,10 +1329,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Do Kwon Apology",
-        "url": "https://x.com/stablekwon/status/1525238416991891457?s=20"
-      },
       {
         "label": "Terra Collapse",
         "url": "https://www.coindesk.com/learn/the-fall-of-terra-a-timeline-of-the-meteoric-rise-and-crash-of-ust-and-luna/"
@@ -1431,7 +1379,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CelsiusNetwork/status/1536169010877739009?s=20",
           "account_handle": ""
         }
       },
@@ -1445,10 +1393,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Celsius Announces Pause",
-        "url": "https://x.com/CelsiusNetwork/status/1536169010877739009?s=20"
-      },
       {
         "label": "Celsius Collapse",
         "url": "https://www.reuters.com/technology/crypto-lender-celsius-network-pauses-withdrawals-2022-06-13/"
@@ -1475,7 +1419,7 @@
     "id": "3ac-default-2022-06-27",
     "date": "2022-06-27",
     "title": "Three Arrows Capital Defaults",
-    "summary": "Three Arrows Capital (3AC) was a Singapore-based cryptocurrency hedge fund founded by Kyle Davies and Su Zhu that collapsed in June 2022 after failing to meet large margin calls amid the broader crypto market downturn — particularly losses tied to Terra/LUNA and other leveraged positions. A court in the British Virgin Islands ordered the firm into liquidation on June 27, 2022, and it subsequently filed for Chapter 15 bankruptcy in the U.S., owing around $3.5 billion to creditors including major lenders like Genesis and Voyager.",
+    "summary": "Three Arrows Capital (3AC) was a Singapore-based cryptocurrency hedge fund founded by Kyle Davies and Su Zhu that collapsed in June 2022 after failing to meet large margin calls amid the broader crypto market downturn \u2014 particularly losses tied to Terra/LUNA and other leveraged positions. A court in the British Virgin Islands ordered the firm into liquidation on June 27, 2022, and it subsequently filed for Chapter 15 bankruptcy in the U.S., owing around $3.5 billion to creditors including major lenders like Genesis and Voyager.",
     "category": [
       "Market Structure"
     ],
@@ -1692,7 +1636,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/JackNiewold/status/1506779959242764288",
           "account_handle": ""
         }
       },
@@ -1706,10 +1650,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Understanding the Merge",
-        "url": "https://x.com/JackNiewold/status/1506779959242764288"
-      },
       {
         "label": "The Merge",
         "url": "https://www.coindesk.com/tech/2022/09/15/the-ethereum-merge-is-done-did-it-work"
@@ -1749,7 +1689,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/SBF_FTX/status/1613522399269650434?s=20",
           "account_handle": ""
         }
       },
@@ -1763,10 +1703,6 @@
       }
     ],
     "links": [
-      {
-        "label": "SBF Sucks",
-        "url": "https://x.com/SBF_FTX/status/1613522399269650434?s=20"
-      },
       {
         "label": "FTX Collapse",
         "url": "https://www.reuters.com/technology/ftx-crypto-exchange-files-us-bankruptcy-proceedings-2022-11-11/"
@@ -1944,7 +1880,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/s_alderoty/status/1679553612236881921?s=20",
           "account_handle": ""
         }
       },
@@ -1957,12 +1893,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Stuart Alderoty Tweet",
-        "url": "https://x.com/s_alderoty/status/1679553612236881921?s=20"
-      }
-    ],
+    "links": [],
     "metrics": {
       "btc_price_usd": 31000
     }
@@ -1996,7 +1927,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/MixinKernel/status/1706139175018529139?s=20",
           "account_handle": ""
         }
       },
@@ -2010,10 +1941,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Mixin Hack Disclosure",
-        "url": "https://x.com/MixinKernel/status/1706139175018529139?s=20"
-      },
       {
         "label": "Mixin Suspends Withdrawals",
         "url": "https://www.coindesk.com/tech/2023/09/25/crypto-network-mixin-suspends-withdrawals-after-200m-hack/"
@@ -2180,7 +2107,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/blknoiz06/status/1767938938109415801?s=20",
           "account_handle": ""
         }
       },
@@ -2193,12 +2120,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Ansem Tweets Fully Funded",
-        "url": "https://x.com/blknoiz06/status/1767938938109415801?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "slerf-burn-accident-2024-03",
@@ -2229,7 +2151,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Slerfsol",
           "account_handle": ""
         }
       },
@@ -2242,12 +2164,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Slerf Account",
-        "url": "https://x.com/Slerfsol"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": 10000000,
@@ -2289,7 +2206,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/AkhbarSite/status/1859275544270921756?s=20",
           "account_handle": ""
         }
       },
@@ -2302,12 +2219,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Realtime Video",
-        "url": "https://x.com/AkhbarSite/status/1859275544270921756?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "RUG PULL",
       "funds_lost_usd": 20000,
@@ -2376,7 +2288,7 @@
     "id": "sahil-celebrity-scam-2024",
     "date": "2024-06-15",
     "title": "Sahil Orchestrates Mass Celebrity Token Scams",
-    "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits—estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
+    "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits\u2014estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
     "category": [
       "Memecoins"
     ],
@@ -2524,7 +2436,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/0xRacist/status/1864805751723569223?s=20",
           "account_handle": ""
         }
       },
@@ -2537,12 +2449,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Tweet of Evidence",
-        "url": "https://x.com/0xRacist/status/1864805751723569223?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "radiant-capital-hack-2024-10-16",
@@ -2573,7 +2480,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/danielvf/status/1847023591117795708?s=20",
           "account_handle": ""
         }
       },
@@ -2586,12 +2493,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Radiant Breakdown",
-        "url": "https://x.com/danielvf/status/1847023591117795708?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "PROTOCOL EXPLOIT",
       "funds_lost_usd": 50000000,
@@ -2633,7 +2535,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/search?q=chill%20guy%20memes&src=typed_query",
           "account_handle": ""
         }
       },
@@ -2646,18 +2548,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Chill Guy Memes",
-        "url": "https://x.com/search?q=chill%20guy%20memes&src=typed_query"
-      }
-    ]
+    "links": []
   },
   {
     "id": "hawk-tuah-girl-crash-2024-12",
     "date": "2024-12-04",
     "title": "$HAWK Token Crashes After Launch",
-    "summary": "• The $HAWK token launched on December 4, 2024, heavily hyped by Welch and her team. Within minutes to hours, it surged to a peak market cap of roughly $490–500 million due to intense retail FOMO.\n• Almost immediately after peaking, the token collapsed by approximately 90–95%, with some reports placing the crash within 20–30 minutes.\n• The crash wiped out billions of dollars in paper value, leaving most holders with massive losses.\n• On-chain analysis (including Bubblemaps) revealed extreme supply concentration red flags.\n• Roughly 96–97% of the token supply was controlled by a small cluster of insider wallets (team, pre-sale investors, KOLs).\n• Only an estimated 3–4% of the total supply was genuinely available to the public at launch.",
+    "summary": "\u2022 The $HAWK token launched on December 4, 2024, heavily hyped by Welch and her team. Within minutes to hours, it surged to a peak market cap of roughly $490\u2013500 million due to intense retail FOMO.\n\u2022 Almost immediately after peaking, the token collapsed by approximately 90\u201395%, with some reports placing the crash within 20\u201330 minutes.\n\u2022 The crash wiped out billions of dollars in paper value, leaving most holders with massive losses.\n\u2022 On-chain analysis (including Bubblemaps) revealed extreme supply concentration red flags.\n\u2022 Roughly 96\u201397% of the token supply was controlled by a small cluster of insider wallets (team, pre-sale investors, KOLs).\n\u2022 Only an estimated 3\u20134% of the total supply was genuinely available to the public at launch.",
     "category": [
       "Memecoins"
     ],
@@ -2798,7 +2695,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/imperooterxbt/status/1862093566169723103?s=20",
           "account_handle": ""
         }
       },
@@ -2812,10 +2709,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Scooter Tweets",
-        "url": "https://x.com/imperooterxbt/status/1862093566169723103?s=20"
-      },
       {
         "label": "Rizzmas Exposure",
         "url": "https://www.weex.com/news/detail/counting-down-the-top-30-crypto-meme-moments-of-2024-which-one-do-you-remember-20164"
@@ -2861,7 +2754,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/realDonaldTrump/status/1880446012168249386",
           "account_handle": ""
         }
       },
@@ -2872,18 +2765,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Trump Tweets $TRUMP",
-        "url": "https://x.com/realDonaldTrump/status/1880446012168249386"
       },
       {
-        "label": "Launch coverage",
-        "url": "https://x.com/CBSNews/status/1880684078665544059"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/CBSNews/status/1880684078665544059",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "metrics": {
       "peak_price_usd_approx": 75,
       "trough_price_usd_approx": 5,
@@ -2919,7 +2810,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/MELANIATRUMP/status/1881094861279129643",
           "account_handle": ""
         }
       },
@@ -2930,18 +2821,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Melania Tweets $Melania",
-        "url": "https://x.com/MELANIATRUMP/status/1881094861279129643"
       },
       {
-        "label": "Launch chatter & timeline analysis",
-        "url": "https://x.com/KobeissiLetter/status/1881187164983357893"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/KobeissiLetter/status/1881187164983357893",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "metrics": {
       "drawdown_pct_approx": 90
     }
@@ -2976,7 +2865,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/coffeebreak_YT/status/1892654096101855495?s=20",
           "account_handle": ""
         }
       },
@@ -2990,10 +2879,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Coffeezilla Traced Hayden's Wallets",
-        "url": "https://x.com/coffeebreak_YT/status/1892654096101855495?s=20"
-      },
       {
         "label": "Reuters: $99M withdrawn by linked wallets",
         "url": "https://www.reuters.com/world/americas/crypto-worth-99-million-withdrawn-milei-backed-libra-token-researchers-say-2025-02-20/"
@@ -3020,7 +2905,7 @@
     "id": "bybit-exchange-hack-2025-02",
     "date": "2025-02-21",
     "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
-    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets. Hackers, widely attributed to North Korea's state-sponsored Lazarus Group, stole approximately $1.4–1.5 billion worth of Ethereum (ETH), specifically around 401,000 ETH.",
+    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets. Hackers, widely attributed to North Korea's state-sponsored Lazarus Group, stole approximately $1.4\u20131.5 billion worth of Ethereum (ETH), specifically around 401,000 ETH.",
     "category": [
       "Centralized Exchange"
     ],
@@ -3045,7 +2930,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/benbybit/status/1892963530422505586?s=20",
           "account_handle": ""
         }
       },
@@ -3058,12 +2943,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Ben Zhou Discloses Breach",
-        "url": "https://x.com/benbybit/status/1892963530422505586?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 1500000000,
@@ -3145,7 +3025,7 @@
     "id": "coinbase-data-breach-2025-05",
     "date": "2025-05-15",
     "title": "Coinbase Customer Data Breach via Support",
-    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history — but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers’ arrest and vowed to reimburse affected customers. ZachXBT has tracked related cases with massive individual thefts ($2M–$6M+ per scammer/group).",
+    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history \u2014 but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers\u2019 arrest and vowed to reimburse affected customers. ZachXBT has tracked related cases with massive individual thefts ($2M\u2013$6M+ per scammer/group).",
     "category": [
       "Centralized Exchange",
       "ZachXBT"
@@ -3171,7 +3051,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/brian_armstrong/status/1922967787309256807?s=20",
           "account_handle": ""
         }
       },
@@ -3182,18 +3062,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Brian Explains in Video",
-        "url": "https://x.com/brian_armstrong/status/1922967787309256807?s=20"
       },
       {
-        "label": "ZachXBT Discloses Scammer",
-        "url": "https://x.com/zachxbt/status/2005649181097205845?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/2005649181097205845?s=20",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "crimeline": {
       "type": "CUSTODY FAILURE",
       "funds_lost_usd": "Unknown",
@@ -3210,7 +3088,7 @@
     "id": "cetus-protocol-exploit-2025-05",
     "date": "2025-05-22",
     "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
-    "summary": "Cetus Protocol, a major decentralized exchange and liquidity provider on the Sui blockchain, was exploited for roughly $220 – $260 million. The attacker took advantage of a vulnerability in the protocol’s smart contract/overflow handling logic, allowing them to manipulate liquidity and drain multiple pools in under 15 minutes.",
+    "summary": "Cetus Protocol, a major decentralized exchange and liquidity provider on the Sui blockchain, was exploited for roughly $220 \u2013 $260 million. The attacker took advantage of a vulnerability in the protocol\u2019s smart contract/overflow handling logic, allowing them to manipulate liquidity and drain multiple pools in under 15 minutes.",
     "category": [
       "DeFi Protocol"
     ],
@@ -3235,7 +3113,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CetusProtocol/status/1925567348586815622?s=20",
           "account_handle": ""
         }
       },
@@ -3248,12 +3126,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Cetus Announcement",
-        "url": "https://x.com/CetusProtocol/status/1925567348586815622?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "PROTOCOL EXPLOIT",
       "funds_lost_usd": 223000000,
@@ -3327,7 +3200,7 @@
     "id": "nobitex-exchange-hack-2025-06",
     "date": "2025-06-17",
     "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
-    "summary": "Nobitex, Iran’s largest cryptocurrency exchange, was hit by a major cyberattack in which attackers drained tens of millions of dollars (roughly $80–$90 M+) from its hot wallets. The group calling itself Gonjeshke Darande (also known as “Predatory Sparrow”), believed to be linked to Israeli intelligence, claimed responsibility and framed the attack as targeting Iran’s sanctions-evasion infrastructure amid rising Iran–Israel tensions rather than for financial gain.",
+    "summary": "Nobitex, Iran\u2019s largest cryptocurrency exchange, was hit by a major cyberattack in which attackers drained tens of millions of dollars (roughly $80\u2013$90 M+) from its hot wallets. The group calling itself Gonjeshke Darande (also known as \u201cPredatory Sparrow\u201d), believed to be linked to Israeli intelligence, claimed responsibility and framed the attack as targeting Iran\u2019s sanctions-evasion infrastructure amid rising Iran\u2013Israel tensions rather than for financial gain.",
     "category": [
       "Centralized Exchange"
     ],
@@ -3352,7 +3225,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/H4ckmanac/status/1935236416105074881?s=20",
           "account_handle": ""
         }
       },
@@ -3365,12 +3238,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Alert",
-        "url": "https://x.com/H4ckmanac/status/1935236416105074881?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 90000000,
@@ -3412,7 +3280,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/WatcherGuru/status/1946291084939677864?s=20",
           "account_handle": ""
         }
       },
@@ -3427,10 +3295,6 @@
     ],
     "links": [
       {
-        "label": "Genius Act Signing Tweet",
-        "url": "https://x.com/WatcherGuru/status/1946291084939677864?s=20"
-      },
-      {
         "label": "Congress.gov bill page",
         "url": "https://www.congress.gov/bill/119th-congress/senate-bill/1582"
       }
@@ -3440,7 +3304,7 @@
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
     "title": "CZ-Linked $ASTER Debacle",
-    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues—including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks—triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
+    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues\u2014including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks\u2014triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
     "category": [
       "DeFi Protocol"
     ],
@@ -3464,7 +3328,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Cointelegraph/status/1974995688241930539",
           "account_handle": ""
         }
       },
@@ -3478,10 +3342,6 @@
       }
     ],
     "links": [
-      {
-        "label": "DefiLlama DeListing",
-        "url": "https://x.com/Cointelegraph/status/1974995688241930539"
-      },
       {
         "label": "Aster returns to DefiLlama (lol)",
         "url": "https://finance.yahoo.com/news/aster-back-defillama-wash-trading-101715173.html"
@@ -3517,7 +3377,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/brian_armstrong/status/1980397986149744769",
           "account_handle": ""
         }
       },
@@ -3530,12 +3390,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Brian Tweets Purchase",
-        "url": "https://x.com/brian_armstrong/status/1980397986149744769"
-      }
-    ],
+    "links": [],
     "metrics": {
       "deal_value_usd": 25000000
     }
@@ -3569,7 +3424,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cobie/status/1980579379244855384",
           "account_handle": ""
         }
       },
@@ -3582,12 +3437,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Cobie Tweet",
-        "url": "https://x.com/cobie/status/1980579379244855384"
-      }
-    ],
+    "links": [],
     "metrics": {
       "deal_value_usd_approx": 375000000
     }
@@ -3621,7 +3471,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/veritas_web3/status/1993999228931068038?s=20",
           "account_handle": ""
         }
       },
@@ -3634,12 +3484,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Tweet",
-        "url": "https://x.com/veritas_web3/status/1993999228931068038?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "EXCHANGE HACK",
       "funds_lost_usd": 36000000,
@@ -3682,7 +3527,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/JSeyff/status/1996290352542609748",
           "account_handle": ""
         }
       },
@@ -3703,10 +3548,6 @@
       {
         "label": "Launch Reporting",
         "url": "https://www.theblock.co/post/380978/chainlink-first-etf-grayscales-glnk-set-begin-trading"
-      },
-      {
-        "label": "Day-one Commentary",
-        "url": "https://x.com/JSeyff/status/1996290352542609748"
       }
     ],
     "metrics": {
@@ -3744,7 +3585,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/TrustWallet/status/2007475482313244989",
           "account_handle": ""
         }
       },
@@ -3755,20 +3596,19 @@
           "alt": "",
           "caption": ""
         }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/EowynChen/status/2004649284537647161",
+          "account_handle": ""
+        }
       }
     ],
     "links": [
       {
         "label": "Post-Mortem Update",
         "url": "https://trustwallet.com/blog/announcements/trust-wallet-browser-extension-v268-incident-community-update"
-      },
-      {
-        "label": "Trust Wallet Security Notice",
-        "url": "https://x.com/TrustWallet/status/2007475482313244989"
-      },
-      {
-        "label": "Eowyn Chen Update",
-        "url": "https://x.com/EowynChen/status/2004649284537647161"
       }
     ],
     "crimeline": {
@@ -3814,7 +3654,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/halfin/status/1110302988?s=20",
           "account_handle": ""
         }
       },
@@ -3827,12 +3667,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Running Bitcoin",
-        "url": "https://x.com/halfin/status/1110302988?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "greg-schoen-regret-2011-05-16",
@@ -3934,7 +3769,7 @@
   {
     "id": "satoshi-final-message-2011-04",
     "date": "2011-04-01",
-    "title": "Satoshi’s Final Message",
+    "title": "Satoshi\u2019s Final Message",
     "summary": "Satoshi Nakamoto signs off with \"I've moved on to other things,\" marking the creator's last known public communication.",
     "category": [
       "Bitcoin"
@@ -4009,7 +3844,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/corybates1895/status/1902044481748447575?s=20",
           "account_handle": ""
         }
       },
@@ -4022,12 +3857,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Casascius Coins Vending Machine",
-        "url": "https://x.com/corybates1895/status/1902044481748447575?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "dogecoin-launch-2013-12-06",
@@ -4107,7 +3937,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cobie/status/1893690837554671791?s=20",
           "account_handle": ""
         }
       },
@@ -4120,12 +3950,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Cobie Maxcoin Tweet",
-        "url": "https://x.com/cobie/status/1893690837554671791?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "bitpay-obsolete-tweet-2017-08",
@@ -4155,7 +3980,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/NicolasDorier/status/898378514256207872?s=20",
           "account_handle": ""
         }
       },
@@ -4168,12 +3993,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "I will make you obsolete",
-        "url": "https://x.com/NicolasDorier/status/898378514256207872?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "bitconnect-keynote-2017-10-28",
@@ -4204,7 +4024,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/DCLBlogger/status/1731077311712370761?s=20",
           "account_handle": ""
         }
       },
@@ -4217,18 +4037,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Hey Hey Hey",
-        "url": "https://x.com/DCLBlogger/status/1731077311712370761?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "bitcoin-cash-fork-2017-08-01",
     "date": "2017-08-01",
     "title": "Roger Ver Claims Bitcoin Cash is Bitcoin",
-    "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the “real Bitcoin,” posting viral tweets like “Bitcoin Cash is Bitcoin” and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
+    "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the \u201creal Bitcoin,\u201d posting viral tweets like \u201cBitcoin Cash is Bitcoin\u201d and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
     "category": [
       "Bitcoin"
     ],
@@ -4253,7 +4068,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/rogerkver/status/943578647822299137?s=20",
           "account_handle": ""
         }
       },
@@ -4264,18 +4079,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "BCH is Bitcoin. Bitcoin Core is not",
-        "url": "https://x.com/rogerkver/status/943578647822299137?s=20"
       },
       {
-        "label": "BCH is Bitcoin",
-        "url": "https://x.com/rogerkver/status/981908565307764736?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/rogerkver/status/981908565307764736?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "inversebrah-birth-2018",
@@ -4305,7 +4118,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/notsofast/status/1173665387608719361?s=20",
           "account_handle": ""
         }
       },
@@ -4316,24 +4129,22 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "The History",
-        "url": "https://x.com/notsofast/status/1173665387608719361?s=20"
       },
       {
-        "label": "Smolting",
-        "url": "https://x.com/inversebrah"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/inversebrah",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "binance-safu-origin-2018",
     "date": "2018-05-01",
     "title": "The Binance SAFU Origin",
-    "summary": "In April 2018, Changpeng Zhao (CZ) misspelled “safe” as “SAFU” during a response on Twitter while reassuring users during routine maintenance concerns. The typo went viral on Crypto Twitter, and Binance leaned into it, later formalizing the joke into the Secure Asset Fund for Users (SAFU) in July 2018, an emergency insurance fund seeded with trading fees. The term became legendary after Binance used SAFU funds to fully cover losses from the May 2019 Binance hack, cementing “Funds are SAFU” as crypto lore.",
+    "summary": "In April 2018, Changpeng Zhao (CZ) misspelled \u201csafe\u201d as \u201cSAFU\u201d during a response on Twitter while reassuring users during routine maintenance concerns. The typo went viral on Crypto Twitter, and Binance leaned into it, later formalizing the joke into the Secure Asset Fund for Users (SAFU) in July 2018, an emergency insurance fund seeded with trading fees. The term became legendary after Binance used SAFU funds to fully cover losses from the May 2019 Binance hack, cementing \u201cFunds are SAFU\u201d as crypto lore.",
     "category": [
       "Centralized Exchange"
     ],
@@ -4358,7 +4169,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Binance_NZL/status/1829368532293042660?s=20",
           "account_handle": ""
         }
       },
@@ -4371,12 +4182,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Funds are SAFU",
-        "url": "https://x.com/Binance_NZL/status/1829368532293042660?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "libra-announcement-2019-06-18",
@@ -4407,7 +4213,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CNBCFastMoney/status/1144003801281716224?s=20",
           "account_handle": ""
         }
       },
@@ -4420,12 +4226,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Zuck speaks about Libra launch",
-        "url": "https://x.com/CNBCFastMoney/status/1144003801281716224?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "craig-wright-satoshi-claim-2016-05-02",
@@ -4479,7 +4280,7 @@
     "id": "plustoken-ponzi-2019",
     "date": "2019-06-27",
     "title": "The PlusToken Ponzi",
-    "summary": "PlusToken was a massive cryptocurrency Ponzi scheme and wallet platform that started in 2018, mainly attracting investors in China and South Korea by promising high monthly rewards for depositing crypto like BTC and ETH into its app. At its peak, the scam collected **billions of dollars worth of crypto — estimates range from about $2 billion to nearly $3 billion (and possibly more when considering additional movements), making it one of the largest crypto frauds ever. The scheme began to collapse in mid-2019 when investors struggled to withdraw funds, and the operators abruptly emptied billions of dollars of assets and posted messages suggesting they were gone. Subsequent arrests of suspects occurred in June 2019 and later in 2020.",
+    "summary": "PlusToken was a massive cryptocurrency Ponzi scheme and wallet platform that started in 2018, mainly attracting investors in China and South Korea by promising high monthly rewards for depositing crypto like BTC and ETH into its app. At its peak, the scam collected **billions of dollars worth of crypto \u2014 estimates range from about $2 billion to nearly $3 billion (and possibly more when considering additional movements), making it one of the largest crypto frauds ever. The scheme began to collapse in mid-2019 when investors struggled to withdraw funds, and the operators abruptly emptied billions of dollars of assets and posted messages suggesting they were gone. Subsequent arrests of suspects occurred in June 2019 and later in 2020.",
     "category": [
       "Market Structure"
     ],
@@ -4566,7 +4367,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/NomiChef/status/1304442495342796800?s=20",
           "account_handle": ""
         }
       },
@@ -4577,24 +4378,22 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Chef Nomi Apology",
-        "url": "https://x.com/NomiChef/status/1304442495342796800?s=20"
       },
       {
-        "label": "Collection of Coincidences",
-        "url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "nomi-rug-return-2020-09",
     "date": "2020-09-11",
     "title": "The Chef and His $SUSHI",
-    "summary": "SushiSwap’s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
+    "summary": "SushiSwap\u2019s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
     "category": [
       "DeFi"
     ],
@@ -4618,7 +4417,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/NomiChef/status/1304442495342796800?s=20",
           "account_handle": ""
         }
       },
@@ -4629,18 +4428,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Chef Nomi Apology",
-        "url": "https://x.com/NomiChef/status/1304442495342796800?s=20"
       },
       {
-        "label": "Collection of Coincidences",
-        "url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/ChainLinkGod/status/1303414941093773314?s=20",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "crimeline": {
       "type": "GOVERNANCE ATTACK",
       "funds_lost_usd": 14000000,
@@ -4683,7 +4480,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/haydenzadams/status/1892621345642488058?s=20",
           "account_handle": ""
         }
       },
@@ -4696,18 +4493,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Hayden Reflects",
-        "url": "https://x.com/haydenzadams/status/1892621345642488058?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "olympus-3-3-lore-2021-03",
     "date": "2021-03-01",
     "title": "The Birth of (3,3) Lore",
-    "summary": "OlympusDAO popularized the “(3,3)” meme to describe a gamified incentive structure where all participants are rewarded for staking and cooperating rather than selling. The (3,3) meme became one of the most famous Crypto Twitter in-jokes of the DeFi era, showing up in thousands of replies and bios as a shorthand for protocol loyalty & staking behavior. It summed DeFi yields into a simple “game” outcome that traders could laugh about long after Olympus peaked.",
+    "summary": "OlympusDAO popularized the \u201c(3,3)\u201d meme to describe a gamified incentive structure where all participants are rewarded for staking and cooperating rather than selling. The (3,3) meme became one of the most famous Crypto Twitter in-jokes of the DeFi era, showing up in thousands of replies and bios as a shorthand for protocol loyalty & staking behavior. It summed DeFi yields into a simple \u201cgame\u201d outcome that traders could laugh about long after Olympus peaked.",
     "category": [
       "DeFi"
     ],
@@ -4732,7 +4524,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/OlympusDAO/status/1395424841784860673",
           "account_handle": ""
         }
       },
@@ -4745,18 +4537,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "OlympusDAO Explains (3,3)",
-        "url": "https://x.com/OlympusDAO/status/1395424841784860673"
-      }
-    ]
+    "links": []
   },
   {
     "id": "twitter-help-desk-hack-2020-07-14",
     "date": "2020-07-14",
     "title": "The Twitter Help Desk Hack",
-    "summary": "Twitter suffered a historic breach when attackers social-engineered Twitter employees and gained access to internal help-desk/admin tools, allowing them to take over high-profile accounts including Elon Musk, Barack Obama, Apple, Uber, and others. The compromised accounts posted a Bitcoin scam promising to double any BTC sent, briefly netting the attackers over $100k and sending Crypto Twitter into chaos. Twitter responded by locking many verified accounts from tweeting, underscoring how centralized “trusted access” can become a single point of failure.",
+    "summary": "Twitter suffered a historic breach when attackers social-engineered Twitter employees and gained access to internal help-desk/admin tools, allowing them to take over high-profile accounts including Elon Musk, Barack Obama, Apple, Uber, and others. The compromised accounts posted a Bitcoin scam promising to double any BTC sent, briefly netting the attackers over $100k and sending Crypto Twitter into chaos. Twitter responded by locking many verified accounts from tweeting, underscoring how centralized \u201ctrusted access\u201d can become a single point of failure.",
     "category": [
       "Security"
     ],
@@ -4830,7 +4617,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/saylor/status/1352614708797464582?s=20",
           "account_handle": ""
         }
       },
@@ -4843,12 +4630,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Saylor Announces 1st Purchase",
-        "url": "https://x.com/saylor/status/1352614708797464582?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "tesla-btc-purchase-2021-02-08",
@@ -4879,7 +4661,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/elonmusk/status/1374617643446063105?s=20",
           "account_handle": ""
         }
       },
@@ -4892,12 +4674,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "You can now buy Tesla with Bitcoin",
-        "url": "https://x.com/elonmusk/status/1374617643446063105?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "el-salvador-legal-tender-2021-09-07",
@@ -4928,7 +4705,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/nayibbukele/status/1768425845163503738?s=20",
           "account_handle": ""
         }
       },
@@ -4941,18 +4718,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Bukele's Piggy Bank",
-        "url": "https://x.com/nayibbukele/status/1768425845163503738?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "constitutiondao-failure-2021-11-18",
     "date": "2021-11-18",
     "title": "The ConstitutionDAO Loses to Ken Griffin",
-    "summary": "ConstitutionDAO was a decentralized crowdfunding effort that raised over $40 million+ in ETH within just days in November 2021, to bid on a Sotheby’s auction for the historic document. It ultimately lost the auction to Citadel's Ken Griffin, dissolved, and refunded contributors.",
+    "summary": "ConstitutionDAO was a decentralized crowdfunding effort that raised over $40 million+ in ETH within just days in November 2021, to bid on a Sotheby\u2019s auction for the historic document. It ultimately lost the auction to Citadel's Ken Griffin, dissolved, and refunded contributors.",
     "category": [
       "CT Lore"
     ],
@@ -4977,7 +4749,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/ConstitutionDAO/status/1460241694515994629?s=20",
           "account_handle": ""
         }
       },
@@ -4990,18 +4762,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Lets purchase that parchment",
-        "url": "https://x.com/ConstitutionDAO/status/1460241694515994629?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "gcr-10m-luna-bet-2022-03",
     "date": "2022-03-09",
     "title": "By My Hand $Luna Will Die",
-    "summary": "GCR publicly proposed a $10 million bet to Do Kwon (Terraform Labs’ co-founder) that the price of $LUNA would be lower a year later than it was then, effectively shorting the Terra ecosystem before its catastrophic collapse.",
+    "summary": "GCR publicly proposed a $10 million bet to Do Kwon (Terraform Labs\u2019 co-founder) that the price of $LUNA would be lower a year later than it was then, effectively shorting the Terra ecosystem before its catastrophic collapse.",
     "category": [
       "CT Lore"
     ],
@@ -5074,7 +4841,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/stablekwon/status/1501551050490146816?s=20",
           "account_handle": ""
         }
       },
@@ -5087,12 +4854,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Your size is not size",
-        "url": "https://x.com/stablekwon/status/1501551050490146816?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "steady-lads-2022-05-10",
@@ -5124,7 +4886,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/stablekwon/status/1523733542492016640?s=20",
           "account_handle": ""
         }
       },
@@ -5137,12 +4899,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Steady lads",
-        "url": "https://x.com/stablekwon/status/1523733542492016640?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "gcr-72-cent-hedge-2022",
@@ -5244,7 +5001,7 @@
     "id": "sbf-what-2022-11",
     "date": "2022-11-13",
     "title": "1) What",
-    "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
+    "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet \u2014 \u201c1)What\u201d \u2014 beginning a slow thread that appeared to spell out \u201cWhat happened.\u201d It became one of the most enraging and infamous moments of the FTX implosion.",
     "category": [
       "Centralized Exchange",
       "CT Lore"
@@ -5269,7 +5026,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/BecauseBitcoin/status/1716146822421344303?s=20",
           "account_handle": ""
         }
       },
@@ -5286,10 +5043,6 @@
       {
         "label": "1)What",
         "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf"
-      },
-      {
-        "label": "SBF Runs Away",
-        "url": "https://x.com/BecauseBitcoin/status/1716146822421344303?s=20"
       }
     ]
   },
@@ -5322,7 +5075,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cz_binance/status/1589283421704290306?s=20",
           "account_handle": ""
         }
       },
@@ -5335,12 +5088,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "CZ Announces Liquidation",
-        "url": "https://x.com/cz_binance/status/1589283421704290306?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "sbf-i-fked-up-2022-11-09",
@@ -5371,7 +5119,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/SBF_FTX/status/1590709166515310593?s=20",
           "account_handle": ""
         }
       },
@@ -5384,12 +5132,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "I fucked up",
-        "url": "https://x.com/SBF_FTX/status/1590709166515310593?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "martin-shkreli-uponly-2022-11",
@@ -5419,7 +5162,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Hunter_Weiss/status/1590049886225182721?s=20",
           "account_handle": ""
         }
       },
@@ -5432,18 +5175,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "UpOnly Video",
-        "url": "https://x.com/Hunter_Weiss/status/1590049886225182721?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "ordinals-inscription-2023-01-21",
     "date": "2023-01-21",
     "title": "Inscriptions are finally ready for Bitcoin mainnet",
-    "summary": "This tweet marked the point when the Ordinals protocol was enabled on Bitcoin mainnet, allowing users to inscribe arbitrary data (like art or text) onto individual satoshis — effectively bringing Bitcoin-native NFTs onchain.",
+    "summary": "This tweet marked the point when the Ordinals protocol was enabled on Bitcoin mainnet, allowing users to inscribe arbitrary data (like art or text) onto individual satoshis \u2014 effectively bringing Bitcoin-native NFTs onchain.",
     "category": [
       "Bitcoin"
     ],
@@ -5468,7 +5206,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/rodarmor/status/1616567899719860230",
           "account_handle": ""
         }
       },
@@ -5481,18 +5219,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Inscriptions are Ready",
-        "url": "https://x.com/rodarmor/status/1616567899719860230"
-      }
-    ]
+    "links": []
   },
   {
     "id": "frosties-arrest-2022-03-24",
     "date": "2022-03-24",
     "title": "The $1.3 Million Frosties Arrest",
-    "summary": "U.S. federal authorities arrested and charged two men — Ethan Vinh Nguyen and Andre Marcus Llacuna — for their roles in an alleged NFT fraud and money-laundering scheme involving the Frosties collection.",
+    "summary": "U.S. federal authorities arrested and charged two men \u2014 Ethan Vinh Nguyen and Andre Marcus Llacuna \u2014 for their roles in an alleged NFT fraud and money-laundering scheme involving the Frosties collection.",
     "category": [
       "NFTs"
     ],
@@ -5566,7 +5299,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/CroissantEth/status/1611203861875769346?s=20",
           "account_handle": ""
         }
       },
@@ -5579,12 +5312,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Realtime Rugged Live",
-        "url": "https://x.com/CroissantEth/status/1611203861875769346?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "gary-gensler-resign-tweet-2024",
@@ -5616,7 +5344,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/GenslerArchive/status/1859658192298574096",
           "account_handle": ""
         }
       },
@@ -5629,18 +5357,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Gary Resigns",
-        "url": "https://x.com/GenslerArchive/status/1859658192298574096"
-      }
-    ]
+    "links": []
   },
   {
     "id": "pepe-87m-millionaire-2024",
     "date": "2025-05-28",
     "title": "The James Wynn Implosion",
-    "summary": "At his peak in 2025, onchain data showed Wynn’s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. “I flipped $3M into $100M and somehow ended up negative $13M. I lost control.” — James Wynn ",
+    "summary": "At his peak in 2025, onchain data showed Wynn\u2019s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. \u201cI flipped $3M into $100M and somehow ended up negative $13M. I lost control.\u201d \u2014 James Wynn ",
     "category": [
       "CT Lore"
     ],
@@ -5675,24 +5398,29 @@
           "tweet_url": "https://x.com/arkham/status/1928255890659913895",
           "account_handle": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "James Buys $PEPE at $4.2m",
-        "url": "https://x.com/JamesWynnReal/status/1647631508533055489?s=20"
       },
       {
-        "label": "Arkham Visuals",
-        "url": "https://x.com/arkham/status/1928255890659913895?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/JamesWynnReal/status/1647631508533055489?s=20",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/arkham/status/1928255890659913895?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
     "title": "Gainzy `Fat Fingers`His Token",
-    "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a “fat-finger misclick” while fiddling with his phone. The massive sell caused the token’s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
+    "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a \u201cfat-finger misclick\u201d while fiddling with his phone. The massive sell caused the token\u2019s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
     "category": [
       "Memecoins"
     ],
@@ -5728,14 +5456,16 @@
           "alt": "",
           "caption": ""
         }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/gainzy222/status/1963447954737697120?s=20",
+          "account_handle": ""
+        }
       }
     ],
-    "links": [
-      {
-        "label": "Gainzy Explains",
-        "url": "https://x.com/gainzy222/status/1963447954737697120?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "pnut-viral-pump-2024",
@@ -5765,7 +5495,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/primalkey/status/1852747173781217682?s=20",
           "account_handle": ""
         }
       },
@@ -5778,12 +5508,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "RIP PNUT",
-        "url": "https://x.com/primalkey/status/1852747173781217682?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "cobie-insider-trading-ident-2022",
@@ -5814,7 +5539,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cobie/status/1513874972552355846",
           "account_handle": ""
         }
       },
@@ -5827,12 +5552,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "rofl",
-        "url": "https://x.com/cobie/status/1513874972552355846"
-      }
-    ]
+    "links": []
   },
   {
     "id": "snoop-dogg-telegram-drop-2025",
@@ -5863,7 +5583,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/durov/status/1943077902817411292?s=20",
           "account_handle": ""
         }
       },
@@ -5876,12 +5596,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Pavel tweets",
-        "url": "https://x.com/durov/status/1943077902817411292?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "cobie-uponly-burn-2024-11-08",
@@ -5973,14 +5688,16 @@
           "tweet_url": "https://x.com/TedPillows/status/2009206637962383809?s=20",
           "account_handle": ""
         }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zooko/status/2008998305389531418?s=20",
+          "account_handle": ""
+        }
       }
     ],
-    "links": [
-      {
-        "label": "Zooko Tweets",
-        "url": "https://x.com/zooko/status/2008998305389531418?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "vitalik-photo-internet-meltdown",
@@ -6010,7 +5727,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/search?q=vitalik%20photo%20meme",
           "account_handle": ""
         }
       },
@@ -6023,12 +5740,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Reactions",
-        "url": "https://x.com/search?q=vitalik%20photo%20meme"
-      }
-    ]
+    "links": []
   },
   {
     "id": "charles-hoskinson-meme-reply",
@@ -6058,7 +5770,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/IOHK_Charles/status/1374769078519300097?s=20",
           "account_handle": ""
         }
       },
@@ -6071,18 +5783,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Charles Post",
-        "url": "https://x.com/IOHK_Charles/status/1374769078519300097?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "voorhees-debates-sbf",
     "date": "2022-10-28",
     "title": "Erik Voorhees Debates SBF and It Goes Bad",
-    "summary": "Just days before FTX’s collapse, Erik Voorhees debated Sam Bankman-Fried on Bankless, with the discussion ironically highlighting criticisms over custody, trust, and centralized finance.",
+    "summary": "Just days before FTX\u2019s collapse, Erik Voorhees debated Sam Bankman-Fried on Bankless, with the discussion ironically highlighting criticisms over custody, trust, and centralized finance.",
     "category": [
       "Centralized Exchange"
     ],
@@ -6107,7 +5814,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Bankless/status/1586156300832215041?s=20",
           "account_handle": ""
         }
       },
@@ -6118,18 +5825,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Clip of Debate",
-        "url": "https://x.com/Bankless/status/1586156300832215041?s=20"
       },
       {
-        "label": "Voorhees Reflects",
-        "url": "https://x.com/Bankless/status/1610384321344425987/video/1"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/Bankless/status/1610384321344425987/video/1",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "randi-zuckerberg-dancing",
@@ -6159,7 +5864,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/randizuckerberg/status/1498425277734690816",
           "account_handle": ""
         }
       },
@@ -6172,12 +5877,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Original Tweet",
-        "url": "https://x.com/randizuckerberg/status/1498425277734690816"
-      }
-    ]
+    "links": []
   },
   {
     "id": "sbf-buy-wall-threat",
@@ -6207,7 +5907,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/SBF_FTX/status/1347964322459262977",
           "account_handle": ""
         }
       },
@@ -6220,12 +5920,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "SBF Tweet",
-        "url": "https://x.com/SBF_FTX/status/1347964322459262977"
-      }
-    ]
+    "links": []
   },
   {
     "id": "ledger-dancing-uponly",
@@ -6255,7 +5950,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/UpOnlyTV/status/1502053122780409871",
           "account_handle": ""
         }
       },
@@ -6268,12 +5963,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "UpOnly Clip",
-        "url": "https://x.com/UpOnlyTV/status/1502053122780409871"
-      }
-    ]
+    "links": []
   },
   {
     "id": "algod-ftx-bahamas-accounts",
@@ -6305,7 +5995,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cobie/status/1592202658483687424",
           "account_handle": ""
         }
       },
@@ -6320,10 +6010,6 @@
     ],
     "links": [
       {
-        "label": "Cobie Tweet",
-        "url": "https://x.com/cobie/status/1592202658483687424"
-      },
-      {
         "label": "News Report",
         "url": "https://crypto.news/investor-pays-100k-bribe-to-ftx-officials-to-bypass-kyc-and-withdraw-funds/"
       }
@@ -6333,7 +6019,7 @@
     "id": "avi-eisenberg-mango",
     "date": "2022-10-11",
     "title": "A Highly Profitable Trading Strategy",
-    "summary": "Avi Eisenberg exploited Mango Markets, later stating 'What are you gonna do, arrest me?'— a quote that became infamous after he was actually arrested.",
+    "summary": "Avi Eisenberg exploited Mango Markets, later stating 'What are you gonna do, arrest me?'\u2014 a quote that became infamous after he was actually arrested.",
     "category": [
       "DeFi Protocol"
     ],
@@ -6358,7 +6044,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/avi_eisen/status/1582563191699431424",
           "account_handle": ""
         }
       },
@@ -6369,18 +6055,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Avi Arrest Me Tweet",
-        "url": "https://x.com/avi_eisen/status/1582563191699431424"
       },
       {
-        "label": "Highly Profitable Trading Strategy",
-        "url": "https://x.com/avi_eisen/status/1581326197241180160?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/avi_eisen/status/1581326197241180160?s=20",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "crimeline": {
       "type": "ORACLE MANIPULATION",
       "funds_lost_usd": 114000000,
@@ -6421,7 +6105,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/MakeItAQuote/status/1556032141426937859",
           "account_handle": ""
         }
       },
@@ -6434,18 +6118,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Mashinsky Quote",
-        "url": "https://x.com/MakeItAQuote/status/1556032141426937859"
-      }
-    ]
+    "links": []
   },
   {
     "id": "john-mcafee-eat-dick",
     "date": "2017-07-17",
     "title": "John McAfee Says He Will Eat His Own D*ck",
-    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k in 3 years. An absurd and legendary bet. RIP.",
+    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn\u2019t reach $500k in 3 years. An absurd and legendary bet. RIP.",
     "category": [
       "Bitcoin"
     ],
@@ -6469,7 +6148,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/relai_app/status/1841856786623824211",
           "account_handle": ""
         }
       },
@@ -6482,12 +6161,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "McAfee Reflects",
-        "url": "https://x.com/relai_app/status/1841856786623824211"
-      }
-    ]
+    "links": []
   },
   {
     "id": "jihan-wu-bitmain-lore",
@@ -6517,7 +6191,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/JihanWu/status/926076475656126466?s=20",
           "account_handle": ""
         }
       },
@@ -6530,12 +6204,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Bitcoin is Bitcoin",
-        "url": "https://x.com/JihanWu/status/926076475656126466?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "cobie-buy-wall",
@@ -6565,7 +6234,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/search?q=cobie%20buy%20wall",
           "account_handle": ""
         }
       },
@@ -6578,12 +6247,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Cobie Buy Wall",
-        "url": "https://x.com/search?q=cobie%20buy%20wall"
-      }
-    ]
+    "links": []
   },
   {
     "id": "crypto-the-game-seasons2",
@@ -6661,7 +6325,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/tednotlasso",
           "account_handle": ""
         }
       },
@@ -6678,10 +6342,6 @@
       {
         "label": "CTG: S3 Recap",
         "url": "https://www.youtube.com/watch?v=Bmbbj7cmLKs"
-      },
-      {
-        "label": "S3 Winner",
-        "url": "https://x.com/tednotlasso"
       }
     ]
   },
@@ -6689,7 +6349,7 @@
     "id": "crypto-the-game-seasons",
     "date": "2023-01-15",
     "title": "Crypto: The Game Begins",
-    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
+    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players \u2192 ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
     "category": [
       "CT Lore",
       "Gaming"
@@ -6763,7 +6423,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/search?q=tornado%20cash%20arrest",
           "account_handle": ""
         }
       },
@@ -6774,18 +6434,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Write Letter to Free Roman",
-        "url": "https://x.com/search?q=tornado%20cash%20arrest"
       },
       {
-        "label": "Vitalik Support",
-        "url": "https://x.com/rstormsf/status/2009432826765341113?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/rstormsf/status/2009432826765341113?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "bitboy-arrested-ex-house",
@@ -6821,7 +6479,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Loopify/status/1706533730221740328?s=20",
           "account_handle": ""
         }
       },
@@ -6832,18 +6490,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Arrest Footage",
-        "url": "https://x.com/Loopify/status/1706533730221740328?s=20"
       },
       {
-        "label": "News Report",
-        "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "bitboy-atozy-lawsuit",
@@ -6879,7 +6535,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/Loopify/status/1706533730221740328?s=20",
           "account_handle": ""
         }
       },
@@ -6890,18 +6546,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Arrest Footage",
-        "url": "https://x.com/Loopify/status/1706533730221740328?s=20"
       },
       {
-        "label": "News Report",
-        "url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/Cointelegraph/status/1706548042248437939?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "bitboy-vs-ansem",
@@ -6931,7 +6585,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/cryptoMIB/status/1865116258942734644?s=20",
           "account_handle": ""
         }
       },
@@ -6948,10 +6602,6 @@
       {
         "label": "The Fight",
         "url": "https://www.youtube.com/watch?v=0hTrCJw1C5E"
-      },
-      {
-        "label": "The Highlights",
-        "url": "https://x.com/cryptoMIB/status/1865116258942734644?s=20"
       }
     ]
   },
@@ -6959,7 +6609,7 @@
     "id": "gainzy-rollbit-drama",
     "date": "2023-03-17",
     "title": "Gainzy Goes Gambling",
-    "summary": "Gainzy posts massive high-stakes bets, often $100k–$300k+ per bet, and helped drive huge attention to Rollbit. Concerns arose that Rollbit was secretly funding these high stakes bets. ZachXBT and community members called him out. Gainzy eventually announced a sponsorship with Stake.com. ",
+    "summary": "Gainzy posts massive high-stakes bets, often $100k\u2013$300k+ per bet, and helped drive huge attention to Rollbit. Concerns arose that Rollbit was secretly funding these high stakes bets. ZachXBT and community members called him out. Gainzy eventually announced a sponsorship with Stake.com. ",
     "category": [
       "CT Lore"
     ],
@@ -6984,7 +6634,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1642195529009360903?s=20",
           "account_handle": ""
         }
       },
@@ -7001,10 +6651,6 @@
       {
         "label": "Reddit Investigation",
         "url": "https://www.reddit.com/r/CryptoCurrency/comments/128o9v4/beware_of_potential_pump_and_dump_scheme_illegal/"
-      },
-      {
-        "label": "ZachXBT Tweet",
-        "url": "https://x.com/zachxbt/status/1642195529009360903?s=20"
       }
     ]
   },
@@ -7036,7 +6682,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/MasonVersluis/status/1583149433881255940",
           "account_handle": ""
         }
       },
@@ -7047,18 +6693,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "Bitboy Rant",
-        "url": "https://x.com/MasonVersluis/status/1583149433881255940"
       },
       {
-        "label": "RSA Tweet",
-        "url": "https://x.com/RyanSAdams/status/1582876963751923712?s=20"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/RyanSAdams/status/1582876963751923712?s=20",
+          "account_handle": ""
+        }
       }
-    ]
+    ],
+    "links": []
   },
   {
     "id": "vitalik-ethereum-on-steroids",
@@ -7088,7 +6732,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/DiscoverCrypto_/status/1583151475466768386",
           "account_handle": ""
         }
       },
@@ -7101,18 +6745,13 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Meme Source",
-        "url": "https://x.com/DiscoverCrypto_/status/1583151475466768386"
-      }
-    ]
+    "links": []
   },
   {
     "id": "satoshi-dont-convince-quote",
     "date": "2010-07-28",
     "title": "I don't have time to try to convince you, sorry",
-    "summary": "Satoshi Nakamoto’s quote: 'If you don’t believe me or don’t get it, I don’t have time to try to convince you'. One of the most cited philosophical statements in Bitcoin culture.",
+    "summary": "Satoshi Nakamoto\u2019s quote: 'If you don\u2019t believe me or don\u2019t get it, I don\u2019t have time to try to convince you'. One of the most cited philosophical statements in Bitcoin culture.",
     "category": [
       "Bitcoin"
     ],
@@ -7136,7 +6775,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/brian_armstrong/status/1950301764689023185?s=20",
           "account_handle": ""
         }
       },
@@ -7149,12 +6788,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "Brian Tweet",
-        "url": "https://x.com/brian_armstrong/status/1950301764689023185?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "kevin-nft-rug",
@@ -7186,7 +6820,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1499912505967132681?s=20",
           "account_handle": ""
         }
       },
@@ -7199,12 +6833,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "ZachXBT Calls Out Team",
-        "url": "https://x.com/zachxbt/status/1499912505967132681?s=20"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "RUG PULL",
       "funds_lost_usd": 70000000,
@@ -7250,20 +6879,22 @@
           "tweet_url": "https://x.com/nikitabier/status/2010985782153265398?s=20",
           "account_handle": ""
         }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/nikitabier/status/2010178890627686492?s=20",
+          "account_handle": ""
+        }
       }
     ],
-    "links": [
-      {
-        "label": "Nikita Tweets",
-        "url": "https://x.com/nikitabier/status/2010178890627686492?s=20"
-      }
-    ]
+    "links": []
   },
   {
     "id": "genesis-creditor-heist-2024",
     "date": "2024-08-19",
     "title": "Genesis Creditor Heist",
-    "summary": "On August 19, 2024, three attackers—Malone Lam (Greavys), Veer Chetal (Wiz), and Jeandiel Serrano (Box)—orchestrated one of the largest single-victim crypto thefts in history, stealing 4,064 BTC ($243M) from a Genesis creditor. Using sophisticated social engineering, they impersonated Google and Gemini support to reset the victim's 2FA and drain the wallet. ZachXBT's investigation uncovered a leaked celebration video showing attackers' real-time reactions, Instagram posts of luxury spending including pink car gifts, and device fingerprints linking them to Mark Cuban's June 2024 compromise. FBI raids in Miami and LA on September 18, 2024 led to multiple arrests. A fourth suspect, British national Danish Zulfiqar, was reportedly arrested in Dubai in December 2024 with $18.5M seized. Funds were rapidly laundered across 15+ exchanges.",
+    "summary": "On August 19, 2024, three attackers\u2014Malone Lam (Greavys), Veer Chetal (Wiz), and Jeandiel Serrano (Box)\u2014orchestrated one of the largest single-victim crypto thefts in history, stealing 4,064 BTC ($243M) from a Genesis creditor. Using sophisticated social engineering, they impersonated Google and Gemini support to reset the victim's 2FA and drain the wallet. ZachXBT's investigation uncovered a leaked celebration video showing attackers' real-time reactions, Instagram posts of luxury spending including pink car gifts, and device fingerprints linking them to Mark Cuban's June 2024 compromise. FBI raids in Miami and LA on September 18, 2024 led to multiple arrests. A fourth suspect, British national Danish Zulfiqar, was reportedly arrested in Dubai in December 2024 with $18.5M seized. Funds were rapidly laundered across 15+ exchanges.",
     "category": [
       "Wallet/Key Compromise",
       "ZachXBT"
@@ -7289,7 +6920,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1836752923830702392?s=20",
           "account_handle": ""
         }
       },
@@ -7300,18 +6931,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "ZachXBT Investigation Thread",
-        "url": "https://x.com/zachxbt/status/1836752923830702392?s=20"
       },
       {
-        "label": "Mark Cuban Connection Thread",
-        "url": "https://x.com/zachxbt/status/1923465312529416702"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1923465312529416702",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "crimeline": {
       "type": "FRAUD",
       "funds_lost_usd": 243000000,
@@ -7329,7 +6958,7 @@
     "id": "harmony-group-mega-hacks",
     "date": "2022-03-23",
     "title": "Harmony Bridge Hack",
-    "summary": "Harmony disclosed a ~$100M theft from its Horizon bridge, after attackers drained bridge-held assets and began laundering proceeds across Ethereum. U.S. authorities later attributed the hack to North Korea’s Lazarus Group (APT38). ZachXBT tracked subsequent laundering flows onchain, including large movements of Harmony-hack ETH routed through privacy tooling (e.g., Railgun) during the 2023 laundering phase.",
+    "summary": "Harmony disclosed a ~$100M theft from its Horizon bridge, after attackers drained bridge-held assets and began laundering proceeds across Ethereum. U.S. authorities later attributed the hack to North Korea\u2019s Lazarus Group (APT38). ZachXBT tracked subsequent laundering flows onchain, including large movements of Harmony-hack ETH routed through privacy tooling (e.g., Railgun) during the 2023 laundering phase.",
     "category": [
       "Bridge",
       "ZachXBT"
@@ -7355,7 +6984,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1615718105053028354?s=20",
           "account_handle": ""
         }
       },
@@ -7366,18 +6995,16 @@
           "alt": "",
           "caption": ""
         }
-      }
-    ],
-    "links": [
-      {
-        "label": "ZachXBT Harmony Hack",
-        "url": "https://x.com/zachxbt/status/1615718105053028354?s=20"
       },
       {
-        "label": "Lazarus Laundering Operations",
-        "url": "https://x.com/zachxbt/status/1785090556424249632"
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1785090556424249632",
+          "account_handle": ""
+        }
       }
     ],
+    "links": [],
     "crimeline": {
       "type": "BRIDGE HACK",
       "funds_lost_usd": 1500000000,
@@ -7418,7 +7045,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1669783717236342785?s=20",
           "account_handle": ""
         }
       },
@@ -7432,10 +7059,6 @@
       }
     ],
     "links": [
-      {
-        "label": "ZachXBT Lawsuit Announcement",
-        "url": "https://x.com/zachxbt/status/1669783717236342785?s=20"
-      },
       {
         "label": "Original Investigation",
         "url": "https://medium.com/@investigationsbyzachxbt/a-story-of-machi-big-brother-jeff-huang-a1ad073fcfa8"
@@ -7533,7 +7156,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zachxbt/status/1621576193152634881?s=204",
           "account_handle": ""
         }
       },
@@ -7546,12 +7169,7 @@
         }
       }
     ],
-    "links": [
-      {
-        "label": "ZachXBT Seizure Announcement",
-        "url": "https://x.com/zachxbt/status/1621576193152634881?s=204"
-      }
-    ],
+    "links": [],
     "crimeline": {
       "type": "FRAUD",
       "funds_lost_usd": 260000,
