@@ -26,6 +26,7 @@ interface TwitterEmbedProps {
 
 let twitterScriptPromise: Promise<void> | null = null;
 const tweetLoadPromises = new Map<string, Promise<HTMLElement | null>>();
+const tweetCache = new Map<string, HTMLElement>();
 let prefetchContainer: HTMLDivElement | null = null;
 
 const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
@@ -109,6 +110,9 @@ export async function prefetchTweetEmbed(
   if (!tweetId) return;
 
   const cacheKey = getCacheKey(tweetId, theme);
+  if (tweetCache.has(cacheKey)) {
+    return;
+  }
   if (tweetLoadPromises.has(cacheKey)) {
     return;
   }
@@ -138,6 +142,7 @@ export async function prefetchTweetEmbed(
     }
 
     container.remove();
+    tweetCache.set(cacheKey, tweetElement);
     return tweetElement;
   })()
     .catch(() => null)
