@@ -6868,13 +6868,6 @@
           "tweet_url": "https://x.com/nikitabier/status/2010985782153265398?s=20",
           "account_handle": ""
         }
-      },
-      {
-        "type": "twitter",
-        "twitter": {
-          "tweet_url": "https://x.com/nikitabier/status/2010178890627686492?s=20",
-          "account_handle": ""
-        }
       }
     ],
     "links": []
