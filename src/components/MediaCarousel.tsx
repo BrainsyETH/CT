@@ -429,63 +429,53 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   const posterUrl = getMediaPoster(firstItem, event, isCrimeline);
   const hasVideo = firstItem?.type === "video";
   const isTwitter = firstItem?.type === "twitter";
+  const videoProvider = firstItem?.video?.provider;
+  const videoOrientation = firstItem?.video?.orientation;
+  const embedUrl = firstItem?.video
+    ? getEmbedUrl(firstItem.video.provider, firstItem.video.embed_url || firstItem.video.url)
+    : null;
+  const canEmbedVideo = Boolean(videoProvider && isIframeProvider(videoProvider) && embedUrl);
 
-  if (firstItem?.type === "video" && firstItem.video) {
-    const isIframe = isIframeProvider(firstItem.video.provider);
-    const iframeSrc = getEmbedUrl(
-      firstItem.video.provider,
-      firstItem.video.embed_url || firstItem.video.url
-    );
-    const canRenderIframe = Boolean(iframeSrc);
-
-    if (isIframe && canRenderIframe) {
-      return (
-        <div
-          className={`relative w-full ${
-            firstItem.video.orientation === "portrait"
-              ? "aspect-[9/16] max-h-[70vh]"
-              : firstItem.video.orientation === "square"
-              ? "aspect-square"
-              : "aspect-video"
-          } bg-black`}
-        >
-          <iframe
-            src={iframeSrc ?? undefined}
-            className="absolute inset-0 w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-            allowFullScreen
-            title={event.title}
-          />
-        </div>
-      );
-    }
-
-    if (isIframe && !canRenderIframe) {
-      return (
-        <div className="relative w-full aspect-video bg-black flex items-center justify-center">
-          <div className="text-center space-y-2 text-white">
-            <p className="text-sm">Video unavailable for embedding.</p>
-            <a
-              href={firstItem.video.url}
-              className="inline-flex items-center justify-center rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium hover:bg-white/20"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open on provider
-            </a>
+  if (canEmbedVideo && firstItem?.video) {
+    return (
+      <div
+        className={`relative w-full ${
+          videoOrientation === "portrait"
+            ? "aspect-[9/16] max-h-[70vh]"
+            : videoOrientation === "square"
+            ? "aspect-square"
+            : "aspect-video"
+        } bg-black flex items-center justify-center`}
+      >
+        <div className="text-center space-y-2 text-white">
+          <div className="mx-auto w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </div>
+          <p className="text-sm font-medium">Embedded video</p>
+          <p className="text-xs text-white/70">
+            {videoProvider === "youtube" ? "YouTube" : "Vimeo"} preview
+          </p>
         </div>
-      );
-    }
+      </div>
+    );
   }
 
-  if (isTwitter && firstItem?.twitter) {
+  if (isTwitter) {
     return (
       <div className={`w-full min-h-[300px] p-4 ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
-        <TwitterEmbed
-          twitter={firstItem.twitter}
-          theme={isCrimeline ? "dark" : "light"}
-        />
+        <div
+          className={`flex h-full min-h-[240px] flex-col items-center justify-center rounded-lg border border-dashed ${
+            isCrimeline ? "border-gray-600 text-gray-200" : "border-gray-300 text-gray-700"
+          }`}
+        >
+          <TwitterBirdIcon className="w-10 h-10" />
+          <p className="mt-3 text-sm font-medium">Embedded post</p>
+          {firstItem?.twitter?.account_handle && (
+            <p className="text-xs opacity-70">@{firstItem.twitter.account_handle}</p>
+          )}
+        </div>
       </div>
     );
   }
