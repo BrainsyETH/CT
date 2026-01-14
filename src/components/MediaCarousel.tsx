@@ -430,6 +430,8 @@ interface MediaPreviewProps {
 export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   const firstItem = media[0];
   const posterUrl = getMediaPoster(firstItem, event, isCrimeline);
+  const hasTwitterPreview = firstItem?.type === "twitter" && Boolean(firstItem.twitter?.image_url);
+  const showTwitterPlaceholder = firstItem?.type === "twitter" && !hasTwitterPreview;
 
   // Determine if first item is a video
   const hasVideo = firstItem?.type === "video";
@@ -440,14 +442,21 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
         isCrimeline ? "bg-gray-950" : "bg-gray-100"
       }`}
     >
-      <Image
-        src={posterUrl}
-        alt={event.title}
-        fill
-        unoptimized
-        className="object-contain transition-transform duration-300"
-        sizes="(max-width: 768px) 100vw, 50vw"
-      />
+      {showTwitterPlaceholder ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-500">
+          <TwitterBirdIcon className="w-10 h-10" />
+          <span className="text-xs font-medium uppercase tracking-wide">Twitter post</span>
+        </div>
+      ) : (
+        <Image
+          src={posterUrl}
+          alt={event.title}
+          fill
+          unoptimized
+          className="object-contain transition-transform duration-300"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      )}
       <div
         className={`absolute inset-0 ${
           isCrimeline
