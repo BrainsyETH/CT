@@ -252,6 +252,18 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
             throw new Error("Invalid tweet URL");
           }
 
+          const cacheKey = getCacheKey(tweetId, theme);
+          const cachedTweet = tweetCache.get(cacheKey);
+          if (cachedTweet) {
+            cachedTweet.parentElement?.removeChild(cachedTweet);
+            container.appendChild(cachedTweet);
+            hasLoadedRef.current = true;
+            container.dataset.tweetId = tweetId;
+            delete container.dataset.timelineHandle;
+            setIsLoading(false);
+            return;
+          }
+
           const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
             theme: theme,
             dnt: true, // Do not track
@@ -267,6 +279,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           hasLoadedRef.current = true;
           container.dataset.tweetId = tweetId;
           delete container.dataset.timelineHandle;
+          tweetCache.set(getCacheKey(tweetId, theme), tweetElement);
           setIsLoading(false);
         } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts

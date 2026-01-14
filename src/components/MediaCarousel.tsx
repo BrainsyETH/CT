@@ -350,7 +350,7 @@ export function MediaCarousel({
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex max-md:hidden"
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex"
             aria-label="Previous media"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -359,7 +359,7 @@ export function MediaCarousel({
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex max-md:hidden"
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-colors z-10 hidden md:inline-flex"
             aria-label="Next media"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -441,9 +441,67 @@ interface MediaPreviewProps {
 export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   const firstItem = media[0];
   const posterUrl = getMediaPoster(firstItem, event, isCrimeline);
-
-  // Determine if first item is a video
   const hasVideo = firstItem?.type === "video";
+  const isTwitter = firstItem?.type === "twitter";
+  if (firstItem?.type === "video" && firstItem.video) {
+    const isIframe = isIframeProvider(firstItem.video.provider);
+    const iframeSrc = getEmbedUrl(
+      firstItem.video.provider,
+      firstItem.video.embed_url || firstItem.video.url
+    );
+    const canRenderIframe = Boolean(iframeSrc);
+
+    if (isIframe && canRenderIframe) {
+      return (
+        <div
+          className={`relative w-full ${
+            firstItem.video.orientation === "portrait"
+              ? "aspect-[9/16] max-h-[70vh]"
+              : firstItem.video.orientation === "square"
+              ? "aspect-square"
+              : "aspect-video"
+          } bg-black`}
+        >
+          <iframe
+            src={iframeSrc ?? undefined}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+            allowFullScreen
+            title={event.title}
+          />
+        </div>
+      );
+    }
+
+    if (isIframe && !canRenderIframe) {
+      return (
+        <div className="relative w-full aspect-video bg-black flex items-center justify-center">
+          <div className="text-center space-y-2 text-white">
+            <p className="text-sm">Video unavailable for embedding.</p>
+            <a
+              href={firstItem.video.url}
+              className="inline-flex items-center justify-center rounded-md bg-white/10 px-3 py-1.5 text-xs font-medium hover:bg-white/20"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open on provider
+            </a>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  if (isTwitter && firstItem?.twitter) {
+    return (
+      <div className={`w-full min-h-[300px] p-4 ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
+        <TwitterEmbed
+          twitter={firstItem.twitter}
+          theme={isCrimeline ? "dark" : "light"}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full aspect-[16/9] overflow-hidden">
@@ -480,7 +538,7 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
       )}
 
       {/* Twitter indicator for first item */}
-      {firstItem?.type === "twitter" && (
+      {isTwitter && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="bg-black/60 rounded-full p-4 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
             <TwitterBirdIcon className="w-8 h-8 text-white" />
