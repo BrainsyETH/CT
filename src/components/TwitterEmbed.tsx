@@ -83,10 +83,12 @@ function extractTweetId(url: string): string | null {
 }
 
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -98,9 +100,37 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
 
   useEffect(() => {
-    if (hasValidData) {
+    if (hasValidData && isInView) {
       void ensureTwitterScript();
     }
+  }, [hasValidData, isInView]);
+
+  useEffect(() => {
+    if (!hasValidData) {
+      return;
+    }
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
   }, [hasValidData]);
 
   useEffect(() => {
@@ -108,6 +138,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     if (!hasValidData) {
       setError("No Twitter content provided");
       setIsLoading(false);
+      return;
+    }
+
+    if (!isInView) {
       return;
     }
 
@@ -190,7 +224,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [tweetUrl, accountHandle, theme, hasValidData]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView]);
 
   if (error) {
     return (
@@ -213,7 +247,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full" ref={wrapperRef}>
       {isLoading && (
         <div className={`flex items-center justify-center w-full h-64 rounded-lg animate-pulse ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
