@@ -3403,7 +3403,7 @@
       {
         "type": "video",
         "video": {
-          "provider": "",
+          "provider": "Youtube",
           "url": "https://youtu.be/6RgOWR1i8kk",
           "embed_url": "",
           "poster_url": ""
@@ -5632,7 +5632,7 @@
     "links": [
       {
         "label": "Gary Resigns",
-        "url": "https://x.com/GenslerArchive/status/1859658192298574096?s=20"
+        "url": "https://x.com/GenslerArchive/status/1859658192298574096"
       }
     ]
   },
@@ -5656,8 +5656,8 @@
       {
         "type": "video",
         "video": {
-          "provider": "",
-          "url": "",
+          "provider": "Youtube",
+          "url": "https://youtube.com/shorts/7W6SICBU9MQ?feature=share",
           "embed_url": "",
           "poster_url": ""
         }
@@ -5665,16 +5665,15 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/JamesWynnReal/status/1647631508533055489",
           "account_handle": ""
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/arkham/status/1928255890659913895",
+          "account_handle": ""
         }
       }
     ],
