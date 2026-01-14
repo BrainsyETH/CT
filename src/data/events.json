@@ -4738,27 +4738,24 @@
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/constitutiondao",
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/haydenzadams/status/1461057735659868178?s=20",
+          "account_handle": ""
         }
       },
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/ConstitutionDAO/status/1460241694515994629?s=20",
+          "tweet_url": "https://x.com/fintechfrank/status/1461518402166693888?s=20",
           "account_handle": ""
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/CupOJoseph/status/2001021615451333008?s=20",
+          "account_handle": ""
         }
       }
     ],
@@ -5770,16 +5767,8 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/IOHK_Charles/status/1374769078519300097?s=20",
+          "tweet_url": "https://x.com/IOHK_Charles/status/1374769078519300097",
           "account_handle": ""
-        }
-      },
-      {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
         }
       }
     ],
@@ -6576,8 +6565,8 @@
       {
         "type": "video",
         "video": {
-          "provider": "",
-          "url": "",
+          "provider": "Youtube",
+          "url": "https://www.youtube.com/watch?v=0hTrCJw1C5E",
           "embed_url": "",
           "poster_url": ""
         }
@@ -6877,13 +6866,6 @@
         "type": "twitter",
         "twitter": {
           "tweet_url": "https://x.com/nikitabier/status/2010985782153265398?s=20",
-          "account_handle": ""
-        }
-      },
-      {
-        "type": "twitter",
-        "twitter": {
-          "tweet_url": "https://x.com/nikitabier/status/2010178890627686492?s=20",
           "account_handle": ""
         }
       }
