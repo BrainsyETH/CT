@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motion";
-import { TwitterEmbed } from "./TwitterEmbed";
+import { TwitterEmbed, prefetchTweetEmbed } from "./TwitterEmbed";
 import { getEmbedUrl, isIframeProvider } from "@/lib/video-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { MediaItem, Event } from "@/lib/types";
@@ -84,6 +84,20 @@ export function MediaCarousel({
       pauseAllVideos(containerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (media.length < 2) return;
+
+    const theme = isCrimeline ? "dark" : "light";
+    const indices = [currentIndex - 1, currentIndex + 1];
+
+    indices.forEach((index) => {
+      if (index < 0 || index >= media.length) return;
+      const item = media[index];
+      if (item?.type !== "twitter" || !item.twitter?.tweet_url) return;
+      void prefetchTweetEmbed(item.twitter.tweet_url, theme);
+    });
+  }, [currentIndex, isCrimeline, media]);
 
   const goToNext = useCallback(() => {
     // Pause current video before switching

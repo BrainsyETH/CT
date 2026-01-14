@@ -25,6 +25,26 @@ interface TwitterEmbedProps {
 }
 
 let twitterScriptPromise: Promise<void> | null = null;
+const tweetCache = new Map<string, HTMLElement>();
+const tweetLoadPromises = new Map<string, Promise<HTMLElement | null>>();
+let prefetchContainer: HTMLDivElement | null = null;
+
+const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
+
+const getPrefetchContainer = () => {
+  if (prefetchContainer) return prefetchContainer;
+  if (typeof document === "undefined") return null;
+  prefetchContainer = document.createElement("div");
+  prefetchContainer.setAttribute("data-twitter-prefetch", "true");
+  prefetchContainer.style.position = "absolute";
+  prefetchContainer.style.left = "-9999px";
+  prefetchContainer.style.top = "0";
+  prefetchContainer.style.width = "550px";
+  prefetchContainer.style.height = "1px";
+  prefetchContainer.style.overflow = "hidden";
+  document.body.appendChild(prefetchContainer);
+  return prefetchContainer;
+};
 
 const ensureTwitterScript = (): Promise<void> => {
   if (twitterScriptPromise) {
@@ -66,7 +86,7 @@ const ensureTwitterScript = (): Promise<void> => {
 };
 
 // Extract tweet ID from various Twitter/X URL formats
-function extractTweetId(url: string): string | null {
+export function extractTweetId(url: string): string | null {
   // Remove query parameters and hash first
   const cleanUrl = url.split("?")[0].split("#")[0];
 
@@ -80,6 +100,54 @@ function extractTweetId(url: string): string | null {
     if (match) return match[1];
   }
   return null;
+}
+
+export async function prefetchTweetEmbed(
+  tweetUrl: string,
+  theme: "light" | "dark" = "light"
+): Promise<void> {
+  const tweetId = extractTweetId(tweetUrl);
+  if (!tweetId) return;
+
+  const cacheKey = getCacheKey(tweetId, theme);
+  if (tweetCache.has(cacheKey) || tweetLoadPromises.has(cacheKey)) {
+    return;
+  }
+
+  const containerHost = getPrefetchContainer();
+  if (!containerHost) return;
+
+  const loadPromise = (async () => {
+    await ensureTwitterScript();
+
+    if (!window.twttr) {
+      return null;
+    }
+
+    const container = document.createElement("div");
+    containerHost.appendChild(container);
+
+    const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
+      theme,
+      dnt: true,
+      align: "center",
+    });
+
+    if (!tweetElement) {
+      container.remove();
+      return null;
+    }
+
+    tweetCache.set(cacheKey, tweetElement);
+    return tweetElement;
+  })()
+    .catch(() => null)
+    .finally(() => {
+      tweetLoadPromises.delete(cacheKey);
+    });
+
+  tweetLoadPromises.set(cacheKey, loadPromise);
+  await loadPromise;
 }
 
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
@@ -184,6 +252,18 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
             throw new Error("Invalid tweet URL");
           }
 
+          const cacheKey = getCacheKey(tweetId, theme);
+          const cachedTweet = tweetCache.get(cacheKey);
+          if (cachedTweet) {
+            cachedTweet.parentElement?.removeChild(cachedTweet);
+            container.appendChild(cachedTweet);
+            hasLoadedRef.current = true;
+            container.dataset.tweetId = tweetId;
+            delete container.dataset.timelineHandle;
+            setIsLoading(false);
+            return;
+          }
+
           const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
             theme: theme,
             dnt: true, // Do not track
@@ -199,6 +279,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           hasLoadedRef.current = true;
           container.dataset.tweetId = tweetId;
           delete container.dataset.timelineHandle;
+          tweetCache.set(getCacheKey(tweetId, theme), tweetElement);
           setIsLoading(false);
         } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts
