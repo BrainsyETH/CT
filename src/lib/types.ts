@@ -48,6 +48,7 @@ export type MediaType = "video" | "twitter" | "image";
 export interface TwitterMedia {
   tweet_url?: string; // URL to a specific tweet to embed
   account_handle?: string; // Twitter/X handle (without @) for profile embed
+  image_url?: string; // Optional preview image for tweet or profile
 }
 
 export interface ImageMedia {

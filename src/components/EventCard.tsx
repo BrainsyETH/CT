@@ -125,13 +125,17 @@ export function EventCard({ event, index }: EventCardProps) {
               }
               // Fallback for events with no media
               return (
-                <div className="relative w-full aspect-[16/9] overflow-hidden">
+                <div
+                  className={`relative w-full aspect-[16/9] overflow-hidden ${
+                    isCrimeline ? "bg-gray-950" : "bg-gray-100"
+                  }`}
+                >
                   <Image
                     src={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
                     alt={event.title}
                     fill
                     unoptimized
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-contain transition-transform duration-300"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div

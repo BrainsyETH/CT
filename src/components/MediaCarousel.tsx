@@ -28,6 +28,9 @@ function getMediaPoster(item: MediaItem, event: Event, isCrimeline: boolean): st
   if (item.type === "video" && item.video?.poster_url) {
     return item.video.poster_url;
   }
+  if (item.type === "twitter" && item.twitter?.image_url) {
+    return item.twitter.image_url;
+  }
   if (item.type === "image" && item.image?.url) {
     return item.image.url;
   }
@@ -432,13 +435,17 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   const hasVideo = firstItem?.type === "video";
 
   return (
-    <div className="relative w-full aspect-[16/9] overflow-hidden">
+    <div
+      className={`relative w-full aspect-[16/9] overflow-hidden ${
+        isCrimeline ? "bg-gray-950" : "bg-gray-100"
+      }`}
+    >
       <Image
         src={posterUrl}
         alt={event.title}
         fill
         unoptimized
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
+        className="object-contain transition-transform duration-300"
         sizes="(max-width: 768px) 100vw, 50vw"
       />
       <div
