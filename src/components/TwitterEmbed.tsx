@@ -26,6 +26,7 @@ interface TwitterEmbedProps {
 
 let twitterScriptPromise: Promise<void> | null = null;
 const tweetLoadPromises = new Map<string, Promise<HTMLElement | null>>();
+const tweetCache = new Map<string, HTMLElement>();
 let prefetchContainer: HTMLDivElement | null = null;
 
 const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
@@ -109,6 +110,9 @@ export async function prefetchTweetEmbed(
   if (!tweetId) return;
 
   const cacheKey = getCacheKey(tweetId, theme);
+  if (tweetCache.has(cacheKey)) {
+    return;
+  }
   if (tweetLoadPromises.has(cacheKey)) {
     return;
   }
@@ -138,6 +142,7 @@ export async function prefetchTweetEmbed(
     }
 
     container.remove();
+    tweetCache.set(cacheKey, tweetElement);
     return tweetElement;
   })()
     .catch(() => null)
@@ -153,9 +158,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
+  const scrollTimeoutRef = useRef<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isScrollIdle, setIsScrollIdle] = useState(true);
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -172,6 +179,32 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       void ensureTwitterScript();
     }
   }, [hasValidData, isInView]);
+
+  useEffect(() => {
+    if (!hasValidData) return;
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      setIsScrollIdle(false);
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = window.setTimeout(() => {
+        setIsScrollIdle(true);
+      }, 150);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchmove", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [hasValidData]);
 
   useEffect(() => {
     if (!hasValidData) {
@@ -193,7 +226,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "600px" }
     );
 
     observer.observe(wrapper);
@@ -210,6 +243,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     }
 
     if (!isInView) {
+      return;
+    }
+
+    if (!isScrollIdle) {
       return;
     }
 
@@ -237,6 +274,12 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
     const embedTweet = async () => {
       try {
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+          await new Promise<void>((resolve) => {
+            window.requestIdleCallback(() => resolve(), { timeout: 500 });
+          });
+        }
+
         await ensureTwitterScript();
 
         if (!window.twttr) {
@@ -305,7 +348,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [tweetUrl, accountHandle, theme, hasValidData, isInView]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle]);
 
   if (error) {
     return (
