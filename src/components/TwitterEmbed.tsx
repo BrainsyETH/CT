@@ -24,6 +24,47 @@ interface TwitterEmbedProps {
   theme?: "light" | "dark";
 }
 
+let twitterScriptPromise: Promise<void> | null = null;
+
+const ensureTwitterScript = (): Promise<void> => {
+  if (twitterScriptPromise) {
+    return twitterScriptPromise;
+  }
+
+  twitterScriptPromise = new Promise((resolve, reject) => {
+    if (typeof window === "undefined") {
+      resolve();
+      return;
+    }
+
+    if (window.twttr?.widgets) {
+      resolve();
+      return;
+    }
+
+    const existingScript = document.querySelector('script[src*="platform.twitter.com/widgets.js"]');
+    if (existingScript && window.twttr) {
+      window.twttr.ready(() => resolve());
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://platform.twitter.com/widgets.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.twttr) {
+        window.twttr.ready(() => resolve());
+      } else {
+        reject(new Error("Twitter widget failed to initialize"));
+      }
+    };
+    script.onerror = () => reject(new Error("Failed to load Twitter widget"));
+    document.head.appendChild(script);
+  });
+
+  return twitterScriptPromise;
+};
+
 // Extract tweet ID from various Twitter/X URL formats
 function extractTweetId(url: string): string | null {
   // Remove query parameters and hash first
@@ -57,6 +98,12 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
 
   useEffect(() => {
+    if (hasValidData) {
+      void ensureTwitterScript();
+    }
+  }, [hasValidData]);
+
+  useEffect(() => {
     // Skip if no valid data
     if (!hasValidData) {
       setError("No Twitter content provided");
@@ -67,46 +114,28 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     const container = containerRef.current;
     if (!container) return;
 
+    const currentTweetId = extractTweetId(tweetUrl);
+    const currentTimelineHandle = accountHandle.trim();
+    const existingTweetId = container.dataset.tweetId;
+    const existingTimelineHandle = container.dataset.timelineHandle;
+    const hasExistingEmbed = container.querySelector(
+      "iframe, .twitter-tweet, .twitter-timeline"
+    );
+
     // Skip if already loaded (prevents re-clearing on re-renders)
-    if (hasLoadedRef.current && container.children.length > 0) {
+    if (
+      hasLoadedRef.current &&
+      hasExistingEmbed &&
+      ((currentTweetId && existingTweetId === currentTweetId) ||
+        (currentTimelineHandle && existingTimelineHandle === currentTimelineHandle))
+    ) {
+      setIsLoading(false);
       return;
     }
 
-    // Load Twitter widget script and wait for it to be ready
-    const loadTwitterScript = (): Promise<void> => {
-      return new Promise((resolve, reject) => {
-        // If already loaded and ready
-        if (window.twttr?.widgets) {
-          resolve();
-          return;
-        }
-
-        // Check if script is already in DOM but not ready yet
-        const existingScript = document.querySelector('script[src*="platform.twitter.com/widgets.js"]');
-        if (existingScript && window.twttr) {
-          window.twttr.ready(() => resolve());
-          return;
-        }
-
-        const script = document.createElement("script");
-        script.src = "https://platform.twitter.com/widgets.js";
-        script.async = true;
-        script.onload = () => {
-          // Wait for twttr.ready callback
-          if (window.twttr) {
-            window.twttr.ready(() => resolve());
-          } else {
-            reject(new Error("Twitter widget failed to initialize"));
-          }
-        };
-        script.onerror = () => reject(new Error("Failed to load Twitter widget"));
-        document.head.appendChild(script);
-      });
-    };
-
     const embedTweet = async () => {
       try {
-        await loadTwitterScript();
+        await ensureTwitterScript();
 
         if (!window.twttr) {
           throw new Error("Twitter widget not available");
@@ -116,7 +145,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
         container.innerHTML = "";
 
         if (tweetUrl) {
-          const tweetId = extractTweetId(tweetUrl);
+          const tweetId = currentTweetId;
           if (!tweetId) {
             throw new Error("Invalid tweet URL");
           }
@@ -134,6 +163,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
           // Tweet was created successfully
           hasLoadedRef.current = true;
+          container.dataset.tweetId = tweetId;
+          delete container.dataset.timelineHandle;
           setIsLoading(false);
         } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts
@@ -144,9 +175,13 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           anchor.dataset.height = "400";
           anchor.dataset.dnt = "true";
           container.appendChild(anchor);
-          window.twttr.widgets.load(container);
-          hasLoadedRef.current = true;
-          setIsLoading(false);
+          window.twttr.ready(() => {
+            window.twttr?.widgets.load(container);
+            hasLoadedRef.current = true;
+            container.dataset.timelineHandle = currentTimelineHandle;
+            delete container.dataset.tweetId;
+            setIsLoading(false);
+          });
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load tweet");
@@ -195,7 +230,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container ${isLoading ? "hidden" : ""}`}
+        className={`twitter-embed-container ${isLoading ? "invisible" : ""}`}
       />
     </div>
   );
