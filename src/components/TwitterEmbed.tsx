@@ -25,6 +25,25 @@ interface TwitterEmbedProps {
 }
 
 let twitterScriptPromise: Promise<void> | null = null;
+const tweetLoadPromises = new Map<string, Promise<HTMLElement | null>>();
+let prefetchContainer: HTMLDivElement | null = null;
+
+const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
+
+const getPrefetchContainer = () => {
+  if (prefetchContainer) return prefetchContainer;
+  if (typeof document === "undefined") return null;
+  prefetchContainer = document.createElement("div");
+  prefetchContainer.setAttribute("data-twitter-prefetch", "true");
+  prefetchContainer.style.position = "absolute";
+  prefetchContainer.style.left = "-9999px";
+  prefetchContainer.style.top = "0";
+  prefetchContainer.style.width = "550px";
+  prefetchContainer.style.height = "1px";
+  prefetchContainer.style.overflow = "hidden";
+  document.body.appendChild(prefetchContainer);
+  return prefetchContainer;
+};
 
 const ensureTwitterScript = (): Promise<void> => {
   if (twitterScriptPromise) {
@@ -66,7 +85,7 @@ const ensureTwitterScript = (): Promise<void> => {
 };
 
 // Extract tweet ID from various Twitter/X URL formats
-function extractTweetId(url: string): string | null {
+export function extractTweetId(url: string): string | null {
   // Remove query parameters and hash first
   const cleanUrl = url.split("?")[0].split("#")[0];
 
@@ -82,11 +101,61 @@ function extractTweetId(url: string): string | null {
   return null;
 }
 
+export async function prefetchTweetEmbed(
+  tweetUrl: string,
+  theme: "light" | "dark" = "light"
+): Promise<void> {
+  const tweetId = extractTweetId(tweetUrl);
+  if (!tweetId) return;
+
+  const cacheKey = getCacheKey(tweetId, theme);
+  if (tweetLoadPromises.has(cacheKey)) {
+    return;
+  }
+
+  const containerHost = getPrefetchContainer();
+  if (!containerHost) return;
+
+  const loadPromise = (async () => {
+    await ensureTwitterScript();
+
+    if (!window.twttr) {
+      return null;
+    }
+
+    const container = document.createElement("div");
+    containerHost.appendChild(container);
+
+    const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
+      theme,
+      dnt: true,
+      align: "center",
+    });
+
+    if (!tweetElement) {
+      container.remove();
+      return null;
+    }
+
+    container.remove();
+    return tweetElement;
+  })()
+    .catch(() => null)
+    .finally(() => {
+      tweetLoadPromises.delete(cacheKey);
+    });
+
+  tweetLoadPromises.set(cacheKey, loadPromise);
+  await loadPromise;
+}
+
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -98,9 +167,37 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
 
   useEffect(() => {
-    if (hasValidData) {
+    if (hasValidData && isInView) {
       void ensureTwitterScript();
     }
+  }, [hasValidData, isInView]);
+
+  useEffect(() => {
+    if (!hasValidData) {
+      return;
+    }
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(wrapper);
+
+    return () => observer.disconnect();
   }, [hasValidData]);
 
   useEffect(() => {
@@ -108,6 +205,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     if (!hasValidData) {
       setError("No Twitter content provided");
       setIsLoading(false);
+      return;
+    }
+
+    if (!isInView) {
       return;
     }
 
@@ -190,7 +291,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [tweetUrl, accountHandle, theme, hasValidData]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView]);
 
   if (error) {
     return (
@@ -213,7 +314,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full" ref={wrapperRef}>
       {isLoading && (
         <div className={`flex items-center justify-center w-full h-64 rounded-lg animate-pulse ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"

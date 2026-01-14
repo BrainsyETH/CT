@@ -109,6 +109,9 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <link rel="preconnect" href="https://platform.twitter.com" />
+        <link rel="preconnect" href="https://syndication.twitter.com" />
+        <link rel="preload" href="https://platform.twitter.com/widgets.js" as="script" />
       </head>
 
       <body className="antialiased">
