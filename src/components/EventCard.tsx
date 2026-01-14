@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
-import { TagPills } from "./TagPills";
 import { ShareButton } from "./ShareButton";
 import { MediaPreview } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
@@ -155,11 +154,6 @@ export function EventCard({ event, index }: EventCardProps) {
               >
                 {event.summary}
               </p>
-
-              {/* Tags */}
-              <div className="mt-3">
-                <TagPills tags={event.tags} />
-              </div>
 
               {/* Metrics - Only show for Bitcoin category events */}
               {event.metrics && (Array.isArray(event.category) ? event.category.includes("Bitcoin") : event.category === "Bitcoin") && (
