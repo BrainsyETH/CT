@@ -3404,7 +3404,7 @@
         "type": "video",
         "video": {
           "provider": "",
-          "url": "",
+          "url": "https://youtu.be/6RgOWR1i8kk",
           "embed_url": "",
           "poster_url": ""
         }
@@ -5709,7 +5709,7 @@
       {
         "type": "video",
         "video": {
-          "provider": "",
+          "provider": "Youtube",
           "url": "https://youtu.be/3LCjK9kC-a4",
           "embed_url": "",
           "poster_url": ""
