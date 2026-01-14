@@ -305,9 +305,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           throw new Error("Twitter widget not available");
         }
 
-        // Clear container
-        container.innerHTML = "";
-
         if (tweetUrl) {
           const tweetId = currentTweetId;
           if (!tweetId) {
@@ -317,15 +314,23 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           const cacheKey = getCacheKey(tweetId, theme);
           const cachedTweet = tweetCache.get(cacheKey);
           if (cachedTweet) {
-            cachedTweet.parentElement?.removeChild(cachedTweet);
-            container.appendChild(cachedTweet);
-            hasLoadedRef.current = true;
-            container.dataset.tweetId = tweetId;
-            delete container.dataset.timelineHandle;
-            setIsLoading(false);
+            // Clear container first, then add cached tweet
+            container.innerHTML = "";
+            // Use requestAnimationFrame to ensure smooth transition
+            requestAnimationFrame(() => {
+              cachedTweet.parentElement?.removeChild(cachedTweet);
+              container.appendChild(cachedTweet);
+              hasLoadedRef.current = true;
+              container.dataset.tweetId = tweetId;
+              delete container.dataset.timelineHandle;
+              setIsLoading(false);
+            });
             return;
           }
 
+          // Clear container before creating new tweet
+          container.innerHTML = "";
+          
           const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
             theme: theme,
             dnt: true, // Do not track
@@ -338,11 +343,14 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           }
 
           // Tweet was created successfully
-          hasLoadedRef.current = true;
-          container.dataset.tweetId = tweetId;
-          delete container.dataset.timelineHandle;
-          tweetCache.set(getCacheKey(tweetId, theme), tweetElement);
-          setIsLoading(false);
+          // Use requestAnimationFrame to ensure smooth transition
+          requestAnimationFrame(() => {
+            hasLoadedRef.current = true;
+            container.dataset.tweetId = tweetId;
+            delete container.dataset.timelineHandle;
+            tweetCache.set(getCacheKey(tweetId, theme), tweetElement);
+            setIsLoading(false);
+          });
         } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts
           const anchor = document.createElement("a");
@@ -390,9 +398,9 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   }
 
   return (
-    <div className="w-full" ref={wrapperRef}>
+    <div className="w-full min-h-[400px] relative" ref={wrapperRef}>
       {isLoading && (
-        <div className={`flex items-center justify-center w-full h-64 rounded-lg animate-pulse ${
+        <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[400px] rounded-lg animate-pulse ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
         }`}>
           <svg
@@ -407,8 +415,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto ${
-          isLoading ? "invisible" : ""
+        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto min-h-[400px] ${
+          isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-300"
         }`}
       />
       {openUrl && (
