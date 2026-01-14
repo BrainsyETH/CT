@@ -38,19 +38,27 @@ export function getVimeoVideoId(url: string): string | null {
 /**
  * Generates an embed URL from a video watch URL
  */
-export function getEmbedUrl(provider: VideoProvider, url: string): string {
-  if (provider === "youtube") {
+export function getEmbedUrl(provider: VideoProvider | string, url: string): string | null {
+  const normalized = normalizeProvider(provider);
+  const resolvedProvider = normalized === "youtube" || normalized === "vimeo"
+    ? normalized
+    : detectVideoProvider(url);
+
+  if (resolvedProvider === "youtube") {
     const videoId = getYouTubeVideoId(url);
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   }
 
-  if (provider === "vimeo") {
+  if (resolvedProvider === "vimeo") {
     const videoId = getVimeoVideoId(url);
-    return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+    return videoId ? `https://player.vimeo.com/video/${videoId}` : null;
   }
 
-  // For mux and self_hosted, return the URL as-is
-  return url;
+  if (resolvedProvider === "mux" || resolvedProvider === "self_hosted") {
+    return url;
+  }
+
+  return null;
 }
 
 /**

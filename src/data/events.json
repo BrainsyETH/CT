@@ -3404,7 +3404,7 @@
         "type": "video",
         "video": {
           "provider": "",
-          "url": "",
+          "url": "https://youtu.be/6RgOWR1i8kk",
           "embed_url": "",
           "poster_url": ""
         }
@@ -5709,8 +5709,8 @@
       {
         "type": "video",
         "video": {
-          "provider": "",
-          "url": "",
+          "provider": "Youtube",
+          "url": "https://youtu.be/3LCjK9kC-a4",
           "embed_url": "",
           "poster_url": ""
         }
@@ -5718,7 +5718,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/crypto_bitlord7/status/1963332627722899650?s=20",
           "account_handle": ""
         }
       },
