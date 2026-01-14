@@ -87,6 +87,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const hasLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false);
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -98,9 +99,37 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
 
   useEffect(() => {
-    if (hasValidData) {
+    if (hasValidData && isInView) {
       void ensureTwitterScript();
     }
+  }, [hasValidData, isInView]);
+
+  useEffect(() => {
+    if (!hasValidData) {
+      return;
+    }
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
   }, [hasValidData]);
 
   useEffect(() => {
@@ -108,6 +137,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     if (!hasValidData) {
       setError("No Twitter content provided");
       setIsLoading(false);
+      return;
+    }
+
+    if (!isInView) {
       return;
     }
 
