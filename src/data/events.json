@@ -5703,7 +5703,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gainzy_chart",
+    "image": "https://imgs.search.brave.com/fRnWf0BQmHeUI_ToVSRW7SazswBxNAHf1NWG4OPXkfM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dC1tZXRhZGF0YS1z/ZXJ2aWNlLXByb2R1/Y3Rpb24uczMuYW1h/em9uYXdzLmNvbS9h/c3NldF9pY29ucy81/ZDQ1MjdjNTgxMzYy/MjJmOWZmMjlhNzM1/MTgxZTlmZDk4NzI1/ZTNkYzE1ZTAxOWVk/NjFhNTFlYTM3ZmE0/ZTYyLnBuZw",
     "media": [
       {
         "type": "video",
@@ -5963,16 +5963,15 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/zooko/status/2008998308208103866",
           "account_handle": ""
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/TedPillows/status/2009206637962383809?s=20",
+          "account_handle": ""
         }
       }
     ],
@@ -7232,27 +7231,24 @@
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ct_suicide",
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/MoonOverlord/status/2010019757022642341",
+          "account_handle": ""
         }
       },
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/nikitabier/status/2010178890627686492",
           "account_handle": ""
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/nikitabier/status/2010985782153265398?s=20",
+          "account_handle": ""
         }
       }
     ],
