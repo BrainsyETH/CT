@@ -224,7 +224,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     };
 
     embedTweet();
-  }, [tweetUrl, accountHandle, theme, hasValidData]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView]);
 
   if (error) {
     return (
