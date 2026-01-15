@@ -2151,7 +2151,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/Slerfsol/status/1769626097216315881",
+          "tweet_url": "https://x.com/Slerfsol",
           "account_handle": ""
         }
       },
@@ -2314,7 +2314,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/zachxbt/status/1807716979626725477?s=20",
+          "tweet_url": "",
           "account_handle": ""
         }
       },
@@ -2535,7 +2535,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "",
+          "tweet_url": "https://x.com/search?q=chill%20guy%20memes&src=typed_query",
           "account_handle": ""
         }
       },
@@ -2641,7 +2641,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/TrendingBitcoin/status/1986478692239856031?s=20",
+          "tweet_url": "",
           "account_handle": ""
         }
       },
@@ -2986,15 +2986,16 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/MANTRA_Chain/status/1911522720623530311",
+          "tweet_url": "",
           "account_handle": ""
         }
       },
       {
-        "type": "twitter",
-        "twitter": {
-          "tweet_url": "https://x.com/jp_mullin888/status/2011367190868738403",
-          "account_handle": ""
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
         }
       }
     ],
@@ -5022,55 +5023,6 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/SBF_FTX/status/1591989554881658880?s=20",
-          "account_handle": ""
-        }
-      },
-      {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
-        }
-      }
-    ],
-    "links": [
-      {
-        "label": "1)What",
-        "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf"
-      }
-    ]
-  },
-  {
-    "id": "sbf-backpack-2022-11",
-    "date": "2022-11-13",
-    "title": "SBF Runs With A Backpack",
-    "summary": "SBF runs away in the Bahamas. 1) What.",
-    "category": [
-      "Centralized Exchange",
-      "CT Lore"
-    ],
-    "tags": [
-      "CULTURAL"
-    ],
-    "mode": [
-      "timeline"
-    ],
-    "image": "",
-    "media": [
-      {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      },
-      {
-        "type": "twitter",
-        "twitter": {
           "tweet_url": "https://x.com/BecauseBitcoin/status/1716146822421344303?s=20",
           "account_handle": ""
         }
@@ -6314,7 +6266,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/cryptothegame/status/1780689234246107210",
+          "tweet_url": "",
           "account_handle": ""
         }
       },
@@ -6362,7 +6314,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/tednotlasso/status/1902516091974512971?s=20",
+          "tweet_url": "https://x.com/tednotlasso",
           "account_handle": ""
         }
       },
@@ -6572,7 +6524,7 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/atozy/status/1562206338293309440",
+          "tweet_url": "https://x.com/Loopify/status/1706533730221740328?s=20",
           "account_handle": ""
         }
       },
