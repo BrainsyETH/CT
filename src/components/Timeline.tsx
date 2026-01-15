@@ -275,12 +275,17 @@ export function Timeline({ events }: TimelineProps) {
   
   useEffect(() => {
     handleScrollRef.current = throttle(() => {
-      // Skip updates during programmatic scrolling to avoid interference
-      if (isScrollingProgrammaticallyRef.current) {
+      const scrollY = window.scrollY;
+      const isProgrammatic = isScrollingProgrammaticallyRef.current;
+
+      // Always update visible range (for year animation), even during programmatic scrolling
+      updateVisibleRangeRef.current(scrollY);
+
+      // Skip filter visibility updates during programmatic scrolling to avoid interference
+      if (isProgrammatic) {
         return;
       }
 
-      const scrollY = window.scrollY;
       const lastScrollY = lastScrollYRef.current;
 
       // Show filter if at the top, or if scrolling up
@@ -295,7 +300,6 @@ export function Timeline({ events }: TimelineProps) {
       }
 
       lastScrollYRef.current = scrollY;
-      updateVisibleRangeRef.current(scrollY);
     }, scrollThrottleMs);
   }, [scrollThrottleMs]);
 
