@@ -62,6 +62,30 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
 
+  // Calculate relative swipe thresholds based on modal height
+  const getSwipeThresholds = useCallback(() => {
+    if (!modalRef.current || !mobile) {
+      return { swipeThreshold: 100, velocityThreshold: 500 };
+    }
+    const modalHeight = modalRef.current.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    // Use 15% of modal height or viewport height, whichever is smaller, with a minimum of 80px
+    const swipeThreshold = Math.max(80, Math.min(modalHeight * 0.15, viewportHeight * 0.15));
+    // Velocity threshold scales with height but has a minimum
+    const velocityThreshold = Math.max(400, modalHeight * 0.5);
+    return { swipeThreshold, velocityThreshold };
+  }, [mobile]);
+
+  // Handle vertical swipe from MediaCarousel (for closing modal over embeds)
+  const handleVerticalSwipe = useCallback((deltaY: number, velocity?: number) => {
+    if (!mobile) return;
+    const { swipeThreshold, velocityThreshold } = getSwipeThresholds();
+    // Only close if downward swipe (positive deltaY)
+    if (deltaY > swipeThreshold || (velocity && velocity > velocityThreshold)) {
+      closeModal();
+    }
+  }, [mobile, getSwipeThresholds, closeModal]);
+
   // Handle image expansion from MediaCarousel
   const handleImageExpand = useCallback((imageUrl: string) => {
     setExpandedImageUrl(imageUrl);
@@ -175,8 +199,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             onDragEnd={(_, info) => {
               // Close on swipe down with threshold or velocity (mobile only)
               if (!mobile) return;
-              const swipeThreshold = 100;
-              const velocityThreshold = 500;
+              const { swipeThreshold, velocityThreshold } = getSwipeThresholds();
               // Only close if downward swipe (positive y)
               if (info.offset.y > swipeThreshold || info.velocity.y > velocityThreshold) {
                 closeModal();
@@ -289,6 +312,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     isCrimeline={isCrimeline}
                     onImageExpand={handleImageExpand}
                     isInModal={true}
+                    onVerticalSwipe={handleVerticalSwipe}
                   />
                 </div>
               )}

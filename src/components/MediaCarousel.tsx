@@ -17,6 +17,7 @@ interface MediaCarouselProps {
   closeButtonRef?: React.RefObject<HTMLButtonElement | null>;
   onClose?: () => void;
   isInModal?: boolean; // Whether this is in a modal context (default: false)
+  onVerticalSwipe?: (deltaY: number, velocity?: number) => void; // Callback for vertical swipes (for modal close)
 }
 
 const TwitterBirdIcon = ({ className }: { className?: string }) => (
@@ -67,6 +68,7 @@ export function MediaCarousel({
   closeButtonRef,
   onClose,
   isInModal = false,
+  onVerticalSwipe,
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideoActive, setIsVideoActive] = useState(false);
@@ -76,7 +78,7 @@ export function MediaCarousel({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const cancelLoadRefs = useRef<Map<number, () => void>>(new Map());
 
   const currentItem = media[currentIndex];
@@ -227,7 +229,7 @@ export function MediaCarousel({
   const handleTouchStart = useCallback((event: React.TouchEvent<HTMLDivElement>) => {
     const touch = event.touches[0];
     if (!touch) return;
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
   }, []);
 
   const handleTouchEnd = useCallback(
@@ -237,8 +239,22 @@ export function MediaCarousel({
       if (!touch) return;
       const deltaX = touch.clientX - touchStartRef.current.x;
       const deltaY = touch.clientY - touchStartRef.current.y;
+      const deltaTime = Date.now() - touchStartRef.current.time;
+      const velocity = deltaTime > 0 ? Math.abs(deltaY) / deltaTime * 1000 : 0;
+      const startData = touchStartRef.current;
       touchStartRef.current = null;
 
+      // Check for vertical swipe first (for modal close) when in modal context
+      if (isInModal && onVerticalSwipe) {
+        const isVerticalSwipe = Math.abs(deltaY) > Math.abs(deltaX) * 1.5;
+        if (isVerticalSwipe && deltaY > 0) {
+          // Only handle downward swipes (positive deltaY)
+          onVerticalSwipe(deltaY, velocity);
+          return; // Don't process horizontal swipe if vertical swipe was detected
+        }
+      }
+
+      // Handle horizontal swipes for carousel navigation
       const swipeThreshold = 30;
       const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY) * 1.5;
       if (!isHorizontalSwipe) return;
@@ -249,7 +265,7 @@ export function MediaCarousel({
         goToPrevious();
       }
     },
-    [goToNext, goToPrevious]
+    [goToNext, goToPrevious, isInModal, onVerticalSwipe]
   );
 
   const handleKeyDown = useCallback(
@@ -408,7 +424,7 @@ export function MediaCarousel({
       case "twitter":
         if (!item.twitter) return null;
         return (
-          <div className={`w-full ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
+          <div className={`w-full ${isCrimeline ? "bg-gray-900" : "bg-white"}`}>
             <TwitterEmbed
               twitter={item.twitter}
               theme={isCrimeline ? "dark" : "light"}
