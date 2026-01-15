@@ -201,6 +201,20 @@ export function Timeline({ events }: TimelineProps) {
       }
 
       const containerTop = container.getBoundingClientRect().top + window.scrollY;
+      // #region agent log
+      const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+      const viewportData = {
+        innerHeight: window.innerHeight,
+        innerWidth: window.innerWidth,
+        visualViewportHeight: visualViewport?.height,
+        visualViewportWidth: visualViewport?.width,
+        visualViewportScale: visualViewport?.scale,
+        scrollY: window.scrollY,
+        containerTop,
+        devicePixelRatio: window.devicePixelRatio
+      };
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:204',message:'Viewport dimensions during updateVisibleRange',data:viewportData,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
       const viewportTop = scrollY - containerTop;
       const viewportBottom = viewportTop + window.innerHeight;
 

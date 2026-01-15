@@ -14,6 +14,10 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // e.g. "G-WY98R2W0KK"
 export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#14b8a6" },
     { media: "(prefers-color-scheme: dark)", color: "#dc2626" },

@@ -26,6 +26,48 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
   useEffect(() => {
     setMobile(isMobile());
+    // #region agent log
+    const logViewportInfo = () => {
+      const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+      const viewportInfo: any = {
+        innerHeight: window.innerHeight,
+        innerWidth: window.innerWidth,
+        visualViewportHeight: visualViewport?.height,
+        visualViewportWidth: visualViewport?.width,
+        visualViewportScale: visualViewport?.scale,
+        devicePixelRatio: window.devicePixelRatio,
+        scrollY: window.scrollY,
+        documentWidth: document.documentElement.clientWidth,
+        documentHeight: document.documentElement.clientHeight
+      };
+      if (modalRef.current) {
+        const rect = modalRef.current.getBoundingClientRect();
+        viewportInfo.modalRect = {
+          top: rect.top,
+          left: rect.left,
+          right: rect.right,
+          bottom: rect.bottom,
+          width: rect.width,
+          height: rect.height
+        };
+      }
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventDetailModal.tsx:29',message:'Viewport info on mount/resize',data:viewportInfo,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    };
+    logViewportInfo();
+    window.addEventListener('resize', logViewportInfo);
+    const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+    if (visualViewport) {
+      visualViewport.addEventListener('resize', logViewportInfo);
+      visualViewport.addEventListener('scroll', logViewportInfo);
+    }
+    return () => {
+      window.removeEventListener('resize', logViewportInfo);
+      if (visualViewport) {
+        visualViewport.removeEventListener('resize', logViewportInfo);
+        visualViewport.removeEventListener('scroll', logViewportInfo);
+      }
+    };
+    // #endregion
   }, []);
 
   const event = events.find((e) => e.id === selectedEventId);
@@ -69,6 +111,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     }
     const modalHeight = modalRef.current.offsetHeight;
     const viewportHeight = window.innerHeight;
+    // #region agent log
+    const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+    const modalRect = modalRef.current.getBoundingClientRect();
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventDetailModal.tsx:71',message:'Modal viewport calculations',data:{modalHeight,viewportHeight,visualViewportHeight:visualViewport?.height,visualViewportWidth:visualViewport?.width,visualViewportScale:visualViewport?.scale,modalRectTop:modalRect.top,modalRectBottom:modalRect.bottom,devicePixelRatio:window.devicePixelRatio},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
     // Use 15% of modal height or viewport height, whichever is smaller, with a minimum of 80px
     const swipeThreshold = Math.max(80, Math.min(modalHeight * 0.15, viewportHeight * 0.15));
     // Velocity threshold scales with height but has a minimum

@@ -41,11 +41,16 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   transition: background-color 0.5s ease, color 0.5s ease;
+  /* Prevent pinch-zoom on mobile while allowing panning */
+  touch-action: pan-x pan-y;
 }
 
 /* Smooth scrolling - respect user preferences */
 html {
   scroll-behavior: smooth;
+  /* Prevent zoom on mobile */
+  touch-action: pan-x pan-y;
+  -webkit-touch-callout: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

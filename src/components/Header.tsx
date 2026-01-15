@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
@@ -26,9 +27,36 @@ export function Header() {
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
   const isCtLoreActive = selectedCategories.includes("CT Lore");
+  const headerRef = useRef<HTMLElement>(null);
+  // #region agent log
+  useEffect(() => {
+    const logHeaderPosition = () => {
+      if (headerRef.current) {
+        const rect = headerRef.current.getBoundingClientRect();
+        const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Header.tsx:render',message:'Header fixed position check',data:{rectTop:rect.top,rectLeft:rect.left,rectRight:rect.right,rectBottom:rect.bottom,innerHeight:window.innerHeight,innerWidth:window.innerWidth,visualViewportHeight:visualViewport?.height,visualViewportWidth:visualViewport?.width,visualViewportScale:visualViewport?.scale,devicePixelRatio:window.devicePixelRatio},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+      }
+    };
+    logHeaderPosition();
+    window.addEventListener('resize', logHeaderPosition);
+    const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+    if (visualViewport) {
+      visualViewport.addEventListener('resize', logHeaderPosition);
+      visualViewport.addEventListener('scroll', logHeaderPosition);
+    }
+    return () => {
+      window.removeEventListener('resize', logHeaderPosition);
+      if (visualViewport) {
+        visualViewport.removeEventListener('resize', logHeaderPosition);
+        visualViewport.removeEventListener('scroll', logHeaderPosition);
+      }
+    };
+  }, []);
+  // #endregion
 
   return (
     <header
+      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isCrimeline
           ? "bg-gray-950/95 border-b-2 border-purple-900/40 shadow-[0_4px_0_rgba(124,58,237,0.25)]"
