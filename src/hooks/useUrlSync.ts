@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useModeStore } from "@/store/mode-store";
 import type { Mode, EventTag } from "@/lib/types";
@@ -16,6 +16,8 @@ export function useUrlSync() {
   const { mode, searchQuery, selectedTags, sortOrder, selectedEventId, setMode, setSearchQuery, toggleTag, setSortOrder, setSelectedEventId } = useModeStore();
 
   const isInitialMount = useRef(true);
+  const isUpdatingFromUrl = useRef(false);
+  const hasInitializedFromUrl = useRef(false);
   const previousStateRef = useRef<{
     mode: Mode;
     searchQuery: string;
@@ -24,10 +26,14 @@ export function useUrlSync() {
     selectedEventId: string | null;
   } | null>(null);
 
+  // Create a stable string representation of tags for comparison
+  const tagsString = useMemo(() => [...selectedTags].sort().join(","), [selectedTags]);
+
   // Read URL params on mount and initialize store
   useEffect(() => {
     if (!isInitialMount.current) return;
     isInitialMount.current = false;
+    isUpdatingFromUrl.current = true;
 
     const urlMode = searchParams.get("mode") as Mode | null;
     const urlQuery = searchParams.get("q");
@@ -45,14 +51,29 @@ export function useUrlSync() {
       setSearchQuery(urlQuery);
     }
 
-    // Set tags from URL
+    // Set tags from URL - use getState to get current tags and update accordingly
     if (urlTags) {
-      const tags = urlTags.split(",") as EventTag[];
-      tags.forEach((tag) => {
-        if (!selectedTags.includes(tag)) {
-          toggleTag(tag);
-        }
-      });
+      const tags = urlTags.split(",").filter(Boolean) as EventTag[];
+      // Get current tags from store to avoid stale closure
+      const currentTags = useModeStore.getState().selectedTags;
+      const currentTagsString = [...currentTags].sort().join(",");
+      const urlTagsString = [...tags].sort().join(",");
+      
+      // Only update if tags are different
+      if (currentTagsString !== urlTagsString) {
+        // Remove tags that aren't in URL
+        currentTags.forEach((tag) => {
+          if (!tags.includes(tag)) {
+            toggleTag(tag);
+          }
+        });
+        // Add tags that are in URL but not in current
+        tags.forEach((tag) => {
+          if (!currentTags.includes(tag)) {
+            toggleTag(tag);
+          }
+        });
+      }
     }
 
     // Set sort order from URL
@@ -64,14 +85,24 @@ export function useUrlSync() {
     if (urlEvent) {
       setSelectedEventId(urlEvent);
     }
+
+    // Mark as initialized and reset flag after store updates complete
+    // Use requestAnimationFrame to ensure all state updates have been processed
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        hasInitializedFromUrl.current = true;
+        isUpdatingFromUrl.current = false;
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run on mount
 
   // Sync store state to URL whenever it changes
   useEffect(() => {
-    if (isInitialMount.current) return; // Skip initial mount
-
-    // Create a stable string representation of tags for comparison
-    const tagsString = [...selectedTags].sort().join(",");
+    // Skip if we're still in initial mount, updating from URL, or haven't initialized yet
+    if (isInitialMount.current || isUpdatingFromUrl.current || !hasInitializedFromUrl.current) {
+      return;
+    }
 
     // Check if state actually changed
     const currentState = {
@@ -128,6 +159,11 @@ export function useUrlSync() {
 
     // Build new URL and update
     const newUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
-    router.replace(newUrl, { scroll: false });
-  }, [mode, searchQuery, selectedTags, sortOrder, selectedEventId, pathname, router]);
+    const currentUrl = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
+    
+    // Only update if URL actually changed
+    if (newUrl !== currentUrl) {
+      router.replace(newUrl, { scroll: false });
+    }
+  }, [mode, searchQuery, tagsString, sortOrder, selectedEventId, pathname, router]);
 }
