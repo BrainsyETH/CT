@@ -53,7 +53,7 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
               boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
             }}
           >
-            <h2 className="text-3xl font-black text-black leading-tight">
+            <h2 className="text-3xl font-black text-black leading-tight break-words text-left">
               {event.title}
             </h2>
           </div>
