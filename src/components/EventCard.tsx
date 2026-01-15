@@ -161,11 +161,13 @@ export function EventCard({ event, index }: EventCardProps) {
               const mediaItems = getMediaItems(event);
               if (mediaItems.length > 0) {
                 return (
-                  <MediaPreview
-                    media={mediaItems}
-                    event={event}
-                    isCrimeline={isCrimeline}
-                  />
+                  <div className="p-2">
+                    <MediaPreview
+                      media={mediaItems}
+                      event={event}
+                      isCrimeline={isCrimeline}
+                    />
+                  </div>
                 );
               }
               // Fallback for events with no media
