@@ -76,6 +76,16 @@ export function MediaCarousel({
 
   const currentItem = media[currentIndex];
 
+  useEffect(() => {
+    setCurrentIndex(0);
+    setIsVideoActive(false);
+    setIsVideoInView(false);
+  }, [event.id]);
+
+  useEffect(() => {
+    setCurrentIndex((prev) => (prev >= media.length ? 0 : prev));
+  }, [media.length]);
+
   // Reset video playing state when slide changes
   useEffect(() => {
     setIsVideoActive(false);
