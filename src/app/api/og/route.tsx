@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
             />
           )}
 
-          {/* Dark overlay for text readability */}
+          {/* Dark overlay for text readability - darker at top for title/date */}
           <div
             style={{
               position: "absolute",
@@ -97,51 +97,19 @@ export async function GET(request: NextRequest) {
               left: 0,
               width: "1200px",
               height: "630px",
-              background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))",
             }}
           />
 
-          {/* Date Badge - Top Left Corner */}
-          {date && (
-            <div
-              style={{
-                position: "absolute",
-                top: "28px",
-                left: "36px",
-                display: "flex",
-                background: colors.accent,
-                border: `5px solid ${colors.border}`,
-                padding: "16px 32px",
-                boxShadow: "6px 6px 0px 0px #000000",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "30px",
-                  fontWeight: 900,
-                  color: "#ffffff",
-                  textTransform: "uppercase",
-                  letterSpacing: "3px",
-                }}
-              >
-                {date}
-              </span>
-            </div>
-          )}
-
-          {/* Content overlay - Bottom (moved up to avoid metadata) */}
+          {/* Title Box - Top Left */}
           <div
             style={{
               position: "absolute",
-              bottom: "75px",
+              top: "28px",
               left: "36px",
-              right: "36px",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
             }}
           >
-            {/* Title Box - dynamic width */}
             <div
               style={{
                 display: "flex",
@@ -163,6 +131,34 @@ export async function GET(request: NextRequest) {
               </span>
             </div>
           </div>
+
+          {/* Date Badge - Top Right Corner */}
+          {date && (
+            <div
+              style={{
+                position: "absolute",
+                top: "28px",
+                right: "36px",
+                display: "flex",
+                background: colors.accent,
+                border: `5px solid ${colors.border}`,
+                padding: "16px 32px",
+                boxShadow: "6px 6px 0px 0px #000000",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: 900,
+                  color: "#ffffff",
+                  textTransform: "uppercase",
+                  letterSpacing: "3px",
+                }}
+              >
+                {date}
+              </span>
+            </div>
+          )}
         </div>
       ),
       {
