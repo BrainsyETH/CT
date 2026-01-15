@@ -271,7 +271,7 @@ export function MediaCarousel({
             ref={videoContainerRef}
             className={`relative w-full ${
               item.video.orientation === "portrait"
-                ? "aspect-[9/16] max-h-[70vh]"
+                ? `aspect-[9/16] ${isInModal ? "max-h-[50vh]" : "max-h-[70vh]"}`
                 : item.video.orientation === "square"
                 ? "aspect-square"
                 : "aspect-video"
@@ -404,7 +404,7 @@ export function MediaCarousel({
       case "image":
         const imageUrl = item.image?.url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
         return (
-          <div className="relative w-full h-48 md:h-64">
+          <div className={`relative w-full ${isInModal ? "h-40 md:h-52" : "h-48 md:h-64"}`}>
             <button
               onClick={() => onImageExpand?.(imageUrl)}
               className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"

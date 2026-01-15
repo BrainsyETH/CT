@@ -25,6 +25,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const [isImageExpanded, setIsImageExpanded] = useState(false);
   const [expandedImageUrl, setExpandedImageUrl] = useState<string>("");
   const [isIncidentDetailsExpanded, setIsIncidentDetailsExpanded] = useState(false);
+  const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
 
   // Get media items, with fallback to event.image if no media
   const mediaItems = event
@@ -158,7 +159,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[85vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)] touch-manipulation"
+            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[90vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)] touch-manipulation"
           >
             <div
               className={`${
@@ -168,7 +169,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               }`}
             >
               {/* Header Section */}
-              <div className={`p-6 pb-4 border-b ${
+              <div className={`p-4 md:p-5 pb-3 md:pb-4 border-b ${
                 isCrimeline ? "border-gray-800" : "border-gray-200"
               }`}>
                 {/* Mobile: Close button top right, centered title, pills below, share buttons below title */}
@@ -193,7 +194,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   {/* Title - centered */}
                   <h2
                     id="modal-title"
-                    className={`text-2xl font-bold text-center ${
+                    className={`text-xl md:text-2xl font-bold text-center ${
                       isCrimeline ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -216,7 +217,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     <div className="flex-1 min-w-0">
                       <h2
                         id="modal-title"
-                        className={`text-2xl font-bold mb-3 ${
+                        className={`text-xl md:text-2xl font-bold mb-2 ${
                           isCrimeline ? "text-white" : "text-gray-900"
                         }`}
                       >
@@ -254,7 +255,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
               {/* Media Carousel */}
               {mediaItems.length > 0 && (
-                <div className="relative w-full py-4">
+                <div className="relative w-full py-2 md:py-3">
                   <MediaCarousel
                     media={mediaItems}
                     event={event}
@@ -266,38 +267,54 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               )}
 
               {/* Content Section - Below Media */}
-              <div className="p-6 pt-4">
+              <div className="p-4 md:p-5 pt-3 md:pt-4">
 
                 {/* Summary */}
-                <p
-                  id="modal-description"
-                  className={`text-base leading-relaxed whitespace-pre-line ${
-                    isCrimeline ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  {event.summary}
-                </p>
+                <div>
+                  <p
+                    id="modal-description"
+                    className={`text-sm md:text-base leading-relaxed whitespace-pre-line ${
+                      isCrimeline ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    {isSummaryExpanded || event.summary.length <= 300
+                      ? event.summary
+                      : `${event.summary.slice(0, 300)}...`}
+                  </p>
+                  {event.summary.length > 300 && (
+                    <button
+                      onClick={() => setIsSummaryExpanded(!isSummaryExpanded)}
+                      className={`mt-2 text-xs font-medium transition-colors ${
+                        isCrimeline
+                          ? "text-purple-400 hover:text-purple-300"
+                          : "text-teal-600 hover:text-teal-700"
+                      }`}
+                    >
+                      {isSummaryExpanded ? "Show less" : "Read more"}
+                    </button>
+                  )}
+                </div>
 
                 {/* Crimeline Details */}
                 {event.crimeline && (
-                  <div className={`mt-6 rounded-lg border-2 shadow-[4px_4px_0_rgba(124,58,237,0.35)] ${
+                  <div className={`mt-4 md:mt-5 rounded-lg border-2 shadow-[4px_4px_0_rgba(124,58,237,0.35)] ${
                     isCrimeline
                       ? "bg-purple-950/30 border-purple-900/40"
                       : "bg-purple-100 border-purple-300"
                   }`}>
                     <button
                       onClick={() => setIsIncidentDetailsExpanded(!isIncidentDetailsExpanded)}
-                      className={`w-full flex items-center justify-between p-4 text-left ${
+                      className={`w-full flex items-center justify-between p-3 md:p-4 text-left ${
                         isIncidentDetailsExpanded ? "" : "rounded-lg"
                       }`}
                       aria-expanded={isIncidentDetailsExpanded}
                     >
-                      <h3 className={`text-sm font-semibold ${
+                      <h3 className={`text-xs md:text-sm font-semibold ${
                         isCrimeline ? "text-purple-400" : "text-purple-700"
                       }`}>
                         Incident Details
                       </h3>
-                      <span className={`text-lg font-medium ${
+                      <span className={`text-base md:text-lg font-medium ${
                         isCrimeline ? "text-purple-400" : "text-purple-700"
                       }`}>
                         {isIncidentDetailsExpanded ? "−" : "+"}
@@ -313,7 +330,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="px-4 pb-4 space-y-3">
+                          <div className="px-3 md:px-4 pb-3 md:pb-4 space-y-2 md:space-y-3">
                             {/* Type and Status */}
                             <div className="flex flex-wrap items-center gap-2">
                               <span className={`px-3 py-1 text-sm font-bold rounded ${
@@ -343,7 +360,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                             {/* Funds Lost */}
                             <div>
                               <p className={`text-xs ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Funds Lost</p>
-                              <p className={`text-2xl font-bold ${isCrimeline ? "text-purple-400" : "text-purple-700"}`}>
+                              <p className={`text-xl md:text-2xl font-bold ${isCrimeline ? "text-purple-400" : "text-purple-700"}`}>
                                 {formatFundsLost(event.crimeline.funds_lost_usd)}
                               </p>
                             </div>
@@ -385,22 +402,22 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Links */}
                 {event.links && event.links.length > 0 && (
-                  <div className="mt-6">
+                  <div className="mt-4 md:mt-5">
                     <h3
-                      className={`text-sm font-semibold mb-3 ${
+                      className={`text-xs md:text-sm font-semibold mb-2 md:mb-3 ${
                         isCrimeline ? "text-gray-300" : "text-gray-700"
                       }`}
                     >
                       Sources
                     </h3>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 md:gap-3">
                       {event.links.map((link, i) => (
                         <a
                           key={i}
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                          className={`inline-flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg text-xs md:text-sm font-medium transition-colors ${
                             isCrimeline
                               ? "bg-gray-800 text-purple-400 hover:bg-gray-700"
                               : "bg-gray-100 text-teal-600 hover:bg-gray-200"
@@ -417,7 +434,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 )}
 
                 {/* Suggest Edit */}
-                <div className={`mt-6 pt-4 border-t ${isCrimeline ? "border-gray-800" : "border-gray-200"}`}>
+                <div className={`mt-4 md:mt-5 pt-3 md:pt-4 border-t ${isCrimeline ? "border-gray-800" : "border-gray-200"}`}>
                   <button
                     onClick={() => {
                       openFeedbackModal("edit_event", event.id);
