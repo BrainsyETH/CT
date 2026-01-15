@@ -33,6 +33,13 @@ export function Timeline({ events }: TimelineProps) {
   const [currentVisibleYear, setCurrentVisibleYear] = useState<number | null>(null);
   const [isFilterVisible, setIsFilterVisible] = useState(true);
   const lastScrollYRef = useRef(0);
+  const timelineContainerRef = useRef<HTMLDivElement>(null);
+  const [visibleRange, setVisibleRange] = useState(() => ({
+    start: 0,
+    end: Math.min(2, Math.max(0, groupedEvents.length - 1)),
+  }));
+  const ESTIMATED_GROUP_HEIGHT = 760;
+  const OVERSCAN_PX = 1200;
 
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
@@ -125,6 +132,101 @@ export function Timeline({ events }: TimelineProps) {
   );
 
   const currentYear = years.length > 0 ? years[0] : null;
+  const yearIndexMap = useMemo(() => {
+    const map = new Map<number, number>();
+    groupedEvents.forEach((group, index) => {
+      map.set(group.year, index);
+    });
+    return map;
+  }, [groupedEvents]);
+
+  const eventIndexMap = useMemo(() => {
+    const map = new Map<string, number>();
+    filteredEvents.forEach((event, index) => {
+      map.set(event.id, index);
+    });
+    return map;
+  }, [filteredEvents]);
+
+  const [groupHeights, setGroupHeights] = useState<number[]>(
+    () => new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT)
+  );
+
+  useEffect(() => {
+    setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
+  }, [groupedEvents.length]);
+
+  const groupOffsets = useMemo(() => {
+    const offsets: number[] = [];
+    let running = 0;
+    groupedEvents.forEach((_, index) => {
+      offsets[index] = running;
+      running += groupHeights[index] ?? ESTIMATED_GROUP_HEIGHT;
+    });
+    return offsets;
+  }, [groupHeights, groupedEvents, ESTIMATED_GROUP_HEIGHT]);
+
+  const totalHeight = useMemo(() => {
+    if (groupOffsets.length === 0) return 0;
+    const lastIndex = groupOffsets.length - 1;
+    return groupOffsets[lastIndex] + (groupHeights[lastIndex] ?? ESTIMATED_GROUP_HEIGHT);
+  }, [groupOffsets, groupHeights, ESTIMATED_GROUP_HEIGHT]);
+
+  const updateVisibleRange = useCallback(
+    (scrollY: number) => {
+      const container = timelineContainerRef.current;
+      if (!container) return;
+
+      if (groupOffsets.length === 0) {
+        setVisibleRange({ start: 0, end: 0 });
+        setCurrentVisibleYear(null);
+        return;
+      }
+
+      const containerTop = container.getBoundingClientRect().top + window.scrollY;
+      const viewportTop = scrollY - containerTop;
+      const viewportBottom = viewportTop + window.innerHeight;
+
+      let startIndex = 0;
+      while (
+        startIndex < groupOffsets.length &&
+        groupOffsets[startIndex] + (groupHeights[startIndex] ?? ESTIMATED_GROUP_HEIGHT) <
+          viewportTop - OVERSCAN_PX
+      ) {
+        startIndex += 1;
+      }
+
+      if (startIndex >= groupOffsets.length) {
+        startIndex = groupOffsets.length - 1;
+      }
+
+      let endIndex = startIndex;
+      while (
+        endIndex < groupOffsets.length &&
+        groupOffsets[endIndex] < viewportBottom + OVERSCAN_PX
+      ) {
+        endIndex += 1;
+      }
+
+      endIndex = Math.max(startIndex, Math.min(groupOffsets.length - 1, endIndex));
+      setVisibleRange({ start: startIndex, end: endIndex });
+
+      const anchor = viewportTop + 200;
+      let yearIndex = 0;
+      for (let i = groupOffsets.length - 1; i >= 0; i -= 1) {
+        if (groupOffsets[i] <= anchor) {
+          yearIndex = i;
+          break;
+        }
+      }
+      setCurrentVisibleYear(groupedEvents[yearIndex]?.year ?? null);
+    },
+    [groupOffsets, groupHeights, groupedEvents, ESTIMATED_GROUP_HEIGHT]
+  );
+
+  useEffect(() => {
+    updateVisibleRange(window.scrollY);
+  }, [groupOffsets, updateVisibleRange]);
 
   // Throttled scroll handler for filter visibility and year tracking
   // Use more aggressive throttling on mobile for better performance
@@ -154,21 +256,10 @@ export function Timeline({ events }: TimelineProps) {
         }
 
         lastScrollYRef.current = scrollY;
-
-        // Track current visible year
-        for (let i = years.length - 1; i >= 0; i--) {
-          const yearElement = document.getElementById(`year-${years[i]}`);
-          if (yearElement) {
-            const rect = yearElement.getBoundingClientRect();
-            if (rect.top <= 200) {
-              setCurrentVisibleYear(years[i]);
-              break;
-            }
-          }
-        }
+        updateVisibleRange(scrollY);
       });
     }, scrollThrottleMs),
-    [years, scrollThrottleMs]
+    [scrollThrottleMs, updateVisibleRange]
   );
 
   // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
@@ -178,6 +269,13 @@ export function Timeline({ events }: TimelineProps) {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+
+  useEffect(() => {
+    const handleResize = () => updateVisibleRange(window.scrollY);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [updateVisibleRange]);
 
   // Calculate stats for crimeline mode - exclude unknown/NaN amounts
   const crimelineStats = useMemo(() => {
@@ -203,8 +301,32 @@ export function Timeline({ events }: TimelineProps) {
     selectedCategories.length > 0 ||
     selectedCrimelineTypes.length > 0;
 
-  // Track card index for alternating sides
-  let cardIndex = 0;
+  const handleGroupMeasure = useCallback(
+    (index: number, node: HTMLDivElement | null) => {
+      if (!node) return;
+      const nextHeight = node.getBoundingClientRect().height;
+      setGroupHeights((prev) => {
+        if (prev[index] === nextHeight) return prev;
+        const next = [...prev];
+        next[index] = nextHeight;
+        return next;
+      });
+    },
+    []
+  );
+
+  const scrollToYear = useCallback(
+    (year: number) => {
+      const index = yearIndexMap.get(year);
+      if (index === undefined) return;
+      const container = timelineContainerRef.current;
+      if (!container) return;
+      const containerTop = container.getBoundingClientRect().top + window.scrollY;
+      const targetTop = containerTop + (groupOffsets[index] ?? 0);
+      window.scrollTo({ top: targetTop, behavior: "smooth" });
+    },
+    [groupOffsets, yearIndexMap]
+  );
 
   const animationProps = prefersReducedMotion
     ? { initial: {}, animate: {}, exit: {}, transition: { duration: 0 } }
@@ -260,7 +382,11 @@ export function Timeline({ events }: TimelineProps) {
             )}
             {/* Year Selector - visible on mobile/tablet, hidden on desktop */}
             <div className="lg:hidden shrink-0">
-              <MobileYearSelector years={years} currentYear={currentYear} />
+              <MobileYearSelector
+                years={years}
+                currentYear={currentYear}
+                onJump={scrollToYear}
+              />
             </div>
           </div>
         </div>
@@ -280,26 +406,40 @@ export function Timeline({ events }: TimelineProps) {
       <div className="flex gap-6">
         {/* Year Jump Sidebar */}
         <aside className="hidden lg:block sticky top-24 h-fit">
-          <YearJump years={years} currentYear={currentVisibleYear} />
+          <YearJump
+            years={years}
+            currentYear={currentVisibleYear}
+            onJump={scrollToYear}
+          />
         </aside>
 
         {/* Timeline Content */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative" ref={timelineContainerRef}>
           {/* Central Timeline Line */}
           <div
             className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 transition-colors duration-300 ${
               isCrimeline ? "bg-purple-900" : isBoth ? "bg-gradient-to-b from-teal-500 via-purple-500 to-purple-700" : "bg-teal-200"
             }`}
+            style={{ height: `${totalHeight}px` }}
           />
 
           <AnimatePresence mode="wait">
             <motion.div
               key={`${mode}-${sortOrder}`}
               {...animationProps}
-              className="relative space-y-12 py-8"
+              className="relative py-8"
+              style={{ height: `${totalHeight}px` }}
             >
-              {groupedEvents.map(({ year, events: yearEvents }) => (
-                <div key={year} id={`year-${year}`} className="scroll-mt-44 timeline-event-group">
+              {groupedEvents.slice(visibleRange.start, visibleRange.end + 1).map(({ year, events: yearEvents }, indexOffset) => {
+                const index = visibleRange.start + indexOffset;
+                const top = groupOffsets[index] ?? 0;
+                return (
+                  <div
+                    key={year}
+                    className="scroll-mt-44 timeline-event-group"
+                    style={{ position: "absolute", top: `${top}px`, left: 0, right: 0 }}
+                    ref={(node) => handleGroupMeasure(index, node)}
+                  >
                   {/* Year Header */}
                   <div className="flex items-center justify-center mb-8">
                     <motion.div
@@ -318,7 +458,7 @@ export function Timeline({ events }: TimelineProps) {
                   {/* Events for this year */}
                   <div className="space-y-6">
                     {yearEvents.map((event) => {
-                      const currentIndex = cardIndex++;
+                      const currentIndex = eventIndexMap.get(event.id) ?? 0;
                       return (
                         <div key={event.id} className="event-card">
                           <EventCard
@@ -330,7 +470,8 @@ export function Timeline({ events }: TimelineProps) {
                     })}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </motion.div>
           </AnimatePresence>
 

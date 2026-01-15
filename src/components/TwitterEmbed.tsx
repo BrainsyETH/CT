@@ -36,9 +36,6 @@ interface TwitterEmbedProps {
 }
 
 let twitterScriptPromise: Promise<void> | null = null;
-const tweetLoadPromises = new Map<string, Promise<void>>();
-
-const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
 
 const ensureTwitterScript = (): Promise<void> => {
   if (twitterScriptPromise) {
@@ -96,27 +93,6 @@ export function extractTweetId(url: string): string | null {
   return null;
 }
 
-export async function prefetchTweetEmbed(
-  tweetUrl: string,
-  theme: "light" | "dark" = "light"
-): Promise<void> {
-  const tweetId = extractTweetId(tweetUrl);
-  if (!tweetId) return;
-  const cacheKey = getCacheKey(tweetId, theme);
-  if (tweetLoadPromises.has(cacheKey)) {
-    return;
-  }
-
-  const loadPromise = ensureTwitterScript()
-    .catch(() => undefined)
-    .finally(() => {
-      tweetLoadPromises.delete(cacheKey);
-    });
-
-  tweetLoadPromises.set(cacheKey, loadPromise);
-  await loadPromise;
-}
-
 export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -124,6 +100,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isActivated, setIsActivated] = useState(false);
   const isScrollIdle = useScrollIdle();
 
   // Check if we have valid twitter data
@@ -136,13 +113,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const accountHandle = twitter.account_handle || "";
   const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
 
-  // Preload Twitter script earlier when component mounts (not just when in view)
-  useEffect(() => {
-    if (hasValidData) {
-      void ensureTwitterScript();
-    }
-  }, [hasValidData]);
-
   useEffect(() => {
     if (!hasValidData) {
       return;
@@ -150,6 +120,12 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
 
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
+
+    if (!isActivated) {
+      setIsInView(false);
+      setIsLoading(false);
+      return;
+    }
 
     if (typeof IntersectionObserver === "undefined") {
       setIsInView(true);
@@ -182,7 +158,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     return () => {
       observer.disconnect();
     };
-  }, [hasValidData, tweetUrl, accountHandle]);
+  }, [hasValidData, tweetUrl, accountHandle, isActivated]);
 
   useEffect(() => {
     // Skip if no valid data
@@ -192,7 +168,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       return;
     }
 
-    if (!isInView) {
+    if (!isActivated || !isInView) {
       return;
     }
 
@@ -317,7 +293,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated]);
 
   if (error) {
     return (
@@ -339,8 +315,62 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     );
   }
 
+  if (!isActivated) {
+    return (
+      <div className="w-full relative embed-container--tweet" ref={wrapperRef}>
+        <div
+          className={`flex flex-col items-center justify-center gap-3 w-full min-h-[300px] rounded-lg ${
+            theme === "dark" ? "bg-gray-700" : "bg-gray-200"
+          }`}
+        >
+          <svg
+            className={`w-12 h-12 ${theme === "dark" ? "text-gray-500" : "text-gray-400"}`}
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          <div className="text-center space-y-2">
+            <p className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}>
+              Tweet preview is ready when you are.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setIsActivated(true);
+                setIsLoading(true);
+              }}
+              className={`inline-flex items-center justify-center rounded-md px-4 py-2 text-xs font-semibold transition-colors ${
+                theme === "dark"
+                  ? "bg-purple-500/80 text-white hover:bg-purple-500"
+                  : "bg-teal-500 text-white hover:bg-teal-600"
+              }`}
+            >
+              Load tweet
+            </button>
+            {openUrl && (
+              <div>
+                <a
+                  href={openUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`text-xs font-medium underline ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  Open on X
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full relative" ref={wrapperRef}>
+    <div className="w-full relative embed-container--tweet" ref={wrapperRef}>
       {isLoading && (
         <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[300px] rounded-lg animate-pulse z-10 ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
