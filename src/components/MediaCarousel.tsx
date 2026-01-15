@@ -423,8 +423,11 @@ export function MediaCarousel({
 
       case "twitter":
         if (!item.twitter) return null;
+        // Add bottom padding when in modal with multiple items to create space for carousel dots
+        const hasMultipleItems = media.length > 1;
+        const bottomPadding = isInModal && hasMultipleItems ? "pb-12" : "";
         return (
-          <div className={`w-full ${isCrimeline ? "bg-gray-900" : "bg-white"}`}>
+          <div className={`w-full ${isCrimeline ? "bg-gray-900" : "bg-white"} ${bottomPadding}`}>
             <TwitterEmbed
               twitter={item.twitter}
               theme={isCrimeline ? "dark" : "light"}
