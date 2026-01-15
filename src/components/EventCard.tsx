@@ -8,6 +8,7 @@ import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
+import { isMobile } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 interface EventCardProps {
