@@ -7,18 +7,16 @@ import { useModeStore } from "@/store/mode-store";
 interface MobileYearSelectorProps {
   years: number[];
   currentYear: number | null;
+  onJump: (year: number) => void;
 }
 
-export function MobileYearSelector({ years, currentYear }: MobileYearSelectorProps) {
+export function MobileYearSelector({ years, currentYear, onJump }: MobileYearSelectorProps) {
   const { mode } = useModeStore();
   const [isOpen, setIsOpen] = useState(false);
   const isCrimeline = mode === "crimeline";
 
   const scrollToYear = (year: number) => {
-    const element = document.getElementById(`year-${year}`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    onJump(year);
     setIsOpen(false);
   };
 

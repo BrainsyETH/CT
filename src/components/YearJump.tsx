@@ -5,18 +5,12 @@ import { useModeStore } from "@/store/mode-store";
 interface YearJumpProps {
   years: number[];
   currentYear?: number | null;
+  onJump: (year: number) => void;
 }
 
-export function YearJump({ years, currentYear }: YearJumpProps) {
+export function YearJump({ years, currentYear, onJump }: YearJumpProps) {
   const { mode } = useModeStore();
   const isCrimeline = mode === "crimeline";
-
-  const scrollToYear = (year: number) => {
-    const element = document.getElementById(`year-${year}`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <nav
@@ -39,7 +33,7 @@ export function YearJump({ years, currentYear }: YearJumpProps) {
         return (
           <button
             key={year}
-            onClick={() => scrollToYear(year)}
+            onClick={() => onJump(year)}
             aria-current={isActive ? "true" : undefined}
             className={`px-3 py-1.5 text-sm font-medium rounded transition-all duration-200 text-left ${
               isActive
