@@ -20,9 +20,15 @@ export function HomeContent({ events }: HomeContentProps) {
 
   // Rehydrate Zustand store after mount to prevent hydration mismatches
   useEffect(() => {
-    useModeStore.persist.rehydrate().then(() => {
+    const rehydrateResult = useModeStore.persist.rehydrate();
+    if (rehydrateResult instanceof Promise) {
+      rehydrateResult.then(() => {
+        setIsHydrated(true);
+      });
+    } else {
+      // If rehydrate is synchronous, set hydrated immediately
       setIsHydrated(true);
-    });
+    }
   }, []);
 
   // Synchronize URL params with store state (only after hydration)

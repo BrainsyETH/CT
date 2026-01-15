@@ -35,9 +35,15 @@ export function useUrlSync() {
   useEffect(() => {
     if (isStoreHydrated) return;
     
-    useModeStore.persist.rehydrate().then(() => {
+    const rehydrateResult = useModeStore.persist.rehydrate();
+    if (rehydrateResult instanceof Promise) {
+      rehydrateResult.then(() => {
+        setIsStoreHydrated(true);
+      });
+    } else {
+      // If rehydrate is synchronous, set hydrated immediately
       setIsStoreHydrated(true);
-    });
+    }
   }, [isStoreHydrated]);
 
   // Read URL params on mount and initialize store (only after hydration)
