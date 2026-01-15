@@ -38,6 +38,12 @@ export function Timeline({ events }: TimelineProps) {
   const ESTIMATED_GROUP_HEIGHT = 760;
   const OVERSCAN_PX = 1200;
 
+  // #region agent log
+  const timelineRenderCount = useRef(0);
+  timelineRenderCount.current += 1;
+  fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:render',message:'Timeline render',data:{renderCount:timelineRenderCount.current,mode,eventsLen:events.length,tagsLen:selectedTags.length,currentVisibleYear,isFilterVisible},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+  // #endregion
+
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
     let filtered = events.filter((event) => {
@@ -150,6 +156,9 @@ export function Timeline({ events }: TimelineProps) {
   );
 
   useEffect(() => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:groupHeightsEffect',message:'groupHeights effect triggered',data:{groupedEventsLen:groupedEvents.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    // #endregion
     setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
     setVisibleRange({
       start: 0,
@@ -179,8 +188,8 @@ export function Timeline({ events }: TimelineProps) {
       if (!container) return;
 
       if (groupOffsets.length === 0) {
-        setVisibleRange({ start: 0, end: 0 });
-        setCurrentVisibleYear(null);
+        setVisibleRange((prev) => (prev.start === 0 && prev.end === 0 ? prev : { start: 0, end: 0 }));
+        setCurrentVisibleYear((prev) => (prev === null ? prev : null));
         return;
       }
 
@@ -210,7 +219,12 @@ export function Timeline({ events }: TimelineProps) {
       }
 
       endIndex = Math.max(startIndex, Math.min(groupOffsets.length - 1, endIndex));
-      setVisibleRange({ start: startIndex, end: endIndex });
+      
+      // Only update if values actually changed to prevent infinite re-renders
+      setVisibleRange((prev) => {
+        if (prev.start === startIndex && prev.end === endIndex) return prev;
+        return { start: startIndex, end: endIndex };
+      });
 
       const anchor = viewportTop + 200;
       let yearIndex = 0;
@@ -220,14 +234,21 @@ export function Timeline({ events }: TimelineProps) {
           break;
         }
       }
-      setCurrentVisibleYear(groupedEvents[yearIndex]?.year ?? null);
+      const newYear = groupedEvents[yearIndex]?.year ?? null;
+      setCurrentVisibleYear((prev) => (prev === newYear ? prev : newYear));
     },
     [groupOffsets, groupHeights, groupedEvents, ESTIMATED_GROUP_HEIGHT]
   );
 
+  // Store updateVisibleRange in a ref to avoid effect dependency issues
+  const updateVisibleRangeRef = useRef(updateVisibleRange);
+  updateVisibleRangeRef.current = updateVisibleRange;
+
+  // Only run on mount and when groupOffsets.length changes (not reference)
+  const groupOffsetsLength = groupOffsets.length;
   useEffect(() => {
-    updateVisibleRange(window.scrollY);
-  }, [groupOffsets, updateVisibleRange]);
+    updateVisibleRangeRef.current(window.scrollY);
+  }, [groupOffsetsLength]);
 
   // Throttled scroll handler for filter visibility and year tracking
   // Use more aggressive throttling on mobile for better performance
@@ -235,11 +256,15 @@ export function Timeline({ events }: TimelineProps) {
   const [scrollThrottleMs, setScrollThrottleMs] = useState(100);
   
   useEffect(() => {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:scrollThrottleEffect',message:'scrollThrottle effect triggered',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    // #endregion
     setScrollThrottleMs(isMobile() ? 150 : 100);
   }, []);
   
-  const handleScroll = useCallback(
-    throttle(() => {
+  // Create throttled scroll handler once and use ref to access latest updateVisibleRange
+  const handleScroll = useMemo(
+    () => throttle(() => {
       // Use requestAnimationFrame for smoother updates
       requestAnimationFrame(() => {
         const scrollY = window.scrollY;
@@ -257,15 +282,16 @@ export function Timeline({ events }: TimelineProps) {
         }
 
         lastScrollYRef.current = scrollY;
-        updateVisibleRange(scrollY);
+        updateVisibleRangeRef.current(scrollY);
       });
     }, scrollThrottleMs),
-    [scrollThrottleMs, updateVisibleRange]
+    [scrollThrottleMs]
   );
 
   // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
+    // Initial call on mount only
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
