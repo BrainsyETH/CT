@@ -154,12 +154,18 @@ export function Timeline({ events }: TimelineProps) {
   const [groupHeights, setGroupHeights] = useState<number[]>(
     () => new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT)
   );
+  
+  // Track which measurements are in progress to prevent infinite loops
+  const measuringRef = useRef<Set<number>>(new Set());
+  const measurementTimeoutRef = useRef<Map<number, number>>(new Map());
 
   useEffect(() => {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:groupHeightsEffect',message:'groupHeights effect triggered',data:{groupedEventsLen:groupedEvents.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
     // #endregion
     setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
+    measuringRef.current.clear();
+    measurementTimeoutRef.current.clear();
     setVisibleRange({
       start: 0,
       end: Math.min(2, Math.max(0, groupedEvents.length - 1)),
@@ -327,18 +333,64 @@ export function Timeline({ events }: TimelineProps) {
     selectedCategories.length > 0 ||
     selectedCrimelineTypes.length > 0;
 
+  // Use a ref to track current heights to avoid dependency issues
+  const groupHeightsRef = useRef<number[]>([]);
+  useEffect(() => {
+    groupHeightsRef.current = groupHeights;
+  }, [groupHeights]);
+
   const handleGroupMeasure = useCallback(
     (index: number, node: HTMLDivElement | null) => {
-      if (!node) return;
-      const nextHeight = node.getBoundingClientRect().height;
-      setGroupHeights((prev) => {
-        if (prev[index] === nextHeight) return prev;
-        const next = [...prev];
-        next[index] = nextHeight;
-        return next;
+      if (!node) {
+        measuringRef.current.delete(index);
+        const timeoutId = measurementTimeoutRef.current.get(index);
+        if (timeoutId) {
+          window.cancelAnimationFrame(timeoutId);
+          measurementTimeoutRef.current.delete(index);
+        }
+        return;
+      }
+      
+      // Prevent concurrent measurements for the same index
+      if (measuringRef.current.has(index)) return;
+      
+      // Use requestAnimationFrame to batch measurements and avoid layout thrashing
+      const timeoutId = window.requestAnimationFrame(() => {
+        measuringRef.current.add(index);
+        
+        const nextHeight = node.getBoundingClientRect().height;
+        const currentHeight = groupHeightsRef.current[index] ?? ESTIMATED_GROUP_HEIGHT;
+        
+        // Only update if the difference is significant (more than 1px) to avoid sub-pixel differences causing loops
+        const heightDiff = Math.abs(nextHeight - currentHeight);
+        if (heightDiff <= 1) {
+          measuringRef.current.delete(index);
+          return;
+        }
+        
+        setGroupHeights((prev) => {
+          // Double-check the height hasn't changed during the async update
+          const prevHeight = prev[index] ?? ESTIMATED_GROUP_HEIGHT;
+          if (Math.abs(nextHeight - prevHeight) <= 1) {
+            measuringRef.current.delete(index);
+            return prev;
+          }
+          
+          const next = [...prev];
+          next[index] = nextHeight;
+          measuringRef.current.delete(index);
+          return next;
+        });
       });
+      
+      // Store timeout ID to allow cleanup
+      const existingTimeout = measurementTimeoutRef.current.get(index);
+      if (existingTimeout) {
+        window.cancelAnimationFrame(existingTimeout);
+      }
+      measurementTimeoutRef.current.set(index, timeoutId);
     },
-    []
+    [ESTIMATED_GROUP_HEIGHT]
   );
 
   const scrollToYear = useCallback(
