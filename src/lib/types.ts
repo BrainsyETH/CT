@@ -43,25 +43,6 @@ export type OutcomeStatus =
 
 export type VideoProvider = "youtube" | "vimeo" | "mux" | "self_hosted";
 export type VideoOrientation = "landscape" | "portrait" | "square";
-export type MediaType = "video" | "twitter" | "image";
-
-export interface TwitterMedia {
-  tweet_url?: string; // URL to a specific tweet to embed
-  account_handle?: string; // Twitter/X handle (without @) for profile embed
-}
-
-export interface ImageMedia {
-  url: string;
-  alt?: string;
-  caption?: string;
-}
-
-export interface MediaItem {
-  type: MediaType;
-  video?: EventVideo; // For type: "video"
-  twitter?: TwitterMedia; // For type: "twitter"
-  image?: ImageMedia; // For type: "image"
-}
 
 export interface EventVideo {
   provider: VideoProvider;
@@ -83,7 +64,6 @@ export interface Event {
   mode: Mode[];
   image?: string;
   video?: EventVideo;
-  media?: MediaItem[]; // New: array of media items for carousel
   links?: { label: string; url: string }[];
   metrics?: {
     btc_price_usd?: number;
