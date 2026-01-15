@@ -466,7 +466,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
               : "text-gray-600 hover:text-gray-900"
           }`}
         >
-          Open on X
+          Twitter
           <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M7 17l10-10M7 7h10v10" />
           </svg>
