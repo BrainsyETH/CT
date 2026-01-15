@@ -5023,6 +5023,55 @@
       {
         "type": "twitter",
         "twitter": {
+          "tweet_url": "https://x.com/SBF_FTX/status/1591989554881658880?s=20",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "",
+          "alt": "",
+          "caption": ""
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "1)What",
+        "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/what_sbf"
+      }
+    ]
+  },
+  {
+    "id": "sbf-backpack-2022-11",
+    "date": "2022-11-13",
+    "title": "1) What",
+    "summary": "SBF runs away in the Bahamas. 1) What.",
+    "category": [
+      "Centralized Exchange",
+      "CT Lore"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
           "tweet_url": "https://x.com/BecauseBitcoin/status/1716146822421344303?s=20",
           "account_handle": ""
         }
