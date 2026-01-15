@@ -252,6 +252,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     event={event}
                     isCrimeline={isCrimeline}
                     onImageExpand={handleImageExpand}
+                    isInModal={true}
                   />
                 </div>
               )}

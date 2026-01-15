@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { TwitterMedia } from "@/lib/types";
 import { isMobile } from "@/lib/utils";
 import { useScrollIdle } from "@/hooks/useScrollIdle";
+import { embedQueue } from "@/lib/embed-queue";
 
 // Cache mobile detection to avoid repeated checks
 let mobileCache: boolean | null = null;
@@ -33,6 +34,8 @@ declare global {
 interface TwitterEmbedProps {
   twitter: TwitterMedia;
   theme?: "light" | "dark";
+  autoLoad?: boolean; // Auto-load without activation button (default: true)
+  isInModal?: boolean; // Whether this is in a modal context (default: false)
 }
 
 let twitterScriptPromise: Promise<void> | null = null;
@@ -93,14 +96,20 @@ export function extractTweetId(url: string): string | null {
   return null;
 }
 
-export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
+export function TwitterEmbed({ 
+  twitter, 
+  theme = "light",
+  autoLoad = true,
+  isInModal = false,
+}: TwitterEmbedProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
+  const cancelLoadRef = useRef<(() => void) | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
-  const [isActivated, setIsActivated] = useState(false);
+  const [isActivated, setIsActivated] = useState(autoLoad);
   const isScrollIdle = useScrollIdle();
 
   // Check if we have valid twitter data
@@ -137,8 +146,12 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     setIsLoading(true);
     hasLoadedRef.current = false;
 
-    // Use smaller rootMargin on mobile for better performance
-    const rootMargin = getIsMobile() ? "300px" : "600px";
+    // Adjust rootMargin based on context
+    // Modal context: smaller margin since modal is fixed
+    // Preview context: larger margin for better preloading
+    const rootMargin = isInModal
+      ? getIsMobile() ? "50px" : "100px"
+      : getIsMobile() ? "300px" : "600px";
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -210,9 +223,9 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
           return;
         }
 
-        // Only wait for scroll idle if we're actively scrolling
-        // This allows immediate loading when jumping to a section
-        if (!isScrollIdle && !hasExistingEmbed) {
+        // Only wait for scroll idle if we're actively scrolling and not in modal
+        // Modal context: load immediately since user has explicitly opened it
+        if (!isInModal && !isScrollIdle && !hasExistingEmbed) {
           // Wait a bit for scroll to settle, but don't block too long
           const scrollWaitTimeout = getIsMobile() ? 100 : 200;
           await new Promise<void>((resolve) => {
@@ -221,8 +234,11 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
         }
 
         // Use requestIdleCallback only if available and scroll is idle
-        const idleTimeout = getIsMobile() ? 200 : 500;
-        if (typeof window !== "undefined" && "requestIdleCallback" in window && isScrollIdle) {
+        // Shorter timeout in modal context for faster loading
+        const idleTimeout = isInModal
+          ? 200
+          : getIsMobile() ? 200 : 500;
+        if (typeof window !== "undefined" && "requestIdleCallback" in window && (isScrollIdle || isInModal)) {
           await new Promise<void>((resolve) => {
             window.requestIdleCallback(() => resolve(), { timeout: idleTimeout });
           });
@@ -285,15 +301,29 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       }
     };
 
-    // Use a small delay to batch rapid navigation
-    const timeoutId = setTimeout(() => {
-      embedTweet();
-    }, 50);
+    // Queue the embed load to limit concurrent loads
+    const loadId = `twitter-${currentTweetId || currentTimelineHandle || Date.now()}`;
+    const priority = isInModal ? 10 : 5; // Higher priority in modal
+    
+    // Cancel any existing queued load
+    if (cancelLoadRef.current) {
+      cancelLoadRef.current();
+    }
+
+    cancelLoadRef.current = embedQueue.enqueue({
+      id: loadId,
+      type: "twitter",
+      priority,
+      loadFn: embedTweet,
+    });
 
     return () => {
-      clearTimeout(timeoutId);
+      if (cancelLoadRef.current) {
+        cancelLoadRef.current();
+        cancelLoadRef.current = null;
+      }
     };
-  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated, isInModal]);
 
   if (error) {
     return (
@@ -315,7 +345,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     );
   }
 
-  if (!isActivated) {
+  // Show activation button only if autoLoad is false
+  if (!isActivated && !autoLoad) {
     return (
       <div className="w-full relative embed-container--tweet" ref={wrapperRef}>
         <div

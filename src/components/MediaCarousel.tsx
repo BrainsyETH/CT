@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motio
 import { TwitterEmbed } from "./TwitterEmbed";
 import { detectVideoProvider, getEmbedUrl, getVideoThumbnailUrl, isIframeProvider } from "@/lib/video-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
+import { embedQueue } from "@/lib/embed-queue";
 import type { MediaItem, Event } from "@/lib/types";
 
 interface MediaCarouselProps {
@@ -15,6 +16,7 @@ interface MediaCarouselProps {
   onImageExpand?: (imageUrl: string) => void;
   closeButtonRef?: React.RefObject<HTMLButtonElement | null>;
   onClose?: () => void;
+  isInModal?: boolean; // Whether this is in a modal context (default: false)
 }
 
 const TwitterBirdIcon = ({ className }: { className?: string }) => (
@@ -64,15 +66,18 @@ export function MediaCarousel({
   onImageExpand,
   closeButtonRef,
   onClose,
+  isInModal = false,
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideoActive, setIsVideoActive] = useState(false);
   const [isVideoInView, setIsVideoInView] = useState(false);
+  const [loadedVideoIndices, setLoadedVideoIndices] = useState<Set<number>>(new Set());
   const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const cancelLoadRefs = useRef<Map<number, () => void>>(new Map());
 
   const currentItem = media[currentIndex];
 
@@ -80,6 +85,10 @@ export function MediaCarousel({
     setCurrentIndex(0);
     setIsVideoActive(false);
     setIsVideoInView(false);
+    setLoadedVideoIndices(new Set());
+    // Cancel all pending video loads when event changes
+    cancelLoadRefs.current.forEach((cancel) => cancel());
+    cancelLoadRefs.current.clear();
   }, [event.id]);
 
   useEffect(() => {
@@ -90,6 +99,7 @@ export function MediaCarousel({
   useEffect(() => {
     setIsVideoActive(false);
     setIsVideoInView(false);
+    
     return () => {
       // Cleanup: pause video when unmounting or changing slides
       if (videoRef.current) {
@@ -98,40 +108,72 @@ export function MediaCarousel({
     };
   }, [currentIndex]);
 
-  // Use IntersectionObserver to lazy load videos
+  // Use IntersectionObserver to lazy load videos and preload adjacent slides
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
+    let observers: IntersectionObserver[] = [];
     
     // Small delay to ensure DOM is updated after currentIndex change
     const timeoutId = setTimeout(() => {
       const container = videoContainerRef.current;
       if (!container || !container.isConnected) return;
 
-      observer = new IntersectionObserver(
+      // Observer for current slide
+      const currentObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               setIsVideoInView(true);
-              observer?.disconnect();
+            } else {
+              setIsVideoInView(false);
             }
           });
         },
-        { rootMargin: "100px" }
+        { rootMargin: isInModal ? "50px" : "100px" }
       );
 
-      observer.observe(container);
+      currentObserver.observe(container);
+      observers.push(currentObserver);
+
+      // Preload adjacent slides' videos if in modal
+      if (isInModal && media.length > 1) {
+        const preloadIndices = [
+          currentIndex > 0 ? currentIndex - 1 : null,
+          currentIndex < media.length - 1 ? currentIndex + 1 : null,
+        ].filter((idx): idx is number => idx !== null);
+
+        preloadIndices.forEach((idx) => {
+          const item = media[idx];
+          if (item?.type === "video" && item.video) {
+            const resolvedProvider = detectVideoProvider(item.video.url) ?? item.video.provider;
+            if (resolvedProvider === "youtube" && !loadedVideoIndices.has(idx)) {
+              // Preload by preparing the embed URL (but don't insert iframe yet)
+              const iframeSrc = getEmbedUrl(
+                resolvedProvider,
+                item.video.embed_url || item.video.url
+              );
+              if (iframeSrc) {
+                // Mark as loaded (preloaded)
+                setLoadedVideoIndices((prev) => new Set([...prev, idx]));
+              }
+            }
+          }
+        });
+      }
     }, 0);
 
     return () => {
       clearTimeout(timeoutId);
-      observer?.disconnect();
+      observers.forEach((obs) => obs.disconnect());
     };
-  }, [currentIndex]);
+  }, [currentIndex, media, isInModal, isVideoActive, loadedVideoIndices]);
 
-  // Pause all videos when component unmounts (modal closes)
+  // Pause all videos and cancel pending loads when component unmounts (modal closes)
   useEffect(() => {
     return () => {
       pauseAllVideos(containerRef.current);
+      // Cancel all pending video loads
+      cancelLoadRefs.current.forEach((cancel) => cancel());
+      cancelLoadRefs.current.clear();
     };
   }, []);
 
@@ -218,8 +260,10 @@ export function MediaCarousel({
           item.video.embed_url || item.video.url
         );
         const canRenderIframe = Boolean(iframeSrc);
+        // Add autoplay for YouTube videos in modal, otherwise require user interaction
+        const autoplayParam = isInModal && resolvedProvider === "youtube" ? "autoplay=1" : "autoplay=0";
         const embedSrc = iframeSrc
-          ? `${iframeSrc}${iframeSrc.includes("?") ? "&" : "?"}autoplay=1`
+          ? `${iframeSrc}${iframeSrc.includes("?") ? "&" : "?"}${autoplayParam}`
           : null;
 
         return (
@@ -234,7 +278,8 @@ export function MediaCarousel({
             } bg-black flex items-center justify-center`}
           >
             {isIframe && canRenderIframe ? (
-              isVideoActive && isVideoInView ? (
+              // Auto-load YouTube videos in modal when visible, otherwise require click
+              (isInModal && resolvedProvider === "youtube" && isVideoInView) || isVideoActive ? (
                 <iframe
                   src={embedSrc ?? undefined}
                   className="absolute inset-0 w-full h-full video-container"
@@ -242,6 +287,10 @@ export function MediaCarousel({
                   allowFullScreen
                   loading="lazy"
                   title={event.title}
+                  onLoad={() => {
+                    // Mark as loaded
+                    setLoadedVideoIndices((prev) => new Set([...prev, currentIndex]));
+                  }}
                 />
               ) : (
                 <button
@@ -346,6 +395,8 @@ export function MediaCarousel({
             <TwitterEmbed
               twitter={item.twitter}
               theme={isCrimeline ? "dark" : "light"}
+              autoLoad={isInModal}
+              isInModal={isInModal}
             />
           </div>
         );
@@ -560,6 +611,8 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
         <TwitterEmbed
           twitter={firstItem.twitter}
           theme={isCrimeline ? "dark" : "light"}
+          autoLoad={false}
+          isInModal={false}
         />
       </div>
     );
