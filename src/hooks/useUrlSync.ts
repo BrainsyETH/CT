@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useModeStore } from "@/store/mode-store";
 import type { Mode, EventTag } from "@/lib/types";
@@ -25,9 +25,10 @@ export function useUrlSync() {
     sortOrder: "asc" | "desc";
     selectedEventId: string | null;
   } | null>(null);
-
-  // Create a stable string representation of tags for comparison
-  const tagsString = useMemo(() => [...selectedTags].sort().join(","), [selectedTags]);
+  
+  // Create a stable representation for dependency tracking
+  // Use length and sorted string to detect actual changes, not just reference changes
+  const tagsKey = `${selectedTags.length}:${[...selectedTags].sort().join(",")}`;
 
   // Read URL params on mount and initialize store
   useEffect(() => {
@@ -61,18 +62,21 @@ export function useUrlSync() {
       
       // Only update if tags are different
       if (currentTagsString !== urlTagsString) {
-        // Remove tags that aren't in URL
-        currentTags.forEach((tag) => {
-          if (!tags.includes(tag)) {
-            toggleTag(tag);
-          }
-        });
-        // Add tags that are in URL but not in current
-        tags.forEach((tag) => {
-          if (!currentTags.includes(tag)) {
-            toggleTag(tag);
-          }
-        });
+        // Batch tag updates using setTimeout to ensure they complete before URL sync
+        setTimeout(() => {
+          // Remove tags that aren't in URL
+          currentTags.forEach((tag) => {
+            if (!tags.includes(tag)) {
+              toggleTag(tag);
+            }
+          });
+          // Add tags that are in URL but not in current
+          tags.forEach((tag) => {
+            if (!currentTags.includes(tag)) {
+              toggleTag(tag);
+            }
+          });
+        }, 0);
       }
     }
 
@@ -87,13 +91,18 @@ export function useUrlSync() {
     }
 
     // Mark as initialized and reset flag after store updates complete
-    // Use requestAnimationFrame to ensure all state updates have been processed
-    requestAnimationFrame(() => {
+    // Use multiple requestAnimationFrames and setTimeout to ensure all state updates have been processed
+    // This gives time for any batched tag updates to complete (they run in setTimeout with 0ms delay)
+    setTimeout(() => {
       requestAnimationFrame(() => {
-        hasInitializedFromUrl.current = true;
-        isUpdatingFromUrl.current = false;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            hasInitializedFromUrl.current = true;
+            isUpdatingFromUrl.current = false;
+          });
+        });
       });
-    });
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run on mount
 
@@ -103,6 +112,9 @@ export function useUrlSync() {
     if (isInitialMount.current || isUpdatingFromUrl.current || !hasInitializedFromUrl.current) {
       return;
     }
+
+    // Compute tags string inside effect to avoid dependency issues
+    const tagsString = [...selectedTags].sort().join(",");
 
     // Check if state actually changed
     const currentState = {
@@ -165,5 +177,5 @@ export function useUrlSync() {
     if (newUrl !== currentUrl) {
       router.replace(newUrl, { scroll: false });
     }
-  }, [mode, searchQuery, tagsString, sortOrder, selectedEventId, pathname, router]);
+  }, [mode, searchQuery, tagsKey, sortOrder, selectedEventId, pathname, router]);
 }
