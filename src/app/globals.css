@@ -151,3 +151,8 @@ textarea:focus-visible {
   /* Removed contain to prevent layout shift issues with dynamic Twitter content */
   /* Let Twitter embeds size themselves naturally */
 }
+
+/* Reserve space for rich embeds to prevent layout shift */
+.embed-container--tweet {
+  min-height: 300px;
+}

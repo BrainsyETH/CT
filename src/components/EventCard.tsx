@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, PanInfo } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { memo, useState, useEffect, useRef } from "react";
 import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
@@ -15,7 +15,7 @@ interface EventCardProps {
   index: number;
 }
 
-export function EventCard({ event, index }: EventCardProps) {
+function EventCardBase({ event, index }: EventCardProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
   // In "both" mode, use crimeline styling for events that have crimeline data
@@ -292,3 +292,5 @@ export function EventCard({ event, index }: EventCardProps) {
     </motion.div>
   );
 }
+
+export const EventCard = memo(EventCardBase);
