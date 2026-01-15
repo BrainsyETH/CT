@@ -263,46 +263,45 @@ export function Timeline({ events }: TimelineProps) {
   }, []);
   
   // Create throttled scroll handler once and use ref to access latest updateVisibleRange
-  const handleScroll = useMemo(
-    () => throttle(() => {
-      // Use requestAnimationFrame for smoother updates
-      requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        const lastScrollY = lastScrollYRef.current;
+  // Store in a ref so the effect doesn't re-run when throttleMs changes
+  const handleScrollRef = useRef<() => void>(() => {});
+  
+  useEffect(() => {
+    handleScrollRef.current = throttle(() => {
+      const scrollY = window.scrollY;
+      const lastScrollY = lastScrollYRef.current;
 
-        // Show filter if at the top, or if scrolling up
-        if (scrollY < 100) {
-          setIsFilterVisible(true);
-        } else if (scrollY < lastScrollY) {
-          // Scrolling up - show filter
-          setIsFilterVisible(true);
-        } else if (scrollY > lastScrollY + 10) {
-          // Scrolling down (with threshold to avoid micro-movements) - hide filter
-          setIsFilterVisible(false);
-        }
+      // Show filter if at the top, or if scrolling up
+      if (scrollY < 100) {
+        setIsFilterVisible((prev) => prev === true ? prev : true);
+      } else if (scrollY < lastScrollY) {
+        // Scrolling up - show filter
+        setIsFilterVisible((prev) => prev === true ? prev : true);
+      } else if (scrollY > lastScrollY + 10) {
+        // Scrolling down (with threshold to avoid micro-movements) - hide filter
+        setIsFilterVisible((prev) => prev === false ? prev : false);
+      }
 
-        lastScrollYRef.current = scrollY;
-        updateVisibleRangeRef.current(scrollY);
-      });
-    }, scrollThrottleMs),
-    [scrollThrottleMs]
-  );
+      lastScrollYRef.current = scrollY;
+      updateVisibleRangeRef.current(scrollY);
+    }, scrollThrottleMs);
+  }, [scrollThrottleMs]);
 
   // Track scroll for filter visibility (hide on scroll down, show on scroll up - like X/Twitter)
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    // Initial call on mount only
-    handleScroll();
+    const onScroll = () => handleScrollRef.current();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Initial call handled by groupOffsetsLength effect
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []); // Empty deps - only run once on mount
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
+  // Handle resize - use ref to avoid dependency loop
   useEffect(() => {
-    const handleResize = () => updateVisibleRange(window.scrollY);
+    const handleResize = () => updateVisibleRangeRef.current(window.scrollY);
     window.addEventListener("resize", handleResize);
-    handleResize();
+    // Don't call handleResize() here - the groupOffsetsLength effect handles initial call
     return () => window.removeEventListener("resize", handleResize);
-  }, [updateVisibleRange]);
+  }, []); // Empty deps - only run once on mount
 
   // Calculate stats for crimeline mode - exclude unknown/NaN amounts
   const crimelineStats = useMemo(() => {
