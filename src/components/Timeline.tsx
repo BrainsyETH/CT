@@ -35,6 +35,7 @@ export function Timeline({ events }: TimelineProps) {
   const lastScrollYRef = useRef(0);
   const timelineContainerRef = useRef<HTMLDivElement>(null);
   const [visibleRange, setVisibleRange] = useState({ start: 0, end: 0 });
+  const isScrollingProgrammaticallyRef = useRef(false);
   const ESTIMATED_GROUP_HEIGHT = 760;
   const OVERSCAN_PX = 1200;
 
@@ -274,6 +275,11 @@ export function Timeline({ events }: TimelineProps) {
   
   useEffect(() => {
     handleScrollRef.current = throttle(() => {
+      // Skip updates during programmatic scrolling to avoid interference
+      if (isScrollingProgrammaticallyRef.current) {
+        return;
+      }
+
       const scrollY = window.scrollY;
       const lastScrollY = lastScrollYRef.current;
 
@@ -399,11 +405,53 @@ export function Timeline({ events }: TimelineProps) {
       if (index === undefined) return;
       const container = timelineContainerRef.current;
       if (!container) return;
-      const containerTop = container.getBoundingClientRect().top + window.scrollY;
-      const targetTop = containerTop + (groupOffsets[index] ?? 0);
-      window.scrollTo({ top: targetTop, behavior: "smooth" });
+
+      // Set flag to prevent scroll handler from interfering
+      isScrollingProgrammaticallyRef.current = true;
+
+      // Use requestAnimationFrame to ensure DOM is ready and measurements are accurate
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Try to find the actual year element in the DOM first (more accurate)
+          const yearElement = container.querySelector(`[data-year="${year}"]`) as HTMLElement;
+          
+          let targetTop: number;
+          if (yearElement) {
+            // Use the actual element's position
+            const elementTop = yearElement.getBoundingClientRect().top + window.scrollY;
+            targetTop = elementTop - 44; // Account for scroll-mt-44
+          } else {
+            // Fallback to calculated offset if element not in DOM (virtualized)
+            const containerTop = container.getBoundingClientRect().top + window.scrollY;
+            targetTop = containerTop + (groupOffsets[index] ?? 0);
+          }
+          
+          // Scroll to the target position
+          window.scrollTo({ top: targetTop, behavior: "smooth" });
+
+          // Clear the flag after scroll completes (smooth scroll typically takes ~500ms)
+          // Also listen for scrollend event if available, otherwise use timeout
+          const clearFlag = () => {
+            isScrollingProgrammaticallyRef.current = false;
+            // Update visible range after scroll completes
+            updateVisibleRangeRef.current(window.scrollY);
+          };
+
+          // Modern browsers support scrollend event
+          if ('onscrollend' in window) {
+            const handleScrollEnd = () => {
+              clearFlag();
+              window.removeEventListener('scrollend', handleScrollEnd);
+            };
+            window.addEventListener('scrollend', handleScrollEnd, { once: true });
+          } else {
+            // Fallback: clear after smooth scroll duration (typically 500ms)
+            setTimeout(clearFlag, 600);
+          }
+        });
+      });
     },
-    [groupOffsets, yearIndexMap]
+    [groupOffsets, yearIndexMap, updateVisibleRange]
   );
 
   const animationProps = prefersReducedMotion
@@ -514,6 +562,7 @@ export function Timeline({ events }: TimelineProps) {
                 return (
                   <div
                     key={year}
+                    data-year={year}
                     className="scroll-mt-44 timeline-event-group"
                     style={{ position: "absolute", top: `${top}px`, left: 0, right: 0 }}
                     ref={(node) => handleGroupMeasure(index, node)}
