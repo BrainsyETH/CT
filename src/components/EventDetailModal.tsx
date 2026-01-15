@@ -10,6 +10,7 @@ import { MediaCarousel } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
+import { preloadTwitterScript } from "./TwitterEmbed";
 import type { Event } from "@/lib/types";
 
 interface EventDetailModalProps {
@@ -38,6 +39,13 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
         return items;
       })()
     : [];
+
+  // Preload Twitter script if modal has Twitter embeds
+  useEffect(() => {
+    if (selectedEventId && mediaItems.some(item => item.type === "twitter")) {
+      preloadTwitterScript();
+    }
+  }, [selectedEventId, mediaItems]);
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { TwitterMedia } from "@/lib/types";
 import { isMobile } from "@/lib/utils";
-import { useScrollIdle } from "@/hooks/useScrollIdle";
 import { embedQueue } from "@/lib/embed-queue";
 
 // Cache mobile detection to avoid repeated checks
@@ -79,6 +78,18 @@ const ensureTwitterScript = (): Promise<void> => {
   return twitterScriptPromise;
 };
 
+// Preload Twitter script for faster loading in modals
+export const preloadTwitterScript = (): void => {
+  if (typeof window === "undefined") return;
+  if (window.twttr?.widgets) return;
+  if (document.querySelector('script[src*="platform.twitter.com/widgets.js"]')) return;
+  
+  // Start loading script in background
+  ensureTwitterScript().catch(() => {
+    // Silently fail preload - will retry when needed
+  });
+};
+
 // Extract tweet ID from various Twitter/X URL formats
 export function extractTweetId(url: string): string | null {
   // Remove query parameters and hash first
@@ -110,8 +121,6 @@ export function TwitterEmbed({
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [isActivated, setIsActivated] = useState(autoLoad);
-  const [containerReady, setContainerReady] = useState(false);
-  const isScrollIdle = useScrollIdle();
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -121,6 +130,7 @@ export function TwitterEmbed({
   // Get stable identifiers for the tweet
   const tweetUrl = twitter.tweet_url || "";
   const accountHandle = twitter.account_handle || "";
+  const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
   const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
 
   useEffect(() => {
@@ -140,22 +150,6 @@ export function TwitterEmbed({
     // In modal context with autoLoad, immediately set as in view and skip observer
     if (isInModal && autoLoad) {
       setIsInView(true);
-      // Still set up a simple observer as a fallback, but it won't change isInView to false
-      if (typeof IntersectionObserver !== "undefined") {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setIsInView(true);
-              }
-              // Don't set to false in modal with autoLoad
-            });
-          },
-          { rootMargin: "0px", threshold: 0 }
-        );
-        observer.observe(wrapper);
-        return () => observer.disconnect();
-      }
       return;
     }
 
@@ -210,24 +204,11 @@ export function TwitterEmbed({
 
     const container = containerRef.current;
     if (!container) {
-      // Container not ready yet - set ready state when it becomes available
-      if (!containerReady) {
-        const checkContainer = () => {
-          if (containerRef.current) {
-            setContainerReady(true);
-          }
-        };
-        // Check immediately and on next frame
-        checkContainer();
-        const rafId = requestAnimationFrame(checkContainer);
-        return () => cancelAnimationFrame(rafId);
-      }
-      return;
-    }
-    
-    // Mark container as ready
-    if (!containerReady) {
-      setContainerReady(true);
+      // Use requestAnimationFrame to wait for container to be ready
+      const rafId = requestAnimationFrame(() => {
+        // Container should be ready on next frame
+      });
+      return () => cancelAnimationFrame(rafId);
     }
 
     const currentTweetId = extractTweetId(tweetUrl);
@@ -256,7 +237,6 @@ export function TwitterEmbed({
     ) {
       setIsLoading(true);
       hasLoadedRef.current = false;
-      setContainerReady(false); // Reset container ready state
     }
 
     const embedTweet = async () => {
@@ -266,28 +246,20 @@ export function TwitterEmbed({
           return;
         }
 
-        // Only wait for scroll idle if we're actively scrolling and not in modal
-        // Modal context: load immediately since user has explicitly opened it
-        if (!isInModal && !isScrollIdle && !hasExistingEmbed) {
-          // Wait a bit for scroll to settle, but don't block too long
-          const scrollWaitTimeout = getIsMobile() ? 100 : 200;
+        // In modal context, load immediately without any delays
+        if (isInModal) {
+          // Pre-load script immediately
+          await ensureTwitterScript();
+        } else {
+          // For non-modal context, use minimal delays
+          // Small delay to avoid blocking initial render
           await new Promise<void>((resolve) => {
-            setTimeout(() => resolve(), scrollWaitTimeout);
+            requestAnimationFrame(() => {
+              setTimeout(() => resolve(), 50);
+            });
           });
+          await ensureTwitterScript();
         }
-
-        // Use requestIdleCallback only if available and scroll is idle
-        // Shorter timeout in modal context for faster loading
-        const idleTimeout = isInModal
-          ? 200
-          : getIsMobile() ? 200 : 500;
-        if (typeof window !== "undefined" && "requestIdleCallback" in window && (isScrollIdle || isInModal)) {
-          await new Promise<void>((resolve) => {
-            window.requestIdleCallback(() => resolve(), { timeout: idleTimeout });
-          });
-        }
-
-        await ensureTwitterScript();
 
         if (!window.twttr) {
           throw new Error("Twitter widget not available");
@@ -314,13 +286,10 @@ export function TwitterEmbed({
           }
 
           // Tweet was created successfully
-          // Use requestAnimationFrame to ensure smooth transition
-          requestAnimationFrame(() => {
-            hasLoadedRef.current = true;
-            container.dataset.tweetId = tweetId;
-            delete container.dataset.timelineHandle;
-            setIsLoading(false);
-          });
+          hasLoadedRef.current = true;
+          container.dataset.tweetId = tweetId;
+          delete container.dataset.timelineHandle;
+          setIsLoading(false);
         } else if (accountHandle) {
           // For account timelines, we use an anchor tag that Twitter converts
           const anchor = document.createElement("a");
@@ -366,7 +335,7 @@ export function TwitterEmbed({
         cancelLoadRef.current = null;
       }
     };
-  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated, isInModal, containerReady]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isActivated, isInModal]);
 
   if (error) {
     return (
@@ -446,28 +415,30 @@ export function TwitterEmbed({
   return (
     <div className="w-full relative embed-container--tweet py-6 rounded-lg" ref={wrapperRef}>
       {isLoading && (
-        <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[300px] rounded-lg animate-pulse z-10 ${
-          theme === "dark" ? "bg-gray-700" : "bg-gray-200"
+        <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[200px] rounded-lg z-10 ${
+          theme === "dark" ? "bg-gray-800/50" : "bg-gray-100/50"
         }`}>
-          <svg
-            className={`w-12 h-12 ${theme === "dark" ? "text-gray-500" : "text-gray-400"}`}
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
+          <div className="flex flex-col items-center gap-2">
+            <svg
+              className={`w-8 h-8 ${theme === "dark" ? "text-gray-500" : "text-gray-400"} animate-pulse`}
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            {isInModal && (
+              <p className={`text-xs ${theme === "dark" ? "text-gray-500" : "text-gray-400"}`}>
+                Loading tweet...
+              </p>
+            )}
+          </div>
         </div>
       )}
       <div
-        ref={(node) => {
-          containerRef.current = node;
-          if (node && !containerReady) {
-            setContainerReady(true);
-          }
-        }}
+        ref={containerRef}
         className={`twitter-embed-container rounded-lg ${
-          isLoading ? "opacity-0 min-h-[300px]" : "opacity-100 transition-opacity duration-300"
+          isLoading ? "opacity-0 min-h-[200px]" : "opacity-100 transition-opacity duration-200"
         }`}
       />
     </div>
