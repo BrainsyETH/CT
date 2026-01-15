@@ -3,8 +3,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motion";
-import { TwitterEmbed, prefetchTweetEmbed } from "./TwitterEmbed";
-import { getEmbedUrl, isIframeProvider } from "@/lib/video-utils";
+import { TwitterEmbed } from "./TwitterEmbed";
+import { detectVideoProvider, getEmbedUrl, getVideoThumbnailUrl, isIframeProvider } from "@/lib/video-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { MediaItem, Event } from "@/lib/types";
 
@@ -25,8 +25,14 @@ const TwitterBirdIcon = ({ className }: { className?: string }) => (
 
 // Helper to get poster/thumbnail for a media item
 function getMediaPoster(item: MediaItem, event: Event, isCrimeline: boolean): string {
-  if (item.type === "video" && item.video?.poster_url) {
-    return item.video.poster_url;
+  if (item.type === "video" && item.video) {
+    const provider = detectVideoProvider(item.video.url) ?? item.video.provider;
+    return (
+      item.video.poster_url ||
+      (provider ? getVideoThumbnailUrl(provider, item.video.url) : null) ||
+      event.image ||
+      (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)
+    );
   }
   if (item.type === "image" && item.image?.url) {
     return item.image.url;
@@ -60,7 +66,7 @@ export function MediaCarousel({
   onClose,
 }: MediaCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoActive, setIsVideoActive] = useState(false);
   const [isVideoInView, setIsVideoInView] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +78,7 @@ export function MediaCarousel({
 
   // Reset video playing state when slide changes
   useEffect(() => {
-    setIsVideoPlaying(false);
+    setIsVideoActive(false);
     setIsVideoInView(false);
     return () => {
       // Cleanup: pause video when unmounting or changing slides
@@ -118,25 +124,6 @@ export function MediaCarousel({
       pauseAllVideos(containerRef.current);
     };
   }, []);
-
-  useEffect(() => {
-    if (media.length < 2) return;
-
-    const theme = isCrimeline ? "dark" : "light";
-    const indices = [
-      currentIndex - 2,
-      currentIndex - 1,
-      currentIndex + 1,
-      currentIndex + 2,
-    ];
-
-    indices.forEach((index) => {
-      if (index < 0 || index >= media.length) return;
-      const item = media[index];
-      if (item?.type !== "twitter" || !item.twitter?.tweet_url) return;
-      void prefetchTweetEmbed(item.twitter.tweet_url, theme);
-    });
-  }, [currentIndex, isCrimeline, media]);
 
   const goToNext = useCallback(() => {
     // Pause current video before switching
@@ -213,13 +200,17 @@ export function MediaCarousel({
     switch (item.type) {
       case "video":
         if (!item.video) return null;
-        const posterUrl = item.video.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
-        const isIframe = isIframeProvider(item.video.provider);
+        const posterUrl = getMediaPoster(item, event, isCrimeline);
+        const resolvedProvider = detectVideoProvider(item.video.url) ?? item.video.provider;
+        const isIframe = isIframeProvider(resolvedProvider);
         const iframeSrc = getEmbedUrl(
-          item.video.provider,
+          resolvedProvider,
           item.video.embed_url || item.video.url
         );
         const canRenderIframe = Boolean(iframeSrc);
+        const embedSrc = iframeSrc
+          ? `${iframeSrc}${iframeSrc.includes("?") ? "&" : "?"}autoplay=1`
+          : null;
 
         return (
           <div
@@ -233,10 +224,9 @@ export function MediaCarousel({
             } bg-black flex items-center justify-center`}
           >
             {isIframe && canRenderIframe ? (
-              // YouTube/Vimeo - lazy load iframe
-              isVideoInView ? (
+              isVideoActive && isVideoInView ? (
                 <iframe
-                  src={iframeSrc ?? undefined}
+                  src={embedSrc ?? undefined}
                   className="absolute inset-0 w-full h-full video-container"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                   allowFullScreen
@@ -244,9 +234,35 @@ export function MediaCarousel({
                   title={event.title}
                 />
               ) : (
-                <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-black">
-                  <div className="text-white text-sm">Loading video...</div>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsVideoActive(true)}
+                  className="absolute inset-0 w-full h-full cursor-pointer group/video"
+                  aria-label="Play video"
+                >
+                  <Image
+                    src={posterUrl}
+                    alt={event.title}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover/video:bg-black/40 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-black/60 rounded-full p-5 backdrop-blur-sm transition-transform duration-300 group-hover/video:scale-110">
+                      <svg
+                        className="w-12 h-12 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
               )
             ) : isIframe ? (
               <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
@@ -262,7 +278,7 @@ export function MediaCarousel({
                   </a>
                 </div>
               </div>
-            ) : isVideoPlaying ? (
+            ) : isVideoActive ? (
               // Self-hosted video - show player when playing
               <video
                 ref={videoRef}
@@ -274,7 +290,7 @@ export function MediaCarousel({
                 poster={posterUrl}
                 className="w-full h-full object-contain"
                 preload={isVideoInView ? "metadata" : "none"}
-                onEnded={() => setIsVideoPlaying(false)}
+                onEnded={() => setIsVideoActive(false)}
               >
                 <source src={item.video.url} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -282,7 +298,7 @@ export function MediaCarousel({
             ) : (
               // Self-hosted video - show poster with play button
               <button
-                onClick={() => setIsVideoPlaying(true)}
+                onClick={() => setIsVideoActive(true)}
                 className="absolute inset-0 w-full h-full cursor-pointer group/video"
                 aria-label="Play video"
               >
@@ -293,6 +309,7 @@ export function MediaCarousel({
                   unoptimized
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 672px"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover/video:bg-black/40 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -339,7 +356,7 @@ export function MediaCarousel({
                 unoptimized
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 672px"
-                priority
+                loading="lazy"
               />
               <div
                 className={`absolute inset-0 ${
@@ -523,38 +540,20 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   const posterUrl = getMediaPoster(firstItem, event, isCrimeline);
   const hasVideo = firstItem?.type === "video";
   const isTwitter = firstItem?.type === "twitter";
+  const previewAspectClass = hasVideo
+    ? firstItem?.video?.orientation === "portrait"
+      ? "aspect-[9/16] max-h-[70vh]"
+      : firstItem?.video?.orientation === "square"
+      ? "aspect-square"
+      : "aspect-video"
+    : "aspect-[16/9]";
   if (firstItem?.type === "video" && firstItem.video) {
-    const isIframe = isIframeProvider(firstItem.video.provider);
-    const iframeSrc = getEmbedUrl(
-      firstItem.video.provider,
-      firstItem.video.embed_url || firstItem.video.url
-    );
-    const canRenderIframe = Boolean(iframeSrc);
+    const resolvedProvider = detectVideoProvider(firstItem.video.url) ?? firstItem.video.provider;
+    const hasEmbed = isIframeProvider(resolvedProvider)
+      ? Boolean(getEmbedUrl(resolvedProvider, firstItem.video.embed_url || firstItem.video.url))
+      : true;
 
-    if (isIframe && canRenderIframe) {
-      return (
-        <div
-          className={`relative w-full ${
-            firstItem.video.orientation === "portrait"
-              ? "aspect-[9/16] max-h-[70vh]"
-              : firstItem.video.orientation === "square"
-              ? "aspect-square"
-              : "aspect-video"
-          } bg-black`}
-        >
-          <iframe
-            src={iframeSrc ?? undefined}
-            className="absolute inset-0 w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-            allowFullScreen
-            loading="lazy"
-            title={event.title}
-          />
-        </div>
-      );
-    }
-
-    if (isIframe && !canRenderIframe) {
+    if (!hasEmbed) {
       return (
         <div className="relative w-full aspect-video bg-black flex items-center justify-center">
           <div className="text-center space-y-2 text-white">
@@ -585,7 +584,7 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
   }
 
   return (
-    <div className="relative w-full aspect-[16/9] overflow-hidden">
+    <div className={`relative w-full overflow-hidden ${previewAspectClass}`}>
       <Image
         src={posterUrl}
         alt={event.title}
@@ -593,6 +592,7 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
         unoptimized
         className="object-cover transition-transform duration-300 group-hover:scale-105"
         sizes="(max-width: 768px) 100vw, 50vw"
+        loading="lazy"
       />
       <div
         className={`absolute inset-0 ${
