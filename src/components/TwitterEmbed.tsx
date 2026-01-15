@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { TwitterMedia } from "@/lib/types";
 import { isMobile } from "@/lib/utils";
+import { useScrollIdle } from "@/hooks/useScrollIdle";
 
 // Cache mobile detection to avoid repeated checks
 let mobileCache: boolean | null = null;
@@ -35,26 +36,9 @@ interface TwitterEmbedProps {
 }
 
 let twitterScriptPromise: Promise<void> | null = null;
-const tweetLoadPromises = new Map<string, Promise<HTMLElement | null>>();
-const tweetCache = new Map<string, HTMLElement>();
-let prefetchContainer: HTMLDivElement | null = null;
+const tweetLoadPromises = new Map<string, Promise<void>>();
 
 const getCacheKey = (tweetId: string, theme: "light" | "dark") => `${tweetId}:${theme}`;
-
-const getPrefetchContainer = () => {
-  if (prefetchContainer) return prefetchContainer;
-  if (typeof document === "undefined") return null;
-  prefetchContainer = document.createElement("div");
-  prefetchContainer.setAttribute("data-twitter-prefetch", "true");
-  prefetchContainer.style.position = "absolute";
-  prefetchContainer.style.left = "-9999px";
-  prefetchContainer.style.top = "0";
-  prefetchContainer.style.width = "550px";
-  prefetchContainer.style.height = "1px";
-  prefetchContainer.style.overflow = "hidden";
-  document.body.appendChild(prefetchContainer);
-  return prefetchContainer;
-};
 
 const ensureTwitterScript = (): Promise<void> => {
   if (twitterScriptPromise) {
@@ -118,44 +102,13 @@ export async function prefetchTweetEmbed(
 ): Promise<void> {
   const tweetId = extractTweetId(tweetUrl);
   if (!tweetId) return;
-
   const cacheKey = getCacheKey(tweetId, theme);
-  if (tweetCache.has(cacheKey)) {
-    return;
-  }
   if (tweetLoadPromises.has(cacheKey)) {
     return;
   }
 
-  const containerHost = getPrefetchContainer();
-  if (!containerHost) return;
-
-  const loadPromise = (async () => {
-    await ensureTwitterScript();
-
-    if (!window.twttr) {
-      return null;
-    }
-
-    const container = document.createElement("div");
-    containerHost.appendChild(container);
-
-    const tweetElement = await window.twttr.widgets.createTweet(tweetId, container, {
-      theme,
-      dnt: true,
-      align: "center",
-    });
-
-    if (!tweetElement) {
-      container.remove();
-      return null;
-    }
-
-    container.remove();
-    tweetCache.set(cacheKey, tweetElement);
-    return tweetElement;
-  })()
-    .catch(() => null)
+  const loadPromise = ensureTwitterScript()
+    .catch(() => undefined)
     .finally(() => {
       tweetLoadPromises.delete(cacheKey);
     });
@@ -168,11 +121,10 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const hasLoadedRef = useRef(false);
-  const scrollTimeoutRef = useRef<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
-  const [isScrollIdle, setIsScrollIdle] = useState(true);
+  const isScrollIdle = useScrollIdle();
 
   // Check if we have valid twitter data
   const hasTweetUrl = twitter.tweet_url && twitter.tweet_url.trim() !== "";
@@ -189,35 +141,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     if (hasValidData) {
       void ensureTwitterScript();
     }
-  }, [hasValidData]);
-
-  useEffect(() => {
-    if (!hasValidData) return;
-    if (typeof window === "undefined") return;
-
-    // Use faster timeout on mobile for better responsiveness
-    const scrollIdleTimeout = getIsMobile() ? 50 : 150;
-
-    const handleScroll = () => {
-      setIsScrollIdle(false);
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
-      }
-      scrollTimeoutRef.current = window.setTimeout(() => {
-        setIsScrollIdle(true);
-      }, scrollIdleTimeout);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("touchmove", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
-      }
-    };
   }, [hasValidData]);
 
   useEffect(() => {
@@ -246,7 +169,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            // Don't disconnect immediately - keep observing in case of rapid navigation
+          } else {
+            setIsInView(false);
           }
         });
       },
@@ -340,23 +264,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
             throw new Error("Invalid tweet URL");
           }
 
-          const cacheKey = getCacheKey(tweetId, theme);
-          const cachedTweet = tweetCache.get(cacheKey);
-          if (cachedTweet) {
-            // Clear container first, then add cached tweet
-            container.innerHTML = "";
-            // Use requestAnimationFrame to ensure smooth transition
-            requestAnimationFrame(() => {
-              cachedTweet.parentElement?.removeChild(cachedTweet);
-              container.appendChild(cachedTweet);
-              hasLoadedRef.current = true;
-              container.dataset.tweetId = tweetId;
-              delete container.dataset.timelineHandle;
-              setIsLoading(false);
-            });
-            return;
-          }
-
           // Clear container before creating new tweet
           container.innerHTML = "";
           
@@ -377,7 +284,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
             hasLoadedRef.current = true;
             container.dataset.tweetId = tweetId;
             delete container.dataset.timelineHandle;
-            tweetCache.set(getCacheKey(tweetId, theme), tweetElement);
             setIsLoading(false);
           });
         } else if (accountHandle) {
