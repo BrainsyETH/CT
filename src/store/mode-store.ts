@@ -100,6 +100,7 @@ export const useModeStore = create<ModeState>()(
     {
       name: "chain-of-events-mode",
       partialize: (state) => ({ mode: state.mode, sortOrder: state.sortOrder }),
+      skipHydration: true, // Prevent automatic hydration to avoid React 19 infinite loops
     }
   )
 );

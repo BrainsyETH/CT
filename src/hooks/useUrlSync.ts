@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useModeStore } from "@/store/mode-store";
 import type { Mode, EventTag } from "@/lib/types";
@@ -18,6 +18,7 @@ export function useUrlSync() {
   const isInitialMount = useRef(true);
   const isUpdatingFromUrl = useRef(false);
   const hasInitializedFromUrl = useRef(false);
+  const [isStoreHydrated, setIsStoreHydrated] = useState(false);
   const previousStateRef = useRef<{
     mode: Mode;
     searchQuery: string;
@@ -30,9 +31,18 @@ export function useUrlSync() {
   // Use length and sorted string to detect actual changes, not just reference changes
   const tagsKey = `${selectedTags.length}:${[...selectedTags].sort().join(",")}`;
 
-  // Read URL params on mount and initialize store
+  // Wait for Zustand store to hydrate before doing anything
   useEffect(() => {
-    if (!isInitialMount.current) return;
+    if (isStoreHydrated) return;
+    
+    useModeStore.persist.rehydrate().then(() => {
+      setIsStoreHydrated(true);
+    });
+  }, [isStoreHydrated]);
+
+  // Read URL params on mount and initialize store (only after hydration)
+  useEffect(() => {
+    if (!isInitialMount.current || !isStoreHydrated) return;
     isInitialMount.current = false;
     isUpdatingFromUrl.current = true;
 
@@ -104,12 +114,12 @@ export function useUrlSync() {
       });
     }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only run on mount
+  }, [isStoreHydrated]); // Only run on mount and after hydration
 
   // Sync store state to URL whenever it changes
   useEffect(() => {
-    // Skip if we're still in initial mount, updating from URL, or haven't initialized yet
-    if (isInitialMount.current || isUpdatingFromUrl.current || !hasInitializedFromUrl.current) {
+    // Skip if store not hydrated, still in initial mount, updating from URL, or haven't initialized yet
+    if (!isStoreHydrated || isInitialMount.current || isUpdatingFromUrl.current || !hasInitializedFromUrl.current) {
       return;
     }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
@@ -15,7 +16,16 @@ interface HomeContentProps {
 }
 
 export function HomeContent({ events }: HomeContentProps) {
-  // Synchronize URL params with store state
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Rehydrate Zustand store after mount to prevent hydration mismatches
+  useEffect(() => {
+    useModeStore.persist.rehydrate().then(() => {
+      setIsHydrated(true);
+    });
+  }, []);
+
+  // Synchronize URL params with store state (only after hydration)
   useUrlSync();
 
   const { feedbackModal, closeFeedbackModal } = useModeStore();
@@ -24,6 +34,11 @@ export function HomeContent({ events }: HomeContentProps) {
   const feedbackEvent = feedbackModal.eventId
     ? events.find((e) => e.id === feedbackModal.eventId) || null
     : null;
+
+  // Don't render until store is hydrated to prevent hydration mismatches
+  if (!isHydrated) {
+    return null;
+  }
 
   return (
     <ThemeProvider>
