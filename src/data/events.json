@@ -7164,47 +7164,16 @@
       "status": "Funds recovered"
     }
   },
-  {
-    "id": "bitboy-atozy-lawsuit-cobie-donation-2022-08-24",
-    "date": "2022-08-24",
-    "title": "BitBoy defamation lawsuit sparks Cobie's donation to Atozy",
-    "summary": "Crypto influencer Ben \"BitBoy\" Armstrong filed a defamation lawsuit against YouTuber Atozy on August 12 2022 after Atozy criticized BitBoy's paid promotion of the PAMP token. Atozy publicly asked for crowdfunding to defend the suit and, on August 24 2022, fellow influencer Cobie donated 100,000 USDC to his legal fund. Facing backlash from the crypto community and after the donation made the case untenable, BitBoy dropped the lawsuit. The episode highlighted how quickly crypto-Twitter can mobilize resources and opinions when prominent figures engage in legal disputes€672845173096920L175-L200€-.",
-    "category": ["CT Lore"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
-    "media": [
-      {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      },
-      {
-        "type": "twitter",
-        "twitter": {
-          "tweet_url": "https://x.com/cobie/status/1562455483203938310",
-          "account_handle": "cobie"
-        }
-      }
-    ],
-    "links": [
-      {"label": "CryptoSlate article", "url": "https://cryptoslate.com/cobie-donates-100k-to-help-youtuber-atozy-fight-bitboy-law-firm/"}
-    ],
-    "metrics": {}
-  },
+
   {
     "id": "nicole-behnam-wallet-mistake-2023-04-12",
     "date": "2023-04-12",
-    "title": "Nicole Behnam admits to mistakes after dumping Blocky Doge NFTs",
-    "summary": "On April 12 2023, Web3 influencer Nicole Behnam was accused of pumping the \"Blocky Doge 3\" NFT project, receiving 250 NFTs from Dogecoin co-creator Billy Markus and then selling about 220 of them for roughly 20 ETH (~US$38k), which crashed the floor price. After being called out, she tweeted that \"there were mistakes made in a wallet that I controlled\" and claimed she refunded the profits and bought cheaper NFTs to 'make holders whole'€341765735939315L30-L59€-. The controversy led to her removal from NFT Now's 'NFT 100' list and became a cautionary tale about ethical promotion in NFT communities€341765735939315L53-L58€-.",
-    "category": ["NFTs", "Culture"],
+    "title": "Mistakes Were Made In A Wallet I Controlled",
+    "summary": "On April 12 2023, Web3 influencer Nicole Behnam was accused of pumping the \"Blocky Doge 3\" NFT project, receiving 250 NFTs from Dogecoin co-creator Billy Markus and then selling about 220 of them for roughly 20 ETH (~US$38k), which crashed the floor price. After being called out, she tweeted that \"there were mistakes made in a wallet that I controlled\" and claimed she refunded the profits and bought cheaper NFTs to 'make holders whole'. The controversy led to her removal from NFT Now's 'NFT 100' list and became a cautionary tale about ethical promotion in NFT communities.",
+    "category": ["CT Lore", "Culture"],
     "tags": ["FAILURE"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mistakes_were_made",
     "media": [
       {
         "type": "video",
@@ -7233,19 +7202,17 @@
     "id": "morgan-go-fundme-nft-controversy-2022-02-15",
     "date": "2022-02-15",
     "title": "HelloImMorgan's GoFundMe used for $24k Mutant Ape purchase",
-    "summary": "In early 2022, influencer HelloImMorgan raised around US$20,000 via a GoFundMe campaign for her grandmother's medical bills. Shortly afterward she announced the purchase of a US$24,000 Mutant Ape Yacht Club NFT, leading many to question whether donations were used for the NFT. Morgan claimed the GoFundMe pre-dated the purchase, but skepticism persisted. Later, her \"Grumpkins\" NFT project quietly reduced its promised charity donation from 20 % to 10 %, further eroding trust€633455218350370L46-L53€-.",
-    "category": ["NFTs", "Culture"],
+    "summary": "In early 2022, influencer HelloImMorgan raised around US$20,000 via a GoFundMe campaign for her grandmother's medical bills. Shortly afterward she announced the purchase of a US$24,000 Mutant Ape Yacht Club NFT, leading many to question whether donations were used for the NFT. Morgan claimed the GoFundMe pre-dated the purchase, but skepticism persisted. Later, her \"Grumpkins\" NFT project quietly reduced its promised charity donation from 20% to 10%, further eroding trust.",
+    "category": ["NFTs", "Culture", "ZachXBT"],
     "tags": ["FAILURE"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/helloimmorgan",
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1493572811700387842",
+          "account_handle": "ZachXBT"
         }
       }
     ],
@@ -7257,12 +7224,12 @@
   {
     "id": "pudgy-penguins-acquisition-2022-04-04",
     "date": "2022-04-04",
-    "title": "Luca Netz acquires Pudgy Penguins for 750 ETH (~US$2.5 M)",
-    "summary": "On April 4 2022, entrepreneur Luca Netz purchased the entire Pudgy Penguins NFT project for about 750 ETH (~US$2.5 million) after the community ousted the original founders€166752166149355L99-L106€-. The acquisition brought new leadership and marketing strategies, including licensing deals and toy tie-ins, revitalizing the penguin-themed collection.",
-    "category": ["NFT"],
+    "title": "Luca Netz acquires Pudgy Penguins for $2.5 M",
+    "summary": "On April 4 2022, entrepreneur Luca Netz purchased the entire Pudgy Penguins NFT project for about 750 ETH (~US$2.5 million) after the community ousted the original founders. The acquisition brought new leadership and marketing strategies, including licensing deals and toy tie-ins, revitalizing the penguin-themed collection.",
+    "category": ["NFTs", "Culture"],
     "tags": ["ECONOMIC"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pudgy_sphere",
     "media": [
       {
         "type": "video",
@@ -7279,6 +7246,13 @@
           "tweet_url": "https://x.com/CroissantEth/status/1611204158597505024",
           "account_handle": "CroissantEth"
         }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/LucaNetz/status/1789729571262042328",
+          "account_handle": "LucaNetz"
+        }
       }
     ],
     "links": [
@@ -7290,64 +7264,12 @@
   {
     "id": "pepsi-meta-budweiser-crypto-exchange-2025-05-15",
     "date": "2025-05-15",
-    "title": "Pepsi, Meta and Budweiser's crypto-slang Twitter exchange falls flat",
-    "summary": "On May 15 2025, Pepsi's \"Pepsi Mic Drop\" NFT account initiated a conversation with Meta's corporate account using crypto slang like \"fren\" and \"WAGMI\" (\"we're all going to make it\"). Budweiser's account joined in, creating a branded banter session aimed at the NFT community. Rather than endearing the brands to crypto enthusiasts, the exchange was widely mocked, with observers saying the companies sounded like out-of-touch parents using slang€75075679421132L405-L432€-€832565869325893L235-L242€-.",
+    "title": "Pepsi, Meta and Budweiser Create Cringe",
+    "summary": "On May 15 2025, Pepsi's \"Pepsi Mic Drop\" NFT account initiated a conversation with Meta's corporate account using crypto slang like \"fren\" and \"WAGMI\" (\"we're all going to make it\"). Budweiser's account joined in, creating a branded banter session aimed at the NFT community. Rather than endearing the brands to crypto enthusiasts, the exchange was widely mocked, with observers saying the companies sounded like out-of-touch parents using slang.",
     "category": ["Culture", "NFTs"],
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
-    "media": [
-      {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      }
-    ],
-    "links": [
-      {"label": "NFTevening report", "url": "https://nftevening.com/pepsi-meta-budweiser-nft-crypto-conversation/"},
-      {"label": "CryptoBriefing article", "url": "https://cryptobriefing.com/solana-tells-pepsi-to-stick-to-sugar-water-after-cringe-wagmi-exchange/"}
-    ],
-    "metrics": {}
-  },
-  {
-    "id": "saylor-no-second-best-2024-05-24",
-    "date": "2024-05-24",
-    "title": "Michael Saylor proclaims 'there is no second best' during Bitcoin talk",
-    "summary": "Speaking on May 24 2024, MicroStrategy executive chairman Michael Saylor reiterated his famous mantra that \"there is no second best\" digital asset. During a conference presentation he asserted that Bitcoin remains the only cryptocurrency worth considering, a view he has expressed repeatedly€701015822630833L55-L60€-€841922224601015L2715-L2721€-. The phrase has become emblematic of Bitcoin maximalism and is often quoted by supporters to dismiss alternative blockchains.",
-    "category": ["Bitcoin"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
-    "media": [
-      {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      }
-    ],
-    "links": [
-      {"label": "Transcript of Saylor's talk", "url": "https://medium.com/@msaylor/transcript-there-is-no-second-best-bitcoin-talk"},
-      {"label": "Decrypt article", "url": "https://decrypt.co/171835/michael-saylor-softening-on-ethereum-there-is-no-second-best"}
-    ],
-    "metrics": {}
-  },
-  {
-    "id": "nyc-token-rug-pull-2026-01-12",
-    "date": "2026-01-12",
-    "title": "NYC Token launch sparks rug-pull allegations after price collapse",
-    "summary": "On January 12 2026, former New York City mayor Eric Adams launched \"NYC Token\" as a memecoin to fund antisemitism initiatives. Buyers piled in but within hours the team began pulling liquidity as the price peaked, extracting around US$2.5 million and causing the token's market cap to fall from roughly US$580 million to below US$100 million€457363665551988L53-L57€-. Blockchain analytics firm Bubblemaps observed large liquidity withdrawals from insider wallets, leading many to accuse the project of a rug pull. The team denied wrongdoing, claiming they were rebalancing liquidity, but investors felt misled€208589080002477L158-L209€-.",
-    "category": ["Memecoins"],
-    "tags": ["FAILURE"],
-    "mode": ["timeline", "crimeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/brand_cringe",
     "media": [
       {
         "type": "video",
@@ -7361,7 +7283,64 @@
       {
         "type": "twitter",
         "twitter": {
+          "tweet_url": "https://x.com/pepsi/status/1469040405043945494?s=20",
+          "account_handle": "Pepsi"
+        }
+      }
+    ],
+    "links": [
+      {"label": "NFTevening report", "url": "https://nftevening.com/pepsi-meta-budweiser-nft-crypto-conversation/"},
+      {"label": "CryptoBriefing article", "url": "https://cryptobriefing.com/solana-tells-pepsi-to-stick-to-sugar-water-after-cringe-wagmi-exchange/"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "saylor-no-second-best-2024-05-24",
+    "date": "2024-05-24",
+    "title": "Michael Saylor proclaims 'there is no second best'",
+    "summary": "Speaking on May 24 2024, MicroStrategy executive chairman Michael Saylor reiterated his famous mantra that \"there is no second best\" digital asset. During a conference presentation he asserted that Bitcoin remains the only cryptocurrency worth considering, a view he has expressed repeatedly. The phrase has become emblematic of Bitcoin maximalism and is often quoted by supporters to dismiss alternative blockchains.",
+    "category": ["Bitcoin", "CT Lore"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/no_second_best",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "Youtube",
+          "url": "https://www.youtube.com/watch?v=MNf97XgBdTc",
+          "embed_url": "",
+          "poster_url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/no_second_best"
+        }
+      }
+    ],
+    "links": [
+      {"label": "Transcript of Saylor's talk", "url": "https://medium.com/@msaylor/transcript-there-is-no-second-best-bitcoin-talk"},
+      {"label": "Decrypt article", "url": "https://decrypt.co/171835/michael-saylor-softening-on-ethereum-there-is-no-second-best"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "nyc-token-rug-pull-2026-01-12",
+    "date": "2026-01-12",
+    "title": "You're Gonna See The Brooklyn In Me",
+    "summary": "On January 12 2026, former New York City mayor Eric Adams launched \"NYC Token\" as a memecoin to fund antisemitism initiatives. Buyers piled in but within hours the team began pulling liquidity as the price peaked, extracting around US$2.5 million and causing the token's market cap to fall from roughly US$580 million to below US$100 million€457363665551988L53-L57€-. Blockchain analytics firm Bubblemaps observed large liquidity withdrawals from insider wallets, leading many to accuse the project of a rug pull. The team denied wrongdoing, claiming they were rebalancing liquidity, but investors felt misled€208589080002477L158-L209€-.",
+    "category": ["Memecoins"],
+    "tags": ["FAILURE"],
+    "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nyctoken_announcement_adams",
+    "media": [
+      {
+        "type": "twitter",
+        "twitter": {
           "tweet_url": "https://x.com/TheInsiderPaper/status/2011194514262868029",
+          "account_handle": "TheInsiderPaper"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/RuneCrypto_/status/2010847811781230781?s=20",
           "account_handle": "TheInsiderPaper"
         }
       }
@@ -7381,27 +7360,27 @@
         "Liquidity removed by insider wallets immediately after launch",
         "Insufficient liquidity protection and oversight"
       ],
-      "aftermath": "Investors suffered major losses, the token team denied wrongdoing but trust was severely damaged, and regulators began investigating.",
+      "aftermath": "Investors suffered major losses. Eric hasn't shown his Brooklyn side yet.",
       "status": "Ongoing"
     }
   },
   {
     "id": "paris-hilton-jimmy-fallon-bored-ape-2022-01-24",
     "date": "2022-01-24",
-    "title": "Paris Hilton and Jimmy Fallon show off Bored Ape NFTs on The Tonight Show",
-    "summary": "On January 24 2022, Paris Hilton appeared on NBC's The Tonight Show and, together with host Jimmy Fallon, revealed their Bored Ape Yacht Club NFTs. The pair compared the apes' outfits and discussed accessories like hats and sunglasses before Hilton announced she would gift each audience member an NFT. The segment was widely mocked online for its awkward promotion of NFTs and is often cited as a peak of celebrity NFT hype€965648796651209L164-L194€-.",
+    "title": "Paris Hilton and Jimmy Fallon Bored Ape NFT Moment",
+    "summary": "On January 24 2022, Paris Hilton appeared on NBC's The Tonight Show and, together with host Jimmy Fallon, revealed their Bored Ape Yacht Club NFTs. The pair compared the apes' outfits and discussed accessories like hats and sunglasses before Hilton announced she would gift each audience member an NFT. The segment was widely mocked online for its awkward promotion of NFTs and is often cited as a peak of celebrity NFT hype.",
     "category": ["NFTs", "Culture"],
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/paris_jimmy",
     "media": [
       {
         "type": "video",
         "video": {
           "provider": "youtube",
-          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "embed_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          "poster_url": "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+          "url": "https://youtu.be/oiN1_6pb_eE",
+          "embed_url": "",
+          "poster_url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/paris_jimmy"
         }
       }
     ],
@@ -7413,45 +7392,41 @@
   {
     "id": "paris-hilton-ethereum-meeting-2016-01-01",
     "date": "2016-01-01",
-    "title": "Paris Hilton's 2016 dinner with Ethereum founders sparks her crypto journey",
-    "summary": "In 2016, before NFTs were mainstream, Paris Hilton attended a dinner party where she met and spoke with Ethereum co-founders. Hilton later recounted that the conversation piqued her interest in blockchain technology and led her to invest in bitcoin and ether. Her early exposure positioned her to become one of the first celebrities to embrace NFTs years later€482858472414302L68-L72€-.",
+    "title": "Paris Hilton Has Dinner With Ethereum Founders Way Back In 2016",
+    "summary": "In 2016, before NFTs and crypto were mainstream, before ICOs, even before the DAO hack; Paris Hilton was having dinner with Ethereum co-founders. Hilton later recounted that the conversation piqued her interest in the industry and led her to invest in bitcoin and ethereum. Her early exposure positioned her to become one of the first celebrities to embrace NFTs years later. That's hot.",
     "category": ["Ethereum", "Culture"],
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/paris_hilton_ethereum",
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/Disruptepreneur/status/1378098634915373057?s=20",
+          "account_handle": ""
         }
       }
     ],
     "links": [
-      {"label": "Jezebel report", "url": "https://jezebel.com/paris-hilton-cryptocurrency-dinner-ethereum-founders"}
+      {"label": "Jezebel report", "url": "https://www.jezebel.com/whats-going-on-with-paris-hiltons-pivot-to-nft-influenc-1846724870"}
     ],
     "metrics": {}
   },
   {
     "id": "starknet-eight-active-users-2024-04-13",
     "date": "2024-04-13",
-    "title": "Solana mocks Starknet for having just eight daily active users",
-    "summary": "On April 13 2024, crypto user @0xGolden_ tweeted that the Ethereum layer-2 network Starknet had only eight daily active users and ten transactions, yet commanded a billion-dollar market cap and a US$15 billion fully diluted valuation, finishing with \"LMFAOOOOOO... send it straight to 0\". Solana's official account amplified the tweet and told Starknet supporters to \"stick to sugar water\", sparking memetic debate across crypto Twitter€776279997519056L176-L197€-. The jab highlighted concerns about inflated valuations versus real usage in layer-2 ecosystems.",
+    "title": "Starknet has 8 users LMFAOOOOOOOOO",
+    "summary": "On April 13 2024, crypto user @0xGolden_ tweeted that the Ethereum layer-2 network Starknet had only eight daily active users and ten transactions, yet commanded a billion-dollar market cap and a US$15 billion fully diluted valuation, finishing with \"LMFAOOOOOO... send it straight to 0\". Solana's official account amplified the tweet and told Starknet supporters to \"stick to sugar water\", sparking memetic debate across crypto Twitter. The jab highlighted concerns about inflated valuations versus real usage in layer-2 ecosystems.",
     "category": ["CT Lore"],
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/starknet_8_users",
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/0xGolden_/status/1779123902524039460",
+          "account_handle": "solana"
         }
       },
       {
@@ -7470,12 +7445,12 @@
   {
     "id": "barry-silbert-big-week-2021-11-07",
     "date": "2021-11-07",
-    "title": "Barry Silbert teases a 'big week' and fuels Bitcoin ETF speculation",
-    "summary": "On November 7 2021, Digital Currency Group CEO Barry Silbert tweeted that it was going to be a \"big week\" without offering further details€17382821979020L18-L22€-. The vague statement from the head of one of crypto's most influential companies led to speculation that the U.S. Securities and Exchange Commission might approve a spot Bitcoin exchange-traded fund or that other major developments were imminent.",
-    "category": ["Bitcoin", "Market Structure"],
+    "title": "Big Week Barry Silbert",
+    "summary": "On November 7 2021, Digital Currency Group CEO Barry Silbert tweeted that it was going to be a \"big week\" without offering further details. The vague statement from the head of one of crypto's most influential companies led to speculation that the U.S. Securities and Exchange Commission might approve a spot Bitcoin exchange-traded fund or that other major developments were imminent.",
+    "category": ["Bitcoin", "Market Structure", "CT Lore"],
     "tags": ["MILESTONE"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/big_week_barry",
     "media": [
       {
         "type": "video",
