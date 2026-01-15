@@ -579,10 +579,20 @@ export function Timeline({ events }: TimelineProps) {
                     data-year={year}
                     className="scroll-mt-44 timeline-event-group"
                     style={{ position: "absolute", top: `${top}px`, left: 0, right: 0 }}
-                    ref={(node) => handleGroupMeasure(index, node)}
+                    ref={(node) => {
+                      // #region agent log
+                      if (node && index > 0) {
+                        const rect = node.getBoundingClientRect();
+                        const prevGroup = node.parentElement?.querySelector(`[data-year="${groupedEvents[index - 1]?.year}"]`) as HTMLElement;
+                        const prevRect = prevGroup?.getBoundingClientRect();
+                        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:yearGroup',message:'Year group positioning',data:{year,index,top,rectTop:rect.top,rectBottom:rect.bottom,prevYear:groupedEvents[index - 1]?.year,prevRectBottom:prevRect?.bottom,gap:prevRect ? rect.top - prevRect.bottom : null,isMobile:isMobile()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+                      }
+                      // #endregion
+                      handleGroupMeasure(index, node);
+                    }}
                   >
                   {/* Year Header */}
-                  <div className="flex items-center justify-center mb-8">
+                  <div className={`flex items-center justify-center mb-8 ${index > 0 ? 'pt-8 md:pt-12' : ''}`}>
                     <motion.div
                       initial={prefersReducedMotion ? {} : { scale: 0.8, opacity: 0 }}
                       animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}

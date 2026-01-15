@@ -127,8 +127,10 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const handleVerticalSwipe = useCallback((deltaY: number, velocity?: number) => {
     if (!mobile) return;
     const { swipeThreshold, velocityThreshold } = getSwipeThresholds();
-    // Only close if downward swipe (positive deltaY)
-    if (deltaY > swipeThreshold || (velocity && velocity > velocityThreshold)) {
+    // Close on swipe in either direction (up or down)
+    const absDeltaY = Math.abs(deltaY);
+    const absVelocity = velocity ? Math.abs(velocity) : 0;
+    if (absDeltaY > swipeThreshold || absVelocity > velocityThreshold) {
       closeModal();
     }
   }, [mobile, getSwipeThresholds, closeModal]);
@@ -244,11 +246,12 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={0.2}
             onDragEnd={(_, info) => {
-              // Close on swipe down with threshold or velocity (mobile only)
+              // Close on swipe in either direction (up or down) with threshold or velocity (mobile only)
               if (!mobile) return;
               const { swipeThreshold, velocityThreshold } = getSwipeThresholds();
-              // Only close if downward swipe (positive y)
-              if (info.offset.y > swipeThreshold || info.velocity.y > velocityThreshold) {
+              const absOffsetY = Math.abs(info.offset.y);
+              const absVelocityY = Math.abs(info.velocity.y);
+              if (absOffsetY > swipeThreshold || absVelocityY > velocityThreshold) {
                 closeModal();
               }
             }}

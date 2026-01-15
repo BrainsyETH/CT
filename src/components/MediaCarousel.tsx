@@ -247,8 +247,8 @@ export function MediaCarousel({
       // Check for vertical swipe first (for modal close) when in modal context
       if (isInModal && onVerticalSwipe) {
         const isVerticalSwipe = Math.abs(deltaY) > Math.abs(deltaX) * 1.5;
-        if (isVerticalSwipe && deltaY > 0) {
-          // Only handle downward swipes (positive deltaY)
+        if (isVerticalSwipe) {
+          // Handle swipes in either direction (up or down)
           onVerticalSwipe(deltaY, velocity);
           return; // Don't process horizontal swipe if vertical swipe was detected
         }
