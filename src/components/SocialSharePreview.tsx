@@ -46,27 +46,16 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
             />
           </div>
 
-          {/* Chain of Events Logo - Top Left */}
-          <div className="absolute top-8 left-8 w-32 h-32 bg-white border-8 border-black p-3 rotate-[-5deg] z-20">
-            <Image
-              src={LOGO_URL}
-              alt="Chain of Events"
-              fill
-              unoptimized
-              className="object-contain"
-            />
-          </div>
-
-          {/* First Sentence Overlay - Creative Positioning */}
+          {/* Title - Top Left */}
           <div
-            className="absolute bottom-16 right-12 max-w-[75%] bg-white border-8 border-black px-8 py-6 rotate-[2deg] z-20"
+            className="absolute top-8 left-8 max-w-[60%] bg-white border-8 border-black px-8 py-4 rotate-[-2deg] z-20"
             style={{
-              boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+              boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
             }}
           >
-            <p className="text-2xl font-bold text-black leading-tight">
-              {firstSentence}
-            </p>
+            <h2 className="text-3xl font-black text-black leading-tight">
+              {event.title}
+            </h2>
           </div>
 
           {/* Date - Large and Prominent - Top Right */}
@@ -81,6 +70,18 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
             <time className="text-4xl font-black text-black uppercase tracking-tight">
               {formatDate(event.date)}
             </time>
+          </div>
+
+          {/* First Sentence Overlay - Creative Positioning */}
+          <div
+            className="absolute bottom-16 right-12 max-w-[75%] bg-white border-8 border-black px-8 py-6 rotate-[2deg] z-20"
+            style={{
+              boxShadow: '12px 12px 0px 0px rgba(0,0,0,1)',
+            }}
+          >
+            <p className="text-2xl font-bold text-black leading-tight">
+              {firstSentence}
+            </p>
           </div>
 
           {/* Site branding - Bottom Left */}
