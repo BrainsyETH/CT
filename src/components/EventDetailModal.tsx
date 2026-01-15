@@ -169,7 +169,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               }`}
             >
               {/* Header Section */}
-              <div className={`p-4 md:p-5 pb-3 md:pb-4 border-b ${
+              <div className={`p-4 md:p-3 pb-3 md:pb-3 border-b ${
                 isCrimeline ? "border-gray-800" : "border-gray-200"
               }`}>
                 {/* Mobile: Close button top right, centered title, pills below, share buttons below title */}
@@ -212,12 +212,12 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
                 {/* Desktop: Title and Categories on left, Close button top right, Share buttons below title right-aligned */}
                 <div className="hidden md:block">
-                  <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-start justify-between gap-3 mb-2">
                     {/* Left side: Title and Categories */}
                     <div className="flex-1 min-w-0">
                       <h2
                         id="modal-title"
-                        className={`text-xl md:text-2xl font-bold mb-2 ${
+                        className={`text-xl md:text-2xl font-bold mb-1.5 ${
                           isCrimeline ? "text-white" : "text-gray-900"
                         }`}
                       >
