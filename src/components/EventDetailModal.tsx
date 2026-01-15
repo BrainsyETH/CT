@@ -95,6 +95,14 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     }
   }, [selectedEventId, mediaItems]);
 
+  // Reset expanded states when event changes or modal closes
+  useEffect(() => {
+    setIsIncidentDetailsExpanded(false);
+    setIsSummaryExpanded(false);
+    setIsImageExpanded(false);
+    setExpandedImageUrl("");
+  }, [selectedEventId]);
+
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
