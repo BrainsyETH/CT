@@ -54,6 +54,22 @@ export interface EventVideo {
   orientation?: VideoOrientation; // defaults to landscape if not specified
 }
 
+export interface TwitterMedia {
+  tweet_url?: string;
+  account_handle?: string;
+}
+
+export interface ImageMedia {
+  url: string;
+  alt?: string;
+  caption?: string;
+}
+
+export type MediaItem =
+  | { type: "video"; video: EventVideo }
+  | { type: "twitter"; twitter: TwitterMedia }
+  | { type: "image"; image: ImageMedia };
+
 export interface Event {
   id: string;
   date: string;
@@ -64,6 +80,7 @@ export interface Event {
   mode: Mode[];
   image?: string;
   video?: EventVideo;
+    media?: MediaItem[];
   links?: { label: string; url: string }[];
   metrics?: {
     btc_price_usd?: number;
