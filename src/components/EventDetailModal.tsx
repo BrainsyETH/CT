@@ -21,6 +21,9 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const event = events.find((e) => e.id === selectedEventId);
+  const embedSrc = event?.video
+    ? event.video.embed_url ?? getEmbedUrl(event.video.provider, event.video.url) ?? undefined
+    : undefined;
   const [isImageExpanded, setIsImageExpanded] = useState(false);
   const [isIncidentDetailsExpanded, setIsIncidentDetailsExpanded] = useState(false);
 
@@ -162,7 +165,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   >
                     {isIframeProvider(event.video.provider) ? (
                       <iframe
-                        src={event.video.embed_url || getEmbedUrl(event.video.provider, event.video.url)}
+                        src={embedSrc}
                         className="absolute inset-0 w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
                         allowFullScreen
