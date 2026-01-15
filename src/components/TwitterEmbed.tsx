@@ -233,23 +233,32 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       return;
     }
 
+    // Reset in-view state when component remounts or data changes
+    setIsInView(false);
+    setIsLoading(true);
+    hasLoadedRef.current = false;
+
     // Use smaller rootMargin on mobile for better performance
     const rootMargin = getIsMobile() ? "300px" : "600px";
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setIsInView(true);
-          observer.disconnect();
-        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            // Don't disconnect immediately - keep observing in case of rapid navigation
+          }
+        });
       },
-      { rootMargin }
+      { rootMargin, threshold: 0.1 }
     );
 
     observer.observe(wrapper);
 
-    return () => observer.disconnect();
-  }, [hasValidData]);
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasValidData, tweetUrl, accountHandle]);
 
   useEffect(() => {
     // Skip if no valid data
@@ -260,10 +269,6 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
     }
 
     if (!isInView) {
-      return;
-    }
-
-    if (!isScrollIdle) {
       return;
     }
 
@@ -278,7 +283,7 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       "iframe, .twitter-tweet, .twitter-timeline"
     );
 
-    // Skip if already loaded (prevents re-clearing on re-renders)
+    // Skip if already loaded with correct content (prevents re-clearing on re-renders)
     if (
       hasLoadedRef.current &&
       hasExistingEmbed &&
@@ -289,11 +294,35 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       return;
     }
 
+    // Reset loading state when content changes
+    if (
+      (currentTweetId && existingTweetId !== currentTweetId) ||
+      (currentTimelineHandle && existingTimelineHandle !== currentTimelineHandle)
+    ) {
+      setIsLoading(true);
+      hasLoadedRef.current = false;
+    }
+
     const embedTweet = async () => {
       try {
-        // Use faster timeout on mobile for better responsiveness
+        // If we already have the correct embed loaded, don't reload
+        if (hasLoadedRef.current && hasExistingEmbed) {
+          return;
+        }
+
+        // Only wait for scroll idle if we're actively scrolling
+        // This allows immediate loading when jumping to a section
+        if (!isScrollIdle && !hasExistingEmbed) {
+          // Wait a bit for scroll to settle, but don't block too long
+          const scrollWaitTimeout = getIsMobile() ? 100 : 200;
+          await new Promise<void>((resolve) => {
+            setTimeout(() => resolve(), scrollWaitTimeout);
+          });
+        }
+
+        // Use requestIdleCallback only if available and scroll is idle
         const idleTimeout = getIsMobile() ? 200 : 500;
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+        if (typeof window !== "undefined" && "requestIdleCallback" in window && isScrollIdle) {
           await new Promise<void>((resolve) => {
             window.requestIdleCallback(() => resolve(), { timeout: idleTimeout });
           });
@@ -374,7 +403,14 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       }
     };
 
-    embedTweet();
+    // Use a small delay to batch rapid navigation
+    const timeoutId = setTimeout(() => {
+      embedTweet();
+    }, 50);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle]);
 
   if (error) {
@@ -398,9 +434,9 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
   }
 
   return (
-    <div className="w-full min-h-[400px] relative" ref={wrapperRef}>
+    <div className="w-full relative" ref={wrapperRef}>
       {isLoading && (
-        <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[400px] rounded-lg animate-pulse ${
+        <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[300px] rounded-lg animate-pulse z-10 ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
         }`}>
           <svg
@@ -415,8 +451,8 @@ export function TwitterEmbed({ twitter, theme = "light" }: TwitterEmbedProps) {
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto min-h-[400px] ${
-          isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-300"
+        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto ${
+          isLoading ? "opacity-0 min-h-[300px]" : "opacity-100 transition-opacity duration-300"
         }`}
       />
       {openUrl && (

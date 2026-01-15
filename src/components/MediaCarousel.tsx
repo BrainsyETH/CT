@@ -315,7 +315,7 @@ export function MediaCarousel({
       case "twitter":
         if (!item.twitter) return null;
         return (
-          <div className={`w-full min-h-[300px] p-4 ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
+          <div className={`w-full ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
             <TwitterEmbed
               twitter={item.twitter}
               theme={isCrimeline ? "dark" : "light"}
@@ -549,7 +549,7 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
 
   if (isTwitter && firstItem?.twitter) {
     return (
-      <div className={`w-full min-h-[300px] p-4 ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
+      <div className={`w-full ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
         <TwitterEmbed
           twitter={firstItem.twitter}
           theme={isCrimeline ? "dark" : "light"}

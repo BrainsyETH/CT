@@ -149,5 +149,5 @@ textarea:focus-visible {
 /* Twitter embed containers - optimize loading */
 .twitter-embed-container {
   /* Removed contain to prevent layout shift issues with dynamic Twitter content */
-  min-height: 400px;
+  /* Let Twitter embeds size themselves naturally */
 }
