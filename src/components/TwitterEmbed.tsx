@@ -401,7 +401,7 @@ export function TwitterEmbed({
   }
 
   return (
-    <div className="w-full relative embed-container--tweet" ref={wrapperRef}>
+    <div className="w-full relative embed-container--tweet py-6" ref={wrapperRef}>
       {isLoading && (
         <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[300px] rounded-lg animate-pulse z-10 ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"

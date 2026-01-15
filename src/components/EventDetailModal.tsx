@@ -171,22 +171,21 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               <div className={`p-6 pb-4 border-b ${
                 isCrimeline ? "border-gray-800" : "border-gray-200"
               }`}>
-                {/* Mobile: Share buttons above, centered title, pills below */}
+                {/* Mobile: Close button top right, centered title, pills below, share buttons below title */}
                 <div className="flex flex-col md:hidden gap-3">
-                  {/* Share buttons - right aligned */}
-                  <div className="flex items-start justify-end gap-2">
-                    <ShareButton event={event} />
+                  {/* Close button - top right */}
+                  <div className="flex items-start justify-end">
                     <button
                       ref={closeButtonRef}
                       onClick={closeModal}
                       aria-label="Close modal"
-                      className={`p-2 rounded-lg transition-colors ${
+                      className={`p-1.5 rounded-lg transition-colors ${
                         isCrimeline
                           ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
                           : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
                       }`}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
@@ -200,53 +199,62 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   >
                     {event.title}
                   </h2>
+                  {/* Share buttons - right aligned below title */}
+                  <div className="flex items-center justify-end">
+                    <ShareButton event={event} />
+                  </div>
                   {/* Categories - left aligned */}
                   <div>
                     <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
                   </div>
                 </div>
 
-                {/* Desktop: Original layout */}
-                <div className="hidden md:flex items-start justify-between gap-4">
-                  {/* Left side: Title and Categories */}
-                  <div className="flex-1 min-w-0">
-                    <h2
-                      id="modal-title"
-                      className={`text-2xl font-bold mb-3 ${
-                        isCrimeline ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {event.title}
-                    </h2>
-                    <div>
-                      <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
+                {/* Desktop: Title and Categories on left, Close button top right, Share buttons below title right-aligned */}
+                <div className="hidden md:block">
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    {/* Left side: Title and Categories */}
+                    <div className="flex-1 min-w-0">
+                      <h2
+                        id="modal-title"
+                        className={`text-2xl font-bold mb-3 ${
+                          isCrimeline ? "text-white" : "text-gray-900"
+                        }`}
+                      >
+                        {event.title}
+                      </h2>
+                      <div>
+                        <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
+                      </div>
+                    </div>
+
+                    {/* Right side: Close button */}
+                    <div className="flex-shrink-0">
+                      <button
+                        ref={closeButtonRef}
+                        onClick={closeModal}
+                        aria-label="Close modal"
+                        className={`p-1.5 rounded-lg transition-colors ${
+                          isCrimeline
+                            ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
+                            : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
-
-                  {/* Right side: Share and Close */}
-                  <div className="flex items-start gap-2 flex-shrink-0">
+                  {/* Share buttons - right aligned below title */}
+                  <div className="flex items-center justify-end">
                     <ShareButton event={event} />
-                    <button
-                      ref={closeButtonRef}
-                      onClick={closeModal}
-                      aria-label="Close modal"
-                      className={`p-2 rounded-lg transition-colors ${
-                        isCrimeline
-                          ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
-                          : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
-                      }`}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
                   </div>
                 </div>
               </div>
 
               {/* Media Carousel */}
               {mediaItems.length > 0 && (
-                <div className="relative w-full">
+                <div className="relative w-full py-4">
                   <MediaCarousel
                     media={mediaItems}
                     event={event}
