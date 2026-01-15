@@ -16,6 +16,13 @@ export function useUrlSync() {
   const { mode, searchQuery, selectedTags, sortOrder, selectedEventId, setMode, setSearchQuery, toggleTag, setSortOrder, setSelectedEventId } = useModeStore();
 
   const isInitialMount = useRef(true);
+  const previousStateRef = useRef<{
+    mode: Mode;
+    searchQuery: string;
+    tagsString: string;
+    sortOrder: "asc" | "desc";
+    selectedEventId: string | null;
+  } | null>(null);
 
   // Read URL params on mount and initialize store
   useEffect(() => {
@@ -63,6 +70,35 @@ export function useUrlSync() {
   useEffect(() => {
     if (isInitialMount.current) return; // Skip initial mount
 
+    // Create a stable string representation of tags for comparison
+    const tagsString = [...selectedTags].sort().join(",");
+
+    // Check if state actually changed
+    const currentState = {
+      mode,
+      searchQuery,
+      tagsString,
+      sortOrder,
+      selectedEventId,
+    };
+
+    if (previousStateRef.current) {
+      const prev = previousStateRef.current;
+      if (
+        prev.mode === currentState.mode &&
+        prev.searchQuery === currentState.searchQuery &&
+        prev.tagsString === currentState.tagsString &&
+        prev.sortOrder === currentState.sortOrder &&
+        prev.selectedEventId === currentState.selectedEventId
+      ) {
+        // State hasn't changed, skip URL update
+        return;
+      }
+    }
+
+    // Update previous state
+    previousStateRef.current = currentState;
+
     const params = new URLSearchParams();
 
     // Add mode to URL
@@ -77,7 +113,7 @@ export function useUrlSync() {
 
     // Add tags to URL
     if (selectedTags.length > 0) {
-      params.set("tags", selectedTags.join(","));
+      params.set("tags", tagsString);
     }
 
     // Add sort order to URL (only if desc, asc is default)
@@ -90,7 +126,7 @@ export function useUrlSync() {
       params.set("event", selectedEventId);
     }
 
-    // Update URL without page reload
+    // Build new URL and update
     const newUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
     router.replace(newUrl, { scroll: false });
   }, [mode, searchQuery, selectedTags, sortOrder, selectedEventId, pathname, router]);
