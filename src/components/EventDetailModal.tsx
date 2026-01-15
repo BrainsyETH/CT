@@ -98,6 +98,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const [canDrag, setCanDrag] = useState(false);
 
   // Close modal handler
   const closeModal = useCallback(() => {
@@ -140,6 +141,44 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setExpandedImageUrl(imageUrl);
     setIsImageExpanded(true);
   }, []);
+
+  // Check scroll position to determine if drag should be enabled
+  useEffect(() => {
+    if (!mobile || !modalRef.current) return;
+
+    const checkScrollPosition = () => {
+      const element = modalRef.current;
+      if (!element) return;
+      
+      const scrollTop = element.scrollTop;
+      const scrollHeight = element.scrollHeight;
+      const clientHeight = element.clientHeight;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1; // 1px tolerance
+      
+      // Only allow drag when at top or bottom of scroll
+      setCanDrag(isAtTop || isAtBottom);
+    };
+
+    const element = modalRef.current;
+    
+    // Check on scroll
+    element.addEventListener('scroll', checkScrollPosition, { passive: true });
+    
+    // Also check on touch start to catch immediate interactions
+    const handleTouchStart = () => {
+      // Use requestAnimationFrame to check after any pending scroll updates
+      requestAnimationFrame(checkScrollPosition);
+    };
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    
+    checkScrollPosition(); // Initial check
+
+    return () => {
+      element.removeEventListener('scroll', checkScrollPosition);
+      element.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [mobile, selectedEventId, isIncidentDetailsExpanded]);
 
 
   // Close on escape key
@@ -242,12 +281,12 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
           <motion.div
             ref={modalRef}
             {...animationProps}
-            drag={mobile ? "y" : false}
+            drag={mobile && canDrag ? "y" : false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={0.2}
             onDragEnd={(_, info) => {
               // Close on swipe in either direction (up or down) with threshold or velocity (mobile only)
-              if (!mobile) return;
+              if (!mobile || !canDrag) return;
               const { swipeThreshold, velocityThreshold } = getSwipeThresholds();
               const absOffsetY = Math.abs(info.offset.y);
               const absVelocityY = Math.abs(info.velocity.y);
