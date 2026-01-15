@@ -401,7 +401,7 @@ export function TwitterEmbed({
   }
 
   return (
-    <div className="w-full relative embed-container--tweet py-6" ref={wrapperRef}>
+    <div className="w-full relative embed-container--tweet py-6 rounded-lg" ref={wrapperRef}>
       {isLoading && (
         <div className={`absolute inset-0 flex items-center justify-center w-full min-h-[300px] rounded-lg animate-pulse z-10 ${
           theme === "dark" ? "bg-gray-700" : "bg-gray-200"
@@ -418,27 +418,10 @@ export function TwitterEmbed({
       )}
       <div
         ref={containerRef}
-        className={`twitter-embed-container pointer-events-none sm:pointer-events-auto ${
+        className={`twitter-embed-container rounded-lg ${
           isLoading ? "opacity-0 min-h-[300px]" : "opacity-100 transition-opacity duration-300"
         }`}
       />
-      {openUrl && (
-        <a
-          href={openUrl}
-          target="_blank"
-          rel="noreferrer"
-          className={`mt-2 inline-flex items-center gap-1 text-xs font-medium sm:hidden ${
-            theme === "dark"
-              ? "text-gray-300 hover:text-white"
-              : "text-gray-600 hover:text-gray-900"
-          }`}
-        >
-          Twitter
-          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 17l10-10M7 7h10v10" />
-          </svg>
-        </a>
-      )}
     </div>
   );
 }

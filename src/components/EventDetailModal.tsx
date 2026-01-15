@@ -223,8 +223,9 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       >
                         {event.title}
                       </h2>
-                      <div>
+                      <div className="flex items-center gap-3 flex-wrap">
                         <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
+                        <ShareButton event={event} />
                       </div>
                     </div>
 
@@ -245,10 +246,6 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                         </svg>
                       </button>
                     </div>
-                  </div>
-                  {/* Share buttons - right aligned below title */}
-                  <div className="flex items-center justify-end">
-                    <ShareButton event={event} />
                   </div>
                 </div>
               </div>
