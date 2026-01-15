@@ -87,6 +87,16 @@ function EventCardBase({ event, index }: EventCardProps) {
   // Handle swipe gesture on mobile - only trigger if significant horizontal swipe
   const handleDragStart = () => {
     dragOccurredRef.current = false;
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDragStart',message:'Drag started',data:{eventId:event.id,mobile},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+  };
+  
+  const handleDrag = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (!mobile) return;
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDrag',message:'Drag in progress',data:{eventId:event.id,offsetX:info.offset.x,offsetY:info.offset.y,velocityX:info.velocity.x,velocityY:info.velocity.y,point:{x:info.point.x,y:info.point.y}},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
   };
   
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -98,6 +108,10 @@ function EventCardBase({ event, index }: EventCardProps) {
     // Check if it's a horizontal swipe (not vertical scroll)
     // Require horizontal movement to be at least 2x the vertical movement
     const isHorizontalSwipe = Math.abs(info.offset.x) > Math.abs(info.offset.y) * 2;
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDragEnd',message:'Drag ended',data:{eventId:event.id,offsetX:info.offset.x,offsetY:info.offset.y,velocityX:info.velocity.x,velocityY:info.velocity.y,isHorizontalSwipe,willTrigger:isHorizontalSwipe && (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     
     if (isHorizontalSwipe && (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold)) {
       dragOccurredRef.current = true;
@@ -149,13 +163,17 @@ function EventCardBase({ event, index }: EventCardProps) {
       >
         <motion.div
           drag={mobile ? "x" : false}
-          dragConstraints={{ left: -100, right: 100 }}
-          dragElastic={0.1}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
           onDragStart={handleDragStart}
+          onDrag={handleDrag}
           onDragEnd={handleDragEnd}
-          dragDirectionLock
+          dragDirectionLock={true}
           dragPropagation={false}
+          dragMomentum={false}
           whileDrag={{ scale: 0.98 }}
+          animate={{ x: 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
           role="button"
           tabIndex={0}
           onClick={handleCardClick}
