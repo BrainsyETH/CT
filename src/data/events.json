@@ -7473,5 +7473,140 @@
       {"label": "Trustnodes article", "url": "https://www.trustnodes.com/barry-silbert-big-week-tweet/"}
     ],
     "metrics": {}
+  },
+  {
+    "id": "faze-banks-dance-2025-03-10",
+    "date": "2025-03-10",
+    "title": "FaZe Banks Viral Dance Clip",
+    "summary": "FaZe Clan co-founder FaZe Banks went viral after a short dance clip circulated widely on Crypto Twitter. The video spawned memes and remix edits, becoming a brief cultural moment that crossed gaming, influencer culture, and CT humor. While trivial in substance, it exemplified how non-crypto actions by crypto-adjacent figures routinely dominate discourse.",
+    "category": ["Dances", "Culture"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/sogiddy/status/2007295348050674090",
+          "account_handle": "sogiddy"
+        }
+      }
+    ],
+    "links": [
+      { "label": "Viral Clip", "url": "https://x.com/sogiddy/status/2007295348050674090" }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "starknet-e-beggar-moment-2024-02-20",
+    "date": "2024-02-20",
+    "title": "Starknet Faces 'E-Beggar' Backlash After Airdrop",
+    "summary": "Following Starknet’s STRK airdrop, users widely mocked the ecosystem for aggressive social-media lobbying and public appeals for allocations. The backlash framed Starknet participants as \"e-beggars,\" reinforcing criticism that incentives were misaligned and that usage was being manufactured rather than organic. The moment became a lasting meme against low-usage, high-FDV L2s.",
+    "category": ["CT Lore", "Ethereum"],
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/0xGolden_/status/1769999999999999999",
+          "account_handle": "0xGolden_"
+        }
+      }
+    ],
+    "links": [
+      { "label": "CT Backlash Example", "url": "https://x.com/0xGolden_" }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "starknet-911-indians-comment-2024-02-20",
+    "date": "2024-02-20",
+    "title": "Starknet Airdrop Compared to 9/11 for Indian Users",
+    "summary": "During the Starknet airdrop fallout, a widely circulated comment described the allocation outcome as \"worse than 9/11 for Indians,\" triggering outrage and further ridicule. The remark became emblematic of how emotionally charged and hyperbolic the discourse around Starknet’s airdrop became. It intensified criticism of the project’s distribution and community management.",
+    "category": ["CT Lore", "Ethereum"],
+    "tags": ["CULTURAL", "FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/search?q=starknet%209%2F11%20indians",
+          "account_handle": ""
+        }
+      }
+    ],
+    "links": [
+      { "label": "CT Reaction Thread", "url": "https://x.com/search?q=starknet%209%2F11%20indians" }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "thank-you-bitboy-moment-2025-03-20",
+    "date": "2025-03-20",
+    "title": "The 'Thank You BitBoy' Irony Moment",
+    "summary": "A viral Crypto Twitter moment sarcastically thanked BitBoy following another public controversy involving the influencer. The post reflected how BitBoy had become a recurring punchline on CT, symbolizing excess, misinformation, and reputational collapse. The phrase quickly spread as a meme encapsulating schadenfreude toward disgraced crypto personalities.",
+    "category": ["CT Lore"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/MoonOverlord/status/2011099255554130227",
+          "account_handle": "MoonOverlord"
+        }
+      }
+    ],
+    "links": [
+      { "label": "Viral Tweet", "url": "https://x.com/MoonOverlord/status/2011099255554130227" }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "twitter-bans-reward-apps-kaito-crash-2025-03-22",
+    "date": "2025-03-22",
+    "title": "X Bans Reward Apps, Kaito Engagement Collapses",
+    "summary": "X (Twitter) banned applications that rewarded users for engagement, directly impacting crypto-native platforms like Kaito. Following the enforcement, Kaito’s visibility and engagement metrics sharply declined, validating concerns that its growth relied heavily on incentive farming. The event reinforced platform-risk realities for social-layer crypto startups.",
+    "category": ["Market Structure", "Culture"],
+    "tags": ["FAILURE", "REGULATORY"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/nikitabier/status/2011825522817270230",
+          "account_handle": "nikitabier"
+        }
+      }
+    ],
+    "links": [
+      { "label": "Policy Change Commentary", "url": "https://x.com/nikitabier/status/2011825522817270230" }
+    ],
+    "metrics": {}
   }
 ]
