@@ -34,10 +34,7 @@ export function Timeline({ events }: TimelineProps) {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const timelineContainerRef = useRef<HTMLDivElement>(null);
-  const [visibleRange, setVisibleRange] = useState(() => ({
-    start: 0,
-    end: Math.min(2, Math.max(0, groupedEvents.length - 1)),
-  }));
+  const [visibleRange, setVisibleRange] = useState({ start: 0, end: 0 });
   const ESTIMATED_GROUP_HEIGHT = 760;
   const OVERSCAN_PX = 1200;
 
@@ -154,6 +151,10 @@ export function Timeline({ events }: TimelineProps) {
 
   useEffect(() => {
     setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
+    setVisibleRange({
+      start: 0,
+      end: Math.min(2, Math.max(0, groupedEvents.length - 1)),
+    });
   }, [groupedEvents.length]);
 
   const groupOffsets = useMemo(() => {
