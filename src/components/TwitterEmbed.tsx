@@ -131,7 +131,6 @@ export function TwitterEmbed({
   const tweetUrl = twitter.tweet_url || "";
   const accountHandle = twitter.account_handle || "";
   const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
-  const openUrl = tweetUrl || (accountHandle ? `https://twitter.com/${accountHandle}` : "");
 
   useEffect(() => {
     if (!hasValidData) {
