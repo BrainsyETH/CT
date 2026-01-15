@@ -4,10 +4,11 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
-import { TagPills } from "./TagPills";
+import { CategoryPills } from "./CategoryPills";
 import { ShareButton } from "./ShareButton";
+import { MediaCarousel } from "./MediaCarousel";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
-import { getEmbedUrl, isIframeProvider } from "@/lib/video-utils";
+import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import type { Event } from "@/lib/types";
 
@@ -21,11 +22,21 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const event = events.find((e) => e.id === selectedEventId);
-  const embedSrc = event?.video
-    ? event.video.embed_url ?? getEmbedUrl(event.video.provider, event.video.url) ?? undefined
-    : undefined;
   const [isImageExpanded, setIsImageExpanded] = useState(false);
+  const [expandedImageUrl, setExpandedImageUrl] = useState<string>("");
   const [isIncidentDetailsExpanded, setIsIncidentDetailsExpanded] = useState(false);
+
+  // Get media items, with fallback to event.image if no media
+  const mediaItems = event
+    ? (() => {
+        const items = getMediaItems(event);
+        // If no media items found, use event.image as fallback
+        if (items.length === 0 && event.image) {
+          return [{ type: "image" as const, image: { url: event.image, alt: event.title } }];
+        }
+        return items;
+      })()
+    : [];
 
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -35,6 +46,12 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const closeModal = useCallback(() => {
     setSelectedEventId(null);
   }, [setSelectedEventId]);
+
+  // Handle image expansion from MediaCarousel
+  const handleImageExpand = useCallback((imageUrl: string) => {
+    setExpandedImageUrl(imageUrl);
+    setIsImageExpanded(true);
+  }, []);
 
 
   // Close on escape key
@@ -150,113 +167,61 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   : "bg-white border-2 border-gray-200"
               }`}
             >
-              {/* Event Video or Image */}
-              <div className="relative w-full">
-                {event.video ? (
-                  /* Video Player */
-                  <div
-                    className={`relative w-full ${
-                      event.video.orientation === "portrait"
-                        ? "aspect-[9/16] max-h-[70vh]"
-                        : event.video.orientation === "square"
-                        ? "aspect-square"
-                        : "aspect-video"
-                    } bg-black flex items-center justify-center`}
-                  >
-                    {isIframeProvider(event.video.provider) ? (
-                      <iframe
-                        src={embedSrc}
-                        className="absolute inset-0 w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-                        allowFullScreen
-                        title={event.title}
-                      />
-                    ) : (
-                      <video
-                        controls
-                        controlsList="nodownload noplaybackrate"
-                        disablePictureInPicture
-                        playsInline
-                        poster={event.video.poster_url || event.image}
-                        className="w-full h-full object-contain"
-                        preload="metadata"
-                      >
-                        <source src={event.video.url} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    )}
-                    {/* Header Actions - positioned over video */}
-                    <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                      <ShareButton event={event} overImage />
-                      <button
-                        ref={closeButtonRef}
-                        onClick={closeModal}
-                        aria-label="Close modal"
-                        className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  /* Image with Lightbox */
-                  <div className="relative w-full h-48 md:h-64">
-                    <button
-                      onClick={() => setIsImageExpanded(true)}
-                      className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
-                      aria-label="View full image"
+              {/* Header Section */}
+              <div className={`p-6 pb-4 border-b ${
+                isCrimeline ? "border-gray-800" : "border-gray-200"
+              }`}>
+                <div className="flex items-start justify-between gap-4">
+                  {/* Left side: Title and Categories */}
+                  <div className="flex-1 min-w-0">
+                    <h2
+                      id="modal-title"
+                      className={`text-2xl font-bold mb-3 ${
+                        isCrimeline ? "text-white" : "text-gray-900"
+                      }`}
                     >
-                      <Image
-                        src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
-                        alt={event.title}
-                        fill
-                        unoptimized
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 672px"
-                        priority
-                      />
-                      <div
-                        className={`absolute inset-0 ${
-                          isCrimeline
-                            ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                            : "bg-gradient-to-t from-white via-white/50 to-transparent"
-                        }`}
-                      />
-                      {/* Zoom hint */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity">
-                        <div className="p-3 rounded-full bg-black/60 backdrop-blur-sm">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                          </svg>
-                        </div>
-                      </div>
-                    </button>
-                    {/* Header Actions - positioned over image */}
-                    <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                      <ShareButton event={event} overImage />
-                      <button
-                        ref={closeButtonRef}
-                        onClick={closeModal}
-                        aria-label="Close modal"
-                        className="p-2 rounded-lg transition-colors bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
+                      {event.title}
+                    </h2>
+                    <div>
+                      <CategoryPills categories={event.category} />
                     </div>
                   </div>
-                )}
+
+                  {/* Right side: Share and Close */}
+                  <div className="flex items-start gap-2 flex-shrink-0">
+                    <ShareButton event={event} />
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                      className={`p-2 rounded-lg transition-colors ${
+                        isCrimeline
+                          ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
+                          : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
+
+              {/* Media Carousel */}
+              {mediaItems.length > 0 && (
+                <div className="relative w-full">
+                  <MediaCarousel
+                    media={mediaItems}
+                    event={event}
+                    isCrimeline={isCrimeline}
+                    onImageExpand={handleImageExpand}
+                  />
+                </div>
+              )}
 
               {/* Content Section - Below Media */}
               <div className="p-6 pt-4">
-                {/* Tags */}
-                <div className="mb-4">
-                  <TagPills tags={event.tags} />
-                </div>
 
                 {/* Summary */}
                 <p
@@ -430,16 +395,22 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
 
           {/* Image Lightbox */}
           <AnimatePresence>
-            {isImageExpanded && (
+            {isImageExpanded && expandedImageUrl && (
               <motion.div
                 initial={prefersReducedMotion ? {} : { opacity: 0 }}
                 animate={prefersReducedMotion ? {} : { opacity: 1 }}
                 exit={prefersReducedMotion ? {} : { opacity: 0 }}
                 className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 cursor-zoom-out"
-                onClick={() => setIsImageExpanded(false)}
+                onClick={() => {
+                  setIsImageExpanded(false);
+                  setExpandedImageUrl("");
+                }}
               >
                 <button
-                  onClick={() => setIsImageExpanded(false)}
+                  onClick={() => {
+                    setIsImageExpanded(false);
+                    setExpandedImageUrl("");
+                  }}
                   aria-label="Close full image"
                   className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors text-white"
                 >
@@ -455,7 +426,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Image
-                    src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
+                    src={expandedImageUrl}
                     alt={event.title}
                     width={1200}
                     height={800}
