@@ -9,6 +9,7 @@ import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import { isMobile } from "@/lib/utils";
+import { preloadTwitterScript } from "./TwitterEmbed";
 import type { Event } from "@/lib/types";
 
 interface EventCardProps {
@@ -30,6 +31,50 @@ function EventCardBase({ event, index }: EventCardProps) {
   useEffect(() => {
     setMobile(isMobile());
   }, []);
+
+  // Preload first media item when card is near viewport
+  const cardRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const mediaItems = getMediaItems(event);
+    if (mediaItems.length === 0) return;
+
+    const firstItem = mediaItems[0];
+    
+    // Only preload videos and tweets (images are already lazy loaded by Next.js)
+    if (firstItem.type !== "video" && firstItem.type !== "twitter") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Preload first media item
+            if (firstItem.type === "twitter" && firstItem.twitter) {
+              // Preload Twitter script
+              preloadTwitterScript();
+            } else if (firstItem.type === "video" && firstItem.video) {
+              // For videos, we can preload the poster image (already handled by Next.js Image)
+              // The actual video will be loaded when modal opens
+            }
+            // Disconnect after first intersection
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: isMobile() ? "600px" : "1200px", // 2-3 viewport heights
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(card);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [event, mobile]);
 
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -85,6 +130,7 @@ function EventCardBase({ event, index }: EventCardProps) {
 
   return (
     <motion.div
+      ref={cardRef}
       {...animationProps}
       className={`relative flex ${isLeft ? "md:justify-start" : "md:justify-end"} justify-start`}
     >

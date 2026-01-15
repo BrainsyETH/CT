@@ -134,7 +134,7 @@ export function MediaCarousel({
       currentObserver.observe(container);
       observers.push(currentObserver);
 
-      // Preload adjacent slides' videos if in modal
+      // Preload adjacent slides' videos and tweets if in modal
       if (isInModal && media.length > 1) {
         const preloadIndices = [
           currentIndex > 0 ? currentIndex - 1 : null,
@@ -143,6 +143,8 @@ export function MediaCarousel({
 
         preloadIndices.forEach((idx) => {
           const item = media[idx];
+          
+          // Preload videos
           if (item?.type === "video" && item.video) {
             const resolvedProvider = detectVideoProvider(item.video.url) ?? item.video.provider;
             if (resolvedProvider === "youtube" && !loadedVideoIndices.has(idx)) {
@@ -156,6 +158,14 @@ export function MediaCarousel({
                 setLoadedVideoIndices((prev) => new Set([...prev, idx]));
               }
             }
+          }
+          
+          // Preload tweets (queue with lower priority)
+          if (item?.type === "twitter" && item.twitter) {
+            // Import TwitterEmbed's preload function
+            import("./TwitterEmbed").then(({ preloadTwitterScript }) => {
+              preloadTwitterScript();
+            });
           }
         });
       }
@@ -197,11 +207,18 @@ export function MediaCarousel({
 
   const handleDragEnd = useCallback(
     (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      const swipeThreshold = 50;
-      if (info.offset.x < -swipeThreshold) {
-        goToNext();
-      } else if (info.offset.x > swipeThreshold) {
-        goToPrevious();
+      const swipeThreshold = 30;
+      const velocityThreshold = 500;
+      
+      // Use velocity if available, otherwise use offset
+      const shouldSwipe = Math.abs(info.velocity.x) > velocityThreshold || Math.abs(info.offset.x) > swipeThreshold;
+      
+      if (shouldSwipe) {
+        if (info.offset.x < 0 || info.velocity.x < 0) {
+          goToNext();
+        } else if (info.offset.x > 0 || info.velocity.x > 0) {
+          goToPrevious();
+        }
       }
     },
     [goToNext, goToPrevious]
@@ -222,8 +239,8 @@ export function MediaCarousel({
       const deltaY = touch.clientY - touchStartRef.current.y;
       touchStartRef.current = null;
 
-      const swipeThreshold = 50;
-      const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY);
+      const swipeThreshold = 30;
+      const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY) * 1.5;
       if (!isHorizontalSwipe) return;
 
       if (deltaX < -swipeThreshold) {
@@ -483,8 +500,9 @@ export function MediaCarousel({
       <motion.div
         drag={media.length > 1 ? "x" : false}
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.3}
+        dragElastic={0.1}
         onDragEnd={handleDragEnd}
+        whileDrag={{ scale: 0.98, opacity: 0.9 }}
         className="cursor-grab active:cursor-grabbing"
         style={{ touchAction: "pan-x pan-y" }}
       >

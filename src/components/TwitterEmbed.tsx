@@ -164,10 +164,10 @@ export function TwitterEmbed({
 
     // Adjust rootMargin based on context
     // Modal context: smaller margin since modal is fixed
-    // Preview context: larger margin for better preloading
+    // Preview context: larger margin for better preloading (2-3 viewport heights)
     const rootMargin = isInModal
       ? getIsMobile() ? "50px" : "100px"
-      : getIsMobile() ? "300px" : "600px";
+      : getIsMobile() ? "600px" : "1200px"; // Increased for better preloading
 
     const observer = new IntersectionObserver(
       (entries) => {

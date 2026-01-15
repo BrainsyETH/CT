@@ -167,7 +167,7 @@ export function FeedbackModal({
       twitter_handle: twitterHandle || undefined,
     };
 
-    if (feedbackType === "new_event" || feedbackType === "edit_event") {
+    if (feedbackType === "new_event") {
       rawSubmission.event_id = event?.id;
       rawSubmission.event_title = eventTitle;
       rawSubmission.event_date = eventDate;
@@ -190,6 +190,13 @@ export function FeedbackModal({
         rawSubmission.crimeline_root_cause = crimelineRootCause;
         rawSubmission.crimeline_aftermath = crimelineAftermath;
       }
+    }
+
+    if (feedbackType === "edit_event") {
+      rawSubmission.event_id = event?.id;
+      rawSubmission.event_title = eventTitle;
+      rawSubmission.event_date = eventDate;
+      rawSubmission.event_summary = eventSummary;
     }
 
     if (feedbackType === "general" || feedbackType === "edit_event") {
@@ -390,8 +397,7 @@ export function FeedbackModal({
                 />
 
                 {/* Event Fields */}
-                {(feedbackType === "new_event" ||
-                  feedbackType === "edit_event") && (
+                {feedbackType === "new_event" && (
                   <>
                     <EventFields
                       eventTitle={eventTitle}
@@ -450,6 +456,56 @@ export function FeedbackModal({
                         isCrimeline={isCrimeline}
                       />
                     )}
+                  </>
+                )}
+
+                {/* Simplified Event Fields for Edit Mode */}
+                {feedbackType === "edit_event" && (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="eventTitle" className={labelClassName}>
+                          Event Title <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="eventTitle"
+                          required
+                          value={eventTitle}
+                          onChange={(e) => setEventTitle(e.target.value)}
+                          placeholder="e.g., Bitcoin Pizza Day"
+                          className={inputClassName}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="eventDate" className={labelClassName}>
+                          Date <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="date"
+                          id="eventDate"
+                          required
+                          value={eventDate}
+                          onChange={(e) => setEventDate(e.target.value)}
+                          className={inputClassName}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="eventSummary" className={labelClassName}>
+                        Summary <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="eventSummary"
+                        required
+                        rows={3}
+                        value={eventSummary}
+                        onChange={(e) => setEventSummary(e.target.value)}
+                        placeholder="Describe the event..."
+                        className={inputClassName}
+                      />
+                    </div>
                   </>
                 )}
 

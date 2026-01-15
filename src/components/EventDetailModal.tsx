@@ -11,6 +11,7 @@ import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import { preloadTwitterScript } from "./TwitterEmbed";
+import { isMobile } from "@/lib/utils";
 import type { Event } from "@/lib/types";
 
 interface EventDetailModalProps {
@@ -21,6 +22,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const { mode, selectedEventId, setSelectedEventId, openFeedbackModal } = useModeStore();
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+  }, []);
 
   const event = events.find((e) => e.id === selectedEventId);
   const [isImageExpanded, setIsImageExpanded] = useState(false);
@@ -163,11 +169,25 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
           <motion.div
             ref={modalRef}
             {...animationProps}
+            drag={mobile ? "y" : false}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_, info) => {
+              // Close on swipe down with threshold or velocity (mobile only)
+              if (!mobile) return;
+              const swipeThreshold = 100;
+              const velocityThreshold = 500;
+              // Only close if downward swipe (positive y)
+              if (info.offset.y > swipeThreshold || info.velocity.y > velocityThreshold) {
+                closeModal();
+              }
+            }}
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
             className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl md:max-h-[90vh] overflow-y-auto z-50 rounded-xl shadow-[8px_8px_0_rgba(15,23,42,0.25)] touch-manipulation"
+            style={{ touchAction: mobile ? "pan-y" : "auto" }}
           >
             <div
               className={`${
@@ -176,9 +196,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   : "bg-white border-2 border-gray-200"
               }`}
             >
-              {/* Header Section */}
-              <div className={`p-4 md:p-3 pb-3 md:pb-3 border-b ${
-                isCrimeline ? "border-gray-800" : "border-gray-200"
+              {/* Header Section - Sticky */}
+              <div className={`sticky top-0 z-20 p-4 md:p-3 pb-3 md:pb-3 border-b backdrop-blur-md ${
+                isCrimeline 
+                  ? "bg-gray-900/95 border-gray-800" 
+                  : "bg-white/95 border-gray-200"
               }`}>
                 {/* Mobile: Close button top right, title and share on same row, categories below */}
                 <div className="flex flex-col md:hidden gap-2">
