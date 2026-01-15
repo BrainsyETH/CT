@@ -136,6 +136,12 @@ export function TwitterEmbed({
       return;
     }
 
+    // In modal context with autoLoad, immediately set as in view
+    if (isInModal && autoLoad) {
+      setIsInView(true);
+      return;
+    }
+
     if (typeof IntersectionObserver === "undefined") {
       setIsInView(true);
       return;
@@ -171,7 +177,7 @@ export function TwitterEmbed({
     return () => {
       observer.disconnect();
     };
-  }, [hasValidData, tweetUrl, accountHandle, isActivated]);
+  }, [hasValidData, tweetUrl, accountHandle, isActivated, isInModal, autoLoad]);
 
   useEffect(() => {
     // Skip if no valid data

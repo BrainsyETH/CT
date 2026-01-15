@@ -172,39 +172,39 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               <div className={`p-4 md:p-3 pb-3 md:pb-3 border-b ${
                 isCrimeline ? "border-gray-800" : "border-gray-200"
               }`}>
-                {/* Mobile: Close button top right, centered title, pills below, share buttons below title */}
-                <div className="flex flex-col md:hidden gap-3">
-                  {/* Close button - top right */}
-                  <div className="flex items-start justify-end">
-                    <button
-                      ref={closeButtonRef}
-                      onClick={closeModal}
-                      aria-label="Close modal"
-                      className={`p-1.5 rounded-lg transition-colors ${
-                        isCrimeline
-                          ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
-                          : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
+                {/* Mobile: Close button top right, title and share on same row, categories below */}
+                <div className="flex flex-col md:hidden gap-2">
+                  {/* Top row: Close button and title/share */}
+                  <div className="flex items-start justify-between gap-2">
+                    {/* Title */}
+                    <h2
+                      id="modal-title"
+                      className={`text-lg font-bold flex-1 min-w-0 ${
+                        isCrimeline ? "text-white" : "text-gray-900"
                       }`}
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+                      {event.title}
+                    </h2>
+                    {/* Right side: Share button and close button */}
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <ShareButton event={event} />
+                      <button
+                        ref={closeButtonRef}
+                        onClick={closeModal}
+                        aria-label="Close modal"
+                        className={`p-1.5 rounded-lg transition-colors ${
+                          isCrimeline
+                            ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
+                            : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  {/* Title - centered */}
-                  <h2
-                    id="modal-title"
-                    className={`text-xl md:text-2xl font-bold text-center ${
-                      isCrimeline ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {event.title}
-                  </h2>
-                  {/* Share buttons - right aligned below title */}
-                  <div className="flex items-center justify-end">
-                    <ShareButton event={event} />
-                  </div>
-                  {/* Categories - left aligned */}
+                  {/* Categories */}
                   <div>
                     <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
                   </div>
