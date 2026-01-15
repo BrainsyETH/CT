@@ -202,12 +202,14 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                 const mediaItems = getMediaItems(event);
                 if (mediaItems.length > 0) {
                   return (
-                    <MediaCarousel
-                      media={mediaItems}
-                      event={event}
-                      isCrimeline={isCrimeline}
-                      onImageExpand={setExpandedImageUrl}
-                    />
+                    <div className="p-4">
+                      <MediaCarousel
+                        media={mediaItems}
+                        event={event}
+                        isCrimeline={isCrimeline}
+                        onImageExpand={setExpandedImageUrl}
+                      />
+                    </div>
                   );
                 }
                 // Fallback for events with no media
