@@ -184,8 +184,8 @@ export function useUrlSync() {
 
     const params = new URLSearchParams();
 
-    // Add mode to URL
-    if (mode !== "timeline") {
+    // Add mode to URL (only if not the default "both")
+    if (mode !== "both") {
       params.set("mode", mode);
     }
 

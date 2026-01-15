@@ -178,7 +178,7 @@ const ALL_CATEGORIES = [
   "NFTs",
   "Bridge",
   "Culture",
-  "Wallet/Key Compromise",
+  "Key Compromise",
   "Security",
   "Stablecoin",
   "Privacy",

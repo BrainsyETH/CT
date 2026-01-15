@@ -82,7 +82,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         },
         twitter: {
           card: "summary_large_image",
-          title: twitterTitle,
           description: twitterDescription,
           images: [twitterImageUrl],
         },

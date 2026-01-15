@@ -39,7 +39,7 @@ interface ModeState {
 export const useModeStore = create<ModeState>()(
   persist(
     (set) => ({
-      mode: "timeline",
+      mode: "both",
       searchQuery: "",
       selectedTags: [],
       selectedCategories: [],

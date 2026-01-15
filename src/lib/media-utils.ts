@@ -28,24 +28,26 @@ export function isValidMediaItem(item: MediaItem): boolean {
 /**
  * Build media array from event data, filtering out empty items
  * Supports both new media array and legacy image/video fields
+ * Always includes event.image as a fallback image media item when available
  */
 export function getMediaItems(event: Event): MediaItem[] {
+  const items: MediaItem[] = [];
+
   // If event has new media array, filter to only valid items
   if (event.media && event.media.length > 0) {
     const validMedia = event.media.filter(isValidMediaItem);
-    if (validMedia.length > 0) {
-      return validMedia;
+    items.push(...validMedia);
+  } else {
+    // Build from legacy fields for backward compatibility
+    if (event.video && event.video.url) {
+      items.push({ type: "video", video: event.video });
     }
   }
 
-  // Build from legacy fields for backward compatibility
-  const items: MediaItem[] = [];
-
-  if (event.video && event.video.url) {
-    items.push({ type: "video", video: event.video });
-  }
-
-  if (event.image && !event.video) {
+  // Always include event.image as a fallback image media item when available
+  // Check if we already have an image item to avoid duplicates
+  const hasImageItem = items.some(item => item.type === "image" && item.image?.url === event.image);
+  if (event.image && !hasImageItem) {
     items.push({ type: "image", image: { url: event.image, alt: event.title } });
   }
 

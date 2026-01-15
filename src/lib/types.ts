@@ -28,7 +28,7 @@ export type CrimelineCategory =
   | "Centralized Exchange"
   | "DeFi Protocol"
   | "Bridge"
-  | "Wallet/Key Compromise"
+  | "Key Compromise"
   | "Stablecoin"
   | "Lending"
   | "Market Structure"

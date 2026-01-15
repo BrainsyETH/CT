@@ -3448,7 +3448,7 @@
     "title": "Upbit Solana Hot Wallet Hack (~$36M)",
     "summary": "South Korean exchange Upbit reported a hot wallet compromise where attackers stole around $36M in Solana-based assets. ",
     "category": [
-      "Wallet/Key Compromise"
+      "Key Compromise"
     ],
     "tags": [
       "SECURITY",
@@ -3561,7 +3561,7 @@
     "title": "Trust Wallet Extension Compromise",
     "summary": "Trust Wallet reported that a malicious/unapproved Chrome extension release (v2.68) was published outside its standard process. Approximately 2,500 wallets were drained.",
     "category": [
-      "Wallet/Key Compromise"
+      "Key Compromise"
     ],
     "tags": [
       "SECURITY",
@@ -6878,7 +6878,7 @@
     "title": "Genesis Creditor Heist",
     "summary": "On August 19, 2024, three attackers\u2014Malone Lam (Greavys), Veer Chetal (Wiz), and Jeandiel Serrano (Box)\u2014orchestrated one of the largest single-victim crypto thefts in history, stealing 4,064 BTC ($243M) from a Genesis creditor. Using sophisticated social engineering, they impersonated Google and Gemini support to reset the victim's 2FA and drain the wallet. ZachXBT's investigation uncovered a leaked celebration video showing attackers' real-time reactions, Instagram posts of luxury spending including pink car gifts, and device fingerprints linking them to Mark Cuban's June 2024 compromise. FBI raids in Miami and LA on September 18, 2024 led to multiple arrests. A fourth suspect, British national Danish Zulfiqar, was reportedly arrested in Dubai in December 2024 with $18.5M seized. Funds were rapidly laundered across 15+ exchanges.",
     "category": [
-      "Wallet/Key Compromise",
+      "Key Compromise",
       "ZachXBT"
     ],
     "tags": [
@@ -7053,7 +7053,7 @@
     "title": "Bored Ape Yacht Club Phishing Ring",
     "summary": "Between December 2021 and early 2022, a coordinated French phishing ring targeted high-value BAYC and MAYC NFT holders, stealing $2.5M+. Scammers posed as verified Discord members and created fake websites promising to 'animate' victims' Bored Ape NFTs. When victims connected wallets and approved transactions, their NFTs were immediately stolen and sold on OpenSea. The first victim, 'Dilly Dilly,' lost BAYC #237 (47 ETH/$178K) on December 13, 2021. Despite using Tornado Cash, the scammers made mistakes in withdrawal patterns. ZachXBT's August 2022 'Scammers in Paris' investigation used blockchain analysis and social media forensics to identify perpetrators Mathys and Camille.",
     "category": [
-      "Wallet/Key Compromise"
+      "Key Compromise"
     ],
     "tags": [
       "SECURITY",
@@ -7114,7 +7114,7 @@
     "title": "HZ (Chase Senecal) NFT Phishing Scams",
     "summary": "Chase Senecal, operating under aliases 'HZ' and 'Horror,' ran a targeted NFT phishing operation stealing over $260K from high-value NFT collectors using sophisticated wallet approval phishing techniques. Victims were tricked into signing malicious transactions that granted Senecal access to their wallets. ZachXBT's investigation meticulously tracked stolen NFTs and connected multiple wallets to Senecal's identity through social media cross-referencing and on-chain analysis. The investigation directly led to FBI involvement and landmark seizures.",
     "category": [
-      "Wallet/Key Compromise",
+      "Key Compromise",
       "ZachXBT"
     ],
     "tags": [

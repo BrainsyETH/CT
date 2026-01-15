@@ -171,7 +171,43 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
               <div className={`p-6 pb-4 border-b ${
                 isCrimeline ? "border-gray-800" : "border-gray-200"
               }`}>
-                <div className="flex items-start justify-between gap-4">
+                {/* Mobile: Share buttons above, centered title, pills below */}
+                <div className="flex flex-col md:hidden gap-3">
+                  {/* Share buttons - right aligned */}
+                  <div className="flex items-start justify-end gap-2">
+                    <ShareButton event={event} />
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                      className={`p-2 rounded-lg transition-colors ${
+                        isCrimeline
+                          ? "text-gray-300 hover:text-purple-200 hover:bg-purple-900/40"
+                          : "text-gray-500 hover:text-teal-700 hover:bg-teal-100"
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  {/* Title - centered */}
+                  <h2
+                    id="modal-title"
+                    className={`text-2xl font-bold text-center ${
+                      isCrimeline ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {event.title}
+                  </h2>
+                  {/* Categories - left aligned */}
+                  <div>
+                    <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
+                  </div>
+                </div>
+
+                {/* Desktop: Original layout */}
+                <div className="hidden md:flex items-start justify-between gap-4">
                   {/* Left side: Title and Categories */}
                   <div className="flex-1 min-w-0">
                     <h2
