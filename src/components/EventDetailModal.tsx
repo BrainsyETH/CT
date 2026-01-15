@@ -183,7 +183,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                       {event.title}
                     </h2>
                     <div>
-                      <CategoryPills categories={event.category} />
+                      <CategoryPills categories={Array.isArray(event.category) ? event.category : [event.category]} />
                     </div>
                   </div>
 

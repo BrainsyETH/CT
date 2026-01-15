@@ -45,9 +45,14 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
   const { mode } = useModeStore();
   const isCrimeline = mode === "crimeline" || mode === "both";
 
+  // Ensure categories is always an array
+  const categoriesArray = Array.isArray(categories) ? categories : categories ? [categories] : [];
+
+  if (categoriesArray.length === 0) return null;
+
   return (
     <div className="flex flex-wrap gap-1.5">
-      {categories.map((category) => {
+      {categoriesArray.map((category) => {
         const isPremium = PREMIUM_CATEGORIES.includes(category);
         const isCtLore = category === "CT Lore";
         const isZachXBT = category === "ZachXBT";
