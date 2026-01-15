@@ -110,6 +110,7 @@ export function TwitterEmbed({
   const [error, setError] = useState<string | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [isActivated, setIsActivated] = useState(autoLoad);
+  const [containerReady, setContainerReady] = useState(false);
   const isScrollIdle = useScrollIdle();
 
   // Check if we have valid twitter data
@@ -136,9 +137,25 @@ export function TwitterEmbed({
       return;
     }
 
-    // In modal context with autoLoad, immediately set as in view
+    // In modal context with autoLoad, immediately set as in view and skip observer
     if (isInModal && autoLoad) {
       setIsInView(true);
+      // Still set up a simple observer as a fallback, but it won't change isInView to false
+      if (typeof IntersectionObserver !== "undefined") {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setIsInView(true);
+              }
+              // Don't set to false in modal with autoLoad
+            });
+          },
+          { rootMargin: "0px", threshold: 0 }
+        );
+        observer.observe(wrapper);
+        return () => observer.disconnect();
+      }
       return;
     }
 
@@ -192,7 +209,26 @@ export function TwitterEmbed({
     }
 
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      // Container not ready yet - set ready state when it becomes available
+      if (!containerReady) {
+        const checkContainer = () => {
+          if (containerRef.current) {
+            setContainerReady(true);
+          }
+        };
+        // Check immediately and on next frame
+        checkContainer();
+        const rafId = requestAnimationFrame(checkContainer);
+        return () => cancelAnimationFrame(rafId);
+      }
+      return;
+    }
+    
+    // Mark container as ready
+    if (!containerReady) {
+      setContainerReady(true);
+    }
 
     const currentTweetId = extractTweetId(tweetUrl);
     const currentTimelineHandle = accountHandle.trim();
@@ -220,6 +256,7 @@ export function TwitterEmbed({
     ) {
       setIsLoading(true);
       hasLoadedRef.current = false;
+      setContainerReady(false); // Reset container ready state
     }
 
     const embedTweet = async () => {
@@ -329,7 +366,7 @@ export function TwitterEmbed({
         cancelLoadRef.current = null;
       }
     };
-  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated, isInModal]);
+  }, [tweetUrl, accountHandle, theme, hasValidData, isInView, isScrollIdle, isActivated, isInModal, containerReady]);
 
   if (error) {
     return (
@@ -423,7 +460,12 @@ export function TwitterEmbed({
         </div>
       )}
       <div
-        ref={containerRef}
+        ref={(node) => {
+          containerRef.current = node;
+          if (node && !containerReady) {
+            setContainerReady(true);
+          }
+        }}
         className={`twitter-embed-container rounded-lg ${
           isLoading ? "opacity-0 min-h-[300px]" : "opacity-100 transition-opacity duration-300"
         }`}
