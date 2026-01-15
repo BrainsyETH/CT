@@ -421,7 +421,7 @@ export function MediaCarousel({
       case "image":
         const imageUrl = item.image?.url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE);
         return (
-          <div className={`relative w-full ${isInModal ? "h-40 md:h-52" : "h-48 md:h-64"}`}>
+          <div className={`relative w-full ${isInModal ? "min-h-[200px] md:min-h-[300px] max-h-[60vh]" : "min-h-[300px] md:min-h-[400px] max-h-[70vh]"} flex items-center justify-center ${isCrimeline ? "bg-gray-800" : "bg-gray-100"}`}>
             <button
               onClick={() => onImageExpand?.(imageUrl)}
               className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
@@ -432,15 +432,15 @@ export function MediaCarousel({
                 alt={item.image?.alt || event.title}
                 fill
                 unoptimized
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 672px"
                 loading="lazy"
               />
               <div
-                className={`absolute inset-0 ${
+                className={`absolute inset-0 pointer-events-none ${
                   isCrimeline
-                    ? "bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
-                    : "bg-gradient-to-t from-white via-white/50 to-transparent"
+                    ? "bg-gradient-to-t from-gray-900/30 via-transparent to-transparent"
+                    : "bg-gradient-to-t from-white/30 via-transparent to-transparent"
                 }`}
               />
               {/* Zoom hint */}
