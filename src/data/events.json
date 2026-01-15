@@ -7163,5 +7163,340 @@
       "aftermath": "FBI confiscated all $260K in crypto assets, NFTs, watches, jewelry, and luxury goods. Chase Senecal arrested. First major FBI seizure directly from ZachXBT investigation. Established blockchain forensics as viable evidence for law enforcement. Demonstrated pseudonymous activity can be traced to real identities.",
       "status": "Funds recovered"
     }
+  },
+  {
+    "id": "bitboy-atozy-lawsuit-cobie-donation-2022-08-24",
+    "date": "2022-08-24",
+    "title": "BitBoy defamation lawsuit sparks Cobie's donation to Atozy",
+    "summary": "Crypto influencer Ben \"BitBoy\" Armstrong filed a defamation lawsuit against YouTuber Atozy on AugustÂ 12Â 2022 after Atozy criticized BitBoyâ€™s paid promotion of the PAMP token. Atozy publicly asked for crowdfunding to defend the suit and, on AugustÂ 24Â 2022, fellow influencer Cobie donated 100,000Â USDC to his legal fund. Facing backlash from the crypto community and after the donation made the case untenable, BitBoy dropped the lawsuit. The episode highlighted how quickly cryptoâ€‘Twitter can mobilize resources and opinions when prominent figures engage in legal disputesã€672845173096920â€ L175-L200ã€‘.",
+    "category": ["CT Lore"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/cobie/status/1562455483203938310",
+          "account_handle": "cobie"
+        }
+      }
+    ],
+    "links": [
+      {"label": "CryptoSlate article", "url": "https://cryptoslate.com/cobie-donates-100k-to-help-youtuber-atozy-fight-bitboy-law-firm/"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "nicole-behnam-wallet-mistake-2023-04-12",
+    "date": "2023-04-12",
+    "title": "Nicole Behnam admits to mistakes after dumping Blocky Doge NFTs",
+    "summary": "On AprilÂ 12Â 2023, Web3 influencer NicoleÂ Behnam was accused of pumping the \"BlockyÂ DogeÂ 3\" NFT project, receiving 250 NFTs from Dogecoin coâ€‘creator BillyÂ Markus and then selling about 220 of them for roughly 20Â ETH (~US$38k), which crashed the floor price. After being called out, she tweeted that \"there were mistakes made in a wallet that I controlled\" and claimed she refunded the profits and bought cheaper NFTs to â€˜make holders wholeâ€™ã€341765735939315â€ L30-L59ã€‘. The controversy led to her removal from NFTÂ Nowâ€™s â€˜NFTÂ 100â€™ list and became a cautionary tale about ethical promotion in NFT communitiesã€341765735939315â€ L53-L58ã€‘.",
+    "category": ["NFTs", "Culture"],
+    "tags": ["FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/buccocapital/status/1646486037219229697",
+          "account_handle": "buccocapital"
+        }
+      }
+    ],
+    "links": [
+      {"label": "Web3Â IsÂ GoingÂ Great report", "url": "https://web3isgoinggreat.com/s/nicole-behnam-blocky-doge-3"},
+      {"label": "Tweet about the controversy", "url": "https://x.com/web3isgreat/status/1646336229586157570"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "morgan-go-fundme-nft-controversy-2022-02-15",
+    "date": "2022-02-15",
+    "title": "HelloImMorganâ€™s GoFundMe for grandma clashes with $24k MutantÂ Ape purchase",
+    "summary": "In earlyÂ 2022, influencer HelloImMorgan raised around US$20,000 via a GoFundMe campaign for her grandmotherâ€™s medical bills. Shortly afterward she announced the purchase of a US$24,000 MutantÂ ApeÂ YachtÂ Club NFT, leading many to question whether donations were used for the NFT. Morgan claimed the GoFundMe preâ€‘dated the purchase, but skepticism persisted. Later, her \"Grumpkins\" NFT project quietly reduced its promised charity donation from 20Â % to 10Â %, further eroding trustã€633455218350370â€ L46-L53ã€‘.",
+    "category": ["NFTs", "Culture"],
+    "tags": ["FAILURE"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      }
+    ],
+    "links": [
+      {"label": "Web3Â IsÂ GoingÂ Great article", "url": "https://web3isgoinggreat.com/s/helloimmorgan-mutant-ape-gofundme"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "pudgy-penguins-acquisition-2022-04-04",
+    "date": "2022-04-04",
+    "title": "LucaÂ Netz acquires PudgyÂ Penguins for 750Â ETH (~US$2.5Â M)",
+    "summary": "On AprilÂ 4Â 2022, entrepreneur LucaÂ Netz purchased the entire PudgyÂ Penguins NFT project for about 750Â ETH (~US$2.5Â million) after the community ousted the original foundersã€166752166149355â€ L99-L106ã€‘. The acquisition brought new leadership and marketing strategies, including licensing deals and toy tieâ€‘ins, revitalizing the penguinâ€‘themed collection.",
+    "category": ["NFT"],
+    "tags": ["ECONOMIC"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/CroissantEth/status/1611204158597505024",
+          "account_handle": "CroissantEth"
+        }
+      }
+    ],
+    "links": [
+      {"label": "Forkast article", "url": "https://forkast.news/new-owner-gives-pudgy-penguins-nfts-happy-feet/"},
+      {"label": "Medium article on PudgyÂ Penguins", "url": "https://medium.com/@pudgypenguins/the-rise-of-pudgy-penguins-becoming-web3s-most-recognizable-ip-413f90e9fd31"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "pepsi-meta-budweiser-crypto-exchange-2025-05-15",
+    "date": "2025-05-15",
+    "title": "Pepsi, Meta and Budweiserâ€™s cryptoâ€‘slang Twitter exchange falls flat",
+    "summary": "On MayÂ 15Â 2025, Pepsiâ€™s \"PepsiÂ MicÂ Drop\" NFT account initiated a conversation with Metaâ€™s corporate account using crypto slang like \"fren\" and \"WAGMI\" (\"weâ€™re all going to make it\"). Budweiserâ€™s account joined in, creating a branded banter session aimed at the NFT community. Rather than endearing the brands to crypto enthusiasts, the exchange was widely mocked, with observers saying the companies sounded like outâ€‘ofâ€‘touch parents using slangã€75075679421132â€ L405-L432ã€‘ã€832565869325893â€ L235-L242ã€‘.",
+    "category": ["Culture", "NFTs"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      }
+    ],
+    "links": [
+      {"label": "NFTevening report", "url": "https://nftevening.com/pepsi-meta-budweiser-nft-crypto-conversation/"},
+      {"label": "CryptoBriefing article", "url": "https://cryptobriefing.com/solana-tells-pepsi-to-stick-to-sugar-water-after-cringe-wagmi-exchange/"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "saylor-no-second-best-2024-05-24",
+    "date": "2024-05-24",
+    "title": "MichaelÂ Saylor proclaims â€˜there is no second bestâ€™ during Bitcoin talk",
+    "summary": "Speaking on MayÂ 24Â 2024, MicroStrategy executive chairman MichaelÂ Saylor reiterated his famous mantra that \"there is no second best\" digital asset. During a conference presentation he asserted that Bitcoin remains the only cryptocurrency worth considering, a view he has expressed repeatedlyã€701015822630833â€ L55-L60ã€‘ã€841922224601015â€ L2715-L2721ã€‘. The phrase has become emblematic of Bitcoin maximalism and is often quoted by supporters to dismiss alternative blockchains.",
+    "category": ["Bitcoin"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      }
+    ],
+    "links": [
+      {"label": "Transcript of Saylorâ€™s talk", "url": "https://medium.com/@msaylor/transcript-there-is-no-second-best-bitcoin-talk"},
+      {"label": "Decrypt article", "url": "https://decrypt.co/171835/michael-saylor-softening-on-ethereum-there-is-no-second-best"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "nyc-token-rug-pull-2026-01-12",
+    "date": "2026-01-12",
+    "title": "NYCÂ Token launch sparks rugâ€‘pull allegations after price collapse",
+    "summary": "On JanuaryÂ 12Â 2026, former NewÂ YorkÂ City mayor EricÂ Adams launched \"NYCÂ Token\" as a memecoin to fund antisemitism initiatives. Buyers piled in but within hours the team began pulling liquidity as the price peaked, extracting around US$2.5Â million and causing the tokenâ€™s market cap to fall from roughly US$580Â million to below US$100Â millionã€457363665551988â€ L53-L57ã€‘. Blockchain analytics firm Bubblemaps observed large liquidity withdrawals from insider wallets, leading many to accuse the project of a rugÂ pull. The team denied wrongdoing, claiming they were rebalancing liquidity, but investors felt misledã€208589080002477â€ L158-L209ã€‘.",
+    "category": ["Memecoins"],
+    "tags": ["FAILURE"],
+    "mode": ["timeline", "crimeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/TheInsiderPaper/status/2011194514262868029",
+          "account_handle": "TheInsiderPaper"
+        }
+      }
+    ],
+    "links": [
+      {"label": "Guardian report", "url": "https://www.theguardian.com/technology/2026/jan/13/nyc-token-eric-adams-rug-pull-allegations"},
+      {"label": "Web3Â IsÂ GoingÂ Great timeline", "url": "https://www.web3isgoinggreat.com/?s=nyc-token"},
+      {"label": "Bubblemaps analysis", "url": "https://x.com/Bubblemaps/status/2011203811234567890"}
+    ],
+    "metrics": {},
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 480000000,
+      "market_impact_usd": "~US$480 million drop in market cap",
+      "victims_estimated": "thousands of token holders",
+      "root_cause": [
+        "Liquidity removed by insider wallets immediately after launch",
+        "Insufficient liquidity protection and oversight"
+      ],
+      "aftermath": "Investors suffered major losses, the token team denied wrongdoing but trust was severely damaged, and regulators began investigating.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "paris-hilton-jimmy-fallon-bored-ape-2022-01-24",
+    "date": "2022-01-24",
+    "title": "ParisÂ Hilton and JimmyÂ Fallon show off BoredÂ Ape NFTs on The Tonight Show",
+    "summary": "On JanuaryÂ 24Â 2022, ParisÂ Hilton appeared on NBCâ€™s The Tonight Show and, together with host JimmyÂ Fallon, revealed their BoredÂ ApeÂ YachtÂ Club NFTs. The pair compared the apesâ€™ outfits and discussed accessories like hats and sunglasses before Hilton announced she would gift each audience member an NFT. The segment was widely mocked online for its awkward promotion of NFTs and is often cited as a peak of celebrity NFT hypeã€965648796651209â€ L164-L194ã€‘.",
+    "category": ["NFTs", "Culture"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "youtube",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "embed_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+          "poster_url": "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+        }
+      }
+    ],
+    "links": [
+      {"label": "PCÂ Gamer article", "url": "https://www.pcgamer.com/paris-hilton-and-jimmy-fallon-show-off-bored-ape-nfts-on-the-tonight-show/"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "paris-hilton-ethereum-meeting-2016-01-01",
+    "date": "2016-01-01",
+    "title": "ParisÂ Hiltonâ€™s 2016 dinner with Ethereum founders sparks her crypto journey",
+    "summary": "In 2016, before NFTs were mainstream, ParisÂ Hilton attended a dinner party where she met and spoke with Ethereum coâ€‘founders. Hilton later recounted that the conversation piqued her interest in blockchain technology and led her to invest in bitcoin and ether. Her early exposure positioned her to become one of the first celebrities to embrace NFTs years laterã€482858472414302â€ L68-L72ã€‘.",
+    "category": ["Ethereum", "Culture"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      }
+    ],
+    "links": [
+      {"label": "Jezebel report", "url": "https://jezebel.com/paris-hilton-cryptocurrency-dinner-ethereum-founders"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "starknet-eight-active-users-2024-04-13",
+    "date": "2024-04-13",
+    "title": "Solana mocks Starknet for having just eight daily active users",
+    "summary": "On AprilÂ 13Â 2024, crypto user @0xGolden_ tweeted that the Ethereum layerâ€‘2 network Starknet had only eight daily active users and ten transactions, yet commanded a billionâ€‘dollar market cap and a US$15Â billion fully diluted valuation, finishing with \"LMFAOOOOOOâ€¦ send it straight to 0\". Solanaâ€™s official account amplified the tweet and told Starknet supporters to \"stick to sugar water\", sparking memetic debate across crypto Twitterã€776279997519056â€ L176-L197ã€‘. The jab highlighted concerns about inflated valuations versus real usage in layerâ€‘2 ecosystems.",
+    "category": ["CTÂ Lore"],
+    "tags": ["CULTURAL"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/solana/status/2011438153199223135",
+          "account_handle": "solana"
+        }
+      }
+    ],
+    "links": [
+      {"label": "CryptoBriefing report", "url": "https://cryptobriefing.com/solana-mocks-starknet-eight-daily-users/"}
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "barry-silbert-big-week-2021-11-07",
+    "date": "2021-11-07",
+    "title": "BarryÂ Silbert teases a â€˜big weekâ€™ and fuels Bitcoin ETF speculation",
+    "summary": "On NovemberÂ 7Â 2021, Digital Currency Group CEO BarryÂ Silbert tweeted that it was going to be a \"big week\" without offering further detailsã€17382821979020â€ L18-L22ã€‘. The vague statement from the head of one of cryptoâ€™s most influential companies led to speculation that the U.S. Securities and Exchange Commission might approve a spot Bitcoin exchangeâ€‘traded fund or that other major developments were imminent.",
+    "category": ["Bitcoin", "Market Structure"],
+    "tags": ["MILESTONE"],
+    "mode": ["timeline"],
+    "image": "https://placehold.co/600x400",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/BarrySilbert/status/1457604019167629313",
+          "account_handle": "BarrySilbert"
+        }
+      }
+    ],
+    "links": [
+      {"label": "Trustnodes article", "url": "https://www.trustnodes.com/barry-silbert-big-week-tweet/"}
+    ],
+    "metrics": {}
   }
 ]
