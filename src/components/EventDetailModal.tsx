@@ -99,6 +99,10 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
   const [canDrag, setCanDrag] = useState(false);
+  const touchStartY = useRef<number | null>(null);
+  const touchStartScrollTop = useRef<number | null>(null);
+  const scrollPositionRef = useRef<{ isAtTop: boolean; isAtBottom: boolean }>({ isAtTop: false, isAtBottom: false });
+  const isScrollingRef = useRef(false);
 
   // Close modal handler
   const closeModal = useCallback(() => {
@@ -142,7 +146,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     setIsImageExpanded(true);
   }, []);
 
-  // Check scroll position to determine if drag should be enabled
+  // Check scroll position and handle touch events for smart drag detection
   useEffect(() => {
     if (!mobile || !modalRef.current) return;
 
@@ -156,27 +160,92 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
       const isAtTop = scrollTop === 0;
       const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1; // 1px tolerance
       
-      // Only allow drag when at top or bottom of scroll
-      setCanDrag(isAtTop || isAtBottom);
+      // Store scroll position for touch handlers
+      scrollPositionRef.current = { isAtTop, isAtBottom };
+      
+      // Only enable drag when at boundaries and not currently scrolling
+      if (!isScrollingRef.current) {
+        setCanDrag(isAtTop || isAtBottom);
+      }
     };
 
     const element = modalRef.current;
     
-    // Check on scroll
-    element.addEventListener('scroll', checkScrollPosition, { passive: true });
+    // Track scrolling state
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      isScrollingRef.current = true;
+      setCanDrag(false); // Disable drag while scrolling
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrollingRef.current = false;
+        checkScrollPosition(); // Re-enable drag if at boundaries
+      }, 150); // Wait 150ms after scroll stops
+      checkScrollPosition();
+    };
     
-    // Also check on touch start to catch immediate interactions
-    const handleTouchStart = () => {
-      // Use requestAnimationFrame to check after any pending scroll updates
+    // Check on scroll
+    element.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Handle touch start to detect direction
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch && element) {
+        touchStartY.current = touch.clientY;
+        touchStartScrollTop.current = element.scrollTop;
+        isScrollingRef.current = false;
+      }
+      // Check scroll position at touch start
       requestAnimationFrame(checkScrollPosition);
     };
+    
+    // Handle touch move to detect if user is scrolling
+    const handleTouchMove = (e: TouchEvent) => {
+      if (touchStartY.current === null || touchStartScrollTop.current === null || !element) return;
+      
+      const touch = e.touches[0];
+      if (!touch) return;
+      
+      const deltaY = touch.clientY - touchStartY.current;
+      const currentScrollTop = element.scrollTop;
+      const scrollDelta = Math.abs(currentScrollTop - touchStartScrollTop.current);
+      
+      // If scroll position changed, user is scrolling (not dragging)
+      if (scrollDelta > 5) {
+        isScrollingRef.current = true;
+        setCanDrag(false);
+      } else {
+        // Check if we should allow drag based on position and direction
+        const { isAtTop, isAtBottom } = scrollPositionRef.current;
+        const shouldAllowDrag = (isAtTop && deltaY > 0) || (isAtBottom && deltaY < 0);
+        if (!isScrollingRef.current) {
+          setCanDrag(shouldAllowDrag && (isAtTop || isAtBottom));
+        }
+      }
+    };
+    
+    const handleTouchEnd = () => {
+      touchStartY.current = null;
+      touchStartScrollTop.current = null;
+      // Re-check scroll position after touch ends
+      setTimeout(() => {
+        isScrollingRef.current = false;
+        requestAnimationFrame(checkScrollPosition);
+      }, 100);
+    };
+    
     element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: true });
+    element.addEventListener('touchend', handleTouchEnd, { passive: true });
     
     checkScrollPosition(); // Initial check
 
     return () => {
-      element.removeEventListener('scroll', checkScrollPosition);
+      clearTimeout(scrollTimeout);
+      element.removeEventListener('scroll', handleScroll);
       element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+      element.removeEventListener('touchend', handleTouchEnd);
     };
   }, [mobile, selectedEventId, isIncidentDetailsExpanded]);
 
