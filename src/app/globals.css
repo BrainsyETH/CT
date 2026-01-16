@@ -201,9 +201,9 @@ textarea:focus-visible {
 }
 
 .neo-brutalist-subtitle-crimeline {
-  color: #9333ea;
-  border-color: #9333ea;
-  background-color: #f3e8ff;
+  color: white;
+  border-color: #6d28d9;
+  background-color: #5b21b6;
 }
 
 /* Neo-brutalist card styling */
@@ -392,6 +392,12 @@ textarea:focus-visible {
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
+.neo-brutalist-toggle-timeline {
+  background-color: #f3f4f6;
+  border-color: #14b8a6;
+  box-shadow: 4px 4px 0px rgba(20, 184, 166, 0.3);
+}
+
 .neo-brutalist-toggle-crimeline {
   background-color: #1f2937;
   border-color: #7c3aed;
@@ -563,11 +569,11 @@ textarea:focus-visible {
   }
   
   .neo-brutalist-subtitle {
-    padding: 5px 10px !important;
+    padding: 4px 8px !important;
     border-width: 2px !important;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15) !important;
     transform: rotate(-0.75deg) !important;
-    font-size: 0.75rem !important;
+    font-size: 0.65rem !important;
     letter-spacing: 0.03em !important;
     max-width: 90vw;
     white-space: normal !important;

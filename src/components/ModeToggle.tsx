@@ -22,7 +22,11 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
       role="radiogroup"
       aria-label="Select view mode"
       className={`neo-brutalist-toggle ${
-        isCrimelineMode ? "neo-brutalist-toggle-crimeline" : ""
+        isCrimelineMode 
+          ? "neo-brutalist-toggle-crimeline" 
+          : mode === "timeline"
+          ? "neo-brutalist-toggle-timeline"
+          : ""
       }`}
     >
       {segments.map((segment) => {
