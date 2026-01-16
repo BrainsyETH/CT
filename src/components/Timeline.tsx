@@ -499,7 +499,7 @@ export function Timeline({ events }: TimelineProps) {
 
       {/* Filter Bar - slides up/down based on scroll direction */}
       <div
-        className={`relative z-40 transition-all duration-300 ease-in-out pt-[120px] sm:pt-0 ${
+        className={`relative z-40 transition-all duration-300 ease-in-out pt-[90px] sm:pt-0 ${
           isFilterVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4 pointer-events-none"
