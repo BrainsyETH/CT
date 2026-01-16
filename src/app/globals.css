@@ -206,6 +206,348 @@ textarea:focus-visible {
   background-color: #f3e8ff;
 }
 
+/* Neo-brutalist card styling */
+.neo-brutalist-card {
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.neo-brutalist-card-timeline {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  box-shadow: 4px 4px 0px rgba(15, 23, 42, 0.12);
+}
+
+.neo-brutalist-card-timeline:hover {
+  border-color: #14b8a6;
+  box-shadow: 4px 4px 0px rgba(20, 184, 166, 0.3);
+}
+
+.neo-brutalist-card-crimeline {
+  background-color: #111827;
+  border-color: #7c3aed;
+  box-shadow: 4px 4px 0px rgba(124, 58, 237, 0.35);
+}
+
+.neo-brutalist-card-crimeline:hover {
+  border-color: #a855f7;
+  box-shadow: 4px 4px 0px rgba(168, 85, 247, 0.5);
+}
+
+/* Light mode crimeline cards (used in "both" mode) */
+.neo-brutalist-card-crimeline-light {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  box-shadow: 4px 4px 0px rgba(15, 23, 42, 0.12);
+}
+
+.neo-brutalist-card-crimeline-light:hover {
+  border-color: #a855f7;
+  box-shadow: 4px 4px 0px rgba(168, 85, 247, 0.3);
+}
+
+/* Neo-brutalist heading for card titles */
+.neo-brutalist-heading {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.neo-brutalist-heading-timeline {
+  color: #111827;
+  filter: drop-shadow(2px 2px 0px rgba(20, 184, 166, 0.15));
+}
+
+.neo-brutalist-heading-timeline:hover {
+  color: #0d9488;
+}
+
+.neo-brutalist-heading-crimeline {
+  color: #f9fafb;
+  filter: drop-shadow(2px 2px 0px rgba(124, 58, 237, 0.25));
+}
+
+.neo-brutalist-heading-crimeline:hover {
+  color: #c4b5fd;
+}
+
+/* Light mode crimeline headings (used in "both" mode) */
+.neo-brutalist-heading-crimeline-light {
+  color: #111827;
+  filter: drop-shadow(2px 2px 0px rgba(168, 85, 247, 0.15));
+}
+
+.neo-brutalist-heading-crimeline-light:hover {
+  color: #7c3aed;
+}
+
+/* Neo-brutalist date styling */
+.neo-brutalist-date {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: 2px solid;
+  display: inline-block;
+  transform: rotate(-0.5deg);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.neo-brutalist-date-timeline {
+  color: #0d9488;
+  border-color: #14b8a6;
+  background-color: #ccfbf1;
+}
+
+.neo-brutalist-date-crimeline {
+  color: #c4b5fd;
+  border-color: #7c3aed;
+  background-color: #2e1065;
+}
+
+/* Light mode crimeline dates (used in "both" mode) */
+.neo-brutalist-date-crimeline-light {
+  color: #7c3aed;
+  border-color: #a855f7;
+  background-color: #f3e8ff;
+}
+
+/* Neo-brutalist button styling */
+.neo-brutalist-btn {
+  font-weight: 700;
+  border: 3px solid;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.neo-brutalist-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.neo-brutalist-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.neo-brutalist-btn-timeline {
+  background-color: #14b8a6;
+  border-color: #0d9488;
+  color: white;
+}
+
+.neo-brutalist-btn-timeline:hover {
+  background-color: #0d9488;
+}
+
+.neo-brutalist-btn-crimeline {
+  background-color: #7c3aed;
+  border-color: #6d28d9;
+  color: white;
+}
+
+.neo-brutalist-btn-crimeline:hover {
+  background-color: #6d28d9;
+}
+
+.neo-brutalist-btn-both {
+  background: linear-gradient(135deg, #14b8a6 0%, #7c3aed 100%);
+  border-color: #0d9488;
+  color: white;
+}
+
+.neo-brutalist-btn-both:hover {
+  background: linear-gradient(135deg, #0d9488 0%, #6d28d9 100%);
+}
+
+.neo-brutalist-btn-inactive {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: #4b5563;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.08);
+}
+
+.neo-brutalist-btn-inactive:hover {
+  background-color: #d1d5db;
+  border-color: #9ca3af;
+}
+
+/* Neo-brutalist toggle container */
+.neo-brutalist-toggle {
+  display: inline-flex;
+  gap: 0.375rem;
+  padding: 0.375rem;
+  background-color: #f3f4f6;
+  border: 3px solid #d1d5db;
+  border-radius: 0.75rem;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+.neo-brutalist-toggle-crimeline {
+  background-color: #1f2937;
+  border-color: #7c3aed;
+  box-shadow: 4px 4px 0px rgba(124, 58, 237, 0.3);
+}
+
+/* Neo-brutalist pill styling */
+.neo-brutalist-pill {
+  font-weight: 600;
+  border: 2px solid;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.neo-brutalist-pill:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Pill variants for timeline mode */
+.neo-brutalist-pill-teal {
+  background-color: #ccfbf1;
+  border-color: #14b8a6;
+  color: #0d9488;
+}
+
+.neo-brutalist-pill-blue {
+  background-color: #dbeafe;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.neo-brutalist-pill-green {
+  background-color: #dcfce7;
+  border-color: #22c55e;
+  color: #16a34a;
+}
+
+.neo-brutalist-pill-purple {
+  background-color: #f3e8ff;
+  border-color: #a855f7;
+  color: #7c3aed;
+}
+
+.neo-brutalist-pill-pink {
+  background-color: #fce7f3;
+  border-color: #ec4899;
+  color: #db2777;
+}
+
+.neo-brutalist-pill-orange {
+  background-color: #ffedd5;
+  border-color: #f97316;
+  color: #ea580c;
+}
+
+.neo-brutalist-pill-red {
+  background-color: #fee2e2;
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+.neo-brutalist-pill-yellow {
+  background-color: #fef9c3;
+  border-color: #eab308;
+  color: #ca8a04;
+}
+
+.neo-brutalist-pill-sky {
+  background-color: #e0f2fe;
+  border-color: #0ea5e9;
+  color: #0369a1;
+}
+
+.neo-brutalist-pill-gray {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+/* Pill variants for crimeline mode (dark) */
+.neo-brutalist-pill-dark {
+  box-shadow: 2px 2px 0px rgba(124, 58, 237, 0.2);
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-teal {
+  background-color: #115e59;
+  border-color: #14b8a6;
+  color: #5eead4;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-blue {
+  background-color: #1e3a5f;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-green {
+  background-color: #14532d;
+  border-color: #22c55e;
+  color: #86efac;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-purple {
+  background-color: #2e1065;
+  border-color: #a855f7;
+  color: #c4b5fd;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-pink {
+  background-color: #500724;
+  border-color: #ec4899;
+  color: #f9a8d4;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-orange {
+  background-color: #431407;
+  border-color: #f97316;
+  color: #fdba74;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-red {
+  background-color: #450a0a;
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.neo-brutalist-pill-dark.neo-brutalist-pill-yellow {
+  background-color: #422006;
+  border-color: #eab308;
+  color: #fde047;
+}
+
+/* Premium category active state with green glow */
+.neo-brutalist-pill-premium-active {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 1px rgb(20, 184, 166), 0 0 12px rgba(16, 185, 129, 0.6), 2px 2px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.neo-brutalist-pill-premium-active:hover {
+  box-shadow: 0 0 0 1px rgb(5, 150, 105), 0 0 16px rgba(16, 185, 129, 0.8), 3px 3px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+.neo-brutalist-btn-premium-active {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 1px rgb(20, 184, 166), 0 0 12px rgba(16, 185, 129, 0.6), 3px 3px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+.neo-brutalist-btn-premium-active:hover {
+  box-shadow: 0 0 0 1px rgb(5, 150, 105), 0 0 16px rgba(16, 185, 129, 0.8), 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
 /* Mobile optimizations for neo-brutalist */
 @media (max-width: 767px) {
   .neo-brutalist-title {
@@ -234,5 +576,72 @@ textarea:focus-visible {
     visibility: visible !important;
     opacity: 1 !important;
     color: inherit !important;
+  }
+
+  /* Card mobile optimizations */
+  .neo-brutalist-card {
+    border-width: 2px;
+  }
+
+  .neo-brutalist-card-timeline,
+  .neo-brutalist-card-crimeline,
+  .neo-brutalist-card-crimeline-light {
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .neo-brutalist-card-timeline:hover,
+  .neo-brutalist-card-crimeline:hover,
+  .neo-brutalist-card-crimeline-light:hover {
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Heading mobile optimizations */
+  .neo-brutalist-heading {
+    font-weight: 700;
+  }
+
+  .neo-brutalist-heading-timeline,
+  .neo-brutalist-heading-crimeline,
+  .neo-brutalist-heading-crimeline-light {
+    filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Date mobile optimizations */
+  .neo-brutalist-date {
+    padding: 3px 6px;
+    border-width: 2px;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.08);
+    transform: rotate(-0.25deg);
+    font-size: 0.7rem;
+  }
+
+  /* Button mobile optimizations */
+  .neo-brutalist-btn {
+    border-width: 2px;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .neo-brutalist-btn:hover {
+    transform: none;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Toggle mobile optimizations */
+  .neo-brutalist-toggle {
+    border-width: 2px;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  /* Pill mobile optimizations */
+  .neo-brutalist-pill {
+    border-width: 1.5px;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .neo-brutalist-pill:hover {
+    transform: none;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
   }
 }

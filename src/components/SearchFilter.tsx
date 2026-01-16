@@ -221,6 +221,7 @@ export function SearchFilter() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const isCrimeline = mode === "crimeline";
+  const isDarkMode = mode === "crimeline";
   const showCrimelineTypes = mode === "crimeline" || mode === "both";
 
   const activeFilterCount =
@@ -248,10 +249,10 @@ export function SearchFilter() {
 
   return (
     <div
-      className={`rounded-lg p-3 sm:p-4 transition-colors duration-300 ${
+      className={`neo-brutalist-card p-3 sm:p-4 ${
         isCrimeline
-          ? "bg-gray-900/80 border-2 border-purple-900/40 shadow-[4px_4px_0_rgba(124,58,237,0.35)]"
-          : "bg-white border-2 border-gray-200 shadow-[4px_4px_0_rgba(15,23,42,0.12)]"
+          ? "neo-brutalist-card-crimeline"
+          : "neo-brutalist-card-timeline"
       }`}
     >
       {/* Main Controls Row */}
@@ -309,10 +310,10 @@ export function SearchFilter() {
         <button
           onClick={toggleSortOrder}
           aria-label={`Sort by ${sortOrder === "asc" ? "oldest" : "newest"} first`}
-          className={`flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
+          className={`neo-brutalist-btn flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm whitespace-nowrap ${
             isCrimeline
-              ? "bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700"
-              : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+              ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
+              : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
           }`}
         >
           <svg
@@ -339,14 +340,14 @@ export function SearchFilter() {
           onClick={() => setIsFiltersExpanded(!isFiltersExpanded)}
           aria-expanded={isFiltersExpanded}
           aria-label={`${isFiltersExpanded ? "Hide" : "Show"} filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ""}`}
-          className={`relative flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+          className={`neo-brutalist-btn relative flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg text-sm ${
             isFiltersExpanded || hasActiveFilters
               ? isCrimeline
-                ? "bg-purple-900/50 border border-purple-800 text-purple-300"
-                : "bg-teal-100 border border-teal-300 text-teal-700"
+                ? "bg-purple-900/50 border-purple-600 text-purple-300"
+                : "bg-teal-100 border-teal-400 text-teal-700"
               : isCrimeline
-              ? "bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700"
-              : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+              ? "bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700"
+              : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
           }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -409,38 +410,24 @@ export function SearchFilter() {
                     const isCtLore = category === "CT Lore";
                     const isZachXBT = category === "ZachXBT";
 
-                    // CT Lore gets light blue styling
-                    const ctLoreStyles = isCtLore
-                      ? isSelected
-                        ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                        : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
-                      : "";
-
-                    // ZachXBT gets blackish/gray styling
-                    const zachStyles = isZachXBT
-                      ? isSelected
-                        ? "bg-gray-900 text-white border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                        : "bg-gray-800 text-gray-100 border border-gray-600 hover:bg-gray-700"
-                      : "";
+                    // Determine pill color variant
+                    let colorClass = "";
+                    if (isCtLore) {
+                      colorClass = "neo-brutalist-pill-sky";
+                    } else if (isZachXBT) {
+                      colorClass = "neo-brutalist-pill-gray";
+                    } else {
+                      colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
+                    }
 
                     return (
                       <button
                         key={category}
                         onClick={() => toggleCategory(category)}
                         aria-pressed={isSelected}
-                        className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                          isCtLore
-                            ? ctLoreStyles
-                            : isZachXBT
-                              ? zachStyles
-                              : isSelected
-                                ? isCrimeline
-                                  ? "bg-purple-900 text-purple-200 border border-purple-700"
-                                  : "bg-teal-500 text-white border border-teal-600"
-                                : isCrimeline
-                                  ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                                  : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
-                        }`}
+                        className={`neo-brutalist-pill flex items-center gap-1 px-2.5 py-1 text-xs ${colorClass} ${
+                          isDarkMode && !isZachXBT ? "neo-brutalist-pill-dark" : ""
+                        } ${isSelected ? "neo-brutalist-pill-premium-active" : ""}`}
                       >
                         {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
                         {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
@@ -513,21 +500,16 @@ export function SearchFilter() {
                         <div className="max-h-48 overflow-y-auto flex flex-wrap gap-2">
                           {filteredCategories.map((category) => {
                             const isSelected = selectedCategories.includes(category);
+                            const colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
 
                             return (
                               <button
                                 key={category}
                                 onClick={() => toggleCategory(category)}
                                 aria-pressed={isSelected}
-                                className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                                  isSelected
-                                    ? isCrimeline
-                                      ? "bg-purple-900 text-purple-200 border border-purple-700"
-                                      : "bg-teal-500 text-white border border-teal-600"
-                                    : isCrimeline
-                                      ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                                      : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
-                                }`}
+                                className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
+                                  isDarkMode ? "neo-brutalist-pill-dark" : ""
+                                } ${isSelected ? "border-2 font-bold" : ""}`}
                               >
                                 {category}
                               </button>
@@ -585,20 +567,15 @@ export function SearchFilter() {
                         <div className="flex flex-wrap gap-2">
                           {ALL_CRIMELINE_TYPES.map((type) => {
                             const isSelected = selectedCrimelineTypes.includes(type);
+                            const colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
                             return (
                               <button
                                 key={type}
                                 onClick={() => toggleCrimelineType(type)}
                                 aria-pressed={isSelected}
-                                className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                                isSelected
-                                  ? isCrimeline
-                                      ? "bg-purple-900 text-purple-200 border border-purple-700"
-                                      : "bg-teal-500 text-white border border-teal-600"
-                                    : isCrimeline
-                                    ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                                    : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
-                                }`}
+                                className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
+                                  isDarkMode ? "neo-brutalist-pill-dark" : ""
+                                } ${isSelected ? "border-2 font-bold" : ""}`}
                               >
                                 {type}
                               </button>

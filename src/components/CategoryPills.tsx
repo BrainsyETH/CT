@@ -43,7 +43,8 @@ function ZachXBTIcon({ className }: { className?: string }) {
 
 export function CategoryPills({ categories }: CategoryPillsProps) {
   const { mode } = useModeStore();
-  const isCrimeline = mode === "crimeline" || mode === "both";
+  const isCrimeline = mode === "crimeline";
+  const isDarkMode = mode === "crimeline";
 
   // Ensure categories is always an array
   const categoriesArray = Array.isArray(categories) ? categories : categories ? [categories] : [];
@@ -51,36 +52,28 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
   if (categoriesArray.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-2">
       {categoriesArray.map((category) => {
-        const isPremium = PREMIUM_CATEGORIES.includes(category);
         const isCtLore = category === "CT Lore";
         const isZachXBT = category === "ZachXBT";
 
-        // CT Lore gets light blue styling
-        const ctLoreStyles = isCtLore
-          ? "bg-sky-100 text-sky-700 border border-sky-200"
-          : "";
-
-        // ZachXBT gets blackish/gray styling
-        const zachStyles = isZachXBT
-          ? "bg-gray-800 text-gray-100 border border-gray-600"
-          : "";
-
-        // Default styling
-        const defaultStyles = isCrimeline
-          ? "bg-purple-900/60 text-purple-200 border border-purple-800"
-          : "bg-teal-100 text-teal-800 border border-teal-200";
+        // Determine pill color variant
+        let colorClass = "";
+        if (isCtLore) {
+          colorClass = "neo-brutalist-pill-sky";
+        } else if (isZachXBT) {
+          colorClass = "neo-brutalist-pill-gray";
+        } else if (isCrimeline) {
+          colorClass = "neo-brutalist-pill-purple";
+        } else {
+          colorClass = "neo-brutalist-pill-teal";
+        }
 
         return (
           <span
             key={category}
-            className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-300 ${
-              isCtLore
-                ? ctLoreStyles
-                : isZachXBT
-                  ? zachStyles
-                  : defaultStyles
+            className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
+              isDarkMode && !isZachXBT ? "neo-brutalist-pill-dark" : ""
             }`}
           >
             {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}

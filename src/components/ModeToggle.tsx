@@ -21,8 +21,8 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
     <div
       role="radiogroup"
       aria-label="Select view mode"
-      className={`inline-flex ${compact ? 'gap-1 p-0.5' : 'gap-1.5 p-1'} bg-gray-200 dark:bg-gray-800 rounded-lg border-2 border-gray-300 dark:border-gray-700 transition-colors duration-200 ${
-        isCrimelineMode ? "shadow-[2px_2px_0_rgba(124,58,237,0.35)]" : "shadow-[2px_2px_0_rgba(15,23,42,0.18)]"
+      className={`neo-brutalist-toggle ${
+        isCrimelineMode ? "neo-brutalist-toggle-crimeline" : ""
       }`}
     >
       {segments.map((segment) => {
@@ -38,18 +38,19 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
             role="radio"
             aria-checked={isActive}
             className={`
-              ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-4 py-2 text-sm'}
-              font-medium rounded-md
-              transition-all duration-300 ease-out
-              focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-200 dark:focus:ring-offset-gray-800
+              neo-brutalist-btn
+              ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-1.5 text-sm'}
+              rounded-md
+              transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-offset-1
               ${
                 isActive
                   ? isTimeline
-                    ? "bg-teal-500 text-white shadow-md scale-[1.02] focus:ring-teal-400"
+                    ? "neo-brutalist-btn-timeline focus:ring-teal-400"
                     : isCrimeline
-                    ? "bg-purple-600 text-white shadow-md scale-[1.02] focus:ring-purple-400"
-                    : "bg-gradient-to-r from-teal-500 to-purple-600 text-white shadow-md scale-[1.02] focus:ring-purple-400"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-gray-700/50 hover:scale-[1.01]"
+                    ? "neo-brutalist-btn-crimeline focus:ring-purple-400"
+                    : "neo-brutalist-btn-both focus:ring-purple-400"
+                  : "neo-brutalist-btn-inactive"
               }
             `}
           >

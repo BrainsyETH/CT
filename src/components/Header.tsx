@@ -289,10 +289,10 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore (Crypto Twitter history)"
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+              className={`neo-brutalist-btn flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap ${
                 isCtLoreActive
-                  ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)] hover:shadow-[0_0_0_1px_rgb(5,150,105),0_0_16px_rgba(16,185,129,0.8)]"
-                  : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
+                  ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
+                  : "bg-sky-100 text-sky-700 border-sky-300 hover:bg-sky-200"
               }`}
             >
               <TwitterBirdIcon className="w-4 h-4" />
@@ -396,10 +396,10 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore"
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+              className={`neo-brutalist-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs ${
                 isCtLoreActive
-                  ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                  : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
+                  ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
+                  : "bg-sky-100 text-sky-700 border-sky-300 hover:bg-sky-200"
               }`}
             >
               <TwitterBirdIcon className="w-3.5 h-3.5" />

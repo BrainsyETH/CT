@@ -184,12 +184,12 @@ function EventCardBase({ event, index }: EventCardProps) {
           style={{ touchAction: mobile ? "pan-x pan-y" : "auto" }}
         >
           <div
-            className={`rounded-lg transition-all duration-300 overflow-hidden ${
+            className={`neo-brutalist-card ${
               isCrimeline
-                ? "bg-gray-900 border-2 border-purple-900/40 shadow-[6px_6px_0_rgba(124,58,237,0.35)] group-hover:border-purple-600/60 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.55)]"
+                ? "neo-brutalist-card-crimeline group-hover:border-purple-400"
                 : useCrimelineStyle
-                ? "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-purple-400 group-hover:shadow-[6px_6px_0_rgba(124,58,237,0.25)]"
-                : "bg-white border-2 border-gray-200 shadow-[6px_6px_0_rgba(15,23,42,0.12)] group-hover:border-teal-400 group-hover:shadow-[6px_6px_0_rgba(20,184,166,0.25)]"
+                ? "neo-brutalist-card-crimeline-light group-hover:border-purple-400"
+                : "neo-brutalist-card-timeline group-hover:border-teal-400"
             }`}
           >
             {/* Event Image */}
@@ -230,8 +230,12 @@ function EventCardBase({ event, index }: EventCardProps) {
               {/* Header with Date and Share */}
               <div className="flex items-start justify-between">
                 <time
-                  className={`text-sm font-medium transition-colors duration-300 ${
-                    isCrimeline ? "text-purple-400" : "text-teal-600"
+                  className={`neo-brutalist-date ${
+                    isCrimeline
+                      ? "neo-brutalist-date-crimeline"
+                      : useCrimelineStyle
+                      ? "neo-brutalist-date-crimeline-light"
+                      : "neo-brutalist-date-timeline"
                   }`}
                 >
                   {formatDate(event.date)}
@@ -241,12 +245,12 @@ function EventCardBase({ event, index }: EventCardProps) {
 
               {/* Title */}
               <h3
-                className={`mt-1 text-lg font-bold transition-colors duration-300 ${
+                className={`mt-2 text-lg neo-brutalist-heading transition-colors duration-300 ${
                   isCrimeline
-                    ? "text-white group-hover:text-purple-300"
+                    ? "neo-brutalist-heading-crimeline group-hover:text-purple-300"
                     : useCrimelineStyle
-                    ? "text-gray-900 group-hover:text-purple-600"
-                    : "text-gray-900 group-hover:text-teal-700"
+                    ? "neo-brutalist-heading-crimeline-light group-hover:text-purple-600"
+                    : "neo-brutalist-heading-timeline group-hover:text-teal-700"
                 }`}
               >
                 {event.title}
