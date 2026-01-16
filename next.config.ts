@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placeholder.co",
       },
+      {
+        protocol: "https",
+        hostname: "public.bnbstatic.com",
+      },
     ],
   },
 };

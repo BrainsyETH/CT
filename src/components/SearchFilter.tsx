@@ -424,7 +424,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                 }`}>
                   
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 px-1 pt-1">
                   {PREMIUM_CATEGORIES.map((category) => {
                     const isSelected = selectedCategories.includes(category);
                     const isCtLore = category === "CT Lore";
@@ -447,7 +447,13 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                         aria-pressed={isSelected}
                         className={`neo-brutalist-pill flex items-center gap-1 px-2.5 py-1 text-xs ${colorClass} ${
                           isDarkMode && !isZachXBT ? "neo-brutalist-pill-dark" : ""
-                        } ${isSelected ? "neo-brutalist-pill-premium-active" : ""}`}
+                        } ${isSelected ? "neo-brutalist-pill-premium-active" : ""} ${
+                          isSelected
+                            ? isCrimeline
+                              ? "!bg-purple-600 !text-white !border-purple-400"
+                              : "!bg-teal-500 !text-white !border-teal-400"
+                            : ""
+                        }`}
                       >
                         {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
                         {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
@@ -517,7 +523,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                           />
                         </div>
                         {/* Category List - Max height with scroll */}
-                        <div className="max-h-48 overflow-y-auto flex flex-wrap gap-2">
+                        <div className="max-h-48 overflow-y-auto flex flex-wrap gap-2 px-1 pt-1">
                           {filteredCategories.map((category) => {
                             const isSelected = selectedCategories.includes(category);
                             const colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
@@ -529,7 +535,13 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                                 aria-pressed={isSelected}
                                 className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
                                   isDarkMode ? "neo-brutalist-pill-dark" : ""
-                                } ${isSelected ? "border-2 font-bold" : ""}`}
+                                } ${isSelected ? "border-2 font-bold" : ""} ${
+                                  isSelected
+                                    ? isCrimeline
+                                      ? "!bg-purple-600 !text-white !border-purple-400"
+                                      : "!bg-teal-500 !text-white !border-teal-400"
+                                    : ""
+                                }`}
                               >
                                 {category}
                               </button>
@@ -584,7 +596,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 px-1 pt-1">
                           {ALL_CRIMELINE_TYPES.map((type) => {
                             const isSelected = selectedCrimelineTypes.includes(type);
                             const colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
@@ -595,7 +607,13 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                                 aria-pressed={isSelected}
                                 className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
                                   isDarkMode ? "neo-brutalist-pill-dark" : ""
-                                } ${isSelected ? "border-2 font-bold" : ""}`}
+                                } ${isSelected ? "border-2 font-bold" : ""} ${
+                                  isSelected
+                                    ? isCrimeline
+                                      ? "!bg-purple-600 !text-white !border-purple-400"
+                                      : "!bg-teal-500 !text-white !border-teal-400"
+                                    : ""
+                                }`}
                               >
                                 {type}
                               </button>
