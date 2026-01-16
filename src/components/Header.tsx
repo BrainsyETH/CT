@@ -199,7 +199,7 @@ export function Header() {
 
             {/* Title Section */}
             <motion.div 
-              className="min-w-0 text-left relative flex flex-col md:flex-row md:items-center md:gap-8"
+              className="min-w-0 text-left relative flex flex-col lg:flex-row lg:items-center lg:gap-8"
               animate={
                 shouldReduceMotion
                   ? {}
@@ -260,7 +260,7 @@ export function Header() {
 
               {/* Tagline with neo-brutalist styling */}
               <motion.p
-                className={`neo-brutalist-subtitle whitespace-nowrap mt-3 md:mt-0 ${
+                className={`neo-brutalist-subtitle mt-3 lg:mt-0 lg:whitespace-nowrap ${
                   isCrimeline
                     ? "neo-brutalist-subtitle-crimeline"
                     : "neo-brutalist-subtitle-timeline"
@@ -313,7 +313,7 @@ export function Header() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="flex flex-col items-center gap-1 cursor-pointer group relative"
+            className="flex flex-col items-center cursor-pointer group relative w-full"
             aria-label="Scroll to top"
           >
             <div className="flex items-center gap-2">
@@ -374,7 +374,7 @@ export function Header() {
 
             {/* Subtitle/Tagline with neo-brutalist styling */}
             <motion.p
-              className={`neo-brutalist-subtitle whitespace-nowrap mt-3 ${
+              className={`neo-brutalist-subtitle mt-3 block ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"

@@ -225,7 +225,10 @@ textarea:focus-visible {
     border-width: 2px;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
     transform: rotate(-0.75deg);
-    font-size: 0.65em;
+    font-size: 0.7rem;
     letter-spacing: 0.03em;
+    max-width: 90vw;
+    white-space: normal;
+    text-align: center;
   }
 }
