@@ -229,11 +229,15 @@ export function SearchFilter() {
     (searchQuery.trim() ? 1 : 0);
   const hasActiveFilters = activeFilterCount > 0;
 
-  // Filter categories based on search
+  // Filter categories based on search, excluding premium categories
   const filteredCategories = useMemo(() => {
-    if (!categorySearch.trim()) return ALL_CATEGORIES;
+    // Exclude premium categories from regular categories list
+    const regularCategories = ALL_CATEGORIES.filter(
+      (cat) => !PREMIUM_CATEGORIES.includes(cat)
+    );
+    if (!categorySearch.trim()) return regularCategories;
     const query = categorySearch.toLowerCase();
-    return ALL_CATEGORIES.filter((cat) =>
+    return regularCategories.filter((cat) =>
       cat.toLowerCase().includes(query)
     );
   }, [categorySearch]);
@@ -509,45 +513,22 @@ export function SearchFilter() {
                         <div className="max-h-48 overflow-y-auto flex flex-wrap gap-2">
                           {filteredCategories.map((category) => {
                             const isSelected = selectedCategories.includes(category);
-                            const isPremium = PREMIUM_CATEGORIES.includes(category);
-                            const isCtLore = category === "CT Lore";
-                            const isZachXBT = category === "ZachXBT";
-
-                            // CT Lore gets light blue styling
-                            const ctLoreStyles = isCtLore
-                              ? isSelected
-                                ? "bg-sky-100 text-sky-900 border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                                : "bg-sky-100 text-sky-700 border border-sky-200 hover:bg-sky-200"
-                              : "";
-
-                            // ZachXBT gets blackish/gray styling
-                            const zachStyles = isZachXBT
-                              ? isSelected
-                                ? "bg-gray-900 text-white border-2 border-emerald-400 shadow-[0_0_0_1px_rgb(20,184,166),0_0_12px_rgba(16,185,129,0.6)]"
-                                : "bg-gray-800 text-gray-100 border border-gray-600 hover:bg-gray-700"
-                              : "";
 
                             return (
                               <button
                                 key={category}
                                 onClick={() => toggleCategory(category)}
                                 aria-pressed={isSelected}
-                                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
-                                  isCtLore
-                                    ? ctLoreStyles
-                                    : isZachXBT
-                                      ? zachStyles
-                                      : isSelected
-                                        ? isCrimeline
-                                          ? "bg-purple-900 text-purple-200 border border-purple-700"
-                                          : "bg-teal-500 text-white border border-teal-600"
-                                        : isCrimeline
-                                          ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
-                                          : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
+                                className={`px-2.5 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
+                                  isSelected
+                                    ? isCrimeline
+                                      ? "bg-purple-900 text-purple-200 border border-purple-700"
+                                      : "bg-teal-500 text-white border border-teal-600"
+                                    : isCrimeline
+                                      ? "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600"
+                                      : "bg-gray-100 text-gray-600 border border-gray-200 hover:border-gray-300"
                                 }`}
                               >
-                                {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
-                                {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
                                 {category}
                               </button>
                             );
