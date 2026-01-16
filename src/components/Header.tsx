@@ -1,12 +1,64 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 
 const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo";
+
+// Glitch effect component for crimeline mode
+function GlitchText({ 
+  children, 
+  isActive, 
+  prefersReducedMotion 
+}: { 
+  children: string; 
+  isActive: boolean; 
+  prefersReducedMotion: boolean;
+}) {
+  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!isActive || prefersReducedMotion) {
+      setGlitchOffset({ x: 0, y: 0 });
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setGlitchOffset({
+        x: (Math.random() - 0.5) * 2,
+        y: (Math.random() - 0.5) * 2,
+      });
+    }, 50);
+
+    const timeout = setTimeout(() => {
+      setGlitchOffset({ x: 0, y: 0 });
+    }, 150);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [isActive, prefersReducedMotion]);
+
+  if (!isActive || prefersReducedMotion) {
+    return <>{children}</>;
+  }
+
+  return (
+    <span
+      className="inline-block"
+      style={{
+        transform: `translate(${glitchOffset.x}px, ${glitchOffset.y}px)`,
+        transition: "transform 0.05s ease-out",
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -28,6 +80,8 @@ export function Header() {
   const prefersReducedMotion = useReducedMotion();
   const isCtLoreActive = selectedCategories.includes("CT Lore");
   const headerRef = useRef<HTMLElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [glitchActive, setGlitchActive] = useState(false);
   // #region agent log
   useEffect(() => {
     const logHeaderPosition = () => {
@@ -54,6 +108,22 @@ export function Header() {
   }, []);
   // #endregion
 
+  // Trigger glitch effect periodically in crimeline mode
+  useEffect(() => {
+    if (!isCrimeline || prefersReducedMotion) return;
+
+    const interval = setInterval(() => {
+      setGlitchActive(true);
+      setTimeout(() => setGlitchActive(false), 150);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isCrimeline, prefersReducedMotion]);
+
+  // Split title into letters for animation
+  const titleText = "Chain of Events";
+  const titleLetters = titleText.split("");
+
   return (
     <header
       ref={headerRef}
@@ -69,27 +139,43 @@ export function Header() {
           {/* Logo / Title */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-3 min-w-0 cursor-pointer hover:opacity-80 transition-opacity"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="flex items-center gap-3 min-w-0 cursor-pointer group relative"
             aria-label="Scroll to top"
           >
+            {/* Enhanced Logo Container */}
             <motion.div
-              className="w-8 h-8 flex-shrink-0 rounded-lg overflow-hidden"
+              className={`relative w-8 h-8 flex-shrink-0 rounded-lg overflow-hidden ${
+                isCrimeline
+                  ? "border border-purple-500/50 shadow-[0_0_12px_rgba(124,58,237,0.4)]"
+                  : "border border-teal-500/30 shadow-[0_0_12px_rgba(20,184,166,0.3)]"
+              }`}
               animate={
                 prefersReducedMotion
                   ? {}
                   : {
                       rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
+                      scale: isHovered ? 1.1 : isCrimeline ? [1, 1.05, 1] : 1,
                     }
               }
               transition={
                 prefersReducedMotion
                   ? {}
                   : {
-                      duration: 0.5,
-                      repeat: isCrimeline ? Infinity : 0,
-                      repeatDelay: 3,
+                      rotate: {
+                        duration: 0.5,
+                        repeat: isCrimeline ? Infinity : 0,
+                        repeatDelay: 3,
+                      },
+                      scale: {
+                        duration: 0.3,
+                        repeat: isCrimeline && !isHovered ? Infinity : 0,
+                        repeatDelay: 2,
+                      },
                     }
               }
+              whileHover={prefersReducedMotion ? {} : { rotate: 15, scale: 1.1 }}
             >
               <Image
                 src={LOGO_IMAGE}
@@ -99,25 +185,96 @@ export function Header() {
                 className="w-full h-full object-cover"
                 unoptimized
               />
+              {/* Rotating border ring for crimeline */}
+              {isCrimeline && !prefersReducedMotion && (
+                <motion.div
+                  className="absolute inset-0 rounded-lg border-2 border-purple-400/30"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                />
+              )}
             </motion.div>
-            <div className="min-w-0 text-left">
-              <h1
-                className={`text-xl font-bold whitespace-nowrap transition-colors duration-300 ${
-                  isCrimeline ? "text-white" : "text-gray-900"
-                }`}
+
+            {/* Title Section */}
+            <motion.div 
+              className="min-w-0 text-left relative"
+              animate={
+                prefersReducedMotion
+                  ? {}
+                  : {
+                      x: isHovered ? 2 : 0,
+                    }
+              }
+              transition={{ duration: 0.3 }}
+            >
+              {/* Title with gradient and animations */}
+              <motion.h1
+                className={`text-xl font-extrabold whitespace-nowrap tracking-tight relative ${
+                  isCrimeline
+                    ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"
+                    : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
+                } transition-all duration-300`}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        letterSpacing: isHovered ? "0.05em" : "0em",
+                      }
+                }
+                transition={{ duration: 0.3 }}
               >
-                Chain of Events
-              </h1>
-              <p
-                className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                {prefersReducedMotion ? (
+                  titleText
+                ) : (
+                  <span className="inline-block">
+                    {titleLetters.map((letter, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.03,
+                        }}
+                        className="inline-block"
+                      >
+                        {letter === " " ? (
+                          "\u00A0"
+                        ) : isCrimeline && glitchActive && index < 5 ? (
+                          <GlitchText
+                            isActive={true}
+                            prefersReducedMotion={prefersReducedMotion}
+                          >
+                            {letter}
+                          </GlitchText>
+                        ) : (
+                          letter
+                        )}
+                      </motion.span>
+                    ))}
+                  </span>
+                )}
+              </motion.h1>
+
+              {/* Tagline with enhanced styling */}
+              <motion.p
+                className={`text-xs whitespace-nowrap transition-colors duration-300 mt-0.5 ${
                   isCrimeline ? "text-purple-400" : "text-teal-600"
                 }`}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        opacity: isHovered ? 0.8 : 1,
+                      }
+                }
+                transition={{ duration: 0.3 }}
               >
                 {isCrimeline
                   ? "The dark history of cryptocurrency"
                   : "The history of cryptocurrency"}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </button>
 
           {/* CT Lore Button + Mode Toggle */}
@@ -149,27 +306,43 @@ export function Header() {
           {/* Row 1: Logo + Title */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="flex items-center gap-2 cursor-pointer group relative"
             aria-label="Scroll to top"
           >
+            {/* Enhanced Logo Container */}
             <motion.div
-              className="w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden"
+              className={`relative w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden ${
+                isCrimeline
+                  ? "border border-purple-500/50 shadow-[0_0_8px_rgba(124,58,237,0.4)]"
+                  : "border border-teal-500/30 shadow-[0_0_8px_rgba(20,184,166,0.3)]"
+              }`}
               animate={
                 prefersReducedMotion
                   ? {}
                   : {
                       rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
+                      scale: isCrimeline ? [1, 1.05, 1] : 1,
                     }
               }
               transition={
                 prefersReducedMotion
                   ? {}
                   : {
-                      duration: 0.5,
-                      repeat: isCrimeline ? Infinity : 0,
-                      repeatDelay: 3,
+                      rotate: {
+                        duration: 0.5,
+                        repeat: isCrimeline ? Infinity : 0,
+                        repeatDelay: 3,
+                      },
+                      scale: {
+                        duration: 0.3,
+                        repeat: isCrimeline ? Infinity : 0,
+                        repeatDelay: 2,
+                      },
                     }
               }
+              whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
             >
               <Image
                 src={LOGO_IMAGE}
@@ -180,25 +353,32 @@ export function Header() {
                 unoptimized
               />
             </motion.div>
-            <h1
-              className={`text-lg font-bold whitespace-nowrap transition-colors duration-300 ${
-                isCrimeline ? "text-white" : "text-gray-900"
-              }`}
+
+            {/* Title with gradient */}
+            <motion.h1
+              className={`text-lg font-extrabold whitespace-nowrap tracking-tight ${
+                isCrimeline
+                  ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent"
+                  : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
+              } transition-all duration-300`}
             >
-              Chain of Events
-            </h1>
+              {titleText}
+            </motion.h1>
           </button>
 
           {/* Row 2: Tagline */}
-          <p
+          <motion.p
             className={`text-xs whitespace-nowrap transition-colors duration-300 -mt-1 ${
               isCrimeline ? "text-purple-400" : "text-teal-600"
             }`}
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: -5 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
             {isCrimeline
               ? "The dark history of cryptocurrency"
               : "The history of cryptocurrency"}
-          </p>
+          </motion.p>
 
           {/* Row 3: CT Lore + Mode Toggle */}
           <div className="flex items-center gap-2">
