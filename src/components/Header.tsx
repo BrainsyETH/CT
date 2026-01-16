@@ -374,14 +374,14 @@ export function Header() {
 
             {/* Subtitle/Tagline with neo-brutalist styling */}
             <motion.p
-              className={`neo-brutalist-subtitle mt-3 block ${
+              className={`neo-brutalist-subtitle mt-3 ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
               }`}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: -5 }}
-              animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{ display: 'block', visibility: 'visible', opacity: 1 }}
             >
               {isCrimeline
                 ? "The dark history of cryptocurrency"

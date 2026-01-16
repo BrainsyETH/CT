@@ -221,14 +221,18 @@ textarea:focus-visible {
   }
   
   .neo-brutalist-subtitle {
-    padding: 4px 8px;
-    border-width: 2px;
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
-    transform: rotate(-0.75deg);
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
+    padding: 5px 10px !important;
+    border-width: 2px !important;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15) !important;
+    transform: rotate(-0.75deg) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.03em !important;
     max-width: 90vw;
-    white-space: normal;
-    text-align: center;
+    white-space: normal !important;
+    text-align: center !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: inherit !important;
   }
 }
