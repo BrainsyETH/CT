@@ -160,11 +160,7 @@ export function Header() {
           >
             {/* Enhanced Logo Container */}
             <motion.div
-              className={`relative w-8 h-8 flex-shrink-0 rounded-lg overflow-hidden ${
-                isCrimeline
-                  ? "border border-purple-500/50 shadow-[0_0_12px_rgba(124,58,237,0.4)]"
-                  : "border border-teal-500/30 shadow-[0_0_12px_rgba(20,184,166,0.3)]"
-              }`}
+              className="relative w-12 h-12 flex-shrink-0 overflow-hidden"
               animate={
                 shouldReduceMotion
                   ? {}
@@ -194,19 +190,11 @@ export function Header() {
               <Image
                 src={LOGO_IMAGE}
                 alt="Chain of Events Logo"
-                width={32}
-                height={32}
+                width={48}
+                height={48}
                 className="w-full h-full object-cover"
                 unoptimized
               />
-              {/* Rotating border ring for crimeline (desktop only) */}
-              {isCrimeline && !shouldReduceMotion && (
-                <motion.div
-                  className="absolute inset-0 rounded-lg border-2 border-purple-400/30"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                />
-              )}
             </motion.div>
 
             {/* Title Section */}
