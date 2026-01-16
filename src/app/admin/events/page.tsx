@@ -5,9 +5,9 @@ import Link from "next/link";
 import { EVENT_TAGS, MODE_OPTIONS } from "@/lib/constants";
 import { getLocalEvents, removeLocalEvent, saveLocalEvent } from "@/lib/local-events";
 import { validateEvent } from "@/lib/validation";
-import type { Event } from "@/lib/types";
+import type { Event, EventTag, Mode } from "@/lib/types";
 
-const DEFAULT_MODE = "timeline";
+const DEFAULT_MODE: Mode = "timeline";
 
 const formatIssues = (issues: string[]) =>
   issues.length > 1 ? issues.map((issue) => `• ${issue}`).join("\n") : issues[0] ?? null;
@@ -18,8 +18,8 @@ export default function AdminEventsPage() {
   const [date, setDate] = useState("");
   const [summary, setSummary] = useState("");
   const [categoryInput, setCategoryInput] = useState("Other");
-  const [tags, setTags] = useState<string[]>([]);
-  const [modes, setModes] = useState<string[]>([DEFAULT_MODE]);
+  const [tags, setTags] = useState<EventTag[]>([]);
+  const [modes, setModes] = useState<Mode[]>([DEFAULT_MODE]);
   const [imageUrl, setImageUrl] = useState("");
   const [customId, setCustomId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +34,11 @@ export default function AdminEventsPage() {
     [categoryInput],
   );
 
-  const handleToggle = (value: string, current: string[], setter: (next: string[]) => void) => {
+  const handleToggle = <T extends string>(
+    value: T,
+    current: T[],
+    setter: (next: T[]) => void,
+  ) => {
     if (current.includes(value)) {
       setter(current.filter((item) => item !== value));
       return;
