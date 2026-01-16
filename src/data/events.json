@@ -7448,7 +7448,7 @@
     "title": "Big Week Barry Silbert",
     "summary": "On November 7 2021, Digital Currency Group CEO Barry Silbert tweeted that it was going to be a \"big week\" without offering further details. The vague statement from the head of one of crypto's most influential companies led to speculation that the U.S. Securities and Exchange Commission might approve a spot Bitcoin exchange-traded fund or that other major developments were imminent.",
     "category": ["Bitcoin", "Market Structure", "CT Lore"],
-    "tags": ["MILESTONE"],
+    "tags": ["MILESTONE", "CT Lore"],
     "mode": ["timeline"],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/big_week_barry",
     "media": [
@@ -7503,9 +7503,9 @@
   },
   {
     "id": "starknet-e-beggar-moment-2024-02-20",
-    "date": "2024-02-20",
-    "title": "Starknet Faces 'E-Beggar' Backlash After Airdrop",
-    "summary": "Following Starknet’s STRK airdrop, users widely mocked the ecosystem for aggressive social-media lobbying and public appeals for allocations. The backlash framed Starknet participants as \"e-beggars,\" reinforcing criticism that incentives were misaligned and that usage was being manufactured rather than organic. The moment became a lasting meme against low-usage, high-FDV L2s.",
+    "date": "2024-01-24",
+    "title": "E-beggars Rise Up Against Starknet",
+    "summary": "Following Starknet’s STRK airdrop, users widely mocked the ecosystem for aggressive social-media lobbying and public appeals for allocations. The backlash framed Starknet participants as \"e-beggars,\" reinforcing criticism that incentives were misaligned and that usage was being manufactured rather than organic.",
     "category": ["CT Lore", "Ethereum"],
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["timeline"],
@@ -7540,9 +7540,9 @@
     "id": "ZKsync-911-indians-comment-2024-06-12",
     "date": "2024-06-20",
     "title": "We Do Not Forgive, We Do Not Forget",
-    "summary": "Famous CT Lore after the zKSync airdrop. It came out right around the zkSync airdrop snapshot/checker drama (early-mid June 2024), when many farmers got hit hard by Sybil detection rules and felt massively snubbed",
+    "summary": "This lore dropped right around the zkSync airdrop snapshot/checker drama (early-mid June 2024), when many farmers got hit hard by Sybil detection rules and felt massively snubbed",
     "category": ["CT Lore", "Market Structure"],
-    "tags": ["CULTURAL", "FAILURE"],
+    "tags": ["CULTURAL"],
     "mode": ["timeline"],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/we%20do%20not%20forgive",
     "media": [
@@ -7595,13 +7595,13 @@
   },
   {
     "id": "twitter-bans-reward-apps-kaito-crash-2025-03-22",
-    "date": "2025-03-22",
-    "title": "X Bans Reward Apps, Kaito Engagement Collapses",
-    "summary": "X (Twitter) banned applications that rewarded users for engagement, directly impacting crypto-native platforms like Kaito. Following the enforcement, Kaito’s visibility and engagement metrics sharply declined, validating concerns that its growth relied heavily on incentive farming. The event reinforced platform-risk realities for social-layer crypto startups.",
+    "date": "2026-01-15",
+    "title": "Twitter Bans Reward Apps, Kaito Price Tanks",
+    "summary": "Twitter banned applications that rewarded users for engagement, directly impacting crypto-native platforms like Kaito. Following the enforcement, Kaito’s price sharply declined, validating concerns that its growth relied heavily on incentive farming. The event was widely celebrated by CT due to the increased AI slop. ",
     "category": ["Market Structure", "Culture"],
     "tags": ["FAILURE", "REGULATORY"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-15%20at%206.58.55%E2%80%AFPM.png",
     "media": [
       {
         "type": "video",
@@ -7611,6 +7611,13 @@
         "type": "twitter",
         "twitter": {
           "tweet_url": "https://x.com/nikitabier/status/2011825522817270230",
+          "account_handle": "nikitabier"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/2011830040372396371",
           "account_handle": "nikitabier"
         }
       }
