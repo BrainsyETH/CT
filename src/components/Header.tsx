@@ -83,6 +83,8 @@ export function Header() {
   const [isHovered, setIsHovered] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
 
   // Detect mobile device for performance optimization
   useEffect(() => {
@@ -93,6 +95,38 @@ export function Header() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Handle scroll-based header visibility on mobile
+  useEffect(() => {
+    if (!isMobile) {
+      setIsHeaderVisible(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const lastScrollY = lastScrollYRef.current;
+
+      // Show header if at the top or scrolling up
+      if (scrollY < 100) {
+        setIsHeaderVisible(true);
+      } else if (scrollY < lastScrollY) {
+        // Scrolling up - show header
+        setIsHeaderVisible(true);
+      } else if (scrollY > lastScrollY + 10) {
+        // Scrolling down (with threshold) - hide header
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollYRef.current = scrollY;
+    };
+
+    // Initial check
+    handleScroll();
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   // Use reduced motion on mobile for better performance
   const shouldReduceMotion: boolean = prefersReducedMotion === true || isMobile;
@@ -139,13 +173,24 @@ export function Header() {
   const titleLetters = titleText.split("");
 
   return (
-    <header
+    <motion.header
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isCrimeline
           ? "bg-gray-950/95 border-b-2 border-purple-900/40 shadow-[0_4px_0_rgba(124,58,237,0.25)]"
           : "bg-white/95 border-b-2 border-gray-200 shadow-[0_4px_0_rgba(15,23,42,0.08)]"
       } backdrop-blur-sm`}
+      animate={
+        isMobile
+          ? {
+              y: isHeaderVisible ? 0 : -200,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
     >
       {/* Desktop Layout */}
       <div className="hidden md:block max-w-6xl mx-auto px-4 py-4">
@@ -432,6 +477,6 @@ export function Header() {
       {isCrimeline && shouldReduceMotion && (
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-70" />
       )}
-    </header>
+    </motion.header>
   );
 }
