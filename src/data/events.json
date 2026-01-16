@@ -7509,7 +7509,7 @@
     "category": ["CT Lore", "Ethereum"],
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/beggars",
     "media": [
       {
         "type": "video",
@@ -7518,13 +7518,13 @@
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/0xGolden_/status/1769999999999999999",
-          "account_handle": "0xGolden_"
+          "tweet_url": "https://x.com/WazzCrypto/status/1757811966922428758?s=20",
+          "account_handle": ""
         }
       }
     ],
     "links": [
-      { "label": "CT Backlash Example", "url": "https://x.com/0xGolden_" }
+      { "label": "Starknet Targets Validators", "url": "https://thedefiant.io/news/defi/users-still-disgruntled-after-starknet-airdrop-fix-targets-mostly-validators" }
     ],
     "metrics": {}
   },
