@@ -62,86 +62,35 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
 
   return (
     <div
-      className={`flex items-center gap-2 overflow-x-auto scrollbar-hide ${
-        compact ? "py-1.5" : "py-2"
-      } ${compact ? "" : "mb-4"}`}
+      className={`${compact ? "py-1.5" : "py-2"} ${compact ? "" : "mb-4"}`}
     >
-      <span
-        className={`text-xs font-medium whitespace-nowrap flex-shrink-0 ${
-          isCrimeline ? "text-gray-500" : "text-gray-400"
-        }`}
-      >
-        Active:
-      </span>
+      {/* Mobile: Stack layout with proper wrapping */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2">
+        <span
+          className={`text-xs font-medium whitespace-nowrap flex-shrink-0 ${
+            isCrimeline ? "text-gray-500" : "text-gray-400"
+          }`}
+        >
+          Active:
+        </span>
 
-      <div className="flex items-center gap-2 flex-1 min-w-0">
-        {/* Search Query Chip */}
-        {searchQuery.trim() && (
-          <span
-            className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
-              isCrimeline
-                ? "bg-gray-800 text-gray-300 border border-gray-700"
-                : "bg-gray-100 text-gray-700 border border-gray-300"
-            }`}
-          >
-            &quot;{searchQuery}&quot;
-            <button
-              onClick={() => setSearchQuery("")}
-              aria-label={`Remove search filter: ${searchQuery}`}
-              className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
-              }`}
-            >
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </span>
-        )}
-
-        {/* Category Chips */}
-        {selectedCategories.map((category) => {
-          const isCtLore = category === "CT Lore";
-          const isZachXBT = category === "ZachXBT";
-
-          return (
+        {/* Chips container - wraps on mobile, scrolls horizontally on larger screens if needed */}
+        <div className="flex items-center gap-2 flex-1 min-w-0 flex-wrap sm:flex-nowrap overflow-x-auto scrollbar-hide">
+          {/* Search Query Chip */}
+          {searchQuery.trim() && (
             <span
-              key={category}
               className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
-                isCtLore
-                  ? "bg-sky-100 text-sky-700 border border-sky-300"
-                  : isZachXBT
-                    ? "bg-gray-800 text-gray-100 border border-gray-600"
-                    : isCrimeline
-                      ? "bg-purple-900/50 text-purple-300 border border-purple-800"
-                      : "bg-teal-100 text-teal-700 border border-teal-300"
+                isCrimeline
+                  ? "bg-gray-800 text-gray-300 border border-gray-700"
+                  : "bg-gray-100 text-gray-700 border border-gray-300"
               }`}
             >
-              {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
-              {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
-              {category}
+              &quot;{searchQuery}&quot;
               <button
-                onClick={() => toggleCategory(category)}
-                aria-label={`Remove ${category} filter`}
+                onClick={() => setSearchQuery("")}
+                aria-label={`Remove search filter: ${searchQuery}`}
                 className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                  isCtLore
-                    ? "hover:bg-sky-500"
-                    : isZachXBT
-                      ? "hover:bg-gray-500"
-                      : isCrimeline
-                        ? "hover:bg-purple-500"
-                        : "hover:bg-teal-500"
+                  isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
                 }`}
               >
                 <svg
@@ -160,57 +109,110 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
                 </svg>
               </button>
             </span>
-          );
-        })}
+          )}
 
-        {/* Crimeline Type Chips */}
-        {selectedCrimelineTypes.map((type) => (
-          <span
-            key={type}
-            className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
-              isCrimeline
-                ? "bg-purple-900/50 text-purple-300 border border-purple-800"
-                : "bg-teal-100 text-teal-700 border border-teal-300"
-            }`}
-          >
-            {type}
-            <button
-              onClick={() => toggleCrimelineType(type)}
-              aria-label={`Remove ${type} filter`}
-              className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
+          {/* Category Chips */}
+          {selectedCategories.map((category) => {
+            const isCtLore = category === "CT Lore";
+            const isZachXBT = category === "ZachXBT";
+
+            return (
+              <span
+                key={category}
+                className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
+                  isCtLore
+                    ? "bg-sky-100 text-sky-700 border border-sky-300"
+                    : isZachXBT
+                      ? "bg-gray-800 text-gray-100 border border-gray-600"
+                      : isCrimeline
+                        ? "bg-purple-900/50 text-purple-300 border border-purple-800"
+                        : "bg-teal-100 text-teal-700 border border-teal-300"
+                }`}
+              >
+                {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
+                {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
+                {category}
+                <button
+                  onClick={() => toggleCategory(category)}
+                  aria-label={`Remove ${category} filter`}
+                  className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
+                    isCtLore
+                      ? "hover:bg-sky-500"
+                      : isZachXBT
+                        ? "hover:bg-gray-500"
+                        : isCrimeline
+                          ? "hover:bg-purple-500"
+                          : "hover:bg-teal-500"
+                  }`}
+                >
+                  <svg
+                    className="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </span>
+            );
+          })}
+
+          {/* Crimeline Type Chips */}
+          {selectedCrimelineTypes.map((type) => (
+            <span
+              key={type}
+              className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
+                isCrimeline
+                  ? "bg-purple-900/50 text-purple-300 border border-purple-800"
+                  : "bg-teal-100 text-teal-700 border border-teal-300"
               }`}
             >
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+              {type}
+              <button
+                onClick={() => toggleCrimelineType(type)}
+                aria-label={`Remove ${type} filter`}
+                className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
+                  isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </span>
-        ))}
-      </div>
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </span>
+          ))}
+        </div>
 
-      {/* Clear All Button */}
-      <button
-        onClick={clearAllFilters}
-        className={`px-2 py-1 text-xs font-medium rounded-full transition-colors whitespace-nowrap flex-shrink-0 ${
-          isCrimeline
-            ? "text-purple-400 hover:bg-purple-900/30"
-            : "text-teal-600 hover:bg-teal-50"
-        }`}
-      >
-        Clear all
-      </button>
+        {/* Clear All Button - Always visible, doesn't overlay */}
+        <button
+          onClick={clearAllFilters}
+          className={`px-2 py-1 text-xs font-medium rounded-full transition-colors whitespace-nowrap flex-shrink-0 self-start sm:self-auto ${
+            isCrimeline
+              ? "text-purple-400 hover:bg-purple-900/30"
+              : "text-teal-600 hover:bg-teal-50"
+          }`}
+        >
+          Clear all
+        </button>
+      </div>
     </div>
   );
 }
