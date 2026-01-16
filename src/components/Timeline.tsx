@@ -509,7 +509,7 @@ export function Timeline({ events }: TimelineProps) {
         <div className="flex flex-col gap-3 mb-6">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
             <div className="flex-1 min-w-0">
-              <SearchFilter />
+              <SearchFilter isFilterVisible={isFilterVisible} />
             </div>
             {mode === "crimeline" && crimelineStats.totalLost > 0 && (
               <motion.div

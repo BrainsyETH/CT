@@ -202,7 +202,11 @@ const ALL_CRIMELINE_TYPES: CrimelineType[] = [
   "OTHER",
 ];
 
-export function SearchFilter() {
+interface SearchFilterProps {
+  isFilterVisible?: boolean;
+}
+
+export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {}) {
   const {
     mode,
     searchQuery,
@@ -228,6 +232,13 @@ export function SearchFilter() {
     window.addEventListener("expandFilters", handleExpandFilters as EventListener);
     return () => window.removeEventListener("expandFilters", handleExpandFilters as EventListener);
   }, []);
+
+  // Collapse filters when filter bar becomes hidden on mobile
+  useEffect(() => {
+    if (!isFilterVisible) {
+      setIsFiltersExpanded(false);
+    }
+  }, [isFilterVisible]);
 
   const isCrimeline = mode === "crimeline";
   const isDarkMode = mode === "crimeline";
