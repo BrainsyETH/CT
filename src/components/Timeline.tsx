@@ -10,7 +10,6 @@ import { SearchFilter } from "./SearchFilter";
 import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
 import { StickyFilterButton } from "./StickyFilterButton";
-import { ActiveFiltersRow } from "./ActiveFiltersRow";
 import { getYear, formatCurrency } from "@/lib/formatters";
 import { throttle, isMobile } from "@/lib/utils";
 import { isDebugEnabled } from "@/lib/debug";
@@ -511,6 +510,16 @@ export function Timeline({ events }: TimelineProps) {
             <div className="flex-1 min-w-0">
               <SearchFilter isFilterVisible={isFilterVisible} />
             </div>
+            {/* Results count - moved to right of SearchFilter */}
+            <div
+              className={`text-sm whitespace-nowrap flex-shrink-0 ${
+                isCrimeline ? "text-gray-400" : isBoth ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
+              {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""} found
+              {searchQuery && ` for "${searchQuery}"`}
+              {selectedTags.length > 0 && ` with tags: ${selectedTags.join(", ")}`}
+            </div>
             {mode === "crimeline" && crimelineStats.totalLost > 0 && (
               <motion.div
                 initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
@@ -546,20 +555,6 @@ export function Timeline({ events }: TimelineProps) {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Always-Visible Active Filters Row */}
-      <ActiveFiltersRow compact />
-
-      {/* Results count */}
-      <div
-        className={`mb-4 text-sm ${
-          isCrimeline ? "text-gray-400" : isBoth ? "text-gray-400" : "text-gray-500"
-        }`}
-      >
-        {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""} found
-        {searchQuery && ` for "${searchQuery}"`}
-        {selectedTags.length > 0 && ` with tags: ${selectedTags.join(", ")}`}
       </div>
 
       <div className="flex gap-6">
