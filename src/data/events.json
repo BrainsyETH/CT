@@ -7521,6 +7521,14 @@
           "tweet_url": "https://x.com/WazzCrypto/status/1757811966922428758?s=20",
           "account_handle": ""
         }
+      },
+      {
+        "type": "image",
+        "image": {
+          "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/ebaggar",
+          "alt": "",
+          "caption": ""
+        }
       }
     ],
     "links": [
@@ -7529,37 +7537,40 @@
     "metrics": {}
   },
   {
-    "id": "starknet-911-indians-comment-2024-02-20",
-    "date": "2024-02-20",
-    "title": "Starknet Airdrop Compared to 9/11 for Indian Users",
-    "summary": "During the Starknet airdrop fallout, a widely circulated comment described the allocation outcome as \"worse than 9/11 for Indians,\" triggering outrage and further ridicule. The remark became emblematic of how emotionally charged and hyperbolic the discourse around Starknet’s airdrop became. It intensified criticism of the project’s distribution and community management.",
-    "category": ["CT Lore", "Ethereum"],
+    "id": "ZKsync-911-indians-comment-2024-06-12",
+    "date": "2024-06-20",
+    "title": "We Do Not Forgive, We Do Not Forget",
+    "summary": "Famous CT Lore after the zKSync airdrop. It came out right around the zkSync airdrop snapshot/checker drama (early-mid June 2024), when many farmers got hit hard by Sybil detection rules and felt massively snubbed",
+    "category": ["CT Lore", "Market Structure"],
     "tags": ["CULTURAL", "FAILURE"],
     "mode": ["timeline"],
-    "image": "https://placehold.co/600x400",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/we%20do%20not%20forgive",
     "media": [
       {
-        "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/miladyalchemist/status/1800632909163880701",
+          "account_handle": ""
+        }
       },
       {
         "type": "twitter",
         "twitter": {
-          "tweet_url": "https://x.com/search?q=starknet%209%2F11%20indians",
+          "tweet_url": "https://x.com/Evan_ss6/status/1800901211736182943?s=20",
           "account_handle": ""
         }
       }
     ],
     "links": [
-      { "label": "CT Reaction Thread", "url": "https://x.com/search?q=starknet%209%2F11%20indians" }
+      { "label": "Tweet", "url": "https://x.com/miladyalchemist/status/1800632909163880701" }
     ],
     "metrics": {}
   },
   {
     "id": "thank-you-bitboy-moment-2025-03-20",
     "date": "2025-03-20",
-    "title": "The 'Thank You BitBoy' Irony Moment",
-    "summary": "A viral Crypto Twitter moment sarcastically thanked BitBoy following another public controversy involving the influencer. The post reflected how BitBoy had become a recurring punchline on CT, symbolizing excess, misinformation, and reputational collapse. The phrase quickly spread as a meme encapsulating schadenfreude toward disgraced crypto personalities.",
+    "title": "DO I HAVE YOUR ATTENTION NOW?",
+    "summary": "A Bitboy moment we all appreciate.",
     "category": ["CT Lore"],
     "tags": ["CULTURAL"],
     "mode": ["timeline"],
@@ -7567,7 +7578,7 @@
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": { "provider": "", "url": "https://youtu.be/fsVOmmu6PFk", "embed_url": "", "poster_url": "" }
       },
       {
         "type": "twitter",
