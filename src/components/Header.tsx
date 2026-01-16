@@ -6,7 +6,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 
-const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo";
+// Add cache-busting parameter to ensure fresh logo loads
+const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo?v=2";
 
 // Glitch effect component for crimeline mode
 function GlitchText({ 
