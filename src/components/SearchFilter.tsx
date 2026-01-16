@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import type { EventTag, CrimelineType } from "@/lib/types";
@@ -219,6 +219,15 @@ export function SearchFilter() {
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false);
   const [categorySearch, setCategorySearch] = useState("");
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  // Listen for expandFilters event from StickyFilterButton
+  useEffect(() => {
+    const handleExpandFilters = () => {
+      setIsFiltersExpanded(true);
+    };
+    window.addEventListener("expandFilters", handleExpandFilters as EventListener);
+    return () => window.removeEventListener("expandFilters", handleExpandFilters as EventListener);
+  }, []);
 
   const isCrimeline = mode === "crimeline";
   const isDarkMode = mode === "crimeline";

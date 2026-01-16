@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
+import { isDebugEnabled } from "@/lib/debug";
 import type { Event } from "@/lib/types";
 
 interface HomeContentProps {
@@ -18,28 +19,36 @@ interface HomeContentProps {
 export function HomeContent({ events }: HomeContentProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   // #region agent log
-  const renderCountRef = useRef(0);
-  renderCountRef.current += 1;
-  fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:render',message:'HomeContent render',data:{renderCount:renderCountRef.current,isHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+  if (isDebugEnabled()) {
+    const renderCountRef = useRef(0);
+    renderCountRef.current += 1;
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:render',message:'HomeContent render',data:{renderCount:renderCountRef.current,isHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+  }
   // #endregion
 
   // Rehydrate Zustand store after mount to prevent hydration mismatches
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateEffect',message:'HomeContent rehydrate effect running',data:{isHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateEffect',message:'HomeContent rehydrate effect running',data:{isHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+    }
     // #endregion
     const rehydrateResult = useModeStore.persist.rehydrate();
     if (rehydrateResult instanceof Promise) {
       rehydrateResult.then(() => {
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateComplete',message:'HomeContent rehydrate complete (async)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+        if (isDebugEnabled()) {
+          fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateComplete',message:'HomeContent rehydrate complete (async)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+        }
         // #endregion
         setIsHydrated(true);
       });
     } else {
       // If rehydrate is synchronous, set hydrated immediately
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateSync',message:'HomeContent rehydrate complete (sync)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'HomeContent.tsx:rehydrateSync',message:'HomeContent rehydrate complete (sync)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      }
       // #endregion
       setIsHydrated(true);
     }

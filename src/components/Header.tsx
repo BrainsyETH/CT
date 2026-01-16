@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
+import { isDebugEnabled } from "@/lib/debug";
 
 // Add cache-busting parameter to ensure fresh logo loads
 const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo?v=2";
@@ -133,6 +134,7 @@ export function Header() {
   const shouldReduceMotion: boolean = prefersReducedMotion === true || isMobile;
   // #region agent log
   useEffect(() => {
+    if (!isDebugEnabled()) return;
     const logHeaderPosition = () => {
       if (headerRef.current) {
         const rect = headerRef.current.getBoundingClientRect();
@@ -239,7 +241,6 @@ export function Header() {
                 width={48}
                 height={48}
                 className="w-full h-full object-cover"
-                unoptimized
               />
             </motion.div>
 
@@ -402,7 +403,6 @@ export function Header() {
                   width={28}
                   height={28}
                   className="w-full h-full object-cover"
-                  unoptimized
                 />
               </motion.div>
 

@@ -9,8 +9,11 @@ import { MobileYearSelector } from "./MobileYearSelector";
 import { SearchFilter } from "./SearchFilter";
 import { ScrollProgress } from "./ScrollProgress";
 import { StatsPanel } from "./StatsPanel";
+import { StickyFilterButton } from "./StickyFilterButton";
+import { ActiveFiltersRow } from "./ActiveFiltersRow";
 import { getYear, formatCurrency } from "@/lib/formatters";
 import { throttle, isMobile } from "@/lib/utils";
+import { isDebugEnabled } from "@/lib/debug";
 import type { Event } from "@/lib/types";
 
 interface TimelineProps {
@@ -27,6 +30,11 @@ export function Timeline({ events }: TimelineProps) {
     sortOrder,
     clearAllFilters
   } = useModeStore();
+
+  const activeFilterCount =
+    selectedCategories.length +
+    selectedCrimelineTypes.length +
+    (searchQuery.trim() ? 1 : 0);
   const isCrimeline = mode === "crimeline";
   const isBoth = mode === "both";
   const prefersReducedMotion = useReducedMotion();
@@ -40,9 +48,11 @@ export function Timeline({ events }: TimelineProps) {
   const OVERSCAN_PX = 1200;
 
   // #region agent log
-  const timelineRenderCount = useRef(0);
-  timelineRenderCount.current += 1;
-  fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:render',message:'Timeline render',data:{renderCount:timelineRenderCount.current,mode,eventsLen:events.length,tagsLen:selectedTags.length,currentVisibleYear,isFilterVisible},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+  if (isDebugEnabled()) {
+    const timelineRenderCount = useRef(0);
+    timelineRenderCount.current += 1;
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:render',message:'Timeline render',data:{renderCount:timelineRenderCount.current,mode,eventsLen:events.length,tagsLen:selectedTags.length,currentVisibleYear,isFilterVisible},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+  }
   // #endregion
 
   // Filter events based on current mode, search, and tags
@@ -162,7 +172,9 @@ export function Timeline({ events }: TimelineProps) {
 
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:groupHeightsEffect',message:'groupHeights effect triggered',data:{groupedEventsLen:groupedEvents.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:groupHeightsEffect',message:'groupHeights effect triggered',data:{groupedEventsLen:groupedEvents.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    }
     // #endregion
     setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
     measuringRef.current.clear();
@@ -202,18 +214,20 @@ export function Timeline({ events }: TimelineProps) {
 
       const containerTop = container.getBoundingClientRect().top + window.scrollY;
       // #region agent log
-      const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
-      const viewportData = {
-        innerHeight: window.innerHeight,
-        innerWidth: window.innerWidth,
-        visualViewportHeight: visualViewport?.height,
-        visualViewportWidth: visualViewport?.width,
-        visualViewportScale: visualViewport?.scale,
-        scrollY: window.scrollY,
-        containerTop,
-        devicePixelRatio: window.devicePixelRatio
-      };
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:204',message:'Viewport dimensions during updateVisibleRange',data:viewportData,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+        const viewportData = {
+          innerHeight: window.innerHeight,
+          innerWidth: window.innerWidth,
+          visualViewportHeight: visualViewport?.height,
+          visualViewportWidth: visualViewport?.width,
+          visualViewportScale: visualViewport?.scale,
+          scrollY: window.scrollY,
+          containerTop,
+          devicePixelRatio: window.devicePixelRatio
+        };
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:204',message:'Viewport dimensions during updateVisibleRange',data:viewportData,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      }
       // #endregion
       const viewportTop = scrollY - containerTop;
       const viewportBottom = viewportTop + window.innerHeight;
@@ -278,7 +292,9 @@ export function Timeline({ events }: TimelineProps) {
   
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:scrollThrottleEffect',message:'scrollThrottle effect triggered',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:scrollThrottleEffect',message:'scrollThrottle effect triggered',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    }
     // #endregion
     setScrollThrottleMs(isMobile() ? 150 : 100);
   }, []);
@@ -532,6 +548,9 @@ export function Timeline({ events }: TimelineProps) {
         </div>
       </div>
 
+      {/* Always-Visible Active Filters Row */}
+      <ActiveFiltersRow compact />
+
       {/* Results count */}
       <div
         className={`mb-4 text-sm ${
@@ -581,7 +600,7 @@ export function Timeline({ events }: TimelineProps) {
                     style={{ position: "absolute", top: `${top}px`, left: 0, right: 0 }}
                     ref={(node) => {
                       // #region agent log
-                      if (node && index > 0) {
+                      if (isDebugEnabled() && node && index > 0) {
                         const rect = node.getBoundingClientRect();
                         const prevGroup = node.parentElement?.querySelector(`[data-year="${groupedEvents[index - 1]?.year}"]`) as HTMLElement;
                         const prevRect = prevGroup?.getBoundingClientRect();
@@ -666,6 +685,15 @@ export function Timeline({ events }: TimelineProps) {
           )}
         </div>
       </div>
+
+      {/* Sticky Filter Button - Mobile only, shows when filter bar is hidden */}
+      <StickyFilterButton
+        isFilterVisible={isFilterVisible}
+        activeFilterCount={activeFilterCount}
+        onScrollToTop={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      />
     </>
   );
 }

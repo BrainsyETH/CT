@@ -12,6 +12,7 @@ import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import { preloadTwitterScript } from "./TwitterEmbed";
 import { isMobile } from "@/lib/utils";
+import { isDebugEnabled } from "@/lib/debug";
 import type { Event } from "@/lib/types";
 
 interface EventDetailModalProps {
@@ -27,6 +28,7 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
   useEffect(() => {
     setMobile(isMobile());
     // #region agent log
+    if (!isDebugEnabled()) return;
     const logViewportInfo = () => {
       const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
       const viewportInfo: any = {
@@ -125,9 +127,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
     const modalHeight = modalRef.current.offsetHeight;
     const viewportHeight = window.innerHeight;
     // #region agent log
-    const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
-    const modalRect = modalRef.current.getBoundingClientRect();
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventDetailModal.tsx:71',message:'Modal viewport calculations',data:{modalHeight,viewportHeight,visualViewportHeight:visualViewport?.height,visualViewportWidth:visualViewport?.width,visualViewportScale:visualViewport?.scale,modalRectTop:modalRect.top,modalRectBottom:modalRect.bottom,devicePixelRatio:window.devicePixelRatio},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
+      const modalRect = modalRef.current.getBoundingClientRect();
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventDetailModal.tsx:71',message:'Modal viewport calculations',data:{modalHeight,viewportHeight,visualViewportHeight:visualViewport?.height,visualViewportWidth:visualViewport?.width,visualViewportScale:visualViewport?.scale,modalRectTop:modalRect.top,modalRectBottom:modalRect.bottom,devicePixelRatio:window.devicePixelRatio},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    }
     // #endregion
     // Use 15% of modal height or viewport height, whichever is smaller, with a minimum of 80px
     const swipeThreshold = Math.max(80, Math.min(modalHeight * 0.15, viewportHeight * 0.15));
@@ -709,7 +713,6 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                     alt={event.title}
                     width={1200}
                     height={800}
-                    unoptimized
                     className="object-contain max-w-full max-h-[90vh] rounded-lg"
                   />
                 </motion.div>

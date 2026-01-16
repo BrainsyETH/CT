@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
+import { isDebugEnabled } from "@/lib/debug";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -15,9 +16,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const [prevMode, setPrevMode] = useState(mode);
 
   // #region agent log
-  const themeRenderCount = useRef(0);
-  themeRenderCount.current += 1;
-  fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ThemeProvider.tsx:render',message:'ThemeProvider render',data:{renderCount:themeRenderCount.current,mode,mounted,isTransitioning,prevMode},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+  if (isDebugEnabled()) {
+    const themeRenderCount = useRef(0);
+    themeRenderCount.current += 1;
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ThemeProvider.tsx:render',message:'ThemeProvider render',data:{renderCount:themeRenderCount.current,mode,mounted,isTransitioning,prevMode},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+  }
   // #endregion
 
   // Handle hydration
@@ -35,7 +38,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   // Handle mode transition animation
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ThemeProvider.tsx:transitionEffect',message:'ThemeProvider transition effect',data:{mounted,prevMode,mode,isTransitioning},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ThemeProvider.tsx:transitionEffect',message:'ThemeProvider transition effect',data:{mounted,prevMode,mode,isTransitioning},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    }
     // #endregion
     if (mounted && prevMode !== mode) {
       setIsTransitioning(true);

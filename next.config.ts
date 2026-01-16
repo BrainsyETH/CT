@@ -19,6 +19,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "imgs.search.brave.com",
+      },
+      {
+        protocol: "https",
+        hostname: "asset-metadata-service-production.s3.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "placeholder.co",
+      },
     ],
   },
 };

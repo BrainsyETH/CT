@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useModeStore } from "@/store/mode-store";
+import { isDebugEnabled } from "@/lib/debug";
 import type { Mode, EventTag } from "@/lib/types";
 
 /**
@@ -28,9 +29,11 @@ export function useUrlSync() {
   } | null>(null);
   
   // #region agent log
-  const urlSyncRenderCount = useRef(0);
-  urlSyncRenderCount.current += 1;
-  fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:render',message:'useUrlSync render',data:{renderCount:urlSyncRenderCount.current,isStoreHydrated,isInitialMount:isInitialMount.current,hasInitialized:hasInitializedFromUrl.current,mode,searchQuery,tagsLen:selectedTags.length,sortOrder,selectedEventId},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+  if (isDebugEnabled()) {
+    const urlSyncRenderCount = useRef(0);
+    urlSyncRenderCount.current += 1;
+    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:render',message:'useUrlSync render',data:{renderCount:urlSyncRenderCount.current,isStoreHydrated,isInitialMount:isInitialMount.current,hasInitialized:hasInitializedFromUrl.current,mode,searchQuery,tagsLen:selectedTags.length,sortOrder,selectedEventId},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+  }
   // #endregion
   
   // Create a stable representation for dependency tracking
@@ -40,7 +43,9 @@ export function useUrlSync() {
   // Wait for Zustand store to hydrate before doing anything
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateEffect',message:'useUrlSync hydrate effect',data:{isStoreHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateEffect',message:'useUrlSync hydrate effect',data:{isStoreHydrated},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+    }
     // #endregion
     if (isStoreHydrated) return;
     
@@ -48,14 +53,18 @@ export function useUrlSync() {
     if (rehydrateResult instanceof Promise) {
       rehydrateResult.then(() => {
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateComplete',message:'useUrlSync rehydrate complete (async)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+        if (isDebugEnabled()) {
+          fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateComplete',message:'useUrlSync rehydrate complete (async)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+        }
         // #endregion
         setIsStoreHydrated(true);
       });
     } else {
       // If rehydrate is synchronous, set hydrated immediately
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateSync',message:'useUrlSync rehydrate complete (sync)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:hydrateSync',message:'useUrlSync rehydrate complete (sync)',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      }
       // #endregion
       setIsStoreHydrated(true);
     }
@@ -140,12 +149,16 @@ export function useUrlSync() {
   // Sync store state to URL whenever it changes
   useEffect(() => {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncEffect',message:'URL sync effect triggered',data:{isStoreHydrated,isInitialMount:isInitialMount.current,isUpdatingFromUrl:isUpdatingFromUrl.current,hasInitialized:hasInitializedFromUrl.current,mode,searchQuery,tagsKey,sortOrder,selectedEventId,pathname},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    if (isDebugEnabled()) {
+      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncEffect',message:'URL sync effect triggered',data:{isStoreHydrated,isInitialMount:isInitialMount.current,isUpdatingFromUrl:isUpdatingFromUrl.current,hasInitialized:hasInitializedFromUrl.current,mode,searchQuery,tagsKey,sortOrder,selectedEventId,pathname},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    }
     // #endregion
     // Skip if store not hydrated, still in initial mount, updating from URL, or haven't initialized yet
     if (!isStoreHydrated || isInitialMount.current || isUpdatingFromUrl.current || !hasInitializedFromUrl.current) {
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncSkipped',message:'URL sync skipped (guards)',data:{isStoreHydrated,isInitialMount:isInitialMount.current,isUpdatingFromUrl:isUpdatingFromUrl.current,hasInitialized:hasInitializedFromUrl.current},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncSkipped',message:'URL sync skipped (guards)',data:{isStoreHydrated,isInitialMount:isInitialMount.current,isUpdatingFromUrl:isUpdatingFromUrl.current,hasInitialized:hasInitializedFromUrl.current},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      }
       // #endregion
       return;
     }
@@ -173,7 +186,9 @@ export function useUrlSync() {
       ) {
         // State hasn't changed, skip URL update
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncNoChange',message:'URL sync skipped (no state change)',data:{prev,currentState},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+        if (isDebugEnabled()) {
+          fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncNoChange',message:'URL sync skipped (no state change)',data:{prev,currentState},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+        }
         // #endregion
         return;
       }
@@ -216,12 +231,16 @@ export function useUrlSync() {
     // Only update if URL actually changed
     if (newUrl !== currentUrl) {
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:routerReplace',message:'Calling router.replace',data:{newUrl,currentUrl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:routerReplace',message:'Calling router.replace',data:{newUrl,currentUrl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      }
       // #endregion
       router.replace(newUrl, { scroll: false });
     } else {
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncSameUrl',message:'URL sync skipped (same URL)',data:{newUrl,currentUrl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      if (isDebugEnabled()) {
+        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'useUrlSync.ts:urlSyncSameUrl',message:'URL sync skipped (same URL)',data:{newUrl,currentUrl},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+      }
       // #endregion
     }
   }, [mode, searchQuery, tagsKey, sortOrder, selectedEventId, pathname, router]);

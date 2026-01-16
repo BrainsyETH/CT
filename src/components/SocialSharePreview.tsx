@@ -41,7 +41,6 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
               src={event.image || (isCrimeline ? FALLBACK_IMAGE_CRIMELINE : FALLBACK_IMAGE_TIMELINE)}
               alt={event.title}
               fill
-              unoptimized
               className="object-contain"
             />
           </div>

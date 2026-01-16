@@ -336,7 +336,6 @@ export function MediaCarousel({
                     src={posterUrl}
                     alt={event.title}
                     fill
-                    unoptimized
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 672px"
                     loading="lazy"
@@ -398,7 +397,6 @@ export function MediaCarousel({
                   src={posterUrl}
                   alt={event.title}
                   fill
-                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 672px"
                   loading="lazy"
@@ -450,7 +448,6 @@ export function MediaCarousel({
                 src={imageUrl}
                 alt={item.image?.alt || event.title}
                 fill
-                unoptimized
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, 672px"
                 loading="lazy"
@@ -661,7 +658,6 @@ export function MediaPreview({ media, event, isCrimeline }: MediaPreviewProps) {
         src={posterUrl}
         alt={event.title}
         fill
-        unoptimized
         className="object-cover transition-transform duration-300 group-hover:scale-105"
         sizes="(max-width: 768px) 100vw, 50vw"
         loading="lazy"
