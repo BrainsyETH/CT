@@ -866,20 +866,12 @@
           "tweet_url": "https://x.com/haydenzadams/status/1361356927226310668",
           "account_handle": ""
         }
-      },
-      {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
-        }
       }
     ],
     "links": [
       {
         "label": "Uniswap V2",
-        "url": "https://uniswap.org/blog/uniswap-v2"
+        "url": "https://x.com/PhinTotten/status/1891358902819733644?s=20"
       }
     ],
     "metrics": {
@@ -2870,11 +2862,10 @@
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/PhinTotten/status/1891358902819733644",
+          "account_handle": ""
         }
       }
     ],
@@ -6880,7 +6871,7 @@
     "mode": [
       "crimeline"
     ],
-    "image": "https://pbs.twimg.com/media/GX0qHqJWwAApZzP",
+    "image": "",
     "media": [
       {
         "type": "video",
