@@ -46,31 +46,9 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
             />
           </div>
 
-          {/* Title - Top Left */}
+          {/* Date - Large and Prominent - Top Left */}
           <div
-            className="absolute top-8 left-8 bg-white border-8 border-black px-8 py-4 rotate-[-2deg] z-20"
-            style={{
-              boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
-              maxWidth: 'calc(50% - 200px)',
-              minWidth: '200px',
-              wordWrap: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-          >
-            <h2 
-              className="text-3xl font-black text-black leading-tight break-words text-left whitespace-normal"
-              style={{
-                wordBreak: 'break-word',
-                overflowWrap: 'anywhere',
-              }}
-            >
-              {event.title}
-            </h2>
-          </div>
-
-          {/* Date - Large and Prominent - Top Right */}
-          <div
-            className={`absolute top-8 right-8 border-8 border-black px-8 py-4 rotate-[3deg] z-20 ${
+            className={`absolute top-8 left-12 border-8 border-black px-8 py-4 rotate-[3deg] z-20 ${
               isCrimeline ? "bg-purple-500" : "bg-yellow-300"
             }`}
             style={{
@@ -80,6 +58,28 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
             <time className="text-4xl font-black text-black uppercase tracking-tight">
               {formatDate(event.date)}
             </time>
+          </div>
+
+          {/* Title - Centered Lower, Above Metadata */}
+          <div
+            className="absolute left-1/2 transform -translate-x-1/2 bottom-32 bg-white border-8 border-black px-8 py-4 rotate-[-2deg] z-20"
+            style={{
+              boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
+              maxWidth: 'calc(100% - 200px)',
+              minWidth: '200px',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word',
+            }}
+          >
+            <h2 
+              className="text-3xl font-black text-black leading-tight break-words text-center whitespace-normal"
+              style={{
+                wordBreak: 'break-word',
+                overflowWrap: 'anywhere',
+              }}
+            >
+              {event.title}
+            </h2>
           </div>
 
           {/* First Sentence Overlay - Creative Positioning */}
