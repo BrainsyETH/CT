@@ -16,7 +16,7 @@ function GlitchText({
 }: { 
   children: string; 
   isActive: boolean; 
-  prefersReducedMotion: boolean;
+  prefersReducedMotion: boolean | null;
 }) {
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 });
 
@@ -82,6 +82,20 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device for performance optimization
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Use reduced motion on mobile for better performance
+  const shouldReduceMotion: boolean = prefersReducedMotion === true || isMobile;
   // #region agent log
   useEffect(() => {
     const logHeaderPosition = () => {
@@ -108,9 +122,9 @@ export function Header() {
   }, []);
   // #endregion
 
-  // Trigger glitch effect periodically in crimeline mode
+  // Trigger glitch effect periodically in crimeline mode (desktop only)
   useEffect(() => {
-    if (!isCrimeline || prefersReducedMotion) return;
+    if (!isCrimeline || shouldReduceMotion) return;
 
     const interval = setInterval(() => {
       setGlitchActive(true);
@@ -118,7 +132,7 @@ export function Header() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isCrimeline, prefersReducedMotion]);
+  }, [isCrimeline, shouldReduceMotion]);
 
   // Split title into letters for animation
   const titleText = "Chain of Events";
@@ -152,7 +166,7 @@ export function Header() {
                   : "border border-teal-500/30 shadow-[0_0_12px_rgba(20,184,166,0.3)]"
               }`}
               animate={
-                prefersReducedMotion
+                shouldReduceMotion
                   ? {}
                   : {
                       rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
@@ -160,7 +174,7 @@ export function Header() {
                     }
               }
               transition={
-                prefersReducedMotion
+                shouldReduceMotion
                   ? {}
                   : {
                       rotate: {
@@ -175,7 +189,7 @@ export function Header() {
                       },
                     }
               }
-              whileHover={prefersReducedMotion ? {} : { rotate: 15, scale: 1.1 }}
+              whileHover={shouldReduceMotion ? {} : { rotate: 15, scale: 1.1 }}
             >
               <Image
                 src={LOGO_IMAGE}
@@ -185,8 +199,8 @@ export function Header() {
                 className="w-full h-full object-cover"
                 unoptimized
               />
-              {/* Rotating border ring for crimeline */}
-              {isCrimeline && !prefersReducedMotion && (
+              {/* Rotating border ring for crimeline (desktop only) */}
+              {isCrimeline && !shouldReduceMotion && (
                 <motion.div
                   className="absolute inset-0 rounded-lg border-2 border-purple-400/30"
                   animate={{ rotate: 360 }}
@@ -199,7 +213,7 @@ export function Header() {
             <motion.div 
               className="min-w-0 text-left relative"
               animate={
-                prefersReducedMotion
+                shouldReduceMotion
                   ? {}
                   : {
                       x: isHovered ? 2 : 0,
@@ -215,7 +229,7 @@ export function Header() {
                     : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
                 } transition-all duration-300`}
                 animate={
-                  prefersReducedMotion
+                  shouldReduceMotion
                     ? {}
                     : {
                         letterSpacing: isHovered ? "0.05em" : "0em",
@@ -223,7 +237,7 @@ export function Header() {
                 }
                 transition={{ duration: 0.3 }}
               >
-                {prefersReducedMotion ? (
+                {shouldReduceMotion ? (
                   titleText
                 ) : (
                   <span className="inline-block">
@@ -243,7 +257,7 @@ export function Header() {
                         ) : isCrimeline && glitchActive && index < 5 ? (
                           <GlitchText
                             isActive={true}
-                            prefersReducedMotion={prefersReducedMotion}
+                            prefersReducedMotion={shouldReduceMotion}
                           >
                             {letter}
                           </GlitchText>
@@ -262,7 +276,7 @@ export function Header() {
                   isCrimeline ? "text-purple-400" : "text-teal-600"
                 }`}
                 animate={
-                  prefersReducedMotion
+                  shouldReduceMotion
                     ? {}
                     : {
                         opacity: isHovered ? 0.8 : 1,
@@ -319,7 +333,7 @@ export function Header() {
                   : "border border-teal-500/30 shadow-[0_0_8px_rgba(20,184,166,0.3)]"
               }`}
               animate={
-                prefersReducedMotion
+                shouldReduceMotion
                   ? {}
                   : {
                       rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
@@ -327,7 +341,7 @@ export function Header() {
                     }
               }
               transition={
-                prefersReducedMotion
+                shouldReduceMotion
                   ? {}
                   : {
                       rotate: {
@@ -342,7 +356,7 @@ export function Header() {
                       },
                     }
               }
-              whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
             >
               <Image
                 src={LOGO_IMAGE}
@@ -371,8 +385,8 @@ export function Header() {
             className={`text-xs whitespace-nowrap transition-colors duration-300 -mt-1 ${
               isCrimeline ? "text-purple-400" : "text-teal-600"
             }`}
-            initial={prefersReducedMotion ? {} : { opacity: 0, y: -5 }}
-            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: -5 }}
+            animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             {isCrimeline
@@ -403,8 +417,8 @@ export function Header() {
         </div>
       </div>
 
-      {/* Glitch line effect for crimeline mode */}
-      {isCrimeline && !prefersReducedMotion && (
+      {/* Glitch line effect for crimeline mode (desktop only) */}
+      {isCrimeline && !shouldReduceMotion && (
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"
           animate={{
@@ -419,8 +433,8 @@ export function Header() {
         />
       )}
 
-      {/* Static glitch line for reduced motion */}
-      {isCrimeline && prefersReducedMotion && (
+      {/* Static glitch line for reduced motion or mobile */}
+      {isCrimeline && shouldReduceMotion && (
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-70" />
       )}
     </header>
