@@ -155,12 +155,12 @@ export function Header() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="flex items-center gap-3 min-w-0 cursor-pointer group relative"
+            className="flex items-center gap-4 min-w-0 cursor-pointer group relative"
             aria-label="Scroll to top"
           >
             {/* Enhanced Logo Container */}
             <motion.div
-              className="relative w-12 h-12 flex-shrink-0 overflow-hidden"
+              className="relative w-12 h-12 flex-shrink-0 overflow-hidden flex items-center justify-center"
               animate={
                 shouldReduceMotion
                   ? {}
@@ -199,7 +199,7 @@ export function Header() {
 
             {/* Title Section */}
             <motion.div 
-              className="min-w-0 text-left relative"
+              className="min-w-0 text-left relative flex flex-col md:flex-row md:items-center md:gap-8"
               animate={
                 shouldReduceMotion
                   ? {}
@@ -209,18 +209,18 @@ export function Header() {
               }
               transition={{ duration: 0.3 }}
             >
-              {/* Title with gradient and animations */}
+              {/* Title with neo-brutalist styling */}
               <motion.h1
-                className={`text-xl font-extrabold whitespace-nowrap tracking-tight relative ${
+                className={`text-2xl md:text-3xl neo-brutalist-title whitespace-nowrap relative ${
                   isCrimeline
-                    ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]"
-                    : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
-                } transition-all duration-300`}
+                    ? "neo-brutalist-title-crimeline"
+                    : "neo-brutalist-title-timeline"
+                }`}
                 animate={
                   shouldReduceMotion
                     ? {}
                     : {
-                        letterSpacing: isHovered ? "0.05em" : "0em",
+                        letterSpacing: isHovered ? "-0.01em" : "-0.02em",
                       }
                 }
                 transition={{ duration: 0.3 }}
@@ -258,16 +258,19 @@ export function Header() {
                 )}
               </motion.h1>
 
-              {/* Tagline with enhanced styling */}
+              {/* Tagline with neo-brutalist styling */}
               <motion.p
-                className={`text-xs whitespace-nowrap transition-colors duration-300 mt-0.5 ${
-                  isCrimeline ? "text-purple-400" : "text-teal-600"
+                className={`neo-brutalist-subtitle whitespace-nowrap mt-3 md:mt-0 ${
+                  isCrimeline
+                    ? "neo-brutalist-subtitle-crimeline"
+                    : "neo-brutalist-subtitle-timeline"
                 }`}
                 animate={
                   shouldReduceMotion
                     ? {}
                     : {
-                        opacity: isHovered ? 0.8 : 1,
+                        opacity: isHovered ? 0.9 : 1,
+                        transform: isHovered ? "rotate(-0.5deg) scale(1.02)" : "rotate(-1deg) scale(1)",
                       }
                 }
                 transition={{ duration: 0.3 }}
@@ -357,22 +360,24 @@ export function Header() {
                 />
               </motion.div>
 
-              {/* Title with gradient */}
+              {/* Title with neo-brutalist styling */}
               <motion.h1
-                className={`text-lg font-extrabold whitespace-nowrap tracking-tight ${
+                className={`text-xl neo-brutalist-title whitespace-nowrap ${
                   isCrimeline
-                    ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent"
-                    : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
-                } transition-all duration-300`}
+                    ? "neo-brutalist-title-crimeline"
+                    : "neo-brutalist-title-timeline"
+                }`}
               >
                 {titleText}
               </motion.h1>
             </div>
 
-            {/* Subtitle/Tagline */}
+            {/* Subtitle/Tagline with neo-brutalist styling */}
             <motion.p
-              className={`text-xs whitespace-nowrap transition-colors duration-300 ${
-                isCrimeline ? "text-purple-400" : "text-teal-600"
+              className={`neo-brutalist-subtitle whitespace-nowrap mt-3 ${
+                isCrimeline
+                  ? "neo-brutalist-subtitle-crimeline"
+                  : "neo-brutalist-subtitle-timeline"
               }`}
               initial={shouldReduceMotion ? {} : { opacity: 0, y: -5 }}
               animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
