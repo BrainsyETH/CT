@@ -317,82 +317,84 @@ export function Header() {
       {/* Mobile Layout */}
       <div className="md:hidden max-w-6xl mx-auto px-4 py-3">
         <div className="flex flex-col items-center gap-3">
-          {/* Row 1: Logo + Title */}
+          {/* Row 1: Logo + Title + Subtitle */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="flex items-center gap-2 cursor-pointer group relative"
+            className="flex flex-col items-center gap-1 cursor-pointer group relative"
             aria-label="Scroll to top"
           >
-            {/* Enhanced Logo Container */}
-            <motion.div
-              className={`relative w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden ${
-                isCrimeline
-                  ? "border border-purple-500/50 shadow-[0_0_8px_rgba(124,58,237,0.4)]"
-                  : "border border-teal-500/30 shadow-[0_0_8px_rgba(20,184,166,0.3)]"
+            <div className="flex items-center gap-2">
+              {/* Enhanced Logo Container */}
+              <motion.div
+                className={`relative w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden ${
+                  isCrimeline
+                    ? "border border-purple-500/50 shadow-[0_0_8px_rgba(124,58,237,0.4)]"
+                    : "border border-teal-500/30 shadow-[0_0_8px_rgba(20,184,166,0.3)]"
+                }`}
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
+                        scale: isCrimeline ? [1, 1.05, 1] : 1,
+                      }
+                }
+                transition={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        rotate: {
+                          duration: 0.5,
+                          repeat: isCrimeline ? Infinity : 0,
+                          repeatDelay: 3,
+                        },
+                        scale: {
+                          duration: 0.3,
+                          repeat: isCrimeline ? Infinity : 0,
+                          repeatDelay: 2,
+                        },
+                      }
+                }
+                whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
+              >
+                <Image
+                  src={LOGO_IMAGE}
+                  alt="Chain of Events Logo"
+                  width={28}
+                  height={28}
+                  className="w-full h-full object-cover"
+                  unoptimized
+                />
+              </motion.div>
+
+              {/* Title with gradient */}
+              <motion.h1
+                className={`text-lg font-extrabold whitespace-nowrap tracking-tight ${
+                  isCrimeline
+                    ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent"
+                    : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
+                } transition-all duration-300`}
+              >
+                {titleText}
+              </motion.h1>
+            </div>
+
+            {/* Subtitle/Tagline */}
+            <motion.p
+              className={`text-xs whitespace-nowrap transition-colors duration-300 ${
+                isCrimeline ? "text-purple-400" : "text-teal-600"
               }`}
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
-                      scale: isCrimeline ? [1, 1.05, 1] : 1,
-                    }
-              }
-              transition={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      rotate: {
-                        duration: 0.5,
-                        repeat: isCrimeline ? Infinity : 0,
-                        repeatDelay: 3,
-                      },
-                      scale: {
-                        duration: 0.3,
-                        repeat: isCrimeline ? Infinity : 0,
-                        repeatDelay: 2,
-                      },
-                    }
-              }
-              whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: -5 }}
+              animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <Image
-                src={LOGO_IMAGE}
-                alt="Chain of Events Logo"
-                width={28}
-                height={28}
-                className="w-full h-full object-cover"
-                unoptimized
-              />
-            </motion.div>
-
-            {/* Title with gradient */}
-            <motion.h1
-              className={`text-lg font-extrabold whitespace-nowrap tracking-tight ${
-                isCrimeline
-                  ? "bg-gradient-to-r from-purple-400 via-purple-300 to-purple-500 bg-clip-text text-transparent"
-                  : "bg-gradient-to-r from-teal-600 via-teal-500 to-teal-700 bg-clip-text text-transparent"
-              } transition-all duration-300`}
-            >
-              {titleText}
-            </motion.h1>
+              {isCrimeline
+                ? "The dark history of cryptocurrency"
+                : "The history of cryptocurrency"}
+            </motion.p>
           </button>
-
-          {/* Row 2: Tagline */}
-          <motion.p
-            className={`text-xs whitespace-nowrap transition-colors duration-300 -mt-1 ${
-              isCrimeline ? "text-purple-400" : "text-teal-600"
-            }`}
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: -5 }}
-            animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
-            {isCrimeline
-              ? "The dark history of cryptocurrency"
-              : "The history of cryptocurrency"}
-          </motion.p>
 
           {/* Row 3: CT Lore + Mode Toggle */}
           <div className="flex items-center gap-2">
