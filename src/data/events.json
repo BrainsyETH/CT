@@ -6505,7 +6505,7 @@
     "mode": [
       "timeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/atozy_lawsuit_cobie",
     "video": {
       "provider": "",
       "url": "",
@@ -6529,11 +6529,10 @@
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/cobie/status/1562220965253218304",
+          "account_handle": ""
         }
       },
       {
