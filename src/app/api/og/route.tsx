@@ -108,6 +108,7 @@ export async function GET(request: NextRequest) {
               top: "28px",
               left: "36px",
               display: "flex",
+              maxWidth: "calc(100% - 400px)",
             }}
           >
             <div
@@ -117,6 +118,9 @@ export async function GET(request: NextRequest) {
                 border: `5px solid ${colors.border}`,
                 padding: "24px 36px",
                 boxShadow: "8px 8px 0px 0px #000000",
+                maxWidth: "100%",
+                wordWrap: "break-word",
+                overflowWrap: "break-word",
               }}
             >
               <span
@@ -125,6 +129,9 @@ export async function GET(request: NextRequest) {
                   fontWeight: 900,
                   color: colors.text,
                   lineHeight: 1.15,
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
+                  whiteSpace: "normal",
                 }}
               >
                 {title}
