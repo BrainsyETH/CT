@@ -21,6 +21,9 @@ export default function AdminEventsPage() {
   const [tags, setTags] = useState<EventTag[]>([]);
   const [modes, setModes] = useState<Mode[]>([DEFAULT_MODE]);
   const [imageUrl, setImageUrl] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [twitterUrl, setTwitterUrl] = useState("");
+  const [twitterHandle, setTwitterHandle] = useState("");
   const [customId, setCustomId] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -52,6 +55,30 @@ export default function AdminEventsPage() {
     setError(null);
     setNotice(null);
 
+    const media: Event["media"] = [];
+    const trimmedYoutubeUrl = youtubeUrl.trim();
+    if (trimmedYoutubeUrl) {
+      media.push({
+        type: "video",
+        video: {
+          provider: "youtube",
+          url: trimmedYoutubeUrl,
+        },
+      });
+    }
+
+    const trimmedTwitterUrl = twitterUrl.trim();
+    const trimmedTwitterHandle = twitterHandle.trim();
+    if (trimmedTwitterUrl || trimmedTwitterHandle) {
+      media.push({
+        type: "twitter",
+        twitter: {
+          tweet_url: trimmedTwitterUrl || undefined,
+          account_handle: trimmedTwitterHandle || undefined,
+        },
+      });
+    }
+
     const payload: Event = {
       id: customId.trim() || crypto.randomUUID(),
       date: date.trim(),
@@ -61,6 +88,7 @@ export default function AdminEventsPage() {
       tags,
       mode: modes.length > 0 ? modes : [DEFAULT_MODE],
       image: imageUrl.trim() || undefined,
+      media: media.length > 0 ? media : undefined,
     };
 
     const { event: validated, errors } = validateEvent(payload);
@@ -82,6 +110,9 @@ export default function AdminEventsPage() {
     setTags([]);
     setModes([DEFAULT_MODE]);
     setImageUrl("");
+    setYoutubeUrl("");
+    setTwitterUrl("");
+    setTwitterHandle("");
     setCustomId("");
   };
 
@@ -187,6 +218,42 @@ export default function AdminEventsPage() {
                 placeholder="leave blank to auto-generate"
               />
             </label>
+
+            <div className="rounded-lg border border-white/10 bg-black/40 p-4">
+              <p className="text-sm font-semibold text-white/80">Media (optional)</p>
+              <p className="mt-1 text-xs text-white/50">
+                Add a YouTube link or a Tweet link/handle to attach media references.
+              </p>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <label className="space-y-2 text-sm">
+                  <span className="text-white/80">YouTube URL</span>
+                  <input
+                    className="w-full rounded-md border border-white/10 bg-black/60 px-3 py-2 text-white"
+                    value={youtubeUrl}
+                    onChange={(eventInput) => setYoutubeUrl(eventInput.target.value)}
+                    placeholder="https://www.youtube.com/watch?v="
+                  />
+                </label>
+                <label className="space-y-2 text-sm">
+                  <span className="text-white/80">Tweet URL</span>
+                  <input
+                    className="w-full rounded-md border border-white/10 bg-black/60 px-3 py-2 text-white"
+                    value={twitterUrl}
+                    onChange={(eventInput) => setTwitterUrl(eventInput.target.value)}
+                    placeholder="https://x.com/.../status/..."
+                  />
+                </label>
+                <label className="space-y-2 text-sm md:col-span-2">
+                  <span className="text-white/80">Twitter/X handle (optional)</span>
+                  <input
+                    className="w-full rounded-md border border-white/10 bg-black/60 px-3 py-2 text-white"
+                    value={twitterHandle}
+                    onChange={(eventInput) => setTwitterHandle(eventInput.target.value)}
+                    placeholder="@account"
+                  />
+                </label>
+              </div>
+            </div>
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2 text-sm">
