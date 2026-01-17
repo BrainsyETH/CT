@@ -30,6 +30,27 @@ export const EventVideoSchema = z.object({
 });
 
 // ============================================================================
+// Media Schemas
+// ============================================================================
+
+export const TwitterMediaSchema = z.object({
+  tweet_url: z.string().url().optional(),
+  account_handle: z.string().optional(),
+});
+
+export const ImageMediaSchema = z.object({
+  url: z.string().url(),
+  alt: z.string().optional(),
+  caption: z.string().optional(),
+});
+
+export const MediaItemSchema = z.union([
+  z.object({ type: z.literal("video"), video: EventVideoSchema }),
+  z.object({ type: z.literal("twitter"), twitter: TwitterMediaSchema }),
+  z.object({ type: z.literal("image"), image: ImageMediaSchema }),
+]);
+
+// ============================================================================
 // Crimeline Details Schema
 // ============================================================================
 
@@ -76,6 +97,7 @@ export const EventSchema = z.object({
   mode: z.array(z.enum(MODE_OPTIONS)),
   image: z.string().url().optional(),
   video: EventVideoSchema.optional(),
+  media: z.array(MediaItemSchema).optional(),
   links: z.array(EventLinkSchema).optional(),
   metrics: EventMetricsSchema.optional(),
   crimeline: CrimelineDetailsSchema.optional(),
@@ -184,4 +206,5 @@ export type EventVideo = z.infer<typeof EventVideoSchema>;
 export type CrimelineDetails = z.infer<typeof CrimelineDetailsSchema>;
 export type EventMetrics = z.infer<typeof EventMetricsSchema>;
 export type EventLink = z.infer<typeof EventLinkSchema>;
+export type MediaItem = z.infer<typeof MediaItemSchema>;
 export type FeedbackSubmission = z.infer<typeof FeedbackSubmissionSchema>;

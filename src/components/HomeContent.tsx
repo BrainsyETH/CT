@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
@@ -10,6 +10,7 @@ import { FeedbackModal } from "@/components/FeedbackModal";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
 import { isDebugEnabled } from "@/lib/debug";
+import { getLocalEvents } from "@/lib/local-events";
 import type { Event } from "@/lib/types";
 
 interface HomeContentProps {
@@ -18,6 +19,7 @@ interface HomeContentProps {
 
 export function HomeContent({ events }: HomeContentProps) {
   const [isHydrated, setIsHydrated] = useState(false);
+  const [localEvents, setLocalEvents] = useState<Event[]>([]);
   // #region agent log
   if (isDebugEnabled()) {
     const renderCountRef = useRef(0);
@@ -57,11 +59,23 @@ export function HomeContent({ events }: HomeContentProps) {
   // Synchronize URL params with store state (only after hydration)
   useUrlSync();
 
+  useEffect(() => {
+    setLocalEvents(getLocalEvents());
+  }, []);
+
+  const combinedEvents = useMemo(() => {
+    if (localEvents.length === 0) {
+      return events;
+    }
+
+    return [...localEvents, ...events];
+  }, [events, localEvents]);
+
   const { feedbackModal, closeFeedbackModal } = useModeStore();
 
   // Find the event for editing if an eventId is provided
   const feedbackEvent = feedbackModal.eventId
-    ? events.find((e) => e.id === feedbackModal.eventId) || null
+    ? combinedEvents.find((e) => e.id === feedbackModal.eventId) || null
     : null;
 
   // Don't render until store is hydrated to prevent hydration mismatches
@@ -74,11 +88,11 @@ export function HomeContent({ events }: HomeContentProps) {
       <Header />
       <main className="pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <Timeline events={events} />
+          <Timeline events={combinedEvents} />
         </div>
       </main>
       <Footer />
-      <EventDetailModal events={events} />
+      <EventDetailModal events={combinedEvents} />
       <FeedbackModal
         isOpen={feedbackModal.isOpen}
         onClose={closeFeedbackModal}
