@@ -61,13 +61,15 @@ export function SocialSharePreview({ event, mode = "timeline" }: SocialSharePrev
 
           {/* Title - Centered Lower, Above Metadata */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 bottom-32 bg-white border-8 border-black px-8 py-4 rotate-[-2deg] z-20"
+            className="absolute left-1/2 transform -translate-x-1/2 bg-white border-8 border-black px-8 py-4 rotate-[-2deg] z-20"
             style={{
               boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
               maxWidth: 'calc(100% - 200px)',
               minWidth: '200px',
               wordWrap: 'break-word',
               overflowWrap: 'break-word',
+              top: '140px',
+              bottom: 'auto',
             }}
           >
             <h2 
