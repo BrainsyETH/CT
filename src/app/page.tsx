@@ -37,7 +37,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
       const twitterTitle = truncate(title, 60);
-      const twitterDescription = truncate(description, 200);
+      const twitterDescription = truncate(description, 197);
 
       // Format date for OG image
       const formattedDate = formatDate(event.date);
@@ -82,11 +82,22 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         },
         twitter: {
           card: "summary_large_image",
+          title: twitterTitle,
           description: twitterDescription,
-          images: [twitterImageUrl],
+          images: [
+            {
+              url: twitterImageUrl,
+              width: 1200,
+              height: 630,
+              alt: event.title,
+            },
+          ],
         },
         other: {
           "twitter:image": twitterImageUrl,
+          "twitter:image:width": "1200",
+          "twitter:image:height": "630",
+          "twitter:image:alt": event.title,
         },
       };
     }

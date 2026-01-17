@@ -63,13 +63,13 @@ export async function GET(request: NextRequest) {
             <img
               src={imageUrl}
               width="1200"
-              height="600"
+              height="630"
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "1200px",
-                height: "600px",
+                height: "630px",
                 objectFit: "cover",
               }}
             />
@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
                 top: 0,
                 left: 0,
                 width: "1200px",
-                height: "600px",
+                height: "630px",
                 background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentLight})`,
               }}
             />
@@ -96,7 +96,7 @@ export async function GET(request: NextRequest) {
               top: 0,
               left: 0,
               width: "1200px",
-              height: "600px",
+              height: "630px",
               background: "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8))",
             }}
           />
@@ -170,7 +170,7 @@ export async function GET(request: NextRequest) {
       ),
       {
         width: 1200,
-        height: 600,
+        height: 630,
       }
     );
   } catch (error) {
@@ -212,7 +212,7 @@ export async function GET(request: NextRequest) {
       ),
       {
         width: 1200,
-        height: 600,
+        height: 630,
       }
     );
   }
