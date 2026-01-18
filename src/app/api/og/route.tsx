@@ -108,7 +108,7 @@ export async function GET(request: NextRequest) {
               top: "28px",
               left: "36px",
               display: "flex",
-              maxWidth: "calc(100% - 400px)",
+              maxWidth: "800px",
             }}
           >
             <div

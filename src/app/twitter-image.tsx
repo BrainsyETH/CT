@@ -51,7 +51,7 @@ export default async function Image() {
         <div
           style={{
             position: "absolute",
-            left: "calc(50% - 10px)",
+            left: "590px",
             top: "20%",
             width: "24px",
             height: "24px",
@@ -63,7 +63,7 @@ export default async function Image() {
         <div
           style={{
             position: "absolute",
-            left: "calc(50% - 10px)",
+            left: "590px",
             top: "50%",
             width: "24px",
             height: "24px",
@@ -75,7 +75,7 @@ export default async function Image() {
         <div
           style={{
             position: "absolute",
-            left: "calc(50% - 10px)",
+            left: "590px",
             top: "80%",
             width: "24px",
             height: "24px",
