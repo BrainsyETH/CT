@@ -275,7 +275,7 @@
     "id": "mtgox-collapse-2014-02-24",
     "date": "2014-02-07",
     "title": "Mt. Gox Collapses",
-    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found Karpel\u00c3\u00a8s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
+    "summary": "On February 7th, 2014, Mt. Gox halted all bitcoin withdrawals. The company said it was pausing withdrawal requests `to obtain a clear technical view of the currency processes`. On 24 February 2014, Mt. Gox suspended all trading, and hours later its website went offline, returning a blank page. Around 850,000 BTC (~$450M at the time) were stolen over several years. On 14 March 2019, the Tokyo District Court found KarpelÃ¨s guilty of falsifying data to inflate Mt. Gox's holdings by $33.5 million, for which he was sentenced to 30 months in prison, suspended for four years, meaning he will serve no time unless he commits additional offenses over the next four years.",
     "category": [
       "Centralized Exchange"
     ],
@@ -731,7 +731,7 @@
     "id": "cryptopia-hack-2019-01-14",
     "date": "2019-01-14",
     "title": "Cryptopia Exchange Hack",
-    "summary": "Cryptopia announced a major security breach, reporting \u201csignificant losses\u201d and suspending trading as hackers siphoned crypto from its wallets. The breach occurred after days of unexplained \u201cunscheduled maintenance,\u201d and large movements of ETH and other tokens were publicly spotted onchain before the official acknowledgment.",
+    "summary": "Cryptopia announced a major security breach, reporting “significant losses” and suspending trading as hackers siphoned crypto from its wallets. The breach occurred after days of unexplained “unscheduled maintenance,” and large movements of ETH and other tokens were publicly spotted onchain before the official acknowledgment.",
     "category": [
       "Centralized Exchange"
     ],
@@ -937,7 +937,7 @@
     "id": "kucoin-hack-2020-09-26",
     "date": "2020-09-26",
     "title": "KuCoin Exchange Hack",
-    "summary": "KuCoin suffered a massive security breach in which hackers accessed private keys for the exchange\u2019s hot wallets and stole an estimated ~$280 million+ in crypto assets including BTC, ETH, XRP, LTC, and many ERC-20 tokens \u2014 one of the largest exchange hacks in history.",
+    "summary": "KuCoin suffered a massive security breach in which hackers accessed private keys for the exchange’s hot wallets and stole an estimated ~$280 million+ in crypto assets including BTC, ETH, XRP, LTC, and many ERC-20 tokens — one of the largest exchange hacks in history.",
     "category": [
       "Centralized Exchange"
     ],
@@ -1282,7 +1282,7 @@
     "id": "terra-luna-collapse-2022-05-09",
     "date": "2022-05-09",
     "title": "Terra/LUNA Collapse",
-    "summary": "The Terra blockchain\u2019s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This \u201cdeath spiral\u201d wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
+    "summary": "The Terra blockchain’s algorithmic stablecoin TerraUSD (UST) lost its $1-USD peg, triggering a rapid devaluation that saw UST fall to pennies and its sister token LUNA collapse from over ~$100 to near zero within days. This “death spiral” wiped out around $45 billion in market capitalization and severely shook confidence across the broader crypto market. The design relied on an unstable mint-and-burn arbitrage mechanism rather than traditional collateral, making it especially fragile once large holders began selling. The collapse led to bankruptcies, investor losses worldwide, and intense scrutiny by regulators; Terraform Labs ultimately filed for bankruptcy and founder Do Kwon has since been convicted and sentenced to 15 years in prison for fraud tied to the crash.",
     "category": [
       "Stablecoin"
     ],
@@ -1411,7 +1411,7 @@
     "id": "3ac-default-2022-06-27",
     "date": "2022-06-27",
     "title": "Three Arrows Capital Defaults",
-    "summary": "Three Arrows Capital (3AC) was a Singapore-based cryptocurrency hedge fund founded by Kyle Davies and Su Zhu that collapsed in June 2022 after failing to meet large margin calls amid the broader crypto market downturn \u2014 particularly losses tied to Terra/LUNA and other leveraged positions. A court in the British Virgin Islands ordered the firm into liquidation on June 27, 2022, and it subsequently filed for Chapter 15 bankruptcy in the U.S., owing around $3.5 billion to creditors including major lenders like Genesis and Voyager.",
+    "summary": "Three Arrows Capital (3AC) was a Singapore-based cryptocurrency hedge fund founded by Kyle Davies and Su Zhu that collapsed in June 2022 after failing to meet large margin calls amid the broader crypto market downturn — particularly losses tied to Terra/LUNA and other leveraged positions. A court in the British Virgin Islands ordered the firm into liquidation on June 27, 2022, and it subsequently filed for Chapter 15 bankruptcy in the U.S., owing around $3.5 billion to creditors including major lenders like Genesis and Voyager.",
     "category": [
       "Market Structure"
     ],
@@ -2280,7 +2280,7 @@
     "id": "sahil-celebrity-scam-2024",
     "date": "2024-06-15",
     "title": "Sahil Orchestrates Mass Celebrity Token Scams",
-    "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits\u2014estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
+    "summary": "Sahil rose to notoriety in 2024 by orchestrating numerous celebrity-linked memecoin launches on Solana, convincing stars like Caitlyn Jenner, Jason Derulo, Iggy Azalea, and others to promote tokens before allegedly dumping holdings for massive profits—estimated at $2-6.5 million initially, with claims of up to $30 million across over 100 schemes.",
     "category": [
       "Memecoins"
     ],
@@ -2546,7 +2546,7 @@
     "id": "hawk-tuah-girl-crash-2024-12",
     "date": "2024-12-04",
     "title": "$HAWK Token Crashes After Launch",
-    "summary": "\u2022 The $HAWK token launched on December 4, 2024, heavily hyped by Welch and her team. Within minutes to hours, it surged to a peak market cap of roughly $490\u2013500 million due to intense retail FOMO.\n\u2022 Almost immediately after peaking, the token collapsed by approximately 90\u201395%, with some reports placing the crash within 20\u201330 minutes.\n\u2022 The crash wiped out billions of dollars in paper value, leaving most holders with massive losses.\n\u2022 On-chain analysis (including Bubblemaps) revealed extreme supply concentration red flags.\n\u2022 Roughly 96\u201397% of the token supply was controlled by a small cluster of insider wallets (team, pre-sale investors, KOLs).\n\u2022 Only an estimated 3\u20134% of the total supply was genuinely available to the public at launch.",
+    "summary": "• The $HAWK token launched on December 4, 2024, heavily hyped by Welch and her team. Within minutes to hours, it surged to a peak market cap of roughly $490–500 million due to intense retail FOMO.\n• Almost immediately after peaking, the token collapsed by approximately 90–95%, with some reports placing the crash within 20–30 minutes.\n• The crash wiped out billions of dollars in paper value, leaving most holders with massive losses.\n• On-chain analysis (including Bubblemaps) revealed extreme supply concentration red flags.\n• Roughly 96–97% of the token supply was controlled by a small cluster of insider wallets (team, pre-sale investors, KOLs).\n• Only an estimated 3–4% of the total supply was genuinely available to the public at launch.",
     "category": [
       "Memecoins"
     ],
@@ -2896,7 +2896,7 @@
     "id": "bybit-exchange-hack-2025-02",
     "date": "2025-02-21",
     "title": "Bybit Exchange Suffers Record $1.5B Ethereum Heist",
-    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets. Hackers, widely attributed to North Korea's state-sponsored Lazarus Group, stole approximately $1.4\u20131.5 billion worth of Ethereum (ETH), specifically around 401,000 ETH.",
+    "summary": "Dubai-based centralized exchange Bybit was hacked during a routine transfer between cold and warm wallets. Hackers, widely attributed to North Korea's state-sponsored Lazarus Group, stole approximately $1.4–1.5 billion worth of Ethereum (ETH), specifically around 401,000 ETH.",
     "category": [
       "Centralized Exchange"
     ],
@@ -3016,7 +3016,7 @@
     "id": "coinbase-data-breach-2025-05",
     "date": "2025-05-15",
     "title": "Coinbase Customer Data Breach via Support",
-    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history \u2014 but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers\u2019 arrest and vowed to reimburse affected customers. ZachXBT has tracked related cases with massive individual thefts ($2M\u2013$6M+ per scammer/group).",
+    "summary": "Coinbase disclosed a major customer data breach in which cybercriminals bribed and recruited a group of rogue overseas customer support agents to steal Coinbase customer information from internal support systems. The stolen information included names, contact details, partial Social Security numbers, masked bank info, government ID images, and account history — but no passwords, private keys, or direct access to funds. Coinbase received a $20 million ransom demand from the attackers, which it refused; instead it offered a $20 million reward for information leading to the attackers’ arrest and vowed to reimburse affected customers. ZachXBT has tracked related cases with massive individual thefts ($2M–$6M+ per scammer/group).",
     "category": [
       "Centralized Exchange",
       "ZachXBT"
@@ -3079,7 +3079,7 @@
     "id": "cetus-protocol-exploit-2025-05",
     "date": "2025-05-22",
     "title": "Cetus Protocol Smart Contract Exploit Drains $223M",
-    "summary": "Cetus Protocol, a major decentralized exchange and liquidity provider on the Sui blockchain, was exploited for roughly $220 \u2013 $260 million. The attacker took advantage of a vulnerability in the protocol\u2019s smart contract/overflow handling logic, allowing them to manipulate liquidity and drain multiple pools in under 15 minutes.",
+    "summary": "Cetus Protocol, a major decentralized exchange and liquidity provider on the Sui blockchain, was exploited for roughly $220 – $260 million. The attacker took advantage of a vulnerability in the protocol’s smart contract/overflow handling logic, allowing them to manipulate liquidity and drain multiple pools in under 15 minutes.",
     "category": [
       "DeFi Protocol"
     ],
@@ -3191,7 +3191,7 @@
     "id": "nobitex-exchange-hack-2025-06",
     "date": "2025-06-17",
     "title": "Nobitex Centralized Exchange Hack Drains ~$90M",
-    "summary": "Nobitex, Iran\u2019s largest cryptocurrency exchange, was hit by a major cyberattack in which attackers drained tens of millions of dollars (roughly $80\u2013$90 M+) from its hot wallets. The group calling itself Gonjeshke Darande (also known as \u201cPredatory Sparrow\u201d), believed to be linked to Israeli intelligence, claimed responsibility and framed the attack as targeting Iran\u2019s sanctions-evasion infrastructure amid rising Iran\u2013Israel tensions rather than for financial gain.",
+    "summary": "Nobitex, Iran’s largest cryptocurrency exchange, was hit by a major cyberattack in which attackers drained tens of millions of dollars (roughly $80–$90 M+) from its hot wallets. The group calling itself Gonjeshke Darande (also known as “Predatory Sparrow”), believed to be linked to Israeli intelligence, claimed responsibility and framed the attack as targeting Iran’s sanctions-evasion infrastructure amid rising Iran–Israel tensions rather than for financial gain.",
     "category": [
       "Centralized Exchange"
     ],
@@ -3295,7 +3295,7 @@
     "id": "aster-defillama-delisting-2025-10-05",
     "date": "2025-10-05",
     "title": "CZ-Linked $ASTER Debacle",
-    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues\u2014including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks\u2014triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
+    "summary": "The CZ/Aster debacle centers on Changpeng Zhao (CZ), the former Binance CEO, heavily promoting and investing in Aster DEX and its token $ASTER in late 2025, driving massive hype, a Binance spot listing, and a price surge to an all-time high around $2.40 in September. However, subsequent issues—including airdrop delays, wash trading allegations leading to a brief DefiLlama delisting, technical glitches, rumored large dumps (which CZ denied), and ongoing monthly token unlocks—triggered sharp crashes, accusations of pump-and-dump manipulation, and heavy retail losses as the token fell over 70% to trade around $0.71 to $0.74 by early January 2026.",
     "category": [
       "DeFi Protocol"
     ],
@@ -3760,7 +3760,7 @@
   {
     "id": "satoshi-final-message-2011-04",
     "date": "2011-04-01",
-    "title": "Satoshi\u2019s Final Message",
+    "title": "Satoshi’s Final Message",
     "summary": "Satoshi Nakamoto signs off with \"I've moved on to other things,\" marking the creator's last known public communication.",
     "category": [
       "Bitcoin"
@@ -4034,7 +4034,7 @@
     "id": "bitcoin-cash-fork-2017-08-01",
     "date": "2017-08-01",
     "title": "Roger Ver Claims Bitcoin Cash is Bitcoin",
-    "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the \u201creal Bitcoin,\u201d posting viral tweets like \u201cBitcoin Cash is Bitcoin\u201d and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
+    "summary": "In August 2017, a long-running dispute over how to scale Bitcoin culminated in a hard fork that created Bitcoin Cash, favoring larger blocks and on-chain transactions over SegWit and Layer-2 solutions. Roger Ver loudly promoted Bitcoin Cash as the “real Bitcoin,” posting viral tweets like “Bitcoin Cash is Bitcoin” and leveraging Bitcoin.com branding to reinforce that claim. The episode sparked years of confusion, branding wars, and tribalism, becoming one of the most infamous ideological splits in crypto history.",
     "category": [
       "Bitcoin"
     ],
@@ -4135,7 +4135,7 @@
     "id": "binance-safu-origin-2018",
     "date": "2018-05-01",
     "title": "The Binance SAFU Origin",
-    "summary": "In April 2018, Changpeng Zhao (CZ) misspelled \u201csafe\u201d as \u201cSAFU\u201d during a response on Twitter while reassuring users during routine maintenance concerns. The typo went viral on Crypto Twitter, and Binance leaned into it, later formalizing the joke into the Secure Asset Fund for Users (SAFU) in July 2018, an emergency insurance fund seeded with trading fees. The term became legendary after Binance used SAFU funds to fully cover losses from the May 2019 Binance hack, cementing \u201cFunds are SAFU\u201d as crypto lore.",
+    "summary": "In April 2018, Changpeng Zhao (CZ) misspelled “safe” as “SAFU” during a response on Twitter while reassuring users during routine maintenance concerns. The typo went viral on Crypto Twitter, and Binance leaned into it, later formalizing the joke into the Secure Asset Fund for Users (SAFU) in July 2018, an emergency insurance fund seeded with trading fees. The term became legendary after Binance used SAFU funds to fully cover losses from the May 2019 Binance hack, cementing “Funds are SAFU” as crypto lore.",
     "category": [
       "Centralized Exchange"
     ],
@@ -4271,7 +4271,7 @@
     "id": "plustoken-ponzi-2019",
     "date": "2019-06-27",
     "title": "The PlusToken Ponzi",
-    "summary": "PlusToken was a massive cryptocurrency Ponzi scheme and wallet platform that started in 2018, mainly attracting investors in China and South Korea by promising high monthly rewards for depositing crypto like BTC and ETH into its app. At its peak, the scam collected **billions of dollars worth of crypto \u2014 estimates range from about $2 billion to nearly $3 billion (and possibly more when considering additional movements), making it one of the largest crypto frauds ever. The scheme began to collapse in mid-2019 when investors struggled to withdraw funds, and the operators abruptly emptied billions of dollars of assets and posted messages suggesting they were gone. Subsequent arrests of suspects occurred in June 2019 and later in 2020.",
+    "summary": "PlusToken was a massive cryptocurrency Ponzi scheme and wallet platform that started in 2018, mainly attracting investors in China and South Korea by promising high monthly rewards for depositing crypto like BTC and ETH into its app. At its peak, the scam collected **billions of dollars worth of crypto — estimates range from about $2 billion to nearly $3 billion (and possibly more when considering additional movements), making it one of the largest crypto frauds ever. The scheme began to collapse in mid-2019 when investors struggled to withdraw funds, and the operators abruptly emptied billions of dollars of assets and posted messages suggesting they were gone. Subsequent arrests of suspects occurred in June 2019 and later in 2020.",
     "category": [
       "Market Structure"
     ],
@@ -4384,7 +4384,7 @@
     "id": "nomi-rug-return-2020-09",
     "date": "2020-09-11",
     "title": "The Chef and His $SUSHI",
-    "summary": "SushiSwap\u2019s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
+    "summary": "SushiSwap’s anonymous founder Chef Nomi withdrew 20,039 ETH and 2.5 million $SUSHI tokens from the developer fund, causing an 80% crash and sparking outrage. Nomi later returns $14m in funds and hands control to Sam Bankman-Fried to stabilize the protocol. ",
     "category": [
       "DeFi"
     ],
@@ -4490,7 +4490,7 @@
     "id": "olympus-3-3-lore-2021-03",
     "date": "2021-03-01",
     "title": "The Birth of (3,3) Lore",
-    "summary": "OlympusDAO popularized the \u201c(3,3)\u201d meme to describe a gamified incentive structure where all participants are rewarded for staking and cooperating rather than selling. The (3,3) meme became one of the most famous Crypto Twitter in-jokes of the DeFi era, showing up in thousands of replies and bios as a shorthand for protocol loyalty & staking behavior. It summed DeFi yields into a simple \u201cgame\u201d outcome that traders could laugh about long after Olympus peaked.",
+    "summary": "OlympusDAO popularized the “(3,3)” meme to describe a gamified incentive structure where all participants are rewarded for staking and cooperating rather than selling. The (3,3) meme became one of the most famous Crypto Twitter in-jokes of the DeFi era, showing up in thousands of replies and bios as a shorthand for protocol loyalty & staking behavior. It summed DeFi yields into a simple “game” outcome that traders could laugh about long after Olympus peaked.",
     "category": [
       "DeFi"
     ],
@@ -4534,7 +4534,7 @@
     "id": "twitter-help-desk-hack-2020-07-14",
     "date": "2020-07-14",
     "title": "The Twitter Help Desk Hack",
-    "summary": "Twitter suffered a historic breach when attackers social-engineered Twitter employees and gained access to internal help-desk/admin tools, allowing them to take over high-profile accounts including Elon Musk, Barack Obama, Apple, Uber, and others. The compromised accounts posted a Bitcoin scam promising to double any BTC sent, briefly netting the attackers over $100k and sending Crypto Twitter into chaos. Twitter responded by locking many verified accounts from tweeting, underscoring how centralized \u201ctrusted access\u201d can become a single point of failure.",
+    "summary": "Twitter suffered a historic breach when attackers social-engineered Twitter employees and gained access to internal help-desk/admin tools, allowing them to take over high-profile accounts including Elon Musk, Barack Obama, Apple, Uber, and others. The compromised accounts posted a Bitcoin scam promising to double any BTC sent, briefly netting the attackers over $100k and sending Crypto Twitter into chaos. Twitter responded by locking many verified accounts from tweeting, underscoring how centralized “trusted access” can become a single point of failure.",
     "category": [
       "Security"
     ],
@@ -4715,7 +4715,7 @@
     "id": "constitutiondao-failure-2021-11-18",
     "date": "2021-11-18",
     "title": "The ConstitutionDAO Loses to Ken Griffin",
-    "summary": "ConstitutionDAO was a decentralized crowdfunding effort that raised over $40 million+ in ETH within just days in November 2021, to bid on a Sotheby\u2019s auction for the historic document. It ultimately lost the auction to Citadel's Ken Griffin, dissolved, and refunded contributors.",
+    "summary": "ConstitutionDAO was a decentralized crowdfunding effort that raised over $40 million+ in ETH within just days in November 2021, to bid on a Sotheby’s auction for the historic document. It ultimately lost the auction to Citadel's Ken Griffin, dissolved, and refunded contributors.",
     "category": [
       "CT Lore"
     ],
@@ -4756,7 +4756,7 @@
     "id": "gcr-10m-luna-bet-2022-03",
     "date": "2022-03-09",
     "title": "By My Hand $Luna Will Die",
-    "summary": "GCR publicly proposed a $10 million bet to Do Kwon (Terraform Labs\u2019 co-founder) that the price of $LUNA would be lower a year later than it was then, effectively shorting the Terra ecosystem before its catastrophic collapse.",
+    "summary": "GCR publicly proposed a $10 million bet to Do Kwon (Terraform Labs’ co-founder) that the price of $LUNA would be lower a year later than it was then, effectively shorting the Terra ecosystem before its catastrophic collapse.",
     "category": [
       "CT Lore"
     ],
@@ -4989,7 +4989,7 @@
     "id": "sbf-what-2022-11",
     "date": "2022-11-13",
     "title": "1) What",
-    "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet \u2014 \u201c1)What\u201d \u2014 beginning a slow thread that appeared to spell out \u201cWhat happened.\u201d It became one of the most enraging and infamous moments of the FTX implosion.",
+    "summary": "As FTX collapsed into bankruptcy, Sam Bankman-Fried posted a cryptic one-word tweet — “1)What” — beginning a slow thread that appeared to spell out “What happened.” It became one of the most enraging and infamous moments of the FTX implosion.",
     "category": [
       "Centralized Exchange",
       "CT Lore"
@@ -5169,7 +5169,7 @@
     "id": "ordinals-inscription-2023-01-21",
     "date": "2023-01-21",
     "title": "Inscriptions are finally ready for Bitcoin mainnet",
-    "summary": "This tweet marked the point when the Ordinals protocol was enabled on Bitcoin mainnet, allowing users to inscribe arbitrary data (like art or text) onto individual satoshis \u2014 effectively bringing Bitcoin-native NFTs onchain.",
+    "summary": "This tweet marked the point when the Ordinals protocol was enabled on Bitcoin mainnet, allowing users to inscribe arbitrary data (like art or text) onto individual satoshis — effectively bringing Bitcoin-native NFTs onchain.",
     "category": [
       "Bitcoin"
     ],
@@ -5213,7 +5213,7 @@
     "id": "frosties-arrest-2022-03-24",
     "date": "2022-03-24",
     "title": "The $1.3 Million Frosties Arrest",
-    "summary": "U.S. federal authorities arrested and charged two men \u2014 Ethan Vinh Nguyen and Andre Marcus Llacuna \u2014 for their roles in an alleged NFT fraud and money-laundering scheme involving the Frosties collection.",
+    "summary": "U.S. federal authorities arrested and charged two men — Ethan Vinh Nguyen and Andre Marcus Llacuna — for their roles in an alleged NFT fraud and money-laundering scheme involving the Frosties collection.",
     "category": [
       "NFTs"
     ],
@@ -5351,7 +5351,7 @@
     "id": "pepe-87m-millionaire-2024",
     "date": "2025-05-28",
     "title": "The James Wynn Implosion",
-    "summary": "At his peak in 2025, onchain data showed Wynn\u2019s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. \u201cI flipped $3M into $100M and somehow ended up negative $13M. I lost control.\u201d \u2014 James Wynn ",
+    "summary": "At his peak in 2025, onchain data showed Wynn’s trading account reached about $87 million in profit, much of it from early memecoin plays like PEPE and leveraged BTC longs. By May 2025, Wynn lost about $100 million in a single week of leveraged BTC trades, erasing nearly all his Hyperliquid profits. He continued to get wiped out. “I flipped $3M into $100M and somehow ended up negative $13M. I lost control.” — James Wynn ",
     "category": [
       "CT Lore"
     ],
@@ -5408,7 +5408,7 @@
     "id": "gainzy-fat-finger-rug-2025-09-03",
     "date": "2025-09-03",
     "title": "Gainzy `Fat Fingers`His Token",
-    "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a \u201cfat-finger misclick\u201d while fiddling with his phone. The massive sell caused the token\u2019s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
+    "summary": "Alleged CEO Killer and Pump Fun streamer, Gainzy, accidentally sold 73.4% of the supply of his own creator token $GNZYSTRM in one transaction. A move he claims was just a “fat-finger misclick” while fiddling with his phone. The massive sell caused the token’s market cap to crash about 99% in seconds, dropping from roughly $4.6 M to ~$12k. ",
     "category": [
       "Memecoins"
     ],
@@ -5769,7 +5769,7 @@
     "id": "voorhees-debates-sbf",
     "date": "2022-10-28",
     "title": "Erik Voorhees Debates SBF and It Goes Bad",
-    "summary": "Just days before FTX\u2019s collapse, Erik Voorhees debated Sam Bankman-Fried on Bankless, with the discussion ironically highlighting criticisms over custody, trust, and centralized finance.",
+    "summary": "Just days before FTX’s collapse, Erik Voorhees debated Sam Bankman-Fried on Bankless, with the discussion ironically highlighting criticisms over custody, trust, and centralized finance.",
     "category": [
       "Centralized Exchange"
     ],
@@ -5999,7 +5999,7 @@
     "id": "avi-eisenberg-mango",
     "date": "2022-10-11",
     "title": "A Highly Profitable Trading Strategy",
-    "summary": "Avi Eisenberg exploited Mango Markets, later stating 'What are you gonna do, arrest me?'\u2014 a quote that became infamous after he was actually arrested.",
+    "summary": "Avi Eisenberg exploited Mango Markets, later stating 'What are you gonna do, arrest me?'— a quote that became infamous after he was actually arrested.",
     "category": [
       "DeFi Protocol"
     ],
@@ -6104,7 +6104,7 @@
     "id": "john-mcafee-eat-dick",
     "date": "2017-07-17",
     "title": "John McAfee Says He Will Eat His Own D*ck",
-    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn\u2019t reach $500k in 3 years. An absurd and legendary bet. RIP.",
+    "summary": "John McAfee famously promised to eat his own body part if Bitcoin didn’t reach $500k in 3 years. An absurd and legendary bet. RIP.",
     "category": [
       "Bitcoin"
     ],
@@ -6329,7 +6329,7 @@
     "id": "crypto-the-game-seasons",
     "date": "2023-01-15",
     "title": "Crypto: The Game Begins",
-    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players \u2192 ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
+    "summary": "Crypto: The Game launches the first season of their onchain competition. Players mint an entry NFT for .1 ETH, with accrued fees going directly into the communal prize pool. Season 1 (Jan/Feb 2024): 410 players → ~$100k+ pot won by a Japan-based player, who wrote poems for other players.",
     "category": [
       "CT Lore",
       "Gaming"
@@ -6581,7 +6581,7 @@
     "id": "gainzy-rollbit-drama",
     "date": "2023-03-17",
     "title": "Gainzy Goes Gambling",
-    "summary": "Gainzy posts massive high-stakes bets, often $100k\u2013$300k+ per bet, and helped drive huge attention to Rollbit. Concerns arose that Rollbit was secretly funding these high stakes bets. ZachXBT and community members called him out. Gainzy eventually announced a sponsorship with Stake.com. ",
+    "summary": "Gainzy posts massive high-stakes bets, often $100k–$300k+ per bet, and helped drive huge attention to Rollbit. Concerns arose that Rollbit was secretly funding these high stakes bets. ZachXBT and community members called him out. Gainzy eventually announced a sponsorship with Stake.com. ",
     "category": [
       "CT Lore"
     ],
@@ -6723,7 +6723,7 @@
     "id": "satoshi-dont-convince-quote",
     "date": "2010-07-28",
     "title": "I don't have time to try to convince you, sorry",
-    "summary": "Satoshi Nakamoto\u2019s quote: 'If you don\u2019t believe me or don\u2019t get it, I don\u2019t have time to try to convince you'. One of the most cited philosophical statements in Bitcoin culture.",
+    "summary": "Satoshi Nakamoto’s quote: 'If you don’t believe me or don’t get it, I don’t have time to try to convince you'. One of the most cited philosophical statements in Bitcoin culture.",
     "category": [
       "Bitcoin"
     ],
@@ -6859,7 +6859,7 @@
     "id": "genesis-creditor-heist-2024",
     "date": "2024-08-19",
     "title": "Genesis Creditor Heist",
-    "summary": "On August 19, 2024, three attackers\u2014Malone Lam (Greavys), Veer Chetal (Wiz), and Jeandiel Serrano (Box)\u2014orchestrated one of the largest single-victim crypto thefts in history, stealing 4,064 BTC ($243M) from a Genesis creditor. Using sophisticated social engineering, they impersonated Google and Gemini support to reset the victim's 2FA and drain the wallet. ZachXBT's investigation uncovered a leaked celebration video showing attackers' real-time reactions, Instagram posts of luxury spending including pink car gifts, and device fingerprints linking them to Mark Cuban's June 2024 compromise. FBI raids in Miami and LA on September 18, 2024 led to multiple arrests. A fourth suspect, British national Danish Zulfiqar, was reportedly arrested in Dubai in December 2024 with $18.5M seized. Funds were rapidly laundered across 15+ exchanges.",
+    "summary": "On August 19, 2024, three attackers—Malone Lam (Greavys), Veer Chetal (Wiz), and Jeandiel Serrano (Box)—orchestrated one of the largest single-victim crypto thefts in history, stealing 4,064 BTC ($243M) from a Genesis creditor. Using sophisticated social engineering, they impersonated Google and Gemini support to reset the victim's 2FA and drain the wallet. ZachXBT's investigation uncovered a leaked celebration video showing attackers' real-time reactions, Instagram posts of luxury spending including pink car gifts, and device fingerprints linking them to Mark Cuban's June 2024 compromise. FBI raids in Miami and LA on September 18, 2024 led to multiple arrests. A fourth suspect, British national Danish Zulfiqar, was reportedly arrested in Dubai in December 2024 with $18.5M seized. Funds were rapidly laundered across 15+ exchanges.",
     "category": [
       "Key Compromise",
       "ZachXBT"
@@ -6923,7 +6923,7 @@
     "id": "harmony-group-mega-hacks",
     "date": "2022-03-23",
     "title": "Harmony Bridge Hack",
-    "summary": "Harmony disclosed a ~$100M theft from its Horizon bridge, after attackers drained bridge-held assets and began laundering proceeds across Ethereum. U.S. authorities later attributed the hack to North Korea\u2019s Lazarus Group (APT38). ZachXBT tracked subsequent laundering flows onchain, including large movements of Harmony-hack ETH routed through privacy tooling (e.g., Railgun) during the 2023 laundering phase.",
+    "summary": "Harmony disclosed a ~$100M theft from its Horizon bridge, after attackers drained bridge-held assets and began laundering proceeds across Ethereum. U.S. authorities later attributed the hack to North Korea’s Lazarus Group (APT38). ZachXBT tracked subsequent laundering flows onchain, including large movements of Harmony-hack ETH routed through privacy tooling (e.g., Railgun) during the 2023 laundering phase.",
     "category": [
       "Bridge",
       "ZachXBT"
@@ -7147,15 +7147,21 @@
       "status": "Funds recovered"
     }
   },
-
   {
     "id": "nicole-behnam-wallet-mistake-2023-04-12",
     "date": "2023-04-12",
     "title": "Mistakes Were Made In A Wallet I Controlled",
     "summary": "On April 12 2023, Web3 influencer Nicole Behnam was accused of pumping the \"Blocky Doge 3\" NFT project, receiving 250 NFTs from Dogecoin co-creator Billy Markus and then selling about 220 of them for roughly 20 ETH (~US$38k), which crashed the floor price. After being called out, she tweeted that \"there were mistakes made in a wallet that I controlled\" and claimed she refunded the profits and bought cheaper NFTs to 'make holders whole'. The controversy led to her removal from NFT Now's 'NFT 100' list and became a cautionary tale about ethical promotion in NFT communities.",
-    "category": ["CT Lore", "Culture"],
-    "tags": ["FAILURE"],
-    "mode": ["timeline"],
+    "category": [
+      "CT Lore",
+      "Culture"
+    ],
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/mistakes_were_made",
     "media": [
       {
@@ -7176,8 +7182,14 @@
       }
     ],
     "links": [
-      {"label": "Web3 Is Going Great report", "url": "https://web3isgoinggreat.com/s/nicole-behnam-blocky-doge-3"},
-      {"label": "Tweet about the controversy", "url": "https://x.com/web3isgreat/status/1646336229586157570"}
+      {
+        "label": "Web3 Is Going Great report",
+        "url": "https://web3isgoinggreat.com/s/nicole-behnam-blocky-doge-3"
+      },
+      {
+        "label": "Tweet about the controversy",
+        "url": "https://x.com/web3isgreat/status/1646336229586157570"
+      }
     ],
     "metrics": {}
   },
@@ -7186,9 +7198,17 @@
     "date": "2022-02-15",
     "title": "HelloImMorgan's GoFundMe used for $24k Mutant Ape purchase",
     "summary": "In early 2022, influencer HelloImMorgan raised around US$20,000 via a GoFundMe campaign for her grandmother's medical bills. Shortly afterward she announced the purchase of a US$24,000 Mutant Ape Yacht Club NFT, leading many to question whether donations were used for the NFT. Morgan claimed the GoFundMe pre-dated the purchase, but skepticism persisted. Later, her \"Grumpkins\" NFT project quietly reduced its promised charity donation from 20% to 10%, further eroding trust.",
-    "category": ["NFTs", "Culture", "ZachXBT"],
-    "tags": ["FAILURE"],
-    "mode": ["timeline"],
+    "category": [
+      "NFTs",
+      "Culture",
+      "ZachXBT"
+    ],
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/helloimmorgan",
     "media": [
       {
@@ -7200,7 +7220,10 @@
       }
     ],
     "links": [
-      {"label": "Web3 Is Going Great article", "url": "https://web3isgoinggreat.com/s/helloimmorgan-mutant-ape-gofundme"}
+      {
+        "label": "Web3 Is Going Great article",
+        "url": "https://web3isgoinggreat.com/s/helloimmorgan-mutant-ape-gofundme"
+      }
     ],
     "metrics": {}
   },
@@ -7209,9 +7232,16 @@
     "date": "2022-04-04",
     "title": "Luca Netz acquires Pudgy Penguins for $2.5 M",
     "summary": "On April 4 2022, entrepreneur Luca Netz purchased the entire Pudgy Penguins NFT project for about 750 ETH (~US$2.5 million) after the community ousted the original founders. The acquisition brought new leadership and marketing strategies, including licensing deals and toy tie-ins, revitalizing the penguin-themed collection.",
-    "category": ["NFTs", "Culture"],
-    "tags": ["ECONOMIC"],
-    "mode": ["timeline"],
+    "category": [
+      "NFTs",
+      "Culture"
+    ],
+    "tags": [
+      "ECONOMIC"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pudgy_sphere",
     "media": [
       {
@@ -7239,8 +7269,14 @@
       }
     ],
     "links": [
-      {"label": "Forkast article", "url": "https://forkast.news/new-owner-gives-pudgy-penguins-nfts-happy-feet/"},
-      {"label": "Medium article on Pudgy Penguins", "url": "https://medium.com/@pudgypenguins/the-rise-of-pudgy-penguins-becoming-web3s-most-recognizable-ip-413f90e9fd31"}
+      {
+        "label": "Forkast article",
+        "url": "https://forkast.news/new-owner-gives-pudgy-penguins-nfts-happy-feet/"
+      },
+      {
+        "label": "Medium article on Pudgy Penguins",
+        "url": "https://medium.com/@pudgypenguins/the-rise-of-pudgy-penguins-becoming-web3s-most-recognizable-ip-413f90e9fd31"
+      }
     ],
     "metrics": {}
   },
@@ -7249,9 +7285,16 @@
     "date": "2025-05-15",
     "title": "Pepsi, Meta and Budweiser Create Cringe",
     "summary": "On May 15 2025, Pepsi's \"Pepsi Mic Drop\" NFT account initiated a conversation with Meta's corporate account using crypto slang like \"fren\" and \"WAGMI\" (\"we're all going to make it\"). Budweiser's account joined in, creating a branded banter session aimed at the NFT community. Rather than endearing the brands to crypto enthusiasts, the exchange was widely mocked, with observers saying the companies sounded like out-of-touch parents using slang.",
-    "category": ["Culture", "NFTs"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "Culture",
+      "NFTs"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/brand_cringe",
     "media": [
       {
@@ -7272,8 +7315,14 @@
       }
     ],
     "links": [
-      {"label": "NFTevening report", "url": "https://nftevening.com/pepsi-meta-budweiser-nft-crypto-conversation/"},
-      {"label": "CryptoBriefing article", "url": "https://cryptobriefing.com/solana-tells-pepsi-to-stick-to-sugar-water-after-cringe-wagmi-exchange/"}
+      {
+        "label": "NFTevening report",
+        "url": "https://nftevening.com/pepsi-meta-budweiser-nft-crypto-conversation/"
+      },
+      {
+        "label": "CryptoBriefing article",
+        "url": "https://cryptobriefing.com/solana-tells-pepsi-to-stick-to-sugar-water-after-cringe-wagmi-exchange/"
+      }
     ],
     "metrics": {}
   },
@@ -7282,9 +7331,16 @@
     "date": "2024-05-24",
     "title": "Michael Saylor proclaims 'there is no second best'",
     "summary": "Speaking on May 24 2024, MicroStrategy executive chairman Michael Saylor reiterated his famous mantra that \"there is no second best\" digital asset. During a conference presentation he asserted that Bitcoin remains the only cryptocurrency worth considering, a view he has expressed repeatedly. The phrase has become emblematic of Bitcoin maximalism and is often quoted by supporters to dismiss alternative blockchains.",
-    "category": ["Bitcoin", "CT Lore"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "Bitcoin",
+      "CT Lore"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/no_second_best",
     "media": [
       {
@@ -7298,8 +7354,14 @@
       }
     ],
     "links": [
-      {"label": "Transcript of Saylor's talk", "url": "https://medium.com/@msaylor/transcript-there-is-no-second-best-bitcoin-talk"},
-      {"label": "Decrypt article", "url": "https://decrypt.co/171835/michael-saylor-softening-on-ethereum-there-is-no-second-best"}
+      {
+        "label": "Transcript of Saylor's talk",
+        "url": "https://medium.com/@msaylor/transcript-there-is-no-second-best-bitcoin-talk"
+      },
+      {
+        "label": "Decrypt article",
+        "url": "https://decrypt.co/171835/michael-saylor-softening-on-ethereum-there-is-no-second-best"
+      }
     ],
     "metrics": {}
   },
@@ -7308,9 +7370,15 @@
     "date": "2026-01-12",
     "title": "You're Gonna See The Brooklyn In Me",
     "summary": "On January 12 2026, former New York City mayor Eric Adams launched \"NYC Token\" as a memecoin to fund antisemitism initiatives. Buyers piled in but within hours the team began pulling liquidity as the price peaked, extracting around US$2.5 million and causing the token's market cap to fall from roughly $580 million to below $100 million. Blockchain analytics firm Bubblemaps observed large liquidity withdrawals from insider wallets, leading many to accuse the project of a rug pull. The team denied wrongdoing, claiming they were rebalancing liquidity, but investors felt misled.",
-    "category": ["Memecoins"],
-    "tags": ["FAILURE"],
-    "mode": ["crimeline"],
+    "category": [
+      "Memecoins"
+    ],
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nyctoken_announcement_adams",
     "media": [
       {
@@ -7329,9 +7397,18 @@
       }
     ],
     "links": [
-      {"label": "Guardian report", "url": "https://www.theguardian.com/technology/2026/jan/13/nyc-token-eric-adams-rug-pull-allegations"},
-      {"label": "Web3 Is Going Great timeline", "url": "https://www.web3isgoinggreat.com/?s=nyc-token"},
-      {"label": "Bubblemaps analysis", "url": "https://x.com/Bubblemaps/status/2011203811234567890"}
+      {
+        "label": "Guardian report",
+        "url": "https://www.theguardian.com/technology/2026/jan/13/nyc-token-eric-adams-rug-pull-allegations"
+      },
+      {
+        "label": "Web3 Is Going Great timeline",
+        "url": "https://www.web3isgoinggreat.com/?s=nyc-token"
+      },
+      {
+        "label": "Bubblemaps analysis",
+        "url": "https://x.com/Bubblemaps/status/2011203811234567890"
+      }
     ],
     "metrics": {},
     "crimeline": {
@@ -7352,9 +7429,16 @@
     "date": "2022-01-24",
     "title": "Paris Hilton and Jimmy Fallon Bored Ape NFT Moment",
     "summary": "On January 24 2022, Paris Hilton appeared on NBC's The Tonight Show and, together with host Jimmy Fallon, revealed their Bored Ape Yacht Club NFTs. The pair compared the apes' outfits and discussed accessories like hats and sunglasses before Hilton announced she would gift each audience member an NFT. The segment was widely mocked online for its awkward promotion of NFTs and is often cited as a peak of celebrity NFT hype.",
-    "category": ["NFTs", "Culture"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "NFTs",
+      "Culture"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/paris_jimmy",
     "media": [
       {
@@ -7368,7 +7452,10 @@
       }
     ],
     "links": [
-      {"label": "PC Gamer article", "url": "https://www.pcgamer.com/paris-hilton-and-jimmy-fallon-show-off-bored-ape-nfts-on-the-tonight-show/"}
+      {
+        "label": "PC Gamer article",
+        "url": "https://www.pcgamer.com/paris-hilton-and-jimmy-fallon-show-off-bored-ape-nfts-on-the-tonight-show/"
+      }
     ],
     "metrics": {}
   },
@@ -7377,9 +7464,16 @@
     "date": "2016-01-01",
     "title": "Paris Hilton Has Dinner With Ethereum Founders Way Back In 2016",
     "summary": "In 2016, before NFTs and crypto were mainstream, before ICOs, even before the DAO hack; Paris Hilton was having dinner with Ethereum co-founders. Hilton later recounted that the conversation piqued her interest in the industry and led her to invest in bitcoin and ethereum. Her early exposure positioned her to become one of the first celebrities to embrace NFTs years later. That's hot.",
-    "category": ["Ethereum", "Culture"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "Ethereum",
+      "Culture"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/paris_hilton_ethereum",
     "media": [
       {
@@ -7391,7 +7485,10 @@
       }
     ],
     "links": [
-      {"label": "Jezebel report", "url": "https://www.jezebel.com/whats-going-on-with-paris-hiltons-pivot-to-nft-influenc-1846724870"}
+      {
+        "label": "Jezebel report",
+        "url": "https://www.jezebel.com/whats-going-on-with-paris-hiltons-pivot-to-nft-influenc-1846724870"
+      }
     ],
     "metrics": {}
   },
@@ -7400,9 +7497,15 @@
     "date": "2024-04-13",
     "title": "Starknet has 8 users LMFAOOOOOOOOO",
     "summary": "On April 13 2024, crypto user @0xGolden_ tweeted that the Ethereum layer-2 network Starknet had only eight daily active users and ten transactions, yet commanded a billion-dollar market cap and a US$15 billion fully diluted valuation, finishing with \"LMFAOOOOOO... send it straight to 0\". Solana's official account amplified the tweet and told Starknet supporters to \"stick to sugar water\", sparking memetic debate across crypto Twitter. Solana would announce Starknet on Solana via Near-Intents.",
-    "category": ["CT Lore"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "CT Lore"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/starknet_8_users",
     "media": [
       {
@@ -7421,7 +7524,10 @@
       }
     ],
     "links": [
-      {"label": "CryptoBriefing report", "url": "https://cryptobriefing.com/solana-mocks-starknet-eight-daily-users/"}
+      {
+        "label": "CryptoBriefing report",
+        "url": "https://cryptobriefing.com/solana-mocks-starknet-eight-daily-users/"
+      }
     ],
     "metrics": {}
   },
@@ -7430,9 +7536,18 @@
     "date": "2021-11-07",
     "title": "Big Week Barry Silbert",
     "summary": "On November 7 2021, Digital Currency Group CEO Barry Silbert tweeted that it was going to be a \"big week\" without offering further details. The vague statement from the head of one of crypto's most influential companies led to speculation that the U.S. Securities and Exchange Commission might approve a spot Bitcoin exchange-traded fund or that other major developments were imminent.",
-    "category": ["Bitcoin", "Market Structure", "CT Lore"],
-    "tags": ["MILESTONE", "CT Lore"],
-    "mode": ["timeline"],
+    "category": [
+      "Bitcoin",
+      "Market Structure",
+      "CT Lore"
+    ],
+    "tags": [
+      "MILESTONE",
+      "CT Lore"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/big_week_barry",
     "media": [
       {
@@ -7453,7 +7568,10 @@
       }
     ],
     "links": [
-      {"label": "Trustnodes article", "url": "https://www.trustnodes.com/barry-silbert-big-week-tweet/"}
+      {
+        "label": "Trustnodes article",
+        "url": "https://www.trustnodes.com/barry-silbert-big-week-tweet/"
+      }
     ],
     "metrics": {}
   },
@@ -7462,14 +7580,26 @@
     "date": "2025-03-10",
     "title": "FaZe Banks Gives Us This Little Number",
     "summary": "FaZe Clan co-founder FaZe Banks went viral after a short dance clip circulated widely on Crypto Twitter. The video was the latest addition to a long line of famous crypto dances.",
-    "category": ["Dances", "Culture"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "Dances",
+      "Culture"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/faze_banks",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7480,7 +7610,10 @@
       }
     ],
     "links": [
-      { "label": "Viral Clip", "url": "https://x.com/sogiddy/status/2007295348050674090" }
+      {
+        "label": "Viral Clip",
+        "url": "https://x.com/sogiddy/status/2007295348050674090"
+      }
     ],
     "metrics": {}
   },
@@ -7489,14 +7622,27 @@
     "date": "2024-01-24",
     "title": "E-Beggars Rise Up Against Starknet",
     "summary": "A core Starknet contributor, publicly referred to community members who were repeatedly asking about the delayed airdrop status `as e-beggars` (short for `electronic beggars`) on social media. It blew up.",
-    "category": ["CT Lore", "Ethereum"],
-    "tags": ["CULTURAL", "FAILURE"],
-    "mode": ["timeline"],
+    "category": [
+      "CT Lore",
+      "Ethereum"
+    ],
+    "tags": [
+      "CULTURAL",
+      "FAILURE"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/beggars",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7515,7 +7661,10 @@
       }
     ],
     "links": [
-      { "label": "Starknet Targets Validators", "url": "https://thedefiant.io/news/defi/users-still-disgruntled-after-starknet-airdrop-fix-targets-mostly-validators" }
+      {
+        "label": "Starknet Targets Validators",
+        "url": "https://thedefiant.io/news/defi/users-still-disgruntled-after-starknet-airdrop-fix-targets-mostly-validators"
+      }
     ],
     "metrics": {}
   },
@@ -7524,9 +7673,16 @@
     "date": "2024-06-20",
     "title": "We Do Not Forgive, We Do Not Forget",
     "summary": "This lore dropped right around the zkSync airdrop snapshot/checker drama (early-mid June 2024), when many farmers got hit hard by Sybil detection rules and felt massively snubbed",
-    "category": ["CT Lore", "Market Structure"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "CT Lore",
+      "Market Structure"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/we%20do%20not%20forgive",
     "media": [
       {
@@ -7545,7 +7701,10 @@
       }
     ],
     "links": [
-      { "label": "Tweet", "url": "https://x.com/miladyalchemist/status/1800632909163880701" }
+      {
+        "label": "Tweet",
+        "url": "https://x.com/miladyalchemist/status/1800632909163880701"
+      }
     ],
     "metrics": {}
   },
@@ -7554,14 +7713,25 @@
     "date": "2025-03-20",
     "title": "DO I HAVE YOUR ATTENTION NOW?",
     "summary": "Good, I thought so.",
-    "category": ["CT Lore"],
-    "tags": ["CULTURAL"],
-    "mode": ["timeline"],
+    "category": [
+      "CT Lore"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/YOUR%20ATTENTION",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "https://youtu.be/fsVOmmu6PFk", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "https://youtu.be/fsVOmmu6PFk",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7572,7 +7742,10 @@
       }
     ],
     "links": [
-      { "label": "Viral Tweet", "url": "https://x.com/MoonOverlord/status/2011099255554130227" }
+      {
+        "label": "Viral Tweet",
+        "url": "https://x.com/MoonOverlord/status/2011099255554130227"
+      }
     ],
     "metrics": {}
   },
@@ -7581,14 +7754,27 @@
     "date": "2026-01-15",
     "title": "Twitter Bans Reward Apps, CT Rejoices",
     "summary": "Twitter banned applications that rewarded users for engagement, directly impacting crypto-native platforms like Kaito. Following the enforcement, Kaito’s price sharply declined, validating concerns that its growth relied heavily on incentive farming. The event was widely celebrated by CT due to the increased AI slop. ",
-    "category": ["Market Structure", "Culture"],
-    "tags": ["FAILURE", "REGULATORY"],
-    "mode": ["timeline"],
+    "category": [
+      "Market Structure",
+      "Culture"
+    ],
+    "tags": [
+      "FAILURE",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Screenshot%202026-01-15%20at%206.58.55%E2%80%AFPM.png",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7606,7 +7792,10 @@
       }
     ],
     "links": [
-      { "label": "Policy Change Commentary", "url": "https://x.com/nikitabier/status/2011825522817270230" }
+      {
+        "label": "Policy Change Commentary",
+        "url": "https://x.com/nikitabier/status/2011825522817270230"
+      }
     ],
     "metrics": {}
   },
@@ -7615,14 +7804,27 @@
     "date": "2022-03-15",
     "title": "Rogue Society NFT Rug Pull",
     "summary": "ZachXBT exposed the Rogue Society NFT project in March 2022 after tracing mint proceeds to wallets linked to prior rug pulls. Despite promises of game development and long-term plans, funds were rapidly moved out and the project went silent. Onchain evidence showed patterns consistent with serial NFT scams. The exposure reinforced ZachXBT's reputation for linking anonymous teams across multiple frauds.",
-    "category": ["NFTs", "ZachXBT"],
-    "tags": ["FAILURE", "SECURITY"],
-    "mode": ["crimeline"],
+    "category": [
+      "NFTs",
+      "ZachXBT"
+    ],
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/roguesociety",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7633,8 +7835,14 @@
       }
     ],
     "links": [
-      { "label": "ZachXBT Rogue Society", "url": "https://x.com/zachxbt/status/1517177549398368261?s=20" },
-      { "label": "ZachXBT profile", "url": "https://99bitcoins.com/people/who-is-zachxbt/" }
+      {
+        "label": "ZachXBT Rogue Society",
+        "url": "https://x.com/zachxbt/status/1517177549398368261?s=20"
+      },
+      {
+        "label": "ZachXBT profile",
+        "url": "https://99bitcoins.com/people/who-is-zachxbt/"
+      }
     ],
     "metrics": {},
     "crimeline": {
@@ -7656,14 +7864,26 @@
     "date": "2022-11-15",
     "title": "SolChicks Treasury Misuse",
     "summary": "In 2022, ZachXBT published findings showing that SolChicks NFT and token funds were being misused by insiders. Wallet analysis indicated large transfers to team-linked wallets and luxury spending while development stalled. The revelations contradicted public claims of responsible treasury management.",
-    "category": ["NFTs", "ZachXBT"],
-    "tags": ["FAILURE"],
-    "mode": ["crimeline"],
+    "category": [
+      "NFTs",
+      "ZachXBT"
+    ],
+    "tags": [
+      "FAILURE"
+    ],
+    "mode": [
+      "crimeline"
+    ],
     "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/solchicks",
     "media": [
       {
         "type": "video",
-        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
       },
       {
         "type": "twitter",
@@ -7681,8 +7901,14 @@
       }
     ],
     "links": [
-      { "label": "ZachXBT Thread", "url": "https://x.com/zachxbt/status/1592627498428567553?s=20" },
-      { "label": "ZachXBT Profile", "url": "https://99bitcoins.com/people/who-is-zachxbt/" }
+      {
+        "label": "ZachXBT Thread",
+        "url": "https://x.com/zachxbt/status/1592627498428567553?s=20"
+      },
+      {
+        "label": "ZachXBT Profile",
+        "url": "https://99bitcoins.com/people/who-is-zachxbt/"
+      }
     ],
     "metrics": {},
     "crimeline": {
@@ -7699,311 +7925,404 @@
       "status": "Partial recovery"
     }
   },
-    {
-      "id": "free-bob-lax-era-2025-04-01",
-      "date": "2025-04-01",
-      "title": "Free Bob Lax",
-      "summary": "Bob Lax is a crypto trader and online personality known for erratic behavior and memes. He went viral in 2025 for an Amazon review claiming a microwave was spying on him and radiating his brain, sparking conspiracy jokes and memecoins. He was arrested that year for battery and aggravated assault.",
-      "category": ["CT Lore", "Culture"],
-      "tags": ["CULTURAL"],
-      "mode": ["timeline"],
-      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bob_lax",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/cobie/status/2011763260455076250?s=20",
-            "account_handle": "cobie"
-          }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/inversebrah/status/2012023382620119310?s=20",
-            "account_handle": "inversebrah"
-          }
+  {
+    "id": "free-bob-lax-era-2025-04-01",
+    "date": "2025-04-01",
+    "title": "Free Bob Lax",
+    "summary": "Bob Lax is a crypto trader and online personality known for erratic behavior and memes. He went viral in 2025 for an Amazon review claiming a microwave was spying on him and radiating his brain, sparking conspiracy jokes and memecoins. He was arrested that year for battery and aggravated assault.",
+    "category": [
+      "CT Lore",
+      "Culture"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bob_lax",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
         }
-      ],
-      "links": [
-        { "label": "Cobie Tweet", "url": "https://x.com/cobie/status/2011763260455076250?s=20" },
-        { "label": "Inversebrah Tweet", "url": "https://x.com/inversebrah/status/2012023382620119310?s=20" }
-      ],
-      "metrics": {}
-    },
-    {
-      "id": "pumpfun-disables-livestreams-2024-11-26",
-      "date": "2024-11-26",
-      "title": "Pump.fun Disables Livestreams",
-      "summary": "Pump fun indefinitely disabled its livestreaming feature in late November 2024 following intense community backlash over extremely harmful and disturbing content. Users had broadcast extreme acts, including threats of violence, self-harm, animal abuse, explicit NSFW material, and other shocking stunts, often to hype and pump their memecoins' prices.",
-      "category": ["Memecoins", "Culture"],
-      "tags": ["CULTURAL"],
-      "mode": ["timeline"],
-      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pumpfun_lamps",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/GordonGekko/status/1860552859709833537?s=20",
-            "account_handle": "GordonGekko"
-          }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/cobie/status/2011763260455076250?s=20",
+          "account_handle": "cobie"
         }
-      ],
-      "links": [
-        {
-          "label": "Decrypt roundup of Pump.fun livestreams",
-          "url": "https://decrypt.co/298201/7-wildest-meme-coin-livestreams-pump-fun-2024"
-        },
-        {
-          "label": "Tweet Example",
-          "url": "https://x.com/GordonGekko/status/1860552859709833537?s=20"
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/inversebrah/status/2012023382620119310?s=20",
+          "account_handle": "inversebrah"
         }
-      ],
-      "metrics": {}
-    },
-  
-    {
-      "id": "gerald-cotten-quadrigacx-lore-2018-12-09",
-      "date": "2018-12-09",
-      "title": "Gerald Cotten Passes and The QuadrigaCX Mystery",
-      "summary": "Gerald Cotten founded QuadrigaCX in 2013, which became Canada's largest cryptocurrency exchange. In December 2018, Cotten died at age 30 in India from complications related to Crohn's disease, leaving only him with the passwords to cold wallets holding customer funds. This led to the exchange's collapse in early 2019, with around $190-250 million in cryptocurrency inaccessible or missing for over 100,000 users. Investigations revealed Quadriga operated as a fraud and Ponzi scheme, where Cotten used fake accounts to trade client assets, resulting in major losses from unauthorized trades and personal misappropriation. The scandal sparked widespread conspiracy theories about whether Cotten faked his death, though official reports confirmed the fraud was exposed by his actual passing.",
-      "category": ["Centralized Exchange", "CT Lore"],
-      "tags": ["FAILURE", "SECURITY"],
-      "mode": ["timeline"],
-      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gerald_cotten",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/QuadrigaCoinEx/status/1092870859876790272?s=20",
-            "account_handle": "QuadrigaCoinEx"
-          }
-        }
-      ],
-      "links": [
-        { "label": "Exit Scam Documentary", "url": "https://www.exitscam.show/" },
-        {
-          "label": "CBC Coverage Cotten",
-          "url": "https://www.cbc.ca/news/canada/nova-scotia/quadriga-widow-jennifer-roberston-gerald-cotten-1.6318955"
-        }
-      ],
-      "metrics": {}
-    },
-    {
-      "id": "zkasino-deposits-converted-zkas-2024-04-20",
-      "date": "2024-04-20",
-      "title": "ZKasino Converts Bridged ETH Deposits",
-      "summary": "On April 20, 2024, ZKasino announced that bridged ETH deposits would be converted into its native token ZKAS, reversing many users' expectations of redeeming ETH directly. Derivatives Monke is the pseudonymous founder (real name reportedly Elham Nourzai), who faced widespread accusations of executing a rug pull by converting user deposits into vested ZKAS tokens and staking the ETH on Lido instead of allowing refunds as initially promised. The controversy led to Dutch police arrests, refund attempts under pressure, and significant backlash, with the project ultimately collapsing amid scam allegations and liquidations of related positions.",
-      "category": ["DeFi", "Security", "ZachXBT"],
-      "tags": ["FAILURE", "SECURITY"],
-      "mode": ["crimeline"],
-      "image": "",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/belizardd/status/1781967178515796123?s=20",
-            "account_handle": ""
-          }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/zachxbt/status/1864672363754721703?s=20",
-            "account_handle": "ZachXBT"
-          }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/zachxbt/status/1934616622846931249?s=20",
-            "account_handle": "ZachXBT"
-          }
-        }
-      ],
-      "links": [
-        {
-          "label": "ZKasino Medium Post",
-          "url": "https://zkasino.medium.com/the-zkasino-network-goes-live-f39dfa1f740a"
-        },
-        {
-          "label": "DL News Coverage",
-          "url": "https://www.dlnews.com/articles/defi/police-arrest-linked-to-zkasino-crypto-scam-may-mean-justice/"
-        }
-      ],
-      "metrics": {},
-      "crimeline": {
-        "type": "RUG PULL",
-        "funds_lost_usd": 33000000,
-        "market_impact_usd": "~33000000",
-        "victims_estimated": "Thousands of wallets",
-        "root_cause": [
-          "Forced conversion of bridged ETH deposits into a newly issued platform token (ZKAS)",
-          "Unilateral rule change after deposits were locked",
-          "Custodial control of user deposits routed into staking and controlled wallets"
-        ],
-        "aftermath": "The incident prompted ongoing refund demands, public scrutiny of the team, and reporting tying the project to the pseudonymous founder Derivatives Monke, alongside law-enforcement attention in the Netherlands.",
-        "status": "Partial recovery"
       }
-    },
-    {
-      "id": "zachxbt-282m-hardware-wallet-scam-2026-01-10",
-      "date": "2026-01-10",
-      "title": "ZachXBT Reports ~$282M Social Engineering Scam",
-      "summary": "On January 10, 2026, investigator ZachXBT reported that a single victim lost about $282M in BTC and LTC in a social engineering scam connected to hardware wallet custody. The stolen assets were rapidly moved through instant exchanges and converted into Monero, which was cited as a driver of a sharp XMR price spike. Some funds were also routed through cross-chain paths including Thorchain. The case became one of the largest widely reported single-victim thefts and a major modern example of high-end social engineering risk.",
-      "category": ["Key Compromise", "ZachXBT"],
-      "tags": ["SECURITY", "ECONOMIC"],
-      "mode": ["crimeline"],
-      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/282m",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/zachxbt/status/2012212936735912351?s=20",
-            "account_handle": "zachxbt"
-          }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/0xQuit/status/2012281088270311934?s=20",
-            "account_handle": "0xQuit"
-          }
-        }
-      ],
-      "links": [
-        {
-          "label": "ZachXBT Thread",
-          "url": "https://x.com/zachxbt/status/2012212936735912351?s=20"
-        },
-        {
-          "label": "0xQuit Thread",
-          "url": "https://x.com/0xQuit/status/2012281088270311934?s=20"
-        },
-        {
-          "label": "Reporting",
-          "url": "https://crypto.news/hacker-stole-282m-in-bitcoin-and-litecoin-from-a-single-victim-zachxbt/"
-        }
-      ],
-      "metrics": {},
-      "crimeline": {
-        "type": "CUSTODY FAILURE",
-        "funds_lost_usd": 282000000,
-        "market_impact_usd": "XMR price spike",
-        "victims_estimated": "1",
-        "root_cause": [
-          "Social engineering targeting hardware wallet custody",
-          "Rapid laundering via instant exchanges",
-          "Conversion into privacy assets and cross-chain routing"
-        ],
-        "aftermath": "The theft drew broad attention to high-value operational security failures, fueled renewed discussion about hardware wallet threat models, and highlighted how quickly large thefts can be laundered through swaps and privacy rails.",
-        "status": "Ongoing"
+    ],
+    "links": [
+      {
+        "label": "Cobie Tweet",
+        "url": "https://x.com/cobie/status/2011763260455076250?s=20"
+      },
+      {
+        "label": "Inversebrah Tweet",
+        "url": "https://x.com/inversebrah/status/2012023382620119310?s=20"
       }
-    },
-    {
-      "id": "nate-chastain-opensea-insider-trading-charged-2022-06-01",
-      "date": "2022-06-01",
-      "title": "Former OpenSea employee Nate Chastain charged in first-ever digital asset insider trading case",
-      "summary": "On June 1, 2022, federal prosecutors in Manhattan charged former OpenSea product manager Nathaniel Chastain with wire fraud and money laundering tied to NFT trading. Prosecutors alleged he used confidential information about which NFTs would be featured on OpenSea's homepage to buy ahead of promotion and sell after visibility-driven price increases. The case was widely framed as the first insider trading prosecution involving digital assets and NFTs in the United States.",
-      "category": ["NFTs", "Regulation"],
-      "tags": ["REGULATORY", "MILESTONE"],
-      "mode": ["timeline"],
-      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nate",
-      "media": [
-        {
-          "type": "video",
-          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
-        },
-        {
-          "type": "twitter",
-          "twitter": {
-            "tweet_url": "https://x.com/digitalartchick/status/1438547791425454083?s=20",
-            "account_handle": ""
-          }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "pumpfun-disables-livestreams-2024-11-26",
+    "date": "2024-11-26",
+    "title": "Pump.fun Disables Livestreams",
+    "summary": "Pump fun indefinitely disabled its livestreaming feature in late November 2024 following intense community backlash over extremely harmful and disturbing content. Users had broadcast extreme acts, including threats of violence, self-harm, animal abuse, explicit NSFW material, and other shocking stunts, often to hype and pump their memecoins' prices.",
+    "category": [
+      "Memecoins",
+      "Culture"
+    ],
+    "tags": [
+      "CULTURAL"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pumpfun_lamps",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
         }
-      ],
-      "links": [
-        {
-          "label": "DOJ Press Release",
-          "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-charged-first-ever-digital-asset-insider-trading-scheme"
-        },
-        {
-          "label": "Reuters Coverage",
-          "url": "https://www.reuters.com/technology/opensea-employee-charged-with-insider-trading-nfts-2022-06-01/"
-        },
-        {
-          "label": "DOJ Press Release",
-          "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-sentenced-prison-first-ever-digital-asset-insider"
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/GordonGekko/status/1860552859709833537?s=20",
+          "account_handle": "GordonGekko"
         }
+      }
+    ],
+    "links": [
+      {
+        "label": "Decrypt roundup of Pump.fun livestreams",
+        "url": "https://decrypt.co/298201/7-wildest-meme-coin-livestreams-pump-fun-2024"
+      },
+      {
+        "label": "Tweet Example",
+        "url": "https://x.com/GordonGekko/status/1860552859709833537?s=20"
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "gerald-cotten-quadrigacx-lore-2018-12-09",
+    "date": "2018-12-09",
+    "title": "Gerald Cotten Passes and The QuadrigaCX Mystery",
+    "summary": "Gerald Cotten founded QuadrigaCX in 2013, which became Canada's largest cryptocurrency exchange. In December 2018, Cotten died at age 30 in India from complications related to Crohn's disease, leaving only him with the passwords to cold wallets holding customer funds. This led to the exchange's collapse in early 2019, with around $190-250 million in cryptocurrency inaccessible or missing for over 100,000 users. Investigations revealed Quadriga operated as a fraud and Ponzi scheme, where Cotten used fake accounts to trade client assets, resulting in major losses from unauthorized trades and personal misappropriation. The scandal sparked widespread conspiracy theories about whether Cotten faked his death, though official reports confirmed the fraud was exposed by his actual passing.",
+    "category": [
+      "Centralized Exchange",
+      "CT Lore"
+    ],
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gerald_cotten",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/QuadrigaCoinEx/status/1092870859876790272?s=20",
+          "account_handle": "QuadrigaCoinEx"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Exit Scam Documentary",
+        "url": "https://www.exitscam.show/"
+      },
+      {
+        "label": "CBC Coverage Cotten",
+        "url": "https://www.cbc.ca/news/canada/nova-scotia/quadriga-widow-jennifer-roberston-gerald-cotten-1.6318955"
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "zkasino-deposits-converted-zkas-2024-04-20",
+    "date": "2024-04-20",
+    "title": "ZKasino Converts Bridged ETH Deposits",
+    "summary": "On April 20, 2024, ZKasino announced that bridged ETH deposits would be converted into its native token ZKAS, reversing many users' expectations of redeeming ETH directly. Derivatives Monke is the pseudonymous founder (real name reportedly Elham Nourzai), who faced widespread accusations of executing a rug pull by converting user deposits into vested ZKAS tokens and staking the ETH on Lido instead of allowing refunds as initially promised. The controversy led to Dutch police arrests, refund attempts under pressure, and significant backlash, with the project ultimately collapsing amid scam allegations and liquidations of related positions.",
+    "category": [
+      "DeFi",
+      "Security",
+      "ZachXBT"
+    ],
+    "tags": [
+      "FAILURE",
+      "SECURITY"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "image": "",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/belizardd/status/1781967178515796123?s=20",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1864672363754721703?s=20",
+          "account_handle": "ZachXBT"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1934616622846931249?s=20",
+          "account_handle": "ZachXBT"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "ZKasino Medium Post",
+        "url": "https://zkasino.medium.com/the-zkasino-network-goes-live-f39dfa1f740a"
+      },
+      {
+        "label": "DL News Coverage",
+        "url": "https://www.dlnews.com/articles/defi/police-arrest-linked-to-zkasino-crypto-scam-may-mean-justice/"
+      }
+    ],
+    "metrics": {},
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 33000000,
+      "market_impact_usd": "~33000000",
+      "victims_estimated": "Thousands of wallets",
+      "root_cause": [
+        "Forced conversion of bridged ETH deposits into a newly issued platform token (ZKAS)",
+        "Unilateral rule change after deposits were locked",
+        "Custodial control of user deposits routed into staking and controlled wallets"
       ],
-      "metrics": {}
-    },
-    {
-        "id": "brian-armstrong-withdraws-support-clarity",
-        "date": "2026-01-14",
-        "title": "Brian Armstrong Withdraws Support for CLARITY Act",
-        "summary": "On January 14, 2026 Coinbase CEO Brian Armstrong announced via Twitter that the company would withdraw its support for the Senate Banking Committee’s draft of the Digital Asset Market CLARITY Act. Armstrong said the bill as written contained too many issues such as restrictions on tokenized equities and stablecoin rewards, making it worse than the status quo. The withdrawal led to the postponement of the scheduled Senate markup and heightened uncertainty around U.S. crypto market structure regulation. Additional, clarifying statements have been made expressing optimism about the bill being revised and passed.",
-        "category": ["Regulation", "Market Structure"],
-        "tags": ["ECONOMIC", "REGULATORY"],
-        "mode": ["timeline"],
-        "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/brian_withdraws",
-        "media": [
-          {
-            "type": "twitter",
-            "twitter": {
-              "tweet_url": "https://x.com/brian_armstrong/status/2011545247105355865",
-              "account_handle": "brian_armstrong"
-            }
-          },
-          {
-            "type": "twitter",
-            "twitter": {
-              "tweet_url": "https://x.com/brian_armstrong/status/2012612712044573151?s=20",
-              "account_handle": ""
-            }
-          },
-          {
-            "type": "twitter",
-            "twitter": {
-              "tweet_url": "https://x.com/EleanorTerrett/status/2012652331418980504?s=20",
-              "account_handle": ""
-            }
-          }
-        ],
-        "links": [
-          {
-            "label": "Armstrong Withdraws Support Tweet",
-            "url": "https://x.com/brian_armstrong/status/2011545247105355865"
-          },
-          {
-            "label": "Senate Markup Delayed",
-            "url": "https://coingape.com/crypto-bill-news-u-s-senate-postpones-thursdays-markup-as-coinbase-pulls-support/"
-          },
-          {
-            "label": "Reuters Coverage",
-            "url": "https://www.reuters.com/sustainability/boards-policy-regulation/coinbase-cannot-support-crypto-bill-current-form-ceo-armstrong-says-2026-01-15/"
-          }
-        ],
-        "metrics": {}
+      "aftermath": "The incident prompted ongoing refund demands, public scrutiny of the team, and reporting tying the project to the pseudonymous founder Derivatives Monke, alongside law-enforcement attention in the Netherlands.",
+      "status": "Partial recovery"
     }
-    
+  },
+  {
+    "id": "zachxbt-282m-hardware-wallet-scam-2026-01-10",
+    "date": "2026-01-10",
+    "title": "ZachXBT Reports ~$282M Social Engineering Scam",
+    "summary": "On January 10, 2026, investigator ZachXBT reported that a single victim lost about $282M in BTC and LTC in a social engineering scam connected to hardware wallet custody. The stolen assets were rapidly moved through instant exchanges and converted into Monero, which was cited as a driver of a sharp XMR price spike. Some funds were also routed through cross-chain paths including Thorchain. The case became one of the largest widely reported single-victim thefts and a major modern example of high-end social engineering risk.",
+    "category": [
+      "Key Compromise",
+      "ZachXBT"
+    ],
+    "tags": [
+      "SECURITY",
+      "ECONOMIC"
+    ],
+    "mode": [
+      "crimeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/282m",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/2012212936735912351?s=20",
+          "account_handle": "zachxbt"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/0xQuit/status/2012281088270311934?s=20",
+          "account_handle": "0xQuit"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "ZachXBT Thread",
+        "url": "https://x.com/zachxbt/status/2012212936735912351?s=20"
+      },
+      {
+        "label": "0xQuit Thread",
+        "url": "https://x.com/0xQuit/status/2012281088270311934?s=20"
+      },
+      {
+        "label": "Reporting",
+        "url": "https://crypto.news/hacker-stole-282m-in-bitcoin-and-litecoin-from-a-single-victim-zachxbt/"
+      }
+    ],
+    "metrics": {},
+    "crimeline": {
+      "type": "CUSTODY FAILURE",
+      "funds_lost_usd": 282000000,
+      "market_impact_usd": "XMR price spike",
+      "victims_estimated": "1",
+      "root_cause": [
+        "Social engineering targeting hardware wallet custody",
+        "Rapid laundering via instant exchanges",
+        "Conversion into privacy assets and cross-chain routing"
+      ],
+      "aftermath": "The theft drew broad attention to high-value operational security failures, fueled renewed discussion about hardware wallet threat models, and highlighted how quickly large thefts can be laundered through swaps and privacy rails.",
+      "status": "Ongoing"
+    }
+  },
+  {
+    "id": "nate-chastain-opensea-insider-trading-charged-2022-06-01",
+    "date": "2022-06-01",
+    "title": "Former OpenSea employee Nate Chastain charged in first-ever digital asset insider trading case",
+    "summary": "On June 1, 2022, federal prosecutors in Manhattan charged former OpenSea product manager Nathaniel Chastain with wire fraud and money laundering tied to NFT trading. Prosecutors alleged he used confidential information about which NFTs would be featured on OpenSea's homepage to buy ahead of promotion and sell after visibility-driven price increases. The case was widely framed as the first insider trading prosecution involving digital assets and NFTs in the United States.",
+    "category": [
+      "NFTs",
+      "Regulation"
+    ],
+    "tags": [
+      "REGULATORY",
+      "MILESTONE"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nate",
+    "media": [
+      {
+        "type": "video",
+        "video": {
+          "provider": "",
+          "url": "",
+          "embed_url": "",
+          "poster_url": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/digitalartchick/status/1438547791425454083?s=20",
+          "account_handle": ""
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "DOJ Press Release",
+        "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-charged-first-ever-digital-asset-insider-trading-scheme"
+      },
+      {
+        "label": "Reuters Coverage",
+        "url": "https://www.reuters.com/technology/opensea-employee-charged-with-insider-trading-nfts-2022-06-01/"
+      },
+      {
+        "label": "DOJ Press Release",
+        "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-sentenced-prison-first-ever-digital-asset-insider"
+      }
+    ],
+    "metrics": {}
+  },
+  {
+    "id": "brian-armstrong-withdraws-support-clarity",
+    "date": "2026-01-14",
+    "title": "Brian Armstrong Withdraws Support for CLARITY Act",
+    "summary": "On January 14, 2026 Coinbase CEO Brian Armstrong announced via Twitter that the company would withdraw its support for the Senate Banking Committee’s draft of the Digital Asset Market CLARITY Act. Armstrong said the bill as written contained too many issues such as restrictions on tokenized equities and stablecoin rewards, making it worse than the status quo. The withdrawal led to the postponement of the scheduled Senate markup and heightened uncertainty around U.S. crypto market structure regulation. Additional, clarifying statements have been made expressing optimism about the bill being revised and passed.",
+    "category": [
+      "Regulation",
+      "Market Structure"
+    ],
+    "tags": [
+      "ECONOMIC",
+      "REGULATORY"
+    ],
+    "mode": [
+      "timeline"
+    ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/brian_withdraws",
+    "media": [
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/brian_armstrong/status/2011545247105355865",
+          "account_handle": "brian_armstrong"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/brian_armstrong/status/2012612712044573151?s=20",
+          "account_handle": ""
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/EleanorTerrett/status/2012652331418980504?s=20",
+          "account_handle": ""
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "Armstrong Withdraws Support Tweet",
+        "url": "https://x.com/brian_armstrong/status/2011545247105355865"
+      },
+      {
+        "label": "Senate Markup Delayed",
+        "url": "https://coingape.com/crypto-bill-news-u-s-senate-postpones-thursdays-markup-as-coinbase-pulls-support/"
+      },
+      {
+        "label": "Reuters Coverage",
+        "url": "https://www.reuters.com/sustainability/boards-policy-regulation/coinbase-cannot-support-crypto-bill-current-form-ceo-armstrong-says-2026-01-15/"
+      }
+    ],
+    "metrics": {}
+  },
+  {}
 ]
