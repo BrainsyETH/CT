@@ -7609,5 +7609,94 @@
       { "label": "Policy Change Commentary", "url": "https://x.com/nikitabier/status/2011825522817270230" }
     ],
     "metrics": {}
+  },
+  {
+    "id": "rogue-society-nft-rug-exposed-2022-03-15",
+    "date": "2022-03-15",
+    "title": "Rogue Society NFT Rug Pull",
+    "summary": "ZachXBT exposed the Rogue Society NFT project in March 2022 after tracing mint proceeds to wallets linked to prior rug pulls. Despite promises of game development and long-term plans, funds were rapidly moved out and the project went silent. Onchain evidence showed patterns consistent with serial NFT scams. The exposure reinforced ZachXBT's reputation for linking anonymous teams across multiple frauds.",
+    "category": ["NFTs", "ZachXBT"],
+    "tags": ["FAILURE", "SECURITY"],
+    "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/roguesociety",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1517177549398368261?s=20",
+          "account_handle": "zachxbt"
+        }
+      }
+    ],
+    "links": [
+      { "label": "ZachXBT Rogue Society", "url": "https://x.com/zachxbt/status/1517177549398368261?s=20" },
+      { "label": "ZachXBT profile", "url": "https://99bitcoins.com/people/who-is-zachxbt/" }
+    ],
+    "metrics": {},
+    "crimeline": {
+      "type": "RUG PULL",
+      "funds_lost_usd": 5000000,
+      "market_impact_usd": "~5M",
+      "victims_estimated": "Hundreds of wallets",
+      "root_cause": [
+        "Anonymous team with prior scam-linked wallets",
+        "Immediate treasury drain after mint",
+        "No delivered product or follow-up communication"
+      ],
+      "aftermath": "The project disappeared, and the wallets were permanently labeled across CT and on-chain analytics tools.",
+      "status": "Total loss"
+    }
+  },
+  {
+    "id": "solchicks-nft-misuse-exposed-2022-04-20",
+    "date": "2022-11-15",
+    "title": "SolChicks Treasury Misuse",
+    "summary": "In 2022, ZachXBT published findings showing that SolChicks NFT and token funds were being misused by insiders. Wallet analysis indicated large transfers to team-linked wallets and luxury spending while development stalled. The revelations contradicted public claims of responsible treasury management.",
+    "category": ["NFTs", "ZachXBT"],
+    "tags": ["FAILURE"],
+    "mode": ["crimeline"],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/solchicks",
+    "media": [
+      {
+        "type": "video",
+        "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1592627498428567553?s=20",
+          "account_handle": "zachxbt"
+        }
+      },
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt/status/1466201971149479940?s=20",
+          "account_handle": "zachxbt"
+        }
+      }
+    ],
+    "links": [
+      { "label": "ZachXBT Thread", "url": "https://x.com/zachxbt/status/1592627498428567553?s=20" },
+      { "label": "ZachXBT Profile", "url": "https://99bitcoins.com/people/who-is-zachxbt/" }
+    ],
+    "metrics": {},
+    "crimeline": {
+      "type": "FRAUD",
+      "funds_lost_usd": 20000000,
+      "market_impact_usd": "~20M",
+      "victims_estimated": "Thousands of NFT and token holders",
+      "root_cause": [
+        "Insider-controlled wallets extracting treasury funds",
+        "Lack of transparency around spending",
+        "Failure to deliver promised game milestones"
+      ],
+      "aftermath": "Community trust collapsed, token value fell sharply, and SolChicks became a cautionary case in Solana NFT history.",
+      "status": "Partial recovery"
+    }
   }
 ]

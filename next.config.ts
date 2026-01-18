@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "99bitcoins.com",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
       },
       {
@@ -25,11 +29,19 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "img.paragraph.com",
+      },
+      {
+        protocol: "https",
         hostname: "asset-metadata-service-production.s3.amazonaws.com",
       },
       {
         protocol: "https",
         hostname: "placeholder.co",
+      },
+      {
+        protocol: "https",
+        hostname: "preview.redd.it",
       },
       {
         protocol: "https",
