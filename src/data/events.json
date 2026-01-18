@@ -7956,5 +7956,54 @@
         }
       ],
       "metrics": {}
+    },
+    {
+        "id": "brian-armstrong-withdraws-support-clarity",
+        "date": "2026-01-14",
+        "title": "Brian Armstrong Withdraws Support for CLARITY Act",
+        "summary": "On January 14, 2026 Coinbase CEO Brian Armstrong announced via Twitter that the company would withdraw its support for the Senate Banking Committee’s draft of the Digital Asset Market CLARITY Act. Armstrong said the bill as written contained too many issues such as restrictions on tokenized equities and stablecoin rewards, making it worse than the status quo. The withdrawal led to the postponement of the scheduled Senate markup and heightened uncertainty around U.S. crypto market structure regulation. Additional, clarifying statements have been made expressing optimism about the bill being revised and passed.",
+        "category": ["Regulation", "Market Structure"],
+        "tags": ["ECONOMIC", "REGULATORY"],
+        "mode": ["timeline"],
+        "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/brian_withdraws",
+        "media": [
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/brian_armstrong/status/2011545247105355865",
+              "account_handle": "brian_armstrong"
+            }
+          },
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/brian_armstrong/status/2012612712044573151?s=20",
+              "account_handle": ""
+            }
+          },
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/EleanorTerrett/status/2012652331418980504?s=20",
+              "account_handle": ""
+            }
+          }
+        ],
+        "links": [
+          {
+            "label": "Armstrong Withdraws Support Tweet",
+            "url": "https://x.com/brian_armstrong/status/2011545247105355865"
+          },
+          {
+            "label": "Senate Markup Delayed",
+            "url": "https://coingape.com/crypto-bill-news-u-s-senate-postpones-thursdays-markup-as-coinbase-pulls-support/"
+          },
+          {
+            "label": "Reuters Coverage",
+            "url": "https://www.reuters.com/sustainability/boards-policy-regulation/coinbase-cannot-support-crypto-bill-current-form-ceo-armstrong-says-2026-01-15/"
+          }
+        ],
+        "metrics": {}
     }
+    
 ]

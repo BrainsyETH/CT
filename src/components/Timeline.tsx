@@ -57,6 +57,11 @@ export function Timeline({ events }: TimelineProps) {
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
     let filtered = events.filter((event) => {
+      // Guard against malformed data entries
+      if (typeof event?.title !== "string" || typeof event?.summary !== "string") {
+        return false;
+      }
+
       // Mode filter - handle both string and array formats
       const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
       if (mode === "timeline") {
@@ -71,13 +76,16 @@ export function Timeline({ events }: TimelineProps) {
         const query = searchQuery.toLowerCase();
         const matchesTitle = event.title.toLowerCase().includes(query);
         const matchesSummary = event.summary.toLowerCase().includes(query);
-        const categories = Array.isArray(event.category) ? event.category : [event.category];
-        const matchesCategory = categories.some((cat) =>
-          cat.toLowerCase().includes(query)
+
+        const categoriesRaw = Array.isArray(event.category) ? event.category : [event.category];
+        const categories = categoriesRaw.filter((cat): cat is string => typeof cat === "string");
+        const matchesCategory = categories.some((cat) => cat.toLowerCase().includes(query));
+
+        const tags = Array.isArray(event.tags) ? (event.tags as unknown[]) : [];
+        const matchesTags = tags.some(
+          (tag) => typeof tag === "string" && tag.toLowerCase().includes(query)
         );
-        const matchesTags = event.tags.some((tag) =>
-          tag.toLowerCase().includes(query)
-        );
+
         if (!matchesTitle && !matchesSummary && !matchesCategory && !matchesTags) {
           return false;
         }
