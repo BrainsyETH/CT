@@ -112,9 +112,11 @@ export function Timeline({ events }: TimelineProps) {
 
     // Sort by date (YYYY-MM-DD strings sort correctly)
     filtered.sort((a, b) => {
+      const aDate = a.date ?? "";
+      const bDate = b.date ?? "";
       return sortOrder === "asc"
-        ? a.date.localeCompare(b.date)
-        : b.date.localeCompare(a.date);
+        ? aDate.localeCompare(bDate)
+        : bDate.localeCompare(aDate);
     });
 
     return filtered;
@@ -126,6 +128,9 @@ export function Timeline({ events }: TimelineProps) {
 
     filteredEvents.forEach((event) => {
       const year = getYear(event.date);
+      if (year === null) {
+        return;
+      }
       if (!groups.has(year)) {
         groups.set(year, []);
       }

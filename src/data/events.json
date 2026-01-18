@@ -6871,7 +6871,7 @@
     "mode": [
       "crimeline"
     ],
-    "image": "",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Genesis_creditors",
     "media": [
       {
         "type": "video",
@@ -7094,7 +7094,7 @@
   {
     "id": "hz-chase-senecal-phishing",
     "date": "2023-02-03",
-    "title": "HZ (Chase Senecal) NFT Phishing Scams",
+    "title": "HZ NFT Phishing Scams",
     "summary": "Chase Senecal, operating under aliases 'HZ' and 'Horror,' ran a targeted NFT phishing operation stealing over $260K from high-value NFT collectors using sophisticated wallet approval phishing techniques. Victims were tricked into signing malicious transactions that granted Senecal access to their wallets. ZachXBT's investigation meticulously tracked stolen NFTs and connected multiple wallets to Senecal's identity through social media cross-referencing and on-chain analysis. The investigation directly led to FBI involvement and landmark seizures.",
     "category": [
       "Key Compromise",
@@ -7698,5 +7698,263 @@
       "aftermath": "Community trust collapsed, token value fell sharply, and SolChicks became a cautionary case in Solana NFT history.",
       "status": "Partial recovery"
     }
-  }
+  },
+    {
+      "id": "free-bob-lax-era-2025-04-01",
+      "date": "2025-04-01",
+      "title": "Free Bob Lax",
+      "summary": "Bob Lax is a crypto trader and online personality known for erratic behavior and memes. He went viral in 2025 for an Amazon review claiming a microwave was spying on him and radiating his brain, sparking conspiracy jokes and memecoins. He was arrested that year for battery and aggravated assault.",
+      "category": ["CT Lore", "Culture"],
+      "tags": ["CULTURAL"],
+      "mode": ["timeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/bob_lax",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/cobie/status/2011763260455076250?s=20",
+            "account_handle": "cobie"
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/inversebrah/status/2012023382620119310?s=20",
+            "account_handle": "inversebrah"
+          }
+        }
+      ],
+      "links": [
+        { "label": "Cobie Tweet", "url": "https://x.com/cobie/status/2011763260455076250?s=20" },
+        { "label": "Inversebrah Tweet", "url": "https://x.com/inversebrah/status/2012023382620119310?s=20" }
+      ],
+      "metrics": {}
+    },
+    {
+      "id": "pumpfun-disables-livestreams-2024-11-26",
+      "date": "2024-11-26",
+      "title": "Pump.fun Disables Livestreams",
+      "summary": "Pump fun indefinitely disabled its livestreaming feature in late November 2024 following intense community backlash over extremely harmful and disturbing content. Users had broadcast extreme acts, including threats of violence, self-harm, animal abuse, explicit NSFW material, and other shocking stunts, often to hype and pump their memecoins' prices.",
+      "category": ["Memecoins", "Culture"],
+      "tags": ["CULTURAL"],
+      "mode": ["timeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pumpfun_lamps",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/GordonGekko/status/1860552859709833537?s=20",
+            "account_handle": "GordonGekko"
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "Decrypt roundup of Pump.fun livestreams",
+          "url": "https://decrypt.co/298201/7-wildest-meme-coin-livestreams-pump-fun-2024"
+        },
+        {
+          "label": "Tweet Example",
+          "url": "https://x.com/GordonGekko/status/1860552859709833537?s=20"
+        }
+      ],
+      "metrics": {}
+    },
+  
+    {
+      "id": "gerald-cotten-quadrigacx-lore-2018-12-09",
+      "date": "2018-12-09",
+      "title": "Gerald Cotten Passes and The QuadrigaCX Mystery",
+      "summary": "Gerald Cotten founded QuadrigaCX in 2013, which became Canada's largest cryptocurrency exchange. In December 2018, Cotten died at age 30 in India from complications related to Crohn's disease, leaving only him with the passwords to cold wallets holding customer funds. This led to the exchange's collapse in early 2019, with around $190-250 million in cryptocurrency inaccessible or missing for over 100,000 users. Investigations revealed Quadriga operated as a fraud and Ponzi scheme, where Cotten used fake accounts to trade client assets, resulting in major losses from unauthorized trades and personal misappropriation. The scandal sparked widespread conspiracy theories about whether Cotten faked his death, though official reports confirmed the fraud was exposed by his actual passing.",
+      "category": ["Centralized Exchange", "CT Lore"],
+      "tags": ["FAILURE", "SECURITY"],
+      "mode": ["timeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/gerald_cotten",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/QuadrigaCoinEx/status/1092870859876790272?s=20",
+            "account_handle": "QuadrigaCoinEx"
+          }
+        }
+      ],
+      "links": [
+        { "label": "Exit Scam Documentary", "url": "https://www.exitscam.show/" },
+        {
+          "label": "CBC Coverage Cotten",
+          "url": "https://www.cbc.ca/news/canada/nova-scotia/quadriga-widow-jennifer-roberston-gerald-cotten-1.6318955"
+        }
+      ],
+      "metrics": {}
+    },
+    {
+      "id": "zkasino-deposits-converted-zkas-2024-04-20",
+      "date": "2024-04-20",
+      "title": "ZKasino Converts Bridged ETH Deposits",
+      "summary": "On April 20, 2024, ZKasino announced that bridged ETH deposits would be converted into its native token ZKAS, reversing many users' expectations of redeeming ETH directly. Derivatives Monke is the pseudonymous founder (real name reportedly Elham Nourzai), who faced widespread accusations of executing a rug pull by converting user deposits into vested ZKAS tokens and staking the ETH on Lido instead of allowing refunds as initially promised. The controversy led to Dutch police arrests, refund attempts under pressure, and significant backlash, with the project ultimately collapsing amid scam allegations and liquidations of related positions.",
+      "category": ["DeFi", "Security", "ZachXBT"],
+      "tags": ["FAILURE", "SECURITY"],
+      "mode": ["crimeline"],
+      "image": "",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/belizardd/status/1781967178515796123?s=20",
+            "account_handle": ""
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/zachxbt/status/1864672363754721703?s=20",
+            "account_handle": "ZachXBT"
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/zachxbt/status/1934616622846931249?s=20",
+            "account_handle": "ZachXBT"
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "ZKasino Medium Post",
+          "url": "https://zkasino.medium.com/the-zkasino-network-goes-live-f39dfa1f740a"
+        },
+        {
+          "label": "DL News Coverage",
+          "url": "https://www.dlnews.com/articles/defi/police-arrest-linked-to-zkasino-crypto-scam-may-mean-justice/"
+        }
+      ],
+      "metrics": {},
+      "crimeline": {
+        "type": "RUG PULL",
+        "funds_lost_usd": 33000000,
+        "market_impact_usd": "~33000000",
+        "victims_estimated": "Thousands of wallets",
+        "root_cause": [
+          "Forced conversion of bridged ETH deposits into a newly issued platform token (ZKAS)",
+          "Unilateral rule change after deposits were locked",
+          "Custodial control of user deposits routed into staking and controlled wallets"
+        ],
+        "aftermath": "The incident prompted ongoing refund demands, public scrutiny of the team, and reporting tying the project to the pseudonymous founder Derivatives Monke, alongside law-enforcement attention in the Netherlands.",
+        "status": "Partial recovery"
+      }
+    },
+    {
+      "id": "zachxbt-282m-hardware-wallet-scam-2026-01-10",
+      "date": "2026-01-10",
+      "title": "ZachXBT Reports ~$282M Social Engineering Scam",
+      "summary": "On January 10, 2026, investigator ZachXBT reported that a single victim lost about $282M in BTC and LTC in a social engineering scam connected to hardware wallet custody. The stolen assets were rapidly moved through instant exchanges and converted into Monero, which was cited as a driver of a sharp XMR price spike. Some funds were also routed through cross-chain paths including Thorchain. The case became one of the largest widely reported single-victim thefts and a major modern example of high-end social engineering risk.",
+      "category": ["Key Compromise", "ZachXBT"],
+      "tags": ["SECURITY", "ECONOMIC"],
+      "mode": ["crimeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/282m",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/zachxbt/status/2012212936735912351?s=20",
+            "account_handle": "zachxbt"
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/0xQuit/status/2012281088270311934?s=20",
+            "account_handle": "0xQuit"
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "ZachXBT Thread",
+          "url": "https://x.com/zachxbt/status/2012212936735912351?s=20"
+        },
+        {
+          "label": "0xQuit Thread",
+          "url": "https://x.com/0xQuit/status/2012281088270311934?s=20"
+        },
+        {
+          "label": "Reporting",
+          "url": "https://crypto.news/hacker-stole-282m-in-bitcoin-and-litecoin-from-a-single-victim-zachxbt/"
+        }
+      ],
+      "metrics": {},
+      "crimeline": {
+        "type": "CUSTODY FAILURE",
+        "funds_lost_usd": 282000000,
+        "market_impact_usd": "XMR price spike",
+        "victims_estimated": "1",
+        "root_cause": [
+          "Social engineering targeting hardware wallet custody",
+          "Rapid laundering via instant exchanges",
+          "Conversion into privacy assets and cross-chain routing"
+        ],
+        "aftermath": "The theft drew broad attention to high-value operational security failures, fueled renewed discussion about hardware wallet threat models, and highlighted how quickly large thefts can be laundered through swaps and privacy rails.",
+        "status": "Ongoing"
+      }
+    },
+    {
+      "id": "nate-chastain-opensea-insider-trading-charged-2022-06-01",
+      "date": "2022-06-01",
+      "title": "Former OpenSea employee Nate Chastain charged in first-ever digital asset insider trading case",
+      "summary": "On June 1, 2022, federal prosecutors in Manhattan charged former OpenSea product manager Nathaniel Chastain with wire fraud and money laundering tied to NFT trading. Prosecutors alleged he used confidential information about which NFTs would be featured on OpenSea's homepage to buy ahead of promotion and sell after visibility-driven price increases. The case was widely framed as the first insider trading prosecution involving digital assets and NFTs in the United States.",
+      "category": ["NFTs", "Regulation"],
+      "tags": ["REGULATORY", "MILESTONE"],
+      "mode": ["timeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/nate",
+      "media": [
+        {
+          "type": "video",
+          "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/digitalartchick/status/1438547791425454083?s=20",
+            "account_handle": ""
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "DOJ Press Release",
+          "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-charged-first-ever-digital-asset-insider-trading-scheme"
+        },
+        {
+          "label": "Reuters Coverage",
+          "url": "https://www.reuters.com/technology/opensea-employee-charged-with-insider-trading-nfts-2022-06-01/"
+        },
+        {
+          "label": "DOJ Press Release",
+          "url": "https://www.justice.gov/usao-sdny/pr/former-employee-nft-marketplace-sentenced-prison-first-ever-digital-asset-insider"
+        }
+      ],
+      "metrics": {}
+    }
 ]

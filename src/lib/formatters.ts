@@ -4,9 +4,26 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
  * Format a date string to "MMM d, yyyy" format (e.g., "Nov 11, 2022")
  * Parses YYYY-MM-DD directly without timezone conversion.
  */
-export function formatDate(dateString: string): string {
-  const [year, month, day] = dateString.split('-').map(Number);
-  return `${MONTHS[month - 1]} ${day}, ${year}`;
+export function formatDate(dateString: string | null | undefined): string {
+  if (typeof dateString !== "string") {
+    return "";
+  }
+
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+  if (!match) {
+    return dateString;
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+
+  const monthName = MONTHS[month - 1];
+  if (!monthName || !Number.isFinite(year) || !Number.isFinite(month) || !Number.isFinite(day)) {
+    return dateString;
+  }
+
+  return `${monthName} ${day}, ${year}`;
 }
 
 /**
@@ -46,6 +63,16 @@ export function formatNumber(value: number): string {
 /**
  * Extract year from ISO date string (YYYY-MM-DD)
  */
-export function getYear(dateString: string): number {
-  return parseInt(dateString.split('-')[0], 10);
+export function getYear(dateString: string | null | undefined): number | null {
+  if (typeof dateString !== "string") {
+    return null;
+  }
+
+  const match = /^(\d{4})-/.exec(dateString);
+  if (!match) {
+    return null;
+  }
+
+  const year = Number.parseInt(match[1], 10);
+  return Number.isFinite(year) ? year : null;
 }
