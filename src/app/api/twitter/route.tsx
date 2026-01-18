@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
             >
               <span
                 style={{
-                  fontSize: title.length > 50 ? "34px" : "42px",
+                  fontSize: "30px",
                   fontWeight: 900,
                   color: colors.text,
                   lineHeight: 1.15,
