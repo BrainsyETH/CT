@@ -154,3 +154,21 @@ export interface FarcasterPostPayload {
   text: string;
   embeds: { url: string }[];
 }
+
+// Twitter Bot types
+export interface TwitterBotPost {
+  id: string;
+  post_date: string; // ISO date string in America/Chicago
+  slot_index: number; // 0-4
+  slot_hour: number; // 10, 13, 16, 19, or 22
+  event_id: string;
+  event_date: string; // ISO date string
+  tweet_id: string;
+  tweet_url: string | null;
+  posted_at: string; // ISO timestamp
+}
+
+export interface TwitterPostPayload {
+  text: string;
+  eventUrl: string;
+}
