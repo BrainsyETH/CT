@@ -2751,11 +2751,10 @@
         }
       },
       {
-        "type": "image",
-        "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/lookonchain/status/2012915717553938867?s=20",
+          "account_handle": ""
         }
       },
       {
