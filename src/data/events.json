@@ -6788,7 +6788,9 @@
     "date": "2026-01-10",
     "title": "Nikita Says Crypto Twitter Is \"Dying From Suicide\"",
     "summary": "Nikita Bier sparked backlash on Crypto Twitter after claiming that CT is \"dying from suicide,\" arguing that the community is harming itself through low-quality engagement farming, rather than being suppressed solely by platform algorithms. The comments quickly became a flashpoint in ongoing debates about CT's decline on Twitter, engagement farming, and the impact of their recent algorithm changes.",
-    "category": "CT Lore",
+    "category": [
+      "CT Lore"
+    ],
     "tags": [
       "CULTURAL"
     ],
@@ -8638,7 +8640,7 @@
         },
 
         {
-          "id": "mev-bot-pirate-negotiation-2025",
+          "id": "parity-wallet-kill-2017-11-06",
           "date": "2017-11-06",
           "title": "anyone can kill your contract",
           "summary": "I accidentally killed it.",
