@@ -94,6 +94,7 @@ interface DatabaseEvent {
   media: any;
   links: any;
   metrics: any;
+  crimeline: any;
 }
 
 /**
@@ -122,6 +123,7 @@ function transformEvent(event: Event): DatabaseEvent {
     media: event.media || [],
     links: event.links || [],
     metrics: event.metrics || {},
+    crimeline: (event as any).crimeline || null,
   };
 }
 
