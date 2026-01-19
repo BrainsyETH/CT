@@ -482,6 +482,12 @@ textarea:focus-visible {
   color: #f3f4f6;
 }
 
+.neo-brutalist-pill-cobie {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+  color: #475569;
+}
+
 /* Pill variants for crimeline mode (dark) */
 .neo-brutalist-pill-dark {
   box-shadow: 2px 2px 0px rgba(124, 58, 237, 0.2);

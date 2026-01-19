@@ -447,8 +447,10 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                     let colorClass = "";
                     if (isCtLore) {
                       colorClass = "neo-brutalist-pill-sky";
-                    } else if (isZachXBT || isCobie) {
+                    } else if (isZachXBT) {
                       colorClass = "neo-brutalist-pill-gray";
+                    } else if (isCobie) {
+                      colorClass = "neo-brutalist-pill-cobie";
                     } else {
                       colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
                     }
@@ -688,8 +690,10 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                           className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
                             isCtLore
                               ? "bg-sky-100 text-sky-700 border border-sky-300"
-                              : isZachXBT || isCobie
+                              : isZachXBT
                                 ? "bg-gray-800 text-gray-100 border border-gray-600"
+                                : isCobie
+                                  ? "bg-slate-200 text-slate-700 border border-slate-400"
                                 : isCrimeline
                                   ? "bg-purple-900/50 text-purple-300 border border-purple-800"
                                   : "bg-teal-100 text-teal-700 border border-teal-300"
@@ -705,8 +709,10 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                             className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
                               isCtLore
                                 ? "hover:bg-sky-500"
-                                : isZachXBT || isCobie
+                                : isZachXBT
                                   ? "hover:bg-gray-500"
+                                  : isCobie
+                                    ? "hover:bg-slate-400"
                                   : isCrimeline
                                     ? "hover:bg-purple-500"
                                     : "hover:bg-teal-500"

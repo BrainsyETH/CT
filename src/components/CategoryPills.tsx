@@ -73,8 +73,10 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
         let colorClass = "";
         if (isCtLore) {
           colorClass = "neo-brutalist-pill-sky";
-        } else if (isZachXBT || isCobie) {
+        } else if (isZachXBT) {
           colorClass = "neo-brutalist-pill-gray";
+        } else if (isCobie) {
+          colorClass = "neo-brutalist-pill-cobie";
         } else if (isCrimeline) {
           colorClass = "neo-brutalist-pill-purple";
         } else {
