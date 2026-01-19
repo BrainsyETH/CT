@@ -137,12 +137,13 @@ export async function getEventsOnThisDay(
   const month = date.getMonth() + 1; // 1-12
   const day = date.getDate(); // 1-31
 
-  // Use raw SQL for month/day extraction
+  // Use a DB view that exposes computed month/day columns for correct + efficient filtering.
+  // See: scripts/supabase/events_month_day_view.sql
   let query = client
-    .from("events")
-    .select("*")
-    .filter("date", "gte", `0001-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`)
-    .filter("date", "lte", `9999-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
+    .from("events_with_month_day")
+    .select("id,date,title,summary,category,tags,mode,image,media,links,metrics,crimeline")
+    .eq("month", month)
+    .eq("day", day);
 
   // Apply mode filter if specified
   if (options?.mode && options.mode.length > 0) {
@@ -164,16 +165,7 @@ export async function getEventsOnThisDay(
     throw error;
   }
 
-  // Additional client-side filter to ensure exact month/day match
-  // (The SQL filter above is a range approximation)
-  const filteredData = (data || []).filter((event) => {
-    const eventDate = new Date(event.date + "T00:00:00Z");
-    const eventMonth = eventDate.getUTCMonth() + 1;
-    const eventDay = eventDate.getUTCDate();
-    return eventMonth === month && eventDay === day;
-  });
-
-  return filteredData as Event[];
+  return (data || []) as unknown as Event[];
 }
 
 /**
