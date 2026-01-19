@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
 
     // Get the event for this slot
     const chicagoTime = new Date(postDate + "T00:00:00Z");
-    const event = getEventForSlot(chicagoTime, currentSlot.index);
+    const event = await getEventForSlot(chicagoTime, currentSlot.index);
 
     if (!event) {
       // No event for this slot - this is OK, just skip

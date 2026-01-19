@@ -1,11 +1,9 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import eventsData from "@/data/events.json";
+import { getEventById } from "@/lib/events-db";
 import type { Event } from "@/lib/types";
 import { formatDate } from "@/lib/formatters";
-
-const events = eventsData as Event[];
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -19,7 +17,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const event = events.find((e) => e.id === id);
+  const event = await getEventById(id);
 
   if (!event) {
     return {
