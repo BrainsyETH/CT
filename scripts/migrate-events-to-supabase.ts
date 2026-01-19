@@ -98,16 +98,26 @@ interface DatabaseEvent {
 
 /**
  * Transform event from JSON format to database format
+ * Ensures all array fields are properly formatted
  */
 function transformEvent(event: Event): DatabaseEvent {
+  // Helper to ensure value is an array
+  const ensureArray = (value: any): string[] => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    // If it's a string, wrap it in an array
+    if (typeof value === "string") return [value];
+    return [];
+  };
+
   return {
     id: event.id,
     date: event.date,
     title: event.title,
     summary: event.summary,
-    category: event.category || [],
-    tags: event.tags || [],
-    mode: event.mode || [],
+    category: ensureArray((event as any).category),
+    tags: ensureArray((event as any).tags),
+    mode: ensureArray((event as any).mode),
     image: event.image || null,
     media: event.media || [],
     links: event.links || [],
@@ -146,6 +156,29 @@ async function migrateEvents() {
   // Transform events for database
   const dbEvents = events.map(transformEvent);
 
+  // Check for duplicate IDs and warn
+  const idCounts = new Map<string, number>();
+  dbEvents.forEach((event) => {
+    idCounts.set(event.id, (idCounts.get(event.id) || 0) + 1);
+  });
+
+  const duplicates = Array.from(idCounts.entries()).filter(([_, count]) => count > 1);
+  if (duplicates.length > 0) {
+    console.log("⚠️  Warning: Found duplicate event IDs in events.json:");
+    duplicates.forEach(([id, count]) => {
+      console.log(`   - ${id} (appears ${count} times)`);
+    });
+    console.log("Only the last occurrence of each ID will be kept.\n");
+  }
+
+  // Deduplicate by ID (keep last occurrence)
+  const uniqueEvents = Array.from(
+    dbEvents.reduce((map, event) => {
+      map.set(event.id, event);
+      return map;
+    }, new Map<string, DatabaseEvent>()).values()
+  );
+
   // Batch insert with upsert (update on conflict)
   const BATCH_SIZE = 50;
   let successCount = 0;
@@ -153,10 +186,10 @@ async function migrateEvents() {
 
   console.log("📝 Migrating events in batches...\n");
 
-  for (let i = 0; i < dbEvents.length; i += BATCH_SIZE) {
-    const batch = dbEvents.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < uniqueEvents.length; i += BATCH_SIZE) {
+    const batch = uniqueEvents.slice(i, i + BATCH_SIZE);
     const batchNumber = Math.floor(i / BATCH_SIZE) + 1;
-    const totalBatches = Math.ceil(dbEvents.length / BATCH_SIZE);
+    const totalBatches = Math.ceil(uniqueEvents.length / BATCH_SIZE);
 
     process.stdout.write(
       `   Batch ${batchNumber}/${totalBatches} (${batch.length} events)... `
