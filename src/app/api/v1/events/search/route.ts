@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { searchEvents } from "@/lib/events-db";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * GET /api/v1/events/search
@@ -26,6 +27,24 @@ import { searchEvents } from "@/lib/events-db";
  */
 export async function GET(request: NextRequest) {
   try {
+    const limited = rateLimit(request, {
+      keyPrefix: "api:v1:events:search",
+      limit: 60,
+      windowMs: 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(limited.retryAfterSeconds),
+            "Cache-Control": "no-store",
+          },
+        }
+      );
+    }
+
     const searchParams = request.nextUrl.searchParams;
 
     // Parse required query parameter

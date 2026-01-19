@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllEvents } from "@/lib/events-db";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * GET /api/v1/events
@@ -28,6 +29,24 @@ import { getAllEvents } from "@/lib/events-db";
  */
 export async function GET(request: NextRequest) {
   try {
+    const limited = rateLimit(request, {
+      keyPrefix: "api:v1:events:list",
+      limit: 120,
+      windowMs: 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(limited.retryAfterSeconds),
+            "Cache-Control": "no-store",
+          },
+        }
+      );
+    }
+
     const searchParams = request.nextUrl.searchParams;
 
     // Parse pagination parameters

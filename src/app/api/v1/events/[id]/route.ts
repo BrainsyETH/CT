@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEventById } from "@/lib/events-db";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * GET /api/v1/events/[id]
@@ -14,6 +15,24 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const limited = rateLimit(request, {
+      keyPrefix: "api:v1:events:by-id",
+      limit: 180,
+      windowMs: 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(limited.retryAfterSeconds),
+            "Cache-Control": "no-store",
+          },
+        }
+      );
+    }
+
     const { id } = await params;
 
     if (!id) {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getTags } from "@/lib/events-db";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * GET /api/v1/events/tags
@@ -13,6 +14,24 @@ import { getTags } from "@/lib/events-db";
  */
 export async function GET(request: NextRequest) {
   try {
+    const limited = rateLimit(request, {
+      keyPrefix: "api:v1:events:tags",
+      limit: 240,
+      windowMs: 60_000,
+    });
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(limited.retryAfterSeconds),
+            "Cache-Control": "no-store",
+          },
+        }
+      );
+    }
+
     const tags = await getTags();
 
     const response = {
