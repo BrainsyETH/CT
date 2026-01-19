@@ -520,7 +520,7 @@
     "mode": [
       "crimeline"
     ],
-    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/Crimeline%20Images/heather%20morgan.jpeg",
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/razzlekhan",
     "media": [
       {
         "type": "video",
@@ -8393,9 +8393,9 @@
     },
     {
       "id": "crypto-com-security-incident-disclosed-2022-01-19",
-      "date": "2022-01-19",
+      "date": "2022-01-17",
       "title": "Crypto.com Discloses Security Incident",
-      "summary": "On January 19, 2022, Crypto.com disclosed a security incident that resulted in unauthorized withdrawals from hundreds of customer accounts. The company temporarily suspended withdrawals while investigating the breach and later confirmed compromised accounts across multiple assets. TechCrunch reported that affected users were reimbursed after internal safeguards failed. The event highlighted ongoing risks associated with centralized exchange account security even at large platforms.",
+      "summary": "The Crypto.com hack occurred on January 17, 2022, when hackers exploited a vulnerability that allowed them to bypass the platform's two-factor authentication (2FA) system, enabling unauthorized withdrawals from user accounts without requiring the 2FA code. This affected 483 users, with stolen funds totaling approximately 4,836.26 ETH (worth $15.2 million at the time), 443.93 BTC ($18.6 million), and about $66,200 in other cryptocurrencies — adding up to roughly $30-35 million overall. The attackers laundered much of the stolen assets through privacy tools like Tornado Cash, making full recovery of the funds by authorities difficult.",
       "category": ["Centralized Exchange","Security"],
       "tags": ["SECURITY","FAILURE"],
       "mode": ["crimeline"],
@@ -8404,8 +8404,15 @@
         {
           "type": "twitter",
           "twitter": {
-            "tweet_url": "https://x.com/kris/status/1483788039200192512",
-            "account_handle": "kris"
+            "tweet_url": "https://x.com/cryptocom/status/1484057491323645952?s=20",
+            "account_handle": ""
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/CertiKCommunity/status/1483271631321583616?s=20",
+            "account_handle": ""
           }
         }
       ],
@@ -8427,7 +8434,7 @@
           "Delayed detection of unauthorized withdrawals"
         ],
         "aftermath": "Crypto.com reimbursed affected users and rolled out additional security measures.",
-        "status": "Funds recovered"
+        "status": "Resolved"
       }
     }
   ]  
