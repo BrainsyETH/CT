@@ -2,12 +2,9 @@ import { getSupabase } from "@/lib/supabase";
 import type {
   QuizWeek,
   QuizQuestion,
-  UserQuizAttempt,
   WeekLeaderboardEntry,
   LeaderboardEntry,
-  QuizAnswer,
   FrameInteraction,
-  WeekQuestion,
 } from "@/lib/types";
 
 /**
@@ -53,47 +50,98 @@ export async function getWeekById(weekId: string): Promise<QuizWeek | null> {
 }
 
 /**
- * Get questions for a specific week (ordered)
+ * Get today's question for the active week
  */
-export async function getWeekQuestions(weekId: string): Promise<QuizQuestion[]> {
+export async function getTodaysQuestion(
+  weekId: string
+): Promise<{ question: QuizQuestion; dayOfWeek: number; questionDate: string } | null> {
+  const supabase = getSupabase();
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const { data, error } = await supabase
+    .from("week_questions")
+    .select(
+      `
+      day_of_week,
+      question_date,
+      quiz_questions (*)
+    `
+    )
+    .eq("week_id", weekId)
+    .eq("question_date", today)
+    .single();
+
+  if (error) {
+    console.error("[Quiz DB] Error getting today's question:", error);
+    return null;
+  }
+
+  if (!data || !data.quiz_questions) {
+    return null;
+  }
+
+  return {
+    question: data.quiz_questions as unknown as QuizQuestion,
+    dayOfWeek: data.day_of_week,
+    questionDate: data.question_date,
+  };
+}
+
+/**
+ * Get all questions for a week (for admin/review)
+ */
+export async function getWeekQuestions(weekId: string): Promise<
+  Array<{
+    question: QuizQuestion;
+    dayOfWeek: number;
+    questionDate: string;
+  }>
+> {
   const supabase = getSupabase();
 
   const { data, error } = await supabase
     .from("week_questions")
     .select(
       `
-      question_order,
+      day_of_week,
+      question_date,
       quiz_questions (*)
     `
     )
     .eq("week_id", weekId)
-    .order("question_order", { ascending: true });
+    .order("day_of_week", { ascending: true });
 
   if (error) {
     console.error("[Quiz DB] Error getting week questions:", error);
     return [];
   }
 
-  // Extract questions from the join
-  return data.map((wq: any) => wq.quiz_questions) as QuizQuestion[];
+  return data.map((wq: any) => ({
+    question: wq.quiz_questions as QuizQuestion,
+    dayOfWeek: wq.day_of_week,
+    questionDate: wq.question_date,
+  }));
 }
 
 /**
- * Check if user has already completed quiz for this week
+ * Check if user has answered today's question
  */
-export async function hasUserCompletedWeek(fid: number, weekId: string): Promise<boolean> {
+export async function hasAnsweredToday(fid: number, weekId: string): Promise<boolean> {
   const supabase = getSupabase();
 
+  const today = new Date().toISOString().split("T")[0];
+
   const { data, error } = await supabase
-    .from("user_quiz_attempts")
+    .from("user_daily_answers")
     .select("id")
     .eq("fid", fid)
     .eq("week_id", weekId)
+    .eq("answered_at", today)
     .single();
 
   if (error && error.code !== "PGRST116") {
-    // PGRST116 = no rows returned (expected if not completed)
-    console.error("[Quiz DB] Error checking user completion:", error);
+    console.error("[Quiz DB] Error checking if answered today:", error);
     return false;
   }
 
@@ -101,64 +149,150 @@ export async function hasUserCompletedWeek(fid: number, weekId: string): Promise
 }
 
 /**
- * Get user's attempt for a specific week
+ * Save user's answer for today
  */
-export async function getUserAttempt(
+export async function saveDailyAnswer(
+  fid: number,
+  username: string,
+  weekId: string,
+  questionId: string,
+  dayOfWeek: number,
+  userAnswer: string,
+  correctAnswer: string
+): Promise<boolean> {
+  const supabase = getSupabase();
+
+  const isCorrect = userAnswer === correctAnswer;
+
+  const { error } = await supabase.from("user_daily_answers").insert({
+    fid,
+    username,
+    week_id: weekId,
+    question_id: questionId,
+    day_of_week: dayOfWeek,
+    user_answer: userAnswer,
+    is_correct: isCorrect,
+  });
+
+  if (error) {
+    console.error("[Quiz DB] Error saving daily answer:", error);
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Get user's progress for the current week
+ */
+export async function getUserWeekProgress(
   fid: number,
   weekId: string
-): Promise<UserQuizAttempt | null> {
+): Promise<{
+  answersCount: number;
+  correctCount: number;
+  daysAnswered: number[];
+}> {
   const supabase = getSupabase();
 
   const { data, error } = await supabase
-    .from("user_quiz_attempts")
-    .select("*")
+    .from("user_daily_answers")
+    .select("day_of_week, is_correct")
+    .eq("fid", fid)
+    .eq("week_id", weekId);
+
+  if (error) {
+    console.error("[Quiz DB] Error getting user week progress:", error);
+    return { answersCount: 0, correctCount: 0, daysAnswered: [] };
+  }
+
+  const answersCount = data?.length || 0;
+  const correctCount = data?.filter((a) => a.is_correct).length || 0;
+  const daysAnswered = data?.map((a) => a.day_of_week) || [];
+
+  return { answersCount, correctCount, daysAnswered };
+}
+
+/**
+ * Finalize user's week (call this after Sunday or when viewing results)
+ */
+export async function finalizeUserWeek(fid: number, weekId: string): Promise<boolean> {
+  const supabase = getSupabase();
+
+  const { error } = await supabase.rpc("finalize_user_week", {
+    user_fid: fid,
+    week_uuid: weekId,
+  });
+
+  if (error) {
+    console.error("[Quiz DB] Error finalizing user week:", error);
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Get user's week summary (if finalized)
+ */
+export async function getUserWeekSummary(
+  fid: number,
+  weekId: string
+): Promise<{
+  score: number;
+  percentage: number;
+  completedAt: string;
+  walletAddress?: string;
+} | null> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase
+    .from("user_week_summary")
+    .select("score, percentage, completed_at, wallet_address")
     .eq("fid", fid)
     .eq("week_id", weekId)
     .single();
 
   if (error && error.code !== "PGRST116") {
-    console.error("[Quiz DB] Error getting user attempt:", error);
+    console.error("[Quiz DB] Error getting user week summary:", error);
     return null;
   }
 
-  return data;
+  if (!data) return null;
+
+  return {
+    score: data.score,
+    percentage: data.percentage,
+    completedAt: data.completed_at,
+    walletAddress: data.wallet_address,
+  };
 }
 
 /**
- * Save a quiz attempt
+ * Update user's wallet address (for rewards)
  */
-export async function saveQuizAttempt(
+export async function updateUserWallet(
   fid: number,
-  username: string,
   weekId: string,
-  score: number,
-  answers: QuizAnswer[],
-  startedAt: Date,
-  completedAt: Date
-): Promise<UserQuizAttempt | null> {
+  walletAddress: string
+): Promise<boolean> {
   const supabase = getSupabase();
 
-  const { data, error } = await supabase
-    .from("user_quiz_attempts")
-    .insert({
-      fid,
-      username,
-      week_id: weekId,
-      score,
-      total_questions: 7,
-      started_at: startedAt.toISOString(),
-      completed_at: completedAt.toISOString(),
-      answers: answers as any,
+  const { error } = await supabase
+    .from("user_week_summary")
+    .update({
+      wallet_address: walletAddress,
+      wallet_verified_at: new Date().toISOString(),
     })
-    .select()
-    .single();
+    .eq("fid", fid)
+    .eq("week_id", weekId);
 
   if (error) {
-    console.error("[Quiz DB] Error saving quiz attempt:", error);
-    return null;
+    console.error("[Quiz DB] Error updating wallet:", error);
+    return false;
   }
 
-  return data;
+  return true;
 }
 
 /**
@@ -180,14 +314,22 @@ export async function getWeekLeaderboard(weekId: string): Promise<WeekLeaderboar
 }
 
 /**
+ * Get user's rank for a specific week
+ */
+export async function getUserWeekRank(fid: number, weekId: string): Promise<number | null> {
+  const leaderboard = await getWeekLeaderboard(weekId);
+  const userEntry = leaderboard.find((entry) => entry.fid === fid);
+  return userEntry?.rank || null;
+}
+
+/**
  * Get global leaderboard (all-time)
  */
 export async function getGlobalLeaderboard(limit: number = 50): Promise<LeaderboardEntry[]> {
   const supabase = getSupabase();
 
-  // For now, calculate manually (can be optimized with materialized view)
   const { data, error } = await supabase
-    .from("user_quiz_attempts")
+    .from("user_week_summary")
     .select("fid, username, score, total_questions, percentage, completed_at");
 
   if (error) {
@@ -208,24 +350,24 @@ export async function getGlobalLeaderboard(limit: number = 50): Promise<Leaderbo
     }
   >();
 
-  for (const attempt of data) {
-    const existing = userStats.get(attempt.fid);
+  for (const summary of data) {
+    const existing = userStats.get(summary.fid);
 
     if (existing) {
       existing.weeks += 1;
-      existing.totalScore += attempt.score;
-      existing.totalQuestions += attempt.total_questions;
-      if (new Date(attempt.completed_at) > new Date(existing.lastQuizDate)) {
-        existing.lastQuizDate = attempt.completed_at;
+      existing.totalScore += summary.score;
+      existing.totalQuestions += summary.total_questions;
+      if (new Date(summary.completed_at) > new Date(existing.lastQuizDate)) {
+        existing.lastQuizDate = summary.completed_at;
       }
     } else {
-      userStats.set(attempt.fid, {
-        fid: attempt.fid,
-        username: attempt.username,
+      userStats.set(summary.fid, {
+        fid: summary.fid,
+        username: summary.username,
         weeks: 1,
-        totalScore: attempt.score,
-        totalQuestions: attempt.total_questions,
-        lastQuizDate: attempt.completed_at,
+        totalScore: summary.score,
+        totalQuestions: summary.total_questions,
+        lastQuizDate: summary.completed_at,
       });
     }
   }
@@ -233,7 +375,7 @@ export async function getGlobalLeaderboard(limit: number = 50): Promise<Leaderbo
   // Convert to array and calculate averages
   const leaderboard: LeaderboardEntry[] = Array.from(userStats.values())
     .map((user) => ({
-      rank: 0, // Will be set after sorting
+      rank: 0,
       fid: user.fid,
       username: user.username,
       weeks_participated: user.weeks,
@@ -244,7 +386,6 @@ export async function getGlobalLeaderboard(limit: number = 50): Promise<Leaderbo
       current_streak: 0, // TODO: Calculate streak
     }))
     .sort((a, b) => {
-      // Sort by average score, then by weeks participated
       if (b.average_score !== a.average_score) {
         return b.average_score - a.average_score;
       }
@@ -260,15 +401,6 @@ export async function getGlobalLeaderboard(limit: number = 50): Promise<Leaderbo
 }
 
 /**
- * Get user's rank for a specific week
- */
-export async function getUserWeekRank(fid: number, weekId: string): Promise<number | null> {
-  const leaderboard = await getWeekLeaderboard(weekId);
-  const userEntry = leaderboard.find((entry) => entry.fid === fid);
-  return userEntry?.rank || null;
-}
-
-/**
  * Get user's global stats
  */
 export async function getUserStats(fid: number): Promise<{
@@ -281,7 +413,7 @@ export async function getUserStats(fid: number): Promise<{
   const supabase = getSupabase();
 
   const { data, error } = await supabase
-    .from("user_quiz_attempts")
+    .from("user_week_summary")
     .select("score, percentage, completed_at, week_id")
     .eq("fid", fid);
 
@@ -301,13 +433,16 @@ export async function getUserStats(fid: number): Promise<{
   }
 
   const weeks = data.length;
-  const avgScore = data.reduce((sum, a) => sum + a.percentage, 0) / weeks;
-  const bestScore = Math.max(...data.map((a) => a.score));
+  const avgScore = data.reduce((sum, s) => sum + s.percentage, 0) / weeks;
+  const bestScore = Math.max(...data.map((s) => s.score));
 
-  // Calculate streak (simple version - can be enhanced)
-  const streak = 0; // TODO: Implement streak calculation
+  // Get streak
+  const { data: streakData } = await supabase.rpc("calculate_user_streak", {
+    user_fid: fid,
+  });
+  const streak = streakData || 0;
 
-  // Get rank from global leaderboard
+  // Get rank
   const globalLeaderboard = await getGlobalLeaderboard();
   const userEntry = globalLeaderboard.find((entry) => entry.fid === fid);
   const rank = userEntry?.rank || null;
@@ -342,15 +477,20 @@ export async function trackInteraction(interaction: FrameInteraction): Promise<v
 }
 
 /**
- * Create a new quiz week (admin function)
+ * Create a new quiz week with daily questions (admin function)
  */
 export async function createQuizWeek(
   weekNumber: number,
-  startDate: string,
-  endDate: string,
-  questions: QuizQuestion[]
+  startDate: string, // Monday
+  endDate: string, // Sunday
+  questions: QuizQuestion[] // 7 questions, one per day
 ): Promise<QuizWeek | null> {
   const supabase = getSupabase();
+
+  if (questions.length !== 7) {
+    console.error("[Quiz DB] Must provide exactly 7 questions for the week");
+    return null;
+  }
 
   // Insert week
   const { data: week, error: weekError } = await supabase
@@ -369,48 +509,51 @@ export async function createQuizWeek(
     return null;
   }
 
-  // Insert questions
-  const { error: questionsError } = await supabase.from("quiz_questions").insert(
-    questions.map((q) => ({
-      question_text: q.question_text,
-      correct_answer: q.correct_answer,
-      wrong_answer_1: q.wrong_answer_1,
-      wrong_answer_2: q.wrong_answer_2,
-      wrong_answer_3: q.wrong_answer_3,
-      event_id: q.event_id,
-      event_date: q.event_date,
-      difficulty: q.difficulty,
-      category: q.category,
-      tags: q.tags,
-      explanation: q.explanation,
-      image_url: q.image_url,
-    }))
-  );
+  // Insert questions first
+  const { data: insertedQuestions, error: questionsError } = await supabase
+    .from("quiz_questions")
+    .insert(
+      questions.map((q) => ({
+        question_text: q.question_text,
+        correct_answer: q.correct_answer,
+        wrong_answer_1: q.wrong_answer_1,
+        wrong_answer_2: q.wrong_answer_2,
+        wrong_answer_3: q.wrong_answer_3,
+        event_id: q.event_id,
+        event_date: q.event_date,
+        difficulty: q.difficulty,
+        category: q.category,
+        tags: q.tags,
+        explanation: q.explanation,
+        image_url: q.image_url,
+      }))
+    )
+    .select();
 
-  if (questionsError) {
+  if (questionsError || !insertedQuestions) {
     console.error("[Quiz DB] Error inserting questions:", questionsError);
     return null;
   }
 
-  // Link questions to week
-  const { data: insertedQuestions } = await supabase
-    .from("quiz_questions")
-    .select("id")
-    .in(
-      "question_text",
-      questions.map((q) => q.question_text)
-    )
-    .order("created_at", { ascending: false })
-    .limit(7);
+  // Link questions to week with day of week
+  const startDateObj = new Date(startDate);
+  const weekQuestions = insertedQuestions.map((q, index) => {
+    const questionDate = new Date(startDateObj);
+    questionDate.setDate(startDateObj.getDate() + index);
 
-  if (insertedQuestions) {
-    const weekQuestions = insertedQuestions.map((q, index) => ({
+    return {
       week_id: week.id,
       question_id: q.id,
-      question_order: index + 1,
-    }));
+      day_of_week: index + 1, // 1=Monday, 7=Sunday
+      question_date: questionDate.toISOString().split("T")[0],
+    };
+  });
 
-    await supabase.from("week_questions").insert(weekQuestions);
+  const { error: linkError } = await supabase.from("week_questions").insert(weekQuestions);
+
+  if (linkError) {
+    console.error("[Quiz DB] Error linking questions to week:", linkError);
+    return null;
   }
 
   return week;
