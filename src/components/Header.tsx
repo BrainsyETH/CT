@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
+import { ChainOfEventsLogo } from "./ChainOfEventsLogo";
 import { isDebugEnabled } from "@/lib/debug";
 
 // Add cache-busting parameter to ensure fresh logo loads
@@ -208,24 +209,18 @@ export function Header() {
           >
             {/* Enhanced Logo Container */}
             <motion.div
-              className="relative w-12 h-12 flex-shrink-0 overflow-hidden flex items-center justify-center"
+              className="relative flex-shrink-0 flex items-center justify-center"
               animate={
                 shouldReduceMotion
                   ? {}
                   : {
-                      rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
-                      scale: isHovered ? 1.1 : isCrimeline ? [1, 1.05, 1] : 1,
+                      scale: isHovered ? 1.05 : isCrimeline ? [1, 1.02, 1] : 1,
                     }
               }
               transition={
                 shouldReduceMotion
                   ? {}
                   : {
-                      rotate: {
-                        duration: 0.5,
-                        repeat: isCrimeline ? Infinity : 0,
-                        repeatDelay: 3,
-                      },
                       scale: {
                         duration: 0.3,
                         repeat: isCrimeline && !isHovered ? Infinity : 0,
@@ -233,15 +228,9 @@ export function Header() {
                       },
                     }
               }
-              whileHover={shouldReduceMotion ? {} : { rotate: 15, scale: 1.1 }}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
             >
-              <Image
-                src={LOGO_IMAGE}
-                alt="Chain of Events Logo"
-                width={48}
-                height={48}
-                className="w-full h-full object-cover"
-              />
+              <ChainOfEventsLogo size="lg" />
             </motion.div>
 
             {/* Title Section */}
@@ -366,28 +355,18 @@ export function Header() {
             <div className="flex items-center gap-2">
               {/* Enhanced Logo Container */}
               <motion.div
-                className={`relative w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden ${
-                  isCrimeline
-                    ? "border border-purple-500/50 shadow-[0_0_8px_rgba(124,58,237,0.4)]"
-                    : "border border-teal-500/30 shadow-[0_0_8px_rgba(20,184,166,0.3)]"
-                }`}
+                className="relative flex-shrink-0 flex items-center justify-center"
                 animate={
                   shouldReduceMotion
                     ? {}
                     : {
-                        rotate: isCrimeline ? [0, -5, 5, -5, 0] : 0,
-                        scale: isCrimeline ? [1, 1.05, 1] : 1,
+                        scale: isCrimeline ? [1, 1.02, 1] : 1,
                       }
                 }
                 transition={
                   shouldReduceMotion
                     ? {}
                     : {
-                        rotate: {
-                          duration: 0.5,
-                          repeat: isCrimeline ? Infinity : 0,
-                          repeatDelay: 3,
-                        },
                         scale: {
                           duration: 0.3,
                           repeat: isCrimeline ? Infinity : 0,
@@ -395,27 +374,10 @@ export function Header() {
                         },
                       }
                 }
-                whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
+                whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               >
-                <Image
-                  src={LOGO_IMAGE}
-                  alt="Chain of Events Logo"
-                  width={28}
-                  height={28}
-                  className="w-full h-full object-cover"
-                />
+                <ChainOfEventsLogo size="md" />
               </motion.div>
-
-              {/* Title with neo-brutalist styling */}
-              <motion.h1
-                className={`text-xl neo-brutalist-title whitespace-nowrap ${
-                  isCrimeline
-                    ? "neo-brutalist-title-crimeline"
-                    : "neo-brutalist-title-timeline"
-                }`}
-              >
-                {titleText}
-              </motion.h1>
             </div>
 
             {/* Subtitle/Tagline with neo-brutalist styling */}
