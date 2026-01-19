@@ -173,7 +173,7 @@ export function Header() {
 
             {/* Subtitle */}
             <motion.p
-              className={`neo-brutalist-subtitle whitespace-nowrap text-[0.6rem] ${
+              className={`neo-brutalist-subtitle whitespace-nowrap text-[0.3rem] ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
