@@ -35,7 +35,7 @@ export async function getCurrentWeek(): Promise<QuizWeek | null> {
 export async function getWeekById(weekId: string): Promise<QuizWeek | null> {
   const supabase = getSupabase();
 
-  const { data, error } = await supabase
+  const { data, error} = await supabase
     .from("quiz_weeks")
     .select("*")
     .eq("id", weekId)
@@ -50,53 +50,60 @@ export async function getWeekById(weekId: string): Promise<QuizWeek | null> {
 }
 
 /**
- * Get today's question for the active week
+ * Get or assign today's question for a user (random assignment from 2-3 question pool)
+ * Uses database function for atomic random selection
  */
-export async function getTodaysQuestion(
+export async function getOrAssignTodaysQuestion(
+  fid: number,
   weekId: string
-): Promise<{ question: QuizQuestion; dayOfWeek: number; questionDate: string } | null> {
+): Promise<QuizQuestion | null> {
   const supabase = getSupabase();
 
-  const today = new Date().toISOString().split("T")[0];
+  // Call database function to get or assign question
+  const { data: questionId, error: assignError } = await supabase.rpc(
+    "get_or_assign_todays_question",
+    {
+      user_fid: fid,
+      week_uuid: weekId,
+    }
+  );
 
-  const { data, error } = await supabase
-    .from("week_questions")
-    .select(
-      `
-      day_of_week,
-      question_date,
-      quiz_questions (*)
-    `
-    )
-    .eq("week_id", weekId)
-    .eq("question_date", today)
+  if (assignError) {
+    console.error("[Quiz DB] Error getting/assigning today's question:", assignError);
+    return null;
+  }
+
+  if (!questionId) {
+    return null; // No questions available for today
+  }
+
+  // Fetch the full question details
+  const { data: question, error: questionError } = await supabase
+    .from("quiz_questions")
+    .select("*")
+    .eq("id", questionId)
     .single();
 
-  if (error) {
-    console.error("[Quiz DB] Error getting today's question:", error);
+  if (questionError) {
+    console.error("[Quiz DB] Error fetching question:", questionError);
     return null;
   }
 
-  if (!data || !data.quiz_questions) {
-    return null;
-  }
-
-  return {
-    question: data.quiz_questions as unknown as QuizQuestion,
-    dayOfWeek: data.day_of_week,
-    questionDate: data.question_date,
-  };
+  return question;
 }
 
 /**
  * Get all questions for a week (for admin/review)
+ * Returns questions grouped by day
  */
 export async function getWeekQuestions(weekId: string): Promise<
-  Array<{
-    question: QuizQuestion;
-    dayOfWeek: number;
-    questionDate: string;
-  }>
+  Record<
+    number,
+    Array<{
+      question: QuizQuestion;
+      questionDate: string;
+    }>
+  >
 > {
   const supabase = getSupabase();
 
@@ -114,14 +121,25 @@ export async function getWeekQuestions(weekId: string): Promise<
 
   if (error) {
     console.error("[Quiz DB] Error getting week questions:", error);
-    return [];
+    return {};
   }
 
-  return data.map((wq: any) => ({
-    question: wq.quiz_questions as QuizQuestion,
-    dayOfWeek: wq.day_of_week,
-    questionDate: wq.question_date,
-  }));
+  // Group questions by day
+  const questionsByDay: Record<number, Array<{ question: QuizQuestion; questionDate: string }>> =
+    {};
+
+  for (const wq of data) {
+    const day = wq.day_of_week;
+    if (!questionsByDay[day]) {
+      questionsByDay[day] = [];
+    }
+    questionsByDay[day].push({
+      question: wq.quiz_questions as unknown as QuizQuestion,
+      questionDate: wq.question_date,
+    });
+  }
+
+  return questionsByDay;
 }
 
 /**
@@ -130,22 +148,35 @@ export async function getWeekQuestions(weekId: string): Promise<
 export async function hasAnsweredToday(fid: number, weekId: string): Promise<boolean> {
   const supabase = getSupabase();
 
-  const today = new Date().toISOString().split("T")[0];
+  const { data, error } = await supabase.rpc("has_answered_today", {
+    user_fid: fid,
+    week_uuid: weekId,
+  });
 
-  const { data, error } = await supabase
-    .from("user_daily_answers")
-    .select("id")
-    .eq("fid", fid)
-    .eq("week_id", weekId)
-    .eq("answered_at", today)
-    .single();
-
-  if (error && error.code !== "PGRST116") {
+  if (error) {
     console.error("[Quiz DB] Error checking if answered today:", error);
     return false;
   }
 
-  return !!data;
+  return data || false;
+}
+
+/**
+ * Check if a question date has expired (past today)
+ */
+export async function isQuestionExpired(questionDate: string): Promise<boolean> {
+  const supabase = getSupabase();
+
+  const { data, error } = await supabase.rpc("is_question_expired", {
+    question_date_param: questionDate,
+  });
+
+  if (error) {
+    console.error("[Quiz DB] Error checking if question expired:", error);
+    return true; // Fail safe - treat as expired
+  }
+
+  return data || false;
 }
 
 /**
@@ -383,7 +414,7 @@ export async function getGlobalLeaderboard(limit: number = 50): Promise<Leaderbo
       total_correct: user.totalScore,
       total_questions_answered: user.totalQuestions,
       last_quiz_date: user.lastQuizDate,
-      current_streak: 0, // TODO: Calculate streak
+      current_streak: 0,
     }))
     .sort((a, b) => {
       if (b.average_score !== a.average_score) {
@@ -478,18 +509,22 @@ export async function trackInteraction(interaction: FrameInteraction): Promise<v
 
 /**
  * Create a new quiz week with daily questions (admin function)
+ * Supports 2-3 questions per day (14-21 total questions)
  */
 export async function createQuizWeek(
   weekNumber: number,
   startDate: string, // Monday
   endDate: string, // Sunday
-  questions: QuizQuestion[] // 7 questions, one per day
+  questionsByDay: Record<number, QuizQuestion[]> // Map of day (1-7) to questions (2-3 per day)
 ): Promise<QuizWeek | null> {
   const supabase = getSupabase();
 
-  if (questions.length !== 7) {
-    console.error("[Quiz DB] Must provide exactly 7 questions for the week");
-    return null;
+  // Validate we have questions for all 7 days
+  for (let day = 1; day <= 7; day++) {
+    if (!questionsByDay[day] || questionsByDay[day].length < 2 || questionsByDay[day].length > 3) {
+      console.error(`[Quiz DB] Day ${day} must have 2-3 questions`);
+      return null;
+    }
   }
 
   // Insert week
@@ -509,11 +544,17 @@ export async function createQuizWeek(
     return null;
   }
 
-  // Insert questions first
+  // Flatten all questions
+  const allQuestions: QuizQuestion[] = [];
+  for (let day = 1; day <= 7; day++) {
+    allQuestions.push(...questionsByDay[day]);
+  }
+
+  // Insert all questions
   const { data: insertedQuestions, error: questionsError } = await supabase
     .from("quiz_questions")
     .insert(
-      questions.map((q) => ({
+      allQuestions.map((q) => ({
         question_text: q.question_text,
         correct_answer: q.correct_answer,
         wrong_answer_1: q.wrong_answer_1,
@@ -535,19 +576,31 @@ export async function createQuizWeek(
     return null;
   }
 
-  // Link questions to week with day of week
+  // Link questions to week with day assignments
   const startDateObj = new Date(startDate);
-  const weekQuestions = insertedQuestions.map((q, index) => {
-    const questionDate = new Date(startDateObj);
-    questionDate.setDate(startDateObj.getDate() + index);
+  const weekQuestions: Array<{
+    week_id: string;
+    question_id: string;
+    day_of_week: number;
+    question_date: string;
+  }> = [];
 
-    return {
-      week_id: week.id,
-      question_id: q.id,
-      day_of_week: index + 1, // 1=Monday, 7=Sunday
-      question_date: questionDate.toISOString().split("T")[0],
-    };
-  });
+  let questionIndex = 0;
+  for (let day = 1; day <= 7; day++) {
+    const questionDate = new Date(startDateObj);
+    questionDate.setDate(startDateObj.getDate() + (day - 1));
+
+    const questionsForDay = questionsByDay[day].length;
+    for (let i = 0; i < questionsForDay; i++) {
+      weekQuestions.push({
+        week_id: week.id,
+        question_id: insertedQuestions[questionIndex].id,
+        day_of_week: day,
+        question_date: questionDate.toISOString().split("T")[0],
+      });
+      questionIndex++;
+    }
+  }
 
   const { error: linkError } = await supabase.from("week_questions").insert(weekQuestions);
 

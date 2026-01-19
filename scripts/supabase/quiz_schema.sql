@@ -1,6 +1,6 @@
--- Weekly Crypto History Quiz Schema - DAILY QUESTION MODEL
--- This schema supports daily questions (1 per day, Monday-Sunday),
--- user participation tracking, leaderboards, and $EVENT token distribution on BASE
+-- Weekly Crypto History Quiz Schema - DAILY QUESTION MODEL with RANDOM ASSIGNMENT
+-- This schema supports daily questions with 2-3 questions per day randomly assigned to users
+-- Questions expire at end of day, user participation tracking, leaderboards, and $EVENT token distribution on BASE
 
 -- ============================================
 -- 1. QUIZ WEEKS TABLE
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS quiz_questions (
 -- ============================================
 -- 3. WEEK QUESTIONS (Junction Table)
 -- ============================================
+-- Stores 2-3 questions PER DAY (14-21 questions per week)
 CREATE TABLE IF NOT EXISTS week_questions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
@@ -78,16 +79,48 @@ CREATE TABLE IF NOT EXISTS week_questions (
   -- The specific date this question is for
   question_date DATE NOT NULL,
 
+  -- Optional: Weight for random selection (higher = more likely to be assigned)
+  selection_weight INTEGER DEFAULT 1,
+
   -- Metadata
   created_at TIMESTAMPTZ DEFAULT NOW(),
 
   -- Ensure each question appears only once per week
-  CONSTRAINT unique_week_question UNIQUE(week_id, question_id),
-  CONSTRAINT unique_week_day UNIQUE(week_id, day_of_week)
+  CONSTRAINT unique_week_question UNIQUE(week_id, question_id)
+  -- NOTE: Removed unique constraint on (week_id, day_of_week) to allow multiple questions per day
 );
 
 -- ============================================
--- 4. USER DAILY ANSWERS TABLE
+-- 4. USER QUESTION ASSIGNMENTS TABLE
+-- ============================================
+-- Tracks which specific question was randomly assigned to each user each day
+CREATE TABLE IF NOT EXISTS user_question_assignments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+  -- User identification
+  fid BIGINT NOT NULL,
+  username TEXT,
+
+  -- Week and day
+  week_id UUID NOT NULL REFERENCES quiz_weeks(id) ON DELETE CASCADE,
+  day_of_week INTEGER NOT NULL CHECK (day_of_week BETWEEN 1 AND 7),
+  question_date DATE NOT NULL,
+
+  -- Assigned question
+  question_id UUID NOT NULL REFERENCES quiz_questions(id) ON DELETE CASCADE,
+
+  -- When assignment was made
+  assigned_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
+  -- Metadata
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+
+  -- Ensure one assignment per user per day
+  CONSTRAINT unique_user_day_assignment UNIQUE(fid, week_id, day_of_week)
+);
+
+-- ============================================
+-- 5. USER DAILY ANSWERS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS user_daily_answers (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -111,12 +144,12 @@ CREATE TABLE IF NOT EXISTS user_daily_answers (
   -- Metadata
   created_at TIMESTAMPTZ DEFAULT NOW(),
 
-  -- Ensure one answer per user per question
+  -- Ensure one answer per user per day
   CONSTRAINT unique_user_day_answer UNIQUE(fid, week_id, day_of_week)
 );
 
 -- ============================================
--- 5. USER WEEK SUMMARY TABLE
+-- 6. USER WEEK SUMMARY TABLE
 -- ============================================
 -- Tracks overall performance for a week (populated after Sunday)
 CREATE TABLE IF NOT EXISTS user_week_summary (
@@ -151,7 +184,7 @@ CREATE TABLE IF NOT EXISTS user_week_summary (
 );
 
 -- ============================================
--- 6. LEADERBOARD VIEW (Materialized for performance)
+-- 7. LEADERBOARD VIEW (Materialized for performance)
 -- ============================================
 CREATE MATERIALIZED VIEW IF NOT EXISTS leaderboard AS
 SELECT
@@ -177,7 +210,7 @@ FROM user_week_summary
 GROUP BY fid, username;
 
 -- ============================================
--- 7. REWARD RECIPIENTS TABLE
+-- 8. REWARD RECIPIENTS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS reward_recipients (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -207,7 +240,7 @@ CREATE TABLE IF NOT EXISTS reward_recipients (
 );
 
 -- ============================================
--- 8. FRAME INTERACTIONS TABLE (Analytics)
+-- 9. FRAME INTERACTIONS TABLE (Analytics)
 -- ============================================
 CREATE TABLE IF NOT EXISTS frame_interactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -221,7 +254,7 @@ CREATE TABLE IF NOT EXISTS frame_interactions (
     CHECK (interaction_type IN (
       'view_home', 'view_daily_question', 'answer_question',
       'view_week_results', 'view_leaderboard', 'share_score',
-      'view_rules', 'connect_wallet'
+      'view_rules', 'connect_wallet', 'question_expired'
     )),
 
   -- Context
@@ -264,6 +297,14 @@ CREATE INDEX IF NOT EXISTS idx_week_questions_day
 CREATE INDEX IF NOT EXISTS idx_week_questions_date
   ON week_questions(question_date);
 
+-- User question assignments
+CREATE INDEX IF NOT EXISTS idx_user_assignments_fid
+  ON user_question_assignments(fid);
+CREATE INDEX IF NOT EXISTS idx_user_assignments_week_day
+  ON user_question_assignments(week_id, day_of_week);
+CREATE INDEX IF NOT EXISTS idx_user_assignments_date
+  ON user_question_assignments(question_date);
+
 -- User daily answers
 CREATE INDEX IF NOT EXISTS idx_user_daily_answers_fid
   ON user_daily_answers(fid);
@@ -303,6 +344,7 @@ CREATE INDEX IF NOT EXISTS idx_frame_interactions_created
 ALTER TABLE quiz_weeks ENABLE ROW LEVEL SECURITY;
 ALTER TABLE quiz_questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE week_questions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_question_assignments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_daily_answers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_week_summary ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reward_recipients ENABLE ROW LEVEL SECURITY;
@@ -323,6 +365,14 @@ CREATE POLICY "Allow public read summaries"
 
 CREATE POLICY "Allow public read rewards"
   ON reward_recipients FOR SELECT USING (true);
+
+-- Users can read their own assignments
+CREATE POLICY "Allow users to read own assignments"
+  ON user_question_assignments FOR SELECT USING (true);
+
+-- Users can insert their own assignments (via app logic)
+CREATE POLICY "Allow users to insert assignments"
+  ON user_question_assignments FOR INSERT WITH CHECK (true);
 
 -- Users can read their own answers
 CREATE POLICY "Allow users to read own answers"
@@ -346,6 +396,9 @@ CREATE POLICY "Allow service role full access questions"
 CREATE POLICY "Allow service role full access week_questions"
   ON week_questions FOR ALL USING (true);
 
+CREATE POLICY "Allow service role full access assignments"
+  ON user_question_assignments FOR ALL USING (true);
+
 CREATE POLICY "Allow service role full access summaries"
   ON user_week_summary FOR ALL USING (true);
 
@@ -365,30 +418,67 @@ RETURNS quiz_weeks AS $$
   LIMIT 1;
 $$ LANGUAGE sql STABLE;
 
--- Function to get today's question for a week
-CREATE OR REPLACE FUNCTION get_todays_question(week_uuid UUID)
-RETURNS TABLE (
-  question_id UUID,
-  day_of_week INTEGER,
-  question_date DATE
-) AS $$
-  SELECT wq.question_id, wq.day_of_week, wq.question_date
-  FROM week_questions wq
-  WHERE wq.week_id = week_uuid
-  AND wq.question_date = CURRENT_DATE
-  LIMIT 1;
-$$ LANGUAGE sql STABLE;
+-- Function to get or assign today's question for a user
+CREATE OR REPLACE FUNCTION get_or_assign_todays_question(user_fid BIGINT, week_uuid UUID)
+RETURNS UUID AS $$
+DECLARE
+  assigned_question_id UUID;
+  available_questions UUID[];
+  random_question_id UUID;
+  current_day INTEGER;
+  today_date DATE;
+BEGIN
+  today_date := CURRENT_DATE;
+  current_day := EXTRACT(ISODOW FROM today_date); -- 1=Monday, 7=Sunday
+
+  -- Check if user already has an assignment for today
+  SELECT question_id INTO assigned_question_id
+  FROM user_question_assignments
+  WHERE fid = user_fid
+  AND week_id = week_uuid
+  AND question_date = today_date;
+
+  IF assigned_question_id IS NOT NULL THEN
+    RETURN assigned_question_id;
+  END IF;
+
+  -- Get available questions for today
+  SELECT ARRAY_AGG(question_id) INTO available_questions
+  FROM week_questions
+  WHERE week_id = week_uuid
+  AND question_date = today_date;
+
+  IF available_questions IS NULL OR array_length(available_questions, 1) = 0 THEN
+    RETURN NULL; -- No questions available for today
+  END IF;
+
+  -- Randomly select one question from available questions
+  random_question_id := available_questions[1 + floor(random() * array_length(available_questions, 1))::int];
+
+  -- Assign question to user
+  INSERT INTO user_question_assignments (fid, week_id, day_of_week, question_date, question_id)
+  VALUES (user_fid, week_uuid, current_day, today_date, random_question_id)
+  ON CONFLICT (fid, week_id, day_of_week) DO NOTHING;
+
+  RETURN random_question_id;
+END;
+$$ LANGUAGE plpgsql;
 
 -- Function to check if user has answered today
 CREATE OR REPLACE FUNCTION has_answered_today(user_fid BIGINT, week_uuid UUID)
 RETURNS BOOLEAN AS $$
   SELECT EXISTS(
-    SELECT 1 FROM user_daily_answers uda
-    JOIN week_questions wq ON uda.question_id = wq.question_id
-    WHERE uda.fid = user_fid
-    AND uda.week_id = week_uuid
-    AND wq.question_date = CURRENT_DATE
+    SELECT 1 FROM user_daily_answers
+    WHERE fid = user_fid
+    AND week_id = week_uuid
+    AND DATE(answered_at) = CURRENT_DATE
   );
+$$ LANGUAGE sql STABLE;
+
+-- Function to check if today's question is expired
+CREATE OR REPLACE FUNCTION is_question_expired(question_date_param DATE)
+RETURNS BOOLEAN AS $$
+  SELECT question_date_param < CURRENT_DATE;
 $$ LANGUAGE sql STABLE;
 
 -- Function to get user's score for current week
@@ -514,7 +604,10 @@ COMMENT ON TABLE quiz_questions IS
   'Pool of quiz questions that can be used in weekly quizzes';
 
 COMMENT ON TABLE week_questions IS
-  'Maps 7 questions to each quiz week (one per day, Monday-Sunday)';
+  'Maps 2-3 questions per day to each quiz week (14-21 questions total per week)';
+
+COMMENT ON TABLE user_question_assignments IS
+  'Tracks which specific question was randomly assigned to each user each day';
 
 COMMENT ON TABLE user_daily_answers IS
   'Tracks user answers for each day of the week (one answer per day)';
@@ -530,6 +623,12 @@ COMMENT ON TABLE frame_interactions IS
 
 COMMENT ON COLUMN week_questions.day_of_week IS
   '1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday, 7=Sunday';
+
+COMMENT ON COLUMN week_questions.selection_weight IS
+  'Weight for random selection (higher = more likely). Default 1 for equal probability.';
+
+COMMENT ON COLUMN user_question_assignments.question_id IS
+  'The specific question randomly assigned to this user for this day';
 
 COMMENT ON COLUMN reward_recipients.transaction_hash IS
   'BASE chain transaction hash for $EVENT token distribution';
