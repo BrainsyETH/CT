@@ -8324,5 +8324,110 @@
     ],
     "metrics": {}
   },
-  {}
-]
+
+    {
+      "id": "cryptsy-halts-withdrawals-hack-2016-01-19",
+      "date": "2016-01-19",
+      "title": "Cryptsy Halts Trading and Withdrawals",
+      "summary": "On January 19, 2016, Cryptsy suspended trading and withdrawals amid reports that the exchange had suffered a major security breach. The Cryptsy.com `hack` that led to the exchange's shutdown in January 2016 was publicly announced by CEO Paul Vernon (aka 'Big Vern') as a major security breach from July 2014, where an alleged hacker (blamed on the developer of altcoin Lucky7Coin) inserted an IRC backdoor/Trojan into wallet code, stealing approximately 13,000 BTC and 300,000 LTC (worth about $5-7 million then). Vernon claimed the exchange kept operating by using profits to cover losses and avoid panic, but after months of withdrawal delays, rumors, and a Coinfire article sparking a bank run, Cryptsy froze withdrawals, admitted insolvency, and effectively shut down indefinitely on January 14-15, 2016.",
+      "category": ["Centralized Exchange","Security"],
+      "tags": ["FAILURE","SECURITY"],
+      "mode": ["crimeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/cryptsy",
+      "media": [
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/CoinDesk/status/764401158706331649?s=20",
+            "account_handle": "CoinDesk"
+          }
+        },
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/PrivateKeyProd/status/1877481065654141023?s=20",
+            "account_handle": ""
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "DOJ Report",
+          "url": "https://www.justice.gov/usao-sdfl/pr/ceo-major-online-cryptocurrency-exchange-company-indicted-defrauding-company-s"
+        }
+      ],
+      "metrics": {},
+      "crimeline": {
+        "type": "EXCHANGE HACK",
+        "funds_lost_usd": 8000000,
+        "market_impact_usd": "~8M",
+        "victims_estimated": "Tens of thousands",
+        "root_cause": [
+          "Compromised hot wallets",
+          "Poor internal security controls",
+          "Lack of transparency after breach"
+        ],
+        "aftermath": "Cryptsy later filed for bankruptcy and its founder was accused of stealing customer funds.",
+        "status": "Total loss"
+      }
+    },
+    {
+      "id": "sec-cftc-joint-crypto-enforcement-statement-2018-01-19",
+      "date": "2018-01-19",
+      "title": "SEC and CFTC Issue Joint Enforcement Statement",
+      "summary": "OThe core message was a strong warning to market participants: when fraud occurs under the guise of offering digital instruments (whether called virtual currencies, coins, tokens, or similar), the agencies will look beyond form and examine the substance of the activity. They committed to prosecuting violations of federal securities and commodities laws accordingly.The Divisions of Enforcement for both the SEC and CFTC pledged to continue addressing violations and bringing actions to stop and prevent fraud in the offer and sale of these digital instruments. This statement underscored the regulators' coordinated approach to cracking down on scams in the emerging crypto space during the 2017-2018 boom.",
+      "category": ["Regulation","Market Structure"],
+      "tags": ["REGULATORY","MILESTONE"],
+      "mode": ["timeline"],
+      "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/sec_cftc",
+      "media": [
+        
+      ],
+      "links": [
+        {
+          "label": "CFTC Statement",
+          "url": "https://www.cftc.gov/PressRoom/PressReleases/7679-18"
+        }
+      ],
+      "metrics": {}
+    },
+    {
+      "id": "crypto-com-security-incident-disclosed-2022-01-19",
+      "date": "2022-01-19",
+      "title": "Crypto.com Discloses Security Incident",
+      "summary": "On January 19, 2022, Crypto.com disclosed a security incident that resulted in unauthorized withdrawals from hundreds of customer accounts. The company temporarily suspended withdrawals while investigating the breach and later confirmed compromised accounts across multiple assets. TechCrunch reported that affected users were reimbursed after internal safeguards failed. The event highlighted ongoing risks associated with centralized exchange account security even at large platforms.",
+      "category": ["Centralized Exchange","Security"],
+      "tags": ["SECURITY","FAILURE"],
+      "mode": ["crimeline"],
+      "image": "",
+      "media": [
+        {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/kris/status/1483788039200192512",
+            "account_handle": "kris"
+          }
+        }
+      ],
+      "links": [
+        {
+          "label": "TechCrunch Report",
+          "url": "https://techcrunch.com/2022/01/19/crypto-com-security-incident/"
+        }
+      ],
+      "metrics": {},
+      "crimeline": {
+        "type": "EXCHANGE HACK",
+        "funds_lost_usd": 34000000,
+        "market_impact_usd": "~34M",
+        "victims_estimated": "Hundreds",
+        "root_cause": [
+          "Compromised user accounts",
+          "Insufficient multi-factor protections",
+          "Delayed detection of unauthorized withdrawals"
+        ],
+        "aftermath": "Crypto.com reimbursed affected users and rolled out additional security measures.",
+        "status": "Funds recovered"
+      }
+    }
+  ]  
