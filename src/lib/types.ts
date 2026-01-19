@@ -154,3 +154,137 @@ export interface FarcasterPostPayload {
   text: string;
   embeds: { url: string }[];
 }
+
+// Quiz types
+export type QuizWeekStatus = "upcoming" | "active" | "completed" | "rewarded";
+export type QuizDifficulty = "easy" | "medium" | "hard";
+export type FrameInteractionType =
+  | "view_home"
+  | "start_quiz"
+  | "answer_question"
+  | "complete_quiz"
+  | "view_leaderboard"
+  | "share_score"
+  | "view_rules";
+
+export interface QuizWeek {
+  id: string;
+  week_number: number;
+  start_date: string;
+  end_date: string;
+  status: QuizWeekStatus;
+  total_reward_amount?: number;
+  reward_distributed_at?: string;
+  created_at: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question_text: string;
+  correct_answer: string;
+  wrong_answer_1: string;
+  wrong_answer_2: string;
+  wrong_answer_3: string;
+  event_id?: string;
+  event_date?: string;
+  difficulty?: QuizDifficulty;
+  category?: string;
+  tags?: string[];
+  explanation?: string;
+  image_url?: string;
+  times_used?: number;
+  times_correct?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface WeekQuestion {
+  id: string;
+  week_id: string;
+  question_id: string;
+  question_order: number;
+  created_at: string;
+}
+
+export interface QuizAnswer {
+  question_id: string;
+  user_answer: string;
+  correct: boolean;
+}
+
+export interface UserQuizAttempt {
+  id: string;
+  fid: number;
+  username?: string;
+  week_id: string;
+  score: number;
+  total_questions: number;
+  percentage: number;
+  started_at: string;
+  completed_at: string;
+  duration_seconds: number;
+  answers: QuizAnswer[];
+  created_at: string;
+}
+
+export interface RewardRecipient {
+  id: string;
+  week_id: string;
+  attempt_id: string;
+  fid: number;
+  username?: string;
+  final_rank: number;
+  reward_amount: number;
+  wallet_address?: string;
+  distributed: boolean;
+  distributed_at?: string;
+  transaction_hash?: string;
+  created_at: string;
+}
+
+export interface LeaderboardEntry {
+  rank: number;
+  fid: number;
+  username?: string;
+  weeks_participated: number;
+  average_score: number;
+  total_correct: number;
+  total_questions_answered: number;
+  last_quiz_date: string;
+  current_streak: number;
+}
+
+export interface WeekLeaderboardEntry {
+  rank: number;
+  fid: number;
+  username?: string;
+  score: number;
+  percentage: number;
+  completed_at: string;
+}
+
+export interface FrameInteraction {
+  id?: string;
+  fid: number;
+  username?: string;
+  interaction_type: FrameInteractionType;
+  week_id?: string;
+  question_id?: string;
+  metadata?: Record<string, any>;
+  created_at?: string;
+}
+
+// Frame state types
+export interface QuizFrameState {
+  week_id: string;
+  question_index: number; // 0-6
+  answers: string[]; // User's answers so far
+  started_at: string;
+}
+
+export interface FrameButtonAction {
+  index: number;
+  label: string;
+  action?: "post" | "post_redirect" | "link";
+  target?: string;
+}
