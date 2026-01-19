@@ -126,17 +126,16 @@ export function Header() {
       {/* Desktop Layout */}
       <div className="hidden md:block max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo / Title */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="flex items-center gap-4 min-w-0 cursor-pointer group relative"
-            aria-label="Scroll to top"
-          >
-            {/* Logo and Subtitle Container */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
-              {/* Enhanced Logo Container */}
+          {/* Logo and Subtitle Section */}
+          <div className="flex flex-row items-center gap-8 min-w-0">
+            {/* Logo */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="cursor-pointer group relative"
+              aria-label="Scroll to top"
+            >
               <motion.div
                 className="relative flex-shrink-0 flex items-center justify-center"
                 animate={
@@ -161,30 +160,30 @@ export function Header() {
               >
                 <ChainOfEventsLogo size="lg" />
               </motion.div>
+            </button>
 
-              {/* Tagline with neo-brutalist styling */}
-              <motion.p
-                className={`neo-brutalist-subtitle mt-3 lg:mt-0 lg:whitespace-nowrap ${
-                  isCrimeline
-                    ? "neo-brutalist-subtitle-crimeline"
-                    : "neo-brutalist-subtitle-timeline"
-                }`}
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        opacity: isHovered ? 0.9 : 1,
-                        transform: isHovered ? "rotate(-0.5deg) scale(1.02)" : "rotate(-1deg) scale(1)",
-                      }
-                }
-                transition={{ duration: 0.3 }}
-              >
-                {isCrimeline
-                  ? "The dark history of cryptocurrency"
-                  : "The history of cryptocurrency"}
-              </motion.p>
-            </div>
-          </button>
+            {/* Subtitle */}
+            <motion.p
+              className={`neo-brutalist-subtitle whitespace-nowrap ${
+                isCrimeline
+                  ? "neo-brutalist-subtitle-crimeline"
+                  : "neo-brutalist-subtitle-timeline"
+              }`}
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      opacity: isHovered ? 0.9 : 1,
+                      transform: isHovered ? "rotate(-0.5deg) scale(1.02)" : "rotate(-1deg) scale(1)",
+                    }
+              }
+              transition={{ duration: 0.3 }}
+            >
+              {isCrimeline
+                ? "The dark history of cryptocurrency"
+                : "The history of cryptocurrency"}
+            </motion.p>
+          </div>
 
           {/* CT Lore Button + Mode Toggle */}
           <div className="flex items-center gap-3 flex-shrink-0">
