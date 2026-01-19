@@ -1,12 +1,11 @@
-"use client";
-
 import { SocialSharePreview } from "@/components/SocialSharePreview";
-import eventsData from "@/data/events.json";
+import { getAllEvents } from "@/lib/events-db";
 import type { Event } from "@/lib/types";
 
-const events = eventsData as Event[];
+export default async function TestPreviewPage() {
+  // Fetch events from database
+  const { events } = await getAllEvents({ limit: 100 });
 
-export default function TestPreviewPage() {
   // Find an event with a long title for testing
   const testEvent = events.find(
     (e) =>

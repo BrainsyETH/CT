@@ -2,11 +2,9 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
-import eventsData from "@/data/events.json";
+import { getAllEvents, getEventById } from "@/lib/events-db";
 import type { Event } from "@/lib/types";
 import { formatDate } from "@/lib/formatters";
-
-const events = eventsData as Event[];
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -32,7 +30,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     value.length > maxLength ? `${value.slice(0, maxLength - 3).trimEnd()}...` : value;
 
   if (eventId) {
-    const event = events.find((e) => e.id === eventId);
+    const event = await getEventById(eventId);
     if (event) {
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
@@ -111,7 +109,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
-export default function Home() {
+export default async function Home() {
+  // Fetch all events from database
+  const { events } = await getAllEvents({
+    orderBy: "date",
+    orderDirection: "desc",
+  });
+
   return (
     <Suspense fallback={null}>
       <HomeContent events={events} />
