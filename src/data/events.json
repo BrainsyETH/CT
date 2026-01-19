@@ -8403,5 +8403,128 @@
         "aftermath": "Crypto.com reimbursed affected users and rolled out additional security measures.",
         "status": "Resolved"
       }
-    }
-  ]  
+    },
+      {
+        "id": "bitcoin-ath-2025-01-20",
+        "date": "2025-01-20",
+        "title": "Bitcoin Reaches New All-Time High of $109,350",
+        "summary": "Bitcoin hit a record high of $109,350 on Donald Trump's inauguration day, driven by market enthusiasm for his pro-crypto policies and speculation about a potential national Bitcoin reserve. The surge reflected optimism that the incoming administration would create a more supportive regulatory environment for digital assets. The price later pulled back in a classic \"buy the rumor, sell the news\" pattern, but the milestone marked a significant moment for crypto investors celebrating the anticipated shift toward favorable U.S. regulations.",
+        "category": ["Bitcoin", "Market Structure"],
+        "tags": ["ATH", "MILESTONE", "ECONOMIC"],
+        "mode": ["timeline"],
+        "image": "https://x.com/cb_doge/status/1881242785078214966/photo/1",
+        "media": [
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/TheInsiderPaper/status/1881264552886890595?s=20",
+              "account_handle": ""
+            }
+          }
+        ],
+        "links": [
+          {
+            "label": "Breaking Announcement",
+            "url": "https://x.com/cb_doge/status/1881242785078214966"
+          },
+          {
+            "label": "Bloomberg Report on $109k Peak",
+            "url": "https://x.com/TheInsiderPaper/status/1881264552886890595"
+          }
+        ],
+        "metrics": {}
+      },
+      {
+        "id": "ross-ulbricht-pardon-2025-01-21",
+        "date": "2025-01-21",
+        "title": "President Trump Pardons Ross Ulbricht",
+        "summary": "President Trump granted a full and unconditional pardon to Ross Ulbricht, founder of the Silk Road marketplace, fulfilling a key campaign promise to libertarians and crypto advocates who viewed his life sentence as excessive. The pardon came just one day after Trump's inauguration and sparked widespread celebration among supporters while drawing criticism from others over Ulbricht's convictions related to drug trafficking and money laundering. The move symbolized a major victory for crypto advocates pushing for criminal justice reform in the digital asset space.",
+        "category": ["Regulation", "Bitcoin", "Culture"],
+        "tags": ["REGULATORY", "CULTURAL", "MILESTONE"],
+        "mode": ["timeline"],
+        "image": "",
+        "media": [
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/WatcherGuru/status/1881853845837623462",
+              "account_handle": "WatcherGuru"
+            }
+          }
+        ],
+        "links": [
+          {
+            "label": "Breaking Announcement",
+            "url": "https://x.com/WatcherGuru/status/1881853845837623462"
+          },
+          {
+            "label": "Libertarian Party Celebration",
+            "url": "https://x.com/lpnyofficial/status/1881854249010909198"
+          }
+        ],
+        "metrics": {}
+      },
+      {
+        "id": "trump-digital-assets-executive-order-2025-01-23",
+        "date": "2025-01-23",
+        "title": "Trump Signs Executive Order on Digital Assets",
+        "summary": "President Trump signed the \"Strengthening American Leadership in Digital Financial Technology\" executive order, directing federal agencies to develop clear regulatory frameworks and promote blockchain innovation while explicitly ending \"Operation Choke Point 2.0\" practices that had restricted banking access for crypto firms. The order banned central bank digital currencies (CBDCs) and emphasized fair banking access for digital asset companies. This landmark policy provided much-needed regulatory clarity and positioned the U.S. as a global leader in crypto innovation.",
+        "category": ["Regulation", "Market Structure"],
+        "tags": ["REGULATORY", "MILESTONE"],
+        "mode": ["timeline"],
+        "image": "",
+        "media": [
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/PeterMcCormack/status/1882563444945375607?s=20",
+              "account_handle": ""
+            }
+          },
+          {
+            "type": "twitter",
+            "twitter": {
+              "tweet_url": "https://x.com/chainlink/status/1882555489197945267?s=20",
+              "account_handle": ""
+            }
+          }
+        ],
+        "links": [
+          {
+            "label": "Executive Order",
+            "url": "https://www.whitehouse.gov/presidential-actions/2025/01/strengthening-american-leadership-in-digital-financial-technology/"
+          }
+        ],
+        "metrics": {}
+      },
+      {
+        "id": "coinbase-suspends-xrp-2020-12-28",
+        "date": "2020-12-28",
+        "title": "Coinbase Suspends XRP Trading",
+        "summary": "Coinbase officially suspended XRP trading on January 19, 2021, following the SEC's lawsuit against Ripple Labs for allegedly selling unregistered securities. The exchange moved XRP trading to limit-only starting December 28, 2020, before the full suspension, though customers retained access to XRP wallets for deposits and withdrawals. The decision joined other major exchanges like OKCoin and Bitstamp in delisting XRP, causing the price to crash from $0.64 to $0.28 within a week as the regulatory uncertainty spooked the market.",
+        "category": ["Centralized Exchange", "Regulation"],
+        "tags": ["REGULATORY", "FAILURE"],
+        "mode": ["timeline"],
+        "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/xrp_suspension",
+        "media": [
+          {
+          "type": "twitter",
+          "twitter": {
+            "tweet_url": "https://x.com/coinbase/status/1343685626001039360?s=20",
+            "account_handle": ""
+          }
+        }
+      ],
+        "links": [
+          {
+            "label": "Coinbase Announcement",
+            "url": "https://www.coinbase.com/blog/coinbase-will-suspend-trading-in-xrp-on-january-19"
+          },
+          {
+            "label": "Coinbase Support Details",
+            "url": "https://help.coinbase.com/en/coinbase/trading-and-funding/cryptocurrency-trading-pairs/ripple-sec-lawsuit"
+          }
+        ],
+        "metrics": {}
+      }
+    ]
