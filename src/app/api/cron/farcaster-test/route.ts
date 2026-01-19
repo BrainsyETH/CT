@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all events for this date
-    const events = getTodaysEvents(targetDate);
+    const events = await getTodaysEvents(targetDate);
 
     // If specific slot requested
     if (slotParam !== null) {

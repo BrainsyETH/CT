@@ -147,22 +147,16 @@ async function migrateEvents() {
 
     console.log(`✅ Verified: ${finalCount} events in database\n`);
 
-    // Sample query: Get events from today's date in history
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-
-    const { data: todayEvents, error: queryError } = await supabase
+    // Sample query: Get recent events
+    const { data: recentEvents, error: queryError } = await supabase
       .from("events")
       .select("id, date, title")
-      .eq(supabase.rpc("EXTRACT(MONTH FROM date)", {}), month)
-      .eq(supabase.rpc("EXTRACT(DAY FROM date)", {}), day)
       .order("date", { ascending: false })
       .limit(5);
 
-    if (!queryError && todayEvents && todayEvents.length > 0) {
-      console.log(`📅 Sample query - Events on this day (${month}/${day}):`);
-      todayEvents.forEach((evt) => {
+    if (!queryError && recentEvents && recentEvents.length > 0) {
+      console.log("📅 Sample query - Most recent events:");
+      recentEvents.forEach((evt) => {
         console.log(`   • ${evt.date}: ${evt.title}`);
       });
       console.log("");

@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get the event
-    const event = getEventForSlot(targetDate, slotIndex);
+    const event = await getEventForSlot(targetDate, slotIndex);
     if (!event) {
       return NextResponse.json({
         message: "No event for this date and slot",
