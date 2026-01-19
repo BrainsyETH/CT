@@ -1,0 +1,219 @@
+import { ImageResponse } from "next/og";
+import { NextRequest } from "next/server";
+
+export const runtime = "edge";
+
+// Helper to get first sentence from summary
+function getFirstSentence(text: string): string {
+  if (!text) return "";
+  // Match first sentence ending with . ! or ?
+  const match = text.match(/^[^.!?]+[.!?]/);
+  if (match) {
+    return match[0].trim();
+  }
+  // If no sentence ending found, return first 150 chars
+  return text.length > 150 ? `${text.slice(0, 147)}...` : text;
+}
+
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const title = searchParams.get("title") || "Chain of Events";
+    const date = searchParams.get("date") || "";
+    const summary = searchParams.get("summary") || "";
+    const imageUrl = searchParams.get("image") || "";
+    const mode = searchParams.get("mode") || "timeline";
+
+    const firstSentence = getFirstSentence(summary);
+
+    // Color scheme based on mode (matching globals.css)
+    const colors =
+      mode === "crimeline"
+        ? {
+            accent: "#7c3aed", // Purple
+            accentLight: "#a855f7",
+            background: "#030712",
+            cardBg: "#111827",
+            text: "#f9fafb",
+            border: "#000000",
+          }
+        : {
+            accent: "#14b8a6", // Teal
+            accentLight: "#2dd4bf",
+            background: "#f9fafb",
+            cardBg: "#ffffff",
+            text: "#111827",
+            border: "#000000",
+          };
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            fontFamily: "system-ui, sans-serif",
+            background: colors.background,
+            position: "relative",
+          }}
+        >
+          {/* Full-bleed background image */}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              width="1200"
+              height="630"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "1200px",
+                height: "630px",
+                objectFit: "cover",
+              }}
+            />
+          )}
+
+          {/* Fallback gradient if no image */}
+          {!imageUrl && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "1200px",
+                height: "630px",
+                background: `linear-gradient(135deg, ${colors.accent}, ${colors.accentLight})`,
+              }}
+            />
+          )}
+
+          {/* Dark overlay for text readability - darker at bottom for title */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "1200px",
+              height: "630px",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.85))",
+            }}
+          />
+
+          {/* Date Badge - Top Right Corner */}
+          {date && (
+            <div
+              style={{
+                position: "absolute",
+                top: "28px",
+                right: "36px",
+                display: "flex",
+                background: colors.accent,
+                border: `5px solid ${colors.border}`,
+                padding: "16px 32px",
+                boxShadow: "6px 6px 0px 0px #000000",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: 900,
+                  color: "#ffffff",
+                  textTransform: "uppercase",
+                  letterSpacing: "3px",
+                }}
+              >
+                {date}
+              </span>
+            </div>
+          )}
+
+          {/* Title Box - Bottom Left (NEW POSITION) */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "28px",
+              left: "36px",
+              display: "flex",
+              maxWidth: "1000px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                background: colors.cardBg,
+                border: `5px solid ${colors.border}`,
+                padding: "24px 36px",
+                boxShadow: "8px 8px 0px 0px #000000",
+                maxWidth: "100%",
+                wordWrap: "break-word",
+                overflowWrap: "break-word",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "36px",
+                  fontWeight: 900,
+                  color: colors.text,
+                  lineHeight: 1.15,
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
+                  whiteSpace: "normal",
+                }}
+              >
+                {title}
+              </span>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  } catch (error) {
+    console.error("Error generating Farcaster OG image:", error);
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#14b8a6",
+            fontFamily: "system-ui, sans-serif",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              background: "#ffffff",
+              border: "8px solid #111827",
+              padding: "40px 60px",
+              boxShadow: "12px 12px 0px 0px #111827",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "56px",
+                fontWeight: 900,
+                color: "#111827",
+              }}
+            >
+              Chain of Events
+            </span>
+          </div>
+        </div>
+      ),
+      {
+        width: 1200,
+        height: 630,
+      }
+    );
+  }
+}

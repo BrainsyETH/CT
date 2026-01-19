@@ -3,15 +3,16 @@ import type { Event, FarcasterPostPayload } from "@/lib/types";
 /**
  * Formats an event into a Farcaster post payload
  * - Caption: First sentence from summary only (no hashtags)
- * - Embeds: Event's canonical URL (for OG unfurl)
+ * - Embeds: Farcaster-specific URL (uses OG image with title at bottom)
  */
 export function formatEventPost(event: Event): FarcasterPostPayload {
   // Extract first sentence from summary
   const firstSentence = getFirstSentence(event.summary);
 
-  // Build canonical event URL
+  // Build Farcaster-specific event URL
+  // Uses /fc/[id] route which has OG image with title at bottom
   const siteUrl = getSiteUrl();
-  const eventUrl = `${siteUrl}?event=${event.id}`;
+  const eventUrl = `${siteUrl}fc/${event.id}`;
 
   return {
     text: firstSentence,
