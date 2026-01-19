@@ -93,9 +93,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
+      icon: "/coe_minimalisticv2.png",
+      shortcut: "/coe_minimalisticv2.png",
+      apple: "/coe_minimalisticv2.png",
     },
     manifest: "/manifest.json",
   };
