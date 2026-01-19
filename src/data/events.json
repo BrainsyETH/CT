@@ -8525,5 +8525,153 @@
           }
         ],
         "metrics": {}
-      }
-    ]
+      },
+  
+        {
+          "id": "buttcoin-solana-launch-2025-01-30",
+          "date": "2025-01-15",
+          "title": "Buttcoin Launches A Revival on Solana",
+          "summary": "The Buttcoin memecoin ($BUTTCOIN) launched on Pump.fun on Solana, reviving the 2011 Bitcoin parody that mocked crypto hype via forums and a satirical video from 2013 by James D. McMurray. The original troll concept from Buttcoin.org came full circle as the community turned the joke into a real token. It quickly gained traction as the godfather of ironic meme coins with unmatched historical depth.",
+          "category": ["Memecoins", "CT Lore", "Bitcoin"],
+          "tags": ["CULTURAL", "MILESTONE"],
+          "mode": ["timeline"],
+          "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/buttcoin",
+          "media": [
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/ButtCoin/status/2011861562009465023?s=20",
+                "account_handle": ""
+              }
+            },
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/lastmoai/status/2013000610770034702",
+                "account_handle": ""
+              }
+            }
+          ],
+          "links": [
+            { "label": "Buttcoin Foundation", "url": "https://www.buttcoinfoundation.org/" },
+            { "label": "Buttcoin Genesis Memecoin", "url": "https://medium.com/@francoisbacoin/buttcoin-the-genesis-memecoin-fbdda7eba17b" }
+                    ],
+          "metrics": {}
+        },
+        {
+          "id": "whitewhale-community-takeover-2025-12-07",
+          "date": "2025-12-07",
+          "title": "$WHITEWHALE Tokens Locked Until 2063",
+          "summary": "A Hyperliquid perps trader known as TheWhiteWhale had $3M frozen by MEXC on AML claims and won it back after public pressure. Fans launched $WHITEWHALE as a tribute meme on Solana in October 2025. On December 7 the real whale took control, locked his tokens until 2063, returned creator funds, added major liquidity, and built an on-chain treasury, driving the token to over $100M-$200M peak market cap as a symbol of crypto justice and real skin in the game.",
+          "category": ["Memecoins", "CT Lore", "Centralized Exchange"],
+          "tags": ["CULTURAL", "SECURITY"],
+          "mode": ["timeline"],
+          "image": "data:image/jpeg;base64,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",
+          "media": [
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/thewhitewhalev2/status/1987205170069975256?s=12&t=GsgzrAaBQyhvbHON5enrrw",
+                "account_handle": ""
+              }
+            },
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/EvanLuthra/status/2010250753118765538",
+                "account_handle": "EvanLuthra"
+              }
+            }
+          ],
+          "links": [
+            { "label": "Our Crypto Talk", "url": "https://web.ourcryptotalk.com/news/mexc-returns-3m-to-the-white-whale" },
+            { "label": "WhiteWhale Story", "url": "https://x.com/peraa223/status/2012532605757890791" }
+          ],
+          "metrics": {}
+        },
+        {
+          "id": "hodl-typo-origin-2013-12-18",
+          "date": "2013-12-18",
+          "title": "Drunken 'I AM HODLING' Post Begins",
+          "summary": "During a major Bitcoin price crash, Bitcointalk user GameKyuubi posted a rant titled 'I AM HODLING' after misspelling 'holding' while drunk on whiskey. He explained why he refused to sell as a self-admitted bad trader, emphasizing that only good traders profit from volatility. The typo instantly became legendary and evolved into 'HODL', the universal mantra for diamond hands in crypto culture.",
+          "category": ["Bitcoin", "CT Lore", "Culture"],
+          "tags": ["CULTURAL", "MILESTONE"],
+          "mode": ["timeline"],
+          "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/hodling",
+          "media": [
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/Cointelegraph/status/1957737011176980517",
+                "account_handle": ""
+              }
+            }
+          ],
+          "links": [
+            { "label": "Original Bitcointalk Post", "url": "https://bitcointalk.org/index.php?topic=375643.0" }
+          ],
+          "metrics": {}
+        },
+        
+        {
+          "id": "mev-bot-pirate-negotiation-2025",
+          "date": "2025-09-19",
+          "title": "MEV Bot Loses $1M and Negotiates Recovery as a Pirate on Discord",
+          "summary": "A guy lost $1 million due to a glitch in his MEV bot. To recover part of the funds, he had to negotiate directly in Discord with a competitor while roleplaying as a pirate. The absurd and dark true story became one of the funniest pieces of DeFi tragedy lore shared across CT.",
+          "category": ["DeFi", "CT Lore", "Security"],
+          "tags": ["CULTURAL", "FAILURE"],
+          "mode": ["timeline"],
+          "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/pirate",
+          "media": [
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/euler_mab/status/1969030132456104027",
+                "account_handle": "euler_mab"
+              }
+            }
+          ],
+          "links": [
+            { "label": "Euler_Mab Lore Post", "url": "https://x.com/euler_mab/status/1969030132456104027" }
+          ],
+          "metrics": {}
+        },
+
+        {
+          "id": "mev-bot-pirate-negotiation-2025",
+          "date": "2017-11-06",
+          "title": "anyone can kill your contract",
+          "summary": "I accidentally killed it.",
+          "category": ["DeFi", "CT Lore", "Security"],
+          "tags": ["CULTURAL", "FAILURE"],
+          "mode": ["timeline"],
+          "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/I_accidentally_killed_it",
+          "media": [
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "https://x.com/Tiza4ThePeople/status/1968755796423893313?s=20",
+                "account_handle": ""
+              }
+            }
+          ],
+          "links": [
+            { "label": "Early Lore", "url": "https://x.com/Tiza4ThePeople/status/1968755355451597120?s=20" }
+          ],
+          "metrics": {}
+        },
+
+        {
+          "id": "memecoin-creator-kidnapped-2025",
+          "date": "2025-01-01",
+          "title": "Memecoin Creator Rugs Community for $12K Then Gets Kidnapped by Investors",
+          "summary": "A newbie launched a 'memecoin is a scam' token, rugged his community for ~$12K on live facecam, and then was allegedly kidnapped by the rugged investors seeking revenge. The wild sequence of events mixed absurdity, fraud, and real-world consequences, becoming one of the darkest and most viral pieces of crypto meme lore.",
+          "category": ["Memecoins", "CT Lore", "Fraud"],
+          "tags": ["CULTURAL", "FAILURE"],
+          "mode": ["timeline"],
+          "image": "",
+          "media": [],
+          "links": [],
+          "metrics": {}
+        }
+      ]
