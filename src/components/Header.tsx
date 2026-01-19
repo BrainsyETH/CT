@@ -134,31 +134,56 @@ export function Header() {
             className="flex items-center gap-4 min-w-0 cursor-pointer group relative"
             aria-label="Scroll to top"
           >
-            {/* Enhanced Logo Container */}
-            <motion.div
-              className="relative flex-shrink-0 flex items-center justify-center"
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: isHovered ? 1.05 : isCrimeline ? [1, 1.02, 1] : 1,
-                    }
-              }
-              transition={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: {
-                        duration: 0.3,
-                        repeat: isCrimeline && !isHovered ? Infinity : 0,
-                        repeatDelay: 2,
-                      },
-                    }
-              }
-              whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
-            >
-              <ChainOfEventsLogo size="lg" />
-            </motion.div>
+            {/* Logo and Subtitle Container */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-8">
+              {/* Enhanced Logo Container */}
+              <motion.div
+                className="relative flex-shrink-0 flex items-center justify-center"
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: isHovered ? 1.05 : isCrimeline ? [1, 1.02, 1] : 1,
+                      }
+                }
+                transition={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: {
+                          duration: 0.3,
+                          repeat: isCrimeline && !isHovered ? Infinity : 0,
+                          repeatDelay: 2,
+                        },
+                      }
+                }
+                whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
+              >
+                <ChainOfEventsLogo size="lg" />
+              </motion.div>
+
+              {/* Tagline with neo-brutalist styling */}
+              <motion.p
+                className={`neo-brutalist-subtitle mt-3 lg:mt-0 lg:whitespace-nowrap ${
+                  isCrimeline
+                    ? "neo-brutalist-subtitle-crimeline"
+                    : "neo-brutalist-subtitle-timeline"
+                }`}
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        opacity: isHovered ? 0.9 : 1,
+                        transform: isHovered ? "rotate(-0.5deg) scale(1.02)" : "rotate(-1deg) scale(1)",
+                      }
+                }
+                transition={{ duration: 0.3 }}
+              >
+                {isCrimeline
+                  ? "The dark history of cryptocurrency"
+                  : "The history of cryptocurrency"}
+              </motion.p>
+            </div>
           </button>
 
           {/* CT Lore Button + Mode Toggle */}
