@@ -92,11 +92,6 @@ export async function generateMetadata(): Promise<Metadata> {
         "max-snippet": -1,
       },
     },
-    icons: {
-      icon: "/coe_minimalisticv2.png",
-      shortcut: "/coe_minimalisticv2.png",
-      apple: "/coe_minimalisticv2.png",
-    },
     manifest: "/manifest.json",
   };
 }

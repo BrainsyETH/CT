@@ -9,8 +9,14 @@
   "icons": [
     {
       "src": "/coe_minimalisticv2.png",
-      "sizes": "512x512",
+      "sizes": "1088x960",
       "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "1088x960",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
