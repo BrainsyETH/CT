@@ -16,7 +16,7 @@ export function getNeynarClient(): NeynarAPIClient {
     if (!apiKey) {
       throw new Error("NEYNAR_API_KEY environment variable is not set");
     }
-    neynarClient = new NeynarAPIClient(apiKey);
+    neynarClient = new NeynarAPIClient({ apiKey });
   }
   return neynarClient;
 }

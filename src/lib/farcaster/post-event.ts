@@ -21,17 +21,19 @@ export async function postEventToFarcaster(event: Event): Promise<PostEventResul
     const payload = formatEventPost(event);
 
     // Publish the cast
-    const cast = await client.publishCast({
+    const response = await client.publishCast({
       signerUuid,
       text: payload.text,
-      embeds: payload.embeds,
+      embeds: payload.embeds.map((e) => ({ url: e.url })),
     });
 
-    const castUrl = `https://warpcast.com/${username}/${cast.hash.slice(0, 10)}`;
+    // The response contains the cast in response.cast
+    const castHash = response.cast.hash;
+    const castUrl = `https://warpcast.com/${username}/${castHash.slice(0, 10)}`;
 
     return {
       success: true,
-      castHash: cast.hash,
+      castHash,
       castUrl,
     };
   } catch (error) {
