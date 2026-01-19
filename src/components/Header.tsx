@@ -138,7 +138,7 @@ export function Header() {
               aria-label="Scroll to top"
             >
               <motion.div
-                className="relative flex-shrink-0 flex items-center justify-center gap-3"
+                className="relative flex-shrink-0 flex items-center justify-center gap-1.5"
                 animate={
                   shouldReduceMotion
                     ? {}
@@ -173,7 +173,7 @@ export function Header() {
 
             {/* Subtitle */}
             <motion.p
-              className={`neo-brutalist-subtitle whitespace-nowrap text-xs ${
+              className={`neo-brutalist-subtitle whitespace-nowrap text-[0.6rem] ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
@@ -231,7 +231,7 @@ export function Header() {
             <div className="flex items-center gap-2">
               {/* Enhanced Logo Container */}
               <motion.div
-                className="relative flex-shrink-0 flex items-center justify-center gap-2"
+                className="relative flex-shrink-0 flex items-center justify-center gap-1"
                 animate={
                   shouldReduceMotion
                     ? {}
