@@ -47,13 +47,17 @@ You should see the `events` table listed.
 **WHERE:** Your terminal (in the project directory)
 **WHAT:** Run the TypeScript migration script
 
+The script will automatically load environment variables from `.env.local` or `.env`.
+
 ```bash
 # Make sure you're in the project directory
-cd /home/user/CT
+cd /path/to/your/project
 
-# Run the migration script
+# Run the migration script (it will auto-load .env.local)
 npx tsx scripts/migrate-events-to-supabase.ts
 ```
+
+**Note:** The script automatically loads your `.env.local` and `.env` files, so you don't need to use `dotenv` or other tools.
 
 **Expected Output:**
 
@@ -127,10 +131,28 @@ curl http://localhost:3000/api/v1/events/on-this-day | jq
 
 ### Error: "Missing required environment variables"
 
-**Solution:** Check your `.env.local` file has all three variables:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY` (NOT the anon key!)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+**Solution:** Check your `.env.local` file:
+
+1. Make sure it's in the project root directory (same level as `package.json`)
+2. Verify it contains all required variables:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...your-service-key
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...your-anon-key
+   ```
+3. Check for typos in variable names
+4. Make sure there are no extra quotes or spaces
+5. The script will show which env files it found:
+   ```
+   Looked for environment files in:
+      - /path/to/project/.env.local ✓
+      - /path/to/project/.env ✗
+   ```
+
+**Common issues:**
+- Using `SUPABASE_ANON_KEY` instead of `SUPABASE_SERVICE_ROLE_KEY` (you need the SERVICE ROLE key!)
+- Extra spaces around the `=` sign
+- File is named `.env.local.txt` instead of `.env.local`
 
 ### Error: "relation 'events' does not exist"
 
