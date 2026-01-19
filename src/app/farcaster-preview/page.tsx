@@ -140,16 +140,16 @@ function PreviewContent() {
               </a>
             </div>
             <div>
-              <div className="text-gray-400 mb-1">OG Image (right-click → open in new tab):</div>
+              <div className="text-gray-400 mb-1">Farcaster OG Image (right-click → open in new tab):</div>
               <a
-                href={`/api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(
+                href={`/api/fc-og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(
                   event.date
                 )}&summary=${encodeURIComponent(event.summary)}&mode=timeline`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:underline break-all"
               >
-                View OG Image
+                View Farcaster OG Image (title at bottom)
               </a>
             </div>
           </div>
