@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { getTodaysEvents } from "@/lib/farcaster/get-todays-events";
 import {
   getCurrentWeek,
-  getWeekQuestions,
-  hasUserCompletedWeek,
-  saveQuizAttempt,
+  getOrAssignTodaysQuestion,
+  hasAnsweredToday,
+  saveDailyAnswer,
+  getUserWeekProgress,
+  getUserWeekSummary,
+  finalizeUserWeek,
   getUserWeekRank,
   getUserStats,
   trackInteraction,
@@ -12,13 +15,10 @@ import {
 import {
   generateFrameHTML,
   parseFrameMessage,
-  encodeQuizState,
-  decodeQuizState,
   getFrameImageUrl,
   getFramePostUrl,
   shuffleArray,
 } from "@/lib/quiz/frame-helpers";
-import type { QuizFrameState, QuizAnswer } from "@/lib/types";
 
 export const runtime = "edge";
 
@@ -38,8 +38,18 @@ export async function GET(request: NextRequest) {
     if (!currentWeek) {
       return new NextResponse(
         generateFrameHTML({
-          imageUrl: getFrameImageUrl("/api/frames/images/home?eventTitle=No active quiz"),
-          buttons: [{ label: "Check Back Later", index: 1 }],
+          imageUrl: getFrameImageUrl(
+            "/api/frames/images/home?eventTitle=Quiz starts soon!&weekNumber=0"
+          ),
+          buttons: [
+            { label: "Check Back Later", index: 1 },
+            {
+              label: "Full Timeline",
+              index: 2,
+              action: "link",
+              target: "https://chainof.events",
+            },
+          ],
           postUrl: getFramePostUrl("/api/frames/quiz"),
         }),
         {
@@ -62,7 +72,10 @@ export async function GET(request: NextRequest) {
     const weekDates = `${new Date(currentWeek.start_date).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
-    })}-${new Date(currentWeek.end_date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+    })}-${new Date(currentWeek.end_date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    })}`;
 
     const imageUrl = getFrameImageUrl(
       `/api/frames/images/home?eventTitle=${encodeURIComponent(eventTitle)}&eventDate=${encodeURIComponent(eventDate)}&eventImage=${encodeURIComponent(eventImage)}&weekNumber=${currentWeek.week_number}&weekDates=${encodeURIComponent(weekDates)}`
@@ -72,9 +85,9 @@ export async function GET(request: NextRequest) {
       generateFrameHTML({
         imageUrl,
         buttons: [
-          { label: "Start Quiz", index: 1 },
-          { label: "Leaderboard", index: 2 },
-          { label: "Rules", index: 3 },
+          { label: "Today's Question", index: 1 },
+          { label: "My Progress", index: 2 },
+          { label: "Leaderboard", index: 3 },
           {
             label: "Full Timeline",
             index: 4,
@@ -129,15 +142,23 @@ export async function POST(request: NextRequest) {
       return handleHomeScreen(fid, username || "", buttonIndex, currentWeek.id);
     }
 
-    // Decode state
-    const quizState = decodeQuizState(state);
+    // Parse state to determine flow
+    const stateData = JSON.parse(state);
 
-    if (!quizState) {
-      return new NextResponse("Invalid quiz state", { status: 400 });
+    if (stateData.action === "answer") {
+      // User clicked an answer button
+      return handleAnswer(
+        fid,
+        username || "",
+        buttonIndex,
+        stateData.questionId,
+        stateData.answers,
+        currentWeek.id
+      );
     }
 
-    // Handle quiz flow
-    return handleQuizFlow(fid, username || "", buttonIndex, quizState, currentWeek.id);
+    // Default: back to home
+    return GET(new NextRequest("https://example.com/api/frames/quiz"));
   } catch (error) {
     console.error("[Frame Quiz] Error in POST:", error);
     return new NextResponse("Error processing request", { status: 500 });
@@ -153,36 +174,52 @@ async function handleHomeScreen(
   buttonIndex: number,
   weekId: string
 ) {
-  // Track interaction
-  await trackInteraction({
-    fid,
-    username,
-    interaction_type: buttonIndex === 1 ? "start_quiz" : "view_home",
-    week_id: weekId,
-  });
-
-  // Button 1: Start Quiz
+  // Button 1: Today's Question
   if (buttonIndex === 1) {
-    // Check if user already completed
-    const hasCompleted = await hasUserCompletedWeek(fid, weekId);
+    await trackInteraction({
+      fid,
+      username,
+      interaction_type: "view_daily_question",
+      week_id: weekId,
+    });
 
-    if (hasCompleted) {
-      // Show their results instead
-      const userStats = await getUserStats(fid);
-      const rank = await getUserWeekRank(fid, weekId);
+    // Check if user already answered today
+    const alreadyAnswered = await hasAnsweredToday(fid, weekId);
+
+    if (alreadyAnswered) {
+      // Show "come back tomorrow" screen
+      const progress = await getUserWeekProgress(fid, weekId);
+      const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      const daysCompleted = progress.daysAnswered.map((d) => days[d - 1]).join(", ");
 
       const imageUrl = getFrameImageUrl(
-        `/api/frames/images/results?score=${userStats?.best_score || 0}&total=7&percentage=${userStats?.average_score.toFixed(1) || 0}&rank=${rank || 0}&streak=${userStats?.current_streak || 0}&avgScore=${userStats?.average_score.toFixed(1) || 0}&weekNumber=1`
+        `/api/frames/images/progress?answered=${progress.answersCount}&correct=${progress.correctCount}&days=${encodeURIComponent(daysCompleted)}`
       );
 
       return new NextResponse(
         generateFrameHTML({
           imageUrl,
           buttons: [
-            { label: "Share Score", index: 1 },
-            { label: "Leaderboard", index: 2 },
-            { label: "Home", index: 3 },
+            { label: "Check Leaderboard", index: 1 },
+            { label: "Home", index: 2 },
           ],
+          postUrl: getFramePostUrl("/api/frames/quiz"),
+          state: JSON.stringify({ action: "home" }),
+        }),
+        {
+          headers: { "Content-Type": "text/html" },
+        }
+      );
+    }
+
+    // Get or assign today's question (random from pool)
+    const question = await getOrAssignTodaysQuestion(fid, weekId);
+
+    if (!question) {
+      return new NextResponse(
+        generateFrameHTML({
+          imageUrl: getFrameImageUrl("/api/frames/images/home?eventTitle=No question today"),
+          buttons: [{ label: "Home", index: 1 }],
           postUrl: getFramePostUrl("/api/frames/quiz"),
         }),
         {
@@ -191,25 +228,81 @@ async function handleHomeScreen(
       );
     }
 
-    // Start quiz - show first question
-    const questions = await getWeekQuestions(weekId);
+    // Get user progress to show X/7
+    const progress = await getUserWeekProgress(fid, weekId);
+    const questionNumber = progress.answersCount + 1;
 
-    if (questions.length === 0) {
-      return new NextResponse("No questions available", { status: 500 });
-    }
-
-    const quizState: QuizFrameState = {
-      week_id: weekId,
-      question_index: 0,
-      answers: [],
-      started_at: new Date().toISOString(),
-    };
-
-    return showQuestion(questions[0], 0, quizState);
+    // Show question
+    return showQuestion(question, questionNumber, fid, weekId);
   }
 
-  // Button 2: Leaderboard
+  // Button 2: My Progress
   if (buttonIndex === 2) {
+    await trackInteraction({
+      fid,
+      username,
+      interaction_type: "view_week_results",
+      week_id: weekId,
+    });
+
+    const progress = await getUserWeekProgress(fid, weekId);
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const daysCompleted = progress.daysAnswered.map((d) => days[d - 1]).join(", ");
+
+    // Check if week is complete
+    if (progress.answersCount === 7) {
+      // Finalize if not already done
+      await finalizeUserWeek(fid, weekId);
+      const summary = await getUserWeekSummary(fid, weekId);
+      const rank = await getUserWeekRank(fid, weekId);
+      const stats = await getUserStats(fid);
+
+      const imageUrl = getFrameImageUrl(
+        `/api/frames/images/results?score=${summary?.score || 0}&total=7&percentage=${summary?.percentage.toFixed(1) || 0}&rank=${rank || 0}&streak=${stats?.current_streak || 0}&avgScore=${stats?.average_score.toFixed(1) || 0}&weekNumber=${1}`
+      );
+
+      return new NextResponse(
+        generateFrameHTML({
+          imageUrl,
+          buttons: [
+            { label: "Share Score", index: 1 },
+            { label: "Connect Wallet", index: 2 },
+            { label: "Leaderboard", index: 3 },
+            { label: "Home", index: 4 },
+          ],
+          postUrl: getFramePostUrl("/api/frames/quiz"),
+          state: JSON.stringify({ action: "results" }),
+        }),
+        {
+          headers: { "Content-Type": "text/html" },
+        }
+      );
+    }
+
+    // Show progress
+    const imageUrl = getFrameImageUrl(
+      `/api/frames/images/progress?answered=${progress.answersCount}&correct=${progress.correctCount}&days=${encodeURIComponent(daysCompleted)}`
+    );
+
+    return new NextResponse(
+      generateFrameHTML({
+        imageUrl,
+        buttons: [
+          { label: "Today's Question", index: 1 },
+          { label: "Leaderboard", index: 2 },
+          { label: "Home", index: 3 },
+        ],
+        postUrl: getFramePostUrl("/api/frames/quiz"),
+        state: JSON.stringify({ action: "progress" }),
+      }),
+      {
+        headers: { "Content-Type": "text/html" },
+      }
+    );
+  }
+
+  // Button 3: Leaderboard
+  if (buttonIndex === 3) {
     await trackInteraction({
       fid,
       username,
@@ -218,31 +311,9 @@ async function handleHomeScreen(
     });
 
     // TODO: Create leaderboard image
-    const imageUrl = getFrameImageUrl("/api/frames/images/home?eventTitle=Leaderboard Coming Soon");
-
-    return new NextResponse(
-      generateFrameHTML({
-        imageUrl,
-        buttons: [{ label: "Back to Home", index: 1 }],
-        postUrl: getFramePostUrl("/api/frames/quiz"),
-      }),
-      {
-        headers: { "Content-Type": "text/html" },
-      }
+    const imageUrl = getFrameImageUrl(
+      "/api/frames/images/home?eventTitle=Leaderboard Coming Soon"
     );
-  }
-
-  // Button 3: Rules
-  if (buttonIndex === 3) {
-    await trackInteraction({
-      fid,
-      username,
-      interaction_type: "view_rules",
-      week_id: weekId,
-    });
-
-    // TODO: Create rules image
-    const imageUrl = getFrameImageUrl("/api/frames/images/home?eventTitle=Rules Coming Soon");
 
     return new NextResponse(
       generateFrameHTML({
@@ -261,125 +332,90 @@ async function handleHomeScreen(
 }
 
 /**
- * Handle quiz flow (answering questions)
+ * Handle answer submission
  */
-async function handleQuizFlow(
+async function handleAnswer(
   fid: number,
   username: string,
   buttonIndex: number,
-  quizState: QuizFrameState,
+  questionId: string,
+  answers: string[],
   weekId: string
 ) {
-  const questions = await getWeekQuestions(weekId);
+  // Map button index to answer
+  const userAnswer = answers[buttonIndex - 1];
 
-  if (questions.length === 0) {
-    return new NextResponse("No questions available", { status: 500 });
+  // Get the question to check correct answer
+  const question = await getOrAssignTodaysQuestion(fid, weekId);
+
+  if (!question) {
+    return new NextResponse("Question not found", { status: 404 });
   }
 
-  const currentQuestion = questions[quizState.question_index];
+  const isCorrect = userAnswer === question.correct_answer;
 
-  // Map button index to answer (A=1, B=2, C=3, D=4)
-  const answers = [
-    currentQuestion.correct_answer,
-    currentQuestion.wrong_answer_1,
-    currentQuestion.wrong_answer_2,
-    currentQuestion.wrong_answer_3,
-  ];
+  // Get current day of week (1-7, Monday = 1)
+  const today = new Date();
+  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay(); // Convert Sunday from 0 to 7
 
-  // Shuffle answers consistently (use question ID as seed)
-  const shuffledAnswers = shuffleArray(answers);
-  const userAnswer = shuffledAnswers[buttonIndex - 1];
-  const isCorrect = userAnswer === currentQuestion.correct_answer;
+  // Save answer
+  await saveDailyAnswer(fid, username, weekId, questionId, dayOfWeek, userAnswer, question.correct_answer);
 
-  // Track answer
   await trackInteraction({
     fid,
     username,
     interaction_type: "answer_question",
     week_id: weekId,
-    question_id: currentQuestion.id,
+    question_id: questionId,
     metadata: {
       correct: isCorrect,
       answer: userAnswer,
     },
   });
 
-  // Update state with answer
-  const newAnswers: string[] = [...quizState.answers, userAnswer];
+  // Get updated progress
+  const progress = await getUserWeekProgress(fid, weekId);
 
-  // Check if quiz is complete
-  if (quizState.question_index >= questions.length - 1) {
-    // Quiz complete! Save results
-    const score = newAnswers.filter((ans, idx) => {
-      const q = questions[idx];
-      return ans === q.correct_answer;
-    }).length;
+  // Show result screen
+  const imageUrl = getFrameImageUrl(
+    `/api/frames/images/answer-result?correct=${isCorrect}&score=${progress.correctCount}&total=${progress.answersCount}&explanation=${encodeURIComponent(question.explanation || "")}`
+  );
 
-    const quizAnswers: QuizAnswer[] = questions.map((q, idx) => ({
-      question_id: q.id || "",
-      user_answer: newAnswers[idx],
-      correct: newAnswers[idx] === q.correct_answer,
-    }));
+  const buttons: Array<{ label: string; index: number; action?: string; target?: string }> = [];
 
-    const startedAt = new Date(quizState.started_at);
-    const completedAt = new Date();
-
-    await saveQuizAttempt(fid, username, weekId, score, quizAnswers, startedAt, completedAt);
-
-    await trackInteraction({
-      fid,
-      username,
-      interaction_type: "complete_quiz",
-      week_id: weekId,
-      metadata: {
-        score,
-        percentage: (score / questions.length) * 100,
-      },
-    });
-
-    // Show results
-    const userStats = await getUserStats(fid);
-    const rank = await getUserWeekRank(fid, weekId);
-    const percentage = ((score / questions.length) * 100).toFixed(1);
-
-    const imageUrl = getFrameImageUrl(
-      `/api/frames/images/results?score=${score}&total=${questions.length}&percentage=${percentage}&rank=${rank || 0}&streak=${userStats?.current_streak || 0}&avgScore=${userStats?.average_score.toFixed(1) || 0}&weekNumber=1`
+  if (progress.answersCount === 7) {
+    // Week complete!
+    await finalizeUserWeek(fid, weekId);
+    buttons.push(
+      { label: "View Results", index: 1 },
+      { label: "Share Score", index: 2 },
+      { label: "Leaderboard", index: 3 }
     );
-
-    return new NextResponse(
-      generateFrameHTML({
-        imageUrl,
-        buttons: [
-          { label: "Share Score", index: 1 },
-          { label: "Leaderboard", index: 2 },
-          { label: "Home", index: 3 },
-        ],
-        postUrl: getFramePostUrl("/api/frames/quiz"),
-        state: "", // Clear state
-      }),
-      {
-        headers: { "Content-Type": "text/html" },
-      }
+  } else {
+    buttons.push(
+      { label: "Come Back Tomorrow!", index: 1 },
+      { label: "View Progress", index: 2 },
+      { label: "Home", index: 3 }
     );
   }
 
-  // Show next question
-  const nextQuestionIndex = quizState.question_index + 1;
-  const nextQuestion = questions[nextQuestionIndex];
-
-  const newState: QuizFrameState = {
-    ...quizState,
-    question_index: nextQuestionIndex,
-    answers: newAnswers,
-  };
-
-  return showQuestion(nextQuestion, nextQuestionIndex, newState);
+  return new NextResponse(
+    generateFrameHTML({
+      imageUrl,
+      buttons,
+      postUrl: getFramePostUrl("/api/frames/quiz"),
+      state: JSON.stringify({ action: progress.answersCount === 7 ? "complete" : "answered" }),
+    }),
+    {
+      headers: { "Content-Type": "text/html" },
+    }
+  );
 }
 
 /**
  * Show a question screen
  */
-function showQuestion(question: any, index: number, state: QuizFrameState) {
+function showQuestion(question: any, questionNumber: number, fid: number, weekId: string) {
   // Shuffle answers
   const answers = [
     question.correct_answer,
@@ -391,8 +427,15 @@ function showQuestion(question: any, index: number, state: QuizFrameState) {
   const shuffled = shuffleArray(answers);
 
   const imageUrl = getFrameImageUrl(
-    `/api/frames/images/question?number=${index + 1}&text=${encodeURIComponent(question.question_text)}&a1=${encodeURIComponent(shuffled[0])}&a2=${encodeURIComponent(shuffled[1])}&a3=${encodeURIComponent(shuffled[2])}&a4=${encodeURIComponent(shuffled[3])}`
+    `/api/frames/images/question?number=${questionNumber}&text=${encodeURIComponent(question.question_text)}&a1=${encodeURIComponent(shuffled[0])}&a2=${encodeURIComponent(shuffled[1])}&a3=${encodeURIComponent(shuffled[2])}&a4=${encodeURIComponent(shuffled[3])}`
   );
+
+  // State includes question ID and shuffled answers for validation
+  const state = JSON.stringify({
+    action: "answer",
+    questionId: question.id,
+    answers: shuffled,
+  });
 
   return new NextResponse(
     generateFrameHTML({
@@ -404,7 +447,7 @@ function showQuestion(question: any, index: number, state: QuizFrameState) {
         { label: "D", index: 4 },
       ],
       postUrl: getFramePostUrl("/api/frames/quiz"),
-      state: encodeQuizState(state),
+      state,
     }),
     {
       headers: { "Content-Type": "text/html" },

@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
     else if (percentageNum >= 50) message = "Not bad!";
 
     if (isShare) {
-      // Share card version (optimized for social sharing)
+      // NEO-BRUTALIST share card version
       return new ImageResponse(
         (
           <div
@@ -50,8 +50,8 @@ export async function GET(request: NextRequest) {
               width: "100%",
               display: "flex",
               flexDirection: "column",
-              background: "linear-gradient(135deg, #7c3aed 0%, #14b8a6 100%)",
-              padding: "48px",
+              background: "#14b8a6",
+              padding: "0",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -61,36 +61,43 @@ export async function GET(request: NextRequest) {
                 display: "flex",
                 flexDirection: "column",
                 background: "#ffffff",
-                border: "6px solid #000000",
-                borderRadius: "24px",
+                border: "8px solid #000000",
+                borderRadius: "0",
                 padding: "48px",
-                width: "100%",
-                maxWidth: "500px",
+                width: "520px",
+                boxShadow: "12px 12px 0px #000000",
               }}
             >
               {/* Title */}
               <div
                 style={{
-                  fontSize: "32px",
-                  fontWeight: "700",
-                  color: "#111827",
-                  marginBottom: "24px",
+                  fontSize: "36px",
+                  fontWeight: "900",
+                  color: "#000000",
+                  marginBottom: "8px",
                   textAlign: "center",
+                  textTransform: "uppercase",
+                  letterSpacing: "2px",
                 }}
               >
-                🏆 CRYPTO HISTORY QUIZ
+                CRYPTO QUIZ
               </div>
 
               {/* Week */}
               <div
                 style={{
                   fontSize: "20px",
-                  color: "#6b7280",
+                  fontWeight: "700",
+                  color: "#000000",
                   marginBottom: "32px",
                   textAlign: "center",
+                  padding: "8px 16px",
+                  background: "#fbbf24",
+                  border: "4px solid #000000",
+                  display: "inline-block",
                 }}
               >
-                Week {weekNumber} Results
+                WEEK {weekNumber}
               </div>
 
               {/* Score Display */}
@@ -100,36 +107,45 @@ export async function GET(request: NextRequest) {
                   flexDirection: "column",
                   alignItems: "center",
                   marginBottom: "32px",
+                  background: "#7c3aed",
+                  border: "6px solid #000000",
+                  padding: "24px",
+                  boxShadow: "6px 6px 0px #000000",
                 }}
               >
                 <div
                   style={{
-                    fontSize: "64px",
-                    fontWeight: "700",
-                    color: "#7c3aed",
-                    marginBottom: "12px",
+                    fontSize: "80px",
+                    fontWeight: "900",
+                    color: "#ffffff",
+                    marginBottom: "8px",
+                    textShadow: "4px 4px 0px #000000",
                   }}
                 >
                   {score}/{total}
                 </div>
                 <div
                   style={{
-                    fontSize: "36px",
-                    fontWeight: "700",
-                    color: "#14b8a6",
+                    fontSize: "40px",
+                    fontWeight: "900",
+                    color: "#fbbf24",
+                    textTransform: "uppercase",
                   }}
                 >
-                  {percentage}% Correct
+                  {percentage}% CORRECT
                 </div>
               </div>
 
               {/* Progress Bar */}
               <div
                 style={{
-                  fontSize: "32px",
-                  letterSpacing: "2px",
+                  fontSize: "36px",
+                  letterSpacing: "4px",
                   marginBottom: "32px",
                   textAlign: "center",
+                  padding: "16px",
+                  background: "#000000",
+                  color: "#14b8a6",
                 }}
               >
                 {progressBar}
@@ -139,7 +155,7 @@ export async function GET(request: NextRequest) {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
+                  gap: "16px",
                   marginBottom: "32px",
                 }}
               >
@@ -149,17 +165,31 @@ export async function GET(request: NextRequest) {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
+                      background: "#fbbf24",
+                      border: "4px solid #000000",
+                      padding: "16px",
+                      flex: 1,
                     }}
                   >
-                    <div style={{ fontSize: "28px", marginBottom: "8px" }}>🔥</div>
+                    <div style={{ fontSize: "32px", marginBottom: "4px" }}>🔥</div>
                     <div
                       style={{
-                        fontSize: "20px",
-                        fontWeight: "700",
-                        color: "#111827",
+                        fontSize: "24px",
+                        fontWeight: "900",
+                        color: "#000000",
                       }}
                     >
-                      {streak} Week Streak
+                      {streak}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "700",
+                        color: "#000000",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Streak
                     </div>
                   </div>
                 )}
@@ -170,17 +200,31 @@ export async function GET(request: NextRequest) {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
+                      background: rankNum <= 10 ? "#10b981" : "#6b7280",
+                      border: "4px solid #000000",
+                      padding: "16px",
+                      flex: 1,
                     }}
                   >
-                    <div style={{ fontSize: "28px", marginBottom: "8px" }}>{rankEmoji}</div>
+                    <div style={{ fontSize: "32px", marginBottom: "4px" }}>{rankEmoji}</div>
                     <div
                       style={{
-                        fontSize: "20px",
-                        fontWeight: "700",
-                        color: "#111827",
+                        fontSize: "24px",
+                        fontWeight: "900",
+                        color: "#ffffff",
                       }}
                     >
-                      Rank #{rank}
+                      #{rank}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "700",
+                        color: "#ffffff",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Rank
                     </div>
                   </div>
                 )}
@@ -192,24 +236,29 @@ export async function GET(request: NextRequest) {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  borderTop: "3px solid #e5e7eb",
-                  paddingTop: "24px",
+                  background: "#000000",
+                  padding: "16px",
+                  border: "4px solid #000000",
+                  marginTop: "auto",
                 }}
               >
                 <div
                   style={{
-                    fontSize: "20px",
-                    fontWeight: "600",
-                    color: "#6b7280",
-                    marginBottom: "8px",
+                    fontSize: "18px",
+                    fontWeight: "900",
+                    color: "#fbbf24",
+                    marginBottom: "4px",
+                    textTransform: "uppercase",
                   }}
                 >
                   @{username}
                 </div>
                 <div
                   style={{
-                    fontSize: "18px",
-                    color: "#9ca3af",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    color: "#14b8a6",
+                    textTransform: "uppercase",
                   }}
                 >
                   chainof.events
