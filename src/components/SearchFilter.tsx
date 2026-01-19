@@ -147,8 +147,19 @@ function ZachXBTIcon({ className }: { className?: string }) {
   );
 }
 
+function CobieIcon({ className }: { className?: string }) {
+  return (
+    <img
+      src="/kurt_cobain_cobie.svg"
+      alt=""
+      aria-hidden="true"
+      className={className}
+    />
+  );
+}
+
 // Premium categories that get special styling
-const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT"];
+const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT", "Cobie"];
 
 const ALL_TAGS: EventTag[] = [
   "TECH",
@@ -164,6 +175,7 @@ const ALL_TAGS: EventTag[] = [
 const ALL_CATEGORIES = [
   "CT Lore",
   "ZachXBT",
+  "Cobie",
   "Bitcoin",
   "Centralized Exchange",
   "Memecoins",
@@ -429,6 +441,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                     const isSelected = selectedCategories.includes(category);
                     const isCtLore = category === "CT Lore";
                     const isZachXBT = category === "ZachXBT";
+                    const isCobie = category === "Cobie";
 
                     // Determine pill color variant
                     let colorClass = "";
@@ -436,6 +449,8 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                       colorClass = "neo-brutalist-pill-sky";
                     } else if (isZachXBT) {
                       colorClass = "neo-brutalist-pill-gray";
+                    } else if (isCobie) {
+                      colorClass = "neo-brutalist-pill-cobie";
                     } else {
                       colorClass = isCrimeline ? "neo-brutalist-pill-purple" : "neo-brutalist-pill-teal";
                     }
@@ -446,7 +461,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                         onClick={() => toggleCategory(category)}
                         aria-pressed={isSelected}
                         className={`neo-brutalist-pill flex items-center gap-1 px-2.5 py-1 text-xs ${colorClass} ${
-                          isDarkMode && !isZachXBT ? "neo-brutalist-pill-dark" : ""
+                          isDarkMode && !isZachXBT && !isCobie ? "neo-brutalist-pill-dark" : ""
                         } ${isSelected ? "neo-brutalist-pill-premium-active" : ""} ${
                           isSelected
                             ? isCrimeline
@@ -457,6 +472,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                       >
                         {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
                         {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
+                        {isCobie && <CobieIcon className="w-3 h-3" />}
                         {category}
                       </button>
                     );
@@ -666,6 +682,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                     {selectedCategories.map((category) => {
                       const isCtLore = category === "CT Lore";
                       const isZachXBT = category === "ZachXBT";
+                      const isCobie = category === "Cobie";
 
                       return (
                         <span
@@ -675,6 +692,8 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                               ? "bg-sky-100 text-sky-700 border border-sky-300"
                               : isZachXBT
                                 ? "bg-gray-800 text-gray-100 border border-gray-600"
+                                : isCobie
+                                  ? "bg-slate-200 text-slate-700 border border-slate-400"
                                 : isCrimeline
                                   ? "bg-purple-900/50 text-purple-300 border border-purple-800"
                                   : "bg-teal-100 text-teal-700 border border-teal-300"
@@ -682,12 +701,21 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                         >
                           {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
                           {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
+                          {isCobie && <CobieIcon className="w-3 h-3" />}
                           {category}
                           <button
                             onClick={() => toggleCategory(category)}
                             aria-label={`Remove ${category} filter`}
                             className={`ml-0.5 p-0.5 rounded-full hover:bg-opacity-20 ${
-                              isCtLore ? "hover:bg-sky-500" : isZachXBT ? "hover:bg-gray-500" : isCrimeline ? "hover:bg-purple-500" : "hover:bg-teal-500"
+                              isCtLore
+                                ? "hover:bg-sky-500"
+                                : isZachXBT
+                                  ? "hover:bg-gray-500"
+                                  : isCobie
+                                    ? "hover:bg-slate-400"
+                                  : isCrimeline
+                                    ? "hover:bg-purple-500"
+                                    : "hover:bg-teal-500"
                             }`}
                           >
                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

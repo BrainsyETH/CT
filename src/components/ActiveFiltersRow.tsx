@@ -33,6 +33,17 @@ function ZachXBTIcon({ className }: { className?: string }) {
   );
 }
 
+function CobieIcon({ className }: { className?: string }) {
+  return (
+    <img
+      src="/kurt_cobain_cobie.svg"
+      alt=""
+      aria-hidden="true"
+      className={className}
+    />
+  );
+}
+
 interface ActiveFiltersRowProps {
   compact?: boolean;
 }
@@ -115,6 +126,7 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
           {selectedCategories.map((category) => {
             const isCtLore = category === "CT Lore";
             const isZachXBT = category === "ZachXBT";
+            const isCobie = category === "Cobie";
 
             return (
               <span
@@ -122,8 +134,10 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
                 className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap flex-shrink-0 ${
                   isCtLore
                     ? "bg-sky-100 text-sky-700 border border-sky-300"
-                    : isZachXBT
+                  : isZachXBT
                       ? "bg-gray-800 text-gray-100 border border-gray-600"
+                      : isCobie
+                        ? "bg-slate-200 text-slate-700 border border-slate-400"
                       : isCrimeline
                         ? "bg-purple-900/50 text-purple-300 border border-purple-800"
                         : "bg-teal-100 text-teal-700 border border-teal-300"
@@ -131,6 +145,7 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
               >
                 {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
                 {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
+                {isCobie && <CobieIcon className="w-3 h-3" />}
                 {category}
                 <button
                   onClick={() => toggleCategory(category)}
@@ -140,6 +155,8 @@ export function ActiveFiltersRow({ compact = false }: ActiveFiltersRowProps) {
                       ? "hover:bg-sky-500"
                       : isZachXBT
                         ? "hover:bg-gray-500"
+                        : isCobie
+                          ? "hover:bg-slate-400"
                         : isCrimeline
                           ? "hover:bg-purple-500"
                           : "hover:bg-teal-500"

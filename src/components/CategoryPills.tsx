@@ -7,7 +7,7 @@ interface CategoryPillsProps {
 }
 
 // Premium categories that get special styling
-const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT"];
+const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT", "Cobie"];
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -41,6 +41,17 @@ function ZachXBTIcon({ className }: { className?: string }) {
   );
 }
 
+function CobieIcon({ className }: { className?: string }) {
+  return (
+    <img
+      src="/kurt_cobain_cobie.svg"
+      alt=""
+      aria-hidden="true"
+      className={className}
+    />
+  );
+}
+
 export function CategoryPills({ categories }: CategoryPillsProps) {
   const { mode } = useModeStore();
   const isCrimeline = mode === "crimeline";
@@ -56,6 +67,7 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
       {categoriesArray.map((category) => {
         const isCtLore = category === "CT Lore";
         const isZachXBT = category === "ZachXBT";
+        const isCobie = category === "Cobie";
 
         // Determine pill color variant
         let colorClass = "";
@@ -63,6 +75,8 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
           colorClass = "neo-brutalist-pill-sky";
         } else if (isZachXBT) {
           colorClass = "neo-brutalist-pill-gray";
+        } else if (isCobie) {
+          colorClass = "neo-brutalist-pill-cobie";
         } else if (isCrimeline) {
           colorClass = "neo-brutalist-pill-purple";
         } else {
@@ -73,11 +87,12 @@ export function CategoryPills({ categories }: CategoryPillsProps) {
           <span
             key={category}
             className={`neo-brutalist-pill px-2.5 py-1 text-xs ${colorClass} ${
-              isDarkMode && !isZachXBT ? "neo-brutalist-pill-dark" : ""
+              isDarkMode && !isZachXBT && !isCobie ? "neo-brutalist-pill-dark" : ""
             }`}
           >
             {isCtLore && <TwitterBirdIcon className="w-3 h-3" />}
             {isZachXBT && <ZachXBTIcon className="w-3 h-3" />}
+            {isCobie && <CobieIcon className="w-3 h-3" />}
             {category}
           </span>
         );

@@ -35,7 +35,7 @@ export const CATEGORIES = [
 export type Category = (typeof CATEGORIES)[number];
 
 // Premium/Special categories with unique styling
-export const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT"] as const;
+export const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT", "Cobie"] as const;
 
 // ============================================================================
 // Event Tags
