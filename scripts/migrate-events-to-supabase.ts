@@ -13,18 +13,69 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
+import { readFileSync, existsSync } from "fs";
+import { resolve } from "path";
 import eventsData from "../src/data/events.json";
 import type { Event } from "../src/lib/types";
 
+// Load environment variables from .env.local
+function loadEnvFile(filename: string): Record<string, string> {
+  const envPath = resolve(process.cwd(), filename);
+
+  if (!existsSync(envPath)) {
+    return {};
+  }
+
+  try {
+    const envContent = readFileSync(envPath, "utf-8");
+    const env: Record<string, string> = {};
+
+    envContent.split("\n").forEach((line) => {
+      const trimmed = line.trim();
+      // Skip empty lines and comments
+      if (!trimmed || trimmed.startsWith("#")) return;
+
+      const [key, ...valueParts] = trimmed.split("=");
+      if (key && valueParts.length > 0) {
+        let value = valueParts.join("=").trim();
+        // Remove quotes if present
+        if ((value.startsWith('"') && value.endsWith('"')) ||
+            (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        env[key.trim()] = value;
+      }
+    });
+
+    return env;
+  } catch (error) {
+    console.warn(`Warning: Could not read ${filename}:`, error);
+    return {};
+  }
+}
+
+// Load environment variables from .env.local, .env files
+const envLocal = loadEnvFile(".env.local");
+const envDefault = loadEnvFile(".env");
+
+// Merge with priority: .env.local > .env > process.env
+const envVars = { ...process.env, ...envDefault, ...envLocal };
+
 // Validate environment
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseUrl = envVars.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = envVars.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseServiceKey) {
   console.error("❌ Missing required environment variables:");
   if (!supabaseUrl) console.error("   - NEXT_PUBLIC_SUPABASE_URL");
   if (!supabaseServiceKey) console.error("   - SUPABASE_SERVICE_ROLE_KEY");
-  console.error("\nPlease check your .env.local file.");
+  console.error("\nPlease check your .env.local or .env file.");
+  console.error("\nLooked for environment files in:");
+  console.error(`   - ${resolve(process.cwd(), ".env.local")} ${existsSync(resolve(process.cwd(), ".env.local")) ? "✓" : "✗"}`);
+  console.error(`   - ${resolve(process.cwd(), ".env")} ${existsSync(resolve(process.cwd(), ".env")) ? "✓" : "✗"}`);
+  console.error("\nMake sure your .env.local contains:");
+  console.error("   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co");
+  console.error("   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key");
   process.exit(1);
 }
 
