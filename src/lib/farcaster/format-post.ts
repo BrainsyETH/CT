@@ -12,7 +12,7 @@ export function formatEventPost(event: Event): FarcasterPostPayload {
   // Build Farcaster-specific event URL
   // Uses /fc/[id] route which has OG image with title at bottom
   const siteUrl = getSiteUrl();
-  const eventUrl = `${siteUrl}fc/${event.id}`;
+  const eventUrl = `${siteUrl}/fc/${event.id}`;
 
   return {
     text: firstSentence,
