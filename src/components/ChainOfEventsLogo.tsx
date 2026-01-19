@@ -24,7 +24,7 @@ export function ChainOfEventsLogo({
   // Color schemes based on mode
   const mainTextColor = isCrimeline
     ? "text-purple-500" // Crimeline purple for main text in crimeline mode
-    : "text-gray-900 dark:text-gray-100"; // Dark text in timeline mode
+    : "text-teal-500"; // Teal accent for main text in timeline mode
 
   const ofTextColor = isCrimeline
     ? "text-gray-100" // Light color for "of" in crimeline mode

@@ -1,67 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 import { ChainOfEventsLogo } from "./ChainOfEventsLogo";
 import { isDebugEnabled } from "@/lib/debug";
-
-// Add cache-busting parameter to ensure fresh logo loads
-const LOGO_IMAGE = "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE%20Logo?v=2";
-
-// Glitch effect component for crimeline mode
-function GlitchText({ 
-  children, 
-  isActive, 
-  prefersReducedMotion 
-}: { 
-  children: string; 
-  isActive: boolean; 
-  prefersReducedMotion: boolean | null;
-}) {
-  const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    if (!isActive || prefersReducedMotion) {
-      setGlitchOffset({ x: 0, y: 0 });
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setGlitchOffset({
-        x: (Math.random() - 0.5) * 2,
-        y: (Math.random() - 0.5) * 2,
-      });
-    }, 50);
-
-    const timeout = setTimeout(() => {
-      setGlitchOffset({ x: 0, y: 0 });
-    }, 150);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
-  }, [isActive, prefersReducedMotion]);
-
-  if (!isActive || prefersReducedMotion) {
-    return <>{children}</>;
-  }
-
-  return (
-    <span
-      className="inline-block"
-      style={{
-        transform: `translate(${glitchOffset.x}px, ${glitchOffset.y}px)`,
-        transition: "transform 0.05s ease-out",
-      }}
-    >
-      {children}
-    </span>
-  );
-}
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -84,7 +28,6 @@ export function Header() {
   const isCtLoreActive = selectedCategories.includes("CT Lore");
   const headerRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [glitchActive, setGlitchActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const lastScrollYRef = useRef(0);
@@ -160,22 +103,6 @@ export function Header() {
   }, []);
   // #endregion
 
-  // Trigger glitch effect periodically in crimeline mode (desktop only)
-  useEffect(() => {
-    if (!isCrimeline || shouldReduceMotion) return;
-
-    const interval = setInterval(() => {
-      setGlitchActive(true);
-      setTimeout(() => setGlitchActive(false), 150);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isCrimeline, shouldReduceMotion]);
-
-  // Split title into letters for animation
-  const titleText = "Chain of Events";
-  const titleLetters = titleText.split("");
-
   return (
     <motion.header
       ref={headerRef}
@@ -231,90 +158,6 @@ export function Header() {
               whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
             >
               <ChainOfEventsLogo size="lg" />
-            </motion.div>
-
-            {/* Title Section */}
-            <motion.div 
-              className="min-w-0 text-left relative flex flex-col lg:flex-row lg:items-center lg:gap-8"
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      x: isHovered ? 2 : 0,
-                    }
-              }
-              transition={{ duration: 0.3 }}
-            >
-              {/* Title with neo-brutalist styling */}
-              <motion.h1
-                className={`text-2xl md:text-3xl neo-brutalist-title whitespace-nowrap relative ${
-                  isCrimeline
-                    ? "neo-brutalist-title-crimeline"
-                    : "neo-brutalist-title-timeline"
-                }`}
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        letterSpacing: isHovered ? "-0.01em" : "-0.02em",
-                      }
-                }
-                transition={{ duration: 0.3 }}
-              >
-                {shouldReduceMotion ? (
-                  titleText
-                ) : (
-                  <span className="inline-block">
-                    {titleLetters.map((letter, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.03,
-                        }}
-                        className="inline-block"
-                      >
-                        {letter === " " ? (
-                          "\u00A0"
-                        ) : isCrimeline && glitchActive && index < 5 ? (
-                          <GlitchText
-                            isActive={true}
-                            prefersReducedMotion={shouldReduceMotion}
-                          >
-                            {letter}
-                          </GlitchText>
-                        ) : (
-                          letter
-                        )}
-                      </motion.span>
-                    ))}
-                  </span>
-                )}
-              </motion.h1>
-
-              {/* Tagline with neo-brutalist styling */}
-              <motion.p
-                className={`neo-brutalist-subtitle mt-3 lg:mt-0 lg:whitespace-nowrap ${
-                  isCrimeline
-                    ? "neo-brutalist-subtitle-crimeline"
-                    : "neo-brutalist-subtitle-timeline"
-                }`}
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        opacity: isHovered ? 0.9 : 1,
-                        transform: isHovered ? "rotate(-0.5deg) scale(1.02)" : "rotate(-1deg) scale(1)",
-                      }
-                }
-                transition={{ duration: 0.3 }}
-              >
-                {isCrimeline
-                  ? "The dark history of cryptocurrency"
-                  : "The history of cryptocurrency"}
-              </motion.p>
             </motion.div>
           </button>
 
