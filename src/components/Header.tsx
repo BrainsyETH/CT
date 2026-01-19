@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 import { ChainOfEventsLogo } from "./ChainOfEventsLogo";
@@ -137,7 +138,7 @@ export function Header() {
               aria-label="Scroll to top"
             >
               <motion.div
-                className="relative flex-shrink-0 flex items-center justify-center"
+                className="relative flex-shrink-0 flex items-center justify-center gap-1.5"
                 animate={
                   shouldReduceMotion
                     ? {}
@@ -158,13 +159,21 @@ export function Header() {
                 }
                 whileHover={shouldReduceMotion ? {} : { scale: 1.08 }}
               >
+                <Image
+                  src="/coe_minimalisticv2.png"
+                  alt="Chain of Events Logo"
+                  width={48}
+                  height={48}
+                  className="flex-shrink-0"
+                  priority
+                />
                 <ChainOfEventsLogo size="lg" />
               </motion.div>
             </button>
 
             {/* Subtitle */}
             <motion.p
-              className={`neo-brutalist-subtitle whitespace-nowrap ${
+              className={`neo-brutalist-subtitle whitespace-nowrap text-[0.6rem] ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
@@ -222,7 +231,7 @@ export function Header() {
             <div className="flex items-center gap-2">
               {/* Enhanced Logo Container */}
               <motion.div
-                className="relative flex-shrink-0 flex items-center justify-center"
+                className="relative flex-shrink-0 flex items-center justify-center gap-1"
                 animate={
                   shouldReduceMotion
                     ? {}
@@ -243,6 +252,14 @@ export function Header() {
                 }
                 whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               >
+                <Image
+                  src="/coe_minimalisticv2.png"
+                  alt="Chain of Events Logo"
+                  width={36}
+                  height={36}
+                  className="flex-shrink-0"
+                  priority
+                />
                 <ChainOfEventsLogo size="md" />
               </motion.div>
             </div>
