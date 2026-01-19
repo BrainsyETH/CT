@@ -135,8 +135,8 @@ export async function GET(request: NextRequest) {
               position: "absolute",
               bottom: "28px",
               left: "36px",
+              right: "36px",
               display: "flex",
-              maxWidth: "1000px",
             }}
           >
             <div
