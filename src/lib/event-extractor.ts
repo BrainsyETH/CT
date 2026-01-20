@@ -86,6 +86,7 @@ LOGIC RULES
 - Put the most "iconic" X/Twitter link into media[twitter].twitter.tweet_url when possible.
 - Keep summaries tight but specific: who/what/when/how much/why it mattered. No em dashes.
 - If additional Twitter/Xlinks are provided in the Additional Context field, include the Twitter links in the media array.
+- Always include historical context. 
 - If a number is uncertain, use an approximate with "~" in the summary, but still provide best estimate in crimeline.funds_lost_usd when relevant.`;
 
 // ============================================================================
