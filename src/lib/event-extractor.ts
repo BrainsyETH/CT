@@ -7,7 +7,6 @@
 
 import OpenAI from "openai";
 import type { Event, EventTag, Mode } from "./types";
-import { CATEGORIES, EVENT_TAGS, CRIMELINE_TYPES, OUTCOME_STATUSES, MODE_OPTIONS } from "./constants";
 
 // ============================================================================
 // Types
@@ -31,52 +30,60 @@ export interface ExtractionResult {
 // System Prompt
 // ============================================================================
 
-const SYSTEM_PROMPT = `You are an assistant that extracts crypto/blockchain event data from web pages for the Chain of Events historical timeline.
+const SYSTEM_PROMPT = `HARD RULES
+- Output MUST be valid JSON: an array of event objects (even if only 1 event).
+- Do NOT include any commentary, markdown, or extra keys outside the schema shown below.
+- Use only the existing controlled vocabularies provided (Categories, Tags, Modes, Crimeline Types).
+- Each event must be self-contained and consistent.
+- Never duplicate an existing event id or event. If unsure, create a new unique id.
+- Prefer primary sources: X/Twitter links from the people/projects involved. If unavailable, use reputable reporting.
 
-OUTPUT: Return a single valid JSON object matching this exact schema:
+CONTROLLED VOCABULARY (MUST MATCH EXACTLY)
+Modes: ["timeline", "crimeline"]
+
+Crimeline Types (only if mode includes "crimeline"):
+["BRIDGE HACK","CUSTODY FAILURE","EXCHANGE HACK","FRAUD","GOVERNANCE ATTACK","LEVERAGE COLLAPSE","ORACLE MANIPULATION","PROTOCOL EXPLOIT","RUG PULL","SOCIAL MEDIA HACK"]
+
+Categories:
+["Bitcoin","Bridge","Bull Runs","CT Lore","Centralized Exchange","Culture","Dances","DeFi","DeFi Protocol","ETFs","Ethereum","Gaming","Lending","Market Structure","Memecoins","NFT","NFTs","Privacy","Regulation","Security","Stablecoin","Wallet/Key Compromise","ZachXBT"]
+
+Tags:
+["ATH","CULTURAL","ECONOMIC","FAILURE","MILESTONE","REGULATORY","SECURITY","TECH"]
+
+SCHEMA (match types exactly)
 {
-  "id": "kebab-case-slug-YYYY-MM-DD",
+  "id": "kebab-case-YYYY-MM-DD",
   "date": "YYYY-MM-DD",
-  "title": "Event Title (max 200 chars)",
-  "summary": "2-4 sentence factual description (max 5000 chars)",
-  "category": ["Category1", "Category2"],
-  "tags": ["TAG1", "TAG2"],
-  "mode": ["timeline"],
-  "image": null,
-  "links": [{"label": "Source Name", "url": "https://..."}],
-  "media": [],
-  "metrics": {"btc_price_usd": null},
-  "crimeline": null
+  "title": "string",
+  "summary": "3-5 sentences. Concrete details. No generic fluff. No em dashes.",
+  "category": ["One or more Categories from list", "No more than 3 categories"],
+  "tags": ["One or more Tags from list"],
+  "mode": ["timeline" and/or "crimeline"],
+  "image": "string URL (no placeholders)",
+  "media": [
+    { "type": "video", "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" } },
+    { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } }
+  ],
+  "links": [{ "label": "string", "url": "https://..." }],
+  "metrics": { },
+  "crimeline": {
+    "type": "Crimeline Type from list",
+    "funds_lost_usd": 0,
+    "market_impact_usd": "string or number (optional)",
+    "victims_estimated": "string",
+    "root_cause": ["bullet-like strings"],
+    "aftermath": "string",
+    "status": "Resolved | Ongoing | Total loss | Partial recovery | Funds recovered"
+  }
 }
 
-VALID CATEGORIES: ${CATEGORIES.join(", ")}
-VALID TAGS: ${EVENT_TAGS.join(", ")}
-VALID MODES: ${MODE_OPTIONS.join(", ")}
-
-For CRIMELINE events (hacks, exploits, frauds, collapses), also include:
-"crimeline": {
-  "type": "TYPE",
-  "funds_lost_usd": number or null,
-  "victims_estimated": "string" or null,
-  "root_cause": ["cause1", "cause2"] or null,
-  "aftermath": "string" or null,
-  "status": "STATUS"
-}
-
-VALID CRIMELINE TYPES: ${CRIMELINE_TYPES.join(", ")}
-VALID OUTCOME STATUSES: ${OUTCOME_STATUSES.join(", ")}
-
-RULES:
-- id: Use lowercase-kebab-case with date suffix, e.g., "mt-gox-hack-2014-02-24"
-- date: Extract exact date from source. Use YYYY-MM-DD format. If only year/month known, use first of month/year.
-- title: Concise, factual, max 200 characters
-- summary: 2-4 factual sentences. Include specific numbers, amounts, and key facts.
-- category: Pick 1-3 most relevant categories from the valid list
-- tags: Pick 1-4 most relevant tags from the valid list
-- mode: Use ["timeline"] for historical events, ["crimeline"] for hacks/frauds/failures, or ["timeline", "crimeline"] for both
-- links: Always include the source URL with an appropriate label
-
-Return ONLY the JSON object, no markdown code blocks, no explanation.`;
+LOGIC RULES
+- If mode includes "crimeline", include the full "crimeline" object.
+- If mode is only "timeline", omit the "crimeline" object entirely.
+- "links" should include at least 1 URL. Prefer 2-3 if available. Heavily prioritize video and tweets over other links. Do not link to search queries. Keep link Titles short and Capitalized.
+- Put the most "iconic" X/Twitter link into media[twitter].twitter.tweet_url when possible.
+- Keep summaries tight but specific: who/what/when/how much/why it mattered. No em dashes.
+- If a number is uncertain, use an approximate with "~" in the summary, but still provide best estimate in crimeline.funds_lost_usd when relevant.`;
 
 // ============================================================================
 // URL Content Fetcher
@@ -227,11 +234,17 @@ export async function extractEventFromUrl(
     try {
       const parsed = JSON.parse(raw);
 
-      // Handle wrapped responses (e.g., { event: {...} } or { events: [...] })
-      if (parsed.event) {
-        event = parsed.event;
+      // Handle various response formats:
+      // - Array at top level: [{ event }]
+      // - Wrapped in events key: { events: [{ event }] }
+      // - Wrapped in event key: { event: { ... } }
+      // - Direct object: { id, date, ... }
+      if (Array.isArray(parsed)) {
+        event = parsed[0];
       } else if (parsed.events && Array.isArray(parsed.events)) {
         event = parsed.events[0];
+      } else if (parsed.event) {
+        event = parsed.event;
       } else {
         event = parsed;
       }
