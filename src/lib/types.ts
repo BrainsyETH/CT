@@ -70,6 +70,12 @@ export type MediaItem =
   | { type: "twitter"; twitter: TwitterMedia }
   | { type: "image"; image: ImageMedia };
 
+export interface EventRelationship {
+  event_id: string;
+  relationship_type: "related" | "predecessor" | "successor" | "part_of_series";
+  label?: string;
+}
+
 export interface Event {
   id: string;
   date: string;
@@ -80,7 +86,7 @@ export interface Event {
   mode: Mode[];
   image?: string;
   video?: EventVideo;
-    media?: MediaItem[];
+  media?: MediaItem[];
   links?: { label: string; url: string }[];
   metrics?: {
     btc_price_usd?: number;
@@ -96,6 +102,8 @@ export interface Event {
     aftermath?: string;
     status?: OutcomeStatus;
   };
+  // Event relationships for connected narratives
+  related_events?: EventRelationship[];
 }
 
 // Feedback submission types
@@ -171,4 +179,55 @@ export interface TwitterBotPost {
 export interface TwitterPostPayload {
   text: string;
   eventUrl: string;
+}
+
+// API Rate Limit Tiers
+export type ApiTier = "anonymous" | "registered" | "premium";
+
+export interface ApiKeyInfo {
+  key: string;
+  tier: ApiTier;
+  owner_email: string;
+  created_at: string;
+  expires_at?: string;
+  is_active: boolean;
+  rate_limit: number; // requests per minute
+  description?: string;
+}
+
+export const API_TIER_LIMITS: Record<ApiTier, number> = {
+  anonymous: 120,
+  registered: 300,
+  premium: 1000,
+};
+
+// Event Submission types
+export type SubmissionStatus = "pending" | "approved" | "rejected" | "needs_review";
+
+export interface EventSubmission {
+  id: string;
+  status: SubmissionStatus;
+  submitted_by_email?: string;
+  submitted_by_twitter?: string;
+  submitted_at: string;
+  reviewed_by?: string;
+  reviewed_at?: string;
+  review_notes?: string;
+  event_data: Partial<Event>;
+  created_event_id?: string;
+}
+
+// Webhook types
+export interface WebhookSubscription {
+  id: string;
+  url: string;
+  categories?: string[];
+  tags?: string[];
+  modes?: string[];
+  notify_on_create: boolean;
+  notify_on_update: boolean;
+  notify_on_delete: boolean;
+  is_active: boolean;
+  owner_email: string;
+  description?: string;
 }

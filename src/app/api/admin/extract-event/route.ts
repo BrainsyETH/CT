@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { extractEventFromUrl, type ExtractionHints } from "@/lib/event-extractor";
+import { validateAuthHeader } from "@/lib/crypto-utils";
 import type { Mode } from "@/lib/types";
-
-const ADMIN_SECRET = process.env.ADMIN_SECRET;
 
 interface RequestBody {
   url: string;
@@ -11,10 +10,11 @@ interface RequestBody {
 
 export async function POST(request: Request) {
   try {
-    // Validate admin secret
+    // Validate admin secret using timing-safe comparison
     const authHeader = request.headers.get("x-admin-secret");
+    const adminSecret = process.env.ADMIN_SECRET;
 
-    if (!ADMIN_SECRET) {
+    if (!adminSecret) {
       console.error("ADMIN_SECRET not configured");
       return NextResponse.json(
         { success: false, error: "Server configuration error: ADMIN_SECRET not set" },
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!authHeader || authHeader !== ADMIN_SECRET) {
+    if (!validateAuthHeader(authHeader, adminSecret)) {
       return NextResponse.json(
         { success: false, error: "Unauthorized: Invalid or missing admin secret" },
         { status: 401 }

@@ -5,14 +5,34 @@
  * All event queries should go through these functions to maintain consistency.
  */
 
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import type { Event } from "@/lib/types";
+
+// ============================================================================
+// Constants
+// ============================================================================
+
+/** Default limit for paginated queries */
+const DEFAULT_LIMIT = 50;
+
+/** Maximum limit for paginated queries to prevent abuse */
+const MAX_LIMIT = 500;
+
+// ============================================================================
+// Client Management (Singleton Pattern)
+// ============================================================================
+
+let serverClient: SupabaseClient | null = null;
+let publicClient: SupabaseClient | null = null;
 
 /**
  * Create a Supabase client for server-side queries
  * Uses service role key for unrestricted access (RLS still applies)
+ * Uses singleton pattern for efficiency
  */
-export function getEventsClient() {
+export function getEventsClient(): SupabaseClient {
+  if (serverClient) return serverClient;
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -20,14 +40,18 @@ export function getEventsClient() {
     throw new Error("Missing Supabase configuration for events");
   }
 
-  return createClient(supabaseUrl, supabaseKey);
+  serverClient = createClient(supabaseUrl, supabaseKey);
+  return serverClient;
 }
 
 /**
  * Create a Supabase client for client-side queries (read-only)
  * Uses anon key with RLS protection
+ * Uses singleton pattern for efficiency
  */
-export function getEventsClientPublic() {
+export function getEventsClientPublic(): SupabaseClient {
+  if (publicClient) return publicClient;
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -35,7 +59,8 @@ export function getEventsClientPublic() {
     throw new Error("Missing Supabase public configuration for events");
   }
 
-  return createClient(supabaseUrl, anonKey);
+  publicClient = createClient(supabaseUrl, anonKey);
+  return publicClient;
 }
 
 /**
@@ -72,16 +97,14 @@ export async function getAllEvents(options?: {
   const orderDirection = options?.orderDirection || "desc";
   query = query.order(orderBy, { ascending: orderDirection === "asc" });
 
-  // Apply pagination
-  if (options?.limit) {
-    query = query.limit(options.limit);
-  }
+  // Apply pagination with sensible defaults and max limits
+  const limit = Math.min(options?.limit || DEFAULT_LIMIT, MAX_LIMIT);
+  const offset = options?.offset || 0;
 
-  if (options?.offset) {
-    query = query.range(
-      options.offset,
-      options.offset + (options.limit || 10) - 1
-    );
+  query = query.limit(limit);
+
+  if (offset > 0) {
+    query = query.range(offset, offset + limit - 1);
   }
 
   const { data, error, count } = await query;
@@ -181,7 +204,8 @@ export async function getEventForSlot(
 }
 
 /**
- * Search events by title or summary
+ * Search events by title and summary
+ * Uses full-text search on both fields for comprehensive results
  */
 export async function searchEvents(
   query: string,
@@ -193,33 +217,29 @@ export async function searchEvents(
 ): Promise<{ events: Event[]; total: number }> {
   const client = getEventsClient();
 
-  // Use Postgres full-text search
+  // Use Postgres full-text search on title
+  // Also search in summary using OR condition for broader matches
   let dbQuery = client
     .from("events")
     .select("*", { count: "exact" })
-    .textSearch("title", query, {
-      type: "websearch",
-      config: "english",
-    });
+    .or(`title.plfts.${query},summary.plfts.${query}`);
 
   // Apply mode filter if specified
   if (options?.mode && options.mode.length > 0) {
     dbQuery = dbQuery.overlaps("mode", options.mode);
   }
 
-  // Apply pagination
-  if (options?.limit) {
-    dbQuery = dbQuery.limit(options.limit);
+  // Apply pagination with sensible limits
+  const limit = Math.min(options?.limit || DEFAULT_LIMIT, MAX_LIMIT);
+  const offset = options?.offset || 0;
+
+  dbQuery = dbQuery.limit(limit);
+
+  if (offset > 0) {
+    dbQuery = dbQuery.range(offset, offset + limit - 1);
   }
 
-  if (options?.offset) {
-    dbQuery = dbQuery.range(
-      options.offset,
-      options.offset + (options.limit || 10) - 1
-    );
-  }
-
-  // Order by relevance (Postgres will handle this with full-text search)
+  // Order by date (most recent first)
   dbQuery = dbQuery.order("date", { ascending: false });
 
   const { data, error, count } = await dbQuery;
@@ -290,14 +310,24 @@ export async function getEventsByDateRange(
 
 /**
  * Get distinct categories from all events
+ * Uses optimized RPC function when available, falls back to JS deduplication
  */
 export async function getCategories(): Promise<string[]> {
   const client = getEventsClient();
 
-  // Get all unique categories across all events
-  const { data, error } = await client
-    .from("events")
-    .select("category");
+  // Try optimized RPC function first
+  try {
+    const { data: rpcData, error: rpcError } = await client.rpc("get_distinct_categories");
+
+    if (!rpcError && rpcData) {
+      return rpcData.map((row: { category: string }) => row.category);
+    }
+  } catch {
+    // RPC function not available, fall back to JS approach
+  }
+
+  // Fallback: Get all unique categories across all events (less efficient)
+  const { data, error } = await client.from("events").select("category");
 
   if (error) {
     console.error("Error fetching categories:", error);
@@ -306,7 +336,7 @@ export async function getCategories(): Promise<string[]> {
 
   // Flatten and deduplicate
   const categories = new Set<string>();
-  (data || []).forEach((event: any) => {
+  (data || []).forEach((event: { category?: string[] }) => {
     if (event.category) {
       event.category.forEach((cat: string) => categories.add(cat));
     }
@@ -317,14 +347,24 @@ export async function getCategories(): Promise<string[]> {
 
 /**
  * Get distinct tags from all events
+ * Uses optimized RPC function when available, falls back to JS deduplication
  */
 export async function getTags(): Promise<string[]> {
   const client = getEventsClient();
 
-  // Get all unique tags across all events
-  const { data, error } = await client
-    .from("events")
-    .select("tags");
+  // Try optimized RPC function first
+  try {
+    const { data: rpcData, error: rpcError } = await client.rpc("get_distinct_tags");
+
+    if (!rpcError && rpcData) {
+      return rpcData.map((row: { tag: string }) => row.tag);
+    }
+  } catch {
+    // RPC function not available, fall back to JS approach
+  }
+
+  // Fallback: Get all unique tags across all events (less efficient)
+  const { data, error } = await client.from("events").select("tags");
 
   if (error) {
     console.error("Error fetching tags:", error);
@@ -333,7 +373,7 @@ export async function getTags(): Promise<string[]> {
 
   // Flatten and deduplicate
   const tags = new Set<string>();
-  (data || []).forEach((event: any) => {
+  (data || []).forEach((event: { tags?: string[] }) => {
     if (event.tags) {
       event.tags.forEach((tag: string) => tags.add(tag));
     }

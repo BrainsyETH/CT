@@ -251,12 +251,13 @@ export async function extractEventFromUrl(
 
   userMessage += `\nPAGE CONTENT:\n${content.slice(0, 8000)}`;
 
-  // Call OpenAI
+  // Call OpenAI with configurable model
   const client = new OpenAI({ apiKey: openaiKey });
+  const model = process.env.OPENAI_MODEL || "gpt-4-turbo";
 
   try {
     const response = await client.chat.completions.create({
-      model: "gpt-4-turbo-preview",
+      model,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

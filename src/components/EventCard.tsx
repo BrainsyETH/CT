@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, PanInfo } from "framer-motion";
-import { memo, useState, useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
-import { isMobile } from "@/lib/utils";
-import { isDebugEnabled } from "@/lib/debug";
+import { useMobileDetection, getIsMobile } from "@/hooks/useMobileDetection";
 import { preloadTwitterScript } from "./TwitterEmbed";
 import type { Event } from "@/lib/types";
 
@@ -25,13 +24,9 @@ function EventCardBase({ event, index }: EventCardProps) {
   const useCrimelineStyle = isCrimeline || (mode === "both" && event.crimeline);
   const isLeft = index % 2 === 0;
   const prefersReducedMotion = useReducedMotion();
-  const [mobile, setMobile] = useState(false);
+  // Use optimized mobile detection that avoids re-renders
+  const mobile = useMobileDetection();
   const dragOccurredRef = useRef(false);
-
-  // Check if mobile after mount to avoid SSR issues
-  useEffect(() => {
-    setMobile(isMobile());
-  }, []);
 
   // Preload first media item when card is near viewport
   const cardRef = useRef<HTMLDivElement>(null);
@@ -65,7 +60,7 @@ function EventCardBase({ event, index }: EventCardProps) {
         });
       },
       {
-        rootMargin: isMobile() ? "600px" : "1200px", // 2-3 viewport heights
+        rootMargin: getIsMobile() ? "600px" : "1200px", // 2-3 viewport heights
         threshold: 0.1,
       }
     );
@@ -75,7 +70,7 @@ function EventCardBase({ event, index }: EventCardProps) {
     return () => {
       observer.disconnect();
     };
-  }, [event, mobile]);
+  }, [event]);
 
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -88,38 +83,22 @@ function EventCardBase({ event, index }: EventCardProps) {
   // Handle swipe gesture on mobile - only trigger if significant horizontal swipe
   const handleDragStart = () => {
     dragOccurredRef.current = false;
-    // #region agent log
-    if (isDebugEnabled()) {
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDragStart',message:'Drag started',data:{eventId:event.id,mobile},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    }
-    // #endregion
   };
-  
-  const handleDrag = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    if (!mobile) return;
-    // #region agent log
-    if (isDebugEnabled()) {
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDrag',message:'Drag in progress',data:{eventId:event.id,offsetX:info.offset.x,offsetY:info.offset.y,velocityX:info.velocity.x,velocityY:info.velocity.y,point:{x:info.point.x,y:info.point.y}},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    }
-    // #endregion
+
+  const handleDrag = (_: MouseEvent | TouchEvent | PointerEvent, _info: PanInfo) => {
+    // Drag handler - currently no-op but kept for future use
   };
-  
+
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (!mobile) return;
-    
+
     const swipeThreshold = 80; // Increased threshold to avoid accidental triggers
     const velocityThreshold = 800; // Increased velocity threshold
-    
+
     // Check if it's a horizontal swipe (not vertical scroll)
     // Require horizontal movement to be at least 2x the vertical movement
     const isHorizontalSwipe = Math.abs(info.offset.x) > Math.abs(info.offset.y) * 2;
-    
-    // #region agent log
-    if (isDebugEnabled()) {
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'EventCard.tsx:handleDragEnd',message:'Drag ended',data:{eventId:event.id,offsetX:info.offset.x,offsetY:info.offset.y,velocityX:info.velocity.x,velocityY:info.velocity.y,isHorizontalSwipe,willTrigger:isHorizontalSwipe && (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    }
-    // #endregion
-    
+
     if (isHorizontalSwipe && (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > velocityThreshold)) {
       dragOccurredRef.current = true;
       // Swipe detected - open modal

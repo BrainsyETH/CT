@@ -6,6 +6,7 @@ import {
   getEventForSlot,
   postEventToFarcaster,
 } from "@/lib/farcaster";
+import { validateAuthHeader } from "@/lib/crypto-utils";
 import type { FarcasterBotPost } from "@/lib/types";
 
 /**
@@ -18,17 +19,23 @@ import type { FarcasterBotPost } from "@/lib/types";
  */
 export async function GET(request: NextRequest) {
   try {
-    // Verify this is a legitimate cron request from Vercel
+    // Verify this is a legitimate cron request from Vercel using timing-safe comparison
     const authHeader = request.headers.get("authorization");
-    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    const cronSecret = process.env.CRON_SECRET;
+    if (cronSecret && !validateAuthHeader(authHeader, cronSecret, true)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // Validate environment variables before use
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!supabaseUrl || !supabaseServiceKey) {
+      console.error("Missing Supabase environment variables");
+      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+    }
+
     // Initialize Supabase client with service role key for write access
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Check if we're in a posting slot
     const currentSlot = getCurrentSlot();

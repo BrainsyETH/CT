@@ -20,21 +20,74 @@ export function sanitizeString(input: string | undefined | null): string {
 }
 
 /**
+ * Removes HTML tags from a string using a state machine approach.
+ * This avoids ReDoS vulnerabilities that can occur with regex-based approaches.
+ */
+function stripHtmlTags(input: string): string {
+  let result = "";
+  let inTag = false;
+  let inScript = false;
+  let tagBuffer = "";
+
+  for (let i = 0; i < input.length; i++) {
+    const char = input[i];
+
+    if (char === "<") {
+      inTag = true;
+      tagBuffer = "";
+    } else if (char === ">" && inTag) {
+      inTag = false;
+      const tagName = tagBuffer.toLowerCase().trim();
+
+      // Check if entering/leaving script tag
+      if (tagName.startsWith("script")) {
+        inScript = true;
+      } else if (tagName === "/script") {
+        inScript = false;
+      }
+      tagBuffer = "";
+    } else if (inTag) {
+      tagBuffer += char;
+    } else if (!inScript) {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Removes event handler attributes (onclick, onload, etc.) from text.
+ * Uses a simple, non-vulnerable pattern.
+ */
+function removeEventHandlers(input: string): string {
+  // Simple pattern that matches on followed by word characters and =
+  // This is O(n) and cannot cause ReDoS
+  return input.replace(/\bon[a-z]+\s*=/gi, "data-removed=");
+}
+
+/**
  * Sanitizes text content, preserving newlines but removing dangerous patterns.
+ * Uses safe algorithms that avoid ReDoS vulnerabilities.
  */
 export function sanitizeText(input: string | undefined | null): string {
   if (!input) return "";
 
-  return input
-    .trim()
-    // Remove null bytes
-    .replace(/\0/g, "")
-    // Remove potential script injections
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
-    // Remove event handlers
-    .replace(/\bon\w+\s*=/gi, "")
-    // Normalize unicode
-    .normalize("NFC");
+  let result = input.trim();
+
+  // Remove null bytes
+  result = result.replace(/\0/g, "");
+
+  // Strip HTML tags using state machine (ReDoS-safe)
+  result = stripHtmlTags(result);
+
+  // Remove event handlers
+  result = removeEventHandlers(result);
+
+  // Normalize unicode
+  result = result.normalize("NFC");
+
+  return result;
 }
 
 /**

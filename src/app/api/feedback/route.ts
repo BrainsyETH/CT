@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeFeedbackSubmission, sanitizeEmail } from "@/lib/sanitize";
-import { RATE_LIMIT, VALIDATION, FEEDBACK_TYPES } from "@/lib/constants";
-import type { FeedbackSubmission } from "@/lib/types";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
+import { validateFeedbackSubmission } from "@/lib/validation";
+import { RATE_LIMIT } from "@/lib/constants";
 
 export async function POST(request: Request) {
   try {
     // Validate environment variables
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
     if (!supabaseUrl || !supabaseServiceKey) {
       console.error("Missing Supabase environment variables");
       return NextResponse.json(
@@ -22,65 +21,22 @@ export async function POST(request: Request) {
     // Create Supabase client with service role key for server-side operations
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const rawBody: FeedbackSubmission = await request.json();
+    const rawBody = await request.json();
 
-    // Sanitize all inputs on the server side
-    const body = sanitizeFeedbackSubmission(rawBody);
+    // Validate with Zod schema (handles type, email format, and all field lengths)
+    const { submission, errors } = validateFeedbackSubmission(rawBody);
 
-    // Validate required fields
-    if (!body.type || !body.email) {
+    if (errors || !submission) {
+      // Extract user-friendly error messages from Zod errors
+      const errorMessages = errors?.issues.map((issue) => issue.message).join(", ");
       return NextResponse.json(
-        { error: "Missing required fields: type and email are required" },
+        { error: errorMessages || "Invalid submission data" },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    // Validate email length
-    if (body.email.length > VALIDATION.MAX_EMAIL_LENGTH) {
-      return NextResponse.json(
-        { error: "Email address is too long" },
-        { status: 400 }
-      );
-    }
-
-    // Validate feedback type
-    if (!FEEDBACK_TYPES.includes(body.type as typeof FEEDBACK_TYPES[number])) {
-      return NextResponse.json(
-        { error: "Invalid feedback type" },
-        { status: 400 }
-      );
-    }
-
-    // Validate field lengths
-    if (body.event_title && body.event_title.length > VALIDATION.MAX_TITLE_LENGTH) {
-      return NextResponse.json(
-        { error: "Event title is too long" },
-        { status: 400 }
-      );
-    }
-
-    if (body.event_summary && body.event_summary.length > VALIDATION.MAX_SUMMARY_LENGTH) {
-      return NextResponse.json(
-        { error: "Event summary is too long" },
-        { status: 400 }
-      );
-    }
-
-    if (body.message && body.message.length > VALIDATION.MAX_MESSAGE_LENGTH) {
-      return NextResponse.json(
-        { error: "Message is too long" },
-        { status: 400 }
-      );
-    }
+    // Sanitize validated inputs for XSS protection
+    const body = sanitizeFeedbackSubmission(submission);
 
     // Rate limiting: Check submissions from this email in the last hour
     const oneHourAgo = new Date(Date.now() - RATE_LIMIT.WINDOW_MS).toISOString();
