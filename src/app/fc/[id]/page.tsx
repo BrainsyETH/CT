@@ -100,8 +100,50 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function FarcasterEventPage({ params }: Props) {
   const { id } = await params;
+  const headersList = await headers();
+  const userAgent = headersList.get("user-agent") || "";
 
-  // Redirect to main event page with query param
+  // List of known bot/crawler user agents that need OG meta tags
+  const botPatterns = [
+    "Twitterbot",
+    "facebookexternalhit",
+    "LinkedInBot",
+    "Slackbot",
+    "Discordbot",
+    "TelegramBot",
+    "WhatsApp",
+    "Googlebot",
+    "bingbot",
+    "Embedly",
+    "Quora Link Preview",
+    "Showyoubot",
+    "outbrain",
+    "pinterest",
+    "vkShare",
+    "W3C_Validator",
+  ];
+
+  const isBot = botPatterns.some((bot) =>
+    userAgent.toLowerCase().includes(bot.toLowerCase())
+  );
+
+  // For bots: render a minimal page so they can read the OG meta tags
+  // The metadata is already set via generateMetadata()
+  if (isBot) {
+    const event = await getEventById(id);
+    return (
+      <html>
+        <head />
+        <body>
+          <h1>{event?.title || "Event"}</h1>
+          <p>{event?.summary || ""}</p>
+          <a href={`/?event=${id}`}>View event</a>
+        </body>
+      </html>
+    );
+  }
+
+  // For regular users: redirect to main event page with query param
   // This ensures users see the actual interactive page
   redirect(`/?event=${id}`);
 }
