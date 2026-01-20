@@ -17,6 +17,7 @@ export interface ExtractionHints {
   categories?: string[];
   date?: string;
   context?: string;
+  image?: string;
 }
 
 export interface ExtractionResult {
@@ -24,6 +25,7 @@ export interface ExtractionResult {
   event?: Event;
   raw?: string;
   error?: string;
+  extractedImage?: string;
 }
 
 // ============================================================================
@@ -92,10 +94,38 @@ LOGIC RULES
 const USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
+interface FetchResult {
+  text: string;
+  ogImage?: string;
+}
+
 /**
- * Fetch and extract text content from a URL
+ * Extract og:image URL from HTML
  */
-export async function fetchUrlContent(url: string): Promise<string> {
+function extractOgImage(html: string): string | undefined {
+  // Try og:image first
+  const ogMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+  if (ogMatch?.[1]) return ogMatch[1];
+
+  // Try alternate attribute order
+  const ogMatch2 = html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
+  if (ogMatch2?.[1]) return ogMatch2[1];
+
+  // Try twitter:image
+  const twitterMatch = html.match(/<meta[^>]*name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i);
+  if (twitterMatch?.[1]) return twitterMatch[1];
+
+  // Try alternate attribute order for twitter
+  const twitterMatch2 = html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*name=["']twitter:image["']/i);
+  if (twitterMatch2?.[1]) return twitterMatch2[1];
+
+  return undefined;
+}
+
+/**
+ * Fetch and extract text content and og:image from a URL
+ */
+export async function fetchUrlContent(url: string): Promise<FetchResult> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
 
@@ -110,6 +140,9 @@ export async function fetchUrlContent(url: string): Promise<string> {
     }
 
     const html = await response.text();
+
+    // Extract og:image before stripping HTML
+    const ogImage = extractOgImage(html);
 
     // Basic HTML to text conversion
     // Remove script, style, nav, footer, header, aside tags and their content
@@ -133,7 +166,7 @@ export async function fetchUrlContent(url: string): Promise<string> {
       .replace(/\s+/g, " ")
       .trim();
 
-    return text;
+    return { text, ogImage };
   } finally {
     clearTimeout(timeout);
   }
@@ -178,8 +211,11 @@ export async function extractEventFromUrl(
 
   // Fetch URL content
   let content: string;
+  let extractedImage: string | undefined;
   try {
-    content = await fetchUrlContent(url);
+    const fetchResult = await fetchUrlContent(url);
+    content = fetchResult.text;
+    extractedImage = fetchResult.ogImage;
     if (content.length < 100) {
       content = `[Limited content extracted from URL. Please rely on the URL itself and any hints provided.]`;
     }
@@ -202,6 +238,11 @@ export async function extractEventFromUrl(
   }
   if (hints?.context) {
     userMessage += `ADDITIONAL CONTEXT: ${hints.context}\n`;
+  }
+  // Pass image hint (user-provided takes precedence over extracted)
+  const imageUrl = hints?.image || extractedImage;
+  if (imageUrl) {
+    userMessage += `IMAGE URL: ${imageUrl}\n`;
   }
 
   userMessage += `\nPAGE CONTENT:\n${content.slice(0, 8000)}`;
@@ -272,10 +313,16 @@ export async function extractEventFromUrl(
         event.links.unshift({ label: "Source", url });
       }
 
+      // Use extracted image if event doesn't have one
+      if (!event.image && extractedImage) {
+        event.image = extractedImage;
+      }
+
       return {
         success: true,
         event,
         raw,
+        extractedImage,
       };
     } catch (parseError) {
       return {
