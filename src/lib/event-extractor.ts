@@ -62,7 +62,8 @@ SCHEMA (match types exactly)
   "image": "string URL (no placeholders)",
   "media": [
     { "type": "video", "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" } },
-    { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } }
+    { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } },
+     { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } }
   ],
   "links": [{ "label": "string", "url": "https://..." }],
   "metrics": { },
@@ -80,9 +81,11 @@ SCHEMA (match types exactly)
 LOGIC RULES
 - If mode includes "crimeline", include the full "crimeline" object.
 - If mode is only "timeline", omit the "crimeline" object entirely.
+- Always include 3 media items.
 - "links" should include at least 1 URL. Prefer 2-3 if available. Heavily prioritize video and tweets over other links. Do not link to search queries. Keep link Titles short and Capitalized.
 - Put the most "iconic" X/Twitter link into media[twitter].twitter.tweet_url when possible.
 - Keep summaries tight but specific: who/what/when/how much/why it mattered. No em dashes.
+- If additional Twitter/Xlinks are provided in the Additional Context field, include the Twitter links in the media array.
 - If a number is uncertain, use an approximate with "~" in the summary, but still provide best estimate in crimeline.funds_lost_usd when relevant.`;
 
 // ============================================================================
