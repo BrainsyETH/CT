@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllEvents } from "@/lib/events-db";
 import { rateLimit } from "@/lib/rate-limit";
+import { withCorsHeaders, handleCorsPreFlight } from "@/lib/cors";
+
+/**
+ * OPTIONS /api/v1/events
+ *
+ * Handle CORS preflight requests
+ */
+export async function OPTIONS() {
+  return handleCorsPreFlight();
+}
 
 /**
  * GET /api/v1/events
@@ -113,11 +123,11 @@ export async function GET(request: NextRequest) {
       },
     };
 
-    // Add caching headers (cache for 1 hour)
+    // Add caching and CORS headers (cache for 1 hour)
     return NextResponse.json(response, {
-      headers: {
+      headers: withCorsHeaders({
         "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
-      },
+      }),
     });
   } catch (error) {
     console.error("Error in /api/v1/events:", error);
