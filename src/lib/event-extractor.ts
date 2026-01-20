@@ -81,7 +81,7 @@ SCHEMA (match types exactly)
 LOGIC RULES
 - If mode includes "crimeline", include the full "crimeline" object.
 - If mode is only "timeline", omit the "crimeline" object entirely.
-- Always include 3 media items.
+- Always include 3 media items, they can be placeholders, but must be valid JSON.
 - "links" should include at least 1 URL. Prefer 2-3 if available. Heavily prioritize video and tweets over other links. Do not link to search queries. Keep link Titles short and Capitalized.
 - Put the most "iconic" X/Twitter link into media[twitter].twitter.tweet_url when possible.
 - Keep summaries tight but specific: who/what/when/how much/why it mattered. No em dashes.
