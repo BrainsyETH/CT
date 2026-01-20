@@ -2,7 +2,7 @@ import type { Event, FarcasterPostPayload } from "@/lib/types";
 
 /**
  * Formats an event into a Farcaster post payload
- * - Caption: First sentence from summary only (no hashtags)
+ * - Caption: First sentence from summary + URL (URL in text ensures link always appears)
  * - Embeds: Farcaster-specific URL (uses OG image with title at bottom)
  */
 export function formatEventPost(event: Event): FarcasterPostPayload {
@@ -14,8 +14,11 @@ export function formatEventPost(event: Event): FarcasterPostPayload {
   const siteUrl = getSiteUrl();
   const eventUrl = `${siteUrl}/fc/${event.id}`;
 
+  // Include URL in text to ensure link always appears (embeds don't always unfurl)
+  const text = `${firstSentence}\n\n${eventUrl}`;
+
   return {
-    text: firstSentence,
+    text,
     embeds: [{ url: eventUrl }],
   };
 }
