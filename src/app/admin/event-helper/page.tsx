@@ -14,10 +14,13 @@ export default function EventHelperPage() {
   const [context, setContext] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [result, setResult] = useState<Event | null>(null);
   const [rawJson, setRawJson] = useState("");
   const [copied, setCopied] = useState(false);
+  const [extractedImage, setExtractedImage] = useState<string | null>(null);
 
   const handleCategoryToggle = (category: string) => {
     if (categories.includes(category)) {
@@ -30,9 +33,11 @@ export default function EventHelperPage() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    setSuccess(null);
     setResult(null);
     setRawJson("");
     setCopied(false);
+    setExtractedImage(null);
 
     if (!url.trim()) {
       setError("Please enter a URL");
@@ -76,10 +81,62 @@ export default function EventHelperPage() {
 
       setResult(data.event);
       setRawJson(JSON.stringify(data.event, null, 2));
+      if (data.extractedImage) {
+        setExtractedImage(data.extractedImage);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSubmitToSupabase = async () => {
+    if (!result) {
+      setError("No event data to submit");
+      return;
+    }
+
+    if (!adminSecret.trim()) {
+      setError("Please enter the admin secret");
+      return;
+    }
+
+    // Try to parse the edited JSON first
+    let eventToSubmit: Event;
+    try {
+      eventToSubmit = JSON.parse(rawJson);
+    } catch {
+      setError("Invalid JSON. Please fix the JSON before submitting.");
+      return;
+    }
+
+    setSubmitting(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const response = await fetch("/api/admin/submit-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-secret": adminSecret,
+        },
+        body: rawJson,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.error || "Failed to submit event");
+        return;
+      }
+
+      setSuccess(`Event "${eventToSubmit.id}" created successfully!`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -242,6 +299,13 @@ export default function EventHelperPage() {
               </p>
             )}
 
+            {/* Success Display */}
+            {success && (
+              <p className="whitespace-pre-line rounded-md border border-emerald-500/40 bg-emerald-500/10 p-3 text-sm text-emerald-200">
+                {success}
+              </p>
+            )}
+
             {/* Submit Button */}
             <button
               type="submit"
@@ -282,17 +346,27 @@ export default function EventHelperPage() {
             <section className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold">Extracted Event JSON</h2>
-                <button
-                  type="button"
-                  onClick={handleCopy}
-                  className={`rounded-md border px-4 py-1.5 text-sm transition ${
-                    copied
-                      ? "border-emerald-400 text-emerald-200 bg-emerald-500/10"
-                      : "border-white/10 text-white/70 hover:text-white hover:border-white/20"
-                  }`}
-                >
-                  {copied ? "Copied!" : "Copy JSON"}
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className={`rounded-md border px-4 py-1.5 text-sm transition ${
+                      copied
+                        ? "border-emerald-400 text-emerald-200 bg-emerald-500/10"
+                        : "border-white/10 text-white/70 hover:text-white hover:border-white/20"
+                    }`}
+                  >
+                    {copied ? "Copied!" : "Copy JSON"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSubmitToSupabase}
+                    disabled={submitting || !result}
+                    className="rounded-md bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {submitting ? "Submitting..." : "Submit to Supabase"}
+                  </button>
+                </div>
               </div>
 
               {/* JSON Editor */}
@@ -309,6 +383,24 @@ export default function EventHelperPage() {
               {result && (
                 <div className="rounded-lg border border-white/10 bg-white/5 p-4 space-y-3">
                   <h3 className="text-sm font-semibold text-white/80">Preview</h3>
+
+                  {/* Image Preview */}
+                  {(result.image || extractedImage) && (
+                    <div className="space-y-2">
+                      <p className="text-xs text-white/50">
+                        {result.image ? "Event Image:" : "Extracted og:image (added to event):"}
+                      </p>
+                      <img
+                        src={result.image || extractedImage || ""}
+                        alt="Event preview"
+                        className="max-h-48 rounded-md border border-white/10 object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    </div>
+                  )}
+
                   <div className="grid gap-2 text-sm">
                     <div className="flex gap-2">
                       <span className="text-white/50 w-20">ID:</span>
@@ -334,6 +426,12 @@ export default function EventHelperPage() {
                       <span className="text-white/50 w-20">Tags:</span>
                       <span>{result.tags?.join(", ")}</span>
                     </div>
+                    {result.image && (
+                      <div className="flex gap-2">
+                        <span className="text-white/50 w-20">Image:</span>
+                        <span className="text-xs text-white/60 truncate max-w-xs">{result.image}</span>
+                      </div>
+                    )}
                     {result.crimeline && (
                       <div className="flex gap-2">
                         <span className="text-white/50 w-20">Crimeline:</span>
