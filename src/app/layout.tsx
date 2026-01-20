@@ -35,6 +35,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Chain of Events | History of Cryptocurrency",
     description:
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments. Switch to Crimeline mode to explore hacks, exploits, and frauds.",
+    icons: {
+      // Manifest icons don't control browser tab favicons; declare it explicitly.
+      icon: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
+      shortcut: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
+      apple: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
+    },
     keywords: [
       "cryptocurrency",
       "bitcoin",
