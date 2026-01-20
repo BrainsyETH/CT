@@ -75,6 +75,25 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Check if we've already posted this specific event today (prevents duplicate events across slots)
+    const { data: existingEventPost } = await supabase
+      .from("twitter_bot_posts")
+      .select("*")
+      .eq("post_date", postDate)
+      .eq("event_id", event.id)
+      .single();
+
+    if (existingEventPost) {
+      return NextResponse.json({
+        message: "This event was already posted today in a different slot",
+        status: "skipped",
+        slot: currentSlot.label,
+        postDate,
+        eventId: event.id,
+        existingSlot: existingEventPost.slot_index,
+      });
+    }
+
     // Post to Twitter
     const result = await postEventToTwitter(event);
 

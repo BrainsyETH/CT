@@ -9,9 +9,9 @@ export function formatTwitterPost(event: Event): TwitterPostPayload {
   // Extract first sentence from summary
   const firstSentence = getFirstSentence(event.summary);
 
-  // Build event URL
+  // Build event URL - uses /fc/ route which has proper OG image
   const siteUrl = getSiteUrl();
-  const eventUrl = `${siteUrl}/?event=${event.id}`;
+  const eventUrl = `${siteUrl}/fc/${event.id}`;
 
   // Calculate available space for text (280 - URL length - space - buffer)
   // Twitter uses t.co for URL shortening (23 chars max)
