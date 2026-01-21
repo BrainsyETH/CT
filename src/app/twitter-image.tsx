@@ -107,9 +107,11 @@ export default async function Image() {
               background: "linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)",
               marginBottom: "24px",
               fontSize: "40px",
+              fontWeight: 900,
+              color: "white",
             }}
           >
-            ₿
+            C
           </div>
 
           {/* Title */}

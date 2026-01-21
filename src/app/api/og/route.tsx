@@ -3,6 +3,28 @@ import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
+/**
+ * Sanitize text for OG image rendering
+ * Replaces special Unicode characters that aren't supported by default system fonts
+ * with ASCII equivalents to prevent "Failed to load dynamic font" errors
+ */
+function sanitizeTextForOg(text: string): string {
+  return text
+    .replace(/₿/g, "BTC") // Bitcoin symbol
+    .replace(/Ξ/g, "ETH") // Ethereum symbol
+    .replace(/€/g, "EUR") // Euro
+    .replace(/£/g, "GBP") // Pound
+    .replace(/¥/g, "JPY") // Yen
+    .replace(/₹/g, "INR") // Rupee
+    .replace(/◆/g, "-") // Diamond
+    .replace(/●/g, "*") // Bullet
+    .replace(/★/g, "*") // Star
+    .replace(/→/g, "->") // Arrow
+    .replace(/←/g, "<-") // Arrow
+    .replace(/⟶/g, "-->") // Long arrow
+    .replace(/…/g, "..."); // Ellipsis
+}
+
 // Helper to get first sentence from summary
 function getFirstSentence(text: string): string {
   if (!text) return "";
@@ -18,9 +40,10 @@ function getFirstSentence(text: string): string {
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const title = searchParams.get("title") || "Chain of Events";
+    // Sanitize text inputs to prevent font loading errors
+    const title = sanitizeTextForOg(searchParams.get("title") || "Chain of Events");
     const date = searchParams.get("date") || "";
-    const summary = searchParams.get("summary") || "";
+    const summary = sanitizeTextForOg(searchParams.get("summary") || "");
     const imageUrl = searchParams.get("image") || "";
     const mode = searchParams.get("mode") || "timeline";
 
