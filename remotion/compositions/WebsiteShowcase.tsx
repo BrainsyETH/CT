@@ -146,21 +146,24 @@ const IntroScene: React.FC = () => {
           opacity: titleOpacity,
         }}
       >
-        Chain of Events
+        chain of events
       </div>
 
       {/* Tagline */}
       <div
         style={{
-          fontSize: 32,
+          fontSize: 28,
           fontWeight: 500,
           color: COLORS.timelineText,
           opacity: taglineOpacity * 0.8,
           transform: `translateY(${taglineY}px)`,
           marginTop: 16,
+          maxWidth: 900,
+          textAlign: "center",
+          lineHeight: 1.4,
         }}
       >
-        The Complete History of Cryptocurrency
+        A living archive of CT's greatest hits, worst moments, and everything in between.
       </div>
     </AbsoluteFill>
   );
@@ -684,37 +687,40 @@ const FeaturesScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const features = [
-    { icon: "🔍", title: "Smart Search", desc: "Find any event instantly" },
-    { icon: "🏷️", title: "Tag Filters", desc: "TECH, ECONOMIC, SECURITY..." },
-    { icon: "📅", title: "Year Jump", desc: "Navigate by year" },
-    { icon: "📱", title: "Mobile First", desc: "Swipe & gesture support" },
-    { icon: "🔗", title: "Share Events", desc: "Dynamic social cards" },
-    { icon: "📊", title: "BTC Metrics", desc: "Price & market data" },
+  // CT Lore filter chips - the native CT filters
+  const ctFilters = [
+    { name: "ZachXBT", color: "#3b82f6" },
+    { name: "Cobie", color: "#8b5cf6" },
+    { name: "GCR", color: "#10b981" },
+    { name: "Do Kwon", color: "#ef4444" },
+    { name: "SBF", color: "#f59e0b" },
+    { name: "Vitalik", color: "#06b6d4" },
   ];
+
+  // Tag filters
+  const tagFilters = ["MILESTONE", "CULTURAL", "SECURITY", "TECH", "ECONOMIC"];
+
+  // Animation for title
+  const titleOpacity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Animation for subtitle
+  const subtitleOpacity = interpolate(frame, [15, 35], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+        backgroundColor: COLORS.timelineBg,
         fontFamily: "Inter, system-ui, sans-serif",
         overflow: "hidden",
       }}
     >
-      {/* Background grid */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: "50px 50px",
-        }}
-      />
-
-      {/* Title */}
+      {/* Title section */}
       <div
         style={{
           position: "absolute",
@@ -726,110 +732,245 @@ const FeaturesScene: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 56,
+            fontSize: 52,
             fontWeight: 900,
-            color: "white",
-            opacity: interpolate(frame, [0, 20], [0, 1], {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            }),
+            color: COLORS.timelineText,
+            opacity: titleOpacity,
           }}
         >
-          Powerful Features
+          filter by ct lore
         </div>
         <div
           style={{
-            fontSize: 22,
-            color: "rgba(255,255,255,0.7)",
+            fontSize: 24,
+            color: "#666",
             marginTop: 12,
-            opacity: interpolate(frame, [10, 30], [0, 1], {
+            opacity: subtitleOpacity,
+            maxWidth: 700,
+          }}
+        >
+          Scattered tweets, deleted accounts, fading memories. We're fixing that.
+        </div>
+      </div>
+
+      {/* CT Lore Filters - Main feature */}
+      <div
+        style={{
+          position: "absolute",
+          top: 240,
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#888",
+            marginBottom: 16,
+            letterSpacing: "0.1em",
+            opacity: interpolate(frame, [20, 40], [0, 1], {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp",
             }),
           }}
         >
-          Everything you need to explore crypto history
+          CT PERSONALITIES
+        </div>
+        <div style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
+          {ctFilters.map((filter, i) => {
+            const delay = 30 + i * 6;
+            const chipScale = spring({
+              frame: frame - delay,
+              fps,
+              config: { damping: 12, stiffness: 120 },
+            });
+            const opacity = interpolate(frame, [delay, delay + 15], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+
+            return (
+              <div
+                key={i}
+                style={{
+                  ...cardStyle(false),
+                  padding: "14px 28px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  transform: `scale(${Math.min(chipScale, 1)})`,
+                  opacity,
+                }}
+              >
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: "50%",
+                    backgroundColor: filter.color,
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 700,
+                    color: COLORS.timelineText,
+                  }}
+                >
+                  {filter.name}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Features grid */}
+      {/* Tag Filters */}
       <div
         style={{
           position: "absolute",
-          top: 260,
+          top: 440,
           left: "50%",
           transform: "translateX(-50%)",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 320px)",
-          gap: 30,
         }}
       >
-        {features.map((feature, i) => {
-          const delay = i * 8;
-          const featureScale = spring({
-            frame: frame - delay,
-            fps,
-            config: { damping: 12, stiffness: 100 },
-          });
+        <div
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#888",
+            marginBottom: 16,
+            letterSpacing: "0.1em",
+            opacity: interpolate(frame, [50, 70], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            }),
+          }}
+        >
+          EVENT CATEGORIES
+        </div>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+          {tagFilters.map((tag, i) => {
+            const delay = 60 + i * 5;
+            const tagScale = spring({
+              frame: frame - delay,
+              fps,
+              config: { damping: 15, stiffness: 150 },
+            });
+            const opacity = interpolate(frame, [delay, delay + 12], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+
+            const tagColors: Record<string, string> = {
+              MILESTONE: COLORS.timelineAccent,
+              CULTURAL: COLORS.purple,
+              SECURITY: COLORS.crimelineAccent,
+              TECH: "#3b82f6",
+              ECONOMIC: COLORS.yellow,
+            };
+
+            return (
+              <div
+                key={i}
+                style={{
+                  backgroundColor: tagColors[tag] || COLORS.timelineAccent,
+                  color: "white",
+                  padding: "10px 20px",
+                  borderRadius: 6,
+                  fontSize: 14,
+                  fontWeight: 700,
+                  letterSpacing: "0.05em",
+                  transform: `scale(${Math.min(tagScale, 1)})`,
+                  opacity,
+                  border: "2px solid #1f2937",
+                  boxShadow: "3px 3px 0px #1f2937",
+                }}
+              >
+                {tag}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Bottom features row */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 100,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 40,
+        }}
+      >
+        {[
+          { label: "Year Jump", icon: "📅" },
+          { label: "Smart Search", icon: "🔍" },
+          { label: "BTC Metrics", icon: "📊" },
+        ].map((item, i) => {
+          const delay = 80 + i * 8;
           const opacity = interpolate(frame, [delay, delay + 20], [0, 1], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
+          });
+          const y = interpolate(frame, [delay, delay + 20], [20, 0], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+            easing: Easing.out(Easing.cubic),
           });
 
           return (
             <div
               key={i}
               style={{
-                backgroundColor: "rgba(255,255,255,0.08)",
-                backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                borderRadius: 16,
-                padding: 28,
-                transform: `scale(${Math.min(featureScale, 1)})`,
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
                 opacity,
+                transform: `translateY(${y}px)`,
               }}
             >
-              <div style={{ fontSize: 40, marginBottom: 12 }}>{feature.icon}</div>
-              <div
+              <span style={{ fontSize: 28 }}>{item.icon}</span>
+              <span
                 style={{
-                  fontSize: 22,
-                  fontWeight: 700,
-                  color: "white",
-                  marginBottom: 8,
+                  fontSize: 18,
+                  fontWeight: 600,
+                  color: COLORS.timelineText,
                 }}
               >
-                {feature.title}
-              </div>
-              <div style={{ fontSize: 16, color: "rgba(255,255,255,0.6)" }}>
-                {feature.desc}
-              </div>
+                {item.label}
+              </span>
             </div>
           );
         })}
       </div>
 
-      {/* Floating elements */}
+      {/* Decorative elements */}
       <div
         style={{
           position: "absolute",
-          bottom: 100,
+          top: 120,
           left: 100,
-          width: 80,
-          height: 80,
+          width: 60,
+          height: 60,
+          border: `4px solid ${COLORS.timelineAccent}`,
           borderRadius: "50%",
-          border: "3px solid rgba(16, 185, 129, 0.5)",
-          transform: `translateY(${Math.sin(frame * 0.05) * 10}px)`,
+          opacity: 0.3,
         }}
       />
       <div
         style={{
           position: "absolute",
-          top: 150,
-          right: 150,
-          width: 50,
-          height: 50,
-          backgroundColor: "rgba(168, 85, 247, 0.3)",
-          transform: `rotate(${frame}deg)`,
+          bottom: 200,
+          right: 120,
+          width: 40,
+          height: 40,
+          backgroundColor: COLORS.purple,
+          transform: "rotate(45deg)",
+          opacity: 0.3,
         }}
       />
     </AbsoluteFill>
@@ -909,15 +1050,17 @@ const OutroScene: React.FC = () => {
       {/* CTA Text */}
       <div
         style={{
-          fontSize: 64,
+          fontSize: 56,
           fontWeight: 900,
           color: "white",
           textAlign: "center",
           transform: `scale(${textScale})`,
           letterSpacing: "-0.02em",
+          maxWidth: 800,
+          lineHeight: 1.3,
         }}
       >
-        Explore Crypto History
+        explore crypto history
       </div>
 
       {/* URL */}
