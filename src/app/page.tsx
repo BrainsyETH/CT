@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
 import { getAllEvents, getEventById } from "@/lib/events-db";
-import type { Event } from "@/lib/types";
 import { formatDate } from "@/lib/formatters";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -112,6 +111,9 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 export default async function Home() {
   // Fetch all events from database
   const { events } = await getAllEvents({
+    // Homepage timeline should include the full dataset (year list derives from this).
+    // `getAllEvents` enforces a MAX_LIMIT of 500.
+    limit: 500,
     orderBy: "date",
     orderDirection: "desc",
   });
