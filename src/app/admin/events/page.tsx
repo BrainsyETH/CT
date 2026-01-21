@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, type FormEvent } from "react";
 import Link from "next/link";
 import {
-  CATEGORIES,
+  ALL_CATEGORIES,
   EVENT_TAGS,
   MODE_OPTIONS,
   CRIMELINE_TYPES,
@@ -642,7 +642,7 @@ export default function AdminEventsPage() {
               <div className="space-y-2 text-sm">
                 <span className="text-white/80">Categories</span>
                 <div className="flex flex-wrap gap-2">
-                  {CATEGORIES.map((cat) => (
+                  {ALL_CATEGORIES.map((cat) => (
                     <label
                       key={cat}
                       className={`flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition cursor-pointer ${
