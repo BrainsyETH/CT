@@ -184,6 +184,7 @@ function EventCardBase({ event, index }: EventCardProps) {
                 src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
                 alt={event.title}
                 fill
+                priority={index < 2}
                 className="object-contain transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
