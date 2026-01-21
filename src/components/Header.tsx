@@ -173,7 +173,7 @@ export function Header() {
 
             {/* Subtitle */}
             <motion.p
-              className={`neo-brutalist-subtitle text-[0.3rem] max-w-[180px] lg:max-w-none lg:whitespace-nowrap ${
+              className={`neo-brutalist-subtitle text-[0.3rem] max-w-[180px] lg:max-w-none lg:whitespace-nowrap md:scale-50 md:origin-left ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
