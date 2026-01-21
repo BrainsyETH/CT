@@ -128,7 +128,7 @@ export function Header() {
       <div className="hidden md:block max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo and Subtitle Section */}
-          <div className="flex flex-col items-start gap-2 min-w-0">
+          <div className="flex flex-col items-center gap-2 min-w-0">
             {/* Logo */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -173,7 +173,7 @@ export function Header() {
 
             {/* Subtitle */}
             <motion.p
-              className={`neo-brutalist-subtitle text-[0.3rem] max-w-[180px] lg:max-w-none lg:whitespace-nowrap md:scale-75 md:origin-left ${
+              className={`neo-brutalist-subtitle text-[0.3rem] md:whitespace-nowrap md:scale-75 ${
                 isCrimeline
                   ? "neo-brutalist-subtitle-crimeline"
                   : "neo-brutalist-subtitle-timeline"
