@@ -25,17 +25,34 @@ export const CATEGORIES = [
   "Bitcoin",
   "Ethereum",
   "DeFi",
-  "NFT",
-  "Stablecoin",
+  "DeFi Protocol",
   "Centralized Exchange",
+  "Memecoins",
+  "Market Structure",
+  "Lending",
+  "Regulation",
+  "Bull Runs",
+  "Dances",
+  "NFTs",
+  "Bridge",
+  "Culture",
+  "Key Compromise",
+  "Security",
+  "Stablecoin",
+  "Privacy",
+  "Scam",
+  "ETFs",
   "Layer 2",
   "Other",
 ] as const;
 
-export type Category = (typeof CATEGORIES)[number];
-
-// Premium/Special categories with unique styling
+// Premium/Special categories with unique styling (shown first in filters)
 export const PREMIUM_CATEGORIES = ["CT Lore", "ZachXBT", "Cobie"] as const;
+
+// All categories including premium ones
+export const ALL_CATEGORIES = [...PREMIUM_CATEGORIES, ...CATEGORIES] as const;
+
+export type Category = (typeof CATEGORIES)[number];
 
 // ============================================================================
 // Event Tags
