@@ -30,6 +30,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = headersList.get("x-forwarded-proto") ?? "https";
   const resolvedSiteUrl = host ? `${protocol}://${host}/` : siteUrl;
   const toAbsoluteUrl = (path: string) => new URL(path, resolvedSiteUrl).toString();
+  // Favicons are cached very aggressively on desktop browsers.
+  // A versioned URL forces a refresh without changing the underlying file.
+  const faviconHref = "/coe_minimalisticv2.png?v=2";
 
   return {
     title: "Chain of Events | History of Cryptocurrency",
@@ -37,9 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "Explore the complete history of cryptocurrency - from Bitcoin genesis to major hacks, milestones, and cultural moments. Switch to Crimeline mode to explore hacks, exploits, and frauds.",
     icons: {
       // Manifest icons don't control browser tab favicons; declare it explicitly.
-      icon: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
-      shortcut: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
-      apple: [{ url: "/coe_minimalisticv2.png", type: "image/png" }],
+      icon: [{ url: faviconHref, type: "image/png" }],
+      shortcut: [{ url: faviconHref, type: "image/png" }],
+      apple: [{ url: faviconHref, type: "image/png" }],
     },
     keywords: [
       "cryptocurrency",
@@ -108,6 +111,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="timeline" suppressHydrationWarning>
       <head>
+        {/* Explicit favicon links to avoid browser heuristics picking /favicon.ico */}
+        <link rel="icon" href="/coe_minimalisticv2.png?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/coe_minimalisticv2.png?v=2" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
