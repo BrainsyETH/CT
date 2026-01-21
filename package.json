@@ -9,7 +9,9 @@
     "lint": "eslint",
     "remotion:studio": "remotion studio remotion/index.ts",
     "remotion:render": "remotion render remotion/index.ts promo-16x9 out/promo-16x9.mp4",
-    "remotion:still": "remotion still remotion/index.ts promo-16x9 out/promo-16x9.png --frame=0"
+    "remotion:still": "remotion still remotion/index.ts promo-16x9 out/promo-16x9.png --frame=0",
+    "remotion:showcase": "remotion render remotion/index.ts website-showcase out/website-showcase.mp4",
+    "remotion:showcase-gif": "remotion render remotion/index.ts website-showcase out/website-showcase.gif --image-format=png"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.1",

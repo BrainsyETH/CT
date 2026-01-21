@@ -1,0 +1,993 @@
+import React from "react";
+import {
+  AbsoluteFill,
+  useCurrentFrame,
+  useVideoConfig,
+  interpolate,
+  Easing,
+  spring,
+  Sequence,
+  Img,
+  staticFile,
+} from "remotion";
+
+// Color palette matching the website
+const COLORS = {
+  // Timeline mode (light)
+  timelineBg: "#fafafa",
+  timelineText: "#111827",
+  timelineAccent: "#10b981",
+  timelineBorder: "#1f2937",
+  // Crimeline mode (dark)
+  crimelineBg: "#0a0a0a",
+  crimelineText: "#f9fafb",
+  crimelineAccent: "#ef4444",
+  crimelineBorder: "#dc2626",
+  // Shared
+  yellow: "#fbbf24",
+  purple: "#a855f7",
+};
+
+// Neo-brutalist card style
+const cardStyle = (isDark: boolean): React.CSSProperties => ({
+  backgroundColor: isDark ? "#1a1a1a" : "#ffffff",
+  border: `3px solid ${isDark ? "#333" : "#1f2937"}`,
+  boxShadow: isDark ? "6px 6px 0px #333" : "6px 6px 0px #1f2937",
+  borderRadius: 12,
+});
+
+// ============ INTRO SCENE ============
+const IntroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Logo scale animation
+  const logoScale = spring({
+    frame,
+    fps,
+    config: { damping: 12, stiffness: 100 },
+  });
+
+  // Title slide in
+  const titleY = interpolate(frame, [15, 40], [100, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const titleOpacity = interpolate(frame, [15, 35], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Tagline fade in
+  const taglineOpacity = interpolate(frame, [45, 65], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const taglineY = interpolate(frame, [45, 65], [30, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Decorative elements
+  const decorScale = interpolate(frame, [60, 90], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.back(1.5)),
+  });
+
+  return (
+    <AbsoluteFill
+      style={{
+        backgroundColor: COLORS.timelineBg,
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: "Inter, system-ui, sans-serif",
+      }}
+    >
+      {/* Decorative chain links */}
+      <div
+        style={{
+          position: "absolute",
+          top: 120,
+          left: 200,
+          width: 80,
+          height: 80,
+          border: `4px solid ${COLORS.timelineAccent}`,
+          borderRadius: "50%",
+          transform: `scale(${decorScale})`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: 150,
+          right: 250,
+          width: 60,
+          height: 60,
+          border: `4px solid ${COLORS.yellow}`,
+          borderRadius: "50%",
+          transform: `scale(${decorScale})`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: 200,
+          right: 300,
+          width: 40,
+          height: 40,
+          backgroundColor: COLORS.purple,
+          transform: `scale(${decorScale}) rotate(45deg)`,
+        }}
+      />
+
+      {/* Logo */}
+      <div
+        style={{
+          transform: `scale(${logoScale})`,
+          marginBottom: 20,
+        }}
+      >
+        <Img
+          src={staticFile("coe_minimalisticv2.png")}
+          style={{ width: 180, height: 180 }}
+        />
+      </div>
+
+      {/* Title */}
+      <div
+        style={{
+          fontSize: 96,
+          fontWeight: 900,
+          letterSpacing: "-0.03em",
+          color: COLORS.timelineText,
+          transform: `translateY(${titleY}px)`,
+          opacity: titleOpacity,
+        }}
+      >
+        Chain of Events
+      </div>
+
+      {/* Tagline */}
+      <div
+        style={{
+          fontSize: 32,
+          fontWeight: 500,
+          color: COLORS.timelineText,
+          opacity: taglineOpacity * 0.8,
+          transform: `translateY(${taglineY}px)`,
+          marginTop: 16,
+        }}
+      >
+        The Complete History of Cryptocurrency
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ============ TIMELINE MODE SCENE ============
+const TimelineModeScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Mode badge animation
+  const badgeScale = spring({
+    frame,
+    fps,
+    config: { damping: 15, stiffness: 150 },
+  });
+
+  // Timeline line growing
+  const lineHeight = interpolate(frame, [10, 80], [0, 600], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  // Event cards sliding in
+  const card1X = interpolate(frame, [30, 60], [-400, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const card2X = interpolate(frame, [45, 75], [400, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const card3X = interpolate(frame, [60, 90], [-400, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  const cardOpacity = (startFrame: number) =>
+    interpolate(frame, [startFrame, startFrame + 20], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+
+  // Sample events for timeline
+  const events = [
+    {
+      date: "Jan 3, 2009",
+      title: "Bitcoin Genesis Block",
+      tag: "MILESTONE",
+      tagColor: COLORS.timelineAccent,
+    },
+    {
+      date: "May 22, 2010",
+      title: "Bitcoin Pizza Day",
+      tag: "CULTURAL",
+      tagColor: COLORS.purple,
+    },
+    {
+      date: "Jul 30, 2015",
+      title: "Ethereum Mainnet Launch",
+      tag: "TECH",
+      tagColor: "#3b82f6",
+    },
+  ];
+
+  return (
+    <AbsoluteFill
+      style={{
+        backgroundColor: COLORS.timelineBg,
+        fontFamily: "Inter, system-ui, sans-serif",
+        overflow: "hidden",
+      }}
+    >
+      {/* Mode badge */}
+      <div
+        style={{
+          position: "absolute",
+          top: 60,
+          left: "50%",
+          transform: `translateX(-50%) scale(${badgeScale})`,
+          backgroundColor: COLORS.timelineAccent,
+          color: "white",
+          padding: "12px 32px",
+          borderRadius: 100,
+          fontSize: 24,
+          fontWeight: 700,
+          letterSpacing: "0.05em",
+        }}
+      >
+        TIMELINE MODE
+      </div>
+
+      {/* Timeline line */}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: 150,
+          width: 6,
+          height: lineHeight,
+          background: `linear-gradient(to bottom, ${COLORS.timelineAccent}, ${COLORS.purple})`,
+          borderRadius: 3,
+          transform: "translateX(-50%)",
+        }}
+      />
+
+      {/* Event cards */}
+      <div
+        style={{
+          position: "absolute",
+          left: 100,
+          top: 200,
+          width: 420,
+          ...cardStyle(false),
+          padding: 24,
+          transform: `translateX(${card1X}px)`,
+          opacity: cardOpacity(30),
+        }}
+      >
+        <div style={{ fontSize: 14, color: "#666", marginBottom: 8 }}>
+          {events[0].date}
+        </div>
+        <div
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            color: COLORS.timelineText,
+            marginBottom: 12,
+          }}
+        >
+          {events[0].title}
+        </div>
+        <span
+          style={{
+            backgroundColor: events[0].tagColor,
+            color: "white",
+            padding: "4px 12px",
+            borderRadius: 4,
+            fontSize: 12,
+            fontWeight: 600,
+          }}
+        >
+          {events[0].tag}
+        </span>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          right: 100,
+          top: 380,
+          width: 420,
+          ...cardStyle(false),
+          padding: 24,
+          transform: `translateX(${-card2X}px)`,
+          opacity: cardOpacity(45),
+        }}
+      >
+        <div style={{ fontSize: 14, color: "#666", marginBottom: 8 }}>
+          {events[1].date}
+        </div>
+        <div
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            color: COLORS.timelineText,
+            marginBottom: 12,
+          }}
+        >
+          {events[1].title}
+        </div>
+        <span
+          style={{
+            backgroundColor: events[1].tagColor,
+            color: "white",
+            padding: "4px 12px",
+            borderRadius: 4,
+            fontSize: 12,
+            fontWeight: 600,
+          }}
+        >
+          {events[1].tag}
+        </span>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          left: 100,
+          top: 560,
+          width: 420,
+          ...cardStyle(false),
+          padding: 24,
+          transform: `translateX(${card3X}px)`,
+          opacity: cardOpacity(60),
+        }}
+      >
+        <div style={{ fontSize: 14, color: "#666", marginBottom: 8 }}>
+          {events[2].date}
+        </div>
+        <div
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            color: COLORS.timelineText,
+            marginBottom: 12,
+          }}
+        >
+          {events[2].title}
+        </div>
+        <span
+          style={{
+            backgroundColor: events[2].tagColor,
+            color: "white",
+            padding: "4px 12px",
+            borderRadius: 4,
+            fontSize: 12,
+            fontWeight: 600,
+          }}
+        >
+          {events[2].tag}
+        </span>
+      </div>
+
+      {/* Decorative dots on timeline */}
+      {[200, 380, 560].map((top, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: top + 40,
+            width: 20,
+            height: 20,
+            backgroundColor: COLORS.timelineAccent,
+            borderRadius: "50%",
+            transform: "translateX(-50%)",
+            border: "4px solid white",
+            opacity: cardOpacity(30 + i * 15),
+          }}
+        />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+// ============ CRIMELINE MODE SCENE ============
+const CrimelineModeScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Mode badge animation
+  const badgeScale = spring({
+    frame,
+    fps,
+    config: { damping: 15, stiffness: 150 },
+  });
+
+  // Glitch effect for dramatic entrance
+  const glitchX = frame < 20 ? Math.sin(frame * 2) * 5 : 0;
+
+  // Stats counter animation
+  const lostAmount = interpolate(frame, [30, 90], [0, 82], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  const incidentCount = interpolate(frame, [30, 90], [0, 247], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  // Card animations
+  const card1Y = interpolate(frame, [40, 70], [100, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const card2Y = interpolate(frame, [55, 85], [100, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
+  const cardOpacity = (startFrame: number) =>
+    interpolate(frame, [startFrame, startFrame + 20], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+
+  return (
+    <AbsoluteFill
+      style={{
+        backgroundColor: COLORS.crimelineBg,
+        fontFamily: "Inter, system-ui, sans-serif",
+        overflow: "hidden",
+        transform: `translateX(${glitchX}px)`,
+      }}
+    >
+      {/* Scan lines overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,0,0.03) 2px, rgba(255,0,0,0.03) 4px)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Mode badge */}
+      <div
+        style={{
+          position: "absolute",
+          top: 60,
+          left: "50%",
+          transform: `translateX(-50%) scale(${badgeScale})`,
+          backgroundColor: COLORS.crimelineAccent,
+          color: "white",
+          padding: "12px 32px",
+          borderRadius: 100,
+          fontSize: 24,
+          fontWeight: 700,
+          letterSpacing: "0.05em",
+        }}
+      >
+        CRIMELINE MODE
+      </div>
+
+      {/* Stats bar */}
+      <div
+        style={{
+          position: "absolute",
+          top: 140,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: 60,
+          opacity: cardOpacity(20),
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              fontSize: 48,
+              fontWeight: 900,
+              color: COLORS.crimelineAccent,
+            }}
+          >
+            ${Math.floor(lostAmount)}B+
+          </div>
+          <div style={{ fontSize: 16, color: "#888", marginTop: 4 }}>
+            Total Funds Lost
+          </div>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              fontSize: 48,
+              fontWeight: 900,
+              color: COLORS.crimelineAccent,
+            }}
+          >
+            {Math.floor(incidentCount)}+
+          </div>
+          <div style={{ fontSize: 16, color: "#888", marginTop: 4 }}>
+            Security Incidents
+          </div>
+        </div>
+      </div>
+
+      {/* Incident cards */}
+      <div
+        style={{
+          position: "absolute",
+          left: 150,
+          top: 320,
+          width: 480,
+          ...cardStyle(true),
+          padding: 28,
+          transform: `translateY(${card1Y}px)`,
+          opacity: cardOpacity(40),
+          borderColor: COLORS.crimelineAccent,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontSize: 14, color: "#888", marginBottom: 8 }}>
+              Feb 2014
+            </div>
+            <div
+              style={{
+                fontSize: 26,
+                fontWeight: 700,
+                color: COLORS.crimelineText,
+                marginBottom: 12,
+              }}
+            >
+              Mt. Gox Collapse
+            </div>
+          </div>
+          <span
+            style={{
+              backgroundColor: "rgba(239, 68, 68, 0.2)",
+              color: COLORS.crimelineAccent,
+              padding: "6px 14px",
+              borderRadius: 4,
+              fontSize: 12,
+              fontWeight: 700,
+              border: `1px solid ${COLORS.crimelineAccent}`,
+            }}
+          >
+            EXCHANGE HACK
+          </span>
+        </div>
+        <div
+          style={{
+            fontSize: 32,
+            fontWeight: 800,
+            color: COLORS.crimelineAccent,
+            marginTop: 12,
+          }}
+        >
+          $460M Lost
+        </div>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          right: 150,
+          top: 540,
+          width: 480,
+          ...cardStyle(true),
+          padding: 28,
+          transform: `translateY(${card2Y}px)`,
+          opacity: cardOpacity(55),
+          borderColor: COLORS.crimelineAccent,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontSize: 14, color: "#888", marginBottom: 8 }}>
+              Nov 2022
+            </div>
+            <div
+              style={{
+                fontSize: 26,
+                fontWeight: 700,
+                color: COLORS.crimelineText,
+                marginBottom: 12,
+              }}
+            >
+              FTX Bankruptcy
+            </div>
+          </div>
+          <span
+            style={{
+              backgroundColor: "rgba(239, 68, 68, 0.2)",
+              color: COLORS.crimelineAccent,
+              padding: "6px 14px",
+              borderRadius: 4,
+              fontSize: 12,
+              fontWeight: 700,
+              border: `1px solid ${COLORS.crimelineAccent}`,
+            }}
+          >
+            FRAUD
+          </span>
+        </div>
+        <div
+          style={{
+            fontSize: 32,
+            fontWeight: 800,
+            color: COLORS.crimelineAccent,
+            marginTop: 12,
+          }}
+        >
+          $8B+ Lost
+        </div>
+      </div>
+
+      {/* Warning decoration */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 60,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          opacity: cardOpacity(70),
+        }}
+      >
+        <div
+          style={{
+            width: 0,
+            height: 0,
+            borderLeft: "14px solid transparent",
+            borderRight: "14px solid transparent",
+            borderBottom: `24px solid ${COLORS.yellow}`,
+          }}
+        />
+        <span style={{ color: COLORS.yellow, fontSize: 18, fontWeight: 600 }}>
+          Learn from history to protect your assets
+        </span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ============ FEATURES SCENE ============
+const FeaturesScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const features = [
+    { icon: "🔍", title: "Smart Search", desc: "Find any event instantly" },
+    { icon: "🏷️", title: "Tag Filters", desc: "TECH, ECONOMIC, SECURITY..." },
+    { icon: "📅", title: "Year Jump", desc: "Navigate by year" },
+    { icon: "📱", title: "Mobile First", desc: "Swipe & gesture support" },
+    { icon: "🔗", title: "Share Events", desc: "Dynamic social cards" },
+    { icon: "📊", title: "BTC Metrics", desc: "Price & market data" },
+  ];
+
+  return (
+    <AbsoluteFill
+      style={{
+        background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+        fontFamily: "Inter, system-ui, sans-serif",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background grid */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
+
+      {/* Title */}
+      <div
+        style={{
+          position: "absolute",
+          top: 80,
+          left: "50%",
+          transform: "translateX(-50%)",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 56,
+            fontWeight: 900,
+            color: "white",
+            opacity: interpolate(frame, [0, 20], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            }),
+          }}
+        >
+          Powerful Features
+        </div>
+        <div
+          style={{
+            fontSize: 22,
+            color: "rgba(255,255,255,0.7)",
+            marginTop: 12,
+            opacity: interpolate(frame, [10, 30], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            }),
+          }}
+        >
+          Everything you need to explore crypto history
+        </div>
+      </div>
+
+      {/* Features grid */}
+      <div
+        style={{
+          position: "absolute",
+          top: 260,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 320px)",
+          gap: 30,
+        }}
+      >
+        {features.map((feature, i) => {
+          const delay = i * 8;
+          const featureScale = spring({
+            frame: frame - delay,
+            fps,
+            config: { damping: 12, stiffness: 100 },
+          });
+          const opacity = interpolate(frame, [delay, delay + 20], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          });
+
+          return (
+            <div
+              key={i}
+              style={{
+                backgroundColor: "rgba(255,255,255,0.08)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: 16,
+                padding: 28,
+                transform: `scale(${Math.min(featureScale, 1)})`,
+                opacity,
+              }}
+            >
+              <div style={{ fontSize: 40, marginBottom: 12 }}>{feature.icon}</div>
+              <div
+                style={{
+                  fontSize: 22,
+                  fontWeight: 700,
+                  color: "white",
+                  marginBottom: 8,
+                }}
+              >
+                {feature.title}
+              </div>
+              <div style={{ fontSize: 16, color: "rgba(255,255,255,0.6)" }}>
+                {feature.desc}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Floating elements */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 100,
+          left: 100,
+          width: 80,
+          height: 80,
+          borderRadius: "50%",
+          border: "3px solid rgba(16, 185, 129, 0.5)",
+          transform: `translateY(${Math.sin(frame * 0.05) * 10}px)`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: 150,
+          right: 150,
+          width: 50,
+          height: 50,
+          backgroundColor: "rgba(168, 85, 247, 0.3)",
+          transform: `rotate(${frame}deg)`,
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// ============ OUTRO SCENE ============
+const OutroScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  // Main text animation
+  const textScale = spring({
+    frame,
+    fps,
+    config: { damping: 10, stiffness: 80 },
+  });
+
+  const urlOpacity = interpolate(frame, [40, 60], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const urlY = interpolate(frame, [40, 60], [30, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Pulse animation for CTA
+  const pulse = Math.sin(frame * 0.15) * 0.05 + 1;
+
+  return (
+    <AbsoluteFill
+      style={{
+        background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)",
+        fontFamily: "Inter, system-ui, sans-serif",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {/* Animated background circles */}
+      <div
+        style={{
+          position: "absolute",
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          border: `2px solid ${COLORS.timelineAccent}`,
+          opacity: 0.1,
+          transform: `scale(${1 + frame * 0.01})`,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          border: `2px solid ${COLORS.crimelineAccent}`,
+          opacity: 0.15,
+          transform: `scale(${1 + frame * 0.008})`,
+        }}
+      />
+
+      {/* Logo */}
+      <div
+        style={{
+          transform: `scale(${textScale})`,
+          marginBottom: 30,
+        }}
+      >
+        <Img
+          src={staticFile("coe_minimalisticv2.png")}
+          style={{ width: 140, height: 140 }}
+        />
+      </div>
+
+      {/* CTA Text */}
+      <div
+        style={{
+          fontSize: 64,
+          fontWeight: 900,
+          color: "white",
+          textAlign: "center",
+          transform: `scale(${textScale})`,
+          letterSpacing: "-0.02em",
+        }}
+      >
+        Explore Crypto History
+      </div>
+
+      {/* URL */}
+      <div
+        style={{
+          marginTop: 40,
+          opacity: urlOpacity,
+          transform: `translateY(${urlY}px) scale(${pulse})`,
+        }}
+      >
+        <div
+          style={{
+            background: `linear-gradient(90deg, ${COLORS.timelineAccent}, ${COLORS.purple})`,
+            padding: "16px 48px",
+            borderRadius: 100,
+            fontSize: 32,
+            fontWeight: 700,
+            color: "white",
+          }}
+        >
+          chainofevents.xyz
+        </div>
+      </div>
+
+      {/* Social handles */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 60,
+          display: "flex",
+          gap: 40,
+          opacity: urlOpacity,
+        }}
+      >
+        <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 20 }}>
+          @chainofevents
+        </span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ============ MAIN COMPOSITION ============
+export const WebsiteShowcase: React.FC = () => {
+  return (
+    <AbsoluteFill>
+      {/* Intro - 4 seconds (120 frames) */}
+      <Sequence from={0} durationInFrames={120}>
+        <IntroScene />
+      </Sequence>
+
+      {/* Timeline Mode - 4 seconds (120 frames) */}
+      <Sequence from={120} durationInFrames={120}>
+        <TimelineModeScene />
+      </Sequence>
+
+      {/* Crimeline Mode - 4 seconds (120 frames) */}
+      <Sequence from={240} durationInFrames={120}>
+        <CrimelineModeScene />
+      </Sequence>
+
+      {/* Features - 4 seconds (120 frames) */}
+      <Sequence from={360} durationInFrames={120}>
+        <FeaturesScene />
+      </Sequence>
+
+      {/* Outro - 4 seconds (120 frames) */}
+      <Sequence from={480} durationInFrames={120}>
+        <OutroScene />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
