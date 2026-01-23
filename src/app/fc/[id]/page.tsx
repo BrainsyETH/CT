@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Use video poster as image source if available, fallback to event image
   const imageForOg = event.video?.poster_url || event.image;
 
-  // Use Farcaster-specific OG image endpoint with title at bottom
+  // Common image params
   const imageParams = new URLSearchParams({
     title: event.title,
     date: formattedDate,
@@ -58,7 +58,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     imageParams.set("image", imageForOg);
   }
 
+  // Farcaster OG image (title at bottom)
   const fcOgImageUrl = toAbsoluteUrl(`api/fc-og?${imageParams.toString()}`);
+  // Twitter image (title at top)
+  const twitterImageUrl = toAbsoluteUrl(`api/twitter?${imageParams.toString()}`);
 
   return {
     title,
@@ -84,7 +87,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: twitterDescription,
       images: [
         {
-          url: fcOgImageUrl,
+          url: twitterImageUrl,
           width: 1200,
           height: 630,
           alt: event.title,
