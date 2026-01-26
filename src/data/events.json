@@ -8661,6 +8661,23 @@
             { "label": "Early Lore", "url": "https://x.com/Tiza4ThePeople/status/1968755355451597120?s=20" }
           ],
           "metrics": {}
+        },
+
+        {
+          "id": "grayscale-bitcoin-trust-split-2018-01-26",
+          "date": "2018-01-26",
+          "title": "Grayscale Bitcoin Trust 91-for-1 Share Split",
+          "summary": "On January 26, 2018, Grayscale Bitcoin Trust (GBTC) completed a 91-for-1 share split, making the trust more accessible to retail investors. GBTC, launched in 2013, was the first publicly quoted Bitcoin investment vehicle in the US, allowing investors to gain exposure to Bitcoin through traditional brokerage accounts without directly purchasing cryptocurrency. The split significantly reduced the per-share price, improving liquidity and marking an important milestone in institutional Bitcoin adoption.",
+          "category": ["Bitcoin", "Institutional"],
+          "tags": ["MILESTONE", "INSTITUTIONAL"],
+          "mode": ["timeline"],
+          "image": "",
+          "media": [],
+          "links": [
+            { "label": "OTC Markets Filing", "url": "https://www.otcmarkets.com/file/company/financial-report/212347/content" },
+            { "label": "Grayscale Wikipedia", "url": "https://everipedia.org/wiki/lang_en/grayscale-investments" }
+          ],
+          "metrics": {}
         }
 
       ]
