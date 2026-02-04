@@ -8661,6 +8661,90 @@
             { "label": "Early Lore", "url": "https://x.com/Tiza4ThePeople/status/1968755355451597120?s=20" }
           ],
           "metrics": {}
+        },
+
+        {
+          "id": "mtgox-withdrawal-crisis-2014-02-04",
+          "date": "2014-02-04",
+          "title": "Mt. Gox Withdrawal Crisis Begins",
+          "summary": "Coindesk held a poll on February 4, 2014 to gauge how many Mt. Gox users were experiencing withdrawal issues. This marked the beginning of the end for the once-dominant exchange that handled 70% of Bitcoin trades. A BitcoinTalk forum thread amassed over 3,000 posts from users unable to access their funds. The crisis would culminate in Mt. Gox filing for bankruptcy on February 28, 2014, after losing 850,000 BTC.",
+          "category": ["Bitcoin", "CT Lore", "Security"],
+          "tags": ["CULTURAL", "FAILURE", "MILESTONE"],
+          "mode": ["timeline"],
+          "image": "",
+          "media": [
+            {
+              "type": "video",
+              "video": {
+                "provider": "",
+                "url": "",
+                "embed_url": "",
+                "poster_url": ""
+              }
+            },
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "",
+                "account_handle": ""
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "url": "",
+                "alt": "",
+                "caption": ""
+              }
+            }
+          ],
+          "links": [
+            { "label": "Mt. Gox History", "url": "https://thenextweb.com/news/a-brief-history-of-mt-gox-the-3b-bitcoin-tragedy-that-just-wont-end" },
+            { "label": "Coindesk Poll", "url": "https://www.coindesk.com/poll-mt-gox-withdrawal-issues" }
+          ],
+          "metrics": {}
+        },
+
+        {
+          "id": "ross-ulbricht-convicted-2015-02-04",
+          "date": "2015-02-04",
+          "title": "Ross Ulbricht Convicted on All Counts",
+          "summary": "Ross Ulbricht, the creator and operator of Silk Road under the alias 'Dread Pirate Roberts', was found guilty on all seven counts including narcotics trafficking conspiracy, running a criminal enterprise, computer hacking conspiracy, and money laundering conspiracy. The jury took less than three hours to convict him. Silk Road was a dark web marketplace that operated on the Tor network and primarily used Bitcoin for transactions. Ulbricht was later sentenced to life in prison (later pardoned by President Trump in 2025).",
+          "category": ["Bitcoin", "CT Lore", "Regulation"],
+          "tags": ["CULTURAL", "MILESTONE", "REGULATORY"],
+          "mode": ["timeline"],
+          "image": "",
+          "media": [
+            {
+              "type": "video",
+              "video": {
+                "provider": "",
+                "url": "",
+                "embed_url": "",
+                "poster_url": ""
+              }
+            },
+            {
+              "type": "twitter",
+              "twitter": {
+                "tweet_url": "",
+                "account_handle": ""
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "url": "",
+                "alt": "",
+                "caption": ""
+              }
+            }
+          ],
+          "links": [
+            { "label": "Wired Coverage", "url": "https://www.wired.com/2015/02/silk-road-ross-ulbricht-verdict/" },
+            { "label": "FBI Press Release", "url": "https://www.fbi.gov/contact-us/field-offices/newyork/news/press-releases/ross-ulbricht-the-creator-and-owner-of-the-silk-road-website-found-guilty-in-manhattan-federal-court-on-all-counts" }
+          ],
+          "metrics": {}
         }
 
       ]
