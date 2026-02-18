@@ -91,7 +91,7 @@ export function FeedbackModal({
         setCrimelineType(event.crimeline.type || "");
         setCrimelineFundsLost(event.crimeline.funds_lost_usd?.toString() || "");
         setCrimelineStatus(event.crimeline.status || "");
-        setCrimelineRootCause(event.crimeline.root_cause?.join(", ") || "");
+        setCrimelineRootCause(Array.isArray(event.crimeline.root_cause) ? event.crimeline.root_cause.join(", ") : event.crimeline.root_cause || "");
         setCrimelineAftermath(event.crimeline.aftermath || "");
       }
     }

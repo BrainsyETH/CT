@@ -37,7 +37,7 @@ VALUES (
   '[{"type":"twitter","twitter":{"tweet_url":"https://x.com/officer_secret/status/1759192197704933621","account_handle":"officer_secret"}}]'::jsonb,
   '[{"label":"The Block – FixedFloat Exploited for $26.1M","url":"https://www.theblock.co/post/277959/fixedfloat-appears-to-have-been-exploited-for-26-1-million-in-bitcoin-ether"},{"label":"Halborn – Explained: The FixedFloat Hack","url":"https://www.halborn.com/blog/post/explained-the-fixedfloat-hack-february-2024"}]'::jsonb,
   '{"btc_price_usd": 51000, "funds_lost_usd": 26100000, "btc_stolen": 409, "eth_stolen": 1728}'::jsonb,
-  '{"type":"EXCHANGE HACK","category":"Centralized Exchange","funds_lost":"$26.1 million","outcome_status":"Total loss","root_cause":"External wallet-drainer attack, access control failure","aftermath":"Stolen ETH routed through eXch mixer. Same attacker returned in April 2024 for second hack."}'::jsonb
+  '{"type":"EXCHANGE HACK","funds_lost_usd":26100000,"status":"Total loss","root_cause":["External wallet-drainer attack","Access control failure"],"aftermath":"Stolen ETH routed through eXch mixer. Same attacker returned in April 2024 for second hack."}'::jsonb
 );
 
 -- Event 3: FTX Begins $16 Billion Creditor Repayments - February 18, 2025
