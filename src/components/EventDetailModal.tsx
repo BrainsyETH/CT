@@ -587,11 +587,11 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                             </div>
 
                             {/* Root Causes */}
-                            {event.crimeline.root_cause && event.crimeline.root_cause.length > 0 && (
+                            {event.crimeline.root_cause && (Array.isArray(event.crimeline.root_cause) ? event.crimeline.root_cause.length > 0 : event.crimeline.root_cause) && (
                               <div>
                                 <p className={`text-xs mb-2 ${isCrimeline ? "text-gray-400" : "text-gray-600"}`}>Root Causes</p>
                                 <div className="flex flex-wrap gap-2">
-                                  {event.crimeline.root_cause.map((cause, i) => (
+                                  {(Array.isArray(event.crimeline.root_cause) ? event.crimeline.root_cause : [event.crimeline.root_cause]).map((cause, i) => (
                                     <span
                                       key={i}
                                       className={`px-3 py-1 text-sm rounded-full ${
