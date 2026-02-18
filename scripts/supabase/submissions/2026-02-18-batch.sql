@@ -13,8 +13,8 @@ VALUES (
   '["NFT"]',
   '["NFT", "MILESTONE", "CULTURAL"]',
   '["timeline"]',
-  '',
-  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"","account_handle":""}}]',
+  'https://pbs.twimg.com/media/EuWf2jBXMAEUMst.jpg',
+  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/ChristiesInc/status/1362381219816742916","account_handle":"ChristiesInc"}}]',
   '[{"label":"CNBC – Christie''s to Auction Beeple NFT Art","url":"https://www.cnbc.com/2021/02/18/christies-to-auction-beeple-nft-art-and-will-accept-ether-as-payment.html"},{"label":"Bloomberg – Christie''s Beeple Auction Will Accept Ether","url":"https://www.bloomberg.com/news/articles/2021-02-18/christie-s-beeple-auction-will-accept-ether-cryptocurrency-payment"},{"label":"The Art Newspaper – Christie''s to Accept Cryptocurrency","url":"https://www.theartnewspaper.com/news/christie-s-cryptocurrency"}]',
   '{"btc_price_usd": 52000, "eth_price_usd": 1900, "beeple_final_sale_usd": 69300000}'
 );
@@ -29,8 +29,8 @@ VALUES (
   '["Security"]',
   '["SECURITY", "HACK", "EXCHANGE"]',
   '["timeline", "crimeline"]',
-  '',
-  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"https://twitter.com/officer_cia/status/1759410815004799410","account_handle":"officer_cia"}}]',
+  'https://pbs.twimg.com/media/GGnn-ZUX0AAxMdk.jpg',
+  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/officer_secret/status/1759192197704933621","account_handle":"officer_secret"}}]',
   '[{"label":"Hackread – FixedFloat Hacked: $26M in BTC, ETH Stolen","url":"https://hackread.com/crypto-exchange-fixedfloat-hacked-btc-eth-stolen/"},{"label":"The Block – FixedFloat Exploited for $26.1M","url":"https://www.theblock.co/post/277959/fixedfloat-appears-to-have-been-exploited-for-26-1-million-in-bitcoin-ether"},{"label":"Halborn – Explained: The FixedFloat Hack","url":"https://www.halborn.com/blog/post/explained-the-fixedfloat-hack-february-2024"}]',
   '{"btc_price_usd": 51000, "funds_lost_usd": 26100000, "btc_stolen": 409, "eth_stolen": 1728}'
 );
@@ -45,8 +45,8 @@ VALUES (
   '["Regulatory"]',
   '["REGULATORY", "ECONOMIC", "FRAUD"]',
   '["timeline"]',
-  '',
-  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"","account_handle":""}}]',
+  'https://pbs.twimg.com/media/GkFQx-0XUAANZBx.jpg',
+  '[{"type":"video","video":{"provider":"","url":"","embed_url":"","poster_url":""}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/AshCrypto/status/1891882145632694330","account_handle":"AshCrypto"}}]',
   '[{"label":"The Defiant – FTX Begins $16B Creditor Repayments","url":"https://thedefiant.io/news/markets/ftx-begins-16-billion-creditor-repayments-on-february-18-2025-initial-1-2-claims-464488c3"},{"label":"CryptoCurrencyNewsCast – FTX Exchange Begins $16B Repayment","url":"https://cryptocurrencynewscast.online/ftx-exchange-begins-16-billion-repayment-process"},{"label":"NewsBTC – FTX Payouts Begin","url":"https://www.newsbtc.com/news/bitcoin/bitcoin-response-to-ftx-payouts/"}]',
   '{"btc_price_usd": 97000, "total_repayment_usd": 16000000000, "initial_payout_usd": 1200000000, "convenience_class_threshold_usd": 50000}'
 );
