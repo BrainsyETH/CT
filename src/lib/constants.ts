@@ -42,7 +42,6 @@ export const CATEGORIES = [
   "Privacy",
   "Scam",
   "ETFs",
-  "Layer 2",
   "Other",
 ] as const;
 
