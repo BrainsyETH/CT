@@ -14,7 +14,7 @@ VALUES (
     "title": "Christie''s Becomes First Major Auction House to Accept Crypto",
     "summary": "On February 18, 2021, Christie''s announced it would accept Ether as payment for the landmark Beeple NFT ''Everydays: The First 5000 Days'' — the first time a major traditional auction house accepted cryptocurrency. The NFT ultimately sold for $69.3M on March 11, 2021, making Beeple the third most expensive living artist. A watershed moment for NFT legitimacy.",
     "category": ["NFT"],
-    "tags": ["NFT", "MILESTONE", "CULTURAL"],
+    "tags": ["MILESTONE", "CULTURAL"],
     "mode": ["timeline"],
     "image": "https://pbs.twimg.com/media/EuWf2jBXMAEUMst.jpg",
     "media": [
@@ -81,7 +81,7 @@ VALUES (
     "date": "2025-02-18",
     "title": "FTX Begins $16B Creditor Repayments — First Distributions Hit Accounts",
     "summary": "Starting February 18, 2025 at 10 AM ET, FTX distributed an initial $1.2B to ''Convenience Class'' creditors (claims under $50K) — more than 2 years after the exchange''s November 2022 collapse. Total planned repayments across all phases exceed $16B, making it one of the largest creditor recoveries in crypto history.",
-    "category": ["Exchange"],
+    "category": ["Centralized Exchange"],
     "tags": ["ECONOMIC", "REGULATORY", "MILESTONE"],
     "mode": ["timeline"],
     "image": "",
