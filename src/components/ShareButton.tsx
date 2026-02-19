@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useModeStore } from "@/store/mode-store";
+import { generateEventSlug } from "@/lib/formatters";
 import type { Event } from "@/lib/types";
 
 interface ShareButtonProps {
@@ -41,27 +42,9 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     if (!baseUrl) {
       return "";
     }
-    const params = new URLSearchParams();
-    params.set("event", event.id);
-
-    if (mode !== "timeline") {
-      params.set("mode", mode);
-    }
-
-    if (searchQuery.trim()) {
-      params.set("q", searchQuery);
-    }
-
-    if (selectedTags.length > 0) {
-      params.set("tags", selectedTags.join(","));
-    }
-
-    if (sortOrder === "asc") {
-      params.set("sort", sortOrder);
-    }
-
-    return `${baseUrl}?${params.toString()}`;
-  }, [baseUrl, event.id, mode, searchQuery, selectedTags, sortOrder]);
+    const slug = generateEventSlug(event.title, event.date);
+    return `${baseUrl}/event/${slug}`;
+  }, [baseUrl, event.title, event.date]);
 
   // Get first sentence of summary for tweet
   const getFirstSentence = (text: string): string => {

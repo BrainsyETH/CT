@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
             border: "#000000",
           };
 
-    return new ImageResponse(
+    const imageResponse = new ImageResponse(
       (
         <div
           style={{
@@ -196,6 +196,14 @@ export async function GET(request: NextRequest) {
         height: 630,
       }
     );
+
+    // Cache Twitter card images for 24 hours (event data changes infrequently)
+    imageResponse.headers.set(
+      "Cache-Control",
+      "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800"
+    );
+
+    return imageResponse;
   } catch (error) {
     console.error("Error generating Twitter image:", error);
 

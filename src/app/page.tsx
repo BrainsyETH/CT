@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
 import { getAllEvents, getEventById } from "@/lib/events-db";
-import { formatDate } from "@/lib/formatters";
+import { formatDate, generateEventSlug } from "@/lib/formatters";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -11,6 +11,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
     ? `https://${process.env.VERCEL_URL}/`
     : "https://chainofevents.xyz/";
 
+// Dynamic rendering required: generateMetadata reads searchParams and headers
 export const dynamic = "force-dynamic";
 
 type Props = {
@@ -65,7 +66,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
         openGraph: {
           title,
           description,
-          url: `${resolvedSiteUrl}?event=${eventId}`,
+          url: `${resolvedSiteUrl}event/${generateEventSlug(event.title, event.date)}`,
           siteName: "Chain of Events",
           images: [
             {

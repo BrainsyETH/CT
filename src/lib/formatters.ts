@@ -61,6 +61,30 @@ export function formatNumber(value: number): string {
 }
 
 /**
+ * Generate a URL-friendly slug from an event title and date.
+ * Format: "title-words-YYYY-MM-DD" e.g. "mt-gox-hack-2014-02-24"
+ */
+export function generateEventSlug(title: string, date: string): string {
+  const slug = title
+    .toLowerCase()
+    .replace(/['']/g, "") // remove apostrophes
+    .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumeric with hyphens
+    .replace(/^-+|-+$/g, "") // trim leading/trailing hyphens
+    .replace(/-{2,}/g, "-"); // collapse multiple hyphens
+
+  return `${slug}-${date}`;
+}
+
+/**
+ * Extract the date suffix from an event slug for lookup.
+ * Returns the YYYY-MM-DD date portion if present.
+ */
+export function extractDateFromSlug(slug: string): string | null {
+  const match = /(\d{4}-\d{2}-\d{2})$/.exec(slug);
+  return match ? match[1] : null;
+}
+
+/**
  * Extract year from ISO date string (YYYY-MM-DD)
  */
 export function getYear(dateString: string | null | undefined): number | null {
