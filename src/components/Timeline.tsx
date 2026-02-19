@@ -12,7 +12,6 @@ import { StatsPanel } from "./StatsPanel";
 import { StickyFilterButton } from "./StickyFilterButton";
 import { getYear, formatCurrency } from "@/lib/formatters";
 import { throttle, isMobile } from "@/lib/utils";
-import { isDebugEnabled } from "@/lib/debug";
 import type { Event } from "@/lib/types";
 
 interface TimelineProps {
@@ -46,13 +45,6 @@ export function Timeline({ events }: TimelineProps) {
   const ESTIMATED_GROUP_HEIGHT = 760;
   const OVERSCAN_PX = 1200;
 
-  // #region agent log
-  if (isDebugEnabled()) {
-    const timelineRenderCount = useRef(0);
-    timelineRenderCount.current += 1;
-    fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:render',message:'Timeline render',data:{renderCount:timelineRenderCount.current,mode,eventsLen:events.length,tagsLen:selectedTags.length,currentVisibleYear,isFilterVisible},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
-  }
-  // #endregion
 
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
@@ -183,11 +175,6 @@ export function Timeline({ events }: TimelineProps) {
   const measurementTimeoutRef = useRef<Map<number, number>>(new Map());
 
   useEffect(() => {
-    // #region agent log
-    if (isDebugEnabled()) {
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:groupHeightsEffect',message:'groupHeights effect triggered',data:{groupedEventsLen:groupedEvents.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
-    }
-    // #endregion
     setGroupHeights(new Array(groupedEvents.length).fill(ESTIMATED_GROUP_HEIGHT));
     measuringRef.current.clear();
     measurementTimeoutRef.current.clear();
@@ -225,22 +212,6 @@ export function Timeline({ events }: TimelineProps) {
       }
 
       const containerTop = container.getBoundingClientRect().top + window.scrollY;
-      // #region agent log
-      if (isDebugEnabled()) {
-        const visualViewport = typeof window !== 'undefined' && (window as any).visualViewport;
-        const viewportData = {
-          innerHeight: window.innerHeight,
-          innerWidth: window.innerWidth,
-          visualViewportHeight: visualViewport?.height,
-          visualViewportWidth: visualViewport?.width,
-          visualViewportScale: visualViewport?.scale,
-          scrollY: window.scrollY,
-          containerTop,
-          devicePixelRatio: window.devicePixelRatio
-        };
-        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:204',message:'Viewport dimensions during updateVisibleRange',data:viewportData,timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-      }
-      // #endregion
       const viewportTop = scrollY - containerTop;
       const viewportBottom = viewportTop + window.innerHeight;
 
@@ -303,11 +274,6 @@ export function Timeline({ events }: TimelineProps) {
   const [scrollThrottleMs, setScrollThrottleMs] = useState(100);
   
   useEffect(() => {
-    // #region agent log
-    if (isDebugEnabled()) {
-      fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:scrollThrottleEffect',message:'scrollThrottle effect triggered',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
-    }
-    // #endregion
     setScrollThrottleMs(isMobile() ? 150 : 100);
   }, []);
   
@@ -597,14 +563,6 @@ export function Timeline({ events }: TimelineProps) {
                     className="scroll-mt-44 timeline-event-group"
                     style={{ position: "absolute", top: `${top}px`, left: 0, right: 0 }}
                     ref={(node) => {
-                      // #region agent log
-                      if (isDebugEnabled() && node && index > 0) {
-                        const rect = node.getBoundingClientRect();
-                        const prevGroup = node.parentElement?.querySelector(`[data-year="${groupedEvents[index - 1]?.year}"]`) as HTMLElement;
-                        const prevRect = prevGroup?.getBoundingClientRect();
-                        fetch('http://127.0.0.1:7242/ingest/08e3f140-63dc-44a7-84db-5d9804078e97',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'Timeline.tsx:yearGroup',message:'Year group positioning',data:{year,index,top,rectTop:rect.top,rectBottom:rect.bottom,prevYear:groupedEvents[index - 1]?.year,prevRectBottom:prevRect?.bottom,gap:prevRect ? rect.top - prevRect.bottom : null,isMobile:isMobile()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-                      }
-                      // #endregion
                       handleGroupMeasure(index, node);
                     }}
                   >

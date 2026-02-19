@@ -1,4 +1,5 @@
 import type { Event, TwitterPostPayload } from "@/lib/types";
+import { generateEventSlug } from "@/lib/formatters";
 
 /**
  * Formats an event into a Twitter post payload
@@ -9,9 +10,10 @@ export function formatTwitterPost(event: Event): TwitterPostPayload {
   // Extract first sentence from summary
   const firstSentence = getFirstSentence(event.summary);
 
-  // Build event URL - uses /fc/ route which has proper OG image
+  // Build clean event URL using slug
   const siteUrl = getSiteUrl();
-  const eventUrl = `${siteUrl}/fc/${event.id}`;
+  const slug = generateEventSlug(event.title, event.date);
+  const eventUrl = `${siteUrl}/event/${slug}`;
 
   // Calculate available space for text (280 - URL length - space - buffer)
   // Twitter uses t.co for URL shortening (23 chars max)

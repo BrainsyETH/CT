@@ -1,18 +1,19 @@
 import type { Event, FarcasterPostPayload } from "@/lib/types";
+import { generateEventSlug } from "@/lib/formatters";
 
 /**
  * Formats an event into a Farcaster post payload
  * - Caption: First sentence from summary + URL (URL in text ensures link always appears)
- * - Embeds: Farcaster-specific URL (uses OG image with title at bottom)
+ * - Embeds: Event slug URL for clean sharing (uses OG image via /event/[slug] metadata)
  */
 export function formatEventPost(event: Event): FarcasterPostPayload {
   // Extract first sentence from summary
   const firstSentence = getFirstSentence(event.summary);
 
-  // Build Farcaster-specific event URL
-  // Uses /fc/[id] route which has OG image with title at bottom
+  // Build clean event URL using slug
   const siteUrl = getSiteUrl();
-  const eventUrl = `${siteUrl}/fc/${event.id}`;
+  const slug = generateEventSlug(event.title, event.date);
+  const eventUrl = `${siteUrl}/event/${slug}`;
 
   // Include URL in text to ensure link always appears (embeds don't always unfurl)
   const text = `${firstSentence}\n\n${eventUrl}`;

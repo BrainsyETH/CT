@@ -7,6 +7,7 @@
 
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import type { Event } from "@/lib/types";
+import { generateEventSlug, extractDateFromSlug } from "@/lib/formatters";
 
 // ============================================================================
 // Constants
@@ -142,6 +143,44 @@ export async function getEventById(id: string): Promise<Event | null> {
   }
 
   return data as Event;
+}
+
+/**
+ * Find an event by its URL slug.
+ * Derives the date from the slug suffix, queries events on that date,
+ * then matches by regenerating slugs to find the right event.
+ * Falls back to ID-based lookup for legacy URLs.
+ */
+export async function getEventBySlug(slug: string): Promise<Event | null> {
+  // First try direct ID lookup (backwards compatibility with old IDs)
+  const byId = await getEventById(slug);
+  if (byId) return byId;
+
+  // Extract date from slug suffix
+  const date = extractDateFromSlug(slug);
+  if (!date) return null;
+
+  const client = getEventsClient();
+  const { data, error } = await client
+    .from("events")
+    .select("*")
+    .eq("date", date);
+
+  if (error || !data) return null;
+
+  // Find the event whose generated slug matches
+  for (const event of data as Event[]) {
+    if (generateEventSlug(event.title, event.date) === slug) {
+      return event;
+    }
+  }
+
+  // If only one event on that date, return it as a best guess
+  if (data.length === 1) {
+    return data[0] as Event;
+  }
+
+  return null;
 }
 
 /**
