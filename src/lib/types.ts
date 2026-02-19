@@ -181,6 +181,30 @@ export interface TwitterPostPayload {
   eventUrl: string;
 }
 
+// Zora Bot types
+export interface ZoraBotPost {
+  id: string;
+  post_date: string; // ISO date string in America/Chicago
+  slot_index: number; // 0-4
+  slot_hour: number; // 10, 13, 16, 19, or 22
+  event_id: string;
+  event_date: string; // ISO date string
+  coin_address: string; // Deployed coin contract address
+  tx_hash: string; // Transaction hash
+  coin_symbol: string; // e.g., "FEB19A"
+  coin_url: string | null; // Zora coin URL
+  posted_at: string; // ISO timestamp
+}
+
+export interface ZoraPostPayload {
+  name: string;
+  symbol: string;
+  description: string;
+  metadataUri: string;
+  imageUrl: string;
+  eventUrl: string;
+}
+
 // API Rate Limit Tiers
 export type ApiTier = "anonymous" | "registered" | "premium";
 
