@@ -86,6 +86,15 @@ html {
   background: #6d28d9;
 }
 
+/* Hide scrollbar utility for carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Selection colors */
 [data-theme="timeline"] ::selection {
   background: #14b8a6;

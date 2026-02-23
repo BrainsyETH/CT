@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
 import { EventDetailModal } from "@/components/EventDetailModal";
 import { Footer } from "@/components/Footer";
+import { WeeklyEvents } from "@/components/WeeklyEvents";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
@@ -14,9 +15,10 @@ import type { Event } from "@/lib/types";
 
 interface HomeContentProps {
   events: Event[];
+  weeklyEvents?: Event[];
 }
 
-export function HomeContent({ events }: HomeContentProps) {
+export function HomeContent({ events, weeklyEvents = [] }: HomeContentProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [localEvents, setLocalEvents] = useState<Event[]>([]);
 
@@ -65,6 +67,9 @@ export function HomeContent({ events }: HomeContentProps) {
       <Header />
       <main className="pt-32 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
+          {weeklyEvents.length > 0 && (
+            <WeeklyEvents events={weeklyEvents} />
+          )}
           <Timeline events={combinedEvents} />
         </div>
       </main>
