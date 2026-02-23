@@ -57,7 +57,13 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
     : `${monthNames[sunday.getMonth()]} ${sunday.getDate()} – ${monthNames[saturday.getMonth()]} ${saturday.getDate()}`;
 
   return (
-    <section className="mb-8">
+    <section
+      className={`mb-8 rounded-xl border-2 p-4 sm:p-5 transition-colors duration-300 ${
+        isCrimeline
+          ? "border-purple-800 bg-gray-950/60 shadow-[4px_4px_0_rgba(124,58,237,0.25)]"
+          : "border-teal-300 bg-teal-50/40 shadow-[4px_4px_0_rgba(20,184,166,0.15)]"
+      }`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -72,7 +78,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
             className={`text-sm font-medium px-2.5 py-0.5 rounded-full ${
               isCrimeline
                 ? "bg-purple-900/60 text-purple-300 border border-purple-700"
-                : "bg-teal-50 text-teal-700 border border-teal-200"
+                : "bg-teal-100 text-teal-700 border border-teal-300"
             }`}
           >
             {weekLabel}
@@ -87,7 +93,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
             className={`p-1.5 rounded-lg border transition-colors ${
               isCrimeline
                 ? "border-purple-800 text-purple-400 hover:bg-purple-900/50"
-                : "border-gray-200 text-gray-500 hover:bg-gray-100"
+                : "border-teal-300 text-teal-600 hover:bg-teal-100"
             }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -100,7 +106,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
             className={`p-1.5 rounded-lg border transition-colors ${
               isCrimeline
                 ? "border-purple-800 text-purple-400 hover:bg-purple-900/50"
-                : "border-gray-200 text-gray-500 hover:bg-gray-100"
+                : "border-teal-300 text-teal-600 hover:bg-teal-100"
             }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -113,7 +119,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
       {/* Carousel */}
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth pb-2 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide"
+        className="flex gap-4 overflow-x-auto scroll-smooth pb-1 snap-x snap-mandatory scrollbar-hide"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {filteredEvents.map((event) => {
