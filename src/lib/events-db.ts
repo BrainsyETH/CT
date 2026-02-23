@@ -260,7 +260,7 @@ export async function getEventsOnThisWeek(
 
   let query = client
     .from("events_with_month_day")
-    .select("id,date,title,summary,category,tags,mode,image,video,media,links,metrics,crimeline")
+    .select("id,date,title,summary,category,tags,mode,image,media,links,metrics,crimeline")
     .or(dayFilters.join(","));
 
   // Apply mode filter if specified
