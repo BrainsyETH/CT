@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
-import { getAllEvents, getEventById } from "@/lib/events-db";
+import { getAllEvents, getEventById, getEventsOnThisWeek } from "@/lib/events-db";
 import { formatDate, generateEventSlug } from "@/lib/formatters";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -110,18 +110,21 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function Home() {
-  // Fetch all events from database
-  const { events } = await getAllEvents({
-    // Homepage timeline should include the full dataset (year list derives from this).
-    // `getAllEvents` enforces a MAX_LIMIT of 500.
-    limit: 500,
-    orderBy: "date",
-    orderDirection: "desc",
-  });
+  // Fetch all events and this-week events in parallel
+  const [{ events }, weeklyEvents] = await Promise.all([
+    getAllEvents({
+      // Homepage timeline should include the full dataset (year list derives from this).
+      // `getAllEvents` enforces a MAX_LIMIT of 500.
+      limit: 500,
+      orderBy: "date",
+      orderDirection: "desc",
+    }),
+    getEventsOnThisWeek(new Date(), { limit: 20 }),
+  ]);
 
   return (
     <Suspense fallback={null}>
-      <HomeContent events={events} />
+      <HomeContent events={events} weeklyEvents={weeklyEvents} />
     </Suspense>
   );
 }

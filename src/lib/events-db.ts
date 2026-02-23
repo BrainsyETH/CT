@@ -231,6 +231,62 @@ export async function getEventsOnThisDay(
 }
 
 /**
+ * Get events that occurred on this week in history (any year).
+ * Computes the Sunday–Saturday range for the given date's week,
+ * then matches month/day pairs across all years.
+ */
+export async function getEventsOnThisWeek(
+  date: Date,
+  options?: {
+    limit?: number;
+    mode?: string[];
+  }
+): Promise<Event[]> {
+  const client = getEventsClient();
+
+  // Compute Sunday of the current week
+  const sunday = new Date(date);
+  sunday.setDate(date.getDate() - date.getDay());
+
+  // Build an OR filter for each day of the week (Sun-Sat)
+  const dayFilters: string[] = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(sunday);
+    d.setDate(sunday.getDate() + i);
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    dayFilters.push(`and(month.eq.${month},day.eq.${day})`);
+  }
+
+  let query = client
+    .from("events_with_month_day")
+    .select("id,date,title,summary,category,tags,mode,image,video,media,links,metrics,crimeline")
+    .or(dayFilters.join(","));
+
+  // Apply mode filter if specified
+  if (options?.mode && options.mode.length > 0) {
+    query = query.overlaps("mode", options.mode);
+  }
+
+  // Sort by date descending (most recent events first)
+  query = query.order("date", { ascending: false });
+
+  // Apply limit
+  if (options?.limit) {
+    query = query.limit(options.limit);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error fetching events on this week:", error);
+    throw error;
+  }
+
+  return (data || []) as unknown as Event[];
+}
+
+/**
  * Get a specific event for a slot on a given day
  * Used by the Farcaster bot
  */
