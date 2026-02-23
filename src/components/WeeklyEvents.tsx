@@ -140,7 +140,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
                   isCrimeline ? "bg-gray-900" : "bg-gray-100"
                 }`}>
                   <Image
-                    src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
+                    src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
                     alt={event.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
