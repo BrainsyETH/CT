@@ -23,6 +23,14 @@
       "events_found": 2,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/169",
       "notes": "Bitcoin $1T market cap (2021), Mt. Gox crash bottom $111 (2014)"
+    },
+    {
+      "date": "02-23",
+      "researched_at": "2026-02-23",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "TBD",
+      "notes": "Bitcoin ATH $1,164 (2017), Mt. Gox CEO resignation (2014), Largest BTC transaction 26K BTC (2024)"
     }
   ]
 }
