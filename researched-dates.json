@@ -31,6 +31,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/171",
       "notes": "Bitcoin ATH $1,164 (2017), Mt. Gox CEO resignation (2014), Largest BTC transaction 26K BTC (2024)"
+    },
+    {
+      "date": "02-24",
+      "researched_at": "2026-02-24",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
+      "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
     }
   ]
 }
