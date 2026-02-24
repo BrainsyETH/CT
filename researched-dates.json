@@ -39,6 +39,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
+    },
+    {
+      "date": "Jan-Feb 2026 Major Events",
+      "researched_at": "2026-02-24",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 4,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/176",
+      "notes": "Special submission: historically significant recent events - Daghita USMS theft ($40M), Truebit overflow exploit ($26M), Step Finance hack ($30M), Bitcoin liquidations ($2.56B)"
     }
   ]
 }
