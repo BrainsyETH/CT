@@ -39,6 +39,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
+    },
+    {
+      "date": "02-25",
+      "researched_at": "2026-02-25",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/177",
+      "notes": "Mt. Gox goes completely dark (2014), Ethereum Constantinople hard fork (2019), Bitcoin breaks below $90K after Bybit hack (2025)"
     }
   ]
 }
