@@ -11,7 +11,7 @@ VALUES (
   '{"Centralized Exchange","Security"}',
   '{"FAILURE","SECURITY"}',
   '{"timeline"}',
-  '',
+  'https://cdn.wccftech.com/wp-content/uploads/2014/02/Mt.Gox-logo.png',
   '[{"type":"twitter","twitter":{"tweet_url":"https://x.com/Falkvinge/status/438330125239988224","account_handle":"Falkvinge"}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/CoinDesk/status/440773596466520064","account_handle":"CoinDesk"}}]'::jsonb,
   '[{"label":"The Guardian - How a bug in bitcoin led to MtGox''s collapse","url":"https://www.theguardian.com/technology/2014/feb/27/how-does-a-bug-in-bitcoin-lead-to-mtgoxs-collapse"}]'::jsonb,
   '{"btc_price_usd": 550}'::jsonb
@@ -27,7 +27,7 @@ VALUES (
   '{"Regulation","Centralized Exchange"}',
   '{"REGULATORY","MILESTONE"}',
   '{"timeline"}',
-  '',
+  'https://pbs.twimg.com/media/Gk0wptvXUAAvbax.png',
   '[{"type":"twitter","twitter":{"tweet_url":"https://x.com/SECGov/status/1895509499009511468","account_handle":"SECGov"}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/unusual_whales/status/1895223381651275918","account_handle":"unusual_whales"}}]'::jsonb,
   '[{"label":"SEC Press Release 2025-47","url":"https://www.sec.gov/newsroom/press-releases/2025-47"},{"label":"Cozen O''Connor Legal Analysis","url":"https://www.cozen.com/news-resources/news/2025/sec-crypto-2-0-roadmap-of-sec-developments-on-cryptocurrency-and-digital-assets-in-2025"}]'::jsonb,
   '{"btc_price_usd": 0}'::jsonb
@@ -43,7 +43,7 @@ VALUES (
   '{"CT Lore","ZachXBT"}',
   '{"CT Lore","CULTURAL"}',
   '{"timeline"}',
-  '',
+  'https://pbs.twimg.com/profile_images/1835710115329667072/4fqTRp7__400x400.jpg',
   '[{"type":"twitter","twitter":{"tweet_url":"https://x.com/coinbureau/status/2027309049096896543","account_handle":"coinbureau"}},{"type":"twitter","twitter":{"tweet_url":"https://x.com/WuBlockchain/status/2027263385868583331","account_handle":"WuBlockchain"}}]'::jsonb,
   '[{"label":"CoinDesk - Polymarket bettors insider-traded on insider trading market","url":"https://www.coindesk.com/markets/2026/02/27/polymarket-bettors-appear-to-have-insider-traded-on-a-market-designed-to-catch-insider-traders"},{"label":"ZachXBT Investigation Thread","url":"https://x.com/zachxbt/status/2027016064534757659"}]'::jsonb,
   '{"btc_price_usd": 66270}'::jsonb
