@@ -39,6 +39,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
+    },
+    {
+      "date": "02-27",
+      "researched_at": "2026-02-27",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/179",
+      "notes": "Mt. Gox malleability article Guardian (2014), SEC drops Coinbase lawsuit (2025), Polymarket insider trading on ZachXBT market (2026)"
     }
   ]
 }
