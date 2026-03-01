@@ -39,6 +39,22 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
+    },
+    {
+      "date": "02-28",
+      "researched_at": "2026-02-28",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/181",
+      "notes": "Mt. Gox bankruptcy 850K BTC (2014), Bitcoin $1,179 2017 bull run (2017), Bitcoin $60K+ ETF surge (2024)"
+    },
+    {
+      "date": "03-01",
+      "researched_at": "2026-03-01",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/182",
+      "notes": "Bitcoin $68K Iran crisis (2026), Bitcoin $62K ETF rally (2024), Russia sanctions debate (2022)"
     }
   ]
 }
