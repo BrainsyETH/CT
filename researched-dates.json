@@ -47,6 +47,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/177",
       "notes": "Mt. Gox goes completely dark (2014), Ethereum Constantinople hard fork (2019), Bitcoin breaks below $90K after Bybit hack (2025)"
+    },
+    {
+      "date": "02-26",
+      "researched_at": "2026-02-26",
+      "agent": "Pine Valley 🌲 (subagent)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/178",
+      "notes": "MIT Bitcoin Research Initiative (2021), Bitcoin drops below $9k COVID panic (2020), BTC tests $25k with rally predictions (2023)"
     }
   ]
 }
