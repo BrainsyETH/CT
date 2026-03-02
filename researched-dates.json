@@ -41,12 +41,12 @@
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
     },
     {
-      "date": "03-02",
-      "researched_at": "2026-03-02",
+      "date": "02-25",
+      "researched_at": "2026-02-25",
       "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
-      "pr_link": "https://github.com/BrainsyETH/CT/pull/183",
-      "notes": "sDOLA-crvUSD flash loan exploit $240K (2026), Marathon largest BTC block Runestone (2024), Bitcoin surpasses gold (2017)"
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/177",
+      "notes": "Mt. Gox goes completely dark (2014), Ethereum Constantinople hard fork (2019), Bitcoin breaks below $90K after Bybit hack (2025)"
     }
   ]
 }
