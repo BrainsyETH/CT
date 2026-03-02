@@ -41,20 +41,12 @@
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
     },
     {
-      "date": "02-25",
-      "researched_at": "2026-02-25",
-      "agent": "Pine Valley 🌲 (subagent)",
+      "date": "02-27",
+      "researched_at": "2026-02-27",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
       "events_found": 3,
-      "pr_link": "https://github.com/BrainsyETH/CT/pull/177",
-      "notes": "Mt. Gox goes completely dark (2014), Ethereum Constantinople hard fork (2019), Bitcoin breaks below $90K after Bybit hack (2025)"
-    },
-    {
-      "date": "02-26",
-      "researched_at": "2026-02-26",
-      "agent": "Pine Valley 🌲 (subagent)",
-      "events_found": 3,
-      "pr_link": "https://github.com/BrainsyETH/CT/pull/178",
-      "notes": "MIT Bitcoin Research Initiative (2021), Bitcoin drops below $9k COVID panic (2020), BTC tests $25k with rally predictions (2023)"
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/179",
+      "notes": "Mt. Gox malleability article Guardian (2014), SEC drops Coinbase lawsuit (2025), Polymarket insider trading on ZachXBT market (2026)"
     }
   ]
 }
