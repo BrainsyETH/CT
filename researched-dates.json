@@ -87,6 +87,14 @@
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/183",
       "notes": "sDOLA-crvUSD exploit ~$240K (2026), Marathon largest BTC block Runestone (2024), BTC>Gold $1252 (2017)"
+    },
+    {
+      "date": "03-03",
+      "researched_at": "2026-03-03",
+      "agent": "Pine Valley \ud83c\udf32 (subagent for Magnolia \ud83c\udfe1)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/184",
+      "notes": "Bitcoin $50K recovery 2021, mining difficulty drop 2022, NodeMonkes Ordinals #3 NFT 2024"
     }
   ]
 }
