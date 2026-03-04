@@ -28,7 +28,7 @@ VALUES (
   '{"Centralized Exchange","Regulation"}',
   '{"MILESTONE","REGULATORY"}',
   '{"timeline"}',
-  'https://pbs.twimg.com/profile_images/1877813719471603712/mE5a3vKH_400x400.jpg',
+  'https://cdn.sanity.io/images/s3y3vcno/production/1f55b5e22ec39461abe4fb859e8826de3ae5245a-1920x1080.jpg',
   '[]'::jsonb,
   '[{"label":"CoinDesk - Kraken becomes first crypto company to secure Fed master account","url":"https://www.coindesk.com/business/2026/03/04/kraken-becomes-first-crypto-company-to-secure-fed-master-account-access-wsj"},{"label":"Wall Street Journal (via Yahoo Finance)","url":"https://finance.yahoo.com/news/kraken-secures-access-fed-core-123430229.html"},{"label":"Decrypt - Kraken Secures Access to Fed''s Core Payment Systems","url":"https://decrypt.co/359913/kraken-secures-access-to-feds-core-payment-systems-wsj"}]'::jsonb,
   '{"btc_price_usd": 71000}'::jsonb
