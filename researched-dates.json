@@ -3,7 +3,7 @@
     {
       "date": "02-19",
       "researched_at": "2026-02-19",
-      "agent": "Magnolia \ud83c\udfe1",
+      "agent": "Magnolia 🏡",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/165",
       "notes": "Bitcoin 1T market cap (2021), BTC/Silver parity (2013), Bitcoin Golden Cross (2020)"
@@ -11,7 +11,7 @@
     {
       "date": "02-20",
       "researched_at": "2026-02-20",
-      "agent": "Magnolia \ud83c\udfe1",
+      "agent": "Magnolia 🏡",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/168",
       "notes": "Bitcoin $56K post-Tesla (2021), BTC $1080 2017 bull run, BlackRock ETF viral campaign (2024)"
@@ -19,7 +19,7 @@
     {
       "date": "02-21",
       "researched_at": "2026-02-21",
-      "agent": "Magnolia \ud83c\udfe1",
+      "agent": "Magnolia 🏡",
       "events_found": 2,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/169",
       "notes": "Bitcoin $1T market cap (2021), Mt. Gox crash bottom $111 (2014)"
@@ -27,7 +27,7 @@
     {
       "date": "02-23",
       "researched_at": "2026-02-23",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/171",
       "notes": "Bitcoin ATH $1,164 (2017), Mt. Gox CEO resignation (2014), Largest BTC transaction 26K BTC (2024)"
@@ -35,7 +35,7 @@
     {
       "date": "02-24",
       "researched_at": "2026-02-24",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/175",
       "notes": "Mt. Gox suspended trading (2014), Bitcoin $1,100+ targets $1,200 (2017), Ukraine crypto donations Russia invasion (2022)"
@@ -43,7 +43,7 @@
     {
       "date": "02-25",
       "researched_at": "2026-02-25",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/177",
       "notes": "February 25 events"
@@ -51,7 +51,7 @@
     {
       "date": "02-26",
       "researched_at": "2026-02-26",
-      "agent": "Magnolia \ud83c\udfe1",
+      "agent": "Magnolia 🏡",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/178",
       "notes": "February 26 events"
@@ -59,7 +59,7 @@
     {
       "date": "02-27",
       "researched_at": "2026-02-27",
-      "agent": "Pine Valley \ud83c\udf32 (subagent for Magnolia \ud83c\udfe1)",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/179",
       "notes": "Mt. Gox malleability article Guardian (2014), SEC drops Coinbase lawsuit (2025), Polymarket insider trading on ZachXBT market (2026)"
@@ -67,7 +67,7 @@
     {
       "date": "02-28",
       "researched_at": "2026-02-28",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/181",
       "notes": "Mt. Gox bankruptcy 850K BTC (2014), Bitcoin $1179 2017 bull run, Bitcoin $60K ETF surge (2024)"
@@ -75,7 +75,7 @@
     {
       "date": "03-01",
       "researched_at": "2026-03-01",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/182",
       "notes": "Bitcoin $68K Iran crisis (2026), Bitcoin $62K ETF rally (2024), Russia sanctions debate (2022)"
@@ -83,7 +83,7 @@
     {
       "date": "03-02",
       "researched_at": "2026-03-02",
-      "agent": "Pine Valley \ud83c\udf32 (subagent)",
+      "agent": "Pine Valley 🌲 (subagent)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/183",
       "notes": "sDOLA-crvUSD exploit ~$240K (2026), Marathon largest BTC block Runestone (2024), BTC>Gold $1252 (2017)"
@@ -91,7 +91,7 @@
     {
       "date": "03-03",
       "researched_at": "2026-03-03",
-      "agent": "Pine Valley \ud83c\udf32 (subagent for Magnolia \ud83c\udfe1)",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/184",
       "notes": "Bitcoin $50K recovery 2021, mining difficulty drop 2022, NodeMonkes Ordinals #3 NFT 2024"
@@ -99,10 +99,18 @@
     {
       "date": "03-04",
       "researched_at": "2026-03-04",
-      "agent": "Pine Valley \ud83c\udf32 (subagent for Magnolia \ud83c\udfe1)",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
       "events_found": 3,
       "pr_link": "https://github.com/BrainsyETH/CT/pull/185",
       "notes": "Bitcoin $71K haven demand (2026), Kraken Fed master account (2026), Bitcoin surpasses silver mcap (2024)"
+    },
+    {
+      "date": "03-05",
+      "researched_at": "2026-03-05",
+      "agent": "Pine Valley 🌲 (subagent for Magnolia 🏡)",
+      "events_found": 3,
+      "pr_link": "https://github.com/BrainsyETH/CT/pull/186",
+      "notes": "ZettaBlock Sui open beta (2024), SBF Tucker Carlson prison interview (2025), MEXC lists iDOS multi-CEX launch (2026)"
     }
   ]
 }
