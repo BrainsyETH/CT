@@ -132,3 +132,37 @@ VALUES (
     }
   }'::jsonb
 );
+
+-- Event 5: John Daghita Arrested for $46M U.S. Marshals Crypto Theft (2026)
+INSERT INTO event_submissions (submitted_by_email, event_data)
+VALUES (
+  'magnolia@brainsy.bot',
+  '{
+    "id": "john-daghita-arrest-usms-crypto-theft-2026-03-06",
+    "date": "2026-03-06",
+    "title": "John Daghita Arrested for $46M U.S. Marshals Crypto Theft",
+    "summary": "Former U.S. government contractor John \"Lick\" Daghita was arrested in Saint Martin after allegedly stealing $46 million in cryptocurrency from U.S. Marshals Service wallets. ZachXBT''s on-chain investigation led to a joint FBI and French Gendarmerie operation. Authorities found Daghita with a briefcase containing cash, hard drives, and hardware wallets. The case highlighted vulnerabilities in government crypto custody and the power of blockchain forensics in tracking sophisticated thefts.",
+    "category": ["Security", "Crime", "Government"],
+    "tags": ["SECURITY", "REGULATORY", "CULTURAL"],
+    "mode": ["timeline"],
+    "image": "",
+    "media": [
+      {
+        "type": "twitter",
+        "twitter": {
+          "tweet_url": "https://x.com/zachxbt",
+          "account_handle": "zachxbt"
+        }
+      }
+    ],
+    "links": [
+      {
+        "label": "ZachXBT Investigation",
+        "url": "https://x.com/zachxbt"
+      }
+    ],
+    "metrics": {
+      "amount_usd": 46000000
+    }
+  }'::jsonb
+);
