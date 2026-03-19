@@ -84,14 +84,16 @@ export async function POST(request: NextRequest) {
 
     if (fetchError || !submission) {
       return NextResponse.json(
-        { success: false, error: "Submission not found" },
+        { success: false, error: `Submission not found: ${fetchError?.message || "no data"}` },
         { status: 404 }
       );
     }
 
-    if (submission.status !== "pending" && submission.status !== "needs_review") {
+    // Block re-rejection, but allow re-approval of "approved" submissions
+    // that are missing their event in the events table
+    if (action === "reject" && submission.status === "rejected") {
       return NextResponse.json(
-        { success: false, error: `Submission already ${submission.status}` },
+        { success: false, error: "Submission already rejected" },
         { status: 409 }
       );
     }
@@ -118,16 +120,31 @@ export async function POST(request: NextRequest) {
     }
 
     // Approve: insert event into events table, then update submission
-    const eventData: Event = event_data_override || submission.event_data;
+    const rawEventData = event_data_override || submission.event_data;
 
-    if (!eventData.id || !eventData.date || !eventData.title || !eventData.summary) {
+    // Handle case where event_data might be stringified JSON
+    const eventData: Partial<Event> =
+      typeof rawEventData === "string" ? JSON.parse(rawEventData) : rawEventData;
+
+    if (!eventData || !eventData.id || !eventData.date || !eventData.title || !eventData.summary) {
       return NextResponse.json(
-        { success: false, error: "Event data missing required fields (id, date, title, summary)" },
+        {
+          success: false,
+          error: "Event data missing required fields (id, date, title, summary)",
+          debug: {
+            hasEventData: !!eventData,
+            hasId: !!eventData?.id,
+            hasDate: !!eventData?.date,
+            hasTitle: !!eventData?.title,
+            hasSummary: !!eventData?.summary,
+            eventDataKeys: eventData ? Object.keys(eventData) : [],
+          },
+        },
         { status: 400 }
       );
     }
 
-    // Check for duplicate event ID
+    // Check if event already exists in events table
     const { data: existing } = await supabase
       .from("events")
       .select("id")
@@ -135,13 +152,21 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (existing) {
+      // If already approved and event exists, just update the submission link
+      if (submission.status === "approved") {
+        return NextResponse.json({
+          success: true,
+          message: `Event "${eventData.id}" already exists in events table`,
+          event_id: eventData.id,
+        });
+      }
       return NextResponse.json(
-        { success: false, error: `Event with id "${eventData.id}" already exists` },
+        { success: false, error: `Event with id "${eventData.id}" already exists in events table` },
         { status: 409 }
       );
     }
 
-    // Insert the event
+    // Insert the event — match the exact same format as submit-event/route.ts
     const insertData = {
       id: eventData.id,
       date: eventData.date,
@@ -159,11 +184,19 @@ export async function POST(request: NextRequest) {
 
     const { error: insertError } = await supabase
       .from("events")
-      .insert([insertData]);
+      .insert([insertData])
+      .select()
+      .single();
 
     if (insertError) {
+      console.error("Event insert error:", insertError);
       return NextResponse.json(
-        { success: false, error: `Failed to insert event: ${insertError.message}` },
+        {
+          success: false,
+          error: `Failed to insert event: ${insertError.message}`,
+          code: insertError.code,
+          details: insertError.details,
+        },
         { status: 500 }
       );
     }
@@ -182,7 +215,6 @@ export async function POST(request: NextRequest) {
 
     if (updateError) {
       console.error("Failed to update submission status:", updateError);
-      // Event was created but submission status wasn't updated — not critical
     }
 
     return NextResponse.json({
