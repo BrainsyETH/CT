@@ -89,12 +89,13 @@ async function executeBraveQuery(
 /**
  * Search Brave for crypto history events on a given calendar date.
  *
- * Runs 3 queries to maximize coverage:
+ * Runs multiple queries to maximize coverage across all years (2014-present):
  * 1. General "on this day in crypto" query
- * 2. Broader crypto history query
- * 3. Twitter/X-specific query for tweet media embeds
+ * 2. Broader crypto history query covering past years
+ * 3. Current/recent year events for this date
+ * 4. Twitter/X-specific query for real tweet embeds
  *
- * Returns deduplicated results (up to 30).
+ * Returns deduplicated results (up to 40).
  */
 export async function searchCryptoHistory(
   month: number,
@@ -110,10 +111,19 @@ export async function searchCryptoHistory(
     throw new Error(`Invalid month: ${month}`);
   }
 
+  const currentYear = new Date().getFullYear();
+  const paddedMonth = String(month).padStart(2, "0");
+  const paddedDay = String(day).padStart(2, "0");
+
   const queries = [
+    // General "on this day" query
     `"on this day in crypto" ${monthName} ${day}`,
-    `crypto history "${monthName} ${day}" bitcoin OR ethereum OR hack OR defi`,
-    `site:x.com OR site:twitter.com crypto "${monthName} ${day}" hack OR launch OR exploit OR milestone`,
+    // Broad crypto history for this calendar date (all years)
+    `cryptocurrency blockchain "${monthName} ${day}" hack OR exploit OR launch OR milestone OR regulation 2014..${currentYear}`,
+    // Current and recent year events for this exact date
+    `crypto "${currentYear}-${paddedMonth}-${paddedDay}" OR "${currentYear - 1}-${paddedMonth}-${paddedDay}" OR "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
+    // Twitter/X query for real tweet embeds with status URLs
+    `site:x.com crypto "${monthName} ${day}" hack OR launch OR exploit OR milestone`,
   ];
 
   // Run all queries in parallel
@@ -142,5 +152,5 @@ export async function searchCryptoHistory(
     }
   }
 
-  return unique.slice(0, 30);
+  return unique.slice(0, 40);
 }
