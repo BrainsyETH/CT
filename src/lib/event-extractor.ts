@@ -32,7 +32,7 @@ export interface ExtractionResult {
 // System Prompt
 // ============================================================================
 
-const SYSTEM_PROMPT = `HARD RULES
+export const SYSTEM_PROMPT = `HARD RULES
 - Output MUST be valid JSON: an array of event objects (even if only 1 event).
 - Do NOT include any commentary, markdown, or extra keys outside the schema shown below.
 - Use only the existing controlled vocabularies provided (Categories, Tags, Modes, Crimeline Types).
