@@ -49,7 +49,7 @@ export function StickyFilterButton({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.2 }}
-        className="fixed bottom-4 right-4 z-50 flex items-center gap-2"
+        className="fixed bottom-14 lg:bottom-4 right-4 z-50 flex items-center gap-2"
       >
         {/* Sort Toggle Button */}
         <button

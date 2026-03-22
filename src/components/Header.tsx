@@ -6,8 +6,6 @@ import Image from "next/image";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 import { ChainOfEventsLogo } from "./ChainOfEventsLogo";
-import { RandomEventButton } from "./RandomEventButton";
-import type { Event } from "@/lib/types";
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -23,11 +21,7 @@ function TwitterBirdIcon({ className }: { className?: string }) {
   );
 }
 
-interface HeaderProps {
-  events?: Event[];
-}
-
-export function Header({ events = [] }: HeaderProps) {
+export function Header() {
   const { mode, selectedCategories, toggleCategory } = useModeStore();
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
@@ -173,7 +167,7 @@ export function Header({ events = [] }: HeaderProps) {
             </motion.p>
           </div>
 
-          {/* CT Lore Button + Random + Mode Toggle */}
+          {/* CT Lore Button + Mode Toggle */}
           <div className="flex items-center gap-3 flex-shrink-0">
             {/* CT Lore Button */}
             <button
@@ -190,9 +184,6 @@ export function Header({ events = [] }: HeaderProps) {
               <TwitterBirdIcon className="w-4 h-4" />
               <span>CT Lore</span>
             </button>
-
-            {/* Random Event Button */}
-            {events.length > 0 && <RandomEventButton events={events} />}
 
             {/* Mode Toggle */}
             <ModeToggle />
@@ -264,7 +255,7 @@ export function Header({ events = [] }: HeaderProps) {
             </motion.p>
           </button>
 
-          {/* Row 3: CT Lore + Random + Mode Toggle */}
+          {/* Row 3: CT Lore + Mode Toggle */}
           <div className="flex items-center gap-2">
             {/* CT Lore Button - Compact */}
             <button
@@ -281,9 +272,6 @@ export function Header({ events = [] }: HeaderProps) {
               <TwitterBirdIcon className="w-3.5 h-3.5" />
               <span>CT Lore</span>
             </button>
-
-            {/* Random Event - Compact */}
-            {events.length > 0 && <RandomEventButton events={events} />}
 
             {/* Mode Toggle - Compact */}
             <ModeToggle compact />
