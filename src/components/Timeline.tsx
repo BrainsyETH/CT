@@ -514,14 +514,12 @@ export function Timeline({ events }: TimelineProps) {
                 </div>
               </motion.div>
             )}
-            {/* Year Selector - visible on mobile/tablet, hidden on desktop */}
-            <div className="lg:hidden shrink-0">
-              <MobileYearSelector
-                years={years}
-                currentYear={currentYear}
-                onJump={scrollToYear}
-              />
-            </div>
+            {/* Year Selector - fixed bottom bar on mobile/tablet */}
+            <MobileYearSelector
+              years={years}
+              currentYear={currentYear}
+              onJump={scrollToYear}
+            />
           </div>
         </div>
       </div>

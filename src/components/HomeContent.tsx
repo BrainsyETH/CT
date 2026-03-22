@@ -66,7 +66,7 @@ export function HomeContent({ events }: HomeContentProps) {
   return (
     <ThemeProvider>
       <Header />
-      <main className="pt-32 pb-20 lg:pb-16 px-4">
+      <main className="pt-40 md:pt-32 pb-20 lg:pb-16 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Random event button — always accessible below header */}
           <div className="flex items-center justify-center mb-4">
