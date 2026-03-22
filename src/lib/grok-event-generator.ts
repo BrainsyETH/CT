@@ -51,46 +51,87 @@ function buildUserPrompt(
 
   return `TODAY'S DATE CONTEXT: ${monthName} ${day}
 
-You are researching cryptocurrency and blockchain events that occurred on ${monthName} ${day} throughout history (from 2009 to ${new Date().getFullYear()}, including this year). Using the search results below, identify 5 real, verifiable events that happened specifically on this calendar date. Include events from recent years (2024-${new Date().getFullYear()}) as well as historic ones.
+You are a Crypto Twitter (CT) historian building a "This Day in Crypto" archive. Find 5 real, verifiable events that happened on ${monthName} ${day} throughout history (2009-${new Date().getFullYear()}, including recent years). Use the search results below as source material.
 
-EXISTING EVENTS IN OUR DATABASE (DO NOT DUPLICATE):
+EXISTING EVENTS (DO NOT DUPLICATE):
 ${existingList}
 
 SEARCH RESULTS:
 ${resultsList}
 
-INSTRUCTIONS:
-1. Generate exactly 5 event objects as a JSON array
-2. Each event MUST have occurred on ${monthName} ${day} of a specific year - do NOT guess dates
-3. Focus on events that would resonate with Crypto Twitter (CT):
-   - Major hacks, exploits, and security incidents
-   - Protocol launches and milestones
-   - Market events (crashes, ATHs, liquidations)
-   - Regulatory actions and legal drama
-   - CT Lore moments (viral tweets, community drama, memes)
-   - Notable ZachXBT investigations or Cobie calls
-4. Prefer events with strong narratives and community significance
-5. Each event id must be in kebab-case ending with -YYYY-MM-DD of the event date
-6. Include source URLs in the links array
-7. If you cannot find 5 verified events for this exact date, return fewer rather than fabricating events
-8. For any security incidents, include full crimeline data with mode ["crimeline"] or ["timeline", "crimeline"]
+═══════════════════════════════════════════════════════════════
+WHAT MAKES AN EVENT "CT ENOUGH"
+═══════════════════════════════════════════════════════════════
+
+The best events have DRAMA, NAMED ACTORS, and COMMUNITY SIGNIFICANCE. Prioritize in this order:
+
+TIER 1 (always include if available):
+- Hacks, exploits, rug pulls with $ amounts and named perpetrators/victims
+- ZachXBT investigations, on-chain detective work, doxxings
+- Arrests, indictments, sentencings of crypto figures (SBF, Do Kwon, 3AC, etc.)
+- Protocol deaths, bank runs, depegs (Terra/LUNA, FTX collapse, SVB)
+- CT lore moments (viral tweets, memes that became movements, community drama)
+
+TIER 2 (good filler):
+- Regulatory bombshells (SEC lawsuits, ETF approvals/denials, executive orders)
+- Market ATHs/crashes with specific numbers and community reaction
+- Major protocol launches that changed DeFi/NFTs/L2s
+
+TIER 3 (only if nothing better exists):
+- Generic "Protocol X raised $Y" or "Company X launched feature Y"
+- Exchange listings or token launches without drama
+
+═══════════════════════════════════════════════════════════════
+VOICE & TONE — WRITE LIKE CT, NOT COINDESK
+═══════════════════════════════════════════════════════════════
+
+Your summaries should feel like they were written by someone who LIVES on Crypto Twitter. Follow these patterns from our best events:
+
+GOOD (CT voice): "In peak CT irony, ZachXBT's investigation exposing Axiom Exchange insider trading spawned a Polymarket prediction market—which itself became an insider trading bonanza. At least 12 wallets placed heavy bets before the reveal, collectively profiting over $1 million."
+
+GOOD (CT voice): "Former U.S. government contractor John 'Lick' Daghita was arrested in Saint Martin after allegedly stealing $46 million from U.S. Marshals Service wallets. Authorities found him with a briefcase containing cash, hard drives, and hardware wallets."
+
+GOOD (CT voice): "During a major Bitcoin price crash, Bitcointalk user GameKyuubi posted a rant titled 'I AM HODLING' after misspelling 'holding' while drunk on whiskey. The typo instantly became legendary and evolved into the universal mantra for diamond hands."
+
+BAD (CoinDesk voice): "The protocol successfully implemented its planned upgrade, bringing improvements to scalability and security for the ecosystem's growing user base."
+
+Key voice rules:
+- Name specific people, handles, and amounts. Never be vague.
+- Include the absurd detail that makes the story memorable (the briefcase, the drunk typo, the pirate roleplay)
+- Say WHY CT cared, not just what happened
+- Use "CT" as a proper noun referring to the community
+- No em dashes. No corporate PR language. No "ecosystem" or "innovative."
+- 3-5 sentences. Every sentence must add new information.
+
+═══════════════════════════════════════════════════════════════
+CT ACCOUNTS FOR CONTEXT (use as twitter media handles when relevant):
+@zachxbt @cobie @loomdart @coldbloodshill @degenspartan @Pentoshi
+@laurashin @balajis @GCRClassic @staborin @haborin @Drift @statelayer
+@messari @ryanselkis @viktorbunin @staborin @erikvoorhees @chainlinkgod
+@gainzy @trustlessstate @foobar @seedphrase @nick_eth @tier10k
+@bantg @sizechad @icebergy_ @cburniske @scottmelker @cryptocred
+@tokenterminal @asvanevik @JustinDrake @sergeynazarov @haborin
+═══════════════════════════════════════════════════════════════
+
+TECHNICAL REQUIREMENTS:
+1. Each event MUST have occurred on ${monthName} ${day} of a specific year — do NOT guess dates
+2. Event id in kebab-case ending with -YYYY-MM-DD
+3. Include source URLs in the links array
+4. Return fewer than 5 rather than fabricating events
+5. For security incidents, include full crimeline data with mode ["crimeline"] or ["timeline", "crimeline"]
+6. Use categories from: Bitcoin, Bridge, Bull Runs, CT Lore, Centralized Exchange, Culture, DeFi, DeFi Protocol, ETFs, Ethereum, Gaming, Lending, Market Structure, Memecoins, NFTs, Privacy, Regulation, Security, Stablecoin, Wallet/Key Compromise, ZachXBT
+7. Use tags from: ATH, CULTURAL, ECONOMIC, FAILURE, MILESTONE, REGULATORY, SECURITY, TECH
 
 IMAGE REQUIREMENTS:
-9. For the "image" field, ONLY use URLs from these domains (Next.js will reject all others):
-   - pbs.twimg.com (Twitter/X image CDN — PREFERRED)
-   - i.imgur.com
-   - imgs.search.brave.com
-   - images.unsplash.com
-   If you cannot find a valid image from these domains, set image to null (a fallback will be applied automatically).
-   NEVER use random news site image URLs — they WILL break.
+8. For "image", ONLY use URLs from: pbs.twimg.com, i.imgur.com, imgs.search.brave.com, images.unsplash.com
+   Set image to null if no valid URL available (fallback applied automatically). NEVER use news site URLs.
 
 TWITTER/X MEDIA REQUIREMENTS:
-10. For Twitter embeds, ONLY include tweets with REAL, VERIFIED tweet URLs found in the search results above. Format:
-    { "type": "twitter", "twitter": { "tweet_url": "https://x.com/USER/status/TWEET_ID", "account_handle": "USER" } }
-11. NEVER fabricate or guess tweet URLs/status IDs. If you cannot find a real tweet URL for an event, use ONLY the account_handle (without tweet_url) to show a timeline embed instead:
-    { "type": "twitter", "twitter": { "account_handle": "relevant_account" } }
-    Good timeline handles: the project's official account, @zachxbt, @CoinDesk, @caborin, @CryptoSlate, @whale_alert
-12. It is MUCH better to have 0 tweet embeds than to have broken ones with fake URLs.
+9. ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:
+   { "type": "twitter", "twitter": { "tweet_url": "https://x.com/USER/status/TWEET_ID", "account_handle": "USER" } }
+10. NEVER fabricate tweet URLs. If no real URL exists, use account_handle only for a timeline embed:
+    { "type": "twitter", "twitter": { "account_handle": "relevant_handle" } }
+11. Zero real tweets is better than fake ones.
 
 Return ONLY a JSON array of event objects. No commentary.`;
 }
