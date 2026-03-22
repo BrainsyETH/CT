@@ -16,6 +16,18 @@ const TwitterIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const FarcasterIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M5.32 3h13.36l1.32 5.3h-1.06l-.66-2.65A1.33 1.33 0 0016.99 4.4H7.01a1.33 1.33 0 00-1.29 1.25L5.06 8.3H4L5.32 3zM4 9.63h16V21H4V9.63zm3.33 2.65v2.65a2.67 2.67 0 005.34 0v-2.65h-1.34v2.65a1.33 1.33 0 01-2.66 0v-2.65H7.33zm6.67 0v2.65a1.33 1.33 0 002.66 0v-2.65H18v2.65a2.67 2.67 0 01-5.34 0v-2.65H14z" />
+  </svg>
+);
+
+const ImageIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+);
+
 const LinkIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path
@@ -60,6 +72,19 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     window.open(url, "_blank", "width=600,height=400");
   };
 
+  const handleFarcasterShare = () => {
+    if (!shareUrl) return;
+    const text = encodeURIComponent(event.title);
+    const url = `https://warpcast.com/~/compose?text=${text}&embeds[]=${encodeURIComponent(shareUrl)}`;
+    window.open(url, "_blank", "width=600,height=600");
+  };
+
+  const handleShareAsImage = () => {
+    if (!baseUrl) return;
+    const ogUrl = `${baseUrl}/api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(event.date)}&mode=${mode}`;
+    window.open(ogUrl, "_blank");
+  };
+
   const handleCopy = async () => {
     if (!shareUrl) return;
     try {
@@ -78,30 +103,51 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     : "text-gray-500 hover:text-teal-700 hover:bg-teal-100";
 
   return (
-    <div className="flex items-center gap-2" data-share-button>
+    <div className="flex items-center gap-1.5" data-share-button>
       <button
         type="button"
         onClick={handleTwitterShare}
         disabled={!shareUrl}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
         aria-label="Share on Twitter"
+        title="Share on X/Twitter"
       >
-        <TwitterIcon className="w-4 h-4" />
-        <span>Share</span>
+        <TwitterIcon className="w-3.5 h-3.5" />
+      </button>
+      <button
+        type="button"
+        onClick={handleFarcasterShare}
+        disabled={!shareUrl}
+        className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        aria-label="Share on Farcaster"
+        title="Share on Warpcast"
+      >
+        <FarcasterIcon className="w-3.5 h-3.5" />
+      </button>
+      <button
+        type="button"
+        onClick={handleShareAsImage}
+        disabled={!baseUrl}
+        className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        aria-label="Share as image"
+        title="Open as shareable image"
+      >
+        <ImageIcon className="w-3.5 h-3.5" />
       </button>
       <button
         type="button"
         onClick={handleCopy}
         disabled={!shareUrl}
-        className={`flex items-center justify-center p-2 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
         aria-label={copied ? "Copied" : "Copy share URL"}
+        title={copied ? "Copied!" : "Copy link"}
       >
         {copied ? (
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         ) : (
-          <LinkIcon className="w-4 h-4" />
+          <LinkIcon className="w-3.5 h-3.5" />
         )}
       </button>
     </div>

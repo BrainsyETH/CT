@@ -1,9 +1,29 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import type { EventTag, CrimelineType } from "@/lib/types";
+
+const SEARCH_PLACEHOLDERS_TIMELINE = [
+  "Search 'Bitcoin genesis'...",
+  "Search 'The DAO'...",
+  "Search 'Mt. Gox'...",
+  "Search 'Ethereum merge'...",
+  "Search 'DeFi Summer'...",
+  "Search 'NFT'...",
+  "Search 'Satoshi'...",
+];
+
+const SEARCH_PLACEHOLDERS_CRIMELINE = [
+  "Search 'FTX'...",
+  "Search 'Mt. Gox hack'...",
+  "Search 'Ronin Bridge'...",
+  "Search 'Terra Luna'...",
+  "Search 'rug pull'...",
+  "Search 'SBF'...",
+  "Search 'Do Kwon'...",
+];
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -256,6 +276,16 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
   const isDarkMode = mode === "crimeline";
   const showCrimelineTypes = mode === "crimeline" || mode === "both";
 
+  // Rotating search placeholder
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const placeholders = isCrimeline ? SEARCH_PLACEHOLDERS_CRIMELINE : SEARCH_PLACEHOLDERS_TIMELINE;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [placeholders.length]);
+
   const activeFilterCount =
     selectedCategories.length +
     selectedCrimelineTypes.length +
@@ -309,7 +339,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
           </svg>
           <input
             type="text"
-            placeholder="Search..."
+            placeholder={searchQuery ? "" : placeholders[placeholderIndex]}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search events"

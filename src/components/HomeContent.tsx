@@ -8,6 +8,9 @@ import { EventDetailModal } from "@/components/EventDetailModal";
 import { Footer } from "@/components/Footer";
 import { WeeklyEvents } from "@/components/WeeklyEvents";
 import { FeedbackModal } from "@/components/FeedbackModal";
+import { HeroBanner } from "@/components/HeroBanner";
+import { OnThisDayCard } from "@/components/OnThisDayCard";
+import { DamageCounter } from "@/components/DamageCounter";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
 import { getLocalEvents } from "@/lib/local-events";
@@ -64,9 +67,11 @@ export function HomeContent({ events, weeklyEvents = [] }: HomeContentProps) {
 
   return (
     <ThemeProvider>
-      <Header />
-      <main className="pt-32 pb-16 px-4">
+      <Header events={combinedEvents} />
+      <main className="pt-32 pb-20 lg:pb-16 px-4">
         <div className="max-w-6xl mx-auto">
+          <HeroBanner events={combinedEvents} />
+          <OnThisDayCard events={combinedEvents} />
           {weeklyEvents.length > 0 && (
             <WeeklyEvents events={weeklyEvents} />
           )}
@@ -74,6 +79,7 @@ export function HomeContent({ events, weeklyEvents = [] }: HomeContentProps) {
         </div>
       </main>
       <Footer />
+      <DamageCounter events={combinedEvents} />
       <EventDetailModal events={combinedEvents} />
       <FeedbackModal
         isOpen={feedbackModal.isOpen}

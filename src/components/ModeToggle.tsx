@@ -11,10 +11,10 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
   const { mode, setMode } = useModeStore();
   const isCrimelineMode = mode === "crimeline";
 
-  const segments: { value: Mode; label: string }[] = [
-    { value: "timeline", label: "Timeline" },
-    { value: "crimeline", label: "Crimeline" },
-    { value: "both", label: "All" },
+  const segments: { value: Mode; label: string; tooltip: string }[] = [
+    { value: "timeline", label: "Timeline", tooltip: "Crypto milestones & history" },
+    { value: "crimeline", label: "Crimeline", tooltip: "Hacks, exploits & fraud" },
+    { value: "both", label: "All", tooltip: "Everything — the full story" },
   ];
 
   return (
@@ -38,9 +38,15 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
         return (
           <button
             key={segment.value}
-            onClick={() => setMode(segment.value)}
+            onClick={() => {
+              setMode(segment.value);
+              if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+                navigator.vibrate(15);
+              }
+            }}
             role="radio"
             aria-checked={isActive}
+            title={segment.tooltip}
             className={`
               neo-brutalist-btn
               ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-1.5 text-sm'}

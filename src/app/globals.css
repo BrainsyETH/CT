@@ -95,6 +95,48 @@ html {
   display: none;
 }
 
+/* CRT Scan-line overlay for Crimeline mode */
+[data-theme="crimeline"] .crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="crimeline"] .crt-overlay {
+    display: none;
+  }
+}
+
+/* Featured event card glow */
+.neo-brutalist-card-featured-timeline {
+  border-color: #14b8a6;
+  box-shadow: 4px 4px 0 rgba(20, 184, 166, 0.3), 0 0 20px rgba(20, 184, 166, 0.1);
+}
+
+.neo-brutalist-card-featured-crimeline {
+  border-color: #7c3aed;
+  box-shadow: 4px 4px 0 rgba(124, 58, 237, 0.4), 0 0 20px rgba(124, 58, 237, 0.15);
+}
+
+/* Year scrubber on mobile */
+.year-scrubber {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.year-scrubber::-webkit-scrollbar {
+  display: none;
+}
+
 /* Selection colors */
 [data-theme="timeline"] ::selection {
   background: #14b8a6;

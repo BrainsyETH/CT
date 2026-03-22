@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useModeStore } from "@/store/mode-store";
 import { ModeToggle } from "./ModeToggle";
 import { ChainOfEventsLogo } from "./ChainOfEventsLogo";
+import { RandomEventButton } from "./RandomEventButton";
+import type { Event } from "@/lib/types";
 
 // Classic Twitter Bird Icon
 function TwitterBirdIcon({ className }: { className?: string }) {
@@ -21,7 +23,11 @@ function TwitterBirdIcon({ className }: { className?: string }) {
   );
 }
 
-export function Header() {
+interface HeaderProps {
+  events?: Event[];
+}
+
+export function Header({ events = [] }: HeaderProps) {
   const { mode, selectedCategories, toggleCategory } = useModeStore();
   const isCrimeline = mode === "crimeline";
   const prefersReducedMotion = useReducedMotion();
@@ -167,13 +173,14 @@ export function Header() {
             </motion.p>
           </div>
 
-          {/* CT Lore Button + Mode Toggle */}
+          {/* CT Lore Button + Random + Mode Toggle */}
           <div className="flex items-center gap-3 flex-shrink-0">
             {/* CT Lore Button */}
             <button
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore (Crypto Twitter history)"
+              title="CT Lore — Crypto Twitter history"
               className={`neo-brutalist-btn flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap ${
                 isCtLoreActive
                   ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
@@ -181,8 +188,11 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-4 h-4" />
-              <span>CT</span>
+              <span>CT Lore</span>
             </button>
+
+            {/* Random Event Button */}
+            {events.length > 0 && <RandomEventButton events={events} />}
 
             {/* Mode Toggle */}
             <ModeToggle />
@@ -254,13 +264,14 @@ export function Header() {
             </motion.p>
           </button>
 
-          {/* Row 3: CT Lore + Mode Toggle */}
+          {/* Row 3: CT Lore + Random + Mode Toggle */}
           <div className="flex items-center gap-2">
             {/* CT Lore Button - Compact */}
             <button
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore"
+              title="CT Lore — Crypto Twitter history"
               className={`neo-brutalist-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs ${
                 isCtLoreActive
                   ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
@@ -268,8 +279,11 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-3.5 h-3.5" />
-              <span>CT</span>
+              <span>CT Lore</span>
             </button>
+
+            {/* Random Event - Compact */}
+            {events.length > 0 && <RandomEventButton events={events} />}
 
             {/* Mode Toggle - Compact */}
             <ModeToggle compact />

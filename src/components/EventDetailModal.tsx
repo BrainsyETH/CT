@@ -603,6 +603,53 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   </div>
                 )}
 
+                {/* Related Events */}
+                {event.related_events && event.related_events.length > 0 && (
+                  <div className={`mt-4 md:mt-5 pt-3 md:pt-4 border-t ${isCrimeline ? "border-gray-800" : "border-gray-200"}`}>
+                    <h4 className={`text-xs font-bold uppercase tracking-widest mb-3 ${
+                      isCrimeline ? "text-purple-400" : "text-teal-600"
+                    }`}>
+                      Related Events
+                    </h4>
+                    <div className="flex flex-col gap-2">
+                      {event.related_events.map((rel) => {
+                        const relatedEvent = events.find((e) => e.id === rel.event_id);
+                        if (!relatedEvent) return null;
+                        return (
+                          <button
+                            key={rel.event_id}
+                            onClick={() => setSelectedEventId(rel.event_id)}
+                            className={`flex items-start gap-3 p-3 rounded-lg text-left transition-colors ${
+                              isCrimeline
+                                ? "bg-gray-800/50 hover:bg-gray-800 border border-gray-700"
+                                : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
+                            }`}
+                          >
+                            <div className="flex-1 min-w-0">
+                              <p className={`text-sm font-semibold truncate ${
+                                isCrimeline ? "text-white" : "text-gray-900"
+                              }`}>
+                                {relatedEvent.title}
+                              </p>
+                              <p className={`text-xs mt-0.5 ${
+                                isCrimeline ? "text-gray-400" : "text-gray-500"
+                              }`}>
+                                {formatDate(relatedEvent.date)}
+                                {rel.label && ` — ${rel.label}`}
+                              </p>
+                            </div>
+                            <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                              isCrimeline ? "text-purple-400" : "text-teal-500"
+                            }`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
                 {/* Suggest Edit */}
                 <div className={`mt-4 md:mt-5 pt-3 md:pt-4 border-t ${isCrimeline ? "border-gray-800" : "border-gray-200"}`}>
                   <button

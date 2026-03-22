@@ -10,7 +10,13 @@ import { getMediaItems } from "@/lib/media-utils";
 import { FALLBACK_IMAGES } from "@/lib/constants";
 import { useMobileDetection, getIsMobile } from "@/hooks/useMobileDetection";
 import { preloadTwitterScript } from "./TwitterEmbed";
+import { CategoryIcon } from "./CategoryIcon";
 import type { Event } from "@/lib/types";
+
+// Events with the MILESTONE tag get featured card treatment
+function isFeaturedEvent(event: Event): boolean {
+  return event.tags.includes("MILESTONE") || event.tags.includes("ATH");
+}
 
 interface EventCardProps {
   event: Event;
@@ -22,7 +28,9 @@ function EventCardBase({ event, index }: EventCardProps) {
   const isCrimeline = mode === "crimeline";
   // In "both" mode, use crimeline styling for events that have crimeline data
   const useCrimelineStyle = isCrimeline || (mode === "both" && event.crimeline);
+  const isFeatured = isFeaturedEvent(event);
   const isLeft = index % 2 === 0;
+  const primaryCategory = Array.isArray(event.category) ? event.category[0] : event.category;
   const prefersReducedMotion = useReducedMotion();
   // Use optimized mobile detection that avoids re-renders
   const mobile = useMobileDetection();
@@ -118,6 +126,10 @@ function EventCardBase({ event, index }: EventCardProps) {
       return;
     }
     setSelectedEventId(event.id);
+    // Haptic feedback on card open
+    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+      navigator.vibrate(10);
+    }
   };
 
   const animationProps = prefersReducedMotion
@@ -171,7 +183,13 @@ function EventCardBase({ event, index }: EventCardProps) {
         >
           <div
             className={`neo-brutalist-card ${
-              isCrimeline
+              isFeatured
+                ? isCrimeline
+                  ? "neo-brutalist-card-crimeline neo-brutalist-card-featured-crimeline group-hover:border-purple-300"
+                  : useCrimelineStyle
+                  ? "neo-brutalist-card-crimeline-light neo-brutalist-card-featured-crimeline group-hover:border-purple-300"
+                  : "neo-brutalist-card-timeline neo-brutalist-card-featured-timeline group-hover:border-teal-300"
+                : isCrimeline
                 ? "neo-brutalist-card-crimeline group-hover:border-purple-400"
                 : useCrimelineStyle
                 ? "neo-brutalist-card-crimeline-light group-hover:border-purple-400"
@@ -231,9 +249,9 @@ function EventCardBase({ event, index }: EventCardProps) {
                 <ShareButton event={event} />
               </div>
 
-              {/* Title */}
+              {/* Title with category icon */}
               <h3
-                className={`mt-2 text-lg neo-brutalist-heading transition-colors duration-300 ${
+                className={`mt-2 text-lg neo-brutalist-heading transition-colors duration-300 flex items-start gap-1.5 ${
                   isCrimeline
                     ? "neo-brutalist-heading-crimeline group-hover:text-purple-300"
                     : useCrimelineStyle
@@ -241,7 +259,12 @@ function EventCardBase({ event, index }: EventCardProps) {
                     : "neo-brutalist-heading-timeline group-hover:text-teal-700"
                 }`}
               >
-                {event.title}
+                {primaryCategory && (
+                  <span className="flex-shrink-0 mt-1 opacity-60">
+                    <CategoryIcon category={primaryCategory} className="w-4 h-4" />
+                  </span>
+                )}
+                <span>{event.title}</span>
               </h3>
 
               {/* Summary - Improved contrast */}
