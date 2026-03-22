@@ -9,6 +9,7 @@
 import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "./event-extractor";
 import { FALLBACK_IMAGES } from "./constants";
+import { isAllowedImageUrl } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
 
@@ -121,33 +122,6 @@ function parseEventsResponse(raw: string): Event[] {
   return events
     .filter((e) => e.id && e.date && e.title && e.summary)
     .map((event) => normalizeEvent(event));
-}
-
-/** Domains whitelisted in next.config.ts for Next.js Image component */
-const ALLOWED_IMAGE_HOSTNAMES = [
-  "pbs.twimg.com",
-  "i.imgur.com",
-  "imgs.search.brave.com",
-  "images.unsplash.com",
-  "99bitcoins.com",
-  "img.paragraph.com",
-  "preview.redd.it",
-  "public.bnbstatic.com",
-  "placeholder.co",
-];
-
-/**
- * Check if an image URL is from an allowed domain.
- */
-function isAllowedImageUrl(url: string): boolean {
-  try {
-    const hostname = new URL(url).hostname;
-    return ALLOWED_IMAGE_HOSTNAMES.some(
-      (allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`)
-    );
-  } catch {
-    return false;
-  }
 }
 
 /**

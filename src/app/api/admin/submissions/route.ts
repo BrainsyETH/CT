@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sanitizeEventMedia } from "@/lib/event-sanitize";
 import type { Event } from "@/lib/types";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
@@ -166,20 +167,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Sanitize image and media before insertion
+    const { event: sanitized, warnings } = sanitizeEventMedia(eventData);
+
     // Insert the event — match the exact same format as submit-event/route.ts
     const insertData = {
-      id: eventData.id,
-      date: eventData.date,
-      title: eventData.title,
-      summary: eventData.summary,
-      category: eventData.category || [],
-      tags: eventData.tags || [],
-      mode: eventData.mode || ["timeline"],
-      image: eventData.image || null,
-      media: eventData.media || [],
-      links: eventData.links || [],
-      metrics: eventData.metrics || {},
-      crimeline: eventData.crimeline || null,
+      id: sanitized.id,
+      date: sanitized.date,
+      title: sanitized.title,
+      summary: sanitized.summary,
+      category: sanitized.category || [],
+      tags: sanitized.tags || [],
+      mode: sanitized.mode || ["timeline"],
+      image: sanitized.image || null,
+      media: sanitized.media || [],
+      links: sanitized.links || [],
+      metrics: sanitized.metrics || {},
+      crimeline: sanitized.crimeline || null,
     };
 
     const { error: insertError } = await supabase
@@ -221,6 +225,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: `Event "${eventData.id}" approved and created`,
       event_id: eventData.id,
+      warnings: warnings.length > 0 ? warnings : undefined,
     });
   } catch (error) {
     return NextResponse.json(

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { isAllowedImageUrl } from "@/lib/event-sanitize";
 import type { Event, EventSubmission } from "@/lib/types";
 
 type StatusFilter = "pending" | "approved" | "rejected" | "all";
@@ -94,7 +95,10 @@ export default function SubmissionsPage() {
         return;
       }
 
-      setSuccess(data.message);
+      const warningText = data.warnings?.length
+        ? `\n\nMedia fixes applied:\n${data.warnings.map((w: string) => `  - ${w}`).join("\n")}`
+        : "";
+      setSuccess(data.message + warningText);
 
       // Refresh the list to show updated status
       fetchSubmissions();
@@ -259,8 +263,18 @@ export default function SubmissionsPage() {
                 const ev = eventData(sub);
                 const isExpanded = expandedId === sub.id;
                 const isActioning = actionLoading === sub.id;
-                const twitterCount =
-                  (ev.media || []).filter((m) => m.type === "twitter").length;
+                const twitterMedia = (ev.media || []).filter(
+                  (m) => m.type === "twitter"
+                );
+                const twitterCount = twitterMedia.length;
+                const suspiciousTweetCount = twitterMedia.filter((m) => {
+                  const url = m.twitter?.tweet_url;
+                  if (!url) return false;
+                  const match = url.match(/\/status\/(\d+)/);
+                  return !match || match[1].length < 15;
+                }).length;
+                const hasImageIssue =
+                  !!ev.image && !isAllowedImageUrl(ev.image);
 
                 return (
                   <div
@@ -276,14 +290,28 @@ export default function SubmissionsPage() {
                       <div className="flex items-start gap-4">
                         {/* Image thumbnail */}
                         {ev.image && (
-                          <img
-                            src={ev.image}
-                            alt=""
-                            className="w-16 h-16 rounded-lg border border-white/10 object-cover shrink-0"
-                            onError={(e) => {
-                              e.currentTarget.style.display = "none";
-                            }}
-                          />
+                          <div className="relative shrink-0">
+                            <img
+                              src={ev.image}
+                              alt=""
+                              className={`w-16 h-16 rounded-lg border object-cover ${
+                                isAllowedImageUrl(ev.image)
+                                  ? "border-white/10"
+                                  : "border-red-500/50"
+                              }`}
+                              onError={(e) => {
+                                e.currentTarget.style.display = "none";
+                              }}
+                            />
+                            {!isAllowedImageUrl(ev.image) && (
+                              <span
+                                className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 text-white text-[8px] flex items-center justify-center font-bold"
+                                title="Image domain not whitelisted — will be replaced with fallback on approval"
+                              >
+                                !
+                              </span>
+                            )}
+                          </div>
                         )}
 
                         <div className="flex-1 min-w-0">
@@ -350,6 +378,18 @@ export default function SubmissionsPage() {
                             <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] text-white/40">
                               {twitterCount} tweet{twitterCount !== 1 ? "s" : ""}
                             </span>
+                            {(hasImageIssue || suspiciousTweetCount > 0) && (
+                              <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-300">
+                                {[
+                                  hasImageIssue && "bad image",
+                                  suspiciousTweetCount > 0 &&
+                                    `${suspiciousTweetCount} fake tweet${suspiciousTweetCount > 1 ? "s" : ""}`,
+                                ]
+                                  .filter(Boolean)
+                                  .join(", ")}
+                                {" — auto-fixed on approve"}
+                              </span>
+                            )}
                           </div>
                         </div>
 
@@ -371,14 +411,25 @@ export default function SubmissionsPage() {
 
                           {/* Image */}
                           {ev.image && (
-                            <img
-                              src={ev.image}
-                              alt="Event"
-                              className="max-h-48 rounded-md border border-white/10 object-cover"
-                              onError={(e) => {
-                                e.currentTarget.style.display = "none";
-                              }}
-                            />
+                            <div>
+                              <img
+                                src={ev.image}
+                                alt="Event"
+                                className={`max-h-48 rounded-md border object-cover ${
+                                  isAllowedImageUrl(ev.image)
+                                    ? "border-white/10"
+                                    : "border-red-500/50"
+                                }`}
+                                onError={(e) => {
+                                  e.currentTarget.style.display = "none";
+                                }}
+                              />
+                              {!isAllowedImageUrl(ev.image) && (
+                                <p className="mt-1 text-xs text-red-400">
+                                  Image domain not whitelisted — will be auto-replaced with fallback on approval
+                                </p>
+                              )}
+                            </div>
                           )}
 
                           <div className="grid gap-2 text-sm">
