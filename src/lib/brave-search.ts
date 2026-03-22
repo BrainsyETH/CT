@@ -89,13 +89,14 @@ async function executeBraveQuery(
 /**
  * Search Brave for crypto history events on a given calendar date.
  *
- * Runs multiple queries to maximize coverage across all years (2014-present):
- * 1. General "on this day in crypto" query
- * 2. Broader crypto history query covering past years
- * 3. Current/recent year events for this date
- * 4. Twitter/X-specific query for real tweet embeds
+ * Runs multiple targeted queries to surface CT-native content:
+ * 1. "On this day in crypto" listicles
+ * 2. Hacks, exploits, rug pulls, and security drama
+ * 3. CT culture, lore, and named actors (ZachXBT, Cobie, etc.)
+ * 4. Current/recent year events for this date
+ * 5. Twitter/X posts from CT accounts for real tweet embeds
  *
- * Returns deduplicated results (up to 40).
+ * Returns deduplicated results (up to 50).
  */
 export async function searchCryptoHistory(
   month: number,
@@ -116,14 +117,20 @@ export async function searchCryptoHistory(
   const paddedDay = String(day).padStart(2, "0");
 
   const queries = [
-    // General "on this day" query
-    `"on this day in crypto" ${monthName} ${day}`,
-    // Broad crypto history for this calendar date (all years)
-    `cryptocurrency blockchain "${monthName} ${day}" hack OR exploit OR launch OR milestone OR regulation 2014..${currentYear}`,
+    // General "on this day" crypto history
+    `"on this day in crypto" "${monthName} ${day}"`,
+
+    // Hacks, exploits, rug pulls — the bread and butter of CT
+    `crypto "${monthName} ${day}" hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability site:rekt.news OR site:theblock.co OR site:decrypt.co`,
+
+    // CT lore, named actors, community drama
+    `crypto "${monthName} ${day}" zachxbt OR cobie OR "do kwon" OR sbf OR "sam bankman" OR vitalik OR "cz binance" OR "rug pull" OR "on-chain" OR memecoin`,
+
     // Current and recent year events for this exact date
-    `crypto "${currentYear}-${paddedMonth}-${paddedDay}" OR "${currentYear - 1}-${paddedMonth}-${paddedDay}" OR "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
-    // Twitter/X query for real tweet embeds with status URLs
-    `site:x.com crypto "${monthName} ${day}" hack OR launch OR exploit OR milestone`,
+    `crypto blockchain "${currentYear}-${paddedMonth}-${paddedDay}" OR "${currentYear - 1}-${paddedMonth}-${paddedDay}" OR "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
+
+    // Twitter/X posts from CT-native accounts for real tweet embeds
+    `site:x.com "${monthName} ${day}" (zachxbt OR cobie OR loomdart OR degenspartan OR Pentoshi OR laurashin OR balajis OR coldbloodshill) crypto`,
   ];
 
   // Run all queries in parallel
@@ -152,5 +159,5 @@ export async function searchCryptoHistory(
     }
   }
 
-  return unique.slice(0, 40);
+  return unique.slice(0, 50);
 }
