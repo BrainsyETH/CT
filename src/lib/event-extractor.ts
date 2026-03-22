@@ -61,7 +61,7 @@ SCHEMA (match types exactly)
   "category": ["One or more Categories from list", "No more than 3 categories"],
   "tags": ["One or more Tags from list"],
   "mode": ["timeline" and/or "crimeline"],
-  "image": "string URL (no placeholders)",
+  "image": "string URL or null. ONLY use URLs from: pbs.twimg.com, i.imgur.com, images.unsplash.com. Set to null if no valid image available.",
   "media": [
     { "type": "video", "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" } },
     { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } },

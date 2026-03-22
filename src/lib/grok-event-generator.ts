@@ -44,10 +44,21 @@ function buildUserPrompt(
 
   const resultsList = searchResults
     .map(
-      (r) =>
-        `---\nTitle: ${r.title}\nURL: ${r.url}\nDescription: ${r.description}\n---`
+      (r) => {
+        let entry = `---\nTitle: ${r.title}\nURL: ${r.url}\nDescription: ${r.description}`;
+        if (r.thumbnail) {
+          entry += `\nImage: ${r.thumbnail}`;
+        }
+        entry += "\n---";
+        return entry;
+      }
     )
     .join("\n");
+
+  // Collect all valid thumbnails for the prompt
+  const availableImages = searchResults
+    .filter((r) => r.thumbnail)
+    .map((r) => r.thumbnail!);
 
   return `TODAY'S DATE CONTEXT: ${monthName} ${day}
 
@@ -123,8 +134,15 @@ TECHNICAL REQUIREMENTS:
 7. Use tags from: ATH, CULTURAL, ECONOMIC, FAILURE, MILESTONE, REGULATORY, SECURITY, TECH
 
 IMAGE REQUIREMENTS:
-8. For "image", ONLY use URLs from: pbs.twimg.com, i.imgur.com, images.unsplash.com
-   Set image to null if no valid URL available (a fallback is applied automatically). NEVER use news site URLs or imgs.search.brave.com (these expire within hours).
+8. For "image", ONLY use URLs from these whitelisted domains:
+   - pbs.twimg.com (PREFERRED — pull from relevant tweets, e.g. https://pbs.twimg.com/media/...)
+   - i.imgur.com
+   - images.unsplash.com
+   Since you have access to X/Twitter content, use pbs.twimg.com image URLs from tweets related to each event. These are the most relevant and always work.
+   If a search result above has an "Image:" line, that URL has already been validated and is safe to use.
+   Set image to null if no valid URL is available — a fallback image is applied automatically.
+   NEVER use news site URLs, CDN URLs, or imgs.search.brave.com (these all expire).
+   NEVER use empty string "" — always use null instead.${availableImages.length > 0 ? `\n\nPRE-VALIDATED IMAGES (safe to use):\n${availableImages.map((u) => `   - ${u}`).join("\n")}` : ""}
 
 TWITTER/X MEDIA REQUIREMENTS:
 9. ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:
@@ -176,7 +194,10 @@ function normalizeEvent(event: Event): Event {
   event.links = Array.isArray(event.links) ? event.links : [];
   event.media = Array.isArray(event.media) ? event.media : [];
 
-  // Image validation — only allow whitelisted domains, use fallback otherwise
+  // Image validation — treat empty string as no image, only allow whitelisted domains
+  if (event.image === "") {
+    event.image = undefined;
+  }
   if (event.image && !isAllowedImageUrl(event.image)) {
     console.warn(
       `Event "${event.id}" image from non-whitelisted domain, using fallback: ${event.image}`
