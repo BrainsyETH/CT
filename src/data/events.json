@@ -1419,40 +1419,21 @@
       "FAILURE",
       "ECONOMIC"
     ],
+    "image": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png",
     "mode": [
       "crimeline"
     ],
     "media": [
       {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      },
-      {
-        "type": "twitter",
-        "twitter": {
-          "tweet_url": "",
-          "account_handle": ""
-        }
-      },
-      {
         "type": "image",
         "image": {
-          "url": "",
-          "alt": "",
-          "caption": ""
+          "url": "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png",
+          "alt": "Three Arrows Capital collapse",
+          "caption": "Three Arrows Capital defaulted on $3.5B in obligations"
         }
       }
     ],
     "links": [
-      {
-        "label": "3AC Collapse",
-        "url": "https://www.coindesk.com/business/2022/07/01/three-arrows-capital-files-for-chapter-15-bankruptcy/"
-      },
       {
         "label": "3AC Collapse",
         "url": "https://www.coindesk.com/business/2022/07/01/three-arrows-capital-files-for-chapter-15-bankruptcy/"
@@ -1469,10 +1450,7 @@
       ],
       "aftermath": "Founders fled Singapore; creditors pursuing billions in claims.",
       "status": "Ongoing"
-    },
-    "images": [
-      "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/blob-2026-01-11%20at%2011.03.02%20AM.png"
-    ]
+    }
   },
   {
     "id": "voyager-bankruptcy-2022-07-05",
@@ -8056,22 +8034,13 @@
     "mode": [
       "crimeline"
     ],
-    "image": "",
+    "image": null,
     "media": [
-      {
-        "type": "video",
-        "video": {
-          "provider": "",
-          "url": "",
-          "embed_url": "",
-          "poster_url": ""
-        }
-      },
       {
         "type": "twitter",
         "twitter": {
           "tweet_url": "https://x.com/belizardd/status/1781967178515796123?s=20",
-          "account_handle": ""
+          "account_handle": "belizardd"
         }
       },
       {
@@ -8680,30 +8649,7 @@
             "timeline"
           ],
           "image": null,
-          "media": [
-            {
-              "type": "twitter",
-              "twitter": {
-                "tweet_url": "",
-                "account_handle": "beaniemaxi"
-              }
-            },
-            {
-              "type": "twitter",
-              "twitter": {
-                "tweet_url": "",
-                "account_handle": "zachxbt"
-              }
-            },
-            {
-              "type": "image",
-              "image": {
-                "url": "",
-                "alt": "",
-                "caption": ""
-              }
-            }
-          ],
+          "media": [],
           "links": [
             { "label": "NFTethics Thread", "url": "https://threadreaderapp.com/scrolly/1483051289022017538" },
             { "label": "Highsnobiety Expose", "url": "https://www.highsnobiety.com/p/beaniemaxi-nft-crypto-allegations-exposed/" },
