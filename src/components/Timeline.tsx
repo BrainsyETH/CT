@@ -514,15 +514,16 @@ export function Timeline({ events }: TimelineProps) {
                 </div>
               </motion.div>
             )}
-            {/* Year Selector - fixed bottom bar on mobile/tablet */}
-            <MobileYearSelector
-              years={years}
-              currentYear={currentYear}
-              onJump={scrollToYear}
-            />
           </div>
         </div>
       </div>
+
+      {/* Year Selector - fixed bottom bar on mobile/tablet, rendered outside filter flow */}
+      <MobileYearSelector
+        years={years}
+        currentYear={currentYear}
+        onJump={scrollToYear}
+      />
 
       <div className="flex gap-6">
         {/* Year Jump Sidebar */}
