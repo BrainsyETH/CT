@@ -70,6 +70,9 @@ export function sanitizeEventMedia(eventData: Partial<Event>): SanitizeResult {
   const event = { ...eventData };
 
   // --- Image validation ---
+  if (event.image === "") {
+    event.image = undefined;
+  }
   if (event.image && !isAllowedImageUrl(event.image)) {
     warnings.push(
       `Image replaced: "${event.image}" is not from a whitelisted domain`

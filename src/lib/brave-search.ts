@@ -13,12 +13,17 @@ export interface BraveSearchResult {
   title: string;
   url: string;
   description: string;
+  /** Thumbnail URL from Brave results, only included if from a whitelisted image domain */
+  thumbnail?: string;
 }
 
 interface BraveWebResult {
   title?: string;
   url?: string;
   description?: string;
+  thumbnail?: {
+    src?: string;
+  };
 }
 
 interface BraveSearchResponse {
@@ -33,6 +38,34 @@ interface BraveSearchResponse {
 
 const BRAVE_SEARCH_URL = "https://api.search.brave.com/res/v1/web/search";
 const FETCH_TIMEOUT_MS = 15_000;
+
+/** Thumbnail domains that are stable (won't expire) and whitelisted in next.config.ts */
+const USABLE_THUMB_DOMAINS = [
+  "pbs.twimg.com",
+  "i.imgur.com",
+  "images.unsplash.com",
+  "preview.redd.it",
+  "public.bnbstatic.com",
+];
+
+/** Vercel Blob storage subdomain pattern */
+const VERCEL_BLOB_SUFFIX = ".public.blob.vercel-storage.com";
+
+/**
+ * Check if a Brave thumbnail URL is from a stable, whitelisted domain.
+ * Excludes imgs.search.brave.com (expires within hours).
+ */
+function isUsableThumbnail(url: string): boolean {
+  try {
+    const hostname = new URL(url).hostname;
+    if (hostname.endsWith(VERCEL_BLOB_SUFFIX)) return true;
+    return USABLE_THUMB_DOMAINS.some(
+      (d) => hostname === d || hostname.endsWith(`.${d}`)
+    );
+  } catch {
+    return false;
+  }
+}
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -76,11 +109,19 @@ async function executeBraveQuery(
       .filter((r): r is Required<Pick<BraveWebResult, "title" | "url">> & BraveWebResult =>
         Boolean(r.title && r.url)
       )
-      .map((r) => ({
-        title: r.title!,
-        url: r.url!,
-        description: r.description ?? "",
-      }));
+      .map((r) => {
+        const result: BraveSearchResult = {
+          title: r.title!,
+          url: r.url!,
+          description: r.description ?? "",
+        };
+        // Pass through thumbnail if it's from a usable domain (not imgs.search.brave.com which expires)
+        const thumbSrc = r.thumbnail?.src;
+        if (thumbSrc && isUsableThumbnail(thumbSrc)) {
+          result.thumbnail = thumbSrc;
+        }
+        return result;
+      });
   } finally {
     clearTimeout(timeout);
   }
