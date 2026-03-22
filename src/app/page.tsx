@@ -4,8 +4,6 @@ import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
 import { getAllEvents, getEventById, getEventsOnThisWeek } from "@/lib/events-db";
 import { formatDate, generateEventSlug } from "@/lib/formatters";
-import eventsJson from "@/data/events.json";
-import type { Event } from "@/lib/types";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -32,9 +30,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     value.length > maxLength ? `${value.slice(0, maxLength - 3).trimEnd()}...` : value;
 
   if (eventId) {
-    const event = await getEventById(eventId)
-      ?? (eventsJson as Event[]).find((e) => e.id === eventId)
-      ?? null;
+    const event = await getEventById(eventId);
     if (event) {
       const title = `${event.title} | Chain of Events`;
       const description = event.summary;
@@ -113,20 +109,6 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
-/**
- * Merge events from events.json that aren't already in the database.
- * This ensures newly added JSON events are visible before DB migration.
- */
-function mergeJsonEvents(dbEvents: Event[]): Event[] {
-  const dbIds = new Set(dbEvents.map((e) => e.id));
-  const jsonOnly = (eventsJson as Event[]).filter((e) => !dbIds.has(e.id));
-  if (jsonOnly.length === 0) return dbEvents;
-  // Merge and sort by date descending
-  return [...dbEvents, ...jsonOnly].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-}
-
 export default async function Home() {
   // Fetch all events and this-week events in parallel
   const [{ events }, weeklyEvents] = await Promise.all([
@@ -140,12 +122,9 @@ export default async function Home() {
     getEventsOnThisWeek(new Date(), { limit: 20 }),
   ]);
 
-  // Merge any events from events.json not yet in the database
-  const mergedEvents = mergeJsonEvents(events);
-
   return (
     <Suspense fallback={null}>
-      <HomeContent events={mergedEvents} weeklyEvents={weeklyEvents} />
+      <HomeContent events={events} weeklyEvents={weeklyEvents} />
     </Suspense>
   );
 }
