@@ -67,6 +67,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         )}
       </AnimatePresence>
       {children}
+      {/* CRT scan-line overlay for Crimeline mode */}
+      {isCrimeline && <div className="crt-overlay" aria-hidden="true" />}
     </div>
   );
 }

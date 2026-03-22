@@ -174,6 +174,7 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore (Crypto Twitter history)"
+              title="CT Lore — Crypto Twitter history"
               className={`neo-brutalist-btn flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap ${
                 isCtLoreActive
                   ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
@@ -181,7 +182,7 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-4 h-4" />
-              <span>CT</span>
+              <span>CT Lore</span>
             </button>
 
             {/* Mode Toggle */}
@@ -261,6 +262,7 @@ export function Header() {
               onClick={() => toggleCategory("CT Lore")}
               aria-pressed={isCtLoreActive}
               aria-label="Filter by CT Lore"
+              title="CT Lore — Crypto Twitter history"
               className={`neo-brutalist-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs ${
                 isCtLoreActive
                   ? "bg-sky-200 text-sky-900 border-sky-400 neo-brutalist-btn-premium-active"
@@ -268,7 +270,7 @@ export function Header() {
               }`}
             >
               <TwitterBirdIcon className="w-3.5 h-3.5" />
-              <span>CT</span>
+              <span>CT Lore</span>
             </button>
 
             {/* Mode Toggle - Compact */}

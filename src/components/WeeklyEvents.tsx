@@ -72,6 +72,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
               isCrimeline ? "text-purple-300" : "text-gray-800"
             }`}
           >
+  
             On This Week
           </h2>
           <span
@@ -82,6 +83,13 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
             }`}
           >
             {weekLabel}
+          </span>
+          <span
+            className={`hidden sm:inline text-xs ${
+              isCrimeline ? "text-gray-500" : "text-gray-400"
+            }`}
+          >
+            What happened this week in crypto history
           </span>
         </div>
 
@@ -159,7 +167,7 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
                         : "bg-gradient-to-t from-white via-white/20 to-transparent"
                     }`}
                   />
-                  {/* Year badge */}
+                  {/* Year badge with "years ago" */}
                   <div
                     className={`absolute top-2 right-2 px-2 py-0.5 rounded text-xs font-bold ${
                       useCrimelineStyle
@@ -167,7 +175,10 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
                         : "bg-teal-600/90 text-white"
                     }`}
                   >
-                    {event.date.slice(0, 4)}
+                    {(() => {
+                      const yearsAgo = new Date().getFullYear() - parseInt(event.date.slice(0, 4));
+                      return yearsAgo > 0 ? `${yearsAgo}y ago` : event.date.slice(0, 4);
+                    })()}
                   </div>
                 </div>
 

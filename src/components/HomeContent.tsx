@@ -6,8 +6,10 @@ import { Header } from "@/components/Header";
 import { Timeline } from "@/components/Timeline";
 import { EventDetailModal } from "@/components/EventDetailModal";
 import { Footer } from "@/components/Footer";
-import { WeeklyEvents } from "@/components/WeeklyEvents";
 import { FeedbackModal } from "@/components/FeedbackModal";
+import { OnThisDayCard } from "@/components/OnThisDayCard";
+import { DamageCounter } from "@/components/DamageCounter";
+import { RandomEventButton } from "@/components/RandomEventButton";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
 import { getLocalEvents } from "@/lib/local-events";
@@ -15,10 +17,9 @@ import type { Event } from "@/lib/types";
 
 interface HomeContentProps {
   events: Event[];
-  weeklyEvents?: Event[];
 }
 
-export function HomeContent({ events, weeklyEvents = [] }: HomeContentProps) {
+export function HomeContent({ events }: HomeContentProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [localEvents, setLocalEvents] = useState<Event[]>([]);
 
@@ -65,15 +66,18 @@ export function HomeContent({ events, weeklyEvents = [] }: HomeContentProps) {
   return (
     <ThemeProvider>
       <Header />
-      <main className="pt-32 pb-16 px-4">
+      <main className="pt-40 md:pt-32 pb-20 lg:pb-16 px-4">
         <div className="max-w-6xl mx-auto">
-          {weeklyEvents.length > 0 && (
-            <WeeklyEvents events={weeklyEvents} />
-          )}
+          {/* Random event button — always accessible below header */}
+          <div className="flex items-center justify-center mb-4">
+            <RandomEventButton events={combinedEvents} />
+          </div>
+          <OnThisDayCard events={combinedEvents} />
           <Timeline events={combinedEvents} />
         </div>
       </main>
       <Footer />
+      <DamageCounter events={combinedEvents} />
       <EventDetailModal events={combinedEvents} />
       <FeedbackModal
         isOpen={feedbackModal.isOpen}
