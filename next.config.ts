@@ -24,10 +24,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-      {
-        protocol: "https",
-        hostname: "imgs.search.brave.com",
-      },
+      // NOTE: imgs.search.brave.com removed — URLs expire within hours, causing broken images
       {
         protocol: "https",
         hostname: "img.paragraph.com",

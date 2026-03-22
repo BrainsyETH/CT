@@ -16,7 +16,7 @@ import type { Event, MediaItem } from "./types";
 const ALLOWED_IMAGE_HOSTNAMES = [
   "pbs.twimg.com",
   "i.imgur.com",
-  "imgs.search.brave.com",
+  // NOTE: imgs.search.brave.com intentionally excluded — URLs expire within hours
   "images.unsplash.com",
   "99bitcoins.com",
   "img.paragraph.com",
