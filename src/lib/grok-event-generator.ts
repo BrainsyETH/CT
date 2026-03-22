@@ -123,8 +123,8 @@ TECHNICAL REQUIREMENTS:
 7. Use tags from: ATH, CULTURAL, ECONOMIC, FAILURE, MILESTONE, REGULATORY, SECURITY, TECH
 
 IMAGE REQUIREMENTS:
-8. For "image", ONLY use URLs from: pbs.twimg.com, i.imgur.com, imgs.search.brave.com, images.unsplash.com
-   Set image to null if no valid URL available (fallback applied automatically). NEVER use news site URLs.
+8. For "image", ONLY use URLs from: pbs.twimg.com, i.imgur.com, images.unsplash.com
+   Set image to null if no valid URL available (a fallback is applied automatically). NEVER use news site URLs or imgs.search.brave.com (these expire within hours).
 
 TWITTER/X MEDIA REQUIREMENTS:
 9. ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, PanInfo } from "framer-motion";
-import { memo, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
@@ -27,6 +27,8 @@ function EventCardBase({ event, index }: EventCardProps) {
   // Use optimized mobile detection that avoids re-renders
   const mobile = useMobileDetection();
   const dragOccurredRef = useRef(false);
+  const [imgError, setImgError] = useState(false);
+  const handleImgError = useCallback(() => setImgError(true), []);
 
   // Preload first media item when card is near viewport
   const cardRef = useRef<HTMLDivElement>(null);
@@ -183,12 +185,15 @@ function EventCardBase({ event, index }: EventCardProps) {
               isCrimeline ? "bg-gray-900" : "bg-gray-100"
             }`}>
               <Image
-                src={event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
+                src={imgError
+                  ? (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)
+                  : (event.video?.poster_url || event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE))}
                 alt={event.title}
                 fill
                 priority={index < 2}
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                onError={handleImgError}
               />
               <div
                 className={`absolute inset-0 ${
