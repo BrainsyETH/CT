@@ -8666,7 +8666,7 @@
           "id": "beaniemaxi-bgld-nftethics-expose-2022-01-17",
           "date": "2022-01-17",
           "title": "NFTethics Exposes Beaniemaxi as Serial Scammer in 70-Tweet Thread",
-          "summary": "Anonymous Twitter account @NFTethics published a devastating 70-tweet thread doxxing influential NFT figure Beaniemaxi (allegedly Charles Moscoe) as a serial scammer behind the BGLD (Based Gold) token rug pull and the failed TokenPay ICO. Beanie had launched Bloot, a parody of the text-based NFT project Loot, in September 2021 and airdropped BGLD tokens to holders while promising to 'make it his life mission to integrate $BGLD into everything.' The token collapsed 99.97% from $1.10 to $0.00036, with $143M in total trading volume evaporating. After the expose, Pixel Vault and Wolf Game publicly severed ties with Beanie, ZachXBT named him the #1 worst NFT account to follow citing 'awful takes / BGLD scam,' and Beanie went silent for most of 2022. He eventually returned with an apology that 65% of CT rejected in a community poll.",
+          "summary": "Anonymous Twitter account @NFTethics published a devastating 70-tweet thread doxxing influential NFT figure Beaniemaxi (allegedly Charles Moscoe) as a serial scammer, followed by @ProbablyShady's own 73-tweet thread alleging Beanie siphoned $40M (12,500 ETH) across projects. Beanie had launched Bloot, a parody of Dom Hofmann's Loot NFTs, in September 2021, airdropping 10,000 BGLD (Based Gold) tokens per holder while promising to 'make it his life mission to integrate $BGLD into everything.' The token collapsed 99.97% from $1.10 to $0.00036 across $143M in trading volume. Investigators revealed @beaniemaxi was allegedly not one person but a team of professional marketers, and connected him to the failed TokenPay ICO ($22-34M raised, investors got nothing) and Panama Papers-linked entities. Pixel Vault and Wolf Game publicly severed ties, ZachXBT had already named him the #1 worst NFT account to follow citing 'awful takes / BGLD scam,' and Beanie went silent for most of 2022 before returning with an apology that 65% of CT rejected in a community poll.",
           "category": [
             "CT Lore",
             "NFTs",
@@ -8705,8 +8705,8 @@
             }
           ],
           "links": [
+            { "label": "NFTethics Thread", "url": "https://threadreaderapp.com/scrolly/1483051289022017538" },
             { "label": "Highsnobiety Expose", "url": "https://www.highsnobiety.com/p/beaniemaxi-nft-crypto-allegations-exposed/" },
-            { "label": "Beanie Returns to Twitter", "url": "https://luckytrader.com/nft/blootofficial/news/beanie-returns-to-twitter-breaks-silence" },
             { "label": "BGLD on Etherscan", "url": "https://etherscan.io/token/0xba7970f10d9f0531941dced1dda7ef3016b24e5b" }
           ],
           "metrics": {}
