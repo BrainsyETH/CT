@@ -5,6 +5,8 @@
  * using multiple query strategies to maximize coverage.
  */
 
+import { isAllowedImageUrl } from "./event-sanitize";
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -13,7 +15,7 @@ export interface BraveSearchResult {
   title: string;
   url: string;
   description: string;
-  /** Thumbnail URL from Brave results, only included if from a whitelisted image domain */
+  /** Thumbnail URL from Brave results, only included if not from Brave's expiring proxy */
   thumbnail?: string;
 }
 
@@ -195,4 +197,106 @@ export async function searchCryptoHistory(
   }
 
   return unique.slice(0, 75);
+}
+
+// ============================================================================
+// Image Search — find images from whitelisted domains for events
+// ============================================================================
+
+interface BraveImageResult {
+  thumbnail?: { src?: string };
+  properties?: { url?: string };
+  url?: string;
+}
+
+interface BraveImageSearchResponse {
+  results?: BraveImageResult[];
+}
+
+const BRAVE_IMAGE_SEARCH_URL = "https://api.search.brave.com/res/v1/images/search";
+
+/**
+ * Search Brave Images for a query and return the first image URL
+ * that matches our whitelisted domains (next.config.ts remotePatterns).
+ */
+async function searchBraveImages(
+  query: string,
+  apiKey: string
+): Promise<string | null> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+
+  try {
+    const params = new URLSearchParams({
+      q: query,
+      count: "20",
+      safesearch: "off",
+    });
+    const response = await fetch(`${BRAVE_IMAGE_SEARCH_URL}?${params}`, {
+      headers: {
+        Accept: "application/json",
+        "Accept-Encoding": "gzip",
+        "X-Subscription-Token": apiKey,
+      },
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      console.warn(`Brave Image Search HTTP ${response.status} for "${query}"`);
+      return null;
+    }
+
+    const data: BraveImageSearchResponse = await response.json();
+    const results = data.results ?? [];
+
+    // Find the first image from a whitelisted domain
+    for (const result of results) {
+      // properties.url is the actual source image URL
+      const sourceUrl = result.properties?.url || result.url;
+      if (sourceUrl && isAllowedImageUrl(sourceUrl)) {
+        return sourceUrl;
+      }
+      // Also check thumbnail.src as a fallback
+      const thumbUrl = result.thumbnail?.src;
+      if (thumbUrl && isAllowedImageUrl(thumbUrl)) {
+        return thumbUrl;
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.warn(`Brave Image Search failed for "${query}":`, error);
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+/**
+ * Find an image from a whitelisted domain for an event.
+ * Tries multiple search strategies: event title, category + keywords, etc.
+ */
+export async function findEventImage(
+  eventTitle: string,
+  categories: string[]
+): Promise<string | null> {
+  const apiKey = process.env.BRAVE_SEARCH_API_KEY;
+  if (!apiKey) return null;
+
+  // Strategy 1: Search for the event title + "crypto"
+  const titleResult = await searchBraveImages(
+    `${eventTitle} crypto`,
+    apiKey
+  );
+  if (titleResult) return titleResult;
+
+  // Strategy 2: Search with category keywords on image-heavy sites
+  const categoryTerms = categories.join(" ");
+  const siteResult = await searchBraveImages(
+    `${categoryTerms} crypto site:reddit.com OR site:imgur.com`,
+    apiKey
+  );
+  if (siteResult) return siteResult;
+
+  return null;
 }

@@ -24,16 +24,6 @@ const ALLOWED_IMAGE_HOSTNAMES = [
   "public.bnbstatic.com",
   "placeholder.co",
   "asset-metadata-service-production.s3.amazonaws.com",
-  // Stable CDN domains used by major crypto news sites
-  "images.ctfassets.net",
-  "res.cloudinary.com",
-  "cdn.sanity.io",
-  "static.coindesk.com",
-  "www.tbstat.com",
-  "cdn.decrypt.co",
-  "img.decrypt.co",
-  "www.coindesk.com",
-  "blockworks-res.cloudinary.com",
 ];
 
 /** Vercel Blob storage subdomain pattern (fallback images) */
@@ -47,8 +37,6 @@ export function isAllowedImageUrl(url: string): boolean {
     const hostname = new URL(url).hostname;
     // Check Vercel Blob storage
     if (hostname.endsWith(VERCEL_BLOB_SUFFIX)) return true;
-    // Check AWS S3 buckets (*.s3.amazonaws.com or s3.amazonaws.com)
-    if (hostname === "s3.amazonaws.com" || hostname.endsWith(".s3.amazonaws.com")) return true;
     // Check explicit allowlist
     return ALLOWED_IMAGE_HOSTNAMES.some(
       (allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`)
