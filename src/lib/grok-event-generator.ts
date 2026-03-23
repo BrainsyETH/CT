@@ -134,15 +134,13 @@ TECHNICAL REQUIREMENTS:
 7. Use tags from: ATH, CULTURAL, ECONOMIC, FAILURE, MILESTONE, REGULATORY, SECURITY, TECH
 
 IMAGE REQUIREMENTS:
-8. For "image", ONLY use URLs from these whitelisted domains:
-   - pbs.twimg.com (PREFERRED — pull from relevant tweets, e.g. https://pbs.twimg.com/media/...)
-   - i.imgur.com
-   - images.unsplash.com
-   Since you have access to X/Twitter content, use pbs.twimg.com image URLs from tweets related to each event. These are the most relevant and always work.
-   If a search result above has an "Image:" line, that URL has already been validated and is safe to use.
-   Set image to null if no valid URL is available — a fallback image is applied automatically.
-   NEVER use news site URLs, CDN URLs, or imgs.search.brave.com (these all expire).
-   NEVER use empty string "" — always use null instead.${availableImages.length > 0 ? `\n\nPRE-VALIDATED IMAGES (safe to use):\n${availableImages.map((u) => `   - ${u}`).join("\n")}` : ""}
+8. For "image", you MUST use an image URL from the search results above.
+   - Look for "Image:" lines in the search results — these are real, stable URLs.
+   - Match each event to the most relevant search result image.
+   - DO NOT fabricate or guess image URLs. Only use URLs that appear verbatim in the search results above.
+   - If no search result has a relevant image, set image to null (a fallback is applied automatically).
+   - NEVER use imgs.search.brave.com (expires within hours).
+   - NEVER use empty string "" — always use null instead.${availableImages.length > 0 ? `\n\nAVAILABLE IMAGES FROM SEARCH RESULTS (use these!):\n${availableImages.map((u) => `   - ${u}`).join("\n")}` : ""}
 
 TWITTER/X MEDIA REQUIREMENTS:
 9. ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:

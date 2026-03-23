@@ -39,29 +39,17 @@ interface BraveSearchResponse {
 const BRAVE_SEARCH_URL = "https://api.search.brave.com/res/v1/web/search";
 const FETCH_TIMEOUT_MS = 15_000;
 
-/** Thumbnail domains that are stable (won't expire) and whitelisted in next.config.ts */
-const USABLE_THUMB_DOMAINS = [
-  "pbs.twimg.com",
-  "i.imgur.com",
-  "images.unsplash.com",
-  "preview.redd.it",
-  "public.bnbstatic.com",
-];
-
-/** Vercel Blob storage subdomain pattern */
-const VERCEL_BLOB_SUFFIX = ".public.blob.vercel-storage.com";
-
 /**
- * Check if a Brave thumbnail URL is from a stable, whitelisted domain.
- * Excludes imgs.search.brave.com (expires within hours).
+ * Check if a Brave thumbnail URL is usable (not Brave's own proxy which expires).
+ * We pass through all other thumbnails — downstream validation in event-sanitize.ts
+ * handles final whitelisting against next.config.ts domains.
  */
 function isUsableThumbnail(url: string): boolean {
   try {
     const hostname = new URL(url).hostname;
-    if (hostname.endsWith(VERCEL_BLOB_SUFFIX)) return true;
-    return USABLE_THUMB_DOMAINS.some(
-      (d) => hostname === d || hostname.endsWith(`.${d}`)
-    );
+    // Brave's own image proxy expires within hours — always exclude
+    if (hostname === "imgs.search.brave.com") return false;
+    return true;
   } catch {
     return false;
   }
@@ -161,8 +149,11 @@ export async function searchCryptoHistory(
     // General "on this day" crypto history
     `"on this day in crypto" "${monthName} ${day}"`,
 
+    // Broader "this day in crypto" variants
+    `crypto history "${monthName} ${day}" bitcoin OR ethereum OR defi`,
+
     // Hacks, exploits, rug pulls — the bread and butter of CT
-    `crypto "${monthName} ${day}" hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability site:rekt.news OR site:theblock.co OR site:decrypt.co`,
+    `crypto "${monthName} ${day}" hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability`,
 
     // CT lore, named actors, community drama
     `crypto "${monthName} ${day}" zachxbt OR cobie OR "do kwon" OR sbf OR "sam bankman" OR vitalik OR "cz binance" OR "rug pull" OR "on-chain" OR memecoin`,
@@ -170,13 +161,16 @@ export async function searchCryptoHistory(
     // Current and recent year events for this exact date
     `crypto blockchain "${currentYear}-${paddedMonth}-${paddedDay}" OR "${currentYear - 1}-${paddedMonth}-${paddedDay}" OR "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
 
+    // Historical crypto events across multiple years
+    `"${monthName} ${day}" crypto bitcoin ethereum launch OR hack OR crash OR milestone OR fork OR upgrade`,
+
     // Twitter/X posts from CT-native accounts for real tweet embeds
     `site:x.com "${monthName} ${day}" (zachxbt OR cobie OR loomdart OR degenspartan OR Pentoshi OR laurashin OR balajis OR coldbloodshill) crypto`,
   ];
 
-  // Run all queries in parallel
+  // Run all queries in parallel (15 results each for better coverage)
   const queryResults = await Promise.allSettled(
-    queries.map((q) => executeBraveQuery(q, apiKey))
+    queries.map((q) => executeBraveQuery(q, apiKey, 15))
   );
 
   // Collect all successful results
@@ -200,5 +194,5 @@ export async function searchCryptoHistory(
     }
   }
 
-  return unique.slice(0, 50);
+  return unique.slice(0, 75);
 }
