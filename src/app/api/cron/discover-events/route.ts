@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
     const month = parseInt(monthStr, 10);
     const day = parseInt(dayStr, 10);
 
-    // 4. Idempotency check — skip if already ran today
+    // 4. Idempotency check — skip if already submitted MAX_EVENTS today
     const todayStart = `${postDate}T00:00:00.000Z`;
     const todayEnd = `${postDate}T23:59:59.999Z`;
     const { data: existingRuns } = await supabase
@@ -105,16 +105,18 @@ export async function GET(request: NextRequest) {
       .select("id")
       .eq("submitted_by_email", CRON_SUBMITTER)
       .gte("submitted_at", todayStart)
-      .lte("submitted_at", todayEnd)
-      .limit(1);
+      .lte("submitted_at", todayEnd);
 
-    if (existingRuns && existingRuns.length > 0) {
+    const todaySubmissionCount = existingRuns?.length ?? 0;
+    if (todaySubmissionCount >= MAX_EVENTS) {
       return NextResponse.json({
-        message: "Already ran today",
+        message: `Already submitted ${todaySubmissionCount} events today (max ${MAX_EVENTS})`,
         status: "skipped",
         postDate,
       });
     }
+
+    const remainingSlots = MAX_EVENTS - todaySubmissionCount;
 
     // 5. Fetch existing events for dedup
     const chicagoDate = new Date(postDate + "T00:00:00Z");
@@ -191,7 +193,7 @@ export async function GET(request: NextRequest) {
       existingIds.push(event.id);
     }
 
-    const eventsToInsert = validEvents.slice(0, MAX_EVENTS);
+    const eventsToInsert = validEvents.slice(0, remainingSlots);
 
     if (eventsToInsert.length === 0) {
       return NextResponse.json({
