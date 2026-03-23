@@ -14,7 +14,7 @@
     },
     {
       "path": "/api/cron/discover-events",
-      "schedule": "0 11 * * *"
+      "schedule": "0 13 * * *"
     }
   ]
 }
