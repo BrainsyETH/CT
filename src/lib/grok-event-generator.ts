@@ -12,6 +12,7 @@ import { FALLBACK_IMAGES } from "./constants";
 import { isAllowedImageUrl } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
+import { findEventImage } from "./brave-search";
 
 // ============================================================================
 // Constants
@@ -304,12 +305,53 @@ export async function generateHistoryEvents(
   }
 
   try {
-    return parseEventsResponse(raw);
+    const events = parseEventsResponse(raw);
+
+    // Enrich events missing images via Brave Image Search
+    await enrichEventImages(events);
+
+    return events;
   } catch (error) {
     console.error("Failed to parse xAI response:", error);
     console.error("Raw response:", raw.slice(0, 1000));
     throw new Error(
       `Failed to parse xAI response: ${error instanceof Error ? error.message : "Unknown error"}`
     );
+  }
+}
+
+// ============================================================================
+// Image Enrichment
+// ============================================================================
+
+/**
+ * For events still using the fallback image, search Brave Images for a
+ * real image from a whitelisted domain. Mutates events in place.
+ */
+async function enrichEventImages(events: Event[]): Promise<void> {
+  const needsImage = events.filter(
+    (e) =>
+      !e.image ||
+      e.image === FALLBACK_IMAGES.TIMELINE ||
+      e.image === FALLBACK_IMAGES.CRIMELINE
+  );
+
+  if (needsImage.length === 0) return;
+
+  // Search for images in parallel (one per event)
+  const results = await Promise.allSettled(
+    needsImage.map((event) =>
+      findEventImage(event.title, event.category)
+    )
+  );
+
+  for (let i = 0; i < needsImage.length; i++) {
+    const result = results[i];
+    if (result.status === "fulfilled" && result.value) {
+      needsImage[i].image = result.value;
+      console.log(
+        `Image found for "${needsImage[i].title}": ${result.value}`
+      );
+    }
   }
 }

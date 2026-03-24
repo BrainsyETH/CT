@@ -45,51 +45,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "public.bnbstatic.com",
       },
-      // Stable CDN domains used by major crypto news sites
-      {
-        protocol: "https",
-        hostname: "images.ctfassets.net",
-      },
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-      {
-        protocol: "https",
-        hostname: "static.coindesk.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.tbstat.com",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.decrypt.co",
-      },
-      {
-        protocol: "https",
-        hostname: "s3.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "*.s3.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "blockworks-res.cloudinary.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.coindesk.com",
-      },
-      {
-        protocol: "https",
-        hostname: "img.decrypt.co",
-      },
     ],
   },
 };
