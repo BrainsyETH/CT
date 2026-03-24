@@ -63,7 +63,11 @@ function buildUserPrompt(
 
   return `TODAY'S DATE CONTEXT: ${monthName} ${day}
 
-You are a Crypto Twitter (CT) historian building a "This Day in Crypto" archive. Find 5 real, verifiable events that happened on ${monthName} ${day} throughout history (2009-${new Date().getFullYear()}, including recent years). Use the search results below as source material.
+You are a Crypto Twitter (CT) historian building a "This Day in Crypto" archive. Find 5 real, verifiable events that happened on ${monthName} ${day} throughout crypto history (2009-${new Date().getFullYear()}).
+
+CRITICAL: Prioritize HISTORICAL events (2009-2023) over current year news. At least 3 of the 5 events should be from prior years. We want deep CT lore — hacks, exploits, protocol deaths, arrests, viral moments — not today's market recaps or whale moves. Current-year events are only worth including if they are genuinely significant (not just "BTC went up 3%").
+
+Use the search results below as source material, but you may also use your own knowledge of crypto history to identify events that happened on this date. If you know of a significant event on ${monthName} ${day} that isn't in the search results, include it — just make sure it's real and verifiable.
 
 EXISTING EVENTS (DO NOT DUPLICATE):
 ${existingList}
