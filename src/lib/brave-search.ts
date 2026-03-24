@@ -147,12 +147,18 @@ export async function searchCryptoHistory(
   const paddedMonth = String(month).padStart(2, "0");
   const paddedDay = String(day).padStart(2, "0");
 
+  // Key years in crypto history for targeted searches
+  const historicalYears = [2011, 2013, 2014, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+  const historicalDateStrings = historicalYears
+    .map((y) => `"${monthName} ${day}, ${y}"`)
+    .join(" OR ");
+
   const queries = [
-    // General "on this day" crypto history
+    // General "on this day" crypto history listicles
     `"on this day in crypto" "${monthName} ${day}"`,
 
-    // Broader "this day in crypto" variants
-    `crypto history "${monthName} ${day}" bitcoin OR ethereum OR defi`,
+    // Historical events across key crypto years — this is the main driver for CT lore
+    `crypto "${monthName} ${day}" (${historicalDateStrings})`,
 
     // Hacks, exploits, rug pulls — the bread and butter of CT
     `crypto "${monthName} ${day}" hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability`,
@@ -160,11 +166,14 @@ export async function searchCryptoHistory(
     // CT lore, named actors, community drama
     `crypto "${monthName} ${day}" zachxbt OR cobie OR "do kwon" OR sbf OR "sam bankman" OR vitalik OR "cz binance" OR "rug pull" OR "on-chain" OR memecoin`,
 
-    // Current and recent year events for this exact date
-    `crypto blockchain "${currentYear}-${paddedMonth}-${paddedDay}" OR "${currentYear - 1}-${paddedMonth}-${paddedDay}" OR "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
+    // Protocol launches, forks, deaths, depegs — the big moments
+    `"${monthName} ${day}" crypto (launch OR fork OR upgrade OR "hard fork" OR depeg OR collapse OR arrest OR indictment OR "shut down")`,
 
-    // Historical crypto events across multiple years
-    `"${monthName} ${day}" crypto bitcoin ethereum launch OR hack OR crash OR milestone OR fork OR upgrade`,
+    // Current year events (just one query, not the dominant focus)
+    `crypto blockchain "${monthName} ${day}, ${currentYear}" OR "${monthName} ${day}, ${currentYear - 1}"`,
+
+    // CT-native sites that cover historical events well
+    `"${monthName} ${day}" crypto site:rekt.news OR site:web3isgoinggreat.com OR site:decrypt.co OR site:theblock.co`,
 
     // Twitter/X posts from CT-native accounts for real tweet embeds
     `site:x.com "${monthName} ${day}" (zachxbt OR cobie OR loomdart OR degenspartan OR Pentoshi OR laurashin OR balajis OR coldbloodshill) crypto`,

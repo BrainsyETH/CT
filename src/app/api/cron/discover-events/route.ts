@@ -33,16 +33,22 @@ function isDuplicate(
   // Exact ID match
   if (existingIds.includes(candidate.id)) return true;
 
-  // Title word overlap
   const normalize = (s: string) =>
     s.toLowerCase().replace(/[^a-z0-9\s]/g, "");
-  const candidateWords = new Set(normalize(candidate.title).split(/\s+/).filter(Boolean));
+  const candidateNorm = normalize(candidate.title);
+  const candidateWords = new Set(candidateNorm.split(/\s+/).filter(Boolean));
 
   for (const title of existingTitles) {
-    const existingWords = new Set(normalize(title).split(/\s+/).filter(Boolean));
+    const existingNorm = normalize(title);
+    const existingWords = new Set(existingNorm.split(/\s+/).filter(Boolean));
+
+    // Word overlap similarity (>60% = duplicate)
     const overlap = [...candidateWords].filter((w) => existingWords.has(w)).length;
     const maxSize = Math.max(candidateWords.size, existingWords.size);
-    if (maxSize > 0 && overlap / maxSize > 0.7) return true;
+    if (maxSize > 0 && overlap / maxSize > 0.6) return true;
+
+    // Substring match — if either title contains the other's key phrase
+    if (candidateNorm.includes(existingNorm) || existingNorm.includes(candidateNorm)) return true;
   }
 
   return false;
@@ -124,11 +130,11 @@ export async function GET(request: NextRequest) {
     const existingIds = existingEvents.map((e) => e.id);
     const existingTitles = existingEvents.map((e) => e.title);
 
-    // 6. Also check pending submissions for this month/day
+    // 6. Also check pending + approved submissions to avoid duplicates
     const { data: pendingSubmissions } = await supabase
       .from("event_submissions")
       .select("event_data")
-      .eq("status", "pending");
+      .in("status", ["pending", "approved"]);
 
     if (pendingSubmissions) {
       for (const sub of pendingSubmissions) {
