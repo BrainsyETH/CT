@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeEventMedia } from "@/lib/event-sanitize";
+import { validateAuthHeader } from "@/lib/crypto-utils";
 import type { Event } from "@/lib/types";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
@@ -14,7 +15,7 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("x-admin-secret");
-    if (!ADMIN_SECRET || !authHeader || authHeader !== ADMIN_SECRET) {
+    if (!validateAuthHeader(authHeader, ADMIN_SECRET)) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
 
@@ -52,7 +53,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const authHeader = request.headers.get("x-admin-secret");
-    if (!ADMIN_SECRET || !authHeader || authHeader !== ADMIN_SECRET) {
+    if (!validateAuthHeader(authHeader, ADMIN_SECRET)) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
 

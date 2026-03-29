@@ -5,6 +5,7 @@ import {
   POSTING_SLOTS,
 } from "@/lib/farcaster";
 import { postEventToTwitter, validateTwitterEnv } from "@/lib/twitter";
+import { safeCompare } from "@/lib/crypto-utils";
 
 /**
  * Twitter Bot Manual Trigger Endpoint
@@ -30,12 +31,12 @@ export async function POST(request: NextRequest) {
     const expectedSecret = process.env.TWITTER_MANUAL_SECRET;
     if (!expectedSecret) {
       return NextResponse.json(
-        { error: "TWITTER_MANUAL_SECRET not configured" },
-        { status: 500 }
+        { error: "Manual trigger not configured" },
+        { status: 503 }
       );
     }
-    if (secretParam !== expectedSecret) {
-      return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
+    if (!safeCompare(secretParam, expectedSecret)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     // Validate environment
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: "Twitter environment not configured",
-          details: error instanceof Error ? error.message : "Unknown error",
+          details: "Required environment variables are missing",
         },
         { status: 500 }
       );
@@ -111,7 +112,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: "Internal server error",
-        details: error instanceof Error ? error.message : "Unknown error",
+        details: "An internal error occurred",
       },
       { status: 500 }
     );

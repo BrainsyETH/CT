@@ -5,6 +5,7 @@ import {
   getCurrentChicagoDateString,
   POSTING_SLOTS,
 } from "@/lib/farcaster";
+import { safeCompare } from "@/lib/crypto-utils";
 
 /**
  * Manual Farcaster Post Trigger
@@ -32,7 +33,10 @@ export async function POST(request: NextRequest) {
 
     // Security check
     const manualSecret = process.env.FARCASTER_MANUAL_SECRET;
-    if (manualSecret && secretParam !== manualSecret) {
+    if (!manualSecret) {
+      return NextResponse.json({ error: "Manual trigger not configured" }, { status: 503 });
+    }
+    if (!safeCompare(secretParam, manualSecret)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -112,7 +116,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: "Internal server error",
-        details: error instanceof Error ? error.message : "Unknown error",
+        details: "An internal error occurred",
       },
       { status: 500 }
     );
