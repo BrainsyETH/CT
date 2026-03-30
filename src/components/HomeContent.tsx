@@ -10,6 +10,9 @@ import { FeedbackModal } from "@/components/FeedbackModal";
 import { OnThisDayCard } from "@/components/OnThisDayCard";
 import { DamageCounter } from "@/components/DamageCounter";
 import { RandomEventButton } from "@/components/RandomEventButton";
+import { HeroSection } from "@/components/HeroSection";
+import { SkeletonTimeline } from "@/components/SkeletonTimeline";
+import { OnboardingTooltip } from "@/components/OnboardingTooltip";
 import { useUrlSync } from "@/hooks/useUrlSync";
 import { useModeStore } from "@/store/mode-store";
 import { getLocalEvents } from "@/lib/local-events";
@@ -60,20 +63,29 @@ export function HomeContent({ events }: HomeContentProps) {
 
   // Don't render until store is hydrated to prevent hydration mismatches
   if (!isHydrated) {
-    return null;
+    return (
+      <ThemeProvider>
+        <Header />
+        <SkeletonTimeline />
+      </ThemeProvider>
+    );
   }
 
   return (
     <ThemeProvider>
       <Header />
+      <OnboardingTooltip />
       <main className="pt-40 md:pt-32 pb-20 lg:pb-16 px-4">
         <div className="max-w-6xl mx-auto">
+          <HeroSection events={combinedEvents} />
           {/* Random event button — always accessible below header */}
           <div className="flex items-center justify-center mb-4">
             <RandomEventButton events={combinedEvents} />
           </div>
           <OnThisDayCard events={combinedEvents} />
-          <Timeline events={combinedEvents} />
+          <div id="timeline-section">
+            <Timeline events={combinedEvents} />
+          </div>
         </div>
       </main>
       <Footer />

@@ -57,6 +57,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    if (query.length > 200) {
+      return NextResponse.json(
+        { error: "Search query too long (max 200 characters)" },
+        { status: 400 }
+      );
+    }
+
     // Parse pagination parameters
     const limitParam = searchParams.get("limit");
     const offsetParam = searchParams.get("offset");
@@ -97,10 +104,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error in /api/v1/events/search:", error);
     return NextResponse.json(
-      {
-        error: "Failed to search events",
-        details: error instanceof Error ? error.message : "Unknown error",
-      },
+      { error: "Failed to search events" },
       { status: 500 }
     );
   }

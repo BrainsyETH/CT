@@ -7,7 +7,7 @@ import { useModeStore } from "@/store/mode-store";
 import { ShareButton } from "./ShareButton";
 import { formatDate, formatCurrency, formatFundsLost } from "@/lib/formatters";
 import { getMediaItems } from "@/lib/media-utils";
-import { FALLBACK_IMAGES } from "@/lib/constants";
+import { FALLBACK_IMAGES, BLUR_PLACEHOLDERS } from "@/lib/constants";
 import { useMobileDetection, getIsMobile } from "@/hooks/useMobileDetection";
 import { preloadTwitterScript } from "./TwitterEmbed";
 import { CategoryIcon } from "./CategoryIcon";
@@ -184,18 +184,18 @@ function EventCardBase({ event, index }: EventCardProps) {
           style={{ touchAction: mobile ? "pan-x pan-y" : "auto" }}
         >
           <div
-            className={`neo-brutalist-card ${
+            className={`neo-brutalist-card transition-transform duration-200 group-hover:-translate-y-0.5 ${
               isFeatured
                 ? isCrimeline
-                  ? "neo-brutalist-card-crimeline neo-brutalist-card-featured-crimeline group-hover:border-purple-300"
+                  ? "neo-brutalist-card-crimeline neo-brutalist-card-featured-crimeline group-hover:border-purple-300 group-hover:shadow-[5px_5px_0_rgba(124,58,237,0.35)]"
                   : useCrimelineStyle
-                  ? "neo-brutalist-card-crimeline-light neo-brutalist-card-featured-crimeline group-hover:border-purple-300"
-                  : "neo-brutalist-card-timeline neo-brutalist-card-featured-timeline group-hover:border-teal-300"
+                  ? "neo-brutalist-card-crimeline-light neo-brutalist-card-featured-crimeline group-hover:border-purple-300 group-hover:shadow-[5px_5px_0_rgba(124,58,237,0.35)]"
+                  : "neo-brutalist-card-timeline neo-brutalist-card-featured-timeline group-hover:border-teal-300 group-hover:shadow-[5px_5px_0_rgba(20,184,166,0.3)]"
                 : isCrimeline
-                ? "neo-brutalist-card-crimeline group-hover:border-purple-400"
+                ? "neo-brutalist-card-crimeline group-hover:border-purple-400 group-hover:shadow-[5px_5px_0_rgba(124,58,237,0.25)]"
                 : useCrimelineStyle
-                ? "neo-brutalist-card-crimeline-light group-hover:border-purple-400"
-                : "neo-brutalist-card-timeline group-hover:border-teal-400"
+                ? "neo-brutalist-card-crimeline-light group-hover:border-purple-400 group-hover:shadow-[5px_5px_0_rgba(124,58,237,0.25)]"
+                : "neo-brutalist-card-timeline group-hover:border-teal-400 group-hover:shadow-[5px_5px_0_rgba(20,184,166,0.2)]"
             }`}
           >
             {/* Event Image */}
@@ -209,6 +209,8 @@ function EventCardBase({ event, index }: EventCardProps) {
                 alt={event.title}
                 fill
                 priority={index < 2}
+                placeholder="blur"
+                blurDataURL={isCrimeline ? BLUR_PLACEHOLDERS.CRIMELINE : BLUR_PLACEHOLDERS.TIMELINE}
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 onError={handleImgError}

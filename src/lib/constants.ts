@@ -131,6 +131,12 @@ export const FALLBACK_IMAGES = {
   CRIMELINE: "https://xcxqku1c8gojqt7x.public.blob.vercel-storage.com/CoE_Crimeline.png",
 } as const;
 
+// Tiny 1x1 pixel base64 blur placeholders for image loading
+export const BLUR_PLACEHOLDERS = {
+  TIMELINE: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+  CRIMELINE: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk4P9fDwAEUAJhfKs0jgAAAABJRU5ErkJggg==",
+} as const;
+
 // ============================================================================
 // Rate Limiting
 // ============================================================================

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { validateAuthHeader } from "@/lib/crypto-utils";
 import type { Event } from "@/lib/types";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
@@ -11,17 +12,9 @@ export async function POST(request: Request) {
     // Validate admin secret
     const authHeader = request.headers.get("x-admin-secret");
 
-    if (!ADMIN_SECRET) {
-      console.error("ADMIN_SECRET not configured");
+    if (!validateAuthHeader(authHeader, ADMIN_SECRET)) {
       return NextResponse.json(
-        { success: false, error: "Server configuration error: ADMIN_SECRET not set" },
-        { status: 500 }
-      );
-    }
-
-    if (!authHeader || authHeader !== ADMIN_SECRET) {
-      return NextResponse.json(
-        { success: false, error: "Unauthorized: Invalid or missing admin secret" },
+        { success: false, error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -30,7 +23,7 @@ export async function POST(request: Request) {
     if (!supabaseUrl || !supabaseServiceKey) {
       console.error("Missing Supabase configuration");
       return NextResponse.json(
-        { success: false, error: "Server configuration error: Supabase not configured" },
+        { success: false, error: "Server configuration error" },
         { status: 500 }
       );
     }
@@ -119,7 +112,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: `Internal server error: ${error instanceof Error ? error.message : "Unknown error"}`,
+        error: "Internal server error",
       },
       { status: 500 }
     );
