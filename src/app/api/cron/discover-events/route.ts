@@ -5,6 +5,7 @@ import { getCurrentChicagoDateString } from "@/lib/farcaster/time-utils";
 import { getEventsOnThisDay } from "@/lib/events-db";
 import { searchCryptoHistory } from "@/lib/brave-search";
 import { generateHistoryEvents } from "@/lib/grok-event-generator";
+import { sanitizeEventMedia } from "@/lib/event-sanitize";
 import type { Event } from "@/lib/types";
 
 // ============================================================================
@@ -13,6 +14,9 @@ import type { Event } from "@/lib/types";
 
 /** Sentinel value to identify cron-generated submissions */
 const CRON_SUBMITTER = "cron:discover-events";
+
+/** Sentinel value for the auto-approval reviewer */
+const AUTO_REVIEWER = "cron:auto-approve";
 
 /** Maximum events to submit per run */
 const MAX_EVENTS = 5;
@@ -71,8 +75,9 @@ function matchesMonthDay(event: Event, month: number, day: number): boolean {
  * Daily Crypto History Discovery Cron
  *
  * Uses Brave Search + xAI (Grok) to discover crypto events that happened
- * on today's calendar date in history. Submits 3-5 events to the
- * event_submissions table for admin approval.
+ * on today's calendar date in history. Sanitizes and inserts up to 5 events
+ * directly into the `events` table, recording an approved row in
+ * `event_submissions` for audit trail.
  *
  * Schedule: Once daily at 11:00 UTC (~5-6 AM Chicago)
  */
@@ -211,44 +216,80 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 11. Insert into event_submissions
-    const rows = eventsToInsert.map((event) => ({
-      status: "pending" as const,
-      submitted_by_email: CRON_SUBMITTER,
-      event_data: event,
-    }));
+    // 11. Auto-approve: sanitize each event, insert into `events`, then
+    // record an approved submission for audit trail. Failures are isolated
+    // per-event so one bad row doesn't block the rest.
+    const reviewedAt = new Date().toISOString();
+    const insertedEvents: Array<{ id: string; title: string; date: string; warnings?: string[] }> = [];
+    const failedEvents: Array<{ id: string; reason: string }> = [];
 
-    const { data: insertedRows, error: insertError } = await supabase
-      .from("event_submissions")
-      .insert(rows)
-      .select("id, event_data");
+    for (const event of eventsToInsert) {
+      // sanitizeEventMedia only touches image/media; id/title/date/summary
+      // come from the validated `event` object.
+      const { event: sanitized, warnings } = sanitizeEventMedia(event);
 
-    if (insertError) {
-      console.error("Failed to insert submissions:", insertError);
-      return NextResponse.json(
-        {
-          error: "Failed to save submissions",
-          details: insertError.message,
-        },
-        { status: 500 }
-      );
+      const insertData = {
+        id: event.id,
+        date: event.date,
+        title: event.title,
+        summary: event.summary,
+        category: event.category || [],
+        tags: event.tags || [],
+        mode: event.mode || ["timeline"],
+        image: sanitized.image || null,
+        media: sanitized.media || [],
+        links: event.links || [],
+        metrics: event.metrics || {},
+        crimeline: event.crimeline || null,
+      };
+
+      const { error: eventInsertError } = await supabase
+        .from("events")
+        .insert([insertData]);
+
+      if (eventInsertError) {
+        console.error(`Failed to insert event "${event.id}":`, eventInsertError);
+        failedEvents.push({ id: event.id, reason: eventInsertError.message });
+        continue;
+      }
+
+      const { error: submissionInsertError } = await supabase
+        .from("event_submissions")
+        .insert({
+          status: "approved" as const,
+          submitted_by_email: CRON_SUBMITTER,
+          event_data: { ...event, ...sanitized },
+          reviewed_by: AUTO_REVIEWER,
+          reviewed_at: reviewedAt,
+          created_event_id: event.id,
+        });
+
+      if (submissionInsertError) {
+        // Audit-record failure shouldn't fail the run — the event is live.
+        console.error(
+          `Event "${event.id}" inserted but submission audit row failed:`,
+          submissionInsertError
+        );
+      }
+
+      insertedEvents.push({
+        id: event.id,
+        title: event.title,
+        date: event.date,
+        warnings: warnings.length > 0 ? warnings : undefined,
+      });
     }
 
     // 12. Return
     return NextResponse.json({
-      message: `Submitted ${eventsToInsert.length} events for approval`,
-      status: "success",
+      message: `Auto-approved ${insertedEvents.length} events`,
+      status: insertedEvents.length > 0 ? "success" : "skipped",
       postDate,
-      submitted: eventsToInsert.map((e) => ({
-        id: e.id,
-        title: e.title,
-        date: e.date,
-        categories: e.category,
-      })),
+      inserted: insertedEvents,
+      failedEvents,
       skippedEvents,
       searchResultCount: searchResults.length,
       generatedCount: generatedEvents.length,
-      insertedIds: insertedRows?.map((r) => r.id),
     });
   } catch (error) {
     console.error("Discover events cron error:", error);
