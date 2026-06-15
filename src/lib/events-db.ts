@@ -231,6 +231,57 @@ export async function getEventsOnThisDay(
 }
 
 /**
+ * Get events whose month/day falls within +/- windowDays of the given calendar
+ * date (any year). Matches month/day pairs across the window, ignoring year.
+ *
+ * Used by the discovery cron for deduplication: the same event is often
+ * reported under slightly different dates across sources, so a candidate is
+ * compared against a small window of nearby days rather than the exact day
+ * only. Date arithmetic rolls over month/year boundaries automatically.
+ */
+export async function getEventsWithinDayWindow(
+  date: Date,
+  windowDays: number,
+  options?: {
+    mode?: string[];
+  }
+): Promise<Event[]> {
+  const client = getEventsClient();
+
+  // Build an OR filter for each (month, day) in the [-windowDays, +windowDays] range.
+  const dayFilters: string[] = [];
+  for (let offset = -windowDays; offset <= windowDays; offset++) {
+    const d = new Date(date);
+    d.setDate(date.getDate() + offset);
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    dayFilters.push(`and(month.eq.${month},day.eq.${day})`);
+  }
+
+  let query = client
+    .from("events_with_month_day")
+    .select("id,date,title,summary,category,tags,mode,image,media,links,metrics,crimeline")
+    .or(dayFilters.join(","));
+
+  // Apply mode filter if specified
+  if (options?.mode && options.mode.length > 0) {
+    query = query.overlaps("mode", options.mode);
+  }
+
+  // Sort by date descending (most recent events first)
+  query = query.order("date", { ascending: false });
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error fetching events within day window:", error);
+    throw error;
+  }
+
+  return (data || []) as unknown as Event[];
+}
+
+/**
  * Get events that occurred on this week in history (any year).
  * Computes the Sunday–Saturday range for the given date's week,
  * then matches month/day pairs across all years.

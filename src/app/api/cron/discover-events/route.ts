@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
 import { getCurrentChicagoDateString } from "@/lib/farcaster/time-utils";
-import { getEventsOnThisDay } from "@/lib/events-db";
+import { getEventsWithinDayWindow } from "@/lib/events-db";
 import { searchCryptoHistory } from "@/lib/brave-search";
 import { generateHistoryEvents } from "@/lib/grok-event-generator";
 import { sanitizeEventMedia } from "@/lib/event-sanitize";
@@ -21,13 +21,59 @@ const AUTO_REVIEWER = "cron:auto-approve";
 /** Maximum events to submit per run */
 const MAX_EVENTS = 5;
 
+/**
+ * Dedup window in days (+/-). The same event is sometimes reported under
+ * slightly different dates across sources, so candidates are compared against
+ * existing events within this many days of the target date, not just the exact
+ * day. The title-similarity gate still applies, so distinct events on nearby
+ * days are not suppressed.
+ */
+const DEDUP_DAY_WINDOW = 1;
+
 // ============================================================================
 // Deduplication
 // ============================================================================
 
 /**
+ * English/CT stop words stripped before computing title similarity so that
+ * shared boilerplate ("the", "for", "new") doesn't make distinct events
+ * collide (e.g. "SEC Sues Ripple" vs "SEC Sues Coinbase").
+ */
+const STOP_WORDS = new Set([
+  "a", "an", "the", "of", "for", "in", "on", "at", "to", "and", "or", "as",
+  "by", "with", "from", "into", "amid", "over", "after", "before", "is", "are",
+  "was", "were", "be", "been", "it", "its", "this", "that", "new", "now",
+]);
+
+/** Title similarity (Jaccard over content words) at/above which two events are duplicates. */
+const SIMILARITY_THRESHOLD = 0.7;
+
+/** Minimum word count for a title to be trusted in a substring-containment match. */
+const MIN_SUBSTRING_WORDS = 3;
+
+/** Lowercase, strip punctuation to spaces, and collapse whitespace. */
+function normalizeTitle(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+/** Content words of a normalized title, with stop words removed. */
+function contentWords(norm: string): Set<string> {
+  return new Set(norm.split(" ").filter((w) => w && !STOP_WORDS.has(w)));
+}
+
+/** Jaccard similarity between two word sets: |A∩B| / |A∪B|. */
+function jaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0;
+  let intersection = 0;
+  for (const w of a) if (b.has(w)) intersection++;
+  const union = a.size + b.size - intersection;
+  return union === 0 ? 0 : intersection / union;
+}
+
+/**
  * Check if a candidate event is a duplicate of an existing event.
- * Uses exact ID match and title word-overlap similarity (>70%).
+ * Matches on exact id, content-word Jaccard similarity (>= SIMILARITY_THRESHOLD),
+ * or substring containment when the shorter title carries enough signal.
  */
 function isDuplicate(
   candidate: Event,
@@ -37,22 +83,29 @@ function isDuplicate(
   // Exact ID match
   if (existingIds.includes(candidate.id)) return true;
 
-  const normalize = (s: string) =>
-    s.toLowerCase().replace(/[^a-z0-9\s]/g, "");
-  const candidateNorm = normalize(candidate.title);
-  const candidateWords = new Set(candidateNorm.split(/\s+/).filter(Boolean));
+  const candidateNorm = normalizeTitle(candidate.title);
+  if (!candidateNorm) return false;
+  const candidateWords = contentWords(candidateNorm);
+  const candidateWordCount = candidateNorm.split(" ").length;
 
   for (const title of existingTitles) {
-    const existingNorm = normalize(title);
-    const existingWords = new Set(existingNorm.split(/\s+/).filter(Boolean));
+    const existingNorm = normalizeTitle(title);
+    if (!existingNorm) continue; // guard: empty title would match everything
 
-    // Word overlap similarity (>60% = duplicate)
-    const overlap = [...candidateWords].filter((w) => existingWords.has(w)).length;
-    const maxSize = Math.max(candidateWords.size, existingWords.size);
-    if (maxSize > 0 && overlap / maxSize > 0.6) return true;
+    // Content-word Jaccard similarity
+    if (jaccard(candidateWords, contentWords(existingNorm)) >= SIMILARITY_THRESHOLD) {
+      return true;
+    }
 
-    // Substring match — if either title contains the other's key phrase
-    if (candidateNorm.includes(existingNorm) || existingNorm.includes(candidateNorm)) return true;
+    // Substring containment — only trust it when the shorter title has enough
+    // words, so short generic titles don't swallow unrelated candidates.
+    const existingWordCount = existingNorm.split(" ").length;
+    if (
+      Math.min(candidateWordCount, existingWordCount) >= MIN_SUBSTRING_WORDS &&
+      (candidateNorm.includes(existingNorm) || existingNorm.includes(candidateNorm))
+    ) {
+      return true;
+    }
   }
 
   return false;
@@ -129,31 +182,22 @@ export async function GET(request: NextRequest) {
 
     const remainingSlots = MAX_EVENTS - todaySubmissionCount;
 
-    // 5. Fetch existing events for dedup
+    // 5. Fetch existing events for dedup.
+    // Scope is intentionally limited to events already LIVE within a small
+    // +/- DEDUP_DAY_WINDOW window around this calendar day (plus same-run picks,
+    // tracked below) — the same event is often reported under slightly
+    // different dates, so we compare against nearby days, not just the exact
+    // one. We no longer dedup against the full pending/approved submission
+    // queue: cross-date titles caused false positives, and stale `pending` rows
+    // (never posted) would suppress valid re-discovery. Since events are
+    // auto-approved straight into `events`, the live set is the authoritative
+    // "already have it" reference.
     const chicagoDate = new Date(postDate + "T00:00:00Z");
-    const existingEvents = await getEventsOnThisDay(chicagoDate);
+    const existingEvents = await getEventsWithinDayWindow(chicagoDate, DEDUP_DAY_WINDOW);
     const existingIds = existingEvents.map((e) => e.id);
     const existingTitles = existingEvents.map((e) => e.title);
 
-    // 6. Also check pending + approved submissions to avoid duplicates
-    const { data: pendingSubmissions } = await supabase
-      .from("event_submissions")
-      .select("event_data")
-      .in("status", ["pending", "approved"]);
-
-    if (pendingSubmissions) {
-      for (const sub of pendingSubmissions) {
-        const eventData = sub.event_data as Partial<Event>;
-        if (eventData?.title) {
-          existingTitles.push(eventData.title);
-        }
-        if (eventData?.id) {
-          existingIds.push(eventData.id);
-        }
-      }
-    }
-
-    // 7. Brave Search
+    // 6. Brave Search
     const searchResults = await searchCryptoHistory(month, day);
 
     if (searchResults.length === 0) {
@@ -164,7 +208,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 8. xAI generation
+    // 7. xAI generation
     const generatedEvents = await generateHistoryEvents(
       searchResults,
       month,
@@ -181,12 +225,12 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 9. Dedup filter
+    // 8. Dedup filter
     const skippedEvents: string[] = [];
     const validEvents: Event[] = [];
 
     for (const event of generatedEvents) {
-      // 10. Date validation
+      // 9. Date validation
       if (!matchesMonthDay(event, month, day)) {
         skippedEvents.push(`${event.title} (date mismatch: ${event.date})`);
         continue;
@@ -216,7 +260,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 11. Auto-approve: sanitize each event, insert into `events`, then
+    // 10. Auto-approve: sanitize each event, insert into `events`, then
     // record an approved submission for audit trail. Failures are isolated
     // per-event so one bad row doesn't block the rest.
     const reviewedAt = new Date().toISOString();
@@ -280,7 +324,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // 12. Return
+    // 11. Return
     return NextResponse.json({
       message: `Auto-approved ${insertedEvents.length} events`,
       status: insertedEvents.length > 0 ? "success" : "skipped",
