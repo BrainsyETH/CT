@@ -110,28 +110,25 @@ export function sanitizeEventMedia(eventData: Partial<Event>): SanitizeResult {
         const twitter = item.twitter;
         if (!twitter) continue;
 
-        // Timeline-only embeds (account_handle without tweet_url) are fine
-        if (!twitter.tweet_url && twitter.account_handle) {
-          cleanMedia.push(item);
+        // Drop handle-only timeline embeds: X no longer reliably renders
+        // account-timeline widgets, so they show as a blank box. We keep only
+        // real single-tweet embeds (a valid tweet_url).
+        if (!twitter.tweet_url) {
+          if (twitter.account_handle) {
+            warnings.push(
+              `Tweet dropped: handle-only embed for @${twitter.account_handle} renders blank`
+            );
+          }
           continue;
         }
 
         // Validate tweet_url has a real status ID (15+ digits)
-        if (twitter.tweet_url) {
-          const match = twitter.tweet_url.match(/\/status\/(\d+)/);
-          if (!match || match[1].length < 15) {
-            warnings.push(
-              `Tweet stripped: "${twitter.tweet_url}" has suspicious status ID`
-            );
-            // Convert to timeline embed if handle exists
-            if (twitter.account_handle) {
-              cleanMedia.push({
-                type: "twitter",
-                twitter: { account_handle: twitter.account_handle },
-              });
-            }
-            continue;
-          }
+        const match = twitter.tweet_url.match(/\/status\/(\d+)/);
+        if (!match || match[1].length < 15) {
+          warnings.push(
+            `Tweet stripped: "${twitter.tweet_url}" has suspicious status ID`
+          );
+          continue;
         }
 
         cleanMedia.push(item);

@@ -297,31 +297,20 @@ function normalizeEvent(event: Event): Event {
     event.image = isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE;
   }
 
-  // Strip Twitter media items with fake/unverifiable tweet URLs
-  // Keep items that have only account_handle (timeline embeds) or have a tweet_url
-  // from a search result (real URLs have numeric status IDs of 15+ digits)
+  // Keep only real single-tweet embeds (valid tweet_url with a real status
+  // ID). Handle-only timeline embeds are dropped — X renders them as a blank
+  // box, so they look broken in the carousel.
   event.media = event.media.filter((item) => {
     if (item.type !== "twitter") return true;
     const twitter = item.twitter;
-    if (!twitter) return false;
+    if (!twitter?.tweet_url) return false;
 
-    // If it only has account_handle (no tweet_url), keep it as a timeline embed
-    if (!twitter.tweet_url && twitter.account_handle) return true;
-
-    // Validate tweet_url has a real-looking status ID (15-20 digits)
-    if (twitter.tweet_url) {
-      const match = twitter.tweet_url.match(/\/status\/(\d+)/);
-      if (!match || match[1].length < 15) {
-        console.warn(
-          `Event "${event.id}" stripped suspicious tweet URL: ${twitter.tweet_url}`
-        );
-        // Convert to timeline-only embed if we have the handle
-        if (twitter.account_handle) {
-          item.twitter = { account_handle: twitter.account_handle };
-          return true;
-        }
-        return false;
-      }
+    const match = twitter.tweet_url.match(/\/status\/(\d+)/);
+    if (!match || match[1].length < 15) {
+      console.warn(
+        `Event "${event.id}" stripped suspicious tweet URL: ${twitter.tweet_url}`
+      );
+      return false;
     }
 
     return true;
