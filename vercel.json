@@ -15,6 +15,10 @@
     {
       "path": "/api/cron/discover-events",
       "schedule": "0 13 * * *"
+    },
+    {
+      "path": "/api/cron/discover-recent",
+      "schedule": "0 14 * * *"
     }
   ]
 }

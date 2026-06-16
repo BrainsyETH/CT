@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
-import { getCurrentChicagoDateString } from "@/lib/farcaster/time-utils";
-import { getEventsWithinDayWindow } from "@/lib/events-db";
-import { searchCryptoHistory } from "@/lib/brave-search";
-import { generateHistoryEvents } from "@/lib/grok-event-generator";
+import { getEventsByDateRange } from "@/lib/events-db";
+import { searchRecentCryptoNews } from "@/lib/brave-search";
+import { generateRecentEvents } from "@/lib/grok-event-generator";
 import { isDuplicate } from "@/lib/discover/dedup";
 import { insertApprovedEvents } from "@/lib/discover/persist";
 import type { Event } from "@/lib/types";
@@ -14,7 +13,7 @@ import type { Event } from "@/lib/types";
 // ============================================================================
 
 /** Sentinel value to identify cron-generated submissions */
-const CRON_SUBMITTER = "cron:discover-events";
+const CRON_SUBMITTER = "cron:discover-recent";
 
 /** Sentinel value for the auto-approval reviewer */
 const AUTO_REVIEWER = "cron:auto-approve";
@@ -22,22 +21,22 @@ const AUTO_REVIEWER = "cron:auto-approve";
 /** Maximum events to submit per run */
 const MAX_EVENTS = 5;
 
-/**
- * Dedup window in days (+/-). The same event is sometimes reported under
- * slightly different dates across sources, so candidates are compared against
- * existing events within this many days of the target date, not just the exact
- * day. The title-similarity gate still applies, so distinct events on nearby
- * days are not suppressed.
- */
-const DEDUP_DAY_WINDOW = 1;
+/** Trailing window (in days) the recent-news pass searches and validates against. */
+const RECENT_WINDOW_DAYS = 14;
+
+/** Format a Date as YYYY-MM-DD (UTC). */
+function toDateString(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
 
 /**
- * Validate that an event's date matches the expected month/day.
+ * Validate that an event's date is a real date within [start, end] (inclusive).
+ * String comparison is valid for zero-padded YYYY-MM-DD.
  */
-function matchesMonthDay(event: Event, month: number, day: number): boolean {
-  const parts = event.date.split("-");
-  if (parts.length !== 3) return false;
-  return parseInt(parts[1], 10) === month && parseInt(parts[2], 10) === day;
+function isWithinWindow(event: Event, start: string, end: string): boolean {
+  const date = event.date;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+  return date >= start && date <= end;
 }
 
 // ============================================================================
@@ -45,17 +44,14 @@ function matchesMonthDay(event: Event, month: number, day: number): boolean {
 // ============================================================================
 
 /**
- * Daily Crypto History Discovery Cron ("this day in history").
+ * Daily Recent Crypto News Discovery Cron.
  *
- * Uses Brave Search + xAI (Grok) to discover crypto events that happened
- * on today's calendar date in past years. Sanitizes and inserts up to 5 events
- * directly into the `events` table, recording an approved row in
- * `event_submissions` for audit trail.
+ * Unlike the sibling `discover-events` cron (which finds events on today's
+ * calendar date across past years), this pass finds CURRENT events from the
+ * last RECENT_WINDOW_DAYS and places each on its real date — so the timeline
+ * keeps advancing with fresh events. Auto-approves up to 5 events per run.
  *
- * For current/recent events (not tied to today's calendar day), see the
- * sibling `discover-recent` cron.
- *
- * Schedule: Once daily at 13:00 UTC (~7 AM Chicago)
+ * Schedule: Once daily at 14:00 UTC (~8 AM Chicago)
  */
 export async function GET(request: NextRequest) {
   try {
@@ -78,15 +74,16 @@ export async function GET(request: NextRequest) {
     }
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // 3. Get today's date in Chicago timezone
-    const postDate = getCurrentChicagoDateString();
-    const [, monthStr, dayStr] = postDate.split("-");
-    const month = parseInt(monthStr, 10);
-    const day = parseInt(dayStr, 10);
+    // 3. Compute the trailing window [today - N, today] in UTC
+    const now = new Date();
+    const windowStartDate = new Date(now);
+    windowStartDate.setUTCDate(now.getUTCDate() - RECENT_WINDOW_DAYS);
+    const windowStart = toDateString(windowStartDate);
+    const windowEnd = toDateString(now);
 
     // 4. Idempotency check — skip if already submitted MAX_EVENTS today
-    const todayStart = `${postDate}T00:00:00.000Z`;
-    const todayEnd = `${postDate}T23:59:59.999Z`;
+    const todayStart = `${windowEnd}T00:00:00.000Z`;
+    const todayEnd = `${windowEnd}T23:59:59.999Z`;
     const { data: existingRuns } = await supabase
       .from("event_submissions")
       .select("id")
@@ -99,62 +96,59 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         message: `Already submitted ${todaySubmissionCount} events today (max ${MAX_EVENTS})`,
         status: "skipped",
-        postDate,
+        windowStart,
+        windowEnd,
       });
     }
 
     const remainingSlots = MAX_EVENTS - todaySubmissionCount;
 
-    // 5. Fetch existing events for dedup.
-    // Scope is intentionally limited to events already LIVE within a small
-    // +/- DEDUP_DAY_WINDOW window around this calendar day (plus same-run picks,
-    // tracked below) — the same event is often reported under slightly
-    // different dates, so we compare against nearby days, not just the exact
-    // one. We no longer dedup against the full pending/approved submission
-    // queue: cross-date titles caused false positives, and stale `pending` rows
-    // (never posted) would suppress valid re-discovery. Since events are
-    // auto-approved straight into `events`, the live set is the authoritative
-    // "already have it" reference.
-    const chicagoDate = new Date(postDate + "T00:00:00Z");
-    const existingEvents = await getEventsWithinDayWindow(chicagoDate, DEDUP_DAY_WINDOW);
+    // 5. Fetch existing live events in the window for dedup (plus same-run picks).
+    const { events: existingEvents } = await getEventsByDateRange(
+      windowStart,
+      windowEnd,
+      { limit: 200 }
+    );
     const existingIds = existingEvents.map((e) => e.id);
     const existingTitles = existingEvents.map((e) => e.title);
 
-    // 6. Brave Search
-    const searchResults = await searchCryptoHistory(month, day);
+    // 6. Brave Search — recent crypto news across the window
+    const searchResults = await searchRecentCryptoNews(RECENT_WINDOW_DAYS);
 
     if (searchResults.length === 0) {
       return NextResponse.json({
         message: "No search results found",
         status: "skipped",
-        postDate,
+        windowStart,
+        windowEnd,
       });
     }
 
     // 7. xAI generation
-    const generatedEvents = await generateHistoryEvents(
+    const generatedEvents = await generateRecentEvents(
       searchResults,
-      month,
-      day,
-      existingTitles
+      existingTitles,
+      windowStart,
+      windowEnd
     );
 
     if (generatedEvents.length === 0) {
       return NextResponse.json({
         message: "xAI returned no valid events",
         status: "skipped",
-        postDate,
+        windowStart,
+        windowEnd,
         searchResultCount: searchResults.length,
       });
     }
 
-    // 8. Dedup + date validation
+    // 8. Dedup + window validation
     const skippedEvents: string[] = [];
     const validEvents: Event[] = [];
 
     for (const event of generatedEvents) {
-      if (!matchesMonthDay(event, month, day)) {
-        skippedEvents.push(`${event.title} (date mismatch: ${event.date})`);
+      if (!isWithinWindow(event, windowStart, windowEnd)) {
+        skippedEvents.push(`${event.title} (out of window: ${event.date})`);
         continue;
       }
 
@@ -174,9 +168,10 @@ export async function GET(request: NextRequest) {
 
     if (eventsToInsert.length === 0) {
       return NextResponse.json({
-        message: "All generated events were duplicates or invalid",
+        message: "All generated events were duplicates or out of window",
         status: "skipped",
-        postDate,
+        windowStart,
+        windowEnd,
         generatedCount: generatedEvents.length,
         skippedEvents,
       });
@@ -192,7 +187,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       message: `Auto-approved ${inserted.length} events`,
       status: inserted.length > 0 ? "success" : "skipped",
-      postDate,
+      windowStart,
+      windowEnd,
       inserted,
       failedEvents: failed,
       skippedEvents,
@@ -200,7 +196,7 @@ export async function GET(request: NextRequest) {
       generatedCount: generatedEvents.length,
     });
   } catch (error) {
-    console.error("Discover events cron error:", error);
+    console.error("Discover recent cron error:", error);
     return NextResponse.json(
       {
         error: "Internal server error",

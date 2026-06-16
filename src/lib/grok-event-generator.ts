@@ -4,12 +4,18 @@
  * Uses xAI's OpenAI-compatible API to generate structured crypto history events
  * from Brave Search results. Enforces the same controlled vocabulary as the
  * existing event-extractor via the shared SYSTEM_PROMPT.
+ *
+ * Two generation modes:
+ * - generateHistoryEvents: "this day in history" — events on a given month/day
+ *   across past years.
+ * - generateRecentEvents: current events within a trailing date window, placed
+ *   on their real dates (so the timeline keeps advancing).
  */
 
 import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "./event-extractor";
-import { FALLBACK_IMAGES } from "./constants";
-import { isAllowedImageUrl } from "./event-sanitize";
+import { FALLBACK_IMAGES, ALL_CATEGORIES, EVENT_TAGS } from "./constants";
+import { isAllowedImageUrl, PROMPT_PREFERRED_IMAGE_HOSTNAMES } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
 import { findEventImage } from "./brave-search";
@@ -26,56 +32,16 @@ const MONTH_NAMES = [
   "July", "August", "September", "October", "November", "December",
 ];
 
+/** Controlled vocabulary lists, sourced from constants so prompts never drift. */
+const CATEGORY_LIST = ALL_CATEGORIES.join(", ");
+const TAG_LIST = EVENT_TAGS.join(", ");
+
 // ============================================================================
-// User Prompt Builder
+// Shared Prompt Fragments
 // ============================================================================
 
-function buildUserPrompt(
-  searchResults: BraveSearchResult[],
-  month: number,
-  day: number,
-  existingTitles: string[]
-): string {
-  const monthName = MONTH_NAMES[month - 1];
-
-  const existingList =
-    existingTitles.length > 0
-      ? existingTitles.map((t) => `- ${t}`).join("\n")
-      : "None";
-
-  const resultsList = searchResults
-    .map(
-      (r) => {
-        let entry = `---\nTitle: ${r.title}\nURL: ${r.url}\nDescription: ${r.description}`;
-        if (r.thumbnail) {
-          entry += `\nImage: ${r.thumbnail}`;
-        }
-        entry += "\n---";
-        return entry;
-      }
-    )
-    .join("\n");
-
-  // Collect all valid thumbnails for the prompt
-  const availableImages = searchResults
-    .filter((r) => r.thumbnail)
-    .map((r) => r.thumbnail!);
-
-  return `TODAY'S DATE CONTEXT: ${monthName} ${day}
-
-You are a Crypto Twitter (CT) historian building a "This Day in Crypto" archive. Find 5 real, verifiable events that happened on ${monthName} ${day} throughout crypto history (2009-${new Date().getFullYear()}).
-
-CRITICAL: Prioritize HISTORICAL events (2009-2023) over current year news. At least 3 of the 5 events should be from prior years. We want deep CT lore — hacks, exploits, protocol deaths, arrests, viral moments — not today's market recaps or whale moves. Current-year events are only worth including if they are genuinely significant (not just "BTC went up 3%").
-
-Use the search results below as source material, but you may also use your own knowledge of crypto history to identify events that happened on this date. If you know of a significant event on ${monthName} ${day} that isn't in the search results, include it — just make sure it's real and verifiable.
-
-EXISTING EVENTS (DO NOT DUPLICATE):
-${existingList}
-
-SEARCH RESULTS:
-${resultsList}
-
-═══════════════════════════════════════════════════════════════
+/** What makes an event worth including + CT voice rules + CT accounts. Shared by both prompts. */
+const CT_GUIDANCE = `═══════════════════════════════════════════════════════════════
 WHAT MAKES AN EVENT "CT ENOUGH"
 ═══════════════════════════════════════════════════════════════
 
@@ -127,7 +93,90 @@ CT ACCOUNTS FOR CONTEXT (use as twitter media handles when relevant):
 @gainzy @trustlessstate @foobar @seedphrase @nick_eth @tier10k
 @bantg @sizechad @icebergy_ @cburniske @scottmelker @cryptocred
 @tokenterminal @asvanevik @JustinDrake @sergeynazarov @haborin
-═══════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════`;
+
+/** Image + Twitter media requirements, shared by both prompts. */
+function buildMediaRequirements(availableImages: string[]): string {
+  const availableBlock =
+    availableImages.length > 0
+      ? `\n\nAVAILABLE IMAGES FROM SEARCH RESULTS (use these!):\n${availableImages
+          .map((u) => `   - ${u}`)
+          .join("\n")}`
+      : "";
+
+  return `IMAGE REQUIREMENTS:
+- For "image", you MUST use an image URL from the search results above.
+   - Look for "Image:" lines in the search results — these are real, stable URLs.
+   - Match each event to the most relevant search result image.
+   - DO NOT fabricate or guess image URLs. Only use URLs that appear verbatim in the search results above.
+   - If no search result has a relevant image, set image to null (a fallback is applied automatically).
+   - NEVER use imgs.search.brave.com (expires within hours). Avoid Reddit (preview.redd.it is hotlink-protected and will not render).
+   - Prefer these domains when available: ${PROMPT_PREFERRED_IMAGE_HOSTNAMES.join(", ")}.
+   - NEVER use empty string "" — always use null instead.${availableBlock}
+
+TWITTER/X MEDIA REQUIREMENTS:
+- ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:
+   { "type": "twitter", "twitter": { "tweet_url": "https://x.com/USER/status/TWEET_ID", "account_handle": "USER" } }
+- NEVER fabricate tweet URLs. If no real URL exists, use account_handle only for a timeline embed:
+    { "type": "twitter", "twitter": { "account_handle": "relevant_handle" } }
+- Zero real tweets is better than fake ones.`;
+}
+
+/** Format Brave results as prompt context, and collect usable thumbnail URLs. */
+function formatSearchResults(searchResults: BraveSearchResult[]): {
+  resultsList: string;
+  availableImages: string[];
+} {
+  const resultsList = searchResults
+    .map((r) => {
+      let entry = `---\nTitle: ${r.title}\nURL: ${r.url}\nDescription: ${r.description}`;
+      if (r.thumbnail) entry += `\nImage: ${r.thumbnail}`;
+      entry += "\n---";
+      return entry;
+    })
+    .join("\n");
+
+  const availableImages = searchResults
+    .filter((r) => r.thumbnail)
+    .map((r) => r.thumbnail!);
+
+  return { resultsList, availableImages };
+}
+
+// ============================================================================
+// User Prompt Builders
+// ============================================================================
+
+function buildHistoryPrompt(
+  searchResults: BraveSearchResult[],
+  month: number,
+  day: number,
+  existingTitles: string[]
+): string {
+  const monthName = MONTH_NAMES[month - 1];
+
+  const existingList =
+    existingTitles.length > 0
+      ? existingTitles.map((t) => `- ${t}`).join("\n")
+      : "None";
+
+  const { resultsList, availableImages } = formatSearchResults(searchResults);
+
+  return `TODAY'S DATE CONTEXT: ${monthName} ${day}
+
+You are a Crypto Twitter (CT) historian building a "This Day in Crypto" archive. Find 5 real, verifiable events that happened on ${monthName} ${day} throughout crypto history (2009-${new Date().getFullYear()}).
+
+CRITICAL: Prioritize HISTORICAL events (2009-2023) over current year news. At least 3 of the 5 events should be from prior years. We want deep CT lore — hacks, exploits, protocol deaths, arrests, viral moments — not today's market recaps or whale moves. Current-year events are only worth including if they are genuinely significant (not just "BTC went up 3%").
+
+Use the search results below as source material, but you may also use your own knowledge of crypto history to identify events that happened on this date. If you know of a significant event on ${monthName} ${day} that isn't in the search results, include it — just make sure it's real and verifiable.
+
+EXISTING EVENTS (DO NOT DUPLICATE):
+${existingList}
+
+SEARCH RESULTS:
+${resultsList}
+
+${CT_GUIDANCE}
 
 TECHNICAL REQUIREMENTS:
 1. Each event MUST have occurred on ${monthName} ${day} of a specific year — do NOT guess dates
@@ -135,24 +184,57 @@ TECHNICAL REQUIREMENTS:
 3. Include source URLs in the links array
 4. Return fewer than 5 rather than fabricating events
 5. For security incidents, include full crimeline data with mode ["crimeline"] or ["timeline", "crimeline"]
-6. Use categories from: Bitcoin, Bridge, Bull Runs, CT Lore, Centralized Exchange, Culture, DeFi, DeFi Protocol, ETFs, Ethereum, Gaming, Lending, Market Structure, Memecoins, NFTs, Privacy, Regulation, Security, Stablecoin, Wallet/Key Compromise, ZachXBT
-7. Use tags from: ATH, CULTURAL, ECONOMIC, FAILURE, MILESTONE, REGULATORY, SECURITY, TECH
+6. Use categories from: ${CATEGORY_LIST}
+7. Use tags from: ${TAG_LIST}
 
-IMAGE REQUIREMENTS:
-8. For "image", you MUST use an image URL from the search results above.
-   - Look for "Image:" lines in the search results — these are real, stable URLs.
-   - Match each event to the most relevant search result image.
-   - DO NOT fabricate or guess image URLs. Only use URLs that appear verbatim in the search results above.
-   - If no search result has a relevant image, set image to null (a fallback is applied automatically).
-   - NEVER use imgs.search.brave.com (expires within hours).
-   - NEVER use empty string "" — always use null instead.${availableImages.length > 0 ? `\n\nAVAILABLE IMAGES FROM SEARCH RESULTS (use these!):\n${availableImages.map((u) => `   - ${u}`).join("\n")}` : ""}
+${buildMediaRequirements(availableImages)}
 
-TWITTER/X MEDIA REQUIREMENTS:
-9. ONLY include tweets with REAL, VERIFIED URLs from the search results. Format:
-   { "type": "twitter", "twitter": { "tweet_url": "https://x.com/USER/status/TWEET_ID", "account_handle": "USER" } }
-10. NEVER fabricate tweet URLs. If no real URL exists, use account_handle only for a timeline embed:
-    { "type": "twitter", "twitter": { "account_handle": "relevant_handle" } }
-11. Zero real tweets is better than fake ones.
+Return ONLY a JSON array of event objects. No commentary.`;
+}
+
+function buildRecentEventsPrompt(
+  searchResults: BraveSearchResult[],
+  existingTitles: string[],
+  windowStart: string,
+  windowEnd: string
+): string {
+  const existingList =
+    existingTitles.length > 0
+      ? existingTitles.map((t) => `- ${t}`).join("\n")
+      : "None";
+
+  const { resultsList, availableImages } = formatSearchResults(searchResults);
+
+  return `RECENT WINDOW: ${windowStart} to ${windowEnd}
+
+You are a Crypto Twitter (CT) historian logging what actually mattered over the last couple of weeks (${windowStart} to ${windowEnd}). From the search results below, extract the real, verifiable events from THIS WINDOW that CT cared about, and place each on its real date.
+
+HARD RULES:
+- Each event's "date" MUST be the real date the event happened, and MUST fall within ${windowStart} to ${windowEnd}. Do NOT guess. If you cannot pin the exact date from the sources, drop the event.
+- Real, verifiable events only. Zero fabrication. Returning 2 solid events beats inventing 5.
+- Skip routine market noise ("BTC up 3%", generic price recaps) unless it is a genuinely significant move with a story and named context.
+- Up to 5 events, ordered by CT significance.
+
+Use the search results below as your source material. You may rely on your own knowledge to fill in detail, but only for events you are confident actually happened within this window.
+
+EXISTING EVENTS (DO NOT DUPLICATE):
+${existingList}
+
+SEARCH RESULTS:
+${resultsList}
+
+${CT_GUIDANCE}
+
+TECHNICAL REQUIREMENTS:
+1. Each event's date MUST be real and within ${windowStart} to ${windowEnd} — do NOT guess
+2. Event id in kebab-case ending with -YYYY-MM-DD (the real date)
+3. Include source URLs in the links array
+4. Return fewer events rather than fabricating any
+5. For security incidents, include full crimeline data with mode ["crimeline"] or ["timeline", "crimeline"]
+6. Use categories from: ${CATEGORY_LIST}
+7. Use tags from: ${TAG_LIST}
+
+${buildMediaRequirements(availableImages)}
 
 Return ONLY a JSON array of event objects. No commentary.`;
 }
@@ -261,24 +343,14 @@ function normalizeEvent(event: Event): Event {
 }
 
 // ============================================================================
-// Main Generator
+// Generation
 // ============================================================================
 
 /**
- * Generate crypto history events for a given calendar date using xAI (Grok).
- *
- * @param searchResults - Brave Search results to feed as context
- * @param month - Calendar month (1-12)
- * @param day - Calendar day (1-31)
- * @param existingTitles - Titles of events already in the DB for deduplication
- * @returns Array of generated Event objects (up to 5)
+ * Run an xAI generation for a given user prompt, then parse + enrich the result.
+ * Shared by both the historical and recent-news generators.
  */
-export async function generateHistoryEvents(
-  searchResults: BraveSearchResult[],
-  month: number,
-  day: number,
-  existingTitles: string[]
-): Promise<Event[]> {
+async function generateEvents(userPrompt: string): Promise<Event[]> {
   const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) {
     throw new Error("XAI_API_KEY environment variable is not set");
@@ -290,8 +362,6 @@ export async function generateHistoryEvents(
     apiKey,
     baseURL: XAI_BASE_URL,
   });
-
-  const userPrompt = buildUserPrompt(searchResults, month, day, existingTitles);
 
   const response = await client.chat.completions.create({
     model,
@@ -322,6 +392,45 @@ export async function generateHistoryEvents(
       `Failed to parse xAI response: ${error instanceof Error ? error.message : "Unknown error"}`
     );
   }
+}
+
+/**
+ * Generate "this day in history" crypto events for a given calendar date.
+ *
+ * @param searchResults - Brave Search results to feed as context
+ * @param month - Calendar month (1-12)
+ * @param day - Calendar day (1-31)
+ * @param existingTitles - Titles of events already in the DB for deduplication
+ * @returns Array of generated Event objects (up to 5)
+ */
+export async function generateHistoryEvents(
+  searchResults: BraveSearchResult[],
+  month: number,
+  day: number,
+  existingTitles: string[]
+): Promise<Event[]> {
+  return generateEvents(buildHistoryPrompt(searchResults, month, day, existingTitles));
+}
+
+/**
+ * Generate current crypto events within a trailing date window, placed on
+ * their real dates.
+ *
+ * @param searchResults - Brave Search results to feed as context
+ * @param existingTitles - Titles of events already in the DB for deduplication
+ * @param windowStart - Inclusive window start, YYYY-MM-DD
+ * @param windowEnd - Inclusive window end, YYYY-MM-DD
+ * @returns Array of generated Event objects (up to 5)
+ */
+export async function generateRecentEvents(
+  searchResults: BraveSearchResult[],
+  existingTitles: string[],
+  windowStart: string,
+  windowEnd: string
+): Promise<Event[]> {
+  return generateEvents(
+    buildRecentEventsPrompt(searchResults, existingTitles, windowStart, windowEnd)
+  );
 }
 
 // ============================================================================
