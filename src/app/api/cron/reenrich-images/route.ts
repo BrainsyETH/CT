@@ -1,25 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
-import { findEventImage } from "@/lib/brave-search";
+import { resolveEventImage } from "@/lib/discover/image";
+import { FALLBACK_IMAGES } from "@/lib/constants";
 
 // ============================================================================
 // Constants
 // ============================================================================
 
-/** Max events to process per run (bounds Brave API calls + execution time). */
-const DEFAULT_MAX = 20;
-const HARD_MAX = 50;
+/** Max events to process per run (bounds image fetches + execution time). */
+const DEFAULT_MAX = 15;
+const HARD_MAX = 40;
 
 /**
- * Image sources that cannot be displayed and should be replaced:
- * - preview.redd.it: Reddit blocks hotlinking (403 to the image optimizer)
- * - imgs.search.brave.com: Brave's proxy URLs expire within hours
+ * Events that lack a real, displayable image and should be (re)enriched:
+ * - null image
+ * - the branded fallback placeholders
+ * - preview.redd.it: Reddit blocks hotlinking (403)
+ * - imgs.search.brave.com: Brave proxy URLs expire within hours
  */
-const BROKEN_IMAGE_PATTERNS = [
+const NEEDS_IMAGE_FILTERS = [
+  "image.is.null",
+  `image.eq.${FALLBACK_IMAGES.TIMELINE}`,
+  `image.eq.${FALLBACK_IMAGES.CRIMELINE}`,
   "image.ilike.%preview.redd.it%",
   "image.ilike.%imgs.search.brave.com%",
 ];
+
+/** Image sources that are broken (vs. the fallback, which is intentional). */
+function isBrokenSource(image: string | null): boolean {
+  if (!image) return false;
+  return image.includes("preview.redd.it") || image.includes("imgs.search.brave.com");
+}
 
 function clampParam(value: string | null, fallback: number, max: number): number {
   const n = value ? parseInt(value, 10) : NaN;
@@ -32,15 +44,14 @@ function clampParam(value: string | null, fallback: number, max: number): number
 // ============================================================================
 
 /**
- * Re-enrich event images that point at undisplayable sources.
+ * Re-enrich event images that aren't real/displayable.
  *
- * Finds events whose stored image is from a broken source (Reddit hotlink-
- * protected URLs, expired Brave proxy URLs) and tries to replace it with an
- * image from a hotlinkable, whitelisted domain via Brave Image Search. If no
- * usable replacement is found, the image is set to null so the app renders its
- * branded fallback instead of a broken box.
+ * For each target event, finds a real image (Brave Image Search or the source
+ * article's og:image) and re-hosts it to Vercel Blob so it always renders. If
+ * no image can be found, a broken source (Reddit/expired proxy) is nulled so
+ * the branded fallback shows; an existing fallback is left as-is.
  *
- * Process up to ?max events per run (default 20). Run repeatedly to work
+ * Processes up to ?max events per run (default 15). Run repeatedly to work
  * through the backlog. Auth-gated by CRON_SECRET.
  */
 export async function GET(request: NextRequest) {
@@ -66,11 +77,11 @@ export async function GET(request: NextRequest) {
 
     const max = clampParam(request.nextUrl.searchParams.get("max"), DEFAULT_MAX, HARD_MAX);
 
-    // 3. Find events with broken image sources
+    // 3. Find events lacking a real image
     const { data: events, error } = await supabase
       .from("events")
-      .select("id, title, category, image")
-      .or(BROKEN_IMAGE_PATTERNS.join(","))
+      .select("id, title, category, image, links")
+      .or(NEEDS_IMAGE_FILTERS.join(","))
       .limit(max);
 
     if (error) {
@@ -80,24 +91,35 @@ export async function GET(request: NextRequest) {
 
     if (!events || events.length === 0) {
       return NextResponse.json({
-        message: "No events with broken images remaining",
+        message: "No events needing image enrichment remaining",
         status: "done",
         processed: 0,
       });
     }
 
-    // 4. Try to find a replacement image from a hotlinkable domain for each.
+    // 4. Resolve + re-host a real image for each.
     const replaced: Array<{ id: string; image: string }> = [];
     const cleared: string[] = [];
+    const unchanged: string[] = [];
     const failed: Array<{ id: string; reason: string }> = [];
 
     for (const event of events) {
       const categories = Array.isArray(event.category) ? event.category : [];
-      const newImage = await findEventImage(event.title, categories);
+      const links = Array.isArray(event.links) ? event.links : [];
 
-      // If no usable replacement, null the field so the app uses its fallback
-      // (better a clean branded placeholder than a broken Reddit box).
-      const value = newImage ?? null;
+      const newImage = await resolveEventImage({ title: event.title, categories, links });
+
+      // No replacement found: null a broken source so the fallback renders;
+      // leave an existing fallback/null untouched.
+      let value: string | null;
+      if (newImage) {
+        value = newImage;
+      } else if (isBrokenSource(event.image)) {
+        value = null;
+      } else {
+        unchanged.push(event.id);
+        continue;
+      }
 
       const { error: updateError } = await supabase
         .from("events")
@@ -109,19 +131,17 @@ export async function GET(request: NextRequest) {
         continue;
       }
 
-      if (newImage) {
-        replaced.push({ id: event.id, image: newImage });
-      } else {
-        cleared.push(event.id);
-      }
+      if (newImage) replaced.push({ id: event.id, image: newImage });
+      else cleared.push(event.id);
     }
 
     return NextResponse.json({
-      message: `Re-enriched ${replaced.length}, cleared ${cleared.length}, failed ${failed.length}`,
+      message: `Re-enriched ${replaced.length}, cleared ${cleared.length}, unchanged ${unchanged.length}, failed ${failed.length}`,
       status: "success",
       processed: events.length,
       replaced,
       cleared,
+      unchanged,
       failed,
     });
   } catch (error) {

@@ -17,6 +17,7 @@
     "@next/third-parties": "^16.1.1",
     "@neynar/nodejs-sdk": "^3.121.0",
     "@supabase/supabase-js": "^2.90.1",
+    "@vercel/blob": "^2.4.0",
     "@zoralabs/coins-sdk": "^0.4.3",
     "framer-motion": "^12.23.26",
     "next": "16.1.1",

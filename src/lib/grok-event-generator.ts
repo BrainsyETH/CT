@@ -18,7 +18,7 @@ import { FALLBACK_IMAGES, ALL_CATEGORIES, EVENT_TAGS } from "./constants";
 import { isAllowedImageUrl, PROMPT_PREFERRED_IMAGE_HOSTNAMES } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
-import { findEventImage } from "./brave-search";
+import { resolveEventImage } from "./discover/image";
 
 // ============================================================================
 // Constants
@@ -430,8 +430,9 @@ export async function generateRecentEvents(
 // ============================================================================
 
 /**
- * For events still using the fallback image, search Brave Images for a
- * real image from a whitelisted domain. Mutates events in place.
+ * For events still using the fallback image, find a real image (Brave image
+ * search or the source article's og:image) and re-host it to Vercel Blob.
+ * Mutates events in place. Events with no findable image keep the fallback.
  */
 async function enrichEventImages(events: Event[]): Promise<void> {
   const needsImage = events.filter(
@@ -443,20 +444,18 @@ async function enrichEventImages(events: Event[]): Promise<void> {
 
   if (needsImage.length === 0) return;
 
-  // Search for images in parallel (one per event)
-  const results = await Promise.allSettled(
-    needsImage.map((event) =>
-      findEventImage(event.title, event.category)
-    )
+  // Resolve + re-host in parallel (one per event)
+  await Promise.allSettled(
+    needsImage.map(async (event) => {
+      const resolved = await resolveEventImage({
+        title: event.title,
+        categories: event.category,
+        links: event.links,
+      });
+      if (resolved) {
+        event.image = resolved;
+        console.log(`Image found for "${event.title}": ${resolved}`);
+      }
+    })
   );
-
-  for (let i = 0; i < needsImage.length; i++) {
-    const result = results[i];
-    if (result.status === "fulfilled" && result.value) {
-      needsImage[i].image = result.value;
-      console.log(
-        `Image found for "${needsImage[i].title}": ${result.value}`
-      );
-    }
-  }
 }
