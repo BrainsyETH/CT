@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { FallbackImage } from "./FallbackImage";
 import { useRef, useCallback, useMemo } from "react";
 import { useModeStore } from "@/store/mode-store";
 import { formatDate } from "@/lib/formatters";
@@ -153,8 +153,9 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
                 <div className={`relative w-full aspect-[16/9] overflow-hidden ${
                   isCrimeline ? "bg-gray-900" : "bg-gray-100"
                 }`}>
-                  <Image
+                  <FallbackImage
                     src={event.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
+                    fallbackSrc={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
                     alt={event.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"

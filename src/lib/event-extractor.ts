@@ -6,6 +6,8 @@
  */
 
 import OpenAI from "openai";
+import { ALL_CATEGORIES, EVENT_TAGS, CRIMELINE_TYPES } from "./constants";
+import { PROMPT_PREFERRED_IMAGE_HOSTNAMES } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 
 // ============================================================================
@@ -44,13 +46,13 @@ CONTROLLED VOCABULARY (MUST MATCH EXACTLY)
 Modes: ["timeline", "crimeline"]
 
 Crimeline Types (only if mode includes "crimeline"):
-["BRIDGE HACK","CUSTODY FAILURE","EXCHANGE HACK","FRAUD","GOVERNANCE ATTACK","LEVERAGE COLLAPSE","ORACLE MANIPULATION","PROTOCOL EXPLOIT","RUG PULL","SOCIAL MEDIA HACK"]
+${JSON.stringify(CRIMELINE_TYPES)}
 
 Categories:
-["Bitcoin","Bridge","Bull Runs","CT Lore","Centralized Exchange","Culture","Dances","DeFi","DeFi Protocol","ETFs","Ethereum","Gaming","Lending","Market Structure","Memecoins","NFT","NFTs","Privacy","Regulation","Security","Stablecoin","Wallet/Key Compromise","ZachXBT"]
+${JSON.stringify(ALL_CATEGORIES)}
 
 Tags:
-["ATH","CULTURAL","ECONOMIC","FAILURE","MILESTONE","REGULATORY","SECURITY","TECH"]
+${JSON.stringify(EVENT_TAGS)}
 
 SCHEMA (match types exactly)
 {
@@ -61,7 +63,7 @@ SCHEMA (match types exactly)
   "category": ["One or more Categories from list", "No more than 3 categories"],
   "tags": ["One or more Tags from list"],
   "mode": ["timeline" and/or "crimeline"],
-  "image": "string URL or null. ONLY use URLs from: pbs.twimg.com, i.imgur.com, images.unsplash.com. Set to null if no valid image available.",
+  "image": "string URL or null. ONLY use URLs from these domains: ${PROMPT_PREFERRED_IMAGE_HOSTNAMES.join(", ")}. Avoid Reddit (hotlink-protected). Set to null if no valid image available.",
   "media": [
     { "type": "video", "video": { "provider": "", "url": "", "embed_url": "", "poster_url": "" } },
     { "type": "twitter", "twitter": { "tweet_url": "", "account_handle": "" } },

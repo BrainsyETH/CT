@@ -13,7 +13,7 @@ import type { Event, MediaItem } from "./types";
 // Allowed Image Domains (must match next.config.ts remotePatterns)
 // ============================================================================
 
-const ALLOWED_IMAGE_HOSTNAMES = [
+export const ALLOWED_IMAGE_HOSTNAMES = [
   "pbs.twimg.com",
   "i.imgur.com",
   // NOTE: imgs.search.brave.com intentionally excluded — URLs expire within hours
@@ -25,6 +25,15 @@ const ALLOWED_IMAGE_HOSTNAMES = [
   "placeholder.co",
   "asset-metadata-service-production.s3.amazonaws.com",
 ];
+
+/**
+ * Image hostnames the discovery prompts should prefer. Excludes sources that
+ * enforce hotlink protection (e.g. preview.redd.it 403s the Next.js image
+ * optimizer), so the model is steered toward URLs that actually render.
+ */
+export const PROMPT_PREFERRED_IMAGE_HOSTNAMES = ALLOWED_IMAGE_HOSTNAMES.filter(
+  (h) => h !== "preview.redd.it"
+);
 
 /** Vercel Blob storage subdomain pattern (fallback images) */
 const VERCEL_BLOB_SUFFIX = ".public.blob.vercel-storage.com";

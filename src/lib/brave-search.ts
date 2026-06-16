@@ -72,13 +72,15 @@ const MONTH_NAMES = [
 async function executeBraveQuery(
   query: string,
   apiKey: string,
-  count = 10
+  count = 10,
+  freshness?: string
 ): Promise<BraveSearchResult[]> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
     const params = new URLSearchParams({ q: query, count: String(count) });
+    if (freshness) params.set("freshness", freshness);
     const response = await fetch(`${BRAVE_SEARCH_URL}?${params}`, {
       headers: {
         Accept: "application/json",
@@ -191,6 +193,92 @@ export async function searchCryptoHistory(
       allResults.push(...result.value);
     } else {
       console.error("Brave Search query failed:", result.reason);
+    }
+  }
+
+  // Deduplicate by URL
+  const seen = new Set<string>();
+  const unique: BraveSearchResult[] = [];
+  for (const result of allResults) {
+    const normalizedUrl = result.url.toLowerCase().replace(/\/+$/, "");
+    if (!seen.has(normalizedUrl)) {
+      seen.add(normalizedUrl);
+      unique.push(result);
+    }
+  }
+
+  return unique.slice(0, 75);
+}
+
+/**
+ * Format a Date as YYYY-MM-DD (UTC) for Brave's freshness range param.
+ */
+function toFreshnessDate(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
+/**
+ * Search Brave for recent crypto news within a trailing window (default 14 days).
+ *
+ * Unlike searchCryptoHistory, this is NOT constrained to a single calendar
+ * day — it surfaces whatever actually happened across the window so events can
+ * be placed on their real dates. Uses Brave's `freshness` date-range filter to
+ * bias toward results published in the window.
+ *
+ * Returns deduplicated results (up to 75).
+ */
+export async function searchRecentCryptoNews(
+  daysBack = 14
+): Promise<BraveSearchResult[]> {
+  const apiKey = process.env.BRAVE_SEARCH_API_KEY;
+  if (!apiKey) {
+    throw new Error("BRAVE_SEARCH_API_KEY environment variable is not set");
+  }
+
+  const now = new Date();
+  const windowStart = new Date(now);
+  windowStart.setUTCDate(now.getUTCDate() - daysBack);
+
+  // Brave freshness range: YYYY-MM-DDtoYYYY-MM-DD
+  const freshness = `${toFreshnessDate(windowStart)}to${toFreshnessDate(now)}`;
+
+  const monthName = MONTH_NAMES[now.getUTCMonth()];
+  const year = now.getUTCFullYear();
+
+  const queries = [
+    // Hacks, exploits, rug pulls — the bread and butter of CT
+    `crypto ${monthName} ${year} hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability`,
+
+    // Regulation, enforcement, market structure
+    `crypto ${monthName} ${year} SEC OR lawsuit OR ETF OR indictment OR arrest OR regulation OR settlement`,
+
+    // Launches, unlocks, forks, depegs, collapses
+    `crypto ${monthName} ${year} launch OR mainnet OR "token unlock" OR airdrop OR "hard fork" OR depeg OR collapse OR shutdown`,
+
+    // CT lore, named actors, on-chain drama
+    `crypto ${monthName} ${year} zachxbt OR cobie OR memecoin OR "on-chain" OR drama OR scam`,
+
+    // CT-native and reputable outlets that cover breaking events well
+    `crypto news ${monthName} ${year} site:rekt.news OR site:web3isgoinggreat.com OR site:decrypt.co OR site:theblock.co OR site:dlnews.com OR site:coindesk.com`,
+
+    // "This week/today in crypto" roundups
+    `"this week in crypto" OR "crypto news today" ${monthName} ${year}`,
+
+    // Twitter/X posts from CT-native accounts for real tweet embeds
+    `site:x.com crypto ${monthName} ${year} (zachxbt OR cobie OR loomdart OR Pentoshi OR laurashin OR balajis OR tier10k) hack OR exploit OR launch OR breaking`,
+  ];
+
+  // Run all queries in parallel, biased to the recent window
+  const queryResults = await Promise.allSettled(
+    queries.map((q) => executeBraveQuery(q, apiKey, 15, freshness))
+  );
+
+  const allResults: BraveSearchResult[] = [];
+  for (const result of queryResults) {
+    if (result.status === "fulfilled") {
+      allResults.push(...result.value);
+    } else {
+      console.error("Brave recent-news query failed:", result.reason);
     }
   }
 
