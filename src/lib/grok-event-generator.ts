@@ -338,36 +338,40 @@ function normalizeEvent(event: Event): Event {
 // ============================================================================
 
 /**
- * Run an xAI generation for a given user prompt, then parse + enrich the result.
- * Shared by both the historical and recent-news generators.
+ * Low-level xAI chat call returning the raw JSON content string.
  */
-async function generateEvents(userPrompt: string): Promise<Event[]> {
+async function xaiChat(system: string, user: string, temperature = 0.3): Promise<string> {
   const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) {
     throw new Error("XAI_API_KEY environment variable is not set");
   }
 
   const model = process.env.XAI_MODEL || DEFAULT_MODEL;
-
-  const client = new OpenAI({
-    apiKey,
-    baseURL: XAI_BASE_URL,
-  });
+  const client = new OpenAI({ apiKey, baseURL: XAI_BASE_URL });
 
   const response = await client.chat.completions.create({
     model,
     messages: [
-      { role: "system", content: SYSTEM_PROMPT },
-      { role: "user", content: userPrompt },
+      { role: "system", content: system },
+      { role: "user", content: user },
     ],
     response_format: { type: "json_object" },
-    temperature: 0.3,
+    temperature,
   });
 
   const raw = response.choices[0]?.message?.content;
   if (!raw) {
     throw new Error("No response from xAI");
   }
+  return raw;
+}
+
+/**
+ * Run an xAI generation for a given user prompt, then parse + enrich the result.
+ * Shared by both the historical and recent-news generators.
+ */
+async function generateEvents(userPrompt: string): Promise<Event[]> {
+  const raw = await xaiChat(SYSTEM_PROMPT, userPrompt);
 
   try {
     const events = parseEventsResponse(raw);
@@ -490,4 +494,59 @@ async function enrichEventTweets(events: Event[]): Promise<void> {
       }
     })
   );
+}
+
+// ============================================================================
+// Narrative Polish (for structured sources like DefiLlama)
+// ============================================================================
+
+const POLISH_SYSTEM_PROMPT = `You are a Crypto Twitter (CT) historian. You will be given crypto hack/exploit events that already have verified, structured facts. Rewrite each event's title and summary in CT voice.
+
+HARD RULES:
+- Do NOT change any facts: keep the exact dollar amount, date, protocol/entity name, chain, and technique as given.
+- Do NOT invent new facts, names, tweets, or numbers.
+- Summary: 3-5 sentences, specific and punchy, says why CT cared. No em dashes. No CoinDesk PR voice.
+- Title: concise and specific (include the protocol and the amount).
+
+Return ONLY JSON of the form {"events":[{"id":"...","title":"...","summary":"..."}]}.`;
+
+/**
+ * Rewrite the titles/summaries of structured-source events (e.g. DefiLlama
+ * hacks) into CT voice while preserving all facts. Mutates events in place.
+ * On failure, the original factual text is kept.
+ */
+export async function polishCrimelineNarratives(events: Event[]): Promise<void> {
+  if (events.length === 0) return;
+
+  const facts = events.map((e) => ({
+    id: e.id,
+    date: e.date,
+    funds_lost_usd: e.crimeline?.funds_lost_usd ?? null,
+    technique: e.crimeline?.root_cause?.[0] ?? e.crimeline?.type ?? null,
+    title: e.title,
+    summary: e.summary,
+  }));
+
+  const userPrompt = `Rewrite these crypto hack events in CT voice, keeping every fact exactly as given:\n\n${JSON.stringify(
+    facts,
+    null,
+    2
+  )}`;
+
+  try {
+    const raw = await xaiChat(POLISH_SYSTEM_PROMPT, userPrompt, 0.4);
+    const parsed = JSON.parse(raw);
+    const list: Array<{ id?: string; title?: string; summary?: string }> = Array.isArray(parsed)
+      ? parsed
+      : parsed.events ?? [];
+    const byId = new Map(list.filter((p) => p.id).map((p) => [p.id!, p]));
+
+    for (const event of events) {
+      const polished = byId.get(event.id);
+      if (polished?.title) event.title = polished.title;
+      if (polished?.summary) event.summary = polished.summary;
+    }
+  } catch (error) {
+    console.warn("Crimeline narrative polish failed; keeping factual text:", error);
+  }
 }

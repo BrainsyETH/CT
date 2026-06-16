@@ -2,16 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
 import { reenrichImages, reenrichTweets } from "@/lib/discover/reenrich";
+import { importDefiLlamaHacks } from "@/lib/discover/import-defillama";
+
+export const maxDuration = 300;
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
 const HARD_MAX = 40;
 
 /**
  * POST /api/admin/maintenance
- * Body: { task: "images" | "tweets", max?: number }
+ * Body: { task: "images" | "tweets" | "defillama", max?: number }
  *
- * On-demand backfill of event images / tweets, for the admin maintenance page.
- * Runs the same logic as the reenrich-* crons. Auth: x-admin-secret header.
+ * On-demand backfill of event images / tweets, and DefiLlama hack imports, for
+ * the admin maintenance page. Runs the same logic as the cron routes.
+ * Auth: x-admin-secret header.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -39,9 +43,19 @@ export async function POST(request: NextRequest) {
       const result = await reenrichTweets(supabase, max);
       return NextResponse.json({ success: true, task, ...result });
     }
+    if (task === "defillama") {
+      // Backfill the full historical hacks DB in batches.
+      const result = await importDefiLlamaHacks(supabase, { all: true, max: Math.min(max, 25) });
+      return NextResponse.json({
+        success: true,
+        task,
+        processed: result.candidates,
+        ...result,
+      });
+    }
 
     return NextResponse.json(
-      { success: false, error: 'Invalid task. Use "images" or "tweets".' },
+      { success: false, error: 'Invalid task. Use "images", "tweets", or "defillama".' },
       { status: 400 }
     );
   } catch (error) {

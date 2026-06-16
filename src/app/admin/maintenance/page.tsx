@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type Task = "images" | "tweets";
+type Task = "images" | "tweets" | "defillama";
 
 const SECRET_KEY = "coe-admin-secret";
 
@@ -11,7 +11,11 @@ export default function AdminMaintenancePage() {
   const [secret, setSecret] = useState("");
   const [running, setRunning] = useState<Task | null>(null);
   const [log, setLog] = useState<string[]>([]);
-  const [totals, setTotals] = useState<{ images: number; tweets: number }>({ images: 0, tweets: 0 });
+  const [totals, setTotals] = useState<{ images: number; tweets: number; defillama: number }>({
+    images: 0,
+    tweets: 0,
+    defillama: 0,
+  });
 
   useEffect(() => {
     const saved = window.localStorage.getItem(SECRET_KEY);
@@ -35,7 +39,7 @@ export default function AdminMaintenancePage() {
         const res = await fetch("/api/admin/maintenance", {
           method: "POST",
           headers: { "Content-Type": "application/json", "x-admin-secret": secret },
-          body: JSON.stringify({ task, max: 40 }),
+          body: JSON.stringify({ task, max: task === "defillama" ? 25 : 40 }),
         });
         const data = await res.json();
 
@@ -44,20 +48,13 @@ export default function AdminMaintenancePage() {
           break;
         }
         if (data.done || data.processed === 0) {
-          append(`✓ ${task} backfill complete — nothing left to process.`);
+          append(`✓ ${task} complete — nothing left to process.`);
           break;
         }
 
-        const got =
-          task === "images"
-            ? (data.replaced?.length ?? 0)
-            : (data.updated?.length ?? 0);
+        const got = data.replaced?.length ?? data.updated?.length ?? data.inserted?.length ?? 0;
         setTotals((t) => ({ ...t, [task]: t[task] + got }));
-        append(
-          task === "images"
-            ? `  batch: re-hosted ${data.replaced?.length ?? 0}, cleared ${data.cleared?.length ?? 0}, none ${data.unchanged?.length ?? 0}`
-            : `  batch: added tweets to ${data.updated?.length ?? 0}, none found ${data.none?.length ?? 0}`
-        );
+        append(`  ${data.message ?? `batch processed ${data.processed ?? 0}`}`);
       }
     } catch (err) {
       append(`✕ ${err instanceof Error ? err.message : "Request failed"}`);
@@ -110,11 +107,19 @@ export default function AdminMaintenancePage() {
             >
               {running === "tweets" ? "Backfilling tweets…" : "Backfill tweets"}
             </button>
+            <button
+              onClick={() => runBackfill("defillama")}
+              disabled={running !== null}
+              className="inline-flex items-center rounded-lg bg-amber-500/90 px-4 py-2 text-sm font-medium text-black hover:bg-amber-400 disabled:opacity-50"
+            >
+              {running === "defillama" ? "Importing DefiLlama hacks…" : "Import DefiLlama hacks"}
+            </button>
           </div>
 
           <p className="text-sm text-white/60">
-            Re-hosted images this session: <span className="text-white">{totals.images}</span> ·
-            Events given tweets: <span className="text-white">{totals.tweets}</span>
+            Re-hosted images: <span className="text-white">{totals.images}</span> ·
+            Events given tweets: <span className="text-white">{totals.tweets}</span> ·
+            DefiLlama hacks imported: <span className="text-white">{totals.defillama}</span>
           </p>
 
           <div className="rounded-lg bg-white/5 border border-white/10 p-4 font-mono text-xs leading-relaxed max-h-[50vh] overflow-auto whitespace-pre-wrap">
