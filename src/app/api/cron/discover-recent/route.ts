@@ -21,8 +21,19 @@ const AUTO_REVIEWER = "cron:auto-approve";
 /** Maximum events to submit per run */
 const MAX_EVENTS = 5;
 
-/** Trailing window (in days) the recent-news pass searches and validates against. */
+/** Default trailing window (in days) the recent-news pass searches and validates against. */
 const RECENT_WINDOW_DAYS = 14;
+
+/** Upper bounds for the backfill query overrides (?days, ?max). */
+const MAX_WINDOW_DAYS = 60;
+const MAX_MAX_EVENTS = 30;
+
+/** Parse a positive integer query param, clamped to [1, max], falling back to `fallback`. */
+function clampParam(value: string | null, fallback: number, max: number): number {
+  const n = value ? parseInt(value, 10) : NaN;
+  if (!Number.isFinite(n) || n < 1) return fallback;
+  return Math.min(n, max);
+}
 
 /** Format a Date as YYYY-MM-DD (UTC). */
 function toDateString(date: Date): string {
@@ -74,10 +85,23 @@ export async function GET(request: NextRequest) {
     }
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // 3. Compute the trailing window [today - N, today] in UTC
+    // 3. Window + count. Defaults match the daily run; ?days and ?max let an
+    // operator widen them for a one-shot backfill (still cron-auth gated).
+    const windowDays = clampParam(
+      request.nextUrl.searchParams.get("days"),
+      RECENT_WINDOW_DAYS,
+      MAX_WINDOW_DAYS
+    );
+    const maxEvents = clampParam(
+      request.nextUrl.searchParams.get("max"),
+      MAX_EVENTS,
+      MAX_MAX_EVENTS
+    );
+
+    // Compute the trailing window [today - windowDays, today] in UTC
     const now = new Date();
     const windowStartDate = new Date(now);
-    windowStartDate.setUTCDate(now.getUTCDate() - RECENT_WINDOW_DAYS);
+    windowStartDate.setUTCDate(now.getUTCDate() - windowDays);
     const windowStart = toDateString(windowStartDate);
     const windowEnd = toDateString(now);
 
@@ -92,16 +116,16 @@ export async function GET(request: NextRequest) {
       .lte("submitted_at", todayEnd);
 
     const todaySubmissionCount = existingRuns?.length ?? 0;
-    if (todaySubmissionCount >= MAX_EVENTS) {
+    if (todaySubmissionCount >= maxEvents) {
       return NextResponse.json({
-        message: `Already submitted ${todaySubmissionCount} events today (max ${MAX_EVENTS})`,
+        message: `Already submitted ${todaySubmissionCount} events today (max ${maxEvents})`,
         status: "skipped",
         windowStart,
         windowEnd,
       });
     }
 
-    const remainingSlots = MAX_EVENTS - todaySubmissionCount;
+    const remainingSlots = maxEvents - todaySubmissionCount;
 
     // 5. Fetch existing live events in the window for dedup (plus same-run picks).
     const { events: existingEvents } = await getEventsByDateRange(
@@ -113,7 +137,7 @@ export async function GET(request: NextRequest) {
     const existingTitles = existingEvents.map((e) => e.title);
 
     // 6. Brave Search — recent crypto news across the window
-    const searchResults = await searchRecentCryptoNews(RECENT_WINDOW_DAYS);
+    const searchResults = await searchRecentCryptoNews(windowDays);
 
     if (searchResults.length === 0) {
       return NextResponse.json({
@@ -129,7 +153,8 @@ export async function GET(request: NextRequest) {
       searchResults,
       existingTitles,
       windowStart,
-      windowEnd
+      windowEnd,
+      maxEvents
     );
 
     if (generatedEvents.length === 0) {

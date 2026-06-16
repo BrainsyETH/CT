@@ -26,9 +26,13 @@ export function isValidMediaItem(item: MediaItem): boolean {
 }
 
 /**
- * Build media array from event data, filtering out empty items
- * Supports both new media array and legacy image/video fields
- * Always includes event.image as a fallback image media item when available
+ * Build media array from event data, filtering out empty items.
+ * Supports both new media array and legacy image/video fields.
+ *
+ * The event image is placed FIRST so the detail modal's carousel opens on a
+ * reliable visual. Otherwise it opens on the first media item, which for
+ * auto-discovered events is often a handle-only Twitter timeline embed that
+ * X renders as a blank box — making it look like the event has no image.
  */
 export function getMediaItems(event: Event): MediaItem[] {
   const items: MediaItem[] = [];
@@ -44,11 +48,11 @@ export function getMediaItems(event: Event): MediaItem[] {
     }
   }
 
-  // Always include event.image as a fallback image media item when available
-  // Check if we already have an image item to avoid duplicates
+  // Lead with event.image (when present and not already in the list) so the
+  // carousel's first slide is the image rather than a possibly-blank embed.
   const hasImageItem = items.some(item => item.type === "image" && item.image?.url === event.image);
   if (event.image && !hasImageItem) {
-    items.push({ type: "image", image: { url: event.image, alt: event.title } });
+    items.unshift({ type: "image", image: { url: event.image, alt: event.title } });
   }
 
   return items;
