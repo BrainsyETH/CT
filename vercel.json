@@ -19,6 +19,14 @@
     {
       "path": "/api/cron/discover-recent",
       "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron/reenrich-images",
+      "schedule": "30 14 * * *"
+    },
+    {
+      "path": "/api/cron/reenrich-tweets",
+      "schedule": "0 15 * * *"
     }
   ]
 }
