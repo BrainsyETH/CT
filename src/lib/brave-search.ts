@@ -303,8 +303,58 @@ export async function searchRecentCryptoNews(
 }
 
 // ============================================================================
-// Image Search — find images from whitelisted domains for events
+// Tweet Search — find real tweets about an event for embeds
 // ============================================================================
+
+/** x.com path segments that are not user handles. */
+const NON_HANDLE_SEGMENTS = new Set([
+  "i", "intent", "search", "hashtag", "home", "explore",
+  "notifications", "messages", "compose", "settings",
+]);
+
+const TWEET_URL_RE = /(?:twitter\.com|x\.com)\/([A-Za-z0-9_]{1,15})\/status\/(\d{15,})/i;
+
+/**
+ * Search X/Twitter (via Brave) for real tweets about an event topic and return
+ * permalink candidates. Only returns URLs with a real-looking status ID, so
+ * the results are safe to embed (no fabrication).
+ */
+export async function searchEventTweets(
+  topic: string,
+  limit = 4
+): Promise<Array<{ tweet_url: string; account_handle: string }>> {
+  const apiKey = process.env.BRAVE_SEARCH_API_KEY;
+  if (!apiKey) return [];
+
+  const queries = [
+    `(site:x.com OR site:twitter.com) ${topic}`,
+    `(site:x.com OR site:twitter.com) ${topic} (zachxbt OR cobie OR tier10k OR laurashin OR coindesk OR theblock)`,
+  ];
+
+  const queryResults = await Promise.allSettled(
+    queries.map((q) => executeBraveQuery(q, apiKey, 15))
+  );
+
+  const seenIds = new Set<string>();
+  const out: Array<{ tweet_url: string; account_handle: string }> = [];
+
+  for (const result of queryResults) {
+    if (result.status !== "fulfilled") continue;
+    for (const r of result.value) {
+      const match = r.url.match(TWEET_URL_RE);
+      if (!match) continue;
+      const handle = match[1];
+      const id = match[2];
+      if (NON_HANDLE_SEGMENTS.has(handle.toLowerCase())) continue;
+      if (seenIds.has(id)) continue;
+      seenIds.add(id);
+      out.push({ tweet_url: `https://x.com/${handle}/status/${id}`, account_handle: handle });
+      if (out.length >= limit) return out;
+    }
+  }
+
+  return out;
+}
 
 interface BraveImageResult {
   thumbnail?: { src?: string };

@@ -19,6 +19,7 @@ import { isAllowedImageUrl, PROMPT_PREFERRED_IMAGE_HOSTNAMES } from "./event-san
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
 import { resolveEventImage } from "./discover/image";
+import { resolveEventTweets } from "./discover/tweets";
 
 // ============================================================================
 // Constants
@@ -371,8 +372,9 @@ async function generateEvents(userPrompt: string): Promise<Event[]> {
   try {
     const events = parseEventsResponse(raw);
 
-    // Enrich events missing images via Brave Image Search
+    // Enrich events missing images, then top up real tweet embeds
     await enrichEventImages(events);
+    await enrichEventTweets(events);
 
     return events;
   } catch (error) {
@@ -455,6 +457,36 @@ async function enrichEventImages(events: Event[]): Promise<void> {
       if (resolved) {
         event.image = resolved;
         console.log(`Image found for "${event.title}": ${resolved}`);
+      }
+    })
+  );
+}
+
+// ============================================================================
+// Tweet Enrichment
+// ============================================================================
+
+/** Target number of real tweet embeds per event. */
+const TARGET_TWEETS = 2;
+
+/**
+ * Top up each event to TARGET_TWEETS real tweet embeds via Brave tweet search.
+ * Best-effort: events with no findable tweets are left as-is. Mutates in place.
+ */
+async function enrichEventTweets(events: Event[]): Promise<void> {
+  await Promise.allSettled(
+    events.map(async (event) => {
+      const media = event.media ?? [];
+      const realTweets = media.filter(
+        (m) => m.type === "twitter" && m.twitter?.tweet_url
+      ).length;
+      const needed = TARGET_TWEETS - realTweets;
+      if (needed <= 0) return;
+
+      const found = await resolveEventTweets(event.title, media, needed);
+      if (found.length > 0) {
+        event.media = [...media, ...found];
+        console.log(`Added ${found.length} tweet(s) for "${event.title}"`);
       }
     })
   );
