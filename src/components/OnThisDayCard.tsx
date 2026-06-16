@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import Image from "next/image";
+import { FallbackImage } from "./FallbackImage";
 import { motion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { formatDate } from "@/lib/formatters";
@@ -58,8 +58,9 @@ export function OnThisDayCard({ events }: OnThisDayCardProps) {
           {/* Image */}
           {featured.image && (
             <div className="relative w-full sm:w-48 h-32 sm:h-auto flex-shrink-0 overflow-hidden">
-              <Image
+              <FallbackImage
                 src={featured.image || (isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE)}
+                fallbackSrc={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
                 alt={featured.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

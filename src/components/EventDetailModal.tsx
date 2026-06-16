@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback, useState } from "react";
-import Image from "next/image";
+import { FallbackImage } from "./FallbackImage";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { CategoryPills } from "./CategoryPills";
@@ -704,8 +704,9 @@ export function EventDetailModal({ events }: EventDetailModalProps) {
                   className="relative max-w-[90vw] max-h-[90vh]"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image
+                  <FallbackImage
                     src={expandedImageUrl}
+                    fallbackSrc={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
                     alt={event.title}
                     width={1200}
                     height={800}

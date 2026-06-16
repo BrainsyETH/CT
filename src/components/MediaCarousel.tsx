@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
+import { FallbackImage } from "./FallbackImage";
 import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motion";
 import { TwitterEmbed } from "./TwitterEmbed";
 import { detectVideoProvider, getEmbedUrl, getVideoThumbnailUrl, isIframeProvider } from "@/lib/video-utils";
@@ -444,8 +445,9 @@ export function MediaCarousel({
               className="absolute inset-0 w-full h-full cursor-zoom-in group/image z-10"
               aria-label="View full image"
             >
-              <Image
+              <FallbackImage
                 src={imageUrl}
+                fallbackSrc={isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE}
                 alt={item.image?.alt || event.title}
                 fill
                 className="object-contain"
