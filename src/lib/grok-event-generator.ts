@@ -196,7 +196,8 @@ function buildRecentEventsPrompt(
   searchResults: BraveSearchResult[],
   existingTitles: string[],
   windowStart: string,
-  windowEnd: string
+  windowEnd: string,
+  maxEvents: number
 ): string {
   const existingList =
     existingTitles.length > 0
@@ -207,13 +208,13 @@ function buildRecentEventsPrompt(
 
   return `RECENT WINDOW: ${windowStart} to ${windowEnd}
 
-You are a Crypto Twitter (CT) historian logging what actually mattered over the last couple of weeks (${windowStart} to ${windowEnd}). From the search results below, extract the real, verifiable events from THIS WINDOW that CT cared about, and place each on its real date.
+You are a Crypto Twitter (CT) historian logging what actually mattered over this window (${windowStart} to ${windowEnd}). From the search results below, extract the real, verifiable events from THIS WINDOW that CT cared about, and place each on its real date.
 
 HARD RULES:
 - Each event's "date" MUST be the real date the event happened, and MUST fall within ${windowStart} to ${windowEnd}. Do NOT guess. If you cannot pin the exact date from the sources, drop the event.
-- Real, verifiable events only. Zero fabrication. Returning 2 solid events beats inventing 5.
+- Real, verifiable events only. Zero fabrication. Returning a few solid events beats inventing more.
 - Skip routine market noise ("BTC up 3%", generic price recaps) unless it is a genuinely significant move with a story and named context.
-- Up to 5 events, ordered by CT significance.
+- Up to ${maxEvents} events, ordered by CT significance.
 
 Use the search results below as your source material. You may rely on your own knowledge to fill in detail, but only for events you are confident actually happened within this window.
 
@@ -420,16 +421,18 @@ export async function generateHistoryEvents(
  * @param existingTitles - Titles of events already in the DB for deduplication
  * @param windowStart - Inclusive window start, YYYY-MM-DD
  * @param windowEnd - Inclusive window end, YYYY-MM-DD
- * @returns Array of generated Event objects (up to 5)
+ * @param maxEvents - Upper bound on events to request (default 5)
+ * @returns Array of generated Event objects
  */
 export async function generateRecentEvents(
   searchResults: BraveSearchResult[],
   existingTitles: string[],
   windowStart: string,
-  windowEnd: string
+  windowEnd: string,
+  maxEvents = 5
 ): Promise<Event[]> {
   return generateEvents(
-    buildRecentEventsPrompt(searchResults, existingTitles, windowStart, windowEnd)
+    buildRecentEventsPrompt(searchResults, existingTitles, windowStart, windowEnd, maxEvents)
   );
 }
 

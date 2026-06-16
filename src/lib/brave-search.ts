@@ -146,8 +146,6 @@ export async function searchCryptoHistory(
   }
 
   const currentYear = new Date().getFullYear();
-  const paddedMonth = String(month).padStart(2, "0");
-  const paddedDay = String(day).padStart(2, "0");
 
   // Key years in crypto history for targeted searches
   const historicalYears = [2011, 2013, 2014, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
@@ -242,30 +240,38 @@ export async function searchRecentCryptoNews(
   // Brave freshness range: YYYY-MM-DDtoYYYY-MM-DD
   const freshness = `${toFreshnessDate(windowStart)}to${toFreshnessDate(now)}`;
 
-  const monthName = MONTH_NAMES[now.getUTCMonth()];
-  const year = now.getUTCFullYear();
+  // The window can span more than one month (e.g. a multi-week backfill), so
+  // build a "Month Year" hint covering every month it touches.
+  const monthLabels: string[] = [];
+  const cursor = new Date(Date.UTC(windowStart.getUTCFullYear(), windowStart.getUTCMonth(), 1));
+  const lastMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  while (cursor <= lastMonth) {
+    monthLabels.push(`"${MONTH_NAMES[cursor.getUTCMonth()]} ${cursor.getUTCFullYear()}"`);
+    cursor.setUTCMonth(cursor.getUTCMonth() + 1);
+  }
+  const dateHint = monthLabels.join(" OR ");
 
   const queries = [
     // Hacks, exploits, rug pulls — the bread and butter of CT
-    `crypto ${monthName} ${year} hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability`,
+    `crypto (${dateHint}) hack OR exploit OR "rug pull" OR drained OR stolen OR vulnerability`,
 
     // Regulation, enforcement, market structure
-    `crypto ${monthName} ${year} SEC OR lawsuit OR ETF OR indictment OR arrest OR regulation OR settlement`,
+    `crypto (${dateHint}) SEC OR lawsuit OR ETF OR indictment OR arrest OR regulation OR settlement`,
 
     // Launches, unlocks, forks, depegs, collapses
-    `crypto ${monthName} ${year} launch OR mainnet OR "token unlock" OR airdrop OR "hard fork" OR depeg OR collapse OR shutdown`,
+    `crypto (${dateHint}) launch OR mainnet OR "token unlock" OR airdrop OR "hard fork" OR depeg OR collapse OR shutdown`,
 
     // CT lore, named actors, on-chain drama
-    `crypto ${monthName} ${year} zachxbt OR cobie OR memecoin OR "on-chain" OR drama OR scam`,
+    `crypto (${dateHint}) zachxbt OR cobie OR memecoin OR "on-chain" OR drama OR scam`,
 
     // CT-native and reputable outlets that cover breaking events well
-    `crypto news ${monthName} ${year} site:rekt.news OR site:web3isgoinggreat.com OR site:decrypt.co OR site:theblock.co OR site:dlnews.com OR site:coindesk.com`,
+    `crypto news (${dateHint}) site:rekt.news OR site:web3isgoinggreat.com OR site:decrypt.co OR site:theblock.co OR site:dlnews.com OR site:coindesk.com`,
 
     // "This week/today in crypto" roundups
-    `"this week in crypto" OR "crypto news today" ${monthName} ${year}`,
+    `"this week in crypto" OR "crypto news today" (${dateHint})`,
 
     // Twitter/X posts from CT-native accounts for real tweet embeds
-    `site:x.com crypto ${monthName} ${year} (zachxbt OR cobie OR loomdart OR Pentoshi OR laurashin OR balajis OR tier10k) hack OR exploit OR launch OR breaking`,
+    `site:x.com crypto (${dateHint}) (zachxbt OR cobie OR loomdart OR Pentoshi OR laurashin OR balajis OR tier10k) hack OR exploit OR launch OR breaking`,
   ];
 
   // Run all queries in parallel, biased to the recent window

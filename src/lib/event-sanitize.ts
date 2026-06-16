@@ -10,30 +10,33 @@ import { FALLBACK_IMAGES } from "./constants";
 import type { Event, MediaItem } from "./types";
 
 // ============================================================================
-// Allowed Image Domains (must match next.config.ts remotePatterns)
+// Allowed Image Domains
 // ============================================================================
+//
+// Domains we ACCEPT/SELECT for new event images. This is the gate used by
+// isAllowedImageUrl (generation + Brave image enrichment). It is intentionally
+// stricter than next.config.ts remotePatterns: next.config still lists
+// preview.redd.it so legacy rows that already store Reddit URLs render (and
+// degrade to the fallback via FallbackImage on the inevitable 403) without
+// throwing "hostname not configured" at render time. We just refuse to pick
+// new Reddit URLs, since Reddit blocks hotlinking from both the browser and
+// our image optimizer.
 
 export const ALLOWED_IMAGE_HOSTNAMES = [
   "pbs.twimg.com",
   "i.imgur.com",
   // NOTE: imgs.search.brave.com intentionally excluded — URLs expire within hours
+  // NOTE: preview.redd.it intentionally excluded — Reddit blocks hotlinking (403)
   "images.unsplash.com",
   "99bitcoins.com",
   "img.paragraph.com",
-  "preview.redd.it",
   "public.bnbstatic.com",
   "placeholder.co",
   "asset-metadata-service-production.s3.amazonaws.com",
 ];
 
-/**
- * Image hostnames the discovery prompts should prefer. Excludes sources that
- * enforce hotlink protection (e.g. preview.redd.it 403s the Next.js image
- * optimizer), so the model is steered toward URLs that actually render.
- */
-export const PROMPT_PREFERRED_IMAGE_HOSTNAMES = ALLOWED_IMAGE_HOSTNAMES.filter(
-  (h) => h !== "preview.redd.it"
-);
+/** Image hostnames the discovery prompts should prefer (same as the accept list). */
+export const PROMPT_PREFERRED_IMAGE_HOSTNAMES = ALLOWED_IMAGE_HOSTNAMES;
 
 /** Vercel Blob storage subdomain pattern (fallback images) */
 const VERCEL_BLOB_SUFFIX = ".public.blob.vercel-storage.com";
