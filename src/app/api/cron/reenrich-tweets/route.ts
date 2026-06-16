@@ -1,37 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
-import { resolveEventImage } from "@/lib/discover/image";
-import { FALLBACK_IMAGES } from "@/lib/constants";
+import { resolveEventTweets } from "@/lib/discover/tweets";
+import type { MediaItem } from "@/lib/types";
 
 // ============================================================================
 // Constants
 // ============================================================================
 
-/** Max events to process per run (bounds image fetches + execution time). */
+/** Max events to process per run (bounds Brave calls + execution time). */
 const DEFAULT_MAX = 15;
 const HARD_MAX = 40;
 
-/**
- * Events that lack a real, displayable image and should be (re)enriched:
- * - null image
- * - the branded fallback placeholders
- * - preview.redd.it: Reddit blocks hotlinking (403)
- * - imgs.search.brave.com: Brave proxy URLs expire within hours
- */
-const NEEDS_IMAGE_FILTERS = [
-  "image.is.null",
-  `image.eq.${FALLBACK_IMAGES.TIMELINE}`,
-  `image.eq.${FALLBACK_IMAGES.CRIMELINE}`,
-  "image.ilike.%preview.redd.it%",
-  "image.ilike.%imgs.search.brave.com%",
-];
-
-/** Image sources that are broken (vs. the fallback, which is intentional). */
-function isBrokenSource(image: string | null): boolean {
-  if (!image) return false;
-  return image.includes("preview.redd.it") || image.includes("imgs.search.brave.com");
-}
+/** Target tweet embeds per event. */
+const TARGET_TWEETS = 2;
 
 function clampParam(value: string | null, fallback: number, max: number): number {
   const n = value ? parseInt(value, 10) : NaN;
@@ -44,12 +26,12 @@ function clampParam(value: string | null, fallback: number, max: number): number
 // ============================================================================
 
 /**
- * Re-enrich event images that aren't real/displayable.
+ * Attach real tweet embeds to events that have none.
  *
- * For each target event, finds a real image (Brave Image Search or the source
- * article's og:image) and re-hosts it to Vercel Blob so it always renders. If
- * no image can be found, a broken source (Reddit/expired proxy) is nulled so
- * the branded fallback shows; an existing fallback is left as-is.
+ * After the handle-only cleanup, any twitter media item that remains is a real
+ * tweet — so events whose media contains no twitter item are the ones lacking
+ * tweets. For each, find up to TARGET_TWEETS real tweets via Brave and append
+ * them. Best-effort: events with no findable tweets are left unchanged.
  *
  * Processes up to ?max events per run (default 15). Run repeatedly to work
  * through the backlog. Auth-gated by CRON_SECRET.
@@ -77,53 +59,43 @@ export async function GET(request: NextRequest) {
 
     const max = clampParam(request.nextUrl.searchParams.get("max"), DEFAULT_MAX, HARD_MAX);
 
-    // 3. Find events lacking a real image
+    // 3. Find events whose media contains no twitter item
     const { data: events, error } = await supabase
       .from("events")
-      .select("id, title, category, image, links")
-      .or(NEEDS_IMAGE_FILTERS.join(","))
+      .select("id, title, media")
+      .not("media", "cs", '[{"type":"twitter"}]')
       .limit(max);
 
     if (error) {
-      console.error("Failed to query events for re-enrichment:", error);
+      console.error("Failed to query events for tweet enrichment:", error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     if (!events || events.length === 0) {
       return NextResponse.json({
-        message: "No events needing image enrichment remaining",
+        message: "No events needing tweets remaining",
         status: "done",
         processed: 0,
       });
     }
 
-    // 4. Resolve + re-host a real image for each.
-    const replaced: Array<{ id: string; image: string }> = [];
-    const cleared: string[] = [];
-    const unchanged: string[] = [];
+    // 4. Find + append real tweets for each.
+    const updated: Array<{ id: string; added: number }> = [];
+    const none: string[] = [];
     const failed: Array<{ id: string; reason: string }> = [];
 
     for (const event of events) {
-      const categories = Array.isArray(event.category) ? event.category : [];
-      const links = Array.isArray(event.links) ? event.links : [];
+      const media: MediaItem[] = Array.isArray(event.media) ? event.media : [];
+      const found = await resolveEventTweets(event.title, media, TARGET_TWEETS);
 
-      const newImage = await resolveEventImage({ title: event.title, categories, links });
-
-      // No replacement found: null a broken source so the fallback renders;
-      // leave an existing fallback/null untouched.
-      let value: string | null;
-      if (newImage) {
-        value = newImage;
-      } else if (isBrokenSource(event.image)) {
-        value = null;
-      } else {
-        unchanged.push(event.id);
+      if (found.length === 0) {
+        none.push(event.id);
         continue;
       }
 
       const { error: updateError } = await supabase
         .from("events")
-        .update({ image: value })
+        .update({ media: [...media, ...found] })
         .eq("id", event.id);
 
       if (updateError) {
@@ -131,21 +103,19 @@ export async function GET(request: NextRequest) {
         continue;
       }
 
-      if (newImage) replaced.push({ id: event.id, image: newImage });
-      else cleared.push(event.id);
+      updated.push({ id: event.id, added: found.length });
     }
 
     return NextResponse.json({
-      message: `Re-enriched ${replaced.length}, cleared ${cleared.length}, unchanged ${unchanged.length}, failed ${failed.length}`,
+      message: `Added tweets to ${updated.length}, none found for ${none.length}, failed ${failed.length}`,
       status: "success",
       processed: events.length,
-      replaced,
-      cleared,
-      unchanged,
+      updated,
+      none,
       failed,
     });
   } catch (error) {
-    console.error("Re-enrich images cron error:", error);
+    console.error("Re-enrich tweets cron error:", error);
     return NextResponse.json(
       {
         error: "Internal server error",

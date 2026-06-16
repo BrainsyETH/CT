@@ -178,6 +178,21 @@ export async function fetchUrlContent(url: string): Promise<FetchResult> {
   }
 }
 
+/**
+ * Fetch a page and return just its og:image / twitter:image URL, if any.
+ * Used by the discovery image pipeline to source a relevant image from an
+ * event's source article (re-hosted to Blob before use). Returns undefined
+ * on any failure.
+ */
+export async function fetchOgImage(url: string): Promise<string | undefined> {
+  try {
+    const { ogImage } = await fetchUrlContent(url);
+    return ogImage;
+  } catch {
+    return undefined;
+  }
+}
+
 // ============================================================================
 // Event Extraction
 // ============================================================================

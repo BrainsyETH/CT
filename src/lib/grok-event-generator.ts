@@ -18,7 +18,8 @@ import { FALLBACK_IMAGES, ALL_CATEGORIES, EVENT_TAGS } from "./constants";
 import { isAllowedImageUrl, PROMPT_PREFERRED_IMAGE_HOSTNAMES } from "./event-sanitize";
 import type { Event, EventTag, Mode } from "./types";
 import type { BraveSearchResult } from "./brave-search";
-import { findEventImage } from "./brave-search";
+import { resolveEventImage } from "./discover/image";
+import { resolveEventTweets } from "./discover/tweets";
 
 // ============================================================================
 // Constants
@@ -297,31 +298,20 @@ function normalizeEvent(event: Event): Event {
     event.image = isCrimeline ? FALLBACK_IMAGES.CRIMELINE : FALLBACK_IMAGES.TIMELINE;
   }
 
-  // Strip Twitter media items with fake/unverifiable tweet URLs
-  // Keep items that have only account_handle (timeline embeds) or have a tweet_url
-  // from a search result (real URLs have numeric status IDs of 15+ digits)
+  // Keep only real single-tweet embeds (valid tweet_url with a real status
+  // ID). Handle-only timeline embeds are dropped — X renders them as a blank
+  // box, so they look broken in the carousel.
   event.media = event.media.filter((item) => {
     if (item.type !== "twitter") return true;
     const twitter = item.twitter;
-    if (!twitter) return false;
+    if (!twitter?.tweet_url) return false;
 
-    // If it only has account_handle (no tweet_url), keep it as a timeline embed
-    if (!twitter.tweet_url && twitter.account_handle) return true;
-
-    // Validate tweet_url has a real-looking status ID (15-20 digits)
-    if (twitter.tweet_url) {
-      const match = twitter.tweet_url.match(/\/status\/(\d+)/);
-      if (!match || match[1].length < 15) {
-        console.warn(
-          `Event "${event.id}" stripped suspicious tweet URL: ${twitter.tweet_url}`
-        );
-        // Convert to timeline-only embed if we have the handle
-        if (twitter.account_handle) {
-          item.twitter = { account_handle: twitter.account_handle };
-          return true;
-        }
-        return false;
-      }
+    const match = twitter.tweet_url.match(/\/status\/(\d+)/);
+    if (!match || match[1].length < 15) {
+      console.warn(
+        `Event "${event.id}" stripped suspicious tweet URL: ${twitter.tweet_url}`
+      );
+      return false;
     }
 
     return true;
@@ -382,8 +372,9 @@ async function generateEvents(userPrompt: string): Promise<Event[]> {
   try {
     const events = parseEventsResponse(raw);
 
-    // Enrich events missing images via Brave Image Search
+    // Enrich events missing images, then top up real tweet embeds
     await enrichEventImages(events);
+    await enrichEventTweets(events);
 
     return events;
   } catch (error) {
@@ -441,8 +432,9 @@ export async function generateRecentEvents(
 // ============================================================================
 
 /**
- * For events still using the fallback image, search Brave Images for a
- * real image from a whitelisted domain. Mutates events in place.
+ * For events still using the fallback image, find a real image (Brave image
+ * search or the source article's og:image) and re-host it to Vercel Blob.
+ * Mutates events in place. Events with no findable image keep the fallback.
  */
 async function enrichEventImages(events: Event[]): Promise<void> {
   const needsImage = events.filter(
@@ -454,20 +446,48 @@ async function enrichEventImages(events: Event[]): Promise<void> {
 
   if (needsImage.length === 0) return;
 
-  // Search for images in parallel (one per event)
-  const results = await Promise.allSettled(
-    needsImage.map((event) =>
-      findEventImage(event.title, event.category)
-    )
+  // Resolve + re-host in parallel (one per event)
+  await Promise.allSettled(
+    needsImage.map(async (event) => {
+      const resolved = await resolveEventImage({
+        title: event.title,
+        categories: event.category,
+        links: event.links,
+      });
+      if (resolved) {
+        event.image = resolved;
+        console.log(`Image found for "${event.title}": ${resolved}`);
+      }
+    })
   );
+}
 
-  for (let i = 0; i < needsImage.length; i++) {
-    const result = results[i];
-    if (result.status === "fulfilled" && result.value) {
-      needsImage[i].image = result.value;
-      console.log(
-        `Image found for "${needsImage[i].title}": ${result.value}`
-      );
-    }
-  }
+// ============================================================================
+// Tweet Enrichment
+// ============================================================================
+
+/** Target number of real tweet embeds per event. */
+const TARGET_TWEETS = 2;
+
+/**
+ * Top up each event to TARGET_TWEETS real tweet embeds via Brave tweet search.
+ * Best-effort: events with no findable tweets are left as-is. Mutates in place.
+ */
+async function enrichEventTweets(events: Event[]): Promise<void> {
+  await Promise.allSettled(
+    events.map(async (event) => {
+      const media = event.media ?? [];
+      const realTweets = media.filter(
+        (m) => m.type === "twitter" && m.twitter?.tweet_url
+      ).length;
+      const needed = TARGET_TWEETS - realTweets;
+      if (needed <= 0) return;
+
+      const found = await resolveEventTweets(event.title, media, needed);
+      if (found.length > 0) {
+        event.media = [...media, ...found];
+        console.log(`Added ${found.length} tweet(s) for "${event.title}"`);
+      }
+    })
+  );
 }
