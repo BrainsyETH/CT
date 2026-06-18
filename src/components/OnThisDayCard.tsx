@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { FallbackImage } from "./FallbackImage";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
 import { formatDate } from "@/lib/formatters";
 import { FALLBACK_IMAGES } from "@/lib/constants";
@@ -15,6 +15,7 @@ interface OnThisDayCardProps {
 export function OnThisDayCard({ events }: OnThisDayCardProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const todayEvents = useMemo(() => {
     const now = new Date();
@@ -38,6 +39,11 @@ export function OnThisDayCard({ events }: OnThisDayCardProps) {
   // Pick the most significant event (prefer ones with images)
   const featured = todayEvents.find((e) => e.image) || todayEvents[0];
   const yearsAgo = new Date().getFullYear() - parseInt(featured.date.slice(0, 4));
+
+  // The remaining events that share today's calendar date, newest first
+  const otherEvents = todayEvents
+    .filter((e) => e.id !== featured.id)
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <motion.section
@@ -95,11 +101,11 @@ export function OnThisDayCard({ events }: OnThisDayCardProps) {
               >
                 {yearsAgo} year{yearsAgo !== 1 ? "s" : ""} ago
               </span>
-              {todayEvents.length > 1 && (
+              {otherEvents.length > 0 && (
                 <span
                   className={`text-xs ${isCrimeline ? "text-gray-500" : "text-gray-400"}`}
                 >
-                  +{todayEvents.length - 1} more
+                  +{otherEvents.length} more
                 </span>
               )}
             </div>
@@ -132,6 +138,98 @@ export function OnThisDayCard({ events }: OnThisDayCardProps) {
           </div>
         </div>
       </button>
+
+      {/* Other events that happened on this calendar day */}
+      {otherEvents.length > 0 && (
+        <div className={`border-t ${isCrimeline ? "border-purple-900/40" : "border-teal-200"}`}>
+          <button
+            onClick={() => setIsExpanded((v) => !v)}
+            aria-expanded={isExpanded}
+            className={`w-full flex items-center justify-between gap-2 px-4 sm:px-5 py-3 text-left transition-colors focus:outline-none focus:ring-2 focus:ring-inset ${
+              isCrimeline
+                ? "text-purple-300 hover:bg-purple-950/40"
+                : "text-teal-700 hover:bg-teal-50"
+            }`}
+          >
+            <span className="text-xs font-bold uppercase tracking-widest">
+              {isExpanded
+                ? "Show less"
+                : `Show ${otherEvents.length} more from this day`}
+            </span>
+            <svg
+              className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
+                isExpanded ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <ul className="flex flex-col gap-2 px-4 sm:px-5 pb-4">
+                  {otherEvents.map((e) => {
+                    const eventYearsAgo =
+                      new Date().getFullYear() - parseInt(e.date.slice(0, 4));
+                    return (
+                      <li key={e.id}>
+                        <button
+                          onClick={() => setSelectedEventId(e.id)}
+                          className={`w-full flex items-start gap-3 p-3 rounded-lg text-left transition-colors ${
+                            isCrimeline
+                              ? "bg-gray-800/50 hover:bg-gray-800 border border-gray-700"
+                              : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
+                          }`}
+                        >
+                          <div className="flex-1 min-w-0">
+                            <p
+                              className={`text-sm font-semibold truncate ${
+                                isCrimeline ? "text-white" : "text-gray-900"
+                              }`}
+                            >
+                              {e.title}
+                            </p>
+                            <p
+                              className={`text-xs mt-0.5 ${
+                                isCrimeline ? "text-gray-400" : "text-gray-500"
+                              }`}
+                            >
+                              {formatDate(e.date)} · {eventYearsAgo} year
+                              {eventYearsAgo !== 1 ? "s" : ""} ago
+                            </p>
+                          </div>
+                          <svg
+                            className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                              isCrimeline ? "text-purple-400" : "text-teal-500"
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
     </motion.section>
   );
 }
