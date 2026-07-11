@@ -28,9 +28,16 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    // Log error to console in development
-    if (process.env.NODE_ENV === "development") {
-      console.error("ErrorBoundary caught an error:", error, errorInfo);
+    // Always log so production crashes are visible in browser consoles/session replays
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+
+    // Report to GA4 (if configured) so production crashes are observable
+    if (process.env.NODE_ENV === "production" && typeof window !== "undefined") {
+      const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+      gtag?.("event", "exception", {
+        description: `${error.name}: ${error.message}`,
+        fatal: false,
+      });
     }
 
     // Call optional error handler

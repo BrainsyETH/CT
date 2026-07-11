@@ -39,14 +39,34 @@ const LinkIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const ShareIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 12.632a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+    />
+  </svg>
+);
+
+const CodeIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+  </svg>
+);
+
 export function ShareButton({ event, overImage = false }: ShareButtonProps) {
-  const { mode, searchQuery, selectedTags, sortOrder } = useModeStore();
+  const { mode } = useModeStore();
   const [baseUrl, setBaseUrl] = useState("");
   const [copied, setCopied] = useState(false);
+  const [embedCopied, setEmbedCopied] = useState(false);
+  const [canNativeShare, setCanNativeShare] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setBaseUrl(window.location.origin);
+      setCanNativeShare(typeof navigator !== "undefined" && !!navigator.share);
     }
   }, []);
 
@@ -58,7 +78,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     return `${baseUrl}/event/${slug}`;
   }, [baseUrl, event.title, event.date]);
 
-  // Get first sentence of summary for tweet
+  // Get first sentence of summary for share text
   const getFirstSentence = (text: string): string => {
     if (!text) return "";
     const match = text.match(/^[^.!?]+[.!?]/);
@@ -66,23 +86,53 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     return text.length > 150 ? `${text.slice(0, 147)}...` : text;
   };
 
+  const shareText = useMemo(
+    () => `${event.title} — ${getFirstSentence(event.summary)}`,
+    [event.title, event.summary]
+  );
+
   const handleTwitterShare = () => {
     if (!shareUrl) return;
-    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}&via=chainofevents`;
     window.open(url, "_blank", "width=600,height=400");
   };
 
   const handleFarcasterShare = () => {
     if (!shareUrl) return;
-    const text = encodeURIComponent(event.title);
-    const url = `https://warpcast.com/~/compose?text=${text}&embeds[]=${encodeURIComponent(shareUrl)}`;
+    const text = encodeURIComponent(shareText);
+    const url = `https://farcaster.xyz/~/compose?text=${text}&embeds[]=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank", "width=600,height=600");
+  };
+
+  const handleNativeShare = async () => {
+    if (!shareUrl || !navigator.share) return;
+    try {
+      await navigator.share({
+        title: event.title,
+        text: shareText,
+        url: shareUrl,
+      });
+    } catch {
+      // User dismissed the share sheet - nothing to do.
+    }
   };
 
   const handleShareAsImage = () => {
     if (!baseUrl) return;
-    const ogUrl = `${baseUrl}/api/og?title=${encodeURIComponent(event.title)}&date=${encodeURIComponent(event.date)}&mode=${mode}`;
-    window.open(ogUrl, "_blank");
+    // Mirror the params the OG metadata path uses so the opened image matches
+    // what actually renders when the link is shared.
+    const eventMode = event.mode.includes("crimeline") ? "crimeline" : "timeline";
+    const params = new URLSearchParams({
+      title: event.title,
+      date: event.date,
+      summary: event.summary,
+      mode: eventMode,
+    });
+    const imageForOg = event.video?.poster_url || event.image;
+    if (imageForOg) {
+      params.set("image", imageForOg);
+    }
+    window.open(`${baseUrl}/api/og?${params.toString()}`, "_blank");
   };
 
   const handleCopy = async () => {
@@ -96,6 +146,18 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
     }
   };
 
+  const handleCopyEmbed = async () => {
+    if (!baseUrl) return;
+    const embedCode = `<iframe src="${baseUrl}/embed/${encodeURIComponent(event.id)}" width="420" height="480" frameborder="0" title="${event.title.replace(/"/g, "&quot;")} — Chain of Events"></iframe>`;
+    try {
+      await navigator.clipboard.writeText(embedCode);
+      setEmbedCopied(true);
+      setTimeout(() => setEmbedCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy embed code:", err);
+    }
+  };
+
   const baseStyles = overImage
     ? "bg-black/50 backdrop-blur-sm text-white hover:bg-black/70"
     : mode === "crimeline"
@@ -104,6 +166,18 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
 
   return (
     <div className="flex items-center gap-1.5" data-share-button>
+      {canNativeShare && (
+        <button
+          type="button"
+          onClick={handleNativeShare}
+          disabled={!shareUrl}
+          className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+          aria-label="Share"
+          title="Share"
+        >
+          <ShareIcon className="w-3.5 h-3.5" />
+        </button>
+      )}
       <button
         type="button"
         onClick={handleTwitterShare}
@@ -120,7 +194,7 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         disabled={!shareUrl}
         className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
         aria-label="Share on Farcaster"
-        title="Share on Warpcast"
+        title="Share on Farcaster"
       >
         <FarcasterIcon className="w-3.5 h-3.5" />
       </button>
@@ -133,6 +207,22 @@ export function ShareButton({ event, overImage = false }: ShareButtonProps) {
         title="Open as shareable image"
       >
         <ImageIcon className="w-3.5 h-3.5" />
+      </button>
+      <button
+        type="button"
+        onClick={handleCopyEmbed}
+        disabled={!baseUrl}
+        className={`flex items-center justify-center p-1.5 rounded-lg text-xs font-semibold transition-colors ${baseStyles} disabled:opacity-50 disabled:cursor-not-allowed`}
+        aria-label={embedCopied ? "Embed code copied" : "Copy embed code"}
+        title={embedCopied ? "Embed code copied!" : "Copy embed code for your site"}
+      >
+        {embedCopied ? (
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        ) : (
+          <CodeIcon className="w-3.5 h-3.5" />
+        )}
       </button>
       <button
         type="button"

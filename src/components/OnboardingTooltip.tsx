@@ -42,17 +42,17 @@ export function OnboardingTooltip() {
           className="fixed top-28 md:top-20 left-1/2 -translate-x-1/2 z-50 max-w-sm w-[calc(100%-2rem)]"
         >
           <div className="relative bg-white dark:bg-gray-900 border-2 border-teal-500 dark:border-purple-500 rounded-lg shadow-[4px_4px_0px_0px_rgba(20,184,166,0.3)] dark:shadow-[4px_4px_0px_0px_rgba(124,58,237,0.3)] p-4">
-            {/* Arrow pointing up */}
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l-2 border-t-2 border-teal-500 dark:border-purple-500 rotate-45" />
+            {/* Arrow pointing up - desktop only, where it reliably aligns with the header toggle */}
+            <div className="hidden md:block absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l-2 border-t-2 border-teal-500 dark:border-purple-500 rotate-45" />
 
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               <span className="font-bold text-teal-600 dark:text-purple-400">
                 Tip:
               </span>{" "}
               Use the toggle above to switch between{" "}
-              <span className="font-semibold">Timeline</span> (crypto milestones)
-              and <span className="font-semibold">Crimeline</span> (hacks &amp;
-              scams).
+              <span className="font-semibold">Timeline</span> (crypto milestones),{" "}
+              <span className="font-semibold">Crimeline</span> (hacks &amp; scams),
+              or <span className="font-semibold">All</span> for the full story.
             </p>
 
             <button

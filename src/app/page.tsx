@@ -1,9 +1,27 @@
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { unstable_cache } from "next/cache";
 import { Suspense } from "react";
 import { HomeContent } from "@/components/HomeContent";
+import { SkeletonTimeline } from "@/components/SkeletonTimeline";
 import { getAllEvents, getEventById } from "@/lib/events-db";
 import { formatDate, generateEventSlug } from "@/lib/formatters";
+
+// The homepage dataset only changes via daily crons, so cache the Supabase
+// query instead of hitting the DB on every request (page itself stays dynamic
+// because generateMetadata reads searchParams for ?event= deep links).
+const getHomepageEvents = unstable_cache(
+  () =>
+    getAllEvents({
+      // Homepage timeline should include the full dataset (year list derives from this).
+      // `getAllEvents` enforces a MAX_LIMIT of 500.
+      limit: 500,
+      orderBy: "date",
+      orderDirection: "desc",
+    }),
+  ["home-events"],
+  { revalidate: 300 }
+);
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -63,6 +81,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       return {
         title,
         description,
+        // Modal deep-links (/?event=id) are duplicates of the real event page;
+        // consolidate ranking signals onto the canonical slug URL.
+        alternates: {
+          canonical: `/event/${generateEventSlug(event.title, event.date)}`,
+        },
         openGraph: {
           title,
           description,
@@ -110,16 +133,10 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 }
 
 export default async function Home() {
-  const { events } = await getAllEvents({
-    // Homepage timeline should include the full dataset (year list derives from this).
-    // `getAllEvents` enforces a MAX_LIMIT of 500.
-    limit: 500,
-    orderBy: "date",
-    orderDirection: "desc",
-  });
+  const { events } = await getHomepageEvents();
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<SkeletonTimeline />}>
       <HomeContent events={events} />
     </Suspense>
   );

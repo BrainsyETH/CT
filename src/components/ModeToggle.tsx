@@ -19,7 +19,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
 
   return (
     <div
-      role="radiogroup"
+      role="group"
       aria-label="Select view mode"
       className={`neo-brutalist-toggle ${
         isCrimelineMode 
@@ -44,8 +44,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
                 navigator.vibrate(15);
               }
             }}
-            role="radio"
-            aria-checked={isActive}
+            aria-pressed={isActive}
             title={segment.tooltip}
             className={`
               neo-brutalist-btn
@@ -73,7 +72,7 @@ export function ModeToggle({ compact = false }: ModeToggleProps) {
           ? "Timeline mode active"
           : mode === "crimeline"
           ? "Crimeline mode active"
-          : "Both modes active"}
+          : "All modes active"}
       </span>
     </div>
   );

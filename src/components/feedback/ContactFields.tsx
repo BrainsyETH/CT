@@ -7,6 +7,8 @@ interface ContactFieldsProps {
   onTwitterChange: (value: string) => void;
   inputClassName: string;
   labelClassName: string;
+  /** Email is required for event submissions but optional for general feedback */
+  emailRequired?: boolean;
 }
 
 export function ContactFields({
@@ -16,17 +18,23 @@ export function ContactFields({
   onTwitterChange,
   inputClassName,
   labelClassName,
+  emailRequired = true,
 }: ContactFieldsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
         <label htmlFor="email" className={labelClassName}>
-          Email <span className="text-red-500">*</span>
+          Email{" "}
+          {emailRequired ? (
+            <span className="text-red-500">*</span>
+          ) : (
+            <span className="opacity-60">(optional)</span>
+          )}
         </label>
         <input
           type="email"
           id="email"
-          required
+          required={emailRequired}
           value={email}
           onChange={(e) => onEmailChange(e.target.value)}
           placeholder="your@email.com"

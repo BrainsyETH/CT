@@ -57,6 +57,12 @@ export function throttle<T extends (...args: Parameters<T>) => ReturnType<T>>(
 /**
  * Retries a function with exponential backoff.
  */
+/**
+ * Error that should never be retried (e.g. validation or rate-limit failures
+ * where repeating the identical request cannot succeed).
+ */
+export class NonRetryableError extends Error {}
+
 export async function withRetry<T>(
   fn: () => Promise<T>,
   options: {
@@ -80,6 +86,11 @@ export async function withRetry<T>(
       return await fn();
     } catch (error) {
       lastError = error;
+
+      // 4xx-style failures can't succeed on retry - surface them immediately
+      if (error instanceof NonRetryableError) {
+        throw error;
+      }
 
       if (attempt < maxRetries) {
         // Calculate exponential backoff delay

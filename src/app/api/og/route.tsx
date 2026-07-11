@@ -189,6 +189,68 @@ export async function GET(request: NextRequest) {
               </span>
             </div>
           )}
+
+          {/* Summary - Bottom Left */}
+          {firstSentence && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "28px",
+                left: "36px",
+                display: "flex",
+                maxWidth: "780px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  background: colors.cardBg,
+                  border: `5px solid ${colors.border}`,
+                  padding: "18px 28px",
+                  boxShadow: "6px 6px 0px 0px #000000",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: 600,
+                    color: colors.text,
+                    lineHeight: 1.3,
+                    wordBreak: "break-word",
+                    overflowWrap: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {firstSentence}
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Branding - Bottom Right */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "28px",
+              right: "36px",
+              display: "flex",
+              background: colors.accent,
+              border: `5px solid ${colors.border}`,
+              padding: "10px 20px",
+              boxShadow: "6px 6px 0px 0px #000000",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "20px",
+                fontWeight: 900,
+                color: "#ffffff",
+                letterSpacing: "1px",
+              }}
+            >
+              chainofevents.xyz
+            </span>
+          </div>
         </div>
       ),
       {

@@ -51,7 +51,12 @@ export function HeroSection({ events }: HeroSectionProps) {
   };
 
   const scrollToTimeline = () => {
-    document.getElementById("timeline-section")?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById("timeline-section");
+    if (!target) return;
+    // Offset for the fixed header so the filter bar isn't tucked underneath it
+    const headerOffset = 96;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (

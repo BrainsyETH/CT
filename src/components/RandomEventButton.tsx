@@ -12,17 +12,17 @@ export function RandomEventButton({ events }: RandomEventButtonProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const isCrimeline = mode === "crimeline";
 
+  // Compute eligible events up front so the button can disable itself instead
+  // of silently no-oping when the current mode has nothing to show.
+  const modeFiltered = events.filter((event) => {
+    const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
+    if (mode === "timeline") return eventModes.includes("timeline");
+    if (mode === "crimeline") return eventModes.includes("crimeline") && !!event.crimeline;
+    return true;
+  });
+  const hasEvents = modeFiltered.length > 0;
+
   const handleRandomEvent = useCallback(() => {
-    if (events.length === 0) return;
-
-    // Filter by current mode
-    const modeFiltered = events.filter((event) => {
-      const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
-      if (mode === "timeline") return eventModes.includes("timeline");
-      if (mode === "crimeline") return eventModes.includes("crimeline") && !!event.crimeline;
-      return true;
-    });
-
     if (modeFiltered.length === 0) return;
     const random = modeFiltered[Math.floor(Math.random() * modeFiltered.length)];
     setSelectedEventId(random.id);
@@ -31,14 +31,16 @@ export function RandomEventButton({ events }: RandomEventButtonProps) {
     if (typeof navigator !== "undefined" && "vibrate" in navigator) {
       navigator.vibrate(15);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [events, mode, setSelectedEventId]);
 
   return (
     <button
       onClick={handleRandomEvent}
-      aria-label="Open a random event"
-      title="Surprise me — random event"
-      className={`neo-brutalist-btn flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+      disabled={!hasEvents}
+      aria-label={hasEvents ? "Open a random event" : "No events available in this mode"}
+      title={hasEvents ? "Surprise me — random event" : "No events in this mode"}
+      className={`neo-brutalist-btn flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
         isCrimeline
           ? "bg-purple-900/40 text-purple-300 border-purple-700 hover:bg-purple-900/60 hover:text-purple-200"
           : "bg-teal-50 text-teal-700 border-teal-300 hover:bg-teal-100"

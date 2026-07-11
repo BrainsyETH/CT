@@ -23,6 +23,11 @@ export function MobileYearSelector({ years, currentYear, onJump }: MobileYearSel
     }
   }, [currentYear]);
 
+  // Nothing to scrub when filters produce no results - don't render an empty bar
+  if (years.length === 0) {
+    return null;
+  }
+
   return (
     <div
       className={`fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t backdrop-blur-md transition-colors duration-300 ${

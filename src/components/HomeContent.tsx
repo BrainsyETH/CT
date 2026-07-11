@@ -8,6 +8,7 @@ import { EventDetailModal } from "@/components/EventDetailModal";
 import { Footer } from "@/components/Footer";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { OnThisDayCard } from "@/components/OnThisDayCard";
+import { WeeklyEvents } from "@/components/WeeklyEvents";
 import { DamageCounter } from "@/components/DamageCounter";
 import { RandomEventButton } from "@/components/RandomEventButton";
 import { HeroSection } from "@/components/HeroSection";
@@ -83,6 +84,7 @@ export function HomeContent({ events }: HomeContentProps) {
             <RandomEventButton events={combinedEvents} />
           </div>
           <OnThisDayCard events={combinedEvents} />
+          <WeeklyEvents events={combinedEvents} />
           <div id="timeline-section">
             <Timeline events={combinedEvents} />
           </div>

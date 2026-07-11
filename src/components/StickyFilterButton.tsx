@@ -16,8 +16,19 @@ export function StickyFilterButton({
   activeFilterCount,
   onScrollToTop,
 }: StickyFilterButtonProps) {
-  const { mode, sortOrder, toggleSortOrder } = useModeStore();
+  const { mode, setMode, sortOrder, toggleSortOrder } = useModeStore();
   const isCrimeline = mode === "crimeline";
+
+  // The mode toggle lives only in the header, which hides on scroll-down.
+  // This keeps Timeline/Crimeline switching reachable mid-scroll on mobile.
+  const nextMode = mode === "timeline" ? "crimeline" : mode === "crimeline" ? "both" : "timeline";
+  const modeLabel = mode === "timeline" ? "Timeline" : mode === "crimeline" ? "Crimeline" : "All";
+  const handleModeCycle = () => {
+    setMode(nextMode);
+    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+      navigator.vibrate(15);
+    }
+  };
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
@@ -51,6 +62,21 @@ export function StickyFilterButton({
         transition={{ duration: 0.2 }}
         className="fixed bottom-14 lg:bottom-4 right-4 z-50 flex items-center gap-2"
       >
+        {/* Mode Cycle Button */}
+        <button
+          onClick={handleModeCycle}
+          aria-label={`Current view: ${modeLabel}. Switch view mode`}
+          className={`neo-brutalist-btn flex items-center justify-center h-12 px-3 rounded-lg text-xs font-bold uppercase tracking-wide ${
+            isCrimeline
+              ? "bg-purple-900/70 border-purple-600 text-purple-200 hover:bg-purple-900"
+              : mode === "timeline"
+              ? "bg-teal-100 border-teal-400 text-teal-700 hover:bg-teal-200"
+              : "bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
+          }`}
+        >
+          {modeLabel}
+        </button>
+
         {/* Sort Toggle Button */}
         <button
           onClick={toggleSortOrder}
