@@ -163,6 +163,7 @@ export async function GET(request: NextRequest) {
       tweet: {
         id: result.tweetId,
         url: result.tweetUrl,
+        hasImage: result.hasImage,
       },
       savedPost,
     });
