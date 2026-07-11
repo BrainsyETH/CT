@@ -5,7 +5,7 @@
  * using multiple query strategies to maximize coverage.
  */
 
-import { isAllowedImageUrl } from "./event-sanitize";
+import { isRehostableImageUrl } from "./event-sanitize";
 
 // ============================================================================
 // Types
@@ -369,8 +369,12 @@ interface BraveImageSearchResponse {
 const BRAVE_IMAGE_SEARCH_URL = "https://api.search.brave.com/res/v1/images/search";
 
 /**
- * Search Brave Images for a query and return the first image URL
- * that matches our whitelisted domains (next.config.ts remotePatterns).
+ * Search Brave Images for a query and return the first re-hostable image URL.
+ *
+ * We accept an image from ANY origin (not just render-whitelisted domains)
+ * because resolveEventImage re-hosts the result to Vercel Blob, making it
+ * permanent and whitelisted regardless of source. Only known-expiring /
+ * hotlink-blocked origins are skipped (see isRehostableImageUrl).
  */
 async function searchBraveImages(
   query: string,
@@ -402,16 +406,17 @@ async function searchBraveImages(
     const data: BraveImageSearchResponse = await response.json();
     const results = data.results ?? [];
 
-    // Find the first image from a whitelisted domain
+    // Return the first re-hostable image (prefer the full-res source over the
+    // thumbnail). Any origin is fine — resolveEventImage re-hosts it.
     for (const result of results) {
-      // properties.url is the actual source image URL
+      // properties.url is the actual source image URL (full resolution)
       const sourceUrl = result.properties?.url || result.url;
-      if (sourceUrl && isAllowedImageUrl(sourceUrl)) {
+      if (sourceUrl && isRehostableImageUrl(sourceUrl)) {
         return sourceUrl;
       }
-      // Also check thumbnail.src as a fallback
+      // Fall back to the thumbnail's source
       const thumbUrl = result.thumbnail?.src;
-      if (thumbUrl && isAllowedImageUrl(thumbUrl)) {
+      if (thumbUrl && isRehostableImageUrl(thumbUrl)) {
         return thumbUrl;
       }
     }
@@ -443,13 +448,17 @@ export async function findEventImage(
   );
   if (titleResult) return titleResult;
 
-  // Strategy 2: Search with category keywords on image-heavy sites
-  const categoryTerms = categories.join(" ");
-  const siteResult = await searchBraveImages(
-    `${categoryTerms} crypto site:reddit.com OR site:imgur.com`,
-    apiKey
-  );
-  if (siteResult) return siteResult;
+  // Strategy 2: Broaden with the primary category as a topical hint. (We no
+  // longer scope this to reddit/imgur — re-hosting means any source works, and
+  // Reddit hotlink-blocks anyway.)
+  const categoryTerms = categories.join(" ").trim();
+  if (categoryTerms) {
+    const categoryResult = await searchBraveImages(
+      `${eventTitle} ${categoryTerms} cryptocurrency`,
+      apiKey
+    );
+    if (categoryResult) return categoryResult;
+  }
 
   return null;
 }

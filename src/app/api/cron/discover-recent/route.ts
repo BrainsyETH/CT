@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
-import { getEventsByDateRange } from "@/lib/events-db";
+import { getAllEventTitlesForDedup } from "@/lib/events-db";
 import { searchRecentCryptoNews } from "@/lib/brave-search";
 import { generateRecentEvents } from "@/lib/grok-event-generator";
-import { isDuplicate } from "@/lib/discover/dedup";
+import { isDuplicate, isLowSignalEvent } from "@/lib/discover/dedup";
 import { insertApprovedEvents } from "@/lib/discover/persist";
 import type { Event } from "@/lib/types";
 
@@ -127,12 +127,11 @@ export async function GET(request: NextRequest) {
 
     const remainingSlots = maxEvents - todaySubmissionCount;
 
-    // 5. Fetch existing live events in the window for dedup (plus same-run picks).
-    const { events: existingEvents } = await getEventsByDateRange(
-      windowStart,
-      windowEnd,
-      { limit: 200 }
-    );
+    // 5. Fetch ALL live events (id + title) for dedup (plus same-run picks).
+    // Full-history compare (not just the recent window) so an event we already
+    // stored on an earlier date isn't re-added as a cross-date duplicate; the
+    // dedup matcher's distinctive-word guard prevents generic-title false hits.
+    const existingEvents = await getAllEventTitlesForDedup();
     const existingIds = existingEvents.map((e) => e.id);
     const existingTitles = existingEvents.map((e) => e.title);
 
@@ -174,6 +173,11 @@ export async function GET(request: NextRequest) {
     for (const event of generatedEvents) {
       if (!isWithinWindow(event, windowStart, windowEnd)) {
         skippedEvents.push(`${event.title} (out of window: ${event.date})`);
+        continue;
+      }
+
+      if (isLowSignalEvent(event.title)) {
+        skippedEvents.push(`${event.title} (low-signal)`);
         continue;
       }
 

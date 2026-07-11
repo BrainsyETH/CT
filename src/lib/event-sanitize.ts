@@ -58,6 +58,37 @@ export function isAllowedImageUrl(url: string): boolean {
   }
 }
 
+/**
+ * Hosts we never pick as an image candidate even when we re-host it:
+ * - imgs.search.brave.com: Brave's proxy URLs expire within hours.
+ * - *.redd.it: Reddit blocks hotlinking AND server-side fetches (403), so
+ *   re-hosting reliably fails; don't waste the primary candidate slot on it.
+ */
+const NON_REHOSTABLE_HOSTS = ["imgs.search.brave.com"];
+const NON_REHOSTABLE_SUFFIXES = [".redd.it"];
+
+/**
+ * Whether an image URL is worth attempting to re-host to Blob.
+ *
+ * Unlike isAllowedImageUrl (a narrow render-time domain gate), this accepts an
+ * image from ANY origin — because resolveEventImage re-hosts it to Vercel Blob,
+ * which makes the final URL permanent and whitelisted regardless of source. We
+ * only reject origins that are known to expire or block our fetch, so the
+ * enrichment pipeline stops discarding otherwise-good news/article images.
+ */
+export function isRehostableImageUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return false;
+    const hostname = parsed.hostname.toLowerCase();
+    if (NON_REHOSTABLE_HOSTS.includes(hostname)) return false;
+    if (NON_REHOSTABLE_SUFFIXES.some((s) => hostname.endsWith(s))) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ============================================================================
 // Event Sanitization
 // ============================================================================
