@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { validateAuthHeader } from "@/lib/crypto-utils";
 import { getCurrentChicagoDateString } from "@/lib/farcaster/time-utils";
-import { getEventsWithinDayWindow } from "@/lib/events-db";
+import { getAllEventTitlesForDedup } from "@/lib/events-db";
 import { searchCryptoHistory } from "@/lib/brave-search";
 import { generateHistoryEvents } from "@/lib/grok-event-generator";
-import { isDuplicate } from "@/lib/discover/dedup";
+import { isDuplicate, isLowSignalEvent } from "@/lib/discover/dedup";
 import { insertApprovedEvents } from "@/lib/discover/persist";
 import type { Event } from "@/lib/types";
 
@@ -21,15 +21,6 @@ const AUTO_REVIEWER = "cron:auto-approve";
 
 /** Maximum events to submit per run */
 const MAX_EVENTS = 5;
-
-/**
- * Dedup window in days (+/-). The same event is sometimes reported under
- * slightly different dates across sources, so candidates are compared against
- * existing events within this many days of the target date, not just the exact
- * day. The title-similarity gate still applies, so distinct events on nearby
- * days are not suppressed.
- */
-const DEDUP_DAY_WINDOW = 1;
 
 /**
  * Validate that an event's date matches the expected month/day.
@@ -105,18 +96,15 @@ export async function GET(request: NextRequest) {
 
     const remainingSlots = MAX_EVENTS - todaySubmissionCount;
 
-    // 5. Fetch existing events for dedup.
-    // Scope is intentionally limited to events already LIVE within a small
-    // +/- DEDUP_DAY_WINDOW window around this calendar day (plus same-run picks,
-    // tracked below) — the same event is often reported under slightly
-    // different dates, so we compare against nearby days, not just the exact
-    // one. We no longer dedup against the full pending/approved submission
-    // queue: cross-date titles caused false positives, and stale `pending` rows
-    // (never posted) would suppress valid re-discovery. Since events are
-    // auto-approved straight into `events`, the live set is the authoritative
-    // "already have it" reference.
-    const chicagoDate = new Date(postDate + "T00:00:00Z");
-    const existingEvents = await getEventsWithinDayWindow(chicagoDate, DEDUP_DAY_WINDOW);
+    // 5. Fetch ALL live events (id + title) for dedup.
+    // Historical discovery for a given calendar day frequently re-surfaces an
+    // event we already stored on a DIFFERENT date (news re-covers it later, or
+    // the original was mis-dated). A narrow day-window compare misses those and
+    // creates cross-date duplicates. We now compare against the whole live set;
+    // the dedup matcher's distinctive-word guard keeps generic titles from
+    // false-matching. Same-run picks are appended below to block intra-batch
+    // dupes too.
+    const existingEvents = await getAllEventTitlesForDedup();
     const existingIds = existingEvents.map((e) => e.id);
     const existingTitles = existingEvents.map((e) => e.title);
 
@@ -155,6 +143,11 @@ export async function GET(request: NextRequest) {
     for (const event of generatedEvents) {
       if (!matchesMonthDay(event, month, day)) {
         skippedEvents.push(`${event.title} (date mismatch: ${event.date})`);
+        continue;
+      }
+
+      if (isLowSignalEvent(event.title)) {
+        skippedEvents.push(`${event.title} (low-signal)`);
         continue;
       }
 

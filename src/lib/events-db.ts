@@ -239,6 +239,27 @@ export async function getEventsOnThisDay(
  * compared against a small window of nearby days rather than the exact day
  * only. Date arithmetic rolls over month/year boundaries automatically.
  */
+/**
+ * Fetch every live event's id + title only, for cross-date deduplication.
+ *
+ * Discovery previously compared new candidates against a narrow date window,
+ * which let the SAME event re-discovered months later on a different date slip
+ * in as a duplicate. Comparing against the full live set closes that gap; the
+ * dedup matcher's distinctive-word guard prevents generic-title false matches.
+ * id+title only keeps this cheap even across the whole table.
+ */
+export async function getAllEventTitlesForDedup(): Promise<Array<{ id: string; title: string }>> {
+  const client = getEventsClient();
+  const { data, error } = await client.from("events").select("id, title");
+
+  if (error) {
+    console.error("Error fetching event titles for dedup:", error);
+    throw error;
+  }
+
+  return (data || []) as Array<{ id: string; title: string }>;
+}
+
 export async function getEventsWithinDayWindow(
   date: Date,
   windowDays: number,
