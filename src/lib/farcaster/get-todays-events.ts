@@ -14,11 +14,19 @@ export async function getTodaysEvents(dateInChicago: Date): Promise<Event[]> {
 }
 
 /**
- * Gets a specific event by slot index from today's events
+ * Gets a specific event by slot index from today's events.
+ *
+ * Options are forwarded to the DB layer — pass `fallbackToRecent` (with
+ * `excludeIds`) to keep an automated bot from going silent on calendar days
+ * that have no "on this day" event.
  *
  * Now uses Supabase database instead of events.json
  */
-export async function getEventForSlot(dateInChicago: Date, slotIndex: number): Promise<Event | null> {
-  const event = await getEventForSlotDb(dateInChicago, slotIndex);
+export async function getEventForSlot(
+  dateInChicago: Date,
+  slotIndex: number,
+  options?: { fallbackToRecent?: boolean; excludeIds?: string[] }
+): Promise<Event | null> {
+  const event = await getEventForSlotDb(dateInChicago, slotIndex, options);
   return event;
 }

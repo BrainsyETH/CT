@@ -67,12 +67,29 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Get the event for this slot
+    // Events posted in the last 21 days, to skip as filler so the recent-event
+    // fallback rotates through the catalog instead of reposting the same one.
+    const since = new Date(Date.now() - 21 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .slice(0, 10);
+    const { data: recentPosts } = await supabase
+      .from("twitter_bot_posts")
+      .select("event_id")
+      .gte("post_date", since);
+    const excludeIds = (recentPosts ?? [])
+      .map((p) => p.event_id)
+      .filter((id): id is string => Boolean(id));
+
+    // Get the event for this slot. Fall back to a recent event when this
+    // calendar day has no "on this day" entry, so the bot never goes silent.
     const chicagoTime = new Date(postDate + "T00:00:00Z");
-    const event = await getEventForSlot(chicagoTime, currentSlot.index);
+    const event = await getEventForSlot(chicagoTime, currentSlot.index, {
+      fallbackToRecent: true,
+      excludeIds,
+    });
 
     if (!event) {
-      // No event for this slot - this is OK, just skip
+      // Genuinely nothing left to post (catalog exhausted for this window).
       return NextResponse.json({
         message: "No event available for this slot",
         status: "skipped",

@@ -364,10 +364,52 @@ export async function getEventsOnThisWeek(
  */
 export async function getEventForSlot(
   date: Date,
-  slotIndex: number
+  slotIndex: number,
+  options?: {
+    /**
+     * When the calendar day has no (or too few) "on this day" events, fall back
+     * to recent events as filler so a scheduled bot never goes silent. Off by
+     * default to preserve pure "this day in history" behavior for callers that
+     * want it. Enable it for automated posting bots.
+     */
+    fallbackToRecent?: boolean;
+    /** Event ids to skip (e.g. recently posted, so filler rotates). */
+    excludeIds?: string[];
+  }
 ): Promise<Event | null> {
-  const events = await getEventsOnThisDay(date, { limit: 5 });
-  return events[slotIndex] || null;
+  // Primary supply: events on this exact calendar day (any year), newest first.
+  // These keep their original positional slot mapping (slot i -> event i).
+  const onThisDay = await getEventsOnThisDay(date, { limit: 5 });
+  if (slotIndex < onThisDay.length) {
+    return onThisDay[slotIndex] || null;
+  }
+
+  // This slot has no "on this day" event. Without fallback, skip (legacy
+  // behavior). With fallback, fill the trailing slot with a recent event.
+  if (!options?.fallbackToRecent) {
+    return null;
+  }
+
+  // Filler excludes the day's own history picks and any explicitly excluded
+  // (recently posted) ids, so it never duplicates the day's picks and rotates
+  // across days instead of reposting the same recent event.
+  const exclude = new Set(options.excludeIds ?? []);
+  for (const event of onThisDay) exclude.add(event.id);
+
+  const fillerIndex = slotIndex - onThisDay.length;
+  const { events: recent } = await getAllEvents({
+    limit: 100,
+    orderBy: "date",
+    orderDirection: "desc",
+  });
+  const filler: Event[] = [];
+  for (const event of recent) {
+    if (exclude.has(event.id)) continue;
+    filler.push(event);
+    if (filler.length > fillerIndex) break;
+  }
+
+  return filler[fillerIndex] || null;
 }
 
 /**
