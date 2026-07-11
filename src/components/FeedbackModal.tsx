@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useModeStore } from "@/store/mode-store";
-import { MODES } from "@/lib/constants";
+import { MODES, VALIDATION } from "@/lib/constants";
 import { sanitizeFeedbackSubmission } from "@/lib/sanitize";
-import { withRetry } from "@/lib/utils";
+import { withRetry, NonRetryableError } from "@/lib/utils";
 import {
   SuccessAnimation,
   ContactFields,
@@ -65,9 +65,11 @@ export function FeedbackModal({
   const [crimelineAftermath, setCrimelineAftermath] = useState("");
   const [message, setMessage] = useState("");
 
-  // Pre-fill form when editing an event
+  // Pre-fill form when editing an event.
+  // Depends on isOpen so re-opening the same event re-fills the fields that
+  // resetForm() cleared on close.
   useEffect(() => {
-    if (event && initialType === "edit_event") {
+    if (isOpen && event && initialType === "edit_event") {
       setEventTitle(event.title || "");
       setEventDate(event.date || "");
       setEventSummary(event.summary || "");
@@ -95,7 +97,7 @@ export function FeedbackModal({
         setCrimelineAftermath(event.crimeline.aftermath || "");
       }
     }
-  }, [event, initialType]);
+  }, [isOpen, event, initialType]);
 
   // Update feedback type when initialType changes
   useEffect(() => {
@@ -217,8 +219,14 @@ export function FeedbackModal({
           });
 
           if (!response.ok) {
-            const data = await response.json();
-            throw new Error(data.error || "Failed to submit feedback");
+            const data = await response.json().catch(() => ({}));
+            const errorText = data.error || "Failed to submit feedback";
+            // Client errors (validation, rate limit) can't succeed on retry -
+            // show them immediately instead of stalling through backoff.
+            if (response.status < 500) {
+              throw new NonRetryableError(errorText);
+            }
+            throw new Error(errorText);
           }
 
           return response;
@@ -394,6 +402,7 @@ export function FeedbackModal({
                   onTwitterChange={setTwitterHandle}
                   inputClassName={inputClassName}
                   labelClassName={labelClassName}
+                  emailRequired={feedbackType !== "general"}
                 />
 
                 {/* Event Fields */}
@@ -482,11 +491,15 @@ export function FeedbackModal({
                           Date <span className="text-red-500">*</span>
                         </label>
                         <input
-                          type="date"
+                          type="text"
                           id="eventDate"
                           required
+                          inputMode="numeric"
+                          pattern="\d{4}(-\d{2}(-\d{2})?)?"
+                          title="Use YYYY, YYYY-MM, or YYYY-MM-DD"
                           value={eventDate}
                           onChange={(e) => setEventDate(e.target.value)}
+                          placeholder="YYYY-MM-DD (or just YYYY)"
                           className={inputClassName}
                         />
                       </div>
@@ -525,6 +538,7 @@ export function FeedbackModal({
                       id="message"
                       required={feedbackType === "general"}
                       rows={4}
+                      maxLength={VALIDATION.MAX_MESSAGE_LENGTH}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder={
@@ -534,6 +548,9 @@ export function FeedbackModal({
                       }
                       className={inputClassName}
                     />
+                    <p className="mt-1 text-right text-xs opacity-60">
+                      {message.length} / {VALIDATION.MAX_MESSAGE_LENGTH}
+                    </p>
                   </div>
                 )}
 
@@ -547,7 +564,11 @@ export function FeedbackModal({
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="p-4 rounded-lg bg-red-100 text-red-800 border border-red-200"
+                      className={`p-4 rounded-lg border ${
+                        isCrimeline
+                          ? "bg-red-950/40 text-red-300 border-red-800"
+                          : "bg-red-100 text-red-800 border-red-200"
+                      }`}
                     >
                       {errorMessage || "An error occurred. Please try again."}
                     </motion.div>

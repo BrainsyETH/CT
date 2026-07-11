@@ -15,19 +15,41 @@ export function WeeklyEvents({ events }: WeeklyEventsProps) {
   const { mode, setSelectedEventId } = useModeStore();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Filter events by current mode
+  // The 7 month-day strings (MM-DD) of the current Sun-Sat week
+  const weekDays = useMemo(() => {
+    const now = new Date();
+    const sunday = new Date(now);
+    sunday.setDate(now.getDate() - now.getDay());
+    const days: string[] = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(sunday);
+      d.setDate(sunday.getDate() + i);
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      days.push(`${mm}-${dd}`);
+    }
+    return days;
+  }, []);
+
+  // Filter to events from this calendar week (any year) matching the current mode
   const filteredEvents = useMemo(() => {
-    return events.filter((event) => {
-      const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
-      if (mode === "timeline") {
-        return eventModes.includes("timeline");
-      } else if (mode === "crimeline") {
-        return eventModes.includes("crimeline") && !!event.crimeline;
-      }
-      // mode === "both" shows all
-      return true;
-    });
-  }, [events, mode]);
+    return events
+      .filter((event) => {
+        const eventModes = Array.isArray(event.mode) ? event.mode : [event.mode];
+        const matchesMode =
+          mode === "both" ||
+          (mode === "timeline" && eventModes.includes("timeline")) ||
+          (mode === "crimeline" && eventModes.includes("crimeline") && !!event.crimeline);
+        return matchesMode && weekDays.includes(event.date.slice(5));
+      })
+      .sort((a, b) => {
+        // Order by position in the week, then most recent year first
+        const dayDiff =
+          weekDays.indexOf(a.date.slice(5)) - weekDays.indexOf(b.date.slice(5));
+        if (dayDiff !== 0) return dayDiff;
+        return b.date.localeCompare(a.date);
+      });
+  }, [events, mode, weekDays]);
 
   const scroll = useCallback((direction: "left" | "right") => {
     const container = scrollRef.current;

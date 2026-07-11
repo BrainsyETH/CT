@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORIES, EVENT_TAGS, MODE_OPTIONS } from "@/lib/constants";
+import { CATEGORIES, EVENT_TAGS, MODE_OPTIONS, VALIDATION } from "@/lib/constants";
 
 interface EventFieldsProps {
   eventTitle: string;
@@ -66,14 +66,23 @@ export function EventFields({
           <label htmlFor="eventDate" className={labelClassName}>
             Date <span className="text-red-500">*</span>
           </label>
+          {/* Text input instead of a native date picker: much of crypto history
+              is only known by year or month, so allow YYYY / YYYY-MM / YYYY-MM-DD */}
           <input
-            type="date"
+            type="text"
             id="eventDate"
             required
+            inputMode="numeric"
+            pattern="\d{4}(-\d{2}(-\d{2})?)?"
+            title="Use YYYY, YYYY-MM, or YYYY-MM-DD"
             value={eventDate}
             onChange={(e) => onDateChange(e.target.value)}
+            placeholder="YYYY-MM-DD (or just YYYY)"
             className={inputClassName}
           />
+          <p className="mt-1 text-xs opacity-60">
+            Exact day unknown? A year (2011) or month (2013-04) works too.
+          </p>
         </div>
       </div>
 
@@ -85,11 +94,15 @@ export function EventFields({
           id="eventSummary"
           required
           rows={3}
+          maxLength={VALIDATION.MAX_SUMMARY_LENGTH}
           value={eventSummary}
           onChange={(e) => onSummaryChange(e.target.value)}
           placeholder="Describe the event..."
           className={inputClassName}
         />
+        <p className="mt-1 text-right text-xs opacity-60">
+          {eventSummary.length} / {VALIDATION.MAX_SUMMARY_LENGTH}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

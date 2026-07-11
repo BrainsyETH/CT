@@ -115,11 +115,19 @@ export const EventsArraySchema = z.array(EventSchema);
 
 export const FeedbackSubmissionSchema = z.object({
   type: z.enum(FEEDBACK_TYPES),
-  email: z.string().email().max(VALIDATION.MAX_EMAIL_LENGTH),
+  // Email is only required for event submissions (see superRefine below);
+  // general feedback can be anonymous to lower the contribution barrier.
+  email: z.string().email().max(VALIDATION.MAX_EMAIL_LENGTH).optional().or(z.literal("")),
   twitter_handle: z.string().max(VALIDATION.MAX_TWITTER_HANDLE_LENGTH).optional(),
   event_id: z.string().optional(),
   event_title: z.string().max(VALIDATION.MAX_TITLE_LENGTH).optional(),
-  event_date: z.string().optional(),
+  // Accept year, month, or full-day precision: much of crypto history is only
+  // known as "2011" or "mid-2013".
+  event_date: z
+    .string()
+    .regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, "Date must be YYYY, YYYY-MM, or YYYY-MM-DD")
+    .optional()
+    .or(z.literal("")),
   event_summary: z.string().max(VALIDATION.MAX_SUMMARY_LENGTH).optional(),
   event_category: z.string().optional(),
   event_tags: z.string().optional(),
@@ -137,6 +145,14 @@ export const FeedbackSubmissionSchema = z.object({
   crimeline_root_cause: z.string().optional(),
   crimeline_aftermath: z.string().max(VALIDATION.MAX_SUMMARY_LENGTH).optional(),
   message: z.string().max(VALIDATION.MAX_MESSAGE_LENGTH).optional(),
+}).superRefine((data, ctx) => {
+  if (data.type !== "general" && !data.email) {
+    ctx.addIssue({
+      code: "custom",
+      path: ["email"],
+      message: "Email is required for event submissions",
+    });
+  }
 });
 
 // ============================================================================

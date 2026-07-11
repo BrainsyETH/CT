@@ -4,6 +4,15 @@
 **Branch:** `claude/app-usability-review-gmp5ie`
 **Scope:** Full app review focused on quick, easy wins for usability and growth. Findings are ranked by impact ÷ effort with exact file/line references.
 
+> **Status: IMPLEMENTED.** Everything below has been implemented on this branch
+> (all Top 10, all Growth/SEO items, all Home UX items, all contribution-funnel
+> items, including the week-2 event-page SSR rework). Two variations from the
+> original write-up: the modal's related-events buttons were left as buttons
+> (the modal is client-only, so crawlability comes from the new SSR event page
+> links instead), and `ErrorBoundary` reports production crashes to GA4 rather
+> than a new logging endpoint. Line numbers in the findings refer to the
+> pre-fix code.
+
 ---
 
 ## Top 10 Quick Wins (do these first)

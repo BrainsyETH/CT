@@ -93,7 +93,7 @@ export function SuccessAnimation({ isCrimeline }: SuccessAnimationProps) {
           isCrimeline ? "text-gray-400" : "text-gray-600"
         }`}
       >
-        Thank you for your contribution
+        Thank you! We&apos;ll review your submission and add it to the timeline soon.
       </motion.p>
     </motion.div>
   );

@@ -1,10 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeFeedbackSubmission, sanitizeEmail } from "@/lib/sanitize";
 import { validateFeedbackSubmission } from "@/lib/validation";
+import { rateLimitAsync } from "@/lib/rate-limit";
 import { RATE_LIMIT } from "@/lib/constants";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     // Validate environment variables
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -38,26 +39,48 @@ export async function POST(request: Request) {
     // Sanitize validated inputs for XSS protection
     const body = sanitizeFeedbackSubmission(submission);
 
-    // Rate limiting: Check submissions from this email in the last hour
-    const oneHourAgo = new Date(Date.now() - RATE_LIMIT.WINDOW_MS).toISOString();
+    const sanitizedEmail = sanitizeEmail(body.email);
 
-    const { count, error: countError } = await supabase
-      .from("feedback_submissions")
-      .select("*", { count: "exact", head: true })
-      .eq("email", sanitizeEmail(body.email))
-      .gte("created_at", oneHourAgo);
+    if (sanitizedEmail) {
+      // Rate limiting: Check submissions from this email in the last hour
+      const oneHourAgo = new Date(Date.now() - RATE_LIMIT.WINDOW_MS).toISOString();
 
-    if (countError) {
-      console.error("Rate limit check error:", countError);
-      // Continue anyway - don't block submission if rate limit check fails
-    } else if (count !== null && count >= RATE_LIMIT.MAX_SUBMISSIONS) {
-      return NextResponse.json(
-        {
-          error: "Rate limit exceeded. Please try again later.",
-          retryAfter: "1 hour"
-        },
-        { status: 429 }
-      );
+      const { count, error: countError } = await supabase
+        .from("feedback_submissions")
+        .select("*", { count: "exact", head: true })
+        .eq("email", sanitizedEmail)
+        .gte("created_at", oneHourAgo);
+
+      if (countError) {
+        console.error("Rate limit check error:", countError);
+        // Continue anyway - don't block submission if rate limit check fails
+      } else if (count !== null && count >= RATE_LIMIT.MAX_SUBMISSIONS) {
+        return NextResponse.json(
+          {
+            error: "Rate limit exceeded. Please try again later.",
+            retryAfter: "1 hour"
+          },
+          { status: 429 }
+        );
+      }
+    } else {
+      // Anonymous general feedback: rate limit per IP instead of per email so
+      // one anonymous submitter can't exhaust a shared bucket for everyone.
+      const result = await rateLimitAsync(request, {
+        keyPrefix: "feedback:anon",
+        limit: RATE_LIMIT.MAX_SUBMISSIONS,
+        windowMs: RATE_LIMIT.WINDOW_MS,
+        distributed: true,
+      });
+      if (!result.ok) {
+        return NextResponse.json(
+          {
+            error: "Rate limit exceeded. Please try again later.",
+            retryAfter: "1 hour"
+          },
+          { status: 429 }
+        );
+      }
     }
 
     // Insert into Supabase
@@ -66,7 +89,7 @@ export async function POST(request: Request) {
       .insert([
         {
           type: body.type,
-          email: sanitizeEmail(body.email),
+          email: sanitizedEmail,
           twitter_handle: body.twitter_handle || null,
           event_id: body.event_id || null,
           event_title: body.event_title || null,

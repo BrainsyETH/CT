@@ -2,17 +2,26 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async headers() {
+    const securityHeaders = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=()",
+      },
+    ];
     return [
       {
-        source: "/(.*)",
+        // Everything except /embed is frame-denied.
+        source: "/((?!embed).*)",
+        headers: [{ key: "X-Frame-Options", value: "DENY" }, ...securityHeaders],
+      },
+      {
+        // /embed/[id] widgets must be embeddable in third-party iframes.
+        source: "/embed/:path*",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
+          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          ...securityHeaders,
         ],
       },
     ];

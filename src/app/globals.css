@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import "tailwindcss";
 
 /* Timeline Mode (Default) */
@@ -37,19 +36,19 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   transition: background-color 0.5s ease, color 0.5s ease;
-  /* Prevent pinch-zoom on mobile while allowing panning */
-  touch-action: pan-x pan-y;
+  /* Remove double-tap zoom delay but keep pinch-zoom available (accessibility) */
+  touch-action: manipulation;
 }
 
 /* Smooth scrolling - respect user preferences */
 html {
   scroll-behavior: smooth;
-  /* Prevent zoom on mobile */
-  touch-action: pan-x pan-y;
+  /* Remove double-tap zoom delay but keep pinch-zoom available (accessibility) */
+  touch-action: manipulation;
   -webkit-touch-callout: none;
 }
 

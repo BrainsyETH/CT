@@ -74,11 +74,17 @@ export function CrimelineFields({
           <input
             type="text"
             id="crimelineFundsLost"
+            inputMode="numeric"
+            pattern="\d*"
+            title="Digits only, no symbols (e.g. 100000000 for $100M)"
             value={fundsLost}
             onChange={(e) => onFundsLostChange(e.target.value)}
             placeholder="e.g., 100000000"
             className={inputClassName}
           />
+          <p className="mt-1 text-xs opacity-60">
+            Digits only, no symbols — e.g. 100000000 for $100M
+          </p>
         </div>
         <div>
           <label htmlFor="crimelineStatus" className={labelClassName}>

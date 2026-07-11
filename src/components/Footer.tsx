@@ -58,7 +58,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://warpcast.com/chainofevents"
+                href="https://farcaster.xyz/chainofevents"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-2 rounded-lg transition-colors ${
@@ -157,6 +157,21 @@ export function Footer() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
               Open API
+            </a>
+            <a
+              href="/api/feed"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
+                isCrimeline
+                  ? "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-200"
+              }`}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+              </svg>
+              RSS Feed
             </a>
             <p
               className={`text-xs ${

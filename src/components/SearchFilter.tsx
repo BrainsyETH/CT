@@ -256,6 +256,20 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
   const [categorySearch, setCategorySearch] = useState("");
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
+  // Local input state, debounced into the store: writing to the store on every
+  // keystroke re-runs filtering/grouping and a router.replace URL update.
+  const [searchInput, setSearchInput] = useState(searchQuery);
+  useEffect(() => {
+    // Keep the input in sync when the store changes externally (URL init, Clear All)
+    setSearchInput(searchQuery);
+  }, [searchQuery]);
+  useEffect(() => {
+    if (searchInput === searchQuery) return;
+    const timeout = setTimeout(() => setSearchQuery(searchInput), 200);
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchInput]);
+
   // Listen for expandFilters event from StickyFilterButton
   useEffect(() => {
     const handleExpandFilters = () => {
@@ -339,9 +353,9 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
           </svg>
           <input
             type="text"
-            placeholder={searchQuery ? "" : placeholders[placeholderIndex]}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={searchInput ? "" : placeholders[placeholderIndex]}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             aria-label="Search events"
             className={`w-full pl-9 pr-8 py-2 rounded-lg text-base sm:text-sm transition-colors duration-300 ${
               isCrimeline
@@ -351,9 +365,12 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
               isCrimeline ? "focus:ring-purple-500" : "focus:ring-teal-500"
             }`}
           />
-          {searchQuery && (
+          {searchInput && (
             <button
-              onClick={() => setSearchQuery("")}
+              onClick={() => {
+                setSearchInput("");
+                setSearchQuery("");
+              }}
               aria-label="Clear search"
               className={`absolute right-2 top-1/2 -translate-y-1/2 p-0.5 ${
                 isCrimeline
@@ -394,7 +411,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
               d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
             />
           </svg>
-          <span className="hidden sm:inline">{sortOrder === "asc" ? "Oldest" : "Newest"}</span>
+          <span className="text-xs sm:text-sm">{sortOrder === "asc" ? "Oldest" : "Newest"}</span>
         </button>
 
         {/* Filter Toggle Button */}
@@ -464,7 +481,7 @@ export function SearchFilter({ isFilterVisible = true }: SearchFilterProps = {})
                 <div className={`text-sm font-medium mb-2 ${
                   isCrimeline ? "text-gray-300" : "text-gray-700"
                 }`}>
-                  
+                  Creators &amp; Lore
                 </div>
                 <div className="flex flex-wrap gap-2 px-1 pt-1">
                   {PREMIUM_CATEGORIES.map((category) => {

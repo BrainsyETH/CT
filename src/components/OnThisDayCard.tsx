@@ -99,7 +99,7 @@ export function OnThisDayCard({ events }: OnThisDayCardProps) {
                     : "bg-teal-100 text-teal-700 border border-teal-300"
                 }`}
               >
-                {yearsAgo} year{yearsAgo !== 1 ? "s" : ""} ago
+                {yearsAgo === 0 ? "This year" : `${yearsAgo} year${yearsAgo !== 1 ? "s" : ""} ago`}
               </span>
               {otherEvents.length > 0 && (
                 <span

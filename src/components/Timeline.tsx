@@ -45,6 +45,10 @@ export function Timeline({ events }: TimelineProps) {
   const ESTIMATED_GROUP_HEIGHT = 760;
   const OVERSCAN_PX = 1200;
 
+  // Report zero-result searches to GA4 - each one is an event the audience
+  // wanted but couldn't find, i.e. a free content-gap backlog.
+  const lastReportedQueryRef = useRef<string | null>(null);
+
 
   // Filter events based on current mode, search, and tags
   const filteredEvents = useMemo(() => {
@@ -121,6 +125,23 @@ export function Timeline({ events }: TimelineProps) {
 
     return filtered;
   }, [events, mode, searchQuery, selectedTags, selectedCategories, selectedCrimelineTypes, sortOrder]);
+
+  // Track zero-result searches (deduped per query) as GA4 events
+  useEffect(() => {
+    const query = searchQuery.trim();
+    if (!query || filteredEvents.length > 0) return;
+    if (lastReportedQueryRef.current === query) return;
+
+    const timeout = setTimeout(() => {
+      lastReportedQueryRef.current = query;
+      const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+      gtag?.("event", "search_no_results", {
+        search_term: query.slice(0, 100),
+        mode,
+      });
+    }, 1500); // Wait for typing to settle so we log the final query, not prefixes
+    return () => clearTimeout(timeout);
+  }, [searchQuery, filteredEvents.length, mode]);
 
   // Group events by year
   const groupedEvents = useMemo(() => {

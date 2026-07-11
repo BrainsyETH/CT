@@ -2,6 +2,9 @@ import { SocialSharePreview } from "@/components/SocialSharePreview";
 import { getAllEvents } from "@/lib/events-db";
 import type { Event } from "@/lib/types";
 
+// Dev-only preview page: always render at request time, never at build
+export const dynamic = "force-dynamic";
+
 export default async function TestPreviewPage() {
   // Fetch events from database
   const { events } = await getAllEvents({ limit: 100 });

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useModeStore } from "@/store/mode-store";
-import type { Mode, EventTag } from "@/lib/types";
+import type { Mode, EventTag, CrimelineType } from "@/lib/types";
 
 /**
  * Hook to synchronize URL search params with mode store state
@@ -13,7 +13,22 @@ export function useUrlSync() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { mode, searchQuery, selectedTags, sortOrder, selectedEventId, setMode, setSearchQuery, toggleTag, setSortOrder, setSelectedEventId } = useModeStore();
+  const {
+    mode,
+    searchQuery,
+    selectedTags,
+    selectedCategories,
+    selectedCrimelineTypes,
+    sortOrder,
+    selectedEventId,
+    setMode,
+    setSearchQuery,
+    toggleTag,
+    toggleCategory,
+    toggleCrimelineType,
+    setSortOrder,
+    setSelectedEventId,
+  } = useModeStore();
 
   const isInitialMount = useRef(true);
   const isUpdatingFromUrl = useRef(false);
@@ -23,6 +38,8 @@ export function useUrlSync() {
     mode: Mode;
     searchQuery: string;
     tagsString: string;
+    categoriesString: string;
+    typesString: string;
     sortOrder: "asc" | "desc";
     selectedEventId: string | null;
   } | null>(null);
@@ -30,11 +47,13 @@ export function useUrlSync() {
   // Create a stable representation for dependency tracking
   // Use length and sorted string to detect actual changes, not just reference changes
   const tagsKey = `${selectedTags.length}:${[...selectedTags].sort().join(",")}`;
+  const categoriesKey = `${selectedCategories.length}:${[...selectedCategories].sort().join(",")}`;
+  const typesKey = `${selectedCrimelineTypes.length}:${[...selectedCrimelineTypes].sort().join(",")}`;
 
   // Wait for Zustand store to hydrate before doing anything
   useEffect(() => {
     if (isStoreHydrated) return;
-    
+
     const rehydrateResult = useModeStore.persist.rehydrate();
     if (rehydrateResult instanceof Promise) {
       rehydrateResult.then(() => {
@@ -55,6 +74,8 @@ export function useUrlSync() {
     const urlMode = searchParams.get("mode") as Mode | null;
     const urlQuery = searchParams.get("q");
     const urlTags = searchParams.get("tags");
+    const urlCategories = searchParams.get("cat");
+    const urlTypes = searchParams.get("type");
     const urlSort = searchParams.get("sort");
     const urlEvent = searchParams.get("event");
 
@@ -68,33 +89,51 @@ export function useUrlSync() {
       setSearchQuery(urlQuery);
     }
 
-    // Set tags from URL - use getState to get current tags and update accordingly
-    if (urlTags) {
-      const tags = urlTags.split(",").filter(Boolean) as EventTag[];
-      // Get current tags from store to avoid stale closure
-      const currentTags = useModeStore.getState().selectedTags;
-      const currentTagsString = [...currentTags].sort().join(",");
-      const urlTagsString = [...tags].sort().join(",");
-      
-      // Only update if tags are different
-      if (currentTagsString !== urlTagsString) {
-        // Batch tag updates using setTimeout to ensure they complete before URL sync
+    // Reconcile a multi-select store list with the comma-separated URL param.
+    // Uses getState-provided current values to avoid stale closures; batched in
+    // setTimeout so the updates complete before URL sync re-runs.
+    const reconcileListParam = <T extends string>(
+      urlValue: string | null,
+      getCurrent: () => T[],
+      toggle: (value: T) => void
+    ) => {
+      if (!urlValue) return;
+      const values = urlValue.split(",").filter(Boolean) as T[];
+      const current = getCurrent();
+      const currentString = [...current].sort().join(",");
+      const urlString = [...values].sort().join(",");
+
+      if (currentString !== urlString) {
         setTimeout(() => {
-          // Remove tags that aren't in URL
-          currentTags.forEach((tag) => {
-            if (!tags.includes(tag)) {
-              toggleTag(tag);
+          current.forEach((value) => {
+            if (!values.includes(value)) {
+              toggle(value);
             }
           });
-          // Add tags that are in URL but not in current
-          tags.forEach((tag) => {
-            if (!currentTags.includes(tag)) {
-              toggleTag(tag);
+          values.forEach((value) => {
+            if (!current.includes(value)) {
+              toggle(value);
             }
           });
         }, 0);
       }
-    }
+    };
+
+    reconcileListParam<EventTag>(
+      urlTags,
+      () => useModeStore.getState().selectedTags,
+      toggleTag
+    );
+    reconcileListParam<string>(
+      urlCategories,
+      () => useModeStore.getState().selectedCategories,
+      toggleCategory
+    );
+    reconcileListParam<CrimelineType>(
+      urlTypes,
+      () => useModeStore.getState().selectedCrimelineTypes,
+      toggleCrimelineType
+    );
 
     // Set sort order from URL
     if (urlSort === "asc" || urlSort === "desc") {
@@ -129,14 +168,18 @@ export function useUrlSync() {
       return;
     }
 
-    // Compute tags string inside effect to avoid dependency issues
+    // Compute list strings inside effect to avoid dependency issues
     const tagsString = [...selectedTags].sort().join(",");
+    const categoriesString = [...selectedCategories].sort().join(",");
+    const typesString = [...selectedCrimelineTypes].sort().join(",");
 
     // Check if state actually changed
     const currentState = {
       mode,
       searchQuery,
       tagsString,
+      categoriesString,
+      typesString,
       sortOrder,
       selectedEventId,
     };
@@ -147,6 +190,8 @@ export function useUrlSync() {
         prev.mode === currentState.mode &&
         prev.searchQuery === currentState.searchQuery &&
         prev.tagsString === currentState.tagsString &&
+        prev.categoriesString === currentState.categoriesString &&
+        prev.typesString === currentState.typesString &&
         prev.sortOrder === currentState.sortOrder &&
         prev.selectedEventId === currentState.selectedEventId
       ) {
@@ -175,6 +220,16 @@ export function useUrlSync() {
       params.set("tags", tagsString);
     }
 
+    // Add categories to URL
+    if (selectedCategories.length > 0) {
+      params.set("cat", categoriesString);
+    }
+
+    // Add crimeline incident types to URL
+    if (selectedCrimelineTypes.length > 0) {
+      params.set("type", typesString);
+    }
+
     // Add sort order to URL (only if desc, asc is default)
     if (sortOrder === "asc") {
       params.set("sort", sortOrder);
@@ -188,10 +243,10 @@ export function useUrlSync() {
     // Build new URL and update
     const newUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
     const currentUrl = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
-    
+
     // Only update if URL actually changed
     if (newUrl !== currentUrl) {
       router.replace(newUrl, { scroll: false });
     }
-  }, [mode, searchQuery, tagsKey, sortOrder, selectedEventId, pathname, router]);
+  }, [mode, searchQuery, tagsKey, categoriesKey, typesKey, sortOrder, selectedEventId, pathname, router]);
 }
